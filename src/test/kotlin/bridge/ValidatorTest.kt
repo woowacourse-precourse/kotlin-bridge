@@ -13,4 +13,11 @@ class ValidatorTest {
             validator.checkEmptyInput("")
         }
     }
+
+    @Test
+    fun `입력값이 null일 경우 예외 테스트`() {
+        assertThrows<IllegalArgumentException> {
+            validator.checkInputNull(null)
+        }
+    }
 }
