@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.resources.INPUT_BRIDGE_GAME_START
+
 fun main() {
-    // TODO: 프로그램 구현
+    println(INPUT_BRIDGE_GAME_START)
 }
