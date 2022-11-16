@@ -31,14 +31,17 @@ class OutputView {
     }
 
     fun printAnswer(answer: Boolean, space: String, line: String) {
-        if (answer && line == UP && space == UP) print(ANSWER)
-        if (!answer && line == UP && space == UP) print(SPACING)
-        if (!answer && line == UP && space == DOWN) print(NOT_ANSWER)
-        if (answer && line == UP && space == DOWN) print(SPACING)
-        if (answer && line == DOWN && space == DOWN) print(ANSWER)
-        if (!answer && line == DOWN && space == DOWN) print(SPACING)
-        if (!answer && line == DOWN && space == UP) print(NOT_ANSWER)
-        if (answer && line == DOWN && space == UP) print(SPACING)
+        if (space == UP) { // space가 UP이면 윗줄, DOWN이면 아랫줄
+            if (answer && line == UP) print(ANSWER) // 정답인 경우 O 출력
+            if (answer && line == DOWN) print(SPACING) // 반대줄에는 공백 출력
+            if (!answer && line == DOWN) print(NOT_ANSWER)
+            if (!answer && line == UP) print(SPACING)
+        } else {
+            if (answer && line == DOWN) print(ANSWER)
+            if (!answer && line == DOWN) print(SPACING)
+            if (!answer && line == UP) print(NOT_ANSWER)
+            if (answer && line == UP) print(SPACING)
+        }
     }
 
     /**

@@ -20,7 +20,6 @@ class BridgeGame(val bridge: List<String>) {
 
         if (bridge[location] == moveLine) answer = true
         OutputView().printMap(bridge, location, answer)
-        OutputView().printMap(bridge, location, answer)
         if (location < bridge.size && answer) move(location + 1)
     }
 
