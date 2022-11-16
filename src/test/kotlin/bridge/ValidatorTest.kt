@@ -30,4 +30,12 @@ class ValidatorTest {
             validator.checkLengthIsNum(input)
         }
     }
+
+    @ValueSource(strings = ["2", "21", "-2", "0"])
+    @ParameterizedTest
+    fun `다리길이가 3이상 20이하가 아닌 경우`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            validator.checkLengthRange(input)
+        }
+    }
 }
