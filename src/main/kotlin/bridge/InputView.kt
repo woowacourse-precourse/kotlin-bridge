@@ -36,7 +36,13 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        return try {
+            getGameCommand()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            readGameCommand()
+        }
     }
 
     private fun getBridgeSize(): Int {
@@ -45,7 +51,7 @@ class InputView {
             size = Console.readLine().toInt()
             if (size < 3 || size > 20) throw IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
         } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 한다.")
+            throw IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
         }
         return size
     }
@@ -54,5 +60,11 @@ class InputView {
         val moving: String = Console.readLine().trim()
         if (moving != "U" && moving != "D") throw IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D여야 합니다.")
         return moving
+    }
+
+    private fun getGameCommand(): String {
+        val command = Console.readLine().trim()
+        if (command != "R" && command != "Q") throw IllegalArgumentException("[ERROR] 재시도 여부는 R 또는 Q여야 합니다.")
+        return command
     }
 }
