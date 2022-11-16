@@ -5,15 +5,20 @@ import org.assertj.core.api.Assertions.assertThat
 
 class BridgeGameTest {
     @Test
-    fun `움직임 테스트`() {
+    fun `게임 종료 테스트`() {
         val testGame1 = BridgeGame(BridgeMaker(TestNumberGenerator(listOf(1,1,0))), 3)
-        assertThat(testGame1.move("U")).isEqualTo(false)
-        assertThat(testGame1.move("U")).isEqualTo(false)
-        assertThat(testGame1.move("D")).isEqualTo(true)
+        testGame1.move("U")
+        assertThat(testGame1.isGameEnd()).isEqualTo(false)
+        testGame1.move("U")
+        assertThat(testGame1.isGameEnd()).isEqualTo(false)
+        testGame1.move("D")
+        assertThat(testGame1.isGameEnd()).isEqualTo(true)
 
         val testGame2 = BridgeGame(BridgeMaker(TestNumberGenerator(listOf(1,1,0))), 3)
-        assertThat(testGame2.move("U")).isEqualTo(false)
-        assertThat(testGame2.move("D")).isEqualTo(true)
+        testGame2.move("U")
+        assertThat(testGame2.isGameEnd()).isEqualTo(false)
+        testGame2.move("D")
+        assertThat(testGame2.isGameEnd()).isEqualTo(true)
     }
 
     @Test
