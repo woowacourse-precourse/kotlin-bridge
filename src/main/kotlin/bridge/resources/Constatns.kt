@@ -17,5 +17,6 @@ const val MAX_RANGE_LENGTH = 20
 
 // FOR ERROR HANDLING
 private const val ERROR_MESSAGE_PREFIX = "[ERROR] "
+const val ERROR_INPUT_BRIDGE_NULL = ERROR_MESSAGE_PREFIX + "공백이 아닌 숫자를 입력해주세요"
 const val ERROR_INPUT_BRIDGE_TYPE = ERROR_MESSAGE_PREFIX + "문자가 아닌 숫자를 입력해주세요."
 const val ERROR_INPUT_BRIDGE_RANGE = ERROR_MESSAGE_PREFIX + "3이상 20이하의 숫자를 입력해주세요."
