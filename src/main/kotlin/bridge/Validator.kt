@@ -2,6 +2,13 @@ package bridge
 
 class Validator {
 
+    fun checkBridgeLength(input: String?) {
+        checkInputNull(input)
+        checkEmptyInput(input!!)
+        checkLengthIsNum(input)
+        checkLengthRange(input)
+    }
+
     fun checkEmptyInput(input: String) {
         require(input != "") { EMPTY_INPUT_ERROR_MSG }
     }
