@@ -1,5 +1,6 @@
 package bridge.view
 
+import bridge.Exception.BridgeLengthException
 import bridge.resources.*
 import camp.nextstep.edu.missionutils.Console
 
@@ -22,6 +23,8 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
+        println(INPUT_CHOICE_ROOM)
+        val inputBridgeSize = input()
         return ""
     }
 

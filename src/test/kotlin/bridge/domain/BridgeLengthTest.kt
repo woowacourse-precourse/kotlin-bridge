@@ -1,8 +1,6 @@
 package bridge.domain
 
-import bridge.view.BridgeLengthException
-import bridge.view.InputView
-import org.assertj.core.api.Assertions.assertThat
+import bridge.Exception.BridgeLengthException
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.Test
 import java.lang.IllegalArgumentException
