@@ -11,11 +11,19 @@ const val GAME_RESULT_WIN = "게임 성공 여부: 성공"
 const val GAME_RESULT_LOSE = "게임 성공 여부: 실패"
 const val GAME_TRY_COUNT = "총 시도한 횟수: %d"
 
+// FOR OUTPUT VIEW
+const val START_BRACKET = "[ "
+const val END_BRACKET = " ]"
+const val SEPARATOR = " | "
+const val ANSWER = "O"
+const val NOT_ANSWER = "X"
+const val SPACING = " "
+
 // FOR LOGIC
 const val MIN_RANGE_LENGTH = 3
 const val MAX_RANGE_LENGTH = 20
 const val UP = "U"
-const val DOWN = "DOWN"
+const val DOWN = "D"
 
 // FOR ERROR HANDLING
 private const val ERROR_MESSAGE_PREFIX = "[ERROR] "

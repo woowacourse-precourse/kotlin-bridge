@@ -4,7 +4,7 @@ import kotlin.IllegalArgumentException
 
 object BridgeLengthException {
     fun exceptions(input: String) {
-        if (nullException(input)) throw IllegalArgumentException(ERROR_INPUT_BRIDGE_TYPE)
+        if (nullException(input)) throw IllegalArgumentException(ERROR_INPUT_BRIDGE_NULL)
         if (typeException(input)) throw IllegalArgumentException(ERROR_INPUT_BRIDGE_TYPE)
         if (rangeException(input.toInt())) throw IllegalArgumentException(ERROR_INPUT_BRIDGE_RANGE)
     }
