@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import java.lang.IllegalArgumentException
 
 
-class BridgeLengthTest {
+class LengthInputTest {
     @Test
     fun `다리 길이에 null이 들어갈 경우 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
@@ -22,7 +22,7 @@ class BridgeLengthTest {
     }
 
     @Test
-    fun `다리 길이에 3이상 20이하가 아니 숫자가 들어갈 경우 예외가 발생한다`() {
+    fun `다리 길이에 3이상 20이하가 아닌 숫자가 들어갈 경우 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
             BridgeLengthException.exceptions("21")
         }
@@ -30,6 +30,4 @@ class BridgeLengthTest {
             BridgeLengthException.exceptions("2")
         }
     }
-
-
 }
