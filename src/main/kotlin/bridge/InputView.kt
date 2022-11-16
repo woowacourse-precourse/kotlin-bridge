@@ -23,7 +23,13 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        return try {
+            getMoving()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            readMoving()
+        }
     }
 
     /**
@@ -42,5 +48,11 @@ class InputView {
             throw IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 한다.")
         }
         return size
+    }
+
+    private fun getMoving(): String {
+        val moving: String = Console.readLine().trim()
+        if (moving != "U" && moving != "D") throw IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D여야 합니다.")
+        return moving
     }
 }
