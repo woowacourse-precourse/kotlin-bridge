@@ -32,6 +32,7 @@ class BridgeGame(bridgeMaker: BridgeMaker, bridgeSize: Int) {
     fun isSuccess(): Boolean = bridge == userChoice
 
     fun isGameEnd(): Boolean {
+        if (userChoice.isEmpty()) return false
         if (userChoice.size == bridge.size) return true
         if (userChoice.last() != bridge[userChoice.size - 1]) return true
         return false
