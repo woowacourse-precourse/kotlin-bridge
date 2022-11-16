@@ -8,8 +8,7 @@ fun main() {
     val bridgeLength = InputView().readBridgeSize()
     val b = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
     // BridgeGame의 인스턴스로 넣자.
-    OutputView().printMap(b, 4, false)
-    val m= InputView().readMoving()
-    println(m)
+    println(b)
+    BridgeGame(b).move(0)
 
 }

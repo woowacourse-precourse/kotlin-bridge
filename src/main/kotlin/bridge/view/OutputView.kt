@@ -13,18 +13,32 @@ class OutputView {
      */
     fun printMap(bridge: List<String>, moved: Int, answer: Boolean) {
         printSign(bridge, moved, UP)
+        printAnswer(answer, bridge[moved], UP)
+        println(END_BRACKET)
+
         printSign(bridge, moved, DOWN)
+        printAnswer(answer, bridge[moved], DOWN)
+        println(END_BRACKET)
     }
 
     fun printSign(bridge: List<String>, moved: Int, line: String) {
         print(START_BRACKET)
         for (idx in 0 until moved) {
             if (bridge[idx] == line) print(ANSWER)
-            else print (SPACING)
-
-            if (idx != moved - 1) print(SEPARATOR)
+            else print(SPACING)
+            print(SEPARATOR)
         }
-        println(END_BRACKET)
+    }
+
+    fun printAnswer(answer: Boolean, space: String, line: String) {
+        if (answer && line == UP && space == UP) print(ANSWER)
+        if (!answer && line == UP && space == UP) print(SPACING)
+        if (!answer && line == UP && space == DOWN) print(NOT_ANSWER)
+        if (answer && line == UP && space == DOWN) print(SPACING)
+        if (answer && line == DOWN && space == DOWN) print(ANSWER)
+        if (!answer && line == DOWN && space == DOWN) print(SPACING)
+        if (!answer && line == DOWN && space == UP) print(NOT_ANSWER)
+        if (answer && line == DOWN && space == UP) print(SPACING)
     }
 
     /**
