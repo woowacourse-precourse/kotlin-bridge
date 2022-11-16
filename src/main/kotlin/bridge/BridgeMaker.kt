@@ -19,8 +19,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     private fun bridgeNumberToString(): String {
         var string = ""
         when(bridgeNumberGenerator.generate()) {
-            0 -> string = "U"
-            1 -> string = "D"
+            0 -> string = "D"
+            1 -> string = "U"
         }
         return string
     }
