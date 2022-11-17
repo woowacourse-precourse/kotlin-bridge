@@ -6,12 +6,12 @@ object RetryException {
     fun exceptions(retryInput: String) {
         if (MoveException.nullException(retryInput)) throw IllegalArgumentException(ERROR_INPUT_MOVE_NULL)
         if (MoveException.sizeException(retryInput)) throw IllegalArgumentException(ERROR_INPUT_MOVE_SIZE)
-        if (digitException(retryInput)) throw IllegalArgumentException(ERROR_INPUT_MOVE_DIGIT)
+        if (digitException(retryInput)) throw IllegalArgumentException(ERROR_INPUT_RETRY_DIGIT)
     }
 
     private fun digitException(moveInput: String): Boolean {
         if (moveInput == RETRY || moveInput == QUIT) return false
-        println(ERROR_INPUT_MOVE_DIGIT)
+        println(ERROR_INPUT_RETRY_DIGIT)
         return true
     }
 }

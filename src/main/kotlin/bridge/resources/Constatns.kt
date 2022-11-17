@@ -30,6 +30,7 @@ const val INPUT_MOVE_SIZE = 1
 const val START_LOCATION = 0
 const val START_TRY = 1
 const val NEXT_TRY = 1
+const val NEXT_MOVE = 1
 
 // FOR ERROR HANDLING
 private const val ERROR_MESSAGE_PREFIX = "[ERROR] "
@@ -39,4 +40,5 @@ const val ERROR_INPUT_BRIDGE_RANGE = ERROR_MESSAGE_PREFIX + "3이상 20이하의
 const val ERROR_INPUT_MOVE_NULL = ERROR_MESSAGE_PREFIX + "공백이 아닌 U나 D를 입력해주세요"
 const val ERROR_INPUT_MOVE_SIZE = ERROR_MESSAGE_PREFIX + "한 글자만 입력해주세요."
 const val ERROR_INPUT_MOVE_DIGIT = ERROR_MESSAGE_PREFIX + "U나 D만 입력해주세요."
+const val ERROR_INPUT_RETRY_DIGIT = ERROR_MESSAGE_PREFIX + "Q나 R만 입력해주세요."
 

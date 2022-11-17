@@ -13,11 +13,13 @@ class OutputView {
      */
     fun printMap(bridge: List<String>, location: Int, answer: Boolean) {
         printSign(bridge, location, UP)
-        printAnswer(answer, bridge[location], UP)
+        //printAnswer(answer, bridge[location], UP)
+        printUpAnswer(answer, bridge[location])
         println(END_BRACKET)
 
         printSign(bridge, location, DOWN)
-        printAnswer(answer, bridge[location], DOWN)
+        //printAnswer(answer, bridge[location], DOWN)
+        printDownAnswer(answer, bridge[location])
         println(END_BRACKET)
     }
 
@@ -28,6 +30,20 @@ class OutputView {
             else print(SPACING)
             print(SEPARATOR)
         }
+    }
+
+    fun printUpAnswer(answer: Boolean, locationAnswer: String){
+        if (answer && locationAnswer == UP) print(ANSWER)
+        if (answer && locationAnswer == DOWN) print(SPACING)
+        if (!answer && locationAnswer == DOWN) print(NOT_ANSWER)
+        if (!answer && locationAnswer == UP) print(SPACING)
+    }
+
+    fun printDownAnswer(answer: Boolean, locationAnswer: String){
+        if (answer && locationAnswer == DOWN) print(ANSWER)
+        if (answer && locationAnswer == UP) print(SPACING)
+        if (!answer && locationAnswer == UP) print(NOT_ANSWER)
+        if (!answer && locationAnswer == DOWN) print(SPACING)
     }
 
     private fun printAnswer(answer: Boolean, space: String, line: String) {
