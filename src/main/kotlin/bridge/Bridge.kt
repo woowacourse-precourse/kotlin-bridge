@@ -4,7 +4,7 @@ class Bridge (private val bridge:List<String>){
     var upBridge = ""
     var downBridge =""
     var currentLocation = 0
-    private val hitBridge= MutableList(bridge.size + 1){""}
+    private val hitBridge= mutableListOf<String>("")
     fun checkCurrentLocation(upDown : String): Boolean {
         if(bridge[currentLocation] == upDown){
             return true
@@ -14,9 +14,17 @@ class Bridge (private val bridge:List<String>){
 
     fun move(hit: String) {
         currentLocation++
-        hitBridge[currentLocation] = hit
+        hitBridge.add(hit)
 
     }
     fun getCurrentLocationHit() = hitBridge[currentLocation]
+    fun retry() {
+        currentLocation = 0
+        upBridge = ""
+        downBridge = ""
+        hitBridge.clear()
+        hitBridge.add("")
+
+    }
 
 }

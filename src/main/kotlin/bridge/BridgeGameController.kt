@@ -8,10 +8,29 @@ class BridgeGameController() {
     fun startGame() {
         outputView.printStartGame()
         val bridge = makeBridge()
-        moveBridge(bridge)
-        while (bridge.getCurrentLocationHit() != "X") {
+        var gameFlag = true
+        while (gameFlag) {
             moveBridge(bridge)
+            gameFlag = askRetryGame(bridge)
         }
+
+    }
+
+    private fun askRetryGame(bridge: Bridge): Boolean {
+
+        if (bridge.getCurrentLocationHit() == "X"){
+            outputView.printInputGameCommand()
+            val gameCommand = inputView.readGameCommand()
+            if(gameCommand == "Q"){
+                return false
+            }
+            if (gameCommand == "R"){
+                bridgeGame.retry(bridge)
+                return true
+            }
+
+        }
+        return true
     }
 
     private fun makeBridge(): Bridge {
