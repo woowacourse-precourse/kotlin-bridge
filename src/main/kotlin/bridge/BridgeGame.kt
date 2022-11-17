@@ -12,7 +12,8 @@ class BridgeGame {
      */
 
     val userChoiceResults : MutableList<Map<String,Boolean>> = mutableListOf()
-    var presentPosition = 0
+    var presentPosition = INITIALIZE_TO_ZERO
+    var gameTryCount = INITIALIZE_TO_ZERO
 
     fun move(userChoice:String, bridge: Bridge): GameResult {
         if(bridge.matchUserChoice(userChoice,presentPosition)) {
@@ -30,10 +31,18 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {}
+    fun retry() {
+        presentPosition = INITIALIZE_TO_ZERO
+        userChoiceResults.clear()
+        gameTryCount ++
+    }
 
     enum class GameResult{
         SUCCESS,
         FAILURE
+    }
+
+    companion object {
+        const val INITIALIZE_TO_ZERO = 0
     }
 }
