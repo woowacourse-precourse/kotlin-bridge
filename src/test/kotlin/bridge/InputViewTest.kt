@@ -31,4 +31,12 @@ class InputViewTest {
             input.bridgeSizeInputTypeException()
         }
     }
+
+    @ValueSource(strings = ["A", "d", "u", "x", "2", "?", ""])
+    @ParameterizedTest
+    fun `입력된 이동 명령이 D, U가 아닌 경우 예외 테스트`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            input.movingInputTypeException()
+        }
+    }
 }
