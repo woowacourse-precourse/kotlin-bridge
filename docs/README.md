@@ -7,9 +7,35 @@
 - [ ] 이동한 칸 상태를 다리에 표시 할 수 있다.
 - [ ] 건너다 실패하면 재시작할 수 있다.
 
+---
+
+## 구성요소  
+
+### Domain
+
+- BrideGame
+- BridgeMaker
+- BridgeNumberGenerator
+- BrideGameController
+
+### Data
+
+- GameResult
+
+### UI
+
+- InputView
+- OutputView
+
+### Exception
+
+- ExceptionHandler
 
 
-## 체크리스트
+---  
+
+
+## 체크리스트  
 
 - [ ] 다리 길이를 숫자로 입력 받았는가?
 - [ ] 0인 경우 아래칸 1인 경우 위칸이 건널수 있는 칸으로 했는가? 
