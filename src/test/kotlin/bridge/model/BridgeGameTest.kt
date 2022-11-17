@@ -88,4 +88,11 @@ class BridgeGameTest {
             game.tryCount == expects
         )
     }
+
+    @Test
+    fun `이동 과정을 기록해야 한다`() {
+        val moving = directions
+        moving.forEach { game.move(it) }
+        assert(game.movingTrace == moving)
+    }
 }

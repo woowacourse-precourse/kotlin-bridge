@@ -16,6 +16,10 @@ class BridgeGame(private val bridge: Bridge) {
     val state
         get() = _state
 
+    private val _movingTrace = ArrayDeque<String>()
+    val movingTrace: List<String>
+        get() = _movingTrace
+
     /**
      * @param moving 이동 방향
      * @throws IllegalStateException 현재 위치와 다리 길이 매칭 오류
@@ -27,6 +31,7 @@ class BridgeGame(private val bridge: Bridge) {
             currentPosition += 1
             val passed = bridge.available(moving, currentPosition)
             setState(passed)
+            _movingTrace.addLast(moving)
         } catch (e: IndexOutOfBoundsException) {
             throw IllegalStateException(ERROR_POSITION_BOUND)
         }
@@ -44,6 +49,7 @@ class BridgeGame(private val bridge: Bridge) {
 
     private fun runCommand(command: String): Boolean {
         if (command == COMMAND_RETRY) {
+            _movingTrace.removeLast()
             currentPosition -= 1
             _tryCount += 1
             _state = State.ONGOING
