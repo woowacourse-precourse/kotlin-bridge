@@ -38,4 +38,12 @@ class ValidatorTest {
             validator.checkLengthRange(input)
         }
     }
+
+    @ValueSource(strings = ["A", "?", "1"])
+    @ParameterizedTest
+    fun `입력된 이동 칸이 U와 D가 아닌 경우`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            validator.checkMoveDirectionInUAndD(input)
+        }
+    }
 }
