@@ -1,4 +1,4 @@
-package bridge
+package bridge.constructor
 
 enum class UpDown() {
     D,
