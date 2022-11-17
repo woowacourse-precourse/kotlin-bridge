@@ -18,11 +18,16 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 
     private fun makeOneColumn(): String {
         val bridgeNumberGenerator = bridgeNumberGenerator.generate()
-        return if (bridgeNumberGenerator == RANDOM_LOWER_INCLUSIVE) "UD" else "DU"
+        if (bridgeNumberGenerator == RANDOM_LOWER_INCLUSIVE)  {
+            return "$ONE_COLUMN_UP$RANDOM_LOWER_INCLUSIVE,$ONE_COLUMN_DOWN${RANDOM_UPPER_INCLUSIVE}"
+        }
+        return "$ONE_COLUMN_UP$RANDOM_UPPER_INCLUSIVE,$ONE_COLUMN_DOWN${RANDOM_LOWER_INCLUSIVE}"
     }
 
     companion object {
         const val RANDOM_LOWER_INCLUSIVE = 0
         const val RANDOM_UPPER_INCLUSIVE = 1
+        const val ONE_COLUMN_UP = "U"
+        const val ONE_COLUMN_DOWN = "D"
     }
 }
