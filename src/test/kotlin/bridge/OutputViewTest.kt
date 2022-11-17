@@ -5,13 +5,13 @@ import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class OutputViewTest : NsTest(){
+class OutputViewTest : NsTest() {
     @Test
-    fun `현재 다리 출력`(){
-        order=1
-        BridgeGame.upBridge= mutableListOf("O"," ")
-        BridgeGame.downBridge= mutableListOf(" ","O")
-        assertSimpleTest{
+    fun `현재 다리 출력`() {
+        order = 1
+        BridgeGame.upBridge = mutableListOf("O", " ")
+        BridgeGame.downBridge = mutableListOf(" ", "O")
+        assertSimpleTest {
             OutputView().printMap()
             assertThat(output()).contains(
                 "[ O |   ]",
