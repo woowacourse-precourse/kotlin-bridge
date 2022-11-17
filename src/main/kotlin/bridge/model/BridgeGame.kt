@@ -6,6 +6,9 @@ package bridge.model
 class BridgeGame(private val bridge: Bridge) {
 
     private var currentPosition: Int = -1
+    private var _tryCount: Int = 1
+    val tryCount: Int
+        get() = _tryCount
 
     /**
      * @param moving 이동 방향
@@ -30,6 +33,7 @@ class BridgeGame(private val bridge: Bridge) {
         require(command in setOf(COMMAND_QUIT, COMMAND_RETRY)) { ERROR_COMMAND_MATCH }
         if (command == COMMAND_RETRY) {
             currentPosition -= 1
+            _tryCount += 1
             return true
         }
         return false
