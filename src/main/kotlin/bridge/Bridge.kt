@@ -4,7 +4,7 @@ class Bridge(private val size: Int) {
 
     private val upBridge = mutableListOf<String>()
     private val downBridge = mutableListOf<String>()
-    private val idx : Int = 0
+    private var idx : Int = 0
 
 
     fun move(input: String, bridgeMap: List<String>) {
@@ -36,6 +36,11 @@ class Bridge(private val size: Int) {
     fun upBridgeResult() : String {
         return upBridge.joinToString(prefix = "[ ", separator = " | ", postfix = " ]")
     }
+
+    fun downBridgeResult() : String {
+        return downBridge.joinToString(prefix = "[ ", separator = " | ", postfix = " ]")
+    }
+
     companion object {
         const val MOVE_POSSIBLE_MARK = "O"
         const val MOVE_IMPOSSIBLE_MARK = "X"
