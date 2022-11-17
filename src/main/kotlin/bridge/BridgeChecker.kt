@@ -16,7 +16,7 @@ class BridgeChecker(
     }
 
     fun updateWithChecking(ans: String) {
-        if (bridgeRevealed.last() == "X")
+        if (bridgeRevealed.size != 0 && bridgeRevealed.last() == "X")
             throw IllegalArgumentException("[ERROR] 이미 실패한 BridgeGame: check 함수를 요청함")
 
         if (checkAnswer(ans)) {
