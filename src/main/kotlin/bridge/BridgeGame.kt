@@ -3,7 +3,8 @@ package bridge
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame(private val bridge: Bridge) {
+class BridgeGame {
+    private lateinit var bridge: Bridge
     private val userStep = mutableListOf<Pair<BridgeStep, Boolean>>()
     private val inputView = InputView()
     private val outputView = OutputView()
@@ -34,7 +35,10 @@ class BridgeGame(private val bridge: Bridge) {
     }
 
     private fun processBridgeSizeIO() {
-
+        val size = inputView.readBridgeSize()
+        val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
+        val bridgeSteps = bridgeMaker.makeBridge(size)
+        bridge = Bridge(bridgeSteps.map { if (it == "U") BridgeStep.UP else BridgeStep.DOWN })
     }
 
     private fun processMoveIO(): Boolean {
