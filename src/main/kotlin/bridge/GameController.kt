@@ -8,6 +8,11 @@ class GameController {
     }
 
     fun gameStart() {
+        inputBridgeSize()
+    }
 
+    private fun inputBridgeSize(){
+        println("다리의 길이를 입력해주세요.")
+        inputView.readBridgeSize()
     }
 }
