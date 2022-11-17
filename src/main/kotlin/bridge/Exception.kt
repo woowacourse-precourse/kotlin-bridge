@@ -14,3 +14,6 @@ fun String.bridgeSizeInputTypeException(): Int {
     } catch (e: NumberFormatException) {
         throw IllegalArgumentException(INPUT_TYPE_ERROR_MESSAGE)
     }
+}
+
+fun String.movingInputTypeException(): String = if (this == UP || this == DOWN) this else throw IllegalArgumentException(INPUT_TYPE_ERROR_MESSAGE)
