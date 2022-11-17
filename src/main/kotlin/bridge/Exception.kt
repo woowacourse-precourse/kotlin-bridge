@@ -17,3 +17,5 @@ fun String.bridgeSizeInputTypeException(): Int {
 }
 
 fun String.movingInputTypeException(): String = if (this == UP || this == DOWN) this else throw IllegalArgumentException(INPUT_TYPE_ERROR_MESSAGE)
+
+fun String.gameCommandInputTypeException(): String = if (this == REPLAY || this == QUIT) this else throw IllegalArgumentException(INPUT_TYPE_ERROR_MESSAGE)
