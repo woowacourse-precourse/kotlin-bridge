@@ -4,15 +4,13 @@ package bridge.model
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame(private val bridge: Bridge) {
-    enum class State { PASS, FAIL, ONGOING }
-
     private var currentPosition: Int = -1
 
     private var _tryCount: Int = 1
     val tryCount: Int
         get() = _tryCount
 
-    private var _state = State.ONGOING
+    private var _state = BridgeGameState.ONGOING
     val state
         get() = _state
 
@@ -52,14 +50,14 @@ class BridgeGame(private val bridge: Bridge) {
             _movingTrace.removeLastOrNull() // TODO
             currentPosition -= 1
             _tryCount += 1
-            _state = State.ONGOING
+            _state = BridgeGameState.ONGOING
             return true
         }
         return false
     }
 
     private fun requireOnGoing() {
-        if (state != State.ONGOING) {
+        if (state != BridgeGameState.ONGOING) {
             throw IllegalStateException(ERROR_GAME_ALREADY_END)
         }
     }
@@ -70,10 +68,10 @@ class BridgeGame(private val bridge: Bridge) {
 
     private fun setState(passed: Boolean) {
         if (!passed) {
-            _state = State.FAIL
+            _state = BridgeGameState.FAIL
         }
         if (passed && allPassed()) {
-            _state = State.PASS
+            _state = BridgeGameState.PASS
         }
     }
 

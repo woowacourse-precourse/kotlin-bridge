@@ -18,21 +18,21 @@ class BridgeGameTest {
     fun `플레이어가 건널 수 있는 방향으로 이동하면 게임 상태는 ONGOING 이다`() {
         val moving = "U"
         game.move(moving)
-        assert(game.state == BridgeGame.State.ONGOING)
+        assert(game.state == BridgeGameState.ONGOING)
     }
 
     @Test
     fun `플레이어가 건널 수 없는 방향으로 이동하면 게임 상태는 FAIL 이다`() {
         val moving = "D"
         game.move(moving)
-        assert(game.state == BridgeGame.State.FAIL)
+        assert(game.state == BridgeGameState.FAIL)
     }
 
     @Test
     fun `플레이어가 다리를 모두 건넜다면 상태는 PASS 이다`() {
         val moving = directions
         moving.forEach { game.move(it) }
-        assert(game.state == BridgeGame.State.PASS)
+        assert(game.state == BridgeGameState.PASS)
     }
 
     @Test
