@@ -9,6 +9,8 @@ enum class Direction(private val value: Int) {
     };
 
     companion object {
+
+        // TODO: 여기서 예외를 발생시키는 것이 맞는 건가??
         fun valueOf(value: Int): Direction {
             return Direction.values()
                 .firstOrNull { it.value == value }

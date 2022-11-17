@@ -30,4 +30,12 @@ class BridgeTest {
             Bridge.generate(size)
         }
     }
+
+    @Test
+    fun `다리에 U와 D가 아닌 문자가 있는 경우 예외를 발생시킨다`() {
+        val directions = listOf("U", "D", "hi", "F", "-1")
+        assertThrows<IllegalArgumentException> {
+            Bridge(directions)
+        }
+    }
 }
