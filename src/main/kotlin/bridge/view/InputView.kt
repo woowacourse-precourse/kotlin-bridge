@@ -32,7 +32,7 @@ class InputView {
     fun askRetryGame(): Boolean {
         val command = readLine()
 
-        require(command != RETRY || command != QUIT) {
+        require(command == RETRY || command == QUIT) {
             InputError.InvalidGameCommand
         }
 
