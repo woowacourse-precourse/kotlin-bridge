@@ -10,4 +10,8 @@ class Bridge(private val bridge: List<BridgeStep>) {
     fun getCurrentStepStatus(step: BridgeStep, index: Int): Boolean {
         return bridge[index] == step
     }
+
+    fun getBridgeDone(index: Int): Boolean {
+        return bridge.size == index
+    }
 }
