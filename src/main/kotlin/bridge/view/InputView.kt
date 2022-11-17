@@ -1,14 +1,20 @@
 package bridge.view
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+import bridge.common.toIntOrThrow
+import bridge.constants.ErrorMessages
+import bridge.data.Bridge
+import camp.nextstep.edu.missionutils.Console.readLine
+
 class InputView {
-    /**
-     * 다리의 길이를 입력받는다.
-     */
+
     fun readBridgeSize(): Int {
-        return 0
+        val bridgeSize = readLine().toIntOrThrow()
+
+        require(bridgeSize in Bridge.SizeRange) {
+            ErrorMessages.InputViewEnum.OutOfBridgeSize
+        }
+
+        return bridgeSize
     }
 
     /**
