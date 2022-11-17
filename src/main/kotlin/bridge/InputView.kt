@@ -1,5 +1,7 @@
 package bridge
 
+import java.lang.IllegalArgumentException
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -8,7 +10,17 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return 0
+        print("다리의 길이를 입력해주세요.")
+        var size : String?
+        while(true) {
+            try {
+                size = readLine()
+                sizeException(size)
+            } catch (e: IllegalArgumentException) {
+                continue
+            }
+            return size!!.toInt()
+        }
     }
 
     /**
@@ -23,5 +35,18 @@ class InputView {
      */
     fun readGameCommand(): String {
         return ""
+    }
+
+    fun sizeException(size: String?) {
+        require(!size.isNullOrEmpty()) { println(ERROR_NULL) }
+        val regex = "[0-9]+".toRegex()
+        require(size.matches(regex)) { println(ERROR_NOT_NUMBER) }
+        require(size.toInt() in 3..20) { println(ERROR_NOT_INRANGE) }
+    }
+
+    companion object {
+        const val ERROR_NULL = "[ERROR] 아무것도 입력하지 않았습니다. 다시 입력해주세요."
+        const val ERROR_NOT_NUMBER = "[ERROR] 숫자를 입력해 주세요."
+        const val ERROR_NOT_INRANGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."
     }
 }
