@@ -21,4 +21,12 @@ class OutputView {
     fun printError(error : IllegalArgumentException) {
         println(error.message)
     }
+
+    fun printInputBridgeSizeMessage() {
+        println(BRIDGE_SIZE_INPUT_MESSAGE)
+    }
+
+    companion object {
+        const val BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요."
+    }
 }
