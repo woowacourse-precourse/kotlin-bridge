@@ -9,4 +9,14 @@ private fun start() {
     val inputReadBridgeSize: Int = InputView().readBridgeSize()
     val bridgeMaker: BridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
     val bridge = bridgeMaker.makeBridge(inputReadBridgeSize)
+    val bridgeGame: BridgeGame = BridgeGame()
+    play(bridgeGame, bridge)
 }
+
+fun play(game: BridgeGame, bridge: List<String>) {
+    while (!game.isGameEnd(bridge)) {
+        game.move(bridge[game.count], InputView().readMoving())
+        OutputView().printMap(game.upBridge, game.downBridge)
+    }
+}
+
