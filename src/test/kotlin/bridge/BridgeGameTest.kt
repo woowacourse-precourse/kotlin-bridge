@@ -48,6 +48,16 @@ class BridgeGameTest {
         assertThat(bridgeGame.isSuccess).isEqualTo(true)
     }
 
+    @Test
+    fun `다리를 건너다가 사용자 입력 값과 다리의 값이 다른 경우 게임이 실패한다`() {
+        val bridgeMaker = BridgeMaker(TestNumberGenerator(listOf(1, 1, 0))).makeBridge(3)
+        val bridgeGame = BridgeGame()
+        bridgeGame.move(bridgeMaker[0],"U")
+        bridgeGame.move(bridgeMaker[1],"U")
+        bridgeGame.move(bridgeMaker[2],"U")
+        assertThat(bridgeGame.isSuccess).isEqualTo(false)
+    }
+
     class TestNumberGenerator(numbers: List<Int>) : BridgeNumberGenerator {
         private val numbers: MutableList<Int> = numbers.toMutableList()
 
