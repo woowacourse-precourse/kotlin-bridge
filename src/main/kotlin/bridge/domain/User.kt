@@ -6,4 +6,6 @@ class User {
     fun inputBridgeSize() = InputView().readBridgeSize()
 
     fun inputMoving() = InputView().readMoving()
+
+    fun inputGameCommand() = InputView().readGameCommand()
 }
