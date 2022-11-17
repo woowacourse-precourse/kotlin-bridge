@@ -1,7 +1,8 @@
 # 다리 건너기 게임
 
 ## 기능 목록
--[ ] 다리 건너기 게임을 시작한다. - main()#Application
+-[ ] 다리 건너기 게임을 시작한다. - start()#Application
+-[ ] 다리 세팅후 게임을 진행한다. - play()#Application
 -[ ] 다리의 길이를 숫자로 입력받는다. - readBridgeSize()#InputView
 -[ ] 입력받은 길이만큼 다리를 생성한다. - makeBridge()#BridgeMaker
     -[ ] 다리를 생성할 때 위 칸과 아래 칸중 건널 수 있는 칸을 정한다. - generate()#BridgeRandomNumberGenerator : BridgeNumberGenerator
