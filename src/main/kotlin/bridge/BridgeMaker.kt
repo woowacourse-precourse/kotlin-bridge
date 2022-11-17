@@ -13,7 +13,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         for(number in 0 until size){
             bridge.add(convertNumberToMoving())
         }
-        return listOf()
+        return bridge
     }
 
     private fun convertNumberToMoving() : String{
