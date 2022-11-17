@@ -15,6 +15,12 @@ class Validator {
         checkMoveDirectionInUAndD(input)
     }
 
+    fun checkRestartValue(input: String?) {
+        checkInputNull(input)
+        checkEmptyInput(input!!)
+        checkRestartValueInRAndQ(input)
+    }
+
     fun checkEmptyInput(input: String) {
         require(input != "") { EMPTY_INPUT_ERROR_MSG }
     }
