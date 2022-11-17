@@ -22,6 +22,7 @@ class BridgeGame(private val bridge: Bridge) {
      * @throws IllegalArgumentException moving이 Direction에 포함되지 않은 경우
      */
     fun move(moving: String) {
+        requireOnGoing()
         try {
             currentPosition += 1
             val passed = bridge.available(moving, currentPosition)
@@ -47,6 +48,12 @@ class BridgeGame(private val bridge: Bridge) {
         return false
     }
 
+    private fun requireOnGoing() {
+        if (state != State.ONGOING) {
+            throw IllegalStateException(ERROR_GAME_ALREADY_END)
+        }
+    }
+
     private fun allPassed(): Boolean {
         return bridge.isBridgeEnd(currentPosition)
     }
@@ -62,6 +69,7 @@ class BridgeGame(private val bridge: Bridge) {
 
     companion object {
         private const val ERROR_POSITION_BOUND = "플레이어 현재 위치가 올바르지 않습니다."
+        private const val ERROR_GAME_ALREADY_END = "게임이 이미 종료되었습니다."
         private const val ERROR_COMMAND_MATCH = "커맨드가 올바르지 않습니다."
         private const val COMMAND_RETRY = "R"
         private const val COMMAND_QUIT = "Q"

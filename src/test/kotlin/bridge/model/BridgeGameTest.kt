@@ -29,12 +29,28 @@ class BridgeGameTest {
     }
 
     @Test
+    fun `플레이어가 다리를 모두 건넜다면 상태는 PASS 이다`() {
+        val moving = directions
+        moving.forEach { game.move(it) }
+        assert(game.state == BridgeGame.State.PASS)
+    }
+
+    @Test
     fun `플레이어가 다리가 끝났는데도 이동하려하면 예외를 발생시킨다`() {
         val moving = directions
             .toMutableList()
             .apply { add("U") }
         assertThrows<IllegalStateException> {
             moving.forEach { game.move(it) }
+        }
+    }
+
+    @Test
+    fun `게임이 이미 종료되었는데도 이동하려하면 예외를 발생시킨다`() {
+        val moving = directions
+        moving.forEach { game.move(it) }
+        assertThrows<IllegalStateException> {
+            game.move("U")
         }
     }
 
@@ -71,12 +87,5 @@ class BridgeGameTest {
         assert(
             game.tryCount == expects
         )
-    }
-
-    @Test
-    fun `플레이어가 다리를 모두 건넜다면 상태는 PASS 이다`() {
-        val moving = directions
-        moving.forEach { game.move(it) }
-        assert(game.state == BridgeGame.State.PASS)
     }
 }
