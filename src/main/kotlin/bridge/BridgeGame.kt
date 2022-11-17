@@ -44,4 +44,6 @@ class BridgeGame(private val bridges: List<String>) {
             }
         }
     }
+
+    fun checkFail() = downSide.contains("X") || upSide.contains("X")
 }
