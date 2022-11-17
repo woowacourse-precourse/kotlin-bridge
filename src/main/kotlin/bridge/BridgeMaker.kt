@@ -12,8 +12,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         var Bridge = mutableListOf<String>()
         for (i in 0..size-1)
         {
-            var udselect = BridgeRandomNumberGenerator()
-            var selectnumber = udselect.generate()
+            var selectnumber = bridgeNumberGenerator.generate()
             Bridge.add(updownjudgment(selectnumber))
         }
         return Bridge
