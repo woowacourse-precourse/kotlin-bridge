@@ -18,5 +18,6 @@ fun play(game: BridgeGame, bridge: List<String>) {
         game.move(bridge[game.count], InputView().readMoving())
         OutputView().printMap(game.upBridge, game.downBridge)
     }
+    if (game.isSuccess) end(game) else reStart(game, bridge)
 }
 
