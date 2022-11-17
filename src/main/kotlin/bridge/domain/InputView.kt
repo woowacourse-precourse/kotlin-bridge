@@ -1,14 +1,44 @@
 package bridge.domain
 
+import bridge.ui.OutputView
+import camp.nextstep.edu.missionutils.Console
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 class InputView {
+    private val outputView = OutputView()
+
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(): Int {
-        return 0
+    private fun readBridgeSize(): Int {
+        outputView.printInputBridgeSize()
+        return try {
+            validateBridgeSize()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            0
+        }
+    }
+
+    private fun validateBridgeSize(): Int {
+        val bridgeSize = Console.readLine().trim()
+        require(bridgeSize.all { it.isDigit() }) {
+            throw IllegalArgumentException("$PREFIX $DIGIT_EXCEPTION")
+        }
+        require(bridgeSize.toInt() in 3..20) {
+            throw IllegalArgumentException("$PREFIX $RANGE_EXCEPTION")
+        }
+        return bridgeSize.toInt()
+    }
+
+    fun retryReadBridgeSize(): Int {
+        var bridgeSize: Int
+        do {
+            bridgeSize = readBridgeSize()
+        } while (bridgeSize == 0)
+        return bridgeSize
     }
 
     /**
@@ -23,5 +53,11 @@ class InputView {
      */
     fun readGameCommand(): String {
         return ""
+    }
+
+    companion object {
+        private const val PREFIX = "[ERROR]"
+        private const val DIGIT_EXCEPTION = "숫자가 아닙니다."
+        private const val RANGE_EXCEPTION = "범위가 맞지 않습니다."
     }
 }
