@@ -5,6 +5,8 @@ import bridge.BridgeRandomNumberGenerator
 
 class Bridge(private val directionNames: List<String>) {
 
+    // TODO: Direction 부분 넘기기
+
     init {
         require(directionNames.size in MIN_LENGTH..MAX_LENGTH)
         require(directionNames.all { it in Direction.names() })
