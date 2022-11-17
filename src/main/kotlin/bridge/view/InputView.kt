@@ -5,13 +5,15 @@ import bridge.constants.ErrorMessages
 import bridge.data.Bridge
 import camp.nextstep.edu.missionutils.Console.readLine
 
+private typealias InputError = ErrorMessages.InputViewEnum
+
 class InputView {
 
     fun readBridgeSize(): Int {
         val bridgeSize = readLine().toIntOrThrow()
 
         require(bridgeSize in Bridge.SizeRange) {
-            ErrorMessages.InputViewEnum.OutOfBridgeSize
+            InputError.OutOfBridgeSize
         }
 
         return bridgeSize
@@ -21,7 +23,13 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        val bridgeType = readLine()
+
+        require(Bridge.Type.contains(bridgeType)) {
+            InputError.InvalidBridgeType
+        }
+
+        return bridgeType
     }
 
     /**
