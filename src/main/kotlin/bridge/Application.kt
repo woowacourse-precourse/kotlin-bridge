@@ -21,3 +21,8 @@ fun play(game: BridgeGame, bridge: List<String>) {
     if (game.isSuccess) end(game) else reStart(game, bridge)
 }
 
+fun end(game: BridgeGame) {
+    OutputView().printResult()
+    OutputView().printMap(game.upBridge, game.downBridge)
+    OutputView().printResultIsSuccess(game.isSuccess, game.totalCount)
+}
