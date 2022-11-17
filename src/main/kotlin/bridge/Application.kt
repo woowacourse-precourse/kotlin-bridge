@@ -2,12 +2,15 @@ package bridge
 
 var order : Int = 0
 var tryCount : Int = 1
+var result = false
+var endGame = false
 
 fun main() {
     val bridge = initBridge()
-    while(order <= bridge.size){
+    while(!endGame){
         BridgeGame().move(bridge)
     }
+    OutputView().printResult(result)
 }
 
 fun initBridge(): List<String> {

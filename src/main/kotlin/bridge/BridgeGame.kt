@@ -18,6 +18,15 @@ class BridgeGame {
         }
     }
 
+    fun discriminateEnd(size : Int){
+        if(order==size-1){
+            endGame=true
+            result=success
+        }
+        if(order!=size-1)
+            order++
+    }
+
     fun moveSuccess(bridge: List<String>){
         if(bridge[order]=="U"){
             upBridge.add("O")
@@ -28,7 +37,7 @@ class BridgeGame {
             downBridge.add("O")
         }
         OutputView().printMap()
-        order++
+        discriminateEnd(bridge.size)
     }
 
     fun moveFail(bridge: List<String>){
@@ -41,7 +50,7 @@ class BridgeGame {
             downBridge.add(" ")
         }
         OutputView().printMap()
-        InputView().readGameCommand()
+        retry()
     }
 
     /**
@@ -50,10 +59,25 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {}
+    fun retry() {
+        val answer = InputView().readGameCommand()
+        if(answer == "Q"){
+            endGame=true
+        }
+        if(answer =="R"){
+            reset()
+        }
+    }
 
+    fun reset(){
+        tryCount++
+        order=0
+        upBridge.clear()
+        downBridge.clear()
+    }
     companion object{
         var upBridge = mutableListOf<String>()
         var downBridge = mutableListOf<String>()
+        const val success = true
     }
 }
