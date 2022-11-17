@@ -50,6 +50,27 @@ internal class InputViewTest : NsTest() {
         }
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = ["U", "D"])
+    fun `이동할칸입력_UorD_정상`(input: String) {
+        assertSimpleTest {
+            run(input)
+            inputView.readMoving()
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["u", "d", "R", "Z", "1"])
+    fun `이동할칸입력_notUorD_에러`(input: String) {
+        assertSimpleTest {
+            val thrown = assertThrows<IllegalArgumentException> {
+                runException(input)
+                inputView.readMoving()
+            }
+            assertThat(thrown.message).contains(ERROR_MESSAGE)
+        }
+    }
+
     override fun runMain() {}
 
     companion object {
