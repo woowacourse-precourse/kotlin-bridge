@@ -42,6 +42,12 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        return try {
+            println(SELECT_RESTART_MESSAGE)
+            Console.readLine()!!.gameCommandInputTypeException()
+        } catch (e: IllegalArgumentException) {
+            println(GAME_COMMAND_INPUT_TYPE_ERROR_MESSAGE)
+            readGameCommand()
+        }
     }
 }
