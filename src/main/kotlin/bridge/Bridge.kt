@@ -6,6 +6,12 @@ class Bridge(private val size: Int) {
     private val downBridge = mutableListOf<String>()
     private val idx : Int = 0
 
+
+    fun moveUp(input : String, bridgeMap : List<String>) {
+        upBridge.add(movePossibleMark(movePossible(input, bridgeMap)))
+        downBridge.add(" ")
+    }
+
     fun movePossible(input : String, bridgeMap : List<String>) : Boolean {
         return input.equals(bridgeMap[idx])
     }
