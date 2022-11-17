@@ -21,7 +21,7 @@ class OutputView {
         println(END_BRACKET)
     }
 
-    fun printSign(bridge: List<String>, location: Int, line: String) {
+    private fun printSign(bridge: List<String>, location: Int, line: String) {
         print(START_BRACKET)
         for (idx in 0 until location) {
             if (bridge[idx] == line) print(ANSWER)
@@ -30,7 +30,7 @@ class OutputView {
         }
     }
 
-    fun printAnswer(answer: Boolean, space: String, line: String) {
+    private fun printAnswer(answer: Boolean, space: String, line: String) {
         if (space == UP) { // space가 UP이면 윗줄, DOWN이면 아랫줄
             if (answer && line == UP) print(ANSWER) // 정답인 경우 O 출력
             if (answer && line == DOWN) print(SPACING) // 반대줄에는 공백 출력

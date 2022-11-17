@@ -17,9 +17,7 @@ class BridgeGame(val bridge: List<String>, val retry: Int) {
      */
     fun move(location: Int) {
         val moveLine = InputView().readMoving()
-        var answer = false
-
-        if (bridge[location] == moveLine) answer = true
+        val answer = bridge[location] == moveLine
         OutputView().printMap(bridge, location, answer)
         if (location < bridge.size - 1 && answer) move(location + 1)
         if (location == bridge.size - 1 && answer) {
@@ -35,12 +33,12 @@ class BridgeGame(val bridge: List<String>, val retry: Int) {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry(location: Int, anwer: Boolean) {
+    private fun retry(location: Int, answer: Boolean) {
         val retryCheck = InputView().readGameCommand()
-        OutputView().printResult(bridge,location, anwer)
+        OutputView().printResult(bridge,location, answer)
         if (retryCheck == RETRY) BridgeGame(this.bridge, this.retry + 1).move(0)
         if (retryCheck == QUIT) {
-            OutputView().printEnd(anwer, this.retry)
+            OutputView().printEnd(answer, this.retry)
         }
     }
 }

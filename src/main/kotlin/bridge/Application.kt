@@ -1,7 +1,9 @@
 package bridge
 
 import bridge.resources.INPUT_BRIDGE_GAME_START
-import bridge.view.*
+import bridge.resources.START_LOCATION
+import bridge.resources.START_TRY
+import bridge.view.InputView
 import java.lang.IllegalArgumentException
 
 fun main() {
@@ -9,7 +11,8 @@ fun main() {
     try {
     val bridgeLength = InputView().readBridgeSize()
     val bridgeGame = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
-    BridgeGame(bridgeGame, 1).move(0) } catch (_: IllegalArgumentException){
+    println(bridgeGame)
+    BridgeGame(bridgeGame, START_TRY).move(START_LOCATION) } catch (_: IllegalArgumentException){
     }
 
 }

@@ -26,8 +26,9 @@ const val UP = "U"
 const val DOWN = "D"
 const val RETRY = "R"
 const val QUIT = "Q"
-
 const val INPUT_MOVE_SIZE = 1
+const val START_LOCATION = 0
+const val START_TRY = 1
 
 // FOR ERROR HANDLING
 private const val ERROR_MESSAGE_PREFIX = "[ERROR] "

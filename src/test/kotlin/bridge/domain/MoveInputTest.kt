@@ -1,6 +1,9 @@
 package bridge.domain
 
+import bridge.BridgeMaker
+import bridge.BridgeRandomNumberGenerator
 import bridge.Exception.MoveException
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import java.lang.IllegalArgumentException
@@ -28,5 +31,12 @@ class MoveInputTest {
         assertThrows<IllegalArgumentException> {
             MoveException.exceptions("2")
         }
+    }
+
+    @Test
+    fun `정상적인 범주의 값이 나온다`() {
+        val size = 3
+        val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
+        Assertions.assertThat(bridge.size == size)
     }
 }
