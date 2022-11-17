@@ -35,4 +35,18 @@ class Controller {
             return inputMoveDirection()
         }
     }
+
+    fun inputRestartValue() : String {
+        OutputView().printInputRestartMessage()
+        return getRestartValue(InputView().readGameCommand())
+    }
+
+    fun getRestartValue(input: String?) : String {
+        try {
+            Validator().checkRestartValue(input)
+            return input!!
+        } catch(e : IllegalArgumentException) {
+            return inputRestartValue()
+        }
+    }
 }
