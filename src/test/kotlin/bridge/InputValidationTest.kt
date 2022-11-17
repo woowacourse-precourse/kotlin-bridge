@@ -36,4 +36,11 @@ class InputValidationTest {
             inputValidation.checkUserMovingValidation("K")
         }
     }
+
+    @Test
+    fun `사용자의 재시작,종료 입력값이 'R' 또는 'Q' 가 아니라면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            inputValidation.checkUserRestartValidation("K")
+        }
+    }
 }
