@@ -39,4 +39,12 @@ class InputViewTest {
             input.movingInputTypeException()
         }
     }
+
+    @ValueSource(strings = ["r", "q", "D", "U", "x", "2", "?", ""])
+    @ParameterizedTest
+    fun `입력된 게임 종료 명령이 R, Q가 아닌 경우 예외 테스트`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            input.gameCommandInputTypeException()
+        }
+    }
 }
