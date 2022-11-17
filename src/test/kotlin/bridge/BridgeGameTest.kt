@@ -27,6 +27,17 @@ class BridgeGameTest {
         assertThat(bridgeGame.isGameEnd(bridgeMaker)).isEqualTo(true)
     }
 
+    @Test
+    fun `다리를 건너다가 실패하면 게임이 종료된다`() {
+
+        val bridgeMaker = BridgeMaker(TestNumberGenerator(listOf(1, 1, 0))).makeBridge(3)
+        val bridgeGame = BridgeGame()
+
+        bridgeGame.move(bridgeMaker[0], "U")
+        bridgeGame.move(bridgeMaker[1], "D")
+        assertThat(bridgeGame.isGameEnd(bridgeMaker)).isEqualTo(true)
+    }
+
     class TestNumberGenerator(numbers: List<Int>) : BridgeNumberGenerator {
         private val numbers: MutableList<Int> = numbers.toMutableList()
 
