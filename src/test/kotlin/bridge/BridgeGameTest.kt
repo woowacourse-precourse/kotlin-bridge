@@ -5,35 +5,41 @@ import org.assertj.core.api.Assertions.assertThat
 
 class BridgeGameTest {
     @Test
-    fun `게임 종료 테스트`() {
-        val testGame1 = BridgeGame(BridgeMaker(TestNumberGenerator(listOf(1,1,0))), 3)
-        testGame1.move("U")
-        assertThat(testGame1.isGameEnd()).isEqualTo(false)
-        testGame1.move("U")
-        assertThat(testGame1.isGameEnd()).isEqualTo(false)
-        testGame1.move("D")
-        assertThat(testGame1.isGameEnd()).isEqualTo(true)
-
-        val testGame2 = BridgeGame(BridgeMaker(TestNumberGenerator(listOf(1,1,0))), 3)
-        testGame2.move("U")
-        assertThat(testGame2.isGameEnd()).isEqualTo(false)
-        testGame2.move("D")
-        assertThat(testGame2.isGameEnd()).isEqualTo(true)
+    fun `다리의 끝까지 이동한 경우 게임이 종료된다`() {
+        val testGame = BridgeGame(BridgeMaker(TestNumberGenerator(listOf(1,1,0))), 3)
+        testGame.move("U")
+        assertThat(testGame.isGameEnd()).isEqualTo(false)
+        testGame.move("U")
+        assertThat(testGame.isGameEnd()).isEqualTo(false)
+        testGame.move("D")
+        assertThat(testGame.isGameEnd()).isEqualTo(true)
     }
 
     @Test
-    fun `성공 여부 테스트`() {
-        val testGame1 = BridgeGame(BridgeMaker(TestNumberGenerator(listOf(1,1,0))), 3)
-        testGame1.move("U")
-        testGame1.move("U")
-        testGame1.move("D")
-        assertThat(testGame1.isSuccess()).isEqualTo(true)
+    fun `다리의 이동 중에 다리와 다른 값으로 이동한 경우 게임이 종료된다`() {
+        val testGame = BridgeGame(BridgeMaker(TestNumberGenerator(listOf(1,1,0))), 3)
+        testGame.move("U")
+        assertThat(testGame.isGameEnd()).isEqualTo(false)
+        testGame.move("D")
+        assertThat(testGame.isGameEnd()).isEqualTo(true)
+    }
 
-        val testGame2 = BridgeGame(BridgeMaker(TestNumberGenerator(listOf(1,1,0))), 3)
-        testGame2.move("U")
-        testGame2.move("U")
-        testGame2.move("U")
-        assertThat(testGame2.isSuccess()).isEqualTo(false)
+    @Test
+    fun `사용자 입력 값과 다리의 값이 완전히 같은 경우 게임을 성공한다`() {
+        val testGame = BridgeGame(BridgeMaker(TestNumberGenerator(listOf(1,1,0))), 3)
+        testGame.move("U")
+        testGame.move("U")
+        testGame.move("D")
+        assertThat(testGame.isSuccess()).isEqualTo(true)
+    }
+
+    @Test
+    fun `사용자 입력 값과 다리의 값이 다른 경우 게임에 실패한다`() {
+        val testGame = BridgeGame(BridgeMaker(TestNumberGenerator(listOf(1,1,0))), 3)
+        testGame.move("U")
+        testGame.move("U")
+        testGame.move("U")
+        assertThat(testGame.isSuccess()).isEqualTo(false)
     }
 
     class TestNumberGenerator(numbers: List<Int>) : BridgeNumberGenerator {
