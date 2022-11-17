@@ -3,6 +3,7 @@ package bridge
 import bridge.view.InputView
 
 class GameController {
+    private val bridgeGame = BridgeGame()
     private val inputView = InputView()
 
     init {
@@ -10,11 +11,15 @@ class GameController {
     }
 
     fun gameStart() {
-        inputBridgeSize()
+        makeBridge(inputBridgeSize())
     }
 
     private fun inputBridgeSize() : Int{
         println("다리의 길이를 입력해주세요.")
         return inputView.readBridgeSize()
+    }
+
+    private fun makeBridge(size : Int){
+        bridgeGame.createCorrectBridgeMap(size)
     }
 }
