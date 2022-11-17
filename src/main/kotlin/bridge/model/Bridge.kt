@@ -10,6 +10,15 @@ class Bridge(private val directionNames: List<String>) {
         require(directionNames.all { it in Direction.names() })
     }
 
+    operator fun get(position: Int): String {
+        return directionNames[position]
+    }
+
+    fun available(moving: String, position: Int): Boolean {
+        require(moving in Direction.names())
+        return get(position) == moving
+    }
+
     companion object {
         const val MIN_LENGTH = 3
         const val MAX_LENGTH = 20
