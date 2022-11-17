@@ -14,7 +14,7 @@ class BridgeGame(private val bridge: Bridge) {
      */
 
     fun move(step: BridgeStep): Boolean {
-        val status = bridge.getCurrentStepStatue(step, userStep.size)
+        val status = bridge.getCurrentStepStatus(step, userStep.size)
 
         userStep.add(Pair(step, status))
 
