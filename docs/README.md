@@ -1,0 +1,32 @@
+# 기능목록
+
+## Business Logic
+- [ ] 다리 길이를 입력 받는다 
+    - [ERROR] 처리 *Validator#isValidBridgeSize()
+- [ ] 입력 받은 다리의 길이만큼 랜덤 값으로 다리 생성 *BridgeMaker#makeBridge()
+  - [ ] 랜덤값으로 들어온 0 또는 1 숫자를 `U` 또는 `D` 로 인지하여 변환 *Key#valueOf()
+---
+- [ ] 이동할 칸을 입력 받는다 
+  - [ERROR] 처리 *Validator#isValidMoving()
+- [ ] 이동할 칸을 체크한다. *Move
+  - 현재 이동한 위치 index 값 최신화
+- [ ] 입력 받은 값에 따라 다리를 건넌다. #BaseGame#move()
+  - [ ] 현재까지 이동한 값이 다리 발판이 존재하는 지 확인 *BridgeChecker#validateCurrentBridge()
+    - [ ] 현재까지 간 다리가 건널 수 있는 지 확인하기 *Bridge#checkGoingAcross()
+    - 이동 했다는 상태값 true/false
+- [ ] 현재까지 건넌 다리 모두를 출력한다 *OutputView#pringMap()
+- [ ] 다리 끝까지 건넜는 지 확인을 한다. *Move#isDone()
+  - [ ] 다 건너지 않았다면? 실패했는 지 확인 *Move#getSate()
+    - [ ] 만약 실패했다면? *BridgeGame#retry() 
+    - [ ] 게임을 재시작 루프
+    - [ ] 만약 다 건넜다면, 총 결과를 출력 *OutputView#printResult 
+
+## 예외처리
+- 입력 받은 다리 길이 유효성 검사
+  - [ ] 숫자가 아닐 시 예외처리
+  - [ ] 음수일 경우, 문자로 인식하는 지 확인
+  - [ ] 부동소수점일 경우, 문자로 인식하는 지 확인
+- 입력 받은 이동할 칸 유효성 검사
+  - [ ] `U` 와 `D` 가 아닐경우 예외처리
+- 입력 받은 게임 다시시도(retry) 입력 값 유효성 검사
+  - [ ] `R` 와 `Q` 가 아닐경우 예외처리
