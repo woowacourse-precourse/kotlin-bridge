@@ -12,13 +12,13 @@ class BridgeCheckerTest : NsTest() {
         val bridgeChecker = BridgeChecker(3, bridgeMaker)
         val sb = StringBuilder()
 
-        bridgeChecker.updateWithChecking("U")
+        bridgeChecker.checkWithUpdating("U")
         sb.append(bridgeChecker.toStringOpenPart()).append("\n")
 
-        bridgeChecker.updateWithChecking("D")
+        bridgeChecker.checkWithUpdating("D")
         sb.append(bridgeChecker.toStringOpenPart()).append("\n")
 
-        bridgeChecker.updateWithChecking("D")
+        bridgeChecker.checkWithUpdating("D")
         sb.append(bridgeChecker.toStringOpenPart()).append("\n")
 
         println(bridgeChecker.toStringOpenPart())
@@ -36,10 +36,10 @@ class BridgeCheckerTest : NsTest() {
         val bridgeChecker = BridgeChecker(3, bridgeMaker)
         val sb = StringBuilder()
 
-        bridgeChecker.updateWithChecking("U")
+        bridgeChecker.checkWithUpdating("U")
         sb.append(bridgeChecker.toStringOpenPart()).append("\n")
 
-        bridgeChecker.updateWithChecking("U")
+        bridgeChecker.checkWithUpdating("U")
         sb.append(bridgeChecker.toStringOpenPart()).append("\n")
 
         println(bridgeChecker.toStringOpenPart())
@@ -57,7 +57,7 @@ class BridgeCheckerTest : NsTest() {
         val bridgeChecker = BridgeChecker(3, bridgeMaker)
         val sb = StringBuilder()
 
-        bridgeChecker.updateWithChecking("U")
+        bridgeChecker.checkWithUpdating("U")
         sb.append(bridgeChecker.toStringOpenPart()).append("\n")
 
         println(bridgeChecker.toStringOpenPart())
