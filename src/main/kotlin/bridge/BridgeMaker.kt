@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.util.BridgeMoving
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -15,13 +17,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     }
 
     private fun convertBridgeNumberToString(bridgeNumber: Int): String {
-        if (bridgeNumber == UP_NUMBER) return UP
-        return DOWN
-    }
-
-    companion object {
-        const val UP = "U"
-        const val DOWN = "D"
-        const val UP_NUMBER = 1
+        if (bridgeNumber == BridgeMoving.UP.number) return BridgeMoving.UP.character
+        return BridgeMoving.DOWN.character
     }
 }
