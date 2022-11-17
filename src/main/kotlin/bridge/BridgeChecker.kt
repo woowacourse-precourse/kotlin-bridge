@@ -15,15 +15,16 @@ class BridgeChecker(
         return sb.toString()
     }
 
-    fun checkWithUpdating(ans: String): Boolean {
+    fun checkWithUpdating(ans: String): List<Boolean> {
         if (bridgeRevealed.size != 0 && bridgeRevealed.last().contains("X"))
             throw IllegalArgumentException("[ERROR] 이미 실패한 BridgeGame: check 함수를 요청함")
 
         val addingBlock = generateBlock(ans)
         bridgeRevealed.add(addingBlock)
 
-        if(addingBlock.contains("X")) return false
-        return true
+        if(addingBlock.contains("X")) return listOf(false)
+        if(bridgeRevealed.size == bridgeInFog.size) return listOf(true, true)
+        return listOf(true, false)
     }
 
     fun resetBridgeRevealed() {

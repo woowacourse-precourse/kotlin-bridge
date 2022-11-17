@@ -10,3 +10,12 @@ object BridgeGameMessages {
     val INPUT_TYPE_OF_MOVEMENT = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
     val INPUT_TYPE_OF_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
 }
+
+class ResponsePacket(private val responseMessage: String, private val nextRequestType: RequestType) {
+    fun popMessageToPrint(): String {
+        return responseMessage
+    }
+    fun popAdditionalMessage(): RequestType {
+        return nextRequestType
+    }
+}
