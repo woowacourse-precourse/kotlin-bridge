@@ -34,16 +34,18 @@ class OutputView {
 
     private fun getLineOfMap(bridgeGame: BridgeGame, direction: Direction): String {
         val movingTrace = bridgeGame.movingTrace
-        val sb = StringBuilder("[")
+        val sb = StringBuilder(LINE_START)
         for (moving in movingTrace) {
             if (Direction.getByName(moving.first) == direction) {
                 val result = getMovingResult(moving.second)
                 sb.append(result)
+            } else {
+                sb.append(NOT_SELECTED_DIRECTION)
             }
-            sb.append("|")
+            sb.append(LINE_SEPARATOR)
         }
         sb.removeRange(sb.length - 1 until sb.length)
-        sb.append("]")
+        sb.append(LINE_END)
         return sb.toString()
     }
 
@@ -62,5 +64,10 @@ class OutputView {
 
         private const val MOVING_SUCCESS = " O "
         private const val MOVING_FAIL = " X "
+        private const val NOT_SELECTED_DIRECTION = " "
+
+        private const val LINE_START = "["
+        private const val LINE_END = "]"
+        private const val LINE_SEPARATOR = "|"
     }
 }
