@@ -1,5 +1,11 @@
 package bridge.view
 
+import bridge.constructor.DiscoveredBridge
+
+private const val BRIDGE_START = "[ "
+private const val BRIDGE_END = " ]"
+private const val DIVISION_LINE = " | "
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
