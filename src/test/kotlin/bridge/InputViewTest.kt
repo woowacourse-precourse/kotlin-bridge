@@ -82,6 +82,38 @@ class InputViewTest : NsTest() {
             assertThat(output()).doesNotContain(ERROR_MESSAGE)
         }
     }
+
+    @Test
+    fun `재시작 입력_공백 입력 예외`(){
+        assertSimpleTest {
+            val buf = String.join("\n", "\nR").toByteArray()
+            System.setIn(ByteArrayInputStream(buf))
+            val inputView = InputView()
+            inputView.readGameCommand()
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `재시작 입력_비정상 입력 예외`(){
+        assertSimpleTest {
+            val buf = String.join("\n", "a\nR").toByteArray()
+            System.setIn(ByteArrayInputStream(buf))
+            val inputView = InputView()
+            inputView.readGameCommand()
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `재시작 입력_정상 작동`(){
+        assertSimpleTest {
+            System.setIn("Q".byteInputStream())
+            val inputView = InputView()
+            inputView.readGameCommand()
+            assertThat(output()).doesNotContain(ERROR_MESSAGE)
+        }
+    }
     override fun runMain() {
         main()
     }
