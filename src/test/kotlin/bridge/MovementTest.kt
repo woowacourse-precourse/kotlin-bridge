@@ -20,4 +20,12 @@ class MovementTest {
             Movement(direction)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["UU", "DD"])
+    fun `이동 방향은 1글자가 아닌 경우 예외 테스트`(direction: String) {
+        assertThrows<IllegalArgumentException> {
+            Movement(direction)
+        }
+    }
 }
