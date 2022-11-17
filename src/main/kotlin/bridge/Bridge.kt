@@ -33,6 +33,9 @@ class Bridge(private val size: Int) {
         false -> MOVE_IMPOSSIBLE_MARK
     }
 
+    fun upBridgeResult() : String {
+        return upBridge.joinToString(prefix = "[ ", separator = " | ", postfix = " ]")
+    }
     companion object {
         const val MOVE_POSSIBLE_MARK = "O"
         const val MOVE_IMPOSSIBLE_MARK = "X"
