@@ -46,4 +46,12 @@ class ValidatorTest {
             validator.checkMoveDirectionInUAndD(input)
         }
     }
+
+    @ValueSource(strings = ["A", "?", "1"])
+    @ParameterizedTest
+    fun `입력된 재시작 여부가 R과 Q가 아닌 경우`(input : String) {
+        assertThrows<IllegalArgumentException> {
+            validator.checkRestartValueInRAndQ(input)
+        }
+    }
 }
