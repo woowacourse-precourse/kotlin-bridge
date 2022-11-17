@@ -39,6 +39,10 @@ class BridgeGame(private val bridge: Bridge) {
      */
     fun retry(command: String): Boolean {
         require(command in setOf(COMMAND_QUIT, COMMAND_RETRY)) { ERROR_COMMAND_MATCH }
+        return runCommand(command)
+    }
+
+    private fun runCommand(command: String): Boolean {
         if (command == COMMAND_RETRY) {
             currentPosition -= 1
             _tryCount += 1
