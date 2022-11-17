@@ -318,15 +318,17 @@ val number = bridgeNumberGenerator.generate()
 
 - ### Business Logic
 - [Inputview]
-- [x] 다리길이를입력받는다. 해당길이가유효한길이인지판단#readBridgeSize()
+- [x] 다리길이를입력받는다. 해당길이가유효한길이인지판단 #readBridgeSize()
 - [x] 사용자가이동할칸을입력받는다. #readMoving()
 - [x] 사용자가게임을다시시도할지종료할지입력받는다. #readGameCommand()
 - [Outputview]
-- [ ] 현재까지이동한다리의상태를정해진형식에맞춰출력#printMap()- 
-- [ ] 게임의최종결과를정해진형식에맞춰출력#printResult()
-- [BridgeGame]- [ ] 사용자가칸을이동할때사용하는메서드#move()
-- [ ] 사용자가게임을다시시도할때사용하는메서드#rerty()[BridgeMaker]
-- [x] 다리의길이를입력받아서다리를생성해주는메서드#makeBridge()
+- [ ] 현재까지이동한다리의상태를정해진형식에맞춰출력 #printMap()- 
+- [ ] 게임의최종결과를정해진형식에맞춰출력 #printResult()
+- [BridgeGame]
+- [x] 사용자가칸을이동할때사용하는메서드 #move(upOrDown, bridge, index)
+- [ ] 사용자가게임을다시시도할때사용하는메서드 #rerty()
+- [BridgeMaker]
+- [x] 다리의길이를입력받아서다리를생성해주는메서드 #makeBridge()
 
 - ### 예외처리(Exception)
 - 입출력관련IllegalArgumentException 발생(단, [ERROR] 로시작)
