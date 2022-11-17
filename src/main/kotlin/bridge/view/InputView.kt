@@ -2,6 +2,7 @@ package bridge.view
 
 import bridge.Exception.BridgeLengthException
 import bridge.Exception.MoveException
+import bridge.Exception.RetryException
 import bridge.resources.*
 import camp.nextstep.edu.missionutils.Console
 
@@ -38,8 +39,8 @@ class InputView {
         println(INPUT_CHOICE_RESTART)
         val checkRetry = input()
 
-
-        return ""
+        RetryException.exceptions(checkRetry)
+        return checkRetry
     }
 
     private fun input() = Console.readLine()
