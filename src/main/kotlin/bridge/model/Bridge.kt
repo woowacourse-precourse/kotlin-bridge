@@ -3,22 +3,17 @@ package bridge.model
 import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
 
-class Bridge(private val directionNames: List<String>) {
-
-    // TODO: Direction 부분 넘기기
+class Bridge(directionNames: List<String>) {
+    private val directions: List<Direction>
 
     init {
         require(directionNames.size in MIN_LENGTH..MAX_LENGTH)
-        require(directionNames.all { it in Direction.names() })
-    }
-
-    operator fun get(position: Int): String {
-        return directionNames[position]
+        directions = directionNames.map { Direction.getByName(it) }
     }
 
     fun available(moving: String, position: Int): Boolean {
-        require(moving in Direction.names())
-        return get(position) == moving
+        val direction = Direction.getByName(moving)
+        return directions[position] == direction
     }
 
     companion object {

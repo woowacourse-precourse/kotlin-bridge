@@ -11,13 +11,13 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     fun makeBridge(size: Int): List<String> {
-        val bridge = mutableListOf<String>()
+        val directionNames = mutableListOf<String>()
         // TODO: repeat with 음수??
         repeat(size) {
             val value = bridgeNumberGenerator.generate()
             val direction = Direction.valueOf(value)
-            bridge.add(direction.toString())
+            directionNames.add(direction.name)
         }
-        return bridge
+        return directionNames
     }
 }

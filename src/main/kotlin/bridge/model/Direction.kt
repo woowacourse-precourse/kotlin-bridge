@@ -1,24 +1,22 @@
 package bridge.model
 
 enum class Direction(private val value: Int) {
-    UP(1) {
-        override fun toString() = "U"
-    },
-    DOWN(0) {
-        override fun toString() = "D"
-    };
+    U(1),
+    D(0);
 
     companion object {
-
-        // TODO: 여기서 예외를 발생시키는 것이 맞는 건가??
         fun valueOf(value: Int): Direction {
             return Direction.values()
                 .firstOrNull { it.value == value }
-                ?: throw IllegalArgumentException(ERROR_NO_MATCHED_DIRECTION.format(value))
+                ?: throw IllegalArgumentException(ERROR_NO_MATCHED_DIRECTION.format(value.toString()))
         }
 
-        fun names() = Direction.values().map { it.toString() }
+        fun getByName(name: String): Direction {
+            return Direction.values()
+                .firstOrNull { it.name == name }
+                ?: throw IllegalArgumentException(ERROR_NO_MATCHED_DIRECTION.format(name))
+        }
 
-        private const val ERROR_NO_MATCHED_DIRECTION = "%d와 맞는 Direction이 없습니다."
+        private const val ERROR_NO_MATCHED_DIRECTION = "%s와 맞는 Direction이 없습니다."
     }
 }
