@@ -4,21 +4,28 @@ package bridge.model
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame(private val bridge: Bridge) {
+    enum class State { PASS, FAIL, ONGOING }
 
     private var currentPosition: Int = -1
+
     private var _tryCount: Int = 1
     val tryCount: Int
         get() = _tryCount
 
+    private var _state = State.ONGOING
+    val state
+        get() = _state
+
     /**
      * @param moving 이동 방향
-     * @return 이동 성공 여부(방향 일치 여부만 확인)
      * @throws IllegalStateException 현재 위치와 다리 길이 매칭 오류
+     * @throws IllegalArgumentException moving이 Direction에 포함되지 않은 경우
      */
-    fun move(moving: String): Boolean {
-        return try {
+    fun move(moving: String) {
+        try {
             currentPosition += 1
-            bridge.available(moving, currentPosition)
+            val passed = bridge.available(moving, currentPosition)
+            setState(passed)
         } catch (e: IndexOutOfBoundsException) {
             throw IllegalStateException(ERROR_POSITION_BOUND)
         }
@@ -34,13 +41,23 @@ class BridgeGame(private val bridge: Bridge) {
         if (command == COMMAND_RETRY) {
             currentPosition -= 1
             _tryCount += 1
+            _state = State.ONGOING
             return true
         }
         return false
     }
 
-    fun isEnd(): Boolean {
+    private fun allPassed(): Boolean {
         return bridge.isBridgeEnd(currentPosition)
+    }
+
+    private fun setState(passed: Boolean) {
+        if (!passed) {
+            _state = State.FAIL
+        }
+        if (passed && allPassed()) {
+            _state = State.PASS
+        }
     }
 
     companion object {

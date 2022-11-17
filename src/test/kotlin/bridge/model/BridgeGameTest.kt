@@ -15,23 +15,17 @@ class BridgeGameTest {
     }
 
     @Test
-    fun `플레이어가 건널 수 있는 방향으로 이동할 때 true를 리턴한다`() {
-        val moving = directions
-        assert(
-            moving
-                .map { game.move(it) }
-                .all { true }
-        )
+    fun `플레이어가 건널 수 있는 방향으로 이동하면 게임 상태는 ONGOING 이다`() {
+        val moving = "U"
+        game.move(moving)
+        assert(game.state == BridgeGame.State.ONGOING)
     }
 
     @Test
-    fun `플레이어가 건널 수 없는 방향으로 이동할 때 false를 리턴한다`() {
-        val moving = listOf("U", "D", "U")
-        assert(
-            !moving
-                .map { game.move(it) }
-                .last()
-        )
+    fun `플레이어가 건널 수 없는 방향으로 이동하면 게임 상태는 FAIL 이다`() {
+        val moving = "D"
+        game.move(moving)
+        assert(game.state == BridgeGame.State.FAIL)
     }
 
     @Test
@@ -80,12 +74,9 @@ class BridgeGameTest {
     }
 
     @Test
-    fun `플레이어가 다리를 모두 건넜는지 알 수 있어야 한다`() {
+    fun `플레이어가 다리를 모두 건넜다면 상태는 PASS 이다`() {
         val moving = directions
-        game.move("U")
-        assert(!game.isEnd())
-        game.move("D")
-        game.move("D")
-        assert(game.isEnd())
+        moving.forEach { game.move(it) }
+        assert(game.state == BridgeGame.State.PASS)
     }
 }
