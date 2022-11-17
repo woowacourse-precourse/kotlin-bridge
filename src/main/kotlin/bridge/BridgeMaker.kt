@@ -13,4 +13,6 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         for (i in 0 until size) bridgeShape.add(bridgeNumberGenerator.generate().representBridge())
         return bridgeShape
     }
+
+    fun Int.representBridge(): String = if (this == 0) "D" else "U"
 }
