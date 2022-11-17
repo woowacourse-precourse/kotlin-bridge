@@ -26,3 +26,13 @@ fun end(game: BridgeGame) {
     OutputView().printMap(game.upBridge, game.downBridge)
     OutputView().printResultIsSuccess(game.isSuccess, game.totalCount)
 }
+
+fun reStart(game: BridgeGame, bridge: List<String>) {
+    when (InputView().readGameCommand()) {
+        "R" -> {
+            game.retry()
+            play(game, bridge)
+        }
+        "Q" -> end(game)
+    }
+}
