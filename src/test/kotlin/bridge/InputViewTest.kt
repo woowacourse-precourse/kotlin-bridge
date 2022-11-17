@@ -15,4 +15,12 @@ class InputViewTest {
 
         }
     }
+
+    @ValueSource(strings = ["2", "21", "-2", "0"])
+    @ParameterizedTest
+    fun `입력된 다리길이가 3이상 20이하가 아닌 경우 예외 테스트`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            input.bridgeSizeInputTypeException()
+        }
+    }
 }
