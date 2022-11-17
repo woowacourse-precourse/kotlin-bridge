@@ -26,6 +26,17 @@ class BridgeTest {
         assertThat(bridge.movePossible(input, bridgeMap)).isEqualTo(result)
     }
 
+    @Test
+    fun `이동가능한 칸이면 'O'인지 확인`() {
+        val result = "O"
+        assertThat(bridge.movePossibleMark(true)).isEqualTo(result)
+    }
+
+    @Test
+    fun `이동 불가능한 칸이면 'X'인지 확인`() {
+        val result = "X"
+        assertThat(bridge.movePossibleMark(false)).isEqualTo(result)
+    }
 
 
     class TestNumberGenerator(numbers: List<Int>) : BridgeNumberGenerator {
