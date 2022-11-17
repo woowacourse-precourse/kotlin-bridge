@@ -9,9 +9,35 @@
 ---  
 
 ## 🚀 BridgeGame 클래스
+`BridgeGame` 클래스는 BridgeGame을 관리하는 클래스이다.
+`BridgeGame` 클래스는 요청(request)을 받는다면 그에 해당하는 응답(response)을 하도록 한다.
 
-|함수|파라미터|반환 값|설명|
-|---|---|---|---|
+|함수|파라미터| 반환 값    | 설명                                           |
+|---|---|---------|----------------------------------------------|
+|request|Enum| Boolean | 지정된 request 요청에 맞는 함수를 실행하고 게임 상태를 update한다. 요청이 제대로 수행되었다면 true를, 수행되지 않았다면 false를 반환한다|
+
+- 사용 예시
+```kotlin
+
+val brideGame: BrideGame = BridgeGame()
+var nowState: String = ""
+
+//...
+
+if (brideGame.request(BridgeGame.MOVE, "U") == false) {
+    // [ERROR]
+}
+nowState = brideGame.request(BridgeGame.MASSAGE)
+print(nowState)
+```
+- 출력
+```kotlin
+[ O ]
+[   ]
+
+이동할 칸을 선택해주세요. (위: U, 아래: D)
+```
+
 
 ### 🚨 Exception
 
