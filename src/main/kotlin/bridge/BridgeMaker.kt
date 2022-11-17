@@ -8,12 +8,15 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
-    fun makeBridge(size: Int,oneColum:String): List<String> {
-
-        return listOf()
+    fun makeBridge(size: Int): List<String> {
+        val bridge = mutableListOf<String>()
+        for (i in 1..size) {
+            bridge.add(makeOneColumn())
+        }
+        return bridge
     }
 
-    fun makeOneColumn(): String {
+    private fun makeOneColumn(): String {
         val bridgeNumberGenerator = bridgeNumberGenerator.generate()
         return if (bridgeNumberGenerator == RANDOM_LOWER_INCLUSIVE) "UD" else "DU"
     }
