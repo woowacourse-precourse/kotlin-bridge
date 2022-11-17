@@ -12,6 +12,7 @@ class GameController {
 
     fun gameStart() {
         makeBridge(inputBridgeSize())
+        repeatMoving()
     }
 
     private fun inputBridgeSize() : Int{
@@ -21,5 +22,19 @@ class GameController {
 
     private fun makeBridge(size : Int){
         bridgeGame.createCorrectBridgeMap(size)
+    }
+
+    private fun repeatMoving(){
+        while(true){
+            //checkFinish by BridgeGame.compare
+            inputMoving()
+            // BridgeGame.moving
+            // printCurrentMoving
+        }
+    }
+
+    private fun inputMoving(){
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        inputView.readMoving()
     }
 }

@@ -1,6 +1,7 @@
 package bridge.view
 
 import bridge.validator.BridgeSizeValidator
+import bridge.validator.MovingValidator
 import camp.nextstep.edu.missionutils.Console
 
 /**
@@ -25,7 +26,14 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        return try{
+            val input = Console.readLine()
+            MovingValidator().checkInput(input)
+            input
+        }catch (exception : IllegalArgumentException){
+            println("[ERROR] 입력값이 올바르지 않습니다.")
+            readMoving()
+        }
     }
 
     /**
