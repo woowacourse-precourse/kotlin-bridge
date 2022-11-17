@@ -26,7 +26,12 @@ class OutputView {
         println(BRIDGE_SIZE_INPUT_MESSAGE)
     }
 
+    fun printInputMoveDirectionMessage() {
+        println(MOVE_DIRECTION_INPUT_MESSAGE)
+    }
+
     companion object {
         const val BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요."
+        const val MOVE_DIRECTION_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
     }
 }
