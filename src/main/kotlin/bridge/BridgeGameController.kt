@@ -24,6 +24,7 @@ class BridgeGameController() {
         outputView.printInputMove()
         val upDown = inputView.readMoving()
         bridgeGame.move(bridge, upDown)
-        outputView.printMap(bridge)
+        outputView.printMap(bridge.upBridge,bridge.downBridge)
     }
+
 }

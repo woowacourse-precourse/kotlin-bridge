@@ -11,15 +11,50 @@ class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun move(bridge: Bridge, upDown: String) {
-        var hit = "O"
-        if (!bridge.checkCurrentLocation(upDown)) {
-            hit = "X"
-            bridge.move(hit)
+        var hit  =""
+        if(upDown == "U"){
+            if(bridge.checkCurrentLocation(upDown)){
+                if(bridge.currentLocation != 0){
+                    bridge.upBridge +="|"
+                    bridge.downBridge +="|"
+                }
+                bridge.upBridge += " O "
+                bridge.downBridge += "   "
+               hit ="O"
+            }
+
+            if(!bridge.checkCurrentLocation(upDown)){
+                if(bridge.currentLocation != 0){
+                    bridge.upBridge +="|"
+                    bridge.downBridge +="|"
+                }
+                bridge.upBridge += " X "
+                bridge.downBridge += "   "
+                hit = "X"
+            }
         }
-        if (bridge.checkCurrentLocation(upDown)) {
-            hit = "o"
-            bridge.move(hit)
+        if(upDown == "D"){
+            if(bridge.checkCurrentLocation(upDown)){
+                if(bridge.currentLocation != 0){
+                    bridge.upBridge +="|"
+                    bridge.downBridge +="|"
+                }
+                bridge.upBridge += "   "
+                bridge.downBridge += " O "
+                hit = "O"
+            }
+
+            if(!bridge.checkCurrentLocation(upDown)){
+                if(bridge.currentLocation != 0){
+                    bridge.upBridge +="|"
+                    bridge.downBridge +="|"
+                }
+                bridge.upBridge += "   "
+                bridge.downBridge += " X "
+                hit = "X"
+            }
         }
+        bridge.move(hit)
     }
 
     /**

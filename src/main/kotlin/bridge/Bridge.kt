@@ -1,6 +1,8 @@
 package bridge
 
 class Bridge (private val bridge:List<String>){
+    var upBridge = ""
+    var downBridge =""
     var currentLocation = 0
     private val hitBridge= MutableList(bridge.size + 1){""}
     fun checkCurrentLocation(upDown : String): Boolean {
