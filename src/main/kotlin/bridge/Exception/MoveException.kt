@@ -10,15 +10,24 @@ object MoveException {
     }
 
     fun nullException(moveInput: String): Boolean {
-        return moveInput.isEmpty()
+        if (moveInput.isEmpty()) {
+            println(ERROR_INPUT_MOVE_NULL)
+            return true
+        }
+        return false
     }
 
     fun sizeException(moveInput: String): Boolean {
-        return moveInput.length != INPUT_MOVE_SIZE
+        if (moveInput.length != INPUT_MOVE_SIZE) {
+            println(ERROR_INPUT_MOVE_SIZE)
+            return true
+        }
+        return false
     }
 
     private fun digitException(moveInput: String): Boolean {
         if (moveInput == UP || moveInput == DOWN) return false
+        println(ERROR_INPUT_MOVE_DIGIT)
         return true
     }
 }

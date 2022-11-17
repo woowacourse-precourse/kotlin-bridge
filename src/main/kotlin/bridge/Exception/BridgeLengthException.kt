@@ -10,15 +10,24 @@ object BridgeLengthException {
     }
 
     private fun nullException(lengthInput: String): Boolean {
-        return lengthInput.isEmpty()
+        if (lengthInput.isEmpty()) {
+            println(ERROR_INPUT_BRIDGE_NULL)
+            return true
+        }
+        return false
     }
 
     private fun typeException(lengthInput: String): Boolean {
-        return !lengthInput.chars().allMatch { Character.isDigit(it) }
+        if (!lengthInput.chars().allMatch { Character.isDigit(it) }){
+            println(ERROR_INPUT_BRIDGE_TYPE)
+            return true
+        }
+        return false
     }
 
     private fun rangeException(length: Int): Boolean {
         if (length in MIN_RANGE_LENGTH..MAX_RANGE_LENGTH) return false
+        println(ERROR_INPUT_BRIDGE_RANGE)
         return true
     }
 }

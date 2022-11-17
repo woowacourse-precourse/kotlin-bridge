@@ -11,6 +11,7 @@ object RetryException {
 
     private fun digitException(moveInput: String): Boolean {
         if (moveInput == RETRY || moveInput == QUIT) return false
+        println(ERROR_INPUT_MOVE_DIGIT)
         return true
     }
 }

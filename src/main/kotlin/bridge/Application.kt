@@ -2,13 +2,14 @@ package bridge
 
 import bridge.resources.INPUT_BRIDGE_GAME_START
 import bridge.view.*
+import java.lang.IllegalArgumentException
 
 fun main() {
     println(INPUT_BRIDGE_GAME_START)
+    try {
     val bridgeLength = InputView().readBridgeSize()
-    val b = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
-    // BridgeGame의 인스턴스로 넣자.
-    println(b)
-    BridgeGame(b, 1).move(0)
+    val bridgeGame = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
+    BridgeGame(bridgeGame, 1).move(0) } catch (_: IllegalArgumentException){
+    }
 
 }
