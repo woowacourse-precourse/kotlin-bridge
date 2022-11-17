@@ -14,5 +14,5 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         return bridgeShape
     }
 
-    fun Int.representBridge(): String = if (this == 0) "D" else "U"
+    fun Int.representBridge(): String = if (this == 0) Constant.DOWN else Constant.UP
 }
