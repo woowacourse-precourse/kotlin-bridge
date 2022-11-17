@@ -29,7 +29,13 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        return try {
+            println(SELECT_MOVE_MESSAGE)
+            Console.readLine()!!.movingInputTypeException()
+        } catch (e: IllegalArgumentException) {
+            println(MOVING_INPUT_TYPE_ERROR_MESSAGE)
+            readMoving()
+        }
     }
 
     /**
