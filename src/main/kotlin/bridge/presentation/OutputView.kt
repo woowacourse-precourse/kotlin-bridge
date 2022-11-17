@@ -1,6 +1,7 @@
 package bridge.presentation
 
 import bridge.domain.Result
+import bridge.util.GAME_RETRY_QUESTION_MESSAGE
 import bridge.util.GAME_START_MESSAGE
 import bridge.util.GAME_SUCCESS_OR_FAIL_MESSAGE
 import bridge.util.TRIAL_COUNT_MESSAGE
@@ -28,6 +29,10 @@ class OutputView {
 
     fun printGameStart() {
         println(GAME_START_MESSAGE + "\n")
+    }
+
+    fun printRetryQuestion() {
+        println(GAME_RETRY_QUESTION_MESSAGE)
     }
 
     private fun printSuccessOrFail(gameResult: Result) {
