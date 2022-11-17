@@ -17,7 +17,7 @@ object Constant {
     const val GAME_OVER_MESSAGE = "\n최종 게임 결과"
     const val GAME_SUCCESS_MESSAGE = "\n게임 성공 여부: 성공"
     const val GAME_FAILED_MESSAGE = "\n게임 성공 여부: 실패"
-    const val TOTAL_ATTEMPTS_MESSAGE = "총 시도한 횟수 "
+    const val TOTAL_ATTEMPTS_MESSAGE = "총 시도한 횟수: "
 
     const val ERROR_MESSAGE = "[ERROR] 잘못입력하셨습니다."
     const val INPUT_TYPE_ERROR_MESSAGE = "[ERROR] 입력한 값이 숫자가 아닙니다."
