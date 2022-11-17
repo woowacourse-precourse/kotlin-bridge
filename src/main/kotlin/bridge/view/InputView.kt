@@ -19,9 +19,6 @@ class InputView {
         return bridgeSize
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     fun readMoving(): String {
         val bridgeType = readLine()
 
@@ -32,10 +29,18 @@ class InputView {
         return bridgeType
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
-    fun readGameCommand(): String {
-        return ""
+    fun askRetryGame(): Boolean {
+        val command = readLine()
+
+        require(command != RETRY || command != QUIT) {
+            InputError.InvalidGameCommand
+        }
+
+        return command == RETRY
+    }
+
+    companion object {
+        private const val RETRY = "R"
+        private const val QUIT = "Q"
     }
 }
