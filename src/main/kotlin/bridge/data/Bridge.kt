@@ -8,7 +8,7 @@ class Bridge {
         companion object {
             private val names = values().map { it.name }.toSet()
 
-            fun contains(name: String): Boolean = name.contains(name)
+            fun contains(name: String): Boolean = names.contains(name)
         }
     }
 
