@@ -1,5 +1,11 @@
 package bridge
 
+import bridge.Constant.ERROR_MESSAGE
+import bridge.Constant.GAME_COMMAND_INPUT_TYPE_ERROR_MESSAGE
+import bridge.Constant.INPUT_BRIDGE_SIZE_MESSAGE
+import bridge.Constant.MOVING_INPUT_TYPE_ERROR_MESSAGE
+import bridge.Constant.SELECT_MOVE_MESSAGE
+import bridge.Constant.SELECT_RESTART_MESSAGE
 import camp.nextstep.edu.missionutils.Console
 
 /**
@@ -10,12 +16,11 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        println("다리 건너기 게임을 시작합니다.\n")
         return try {
-            println("다리의 길이를 입력해주세요.")
+            println(INPUT_BRIDGE_SIZE_MESSAGE)
             Console.readLine()!!.bridgeSizeInputTypeException()
         } catch (e: IllegalArgumentException) {
-            println(Constant.ERROR_MESSAGE)
+            println(ERROR_MESSAGE)
             readBridgeSize()
         }
     }
