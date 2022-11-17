@@ -32,4 +32,9 @@ class OutputView {
     fun printResult() {
         println(GAME_OVER_MESSAGE)
     }
+
+    fun printResultIsSuccess(isSuccess: Boolean, count: Int) {
+        if (isSuccess) println(GAME_SUCCESS_MESSAGE) else println(GAME_FAILED_MESSAGE)
+        print(TOTAL_ATTEMPTS_MESSAGE + count)
+    }
 }
