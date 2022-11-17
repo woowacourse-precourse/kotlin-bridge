@@ -12,7 +12,7 @@ class BridgeGameTest : NsTest(){
     @Test
     fun `다리 건너기 성공 테스트`(){
         val bridge = listOf("U","U","D")
-        count = 0
+        tryCount = 0
         System.setIn("U".byteInputStream())
         assertSimpleTest{
             BridgeGame().move(bridge)
@@ -26,7 +26,7 @@ class BridgeGameTest : NsTest(){
     @Test
     fun `다리 건너기 실패 테스트`(){
         val bridge = listOf("U","U","D")
-        count = 0
+        tryCount = 0
         val buf = String.join("\n", "D\nR").toByteArray()
         System.setIn(ByteArrayInputStream(buf))
         assertSimpleTest{
