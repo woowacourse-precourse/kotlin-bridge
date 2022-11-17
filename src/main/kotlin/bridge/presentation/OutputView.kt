@@ -1,10 +1,7 @@
 package bridge.presentation
 
 import bridge.domain.Result
-import bridge.util.GAME_RETRY_QUESTION_MESSAGE
-import bridge.util.GAME_START_MESSAGE
-import bridge.util.GAME_SUCCESS_OR_FAIL_MESSAGE
-import bridge.util.TRIAL_COUNT_MESSAGE
+import bridge.util.*
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -29,6 +26,10 @@ class OutputView {
 
     fun printGameStart() {
         println(GAME_START_MESSAGE + "\n")
+    }
+
+    fun printBridgeLengthQuestion() {
+        println(BRIDGE_LENGTH_QUESTION_MESSAGE)
     }
 
     fun printRetryQuestion() {
