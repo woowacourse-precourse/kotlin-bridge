@@ -47,7 +47,7 @@ class InputView {
     fun movingselect(): String {
         var movingselect = Console.readLine()
         try {
-            require(movingselect == "U" && movingselect == "D") {
+            require(movingselect == "U" || movingselect == "D") {
             }
         } catch (e: IllegalArgumentException) {
             throw IllegalArgumentException("[ERROR] movingselect")
@@ -58,7 +58,7 @@ class InputView {
     fun retrycheck(): String {
         var retrycheck = Console.readLine()
         try{
-            require(retrycheck == "R" && retrycheck == "Q")
+            require(retrycheck == "R" || retrycheck == "Q")
         } catch (e: IllegalArgumentException){
             throw IllegalArgumentException("[ERROR] retrycheck")
         }

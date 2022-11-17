@@ -11,25 +11,31 @@ class OutputView {
      */
     fun printMap(a: List<String> , b:Int) {
         print("[ ")
-        for (i in 0..b-1) {
+        var i = 0
+        var j = 0
+        do{
             upcheckprint(a[i])
             if (i == b-1) {
                 println(" ]")
                 break
             }
             print(" | ")
-        }
-        print("[ ")
-        for (i in 0..b-1) {
+            i++
+        }while(i < 20)
 
-            Downcheckprint(a[i])
-            if (i == b-1) {
+        print("[ ")
+        do{
+            Downcheckprint(a[j])
+            if (j == b-1) {
                 println(" ]")
                 break
             }
             print(" | ")
-        }
-
+            j++
+        }while(j < 20)
+//        for (i in 0 until b) {
+//
+//        }
     }
 
     /**
@@ -41,18 +47,18 @@ class OutputView {
 
     fun upcheckprint (a: String ) {
         if (a == "U") {
-            print("U")
+            print("O")
         }
         if (a == "D") {
-            print(" ")
+            print("X")
         }
     }
     fun Downcheckprint (a: String ) {
         if (a == "U") {
-            print(" ")
+            print("X")
         }
         if (a == "D") {
-            print("D")
+            print("O")
         }
     }
 }
