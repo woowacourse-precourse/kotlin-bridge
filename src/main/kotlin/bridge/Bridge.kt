@@ -7,6 +7,13 @@ class Bridge(private val size: Int) {
     private val idx : Int = 0
 
 
+    fun move(input: String, bridgeMap: List<String>) {
+        when(input) {
+            "U" -> moveUp(input, bridgeMap)
+            "D" -> moveDown(input, bridgeMap)
+        }
+    }
+
     fun moveUp(input : String, bridgeMap : List<String>) {
         upBridge.add(movePossibleMark(movePossible(input, bridgeMap)))
         downBridge.add(" ")
