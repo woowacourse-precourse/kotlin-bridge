@@ -12,7 +12,6 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      */
     fun makeBridge(size: Int): List<String> {
         val directionNames = mutableListOf<String>()
-        // TODO: repeat with 음수??
         repeat(size) {
             val value = bridgeNumberGenerator.generate()
             val direction = Direction.valueOf(value)
