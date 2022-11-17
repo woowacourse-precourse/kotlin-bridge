@@ -12,6 +12,11 @@ class Bridge(private val size: Int) {
         downBridge.add(" ")
     }
 
+    fun moveDown(input : String, bridgeMap : List<String>) {
+        downBridge.add(movePossibleMark(movePossible(input, bridgeMap)))
+        upBridge.add(" ")
+    }
+
     fun movePossible(input : String, bridgeMap : List<String>) : Boolean {
         return input.equals(bridgeMap[idx])
     }
