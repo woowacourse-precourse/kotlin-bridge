@@ -12,6 +12,7 @@ class Bridge(private val size: Int) {
             "U" -> moveUp(input, bridgeMap)
             "D" -> moveDown(input, bridgeMap)
         }
+        idx++
     }
 
     fun moveUp(input : String, bridgeMap : List<String>) {
