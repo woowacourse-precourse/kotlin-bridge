@@ -4,7 +4,9 @@ package bridge
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame(private val bridge: Bridge) {
-    val userStep = mutableListOf<Pair<BridgeStep, Boolean>>()
+    private val userStep = mutableListOf<Pair<BridgeStep, Boolean>>()
+    private val inputView = InputView()
+    private val outputView = OutputView()
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -29,5 +31,23 @@ class BridgeGame(private val bridge: Bridge) {
      */
     fun retry() {
         userStep.clear()
+    }
+
+    private fun processBridgeSizeIO() {
+
+    }
+
+    private fun processMoveIO() {
+    }
+
+    private fun processRetryIO() {
+
+    }
+
+    fun gameLoop() {
+        while (true) {
+            processBridgeSizeIO()
+            processMoveIO()
+        }
     }
 }
