@@ -5,21 +5,6 @@ fun main() {
 }
 
 
-fun inputBridgeSize() : Int {
-    OutputView().printInputBridgeSizeMessage()
-    return getBridgeSize(InputView().readBridgeSize())
-}
-
-fun getBridgeSize(input : String?) : Int {
-    try {
-        Validator().checkBridgeLength(input)
-        return input!!.toInt()
-    } catch(e : IllegalArgumentException) {
-        OutputView().printError(e)
-        return inputBridgeSize()
-    }
-}
-
 fun inputMoveDirection() : String {
     OutputView().printInputMoveDirectionMessage()
     return getMoveDirection(InputView().readMoving())
