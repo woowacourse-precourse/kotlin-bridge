@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.view.InputView
+
 class GameController {
     private val inputView = InputView()
 
