@@ -20,4 +20,19 @@ class Controller {
             return inputBridgeSize()
         }
     }
+
+    fun inputMoveDirection() : String {
+        OutputView().printInputMoveDirectionMessage()
+        return getMoveDirection(InputView().readMoving())
+    }
+
+    fun getMoveDirection(input : String?) : String {
+        try {
+            Validator().checkMoveDirection(input)
+            return input!!
+        } catch(e : IllegalArgumentException) {
+            OutputView().printError(e)
+            return inputMoveDirection()
+        }
+    }
 }
