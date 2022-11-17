@@ -1,5 +1,9 @@
 package bridge.presentation
 
+import bridge.util.BRIDGE_LENGTH_NOT_NUMBER_EXCEPTION_MESSAGE
+import bridge.util.Validator
+import camp.nextstep.edu.missionutils.Console
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -8,7 +12,11 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return 0
+        val size = Console.readLine()
+        Validator.validateIsNumber(size)
+        Validator.validateRange(size.toInt())
+
+        return size.toInt()
     }
 
     /**
