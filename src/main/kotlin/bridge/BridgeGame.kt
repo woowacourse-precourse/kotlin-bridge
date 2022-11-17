@@ -1,14 +1,16 @@
 package bridge
 
+import bridge.resources.NEXT_TRY
 import bridge.resources.QUIT
 import bridge.resources.RETRY
+import bridge.resources.START_LOCATION
 import bridge.view.InputView
 import bridge.view.OutputView
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame(val bridge: List<String>, val retry: Int) {
+class BridgeGame(val bridge: List<String>, private val retry: Int) {
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
@@ -35,8 +37,8 @@ class BridgeGame(val bridge: List<String>, val retry: Int) {
      */
     private fun retry(location: Int, answer: Boolean) {
         val retryCheck = InputView().readGameCommand()
-        OutputView().printResult(bridge,location, answer)
-        if (retryCheck == RETRY) BridgeGame(this.bridge, this.retry + 1).move(0)
+        OutputView().printResult(bridge, location, answer)
+        if (retryCheck == RETRY) BridgeGame(this.bridge, this.retry + NEXT_TRY).move(START_LOCATION)
         if (retryCheck == QUIT) {
             OutputView().printEnd(answer, this.retry)
         }

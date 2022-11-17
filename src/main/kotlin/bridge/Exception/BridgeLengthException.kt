@@ -1,4 +1,5 @@
 package bridge.Exception
+
 import bridge.resources.*
 import kotlin.IllegalArgumentException
 
@@ -18,7 +19,7 @@ object BridgeLengthException {
     }
 
     private fun typeException(lengthInput: String): Boolean {
-        if (!lengthInput.chars().allMatch { Character.isDigit(it) }){
+        if (!lengthInput.chars().allMatch { Character.isDigit(it) }) {
             println(ERROR_INPUT_BRIDGE_TYPE)
             return true
         }
