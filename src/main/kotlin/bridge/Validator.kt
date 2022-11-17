@@ -9,6 +9,12 @@ class Validator {
         checkLengthRange(input)
     }
 
+    fun checkMoveDirection(input : String?) {
+        checkInputNull(input)
+        checkEmptyInput(input!!)
+        checkMoveDirectionInUAndD(input)
+    }
+
     fun checkEmptyInput(input: String) {
         require(input != "") { EMPTY_INPUT_ERROR_MSG }
     }
