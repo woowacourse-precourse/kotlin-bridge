@@ -30,5 +30,10 @@ class InputValidationTest {
         }
     }
 
-
+    @Test
+    fun `사용자의 이동할 칸 입력값이 'U' 또는 'D' 가 아니라면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            inputValidation.checkUserMovingValidation("K")
+        }
+    }
 }
