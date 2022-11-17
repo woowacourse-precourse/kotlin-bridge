@@ -10,7 +10,7 @@
 
 - [x] 플레이어가 현재 위치한 칸을 알 수 있어야 한다. #BridgeGame - currentPosition
 - [x] 플레이어의 현재 위치한 칸과 다리 정보를 비교할 수 있어야 한다. #Bridge.available(U or D, position)
-- [ ] 플레이어는 다음 칸으로 이동할 수 있다. #BridgeGame.move(block)
+- [x] 플레이어는 다음 칸으로 이동할 수 있다. #BridgeGame.move(block)
     - [ ] U는 윗칸으로 D는 아랫 칸으로 이동한다. 이 외는 예외를 발생시킨다.
     - [ ] 다음 칸이 없다면 게임을 종료시킨다. #Bridge.isEnd(position)
 

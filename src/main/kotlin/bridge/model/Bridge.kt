@@ -16,6 +16,10 @@ class Bridge(directionNames: List<String>) {
         return directions[position] == direction
     }
 
+    fun isBridgeEnd(position: Int): Boolean {
+        return position == directions.lastIndex
+    }
+
     companion object {
         const val MIN_LENGTH = 3
         const val MAX_LENGTH = 20
