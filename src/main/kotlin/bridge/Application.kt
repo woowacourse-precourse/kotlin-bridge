@@ -9,6 +9,6 @@ fun main() {
     val b = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
     // BridgeGame의 인스턴스로 넣자.
     println(b)
-    BridgeGame(b, 0).move(0)
+    BridgeGame(b, 1).move(0)
 
 }

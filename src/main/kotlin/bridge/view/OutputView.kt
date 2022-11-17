@@ -11,19 +11,19 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap(bridge: List<String>, moved: Int, answer: Boolean) {
-        printSign(bridge, moved, UP)
-        printAnswer(answer, bridge[moved], UP)
+    fun printMap(bridge: List<String>, location: Int, answer: Boolean) {
+        printSign(bridge, location, UP)
+        printAnswer(answer, bridge[location], UP)
         println(END_BRACKET)
 
-        printSign(bridge, moved, DOWN)
-        printAnswer(answer, bridge[moved], DOWN)
+        printSign(bridge, location, DOWN)
+        printAnswer(answer, bridge[location], DOWN)
         println(END_BRACKET)
     }
 
-    fun printSign(bridge: List<String>, moved: Int, line: String) {
+    fun printSign(bridge: List<String>, location: Int, line: String) {
         print(START_BRACKET)
-        for (idx in 0 until moved) {
+        for (idx in 0 until location) {
             if (bridge[idx] == line) print(ANSWER)
             else print(SPACING)
             print(SEPARATOR)
@@ -49,8 +49,14 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(bridge: List<String>, answer: Boolean) {
+    fun printResult(bridge: List<String>, location: Int, answer: Boolean) {
         println(END_GAME)
-        printMap(bridge, bridge.size - 1, answer)
+        printMap(bridge, location, answer)
+    }
+
+    fun printEnd(answer: Boolean, retry: Int) {
+        if (answer) println(GAME_RESULT_WIN)
+        if (!answer) println(GAME_RESULT_LOSE)
+        println(GAME_TRY_COUNT.format(retry))
     }
 }
