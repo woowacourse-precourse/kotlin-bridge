@@ -9,4 +9,14 @@ class Bridge(private val size: Int) {
     fun movePossible(input : String, bridgeMap : List<String>) : Boolean {
         return input.equals(bridgeMap[idx])
     }
+
+    fun movePossibleMark(isPossible : Boolean) : String = when(isPossible) {
+        true -> MOVE_POSSIBLE_MARK
+        false -> MOVE_IMPOSSIBLE_MARK
+    }
+
+    companion object {
+        const val MOVE_POSSIBLE_MARK = "O"
+        const val MOVE_IMPOSSIBLE_MARK = "X"
+    }
 }
