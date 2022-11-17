@@ -30,17 +30,19 @@ class OutputView {
         }
     }
 
-    private fun printUpAnswer(answer: Boolean, locationAnswer: String){
+    private fun printUpAnswer(answer: Boolean, locationAnswer: String) {
         if (answer && locationAnswer == UP) print(ANSWER)
-        if (answer && locationAnswer == DOWN) print(SPACING)
         if (!answer && locationAnswer == DOWN) print(NOT_ANSWER)
+
+        if (answer && locationAnswer == DOWN) print(SPACING)
         if (!answer && locationAnswer == UP) print(SPACING)
     }
 
-    private fun printDownAnswer(answer: Boolean, locationAnswer: String){
+    private fun printDownAnswer(answer: Boolean, locationAnswer: String) {
         if (answer && locationAnswer == DOWN) print(ANSWER)
-        if (answer && locationAnswer == UP) print(SPACING)
         if (!answer && locationAnswer == UP) print(NOT_ANSWER)
+
+        if (answer && locationAnswer == UP) print(SPACING)
         if (!answer && locationAnswer == DOWN) print(SPACING)
     }
 
