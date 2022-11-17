@@ -22,5 +22,18 @@ class InputValidationTest {
         }
     }
 
+    @Test
+    fun `다리 길이가 3이상 20이하가 아니라면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            inputValidation.checkBridgeSizeRange(21)
+        }
+        assertThrows<IllegalArgumentException> {
+            inputValidation.checkBridgeSizeRange(0)
+        }
+        assertThrows<IllegalArgumentException> {
+            inputValidation.checkBridgeSizeRange(120)
+        }
+    }
+
 
 }
