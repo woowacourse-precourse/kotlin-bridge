@@ -63,7 +63,14 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {}
+    fun retry() {
+        upBridge = mutableListOf<String>()
+        downBridge = mutableListOf<String>()
+        count = 0
+        totalCount++
+        isSuccess = true
+    }
+
     fun isGameEnd(bridge: List<String>): Boolean {
         if (!isSuccess) return true
         if (count == bridge.size) return true
