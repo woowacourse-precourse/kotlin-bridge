@@ -24,7 +24,14 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        while(true){
+            try{
+                return moveException(readLine())
+            }catch(e: IllegalArgumentException){
+                continue
+            }
+        }
     }
 
     /**
@@ -42,9 +49,16 @@ class InputView {
         return size.toInt()
     }
 
+    private fun moveException(move: String?) : String{
+        require(!move.isNullOrEmpty()) { println(ERROR_NULL) }
+        require(move =="U"||move=="D") { println(ERROR_NOT_U_D) }
+        return move
+    }
+
     companion object {
         const val ERROR_NULL = "[ERROR] 아무것도 입력하지 않았습니다. 다시 입력해주세요."
         const val ERROR_NOT_NUMBER = "[ERROR] 숫자를 입력해 주세요."
         const val ERROR_NOT_INRANGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."
+        const val ERROR_NOT_U_D = "[ERROR] U 또는 D 를 입력해주세요."
     }
 }
