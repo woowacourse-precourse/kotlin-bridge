@@ -27,4 +27,12 @@ class Bridge (private val bridge:List<String>){
 
     }
 
+    fun finish(): Boolean {
+        if(currentLocation == bridge.size){
+            if(getCurrentLocationHit() == "O")
+            return true
+        }
+        return false
+    }
+
 }
