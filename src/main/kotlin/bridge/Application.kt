@@ -13,6 +13,7 @@ fun main() {
     var bridgemaker = BridgeMaker(bridgeNumberGenerator)
     var makeBridge = bridgemaker.makeBridge(size)
     var i = 0
+    var count=0
     while(i < size)
     {
         bridgegame.move()
@@ -28,6 +29,7 @@ fun main() {
             {
                 bridgegame.userselectupdown.clear()
                 i = 0
+                count+=1
             }
             else if (checkretry == "Q")
             {
@@ -39,6 +41,7 @@ fun main() {
     }
     println("최종 게임 결과")
     outputview.printMap(makeBridge,size)
+    println("총 시도한 횟수: ${count}")
 
 
 }

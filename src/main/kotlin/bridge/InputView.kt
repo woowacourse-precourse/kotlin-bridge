@@ -39,7 +39,8 @@ class InputView {
             require(bridgelength >= 3 && bridgelength <= 20) {
             }
         } catch (e: IllegalArgumentException) {
-            throw IllegalArgumentException("[ERROR]bridgelength")
+            println("[ERROR] 3부터 20까지의 숫자만 가능합니다.")
+            throw IllegalArgumentException()
         }
         return bridgelength
     }
@@ -47,10 +48,10 @@ class InputView {
     fun movingselect(): String {
         var movingselect = Console.readLine()
         try {
-            require(movingselect == "U" || movingselect == "D") {
-            }
+            require(movingselect == "U" || movingselect == "D")
         } catch (e: IllegalArgumentException) {
-            throw IllegalArgumentException("[ERROR] movingselect")
+            println("[ERROR] U과 D만 입력할 수 있습니다.")
+            throw IllegalArgumentException()
         }
         return movingselect
     }
@@ -60,7 +61,8 @@ class InputView {
         try{
             require(retrycheck == "R" || retrycheck == "Q")
         } catch (e: IllegalArgumentException){
-            throw IllegalArgumentException("[ERROR] retrycheck")
+            println("[ERROR] R과 Q만 입력할 수 있습니다.")
+            throw IllegalArgumentException()
         }
         return retrycheck
     }
