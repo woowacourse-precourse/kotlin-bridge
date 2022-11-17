@@ -33,6 +33,7 @@ fun reStart(game: BridgeGame, bridge: List<String>) {
             game.retry()
             play(game, bridge)
         }
+
         "Q" -> end(game)
     }
 }

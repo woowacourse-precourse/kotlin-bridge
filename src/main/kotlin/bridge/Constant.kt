@@ -24,5 +24,4 @@ object Constant {
     const val INPUT_RANGE_ERROR_MESSAGE = "[ERROR] 입력한 값이 3이상 20이하에 숫자가 아닙니다."
     const val MOVING_INPUT_TYPE_ERROR_MESSAGE = "[ERROR] 입력한 값이 U와 D가 아닙니다."
     const val GAME_COMMAND_INPUT_TYPE_ERROR_MESSAGE = "[ERROR] 입력한 값이 R과 Q가 아닙니다."
-
 }
