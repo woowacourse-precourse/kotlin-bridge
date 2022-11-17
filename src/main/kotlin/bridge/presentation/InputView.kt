@@ -1,6 +1,5 @@
 package bridge.presentation
 
-import bridge.util.BRIDGE_LENGTH_NOT_NUMBER_EXCEPTION_MESSAGE
 import bridge.util.Validator
 import camp.nextstep.edu.missionutils.Console
 
@@ -22,8 +21,11 @@ class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    fun readMoving(): String {
-        return ""
+    fun readDirection(): String {
+        val direction = Console.readLine()
+        Validator.validateDirection(direction)
+
+        return direction
     }
 
     /**

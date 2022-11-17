@@ -8,6 +8,10 @@ const val DIRECTION_QUESTION_MESSAGE = "이동할 칸을 선택해주세요. (�
 const val GAME_SUCCESS_OR_FAIL_MESSAGE = "게임 성공 여부: %s"
 const val TRIAL_COUNT_MESSAGE = "총 시도한 횟수: %d"
 
+// direction
+const val UP = "U"
+const val DOWN = "D"
+
 // result
 const val SUCCESS_MESSAGE = "성공"
 const val FAIL_MESSAGE = "실패"
@@ -16,3 +20,4 @@ const val FAIL_MESSAGE = "실패"
 private const val ERROR_PREFIX = "[ERROR] "
 const val BRIDGE_LENGTH_NOT_NUMBER_EXCEPTION_MESSAGE = ERROR_PREFIX + "입력한 값이 숫자가 아닙니다."
 const val BRIDGE_LENGTH_OUT_OF_RANGE_EXCEPTION_MESSAGE = ERROR_PREFIX + "다리 길이는 3부터 20 사이의 숫자여야 합니다."
+const val INVALID_DIRECTION_EXCEPTION_MESSAGE = ERROR_PREFIX + "이동 방향으로 U 또는 D를 입력해야 합니다."

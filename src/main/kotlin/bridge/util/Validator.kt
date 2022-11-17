@@ -8,4 +8,8 @@ object Validator {
     fun validateRange(value: Int, start: Int = 3, end: Int = 20) {
         require(value in start..end) { BRIDGE_LENGTH_OUT_OF_RANGE_EXCEPTION_MESSAGE }
     }
+
+    fun validateDirection(direction: String) {
+        require(direction == UP || direction == DOWN) { INVALID_DIRECTION_EXCEPTION_MESSAGE }
+    }
 }
