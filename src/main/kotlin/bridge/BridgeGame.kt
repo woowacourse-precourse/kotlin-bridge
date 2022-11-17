@@ -37,25 +37,34 @@ class BridgeGame(private val bridge: Bridge) {
 
     }
 
-    private fun processMoveIO() {
+    private fun processMoveIO(): Boolean {
         val moving = inputView.readMoving()
         val step = if (moving == "U") BridgeStep.UP else BridgeStep.DOWN
         val status = move(step)
         outputView.printMap()
         if (!status)
-            processRetryIO()
+            return processRetryIO()
         else if (bridge.getBridgeDone(userStep.size))
-            processRetryIO()
+            return processRetryIO()
+        return true
     }
 
-    private fun processRetryIO() {
-
+    private fun processRetryIO(): Boolean {
+        val gameCommand = inputView.readGameCommand()
+        return if (gameCommand == "R") {
+            retry()
+            true
+        } else {
+            outputView.printResult()
+            false
+        }
     }
 
     fun gameLoop() {
         while (true) {
             processBridgeSizeIO()
-            processMoveIO()
+            if (!processMoveIO())
+                break
         }
     }
 }
