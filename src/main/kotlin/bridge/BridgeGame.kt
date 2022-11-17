@@ -38,7 +38,7 @@ class BridgeGame(val bridge: List<String>, val retry: Int) {
     fun retry(location: Int, anwer: Boolean) {
         val retryCheck = InputView().readGameCommand()
         OutputView().printResult(bridge,location, anwer)
-        if (retryCheck == RETRY) BridgeGame(this.bridge, this.retry + 1)
+        if (retryCheck == RETRY) BridgeGame(this.bridge, this.retry + 1).move(0)
         if (retryCheck == QUIT) {
             OutputView().printEnd(anwer, this.retry)
         }
