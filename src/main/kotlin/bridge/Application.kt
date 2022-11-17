@@ -16,7 +16,7 @@ fun main() {
     var count=0
     while(i < size)
     {
-        bridgegame.move()
+        bridgegame.move(inputview.readMoving())
         if (bridgegame.userselectupdown[i] == makeBridge[i])
         {
             outputview.printMap(bridgegame.userselectupdown , i+1)
@@ -37,11 +37,21 @@ fun main() {
                 break
             }
         }
-
     }
-    println("최종 게임 결과")
-    outputview.printMap(makeBridge,size)
-    println("총 시도한 횟수: ${count}")
-
-
+    endprint(makeBridge,size,count)
 }
+
+fun endprint(a: List<String>,b: Int,c: Int) {
+    println("최종 게임 결과")
+    var outputview = OutputView()
+    outputview.printResult(a,b)
+    println("총 시도한 횟수: ${c}")
+}
+
+//fun roof(a: Int , b: Int , c: Int) {
+//
+//    while (a < c) {
+//
+//    }
+//}
+
