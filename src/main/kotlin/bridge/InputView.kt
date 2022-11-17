@@ -2,7 +2,6 @@ package bridge
 
 import camp.nextstep.edu.missionutils.Console.readLine
 
-
 /*** 사용자로부터입력을받는역할을한다.*/
 class InputView {
     /*** 다리의길이를입력받는다.*/
@@ -10,7 +9,7 @@ class InputView {
         try{
             val bridgeSize = readLine()
             if(!isNumeric(bridgeSize)) {
-                throw IllegalArgumentException()
+                throw IllegalArgumentException("[ERROR]")
             }
                 return bridgeSize.toInt()
         }catch (e: IllegalArgumentException){
@@ -28,7 +27,7 @@ class InputView {
         try {
             val moving = readLine()
             if (moving!="U" && moving!="D") {
-                throw IllegalArgumentException()
+                throw IllegalArgumentException("[ERROR]")
             }
             return moving
         } catch (e: IllegalArgumentException) {
@@ -42,7 +41,7 @@ class InputView {
         try{
             val gameCommand = readLine()
             if (gameCommand!="R" && gameCommand!="Q") {
-                throw IllegalArgumentException()
+                throw IllegalArgumentException("[ERROR]")
             }
             return gameCommand
         }catch (e: IllegalArgumentException){
