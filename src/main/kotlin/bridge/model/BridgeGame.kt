@@ -16,8 +16,8 @@ class BridgeGame(private val bridge: Bridge) {
     val state
         get() = _state
 
-    private val _movingTrace = ArrayDeque<String>()
-    val movingTrace: List<String>
+    private val _movingTrace = ArrayDeque<Pair<String, Boolean>>()
+    val movingTrace: List<Pair<String, Boolean>>
         get() = _movingTrace
 
     /**
@@ -31,7 +31,7 @@ class BridgeGame(private val bridge: Bridge) {
             currentPosition += 1
             val passed = bridge.available(moving, currentPosition)
             setState(passed)
-            _movingTrace.addLast(moving)
+            _movingTrace.addLast(moving to passed)
         } catch (e: IndexOutOfBoundsException) {
             throw IllegalStateException(ERROR_POSITION_BOUND)
         }
@@ -49,7 +49,7 @@ class BridgeGame(private val bridge: Bridge) {
 
     private fun runCommand(command: String): Boolean {
         if (command == COMMAND_RETRY) {
-            _movingTrace.removeLast()
+            _movingTrace.removeLastOrNull() // TODO
             currentPosition -= 1
             _tryCount += 1
             _state = State.ONGOING

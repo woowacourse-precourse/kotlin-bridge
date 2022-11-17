@@ -90,9 +90,10 @@ class BridgeGameTest {
     }
 
     @Test
-    fun `이동 과정을 기록해야 한다`() {
+    fun `이동 과정과 성공 여부를 기록해야 한다`() {
         val moving = directions
+        val expects = moving.map { it to true }
         moving.forEach { game.move(it) }
-        assert(game.movingTrace == moving)
+        assert(game.movingTrace == expects)
     }
 }
