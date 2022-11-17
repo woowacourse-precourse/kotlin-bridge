@@ -10,16 +10,13 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        print("다리의 길이를 입력해주세요.")
-        var size : String?
+        println("다리의 길이를 입력해주세요.")
         while(true) {
             try {
-                size = readLine()
-                sizeException(size)
+                return sizeException(readLine())
             } catch (e: IllegalArgumentException) {
                 continue
             }
-            return size!!.toInt()
         }
     }
 
@@ -37,11 +34,12 @@ class InputView {
         return ""
     }
 
-    fun sizeException(size: String?) {
+    private fun sizeException(size: String?) : Int{
         require(!size.isNullOrEmpty()) { println(ERROR_NULL) }
         val regex = "[0-9]+".toRegex()
         require(size.matches(regex)) { println(ERROR_NOT_NUMBER) }
         require(size.toInt() in 3..20) { println(ERROR_NOT_INRANGE) }
+        return size.toInt()
     }
 
     companion object {
