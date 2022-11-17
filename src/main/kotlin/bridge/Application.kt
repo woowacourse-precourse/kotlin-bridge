@@ -1,5 +1,12 @@
 package bridge
 
 fun main() {
-    // TODO: 프로그램 구현
+    start()
+}
+
+private fun start() {
+    OutputView().printStart()
+    val inputReadBridgeSize: Int = InputView().readBridgeSize()
+    val bridgeMaker: BridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
+    val bridge = bridgeMaker.makeBridge(inputReadBridgeSize)
 }
