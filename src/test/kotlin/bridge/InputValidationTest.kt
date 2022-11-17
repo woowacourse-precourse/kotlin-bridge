@@ -14,12 +14,6 @@ class InputValidationTest {
         assertThrows<IllegalArgumentException> {
             inputValidation.checkInputInteger("십삼")
         }
-        assertThrows<IllegalArgumentException> {
-            inputValidation.checkInputInteger("1 ")
-        }
-        assertThrows<IllegalArgumentException> {
-            inputValidation.checkInputInteger("13.3")
-        }
     }
 
     @Test
@@ -27,11 +21,12 @@ class InputValidationTest {
         assertThrows<IllegalArgumentException> {
             inputValidation.checkBridgeSizeRange(21)
         }
+    }
+
+    @Test
+    fun `입력값의 길이가 1이 아니라면 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {
-            inputValidation.checkBridgeSizeRange(0)
-        }
-        assertThrows<IllegalArgumentException> {
-            inputValidation.checkBridgeSizeRange(120)
+            inputValidation.checkInputLength("12")
         }
     }
 
