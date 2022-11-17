@@ -60,12 +60,33 @@ internal class InputViewTest : NsTest() {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["u", "d", "R", "Z", "1"])
+    @ValueSource(strings = ["u", "d", "R", "Q", "1", "UD"])
     fun `이동할칸입력_notUorD_에러`(input: String) {
         assertSimpleTest {
             val thrown = assertThrows<IllegalArgumentException> {
                 runException(input)
                 inputView.readMoving()
+            }
+            assertThat(thrown.message).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["R", "Q"])
+    fun `게임재시작종료입력_RorQ_정상`(input: String) {
+        assertSimpleTest {
+            run(input)
+            inputView.askRetryGame()
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["U", "D", "r", "q", "RQ"])
+    fun `게임재시작종료입력_notRorQ_에러`(input: String) {
+        assertSimpleTest {
+            val thrown = assertThrows<IllegalArgumentException> {
+                runException(input)
+                inputView.askRetryGame()
             }
             assertThat(thrown.message).contains(ERROR_MESSAGE)
         }
