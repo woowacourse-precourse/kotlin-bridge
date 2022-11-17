@@ -12,4 +12,12 @@ class BridgeNumberTest {
             BridgeNumber(size)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["a", "12a", "ab12", "+"])
+    fun `다리 길이가 숫자가 아닌 경우 예외 테스트`(size: String) {
+        assertThrows<IllegalArgumentException> {
+            BridgeNumber(size)
+        }
+    }
 }
