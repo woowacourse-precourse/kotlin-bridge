@@ -26,6 +26,18 @@ class BridgeGame {
         count++
     }
 
+    fun upMove(isCorrect: Boolean) {
+        isSuccess = if (isCorrect) {
+            upBridge.add(ANSWER)
+            downBridge.add(EMPTY)
+            true
+        } else {
+            upBridge.add(EMPTY)
+            downBridge.add(FALL)
+            false
+        }
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      *
