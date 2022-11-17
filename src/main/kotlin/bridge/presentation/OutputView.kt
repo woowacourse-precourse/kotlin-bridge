@@ -32,6 +32,10 @@ class OutputView {
         println(BRIDGE_LENGTH_QUESTION_MESSAGE)
     }
 
+    fun printDirectionQuestion() {
+        println(DIRECTION_QUESTION_MESSAGE)
+    }
+
     fun printRetryQuestion() {
         println(GAME_RETRY_QUESTION_MESSAGE)
     }
