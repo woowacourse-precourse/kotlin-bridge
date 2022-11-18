@@ -5,7 +5,10 @@ import bridge.constants.ErrorMessage
 import bridge.domain.Bridge
 import camp.nextstep.edu.missionutils.Console.readLine
 
-class InputView {
+object InputView {
+
+    private const val RETRY = "R"
+    private const val QUIT = "Q"
 
     fun readBridgeSize(): Int {
         val bridgeSize = readLine().toIntOrThrow()
@@ -35,10 +38,5 @@ class InputView {
         }
 
         return command == RETRY
-    }
-
-    companion object {
-        private const val RETRY = "R"
-        private const val QUIT = "Q"
     }
 }
