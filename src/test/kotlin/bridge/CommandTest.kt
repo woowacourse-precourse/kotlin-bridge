@@ -28,4 +28,12 @@ class CommandTest {
             Command(execution)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["U", "D", "A", "B"])
+    fun `명령어가 R 또는 Q가 아닌 경우 예외 테스트`(execution: String) {
+        assertThrows<IllegalArgumentException> {
+            Command(execution)
+        }
+    }
 }
