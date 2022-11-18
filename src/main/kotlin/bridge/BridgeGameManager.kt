@@ -2,14 +2,14 @@ package bridge
 
 object BridgeGameManager {
 
-    fun GameStart(){
+    fun gameStart() {
         val maker = BridgeMaker(BridgeRandomNumberGenerator())
         val bridge = maker.makeBridge()
         moving(bridge)
 
     }
 
-    fun moving(bridge : List<Int>){
-
+    private fun moving(bridge: List<Int>) {
+        val game = BridgeGame()
     }
 }

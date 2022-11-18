@@ -10,7 +10,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      */
     fun makeBridge(): List<Int> {
         OutputView.getBridgeSize()
-        return BridgeCalculate.BridgeMaking(InputView.readBridgeSize())
+        return BridgeCalculate.bridgeMaking(InputView.readBridgeSize())
     }
 
 }

@@ -2,11 +2,11 @@ package bridge
 
 object BridgeCalculate {
 
-    fun BridgeMaking(size: Int) : List<Int>{
+    fun bridgeMaking(size: Int) : List<Int>{
         val bridge = mutableListOf<Int>()
-        val randomnumber = BridgeRandomNumberGenerator()
+        val randomizer = BridgeRandomNumberGenerator()
         for(number:Int in 0 .. size)
-            bridge.add(randomnumber.generate())
+            bridge.add(randomizer.generate())
 
         return bridge.toList()
     }

@@ -12,8 +12,8 @@ class InputView {
     companion object {
         fun readBridgeSize(): Int {
             val size = Console.readLine()
-            BridgeException.CheckitisNumber(size)
-            BridgeException.SizeCheck(size.toInt())
+            BridgeException.checkNumber(size)
+            BridgeException.sizeCheck(size.toInt())
             return size.toInt()
         }
     }
