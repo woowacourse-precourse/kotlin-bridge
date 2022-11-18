@@ -1,10 +1,12 @@
 package bridge
 
 import bridge.view.InputView
+import bridge.view.OutputView
 
 class GameController {
     private val bridgeGame = BridgeGame()
     private val inputView = InputView()
+    private val outputView = OutputView()
 
     init {
         println("다리 건너기 게임을 시작합니다.")
@@ -13,6 +15,7 @@ class GameController {
     fun gameStart() {
         makeBridge(inputBridgeSize())
         repeatMoving()
+        // check isSuccess than question restart
     }
 
     private fun inputBridgeSize() : Int{
@@ -33,8 +36,12 @@ class GameController {
         }
     }
 
-    private fun inputMoving(){
+    private fun moving() : List<String> {
+        return bridgeGame.move(inputMoving())
+    }
+
+    private fun inputMoving() : String{
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
-        inputView.readMoving()
+        return inputView.readMoving()
     }
 }
