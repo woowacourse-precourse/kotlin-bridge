@@ -1,4 +1,4 @@
-package bridge.ui
+package bridge.enums
 
 enum class GameMessages(private val messages: String) {
     START("다리 건너기 게임을 시작합니다."),
