@@ -16,4 +16,8 @@ object BridgeCalculate {
         return bridge[count]==InputView.readMoving()
     }
 
+    fun bridgemapPrint(bridge: List<Int>, record: List<Boolean>){
+
+    }
+
 }
