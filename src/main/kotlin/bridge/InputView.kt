@@ -21,7 +21,12 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        val move = Console.readLine()
+        if (move.length != 1)
+            throw IllegalArgumentException("이동할 칸은 하나의 문자여야 합니다.")
+        if (!(move == "U" || move == "D"))
+            throw IllegalArgumentException("이동할 칸은 문자 U거나 D여야 합니다.")
+        return move
     }
 
     /**
