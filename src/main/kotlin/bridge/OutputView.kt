@@ -10,9 +10,10 @@ package bridge
  *
  */
 class OutputView {
-    fun printMap(bridge : List<String>, movingResult : List<String>) {
+    fun printMap(bridge : List<String>, movingResult : List<String>): Int{
         val upperMap = mutableListOf<String>()
         val lowerMap = mutableListOf<String>()
+        var passORfail = 0 // default pass
         for (i in 0 until movingResult.size) {
             if (movingResult[i] == "O" && bridge[i] == "U") {
                 upperMap.add(" O ")
@@ -23,16 +24,21 @@ class OutputView {
                 lowerMap.add(" O ")
             }
             if (movingResult[i] == "X" && bridge[i] == "U") {
-                upperMap.add(" X ")
-                lowerMap.add("   ")
-            }
-            if (movingResult[i] == "X" && bridge[i] == "D") {
                 upperMap.add("   ")
                 lowerMap.add(" X ")
+                passORfail = 1 // fail
+                break
+            }
+            if (movingResult[i] == "X" && bridge[i] == "D") {
+                upperMap.add(" X ")
+                lowerMap.add("   ")
+                passORfail = 1
+                break
             }
         }
         println(upperMap.toString().replace(", ","|"))
         println(lowerMap.toString().replace(", ","|"))
+        return passORfail
     }
 
     /**
@@ -40,5 +46,9 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(gameCommand: String, tryCount: Int) {
+        if (gameCommand == "Q") println("게임 성공 여부: 실패")
+        println("게임 성공 여부: 성공")
+        println("총 시도한 횟수: " + tryCount)
+    }
 }

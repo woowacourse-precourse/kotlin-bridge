@@ -4,7 +4,10 @@ fun main() {
     val bridge: List<String>
     val size: Int
     var moving: String
-    var movingResult = mutableListOf<String>()
+    val movingResult = mutableListOf<String>()
+    var passORfail = 0
+    var gameCommand = "R"
+    var tryCount = 1
 
     println("다리 건너기 게임을 시작합니다.")
     println("")
@@ -16,9 +19,16 @@ fun main() {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
         moving = InputView().readMoving() // 이동 위치 입력
         movingResult.add(BridgeGame().move(route, moving)) // 이동 결과
-        OutputView().printMap(bridge, movingResult) // 출력
+        passORfail = OutputView().printMap(bridge, movingResult) // 출력
         println("")
+        if (passORfail == 1) break
     }
-    // printmap
-
+    if (passORfail == 1) { // 실패했을시
+        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+    }
+    if (passORfail == 0) { // 성공했을시
+        println("최종 게임 결과")
+        OutputView().printMap(bridge, movingResult)
+    }
+    OutputView().printResult(gameCommand, tryCount)
 }
