@@ -47,7 +47,7 @@ class InputView {
         val gameCommandList = listOf("R", "Q")
         if (!gameCommandList.contains(gameCommand)) throw IllegalArgumentException(ERROR_GAME_COMMAND_MESSAGE)
     }
-    
+
     companion object {
         private const val BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요."
         private const val MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
