@@ -17,7 +17,9 @@ class OutputViewTest {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMapTest(){
-       
+        assertThat(ov.printMap(listOf(1,0,1,0), listOf(1,0,1,0))).isEqualTo("[ O |   | O |   ]\n[   | O |   | O ]")
+        assertThat(ov.printMap(listOf(1,1), listOf(1,1))).isEqualTo("[ O | O ]\n[   |   ]")
+        assertThat(ov.printMap(listOf(1,0,1,0), listOf(1,0,1,1))).isEqualTo("[ O |   | O | X ]\n[   | O |   |   ]")
     }
 
     /**
