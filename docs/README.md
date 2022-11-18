@@ -50,19 +50,8 @@
 
 ### 3. BridgeGame
 - BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
-  - [ ] 자료구조
-    - [ ] 다리 List
-    - [ ] 현재 다리, 위치, 시도 횟수
   - [ ] 클래스 생성자 `BridgeGame.init()`
     - [ ] 다리를 만든다.`BridgeMaker.makeBridge()`
-    - [ ] 게임을 시작한다.`BridgeGame.run()`
-  - [ ] 게임을 시작한다. `BridgeGame.run()`
-    - [ ] 다리를 가져온다. `this.bridge`
-    - [ ] 다리를 이동한다. `val curBridge = $BridgeGame.move()`
-    - [ ] 플레이어가 다리를 건넜는지 확인한다. `BridgeGame.isFinished(curBridge)`
-    - [ ] 플레이어가 다리를 건넘에 실패 했는지 확인한다. `BridgeGame.isFailed(curBridge)`
-    - [ ] 게임을 재시작한다. `BridgeGame.restart()`
-
   - [ ] 다리를 이동한다. `$BridgeGame.move()`
     - [ ] 현재까지의 Map을 가져온다.
     - [ ] 플레이어 이동할 칸을 입력 받는다 `InputView.readMoving()`
@@ -73,11 +62,23 @@
   - [ ] 플레이어가 다리를 건너다 실패 했는지 확인한다. `BridgeGame.isFailed()`
     - [ ] 현재 위치의 칸이 X인지 확인한다.
     - [ ] 현재 위치의 칸이 X이면 true를 반환한다.
-  - [ ] 게임을 재시작한다. `BridgeGame.restart()`
-    - [ ] 다리를 재사용한다. `this.bridge`
-    - [ ] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
-    - [ ] 게임을 재시작한다. `BridgeGame.run()`
   
+### 4. main
+  - [ ] 게임시작 문구 `OutputView.printGameStart()`
+  - [ ] 다리 길이를 입력 받는다. `InputView.readBridgeSize()`
+  - [ ] 다리를 생성한다. `val bridge = BridgeGame(bridgeMaker, size)`
+  - [ ] 반복문 `play(bridge) : round, isSuccess`
+    - [ ] 다리를 이동한다. `var curBridge = BridgeGame.move(InputView.readMoving())`
+    - [ ] 현재 다리를 출력한다. `OutputView.printMap(curBridge)`
+    - [ ] 플레이어가 다리를 건넘에 실패 했는지 확인한다. `BridgeGame.isFailed(curBridge)`
+        - [ ] 실패 했다면 게임 재시작 여부를 입력 받는다. `InputView.readRestart()`
+    - [ ] 플레이어가 다리를 건넘에 성공 했는지 확인한다. `BridgeGame.isFinished(curBridge)`
+        - [ ] 성공 했다면 게임을 종료한다. `break`
+  - [ ] 게임 결과 출력 `OutputView.printGameResult()`
+    - [ ] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
+
+
+
 ---
 ## 📌 비기능 요구사항 목록
 - **Commit Convention**
