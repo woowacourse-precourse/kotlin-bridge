@@ -16,5 +16,6 @@ enum class BridgeMessage(val word : String){
     HowManyTimeDidYouTry("총 시도한 횟수: "),
     AreYouWantRetry("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
     InputNumberError("[Error] 숫자를 입력해주십시오."),
-    SizeError("[Error] 적합한 사이즈가 아닙니다.")
+    SizeError("[Error] 적합한 사이즈가 아닙니다."),
+    InputMovingError("[Error] U나 D를 이외의 값이 들어왔습니다.")
 }

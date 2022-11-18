@@ -22,8 +22,7 @@ class InputView {
      */
     fun readMoving(): String {
         val userinput = Console.readLine()
-
-
+        BridgeException.isitUorD(userinput)
         return userinput
     }
 
