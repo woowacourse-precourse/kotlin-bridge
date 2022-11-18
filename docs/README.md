@@ -4,10 +4,10 @@
     * 예외처리 필수
 * [o] 다리 생성 - BridgeMaker/makeBridge()
     * [o] 랜덤값 - generate()
-* o] 플레이어 이동칸 선택 - InputView
-    * U or D 가능
-    * 예외 처리 필수
-    * 이동 루트와 다리 비교
+* [] 플레이어 이동칸 선택 - InputView
+    * [o] U or D 입력 가능
+    * [] 예외 처리 필수
+    * [] 이동 루트와 다리 비교
 * [] 칸 표시 - OutputView
 ___
 CASE 1.
