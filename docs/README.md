@@ -3,16 +3,16 @@
 ## ⌨️ Service Logic :
 ### 1. InputView (사용자입력) : `@datatype : String`
 1. **자동으로 생성할 다리 길이를 입력 받는다.** `readBridgeSize()`
-  - [ ] 입력 안내문 : `다리의 길이를 입력해주세요.`
-  - [ ] 콘솔입력 `camp.nextstep.edu.missionutils.Console의 readLine()`
-    - [ ] 3 이상 20 이하의 숫자를 입력할 수 있다.
+  - [x] 입력 안내문 : `다리의 길이를 입력해주세요.`
+  - [x] 콘솔입력 `camp.nextstep.edu.missionutils.Console의 readLine()`
+    - [x] 3 이상 20 이하의 숫자를 입력할 수 있다.
     - **예외처리** `IllegalArgumentException`
-    - [ ] `@toInt` 3~20 숫자가아닌 경우
-    - [ ] 에러 문구는 "[ERROR]"로 시작해야 한다.
-    - [ ] 에러 메시지를 출력 후 입력을 다시 받는다.
+    - [x] `@toInt` 3~20 숫자가아닌 경우
+    - [x] 에러 문구는 "[ERROR]"로 시작해야 한다.
+    - [x] 에러 메시지를 출력 후 입력을 다시 받는다.
 
 2. **라운드마다 플레이어가 이동할 칸을 입력 받는다** `readMoving()`
-  - [ ] 입력 안내문 : `이동할 칸을 선택해주세요. (위: U, 아래: D)`
+  - [x] 입력 안내문 : `이동할 칸을 선택해주세요. (위: U, 아래: D)`
   - [ ] 콘솔입력 `camp.nextstep.edu.missionutils.Console의 readLine()`
     - [ ] U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력할 수 있다.
     - **예외처리** `IllegalArgumentException`
@@ -20,7 +20,7 @@
     - [ ] 에러 문구는 "[ERROR]"로 시작해야 한다.
     - [ ] 에러 메시지를 출력 후 입력을 다시 받는다.
 3. **게임 재시작/종료 여부를 입력 받는다.** `readGameCommand()`
-  - [ ] 입력 안내문 : `게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
+  - [x] 입력 안내문 : `게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
     `
   - [ ] 콘솔입력 `camp.nextstep.edu.missionutils.Console의 readLine()`
     - [ ] R(재시작)과 Q(종료) 중 하나의 문자를 입력할 수 있다. 
