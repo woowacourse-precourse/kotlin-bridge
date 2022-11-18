@@ -7,7 +7,7 @@ class Exceptions {
             OutputView.printSizeInputError()
             throw IllegalArgumentException()
         }
-        require (size in SIZE_RANGE_START..SIZE_RANGE_END) {
+        require (size in (SIZE_RANGE_START..SIZE_RANGE_END)) {
             OutputView.printSizeRangeError()
             throw IllegalArgumentException()
         }
