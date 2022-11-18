@@ -41,8 +41,8 @@ class BridgeTest {
 
     @Test
     fun `다리 정보와 이동 정보를 비교할 수 있다`() {
-        val moving = "D"
+        val moving = Direction.D
         val bridge = Bridge(listOf("U", "D", "U", "U"))
-        assert(bridge.available(moving, 1))
+        assert(bridge.canCross(moving, 1))
     }
 }

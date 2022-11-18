@@ -11,8 +11,7 @@ class Bridge(directionNames: List<String>) {
         directions = directionNames.map { Direction.getByName(it) }
     }
 
-    fun available(moving: String, position: Int): Boolean {
-        val direction = Direction.getByName(moving)
+    fun canCross(direction: Direction, position: Int): Boolean {
         return directions[position] == direction
     }
 

@@ -4,6 +4,8 @@ package bridge.model
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame(private val bridge: Bridge) {
+    data class MovingResult(val direction: Direction, val success: Boolean)
+
     private var currentPosition: Int = -1
 
     private var _tryCount: Int = 1
@@ -14,8 +16,8 @@ class BridgeGame(private val bridge: Bridge) {
     val state
         get() = _state
 
-    private val _movingTrace = ArrayDeque<Pair<String, Boolean>>()
-    val movingTrace: List<Pair<String, Boolean>>
+    private val _movingTrace = ArrayDeque<MovingResult>()
+    val movingTrace: List<MovingResult>
         get() = _movingTrace
 
     /**
@@ -25,14 +27,10 @@ class BridgeGame(private val bridge: Bridge) {
      */
     fun move(moving: String) {
         requireOnGoing()
-        try {
-            currentPosition += 1
-            val passed = bridge.available(moving, currentPosition)
-            setState(passed)
-            _movingTrace.addLast(moving to passed)
-        } catch (e: IndexOutOfBoundsException) {
-            throw IllegalStateException(ERROR_POSITION_BOUND)
-        }
+        val direction = Direction.getByName(moving)
+        val success = canCross(direction, ++currentPosition)
+        setState(success)
+        _movingTrace.addLast(MovingResult(direction, success))
     }
 
     /**
@@ -52,9 +50,17 @@ class BridgeGame(private val bridge: Bridge) {
         return state == BridgeGameState.FAIL
     }
 
+    private fun canCross(direction: Direction, position: Int): Boolean {
+        return try {
+            bridge.canCross(direction, position)
+        } catch (e: IndexOutOfBoundsException) {
+            throw IllegalStateException(ERROR_POSITION_BOUND)
+        }
+    }
+
     private fun runCommand(command: String) {
-        if (command == COMMAND_RETRY) {
-            _movingTrace.removeLastOrNull() // TODO
+        if (command == COMMAND_RETRY && movingTrace.isNotEmpty()) {
+            _movingTrace.removeLast()
             currentPosition -= 1
             _tryCount += 1
             _state = BridgeGameState.ONGOING

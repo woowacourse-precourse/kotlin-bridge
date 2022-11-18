@@ -11,7 +11,7 @@ class BridgeGameTest {
     private val directions = listOf("U", "D", "D")
 
     @BeforeEach
-    fun makeGame() {
+    private fun makeGame() {
         _game = BridgeGame(Bridge(directions))
     }
 
@@ -31,25 +31,13 @@ class BridgeGameTest {
 
     @Test
     fun `플레이어가 다리를 모두 건넜다면 상태는 PASS 이다`() {
-        val moving = directions
-        moving.forEach { game.move(it) }
+        setGameEnd()
         assert(game.state == BridgeGameState.PASS)
     }
 
     @Test
     fun `플레이어가 다리가 끝났는데도 이동하려하면 예외를 발생시킨다`() {
-        val moving = directions
-            .toMutableList()
-            .apply { add("U") }
-        assertThrows<IllegalStateException> {
-            moving.forEach { game.move(it) }
-        }
-    }
-
-    @Test
-    fun `게임이 이미 종료되었는데도 이동하려하면 예외를 발생시킨다`() {
-        val moving = directions
-        moving.forEach { game.move(it) }
+        setGameEnd()
         assertThrows<IllegalStateException> {
             game.move("U")
         }
@@ -64,7 +52,7 @@ class BridgeGameTest {
     }
 
     @Test
-    fun `재시도 여부를 R이나 Q가 아닌 문자로 판단할 때는 예외를 발생시킨다`() {
+    fun `재시도 여부를 R이나 Q가 아닌 문자로 입력할 때는 예외를 발생시킨다`() {
         val command = "HI"
         assertThrows<IllegalArgumentException> {
             game.retry(command)
@@ -72,20 +60,26 @@ class BridgeGameTest {
     }
 
     @Test
-    fun `재시도 시에만 총 시도 횟수가 증가한다`() {
-        val commands = listOf("R", "Q", "R", "Q", "Q")
-        val expects = 3
-        commands.forEach { game.retry(it) }
+    fun `재시도 시 총 시도 횟수가 1 증가한다`() {
+        val beforeTryCount = game.tryCount
+        setGameEnd()
+        game.retry("R")
+        val afterTryCount = game.tryCount
         assert(
-            game.tryCount == expects
+            afterTryCount - beforeTryCount == 1
         )
     }
 
     @Test
     fun `이동 과정과 성공 여부를 기록해야 한다`() {
-        val moving = directions
-        val expects = moving.map { it to true }
-        moving.forEach { game.move(it) }
+        setGameEnd()
+        val expects = directions.map {
+            BridgeGame.MovingResult(Direction.getByName(it), true)
+        }
         assert(game.movingTrace == expects)
+    }
+
+    private fun setGameEnd() {
+        directions.forEach { game.move(it) }
     }
 }
