@@ -32,6 +32,7 @@ class GameController {
             //checkFinish by BridgeGame.compare return pair(isSuccess / isStop)
             // than this function return isSuccess
             moving()
+            outputMoving()
         }
     }
     private fun moving(){
@@ -41,6 +42,10 @@ class GameController {
     private fun inputMoving() : String{
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
         return inputView.readMoving()
+    }
+
+    private fun outputMoving(){
+        outputView.printMap(bridgeGame.currentMoving,judgeMoving())
     }
 
     private fun judgeMoving() : Boolean{
