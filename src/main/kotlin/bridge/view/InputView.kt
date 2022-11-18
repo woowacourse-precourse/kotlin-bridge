@@ -21,7 +21,7 @@ class InputView {
         val bridgeType = readLine()
 
         require(Bridge.Element.contains(bridgeType)) {
-            ErrorMessage.InvalidBridgeType
+            ErrorMessage.InvalidBridgeElement
         }
 
         return bridgeType

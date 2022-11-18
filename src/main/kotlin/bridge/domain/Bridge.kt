@@ -2,7 +2,14 @@ package bridge.domain
 
 import bridge.constants.ErrorMessage
 
-class Bridge {
+class Bridge(
+    private val bridge: List<String>
+) {
+
+    init {
+        require(bridge.size == 3) { ErrorMessage.OutOfBridgeSize }
+        require(bridge.all { Element.contains(it) }) { ErrorMessage.InvalidBridgeElement }
+    }
 
 
     enum class Element {
