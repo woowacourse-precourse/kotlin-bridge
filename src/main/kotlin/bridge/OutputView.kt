@@ -12,7 +12,7 @@ class OutputView {
 
     companion object {
         fun getBridgeSize() {
-            println(BridgeMessage.GiveMeBridgeSize)
+            println(BridgeMessage.GiveMeBridgeSize.word)
         }
     }
     fun printMap() {}
