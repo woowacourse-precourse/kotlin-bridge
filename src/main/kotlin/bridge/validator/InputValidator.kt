@@ -22,9 +22,22 @@ object InputValidator {
     }
 
     fun validateInvalidMoveInput(input: String) {
-        val hasInvalidMoveInput = (input != "U" || input != "D")
+        val hasInvalidMoveInput = (input != "U" && input != "D")
         if (hasInvalidMoveInput) throw IllegalArgumentException()
     }
 
+    fun validateMoveInput(): String {
+        while (true) {
+            try {
+                val moveInput = readLine()!!
+                validateInvalidMoveInput(moveInput)
+                return moveInput
+            } catch (e: IllegalArgumentException) {
+                println("[ERROR] U와 D만 이동 입력이 가능합니다.")
+                continue
+            }
+        }
+
+    }
 
 }
