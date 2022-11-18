@@ -33,6 +33,11 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        val cmd = Console.readLine()
+        if (cmd.length != 1)
+            throw IllegalArgumentException("이동할 칸은 하나의 문자여야 합니다.")
+        if (!(cmd == "R" || cmd == "Q"))
+            throw IllegalArgumentException("이동할 칸은 문자 R거나 Q여야 합니다.")
+        return cmd
     }
 }
