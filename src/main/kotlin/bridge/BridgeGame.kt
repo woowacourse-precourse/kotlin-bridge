@@ -10,6 +10,8 @@ class BridgeGame(private val bridge : List<String>) {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+
+    private var retryCount = 1
     fun move() {
         val mBridge = bridge.toMutableList() //통과할 때 마다 앞에서 하나씩 삭제하면서 비교하기 위함이다. 다만 재도전할 시 원본 목록이 필요하므로, 재생성했다.
         val upperList = mutableListOf<String>()
@@ -20,12 +22,13 @@ class BridgeGame(private val bridge : List<String>) {
 
     private fun loopToCheckBridge(mBridge : MutableList<String>, upperList : MutableList<String>, downList: MutableList<String>) {
         while(mBridge.size != 0) {
-            val userMoveInput = UserInputMovement().userInputMovement()
+            val userMoveInput = UserInput().userInputMovement()
             val isSuccess = compareUserMoveAndBridge(userMoveInput, mBridge)
             if(!Compare(upperList, downList).checkIsSuccessOrFail(userMoveInput, isSuccess)) {
-                //재시도 여부 물어보기
+                retry(upperList, downList)
             }
         }
+        OutputView(upperList, downList).printResult()
     }
 
     private fun compareUserMoveAndBridge(userMove : String, mBridge : MutableList<String>) : Boolean {
@@ -41,5 +44,13 @@ class BridgeGame(private val bridge : List<String>) {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {}
+    private fun retry(upperList: MutableList<String>, downList: MutableList<String>) {
+        if(UserInput().userInputRetry() == "R" || UserInput().userInputRetry() == "r") {
+            retryCount++
+            move()
+        } else {
+            OutputView(upperList, downList).printResult()
+        }
+
+    }
 }

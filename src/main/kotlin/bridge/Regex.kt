@@ -26,6 +26,17 @@ class Regex(private val userInput: String) {
         }
     }
 
+    fun checkUserRetryRegexes() : Boolean {
+        return try {
+            checkItsNull(userInput)
+            checkMoveIsInLength(userInput)
+            checkRetryIsRight(userInput)
+            true
+        } catch (e : IllegalArgumentException) {
+            false
+        }
+    }
+
     private fun checkItsNull(userInput: String) {
         if(userInput.isEmpty()) {
             throw IllegalArgumentException()
@@ -53,6 +64,13 @@ class Regex(private val userInput: String) {
     fun checkMoveIsRight(userMove : String) {
         when(userMove) {
             "U", "D" -> return
+            else -> throw IllegalArgumentException()
+        }
+    }
+
+    fun checkRetryIsRight (userRetry : String) {
+        when(userRetry.toCharArray()[0].code) {
+            in 81..82, in 113..114 -> return
             else -> throw IllegalArgumentException()
         }
     }
