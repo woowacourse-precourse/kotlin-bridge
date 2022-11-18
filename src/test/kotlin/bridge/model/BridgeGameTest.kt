@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
+// TODO: use ValueSource
 class BridgeGameTest {
     private var _game: BridgeGame? = null
     private val game: BridgeGame get() = _game!!
@@ -60,15 +61,6 @@ class BridgeGameTest {
         assertThrows<IllegalArgumentException> {
             moving.forEach { game.move(it) }
         }
-    }
-
-    @Test
-    fun `재시도 여부를 알 수 있다`() {
-        val commands = listOf("R", "Q")
-        val expects = listOf(true, false)
-        assert(
-            commands.map { game.retry(it) } == expects
-        )
     }
 
     @Test

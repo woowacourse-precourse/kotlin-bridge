@@ -37,23 +37,20 @@ class BridgeGame(private val bridge: Bridge) {
 
     /**
      * @param command 게임 커맨드 문자
-     * @return 재시도 여부
      * @throws IllegalArgumentException 없는 커맨드로 호출
      */
-    fun retry(command: String): Boolean {
+    fun retry(command: String) {
         require(command in setOf(COMMAND_QUIT, COMMAND_RETRY)) { ERROR_COMMAND_MATCH }
-        return runCommand(command)
+        runCommand(command)
     }
 
-    private fun runCommand(command: String): Boolean {
+    private fun runCommand(command: String) {
         if (command == COMMAND_RETRY) {
             _movingTrace.removeLastOrNull() // TODO
             currentPosition -= 1
             _tryCount += 1
             _state = BridgeGameState.ONGOING
-            return true
         }
-        return false
     }
 
     private fun requireOnGoing() {
@@ -79,6 +76,8 @@ class BridgeGame(private val bridge: Bridge) {
         private const val ERROR_POSITION_BOUND = "플레이어 현재 위치가 올바르지 않습니다."
         private const val ERROR_GAME_ALREADY_END = "게임이 이미 종료되었습니다."
         private const val ERROR_COMMAND_MATCH = "커맨드가 올바르지 않습니다."
+
+        // TODO: to ENUM
         private const val COMMAND_RETRY = "R"
         private const val COMMAND_QUIT = "Q"
     }
