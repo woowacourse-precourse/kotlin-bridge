@@ -13,12 +13,12 @@
 
 2. **라운드마다 플레이어가 이동할 칸을 입력 받는다** `readMoving()`
   - [x] 입력 안내문 : `이동할 칸을 선택해주세요. (위: U, 아래: D)`
-  - [ ] 콘솔입력 `camp.nextstep.edu.missionutils.Console의 readLine()`
-    - [ ] U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력할 수 있다.
+  - [x] 콘솔입력 `camp.nextstep.edu.missionutils.Console의 readLine()`
+    - [x] U(위 칸)와 D(아래 칸) 중 하나의 문자를 입력할 수 있다.
     - **예외처리** `IllegalArgumentException`
-    - [ ] U또는 D가 아닌 경우
-    - [ ] 에러 문구는 "[ERROR]"로 시작해야 한다.
-    - [ ] 에러 메시지를 출력 후 입력을 다시 받는다.
+    - [x] U또는 D가 아닌 경우
+    - [x] 에러 문구는 "[ERROR]"로 시작해야 한다.
+    - [x] 에러 메시지를 출력 후 입력을 다시 받는다.
 3. **게임 재시작/종료 여부를 입력 받는다.** `readGameCommand()`
   - [x] 입력 안내문 : `게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)
     `

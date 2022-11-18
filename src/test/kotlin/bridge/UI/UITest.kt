@@ -37,4 +37,35 @@ class InputViewTest {
             InputView("21").readBridgeSize()
         }
     }
+
+    @Test
+    @DisplayName("입력값이 U일 때 정상적으로 입력받는다.")
+    fun `readMovingDirection normal U`() {
+        assertSimpleTest {
+            val movingDirection = InputView("U").readMoving()
+            assertThat(movingDirection).isEqualTo("U")
+        }
+    }
+    @Test
+    @DisplayName("입력값이 D일 때 정상적으로 입력받는다.")
+    fun `readMovingDirection normal D`() {
+        assertSimpleTest {
+            val movingDirection = InputView("D").readMoving()
+            assertThat(movingDirection).isEqualTo("D")
+        }
+    }
+    @Test
+    @DisplayName("입력값이 U, D가 아닐 때 예외를 발생시킨다.")
+    fun `readMovingDirection exception !UD`() {
+        assertThrows<IllegalArgumentException> {
+            InputView("a").readMoving()
+        }
+    }
+    @Test
+    @DisplayName("입력값이 UU일 때 예외를 발생시킨다.")
+    fun `readMovingDirection exception UU`() {
+        assertThrows<IllegalArgumentException> {
+            InputView("UU").readMoving()
+        }
+    }
 }

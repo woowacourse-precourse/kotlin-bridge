@@ -21,9 +21,16 @@ class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    fun readMoving(): String {
+    tailrec fun readMoving(): String {
         println(MOVING_MESSAGE)
-        return ""
+        val moving = Console.readLine()
+        return if (runCatching{validateMoving(moving)}.onFailure { println(ERROR_MOVING_MESSAGE) }.isSuccess) moving
+        else readMoving()
+    }
+    @Throws(IllegalArgumentException::class)
+    fun validateMoving(moving: String) {
+        val movingList = listOf("U", "D")
+        if (!movingList.contains(moving)) throw IllegalArgumentException(ERROR_MOVING_MESSAGE)
     }
 
     /**
@@ -40,5 +47,6 @@ class InputView {
         private const val GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
 
         private const val ERROR_BRIDGE_SIZE_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."
+        private const val ERROR_MOVING_MESSAGE = "[ERROR] 이동할 칸은 U 또는 D여야 합니다."
     }
 }
