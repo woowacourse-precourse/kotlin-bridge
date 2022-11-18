@@ -14,16 +14,16 @@ class BridgeTest {
 
     @Test
     fun `이동 가능한 칸인지 확인`() {
-        val input = "U"
+        val input = BridgeDirection.U
         val result = true
-        assertThat(bridge.movePossible(input, bridgeMap)).isEqualTo(result)
+        assertThat(bridge.movePossible(input, bridgeMap, 0)).isEqualTo(result)
     }
 
     @Test
     fun `이동 불가능한 칸인지 확인`() {
-        val input = "D"
+        val input = BridgeDirection.D
         val result = false
-        assertThat(bridge.movePossible(input, bridgeMap)).isEqualTo(result)
+        assertThat(bridge.movePossible(input, bridgeMap, 0)).isEqualTo(result)
     }
 
     @Test
@@ -40,12 +40,12 @@ class BridgeTest {
 
     @Test
     fun `다리 이동 결과 확인하는 기능`() {
-        bridge.move("U", bridgeMap)
-        bridge.move("D", bridgeMap)
+        bridge.move(BridgeDirection.U, bridgeMap, 0)
+        bridge.move(BridgeDirection.D, bridgeMap, 1)
         val upResult = "[ O |   ]"
         val downResult = "[   | O ]"
-        assertThat(bridge.upBridgeResult()).isEqualTo(upResult)
-        assertThat(bridge.downBridgeResult()).isEqualTo(downResult)
+        assertThat(bridge.getUpBridgeResult()).isEqualTo(upResult)
+        assertThat(bridge.getDownBridgeResult()).isEqualTo(downResult)
     }
 
 
