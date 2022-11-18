@@ -90,6 +90,48 @@ class BridgeTest : NsTest() {
         }
     }
 
+    /** 유저가 입력하는 재시도 문자열 관련 테스트 **/
+
+    @Test
+    fun `재시도 입력 값이 공백일 경우 예외가 발생한다`() {
+        assertSimpleTest {
+            Regex("").checkUserRetryRegexes()
+            Assertions.assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `재시도 입력 값이 빈칸일 경우 예외가 발생한다`() {
+        assertSimpleTest {
+            Regex(" ").checkUserRetryRegexes()
+            Assertions.assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `재시도 입력 값이 다른 문자일 경우 예외가 발생한다`() {
+        assertSimpleTest {
+            Regex("").checkUserRetryRegexes()
+            Assertions.assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `재시도 입력 값이 올바를 경우 - 대문자`() {
+        assertSimpleTest {
+            Regex("R").checkUserRetryRegexes()
+            Assertions.assertThat(output())
+        }
+    }
+
+    @Test
+    fun `재시도 입력 값이 올바를 경우 - 소문자`() {
+        assertSimpleTest {
+            Regex("r").checkUserRetryRegexes()
+            Assertions.assertThat(output())
+        }
+    }
+
     override fun runMain() {
         main()
     }
