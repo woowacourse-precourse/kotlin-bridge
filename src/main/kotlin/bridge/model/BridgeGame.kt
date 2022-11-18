@@ -6,49 +6,33 @@ package bridge.model
 class BridgeGame(private val bridge: Bridge) {
     data class MovingResult(val direction: Direction, val success: Boolean)
 
-    private var currentPosition: Int = -1
+    private var currentPosition = -1
 
-    private var _tryCount: Int = 1
-    val tryCount: Int
-        get() = _tryCount
+    private var _tryCount = 1
+    val tryCount get() = _tryCount
 
     private var _state = BridgeGameState.ONGOING
-    val state
-        get() = _state
+    val state get() = _state
 
     private val _movingTrace = ArrayDeque<MovingResult>()
-    val movingTrace: List<MovingResult>
-        get() = _movingTrace
+    val movingTrace get() = _movingTrace as List<MovingResult>
 
-    /**
-     * @param moving 이동 방향
-     * @throws IllegalStateException 현재 위치와 다리 길이 매칭 오류
-     * @throws IllegalArgumentException moving이 Direction에 포함되지 않은 경우
-     */
     fun move(moving: String) {
         requireOnGoing()
-        val direction = Direction.getByName(moving)
+        val direction = Direction.getByDisplayName(moving)
         val success = canCross(direction, ++currentPosition)
         setState(success)
         _movingTrace.addLast(MovingResult(direction, success))
     }
 
-    /**
-     * @param command 게임 커맨드 문자
-     * @throws IllegalArgumentException 없는 커맨드로 호출
-     */
     fun retry(command: String) {
-        require(command in setOf(COMMAND_QUIT, COMMAND_RETRY)) { ERROR_COMMAND_MATCH }
-        runCommand(command)
+        val gameCommand = BridgeGameCommand.getByCommand(command)
+        runCommand(gameCommand)
     }
 
-    fun isOnGoing(): Boolean {
-        return state == BridgeGameState.ONGOING
-    }
+    fun isOnGoing() = (state == BridgeGameState.ONGOING)
 
-    fun isFail(): Boolean {
-        return state == BridgeGameState.FAIL
-    }
+    fun isFail() = (state == BridgeGameState.FAIL)
 
     private fun canCross(direction: Direction, position: Int): Boolean {
         return try {
@@ -58,8 +42,8 @@ class BridgeGame(private val bridge: Bridge) {
         }
     }
 
-    private fun runCommand(command: String) {
-        if (command == COMMAND_RETRY && movingTrace.isNotEmpty()) {
+    private fun runCommand(gameCommand: BridgeGameCommand) {
+        if (gameCommand == BridgeGameCommand.RETRY && movingTrace.isNotEmpty()) {
             _movingTrace.removeLast()
             currentPosition -= 1
             _tryCount += 1
@@ -89,10 +73,5 @@ class BridgeGame(private val bridge: Bridge) {
     companion object {
         private const val ERROR_POSITION_BOUND = "플레이어 현재 위치가 올바르지 않습니다."
         private const val ERROR_GAME_ALREADY_END = "게임이 이미 종료되었습니다."
-        private const val ERROR_COMMAND_MATCH = "커맨드가 올바르지 않습니다."
-
-        // TODO: to ENUM
-        private const val COMMAND_RETRY = "R"
-        private const val COMMAND_QUIT = "Q"
     }
 }
