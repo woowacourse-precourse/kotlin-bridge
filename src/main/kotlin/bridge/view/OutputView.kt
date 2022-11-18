@@ -7,6 +7,25 @@ import bridge.model.Direction
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 class OutputView {
+    fun printStartText() {
+        println(GAME_START_TEXT)
+        println()
+    }
+
+    fun printRequireBridgeSize() {
+        println(REQUIRE_BRIDGE_SIZE)
+    }
+
+    fun printRequireMoving() {
+        println()
+        println(REQUIRE_MOVING)
+    }
+
+    fun printRequireGameCommand() {
+        println()
+        println(REQUIRE_GAME_COMMAND)
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      *
@@ -58,6 +77,10 @@ class OutputView {
     }
 
     companion object {
+        private const val GAME_START_TEXT = "다리 건너기 게임을 시작합니다."
+        private const val REQUIRE_BRIDGE_SIZE = "다리의 길이를 입력해주세요."
+        private const val REQUIRE_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
+        private const val REQUIRE_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
         private const val FINAL_GAME_RESULT = "최종 게임 결과"
         private const val GAME_PASS_RESULT_FORMAT = "게임 성공 여부: %s"
         private const val GAME_TRY_NUMBER_FORMAT = "총 시도한 횟수: %d"

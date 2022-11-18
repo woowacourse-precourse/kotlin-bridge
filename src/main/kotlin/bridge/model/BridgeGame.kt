@@ -44,6 +44,14 @@ class BridgeGame(private val bridge: Bridge) {
         runCommand(command)
     }
 
+    fun isOnGoing(): Boolean {
+        return state == BridgeGameState.ONGOING
+    }
+
+    fun isFail(): Boolean {
+        return state == BridgeGameState.FAIL
+    }
+
     private fun runCommand(command: String) {
         if (command == COMMAND_RETRY) {
             _movingTrace.removeLastOrNull() // TODO
