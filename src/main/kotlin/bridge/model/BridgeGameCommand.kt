@@ -4,10 +4,10 @@ enum class BridgeGameCommand(private val command: String) {
     QUIT("Q"), RETRY("R");
 
     companion object {
-        private const val ERROR_COMMAND_MATCH = "커맨드가 올바르지 않습니다."
+        private const val ERROR_COMMAND_MATCH = "%s와 일치하는 명령어가 없습니다."
         fun getByCommand(command: String): BridgeGameCommand {
             return BridgeGameCommand.values().firstOrNull { it.command == command } ?: throw IllegalArgumentException(
-                ERROR_COMMAND_MATCH
+                ERROR_COMMAND_MATCH.format(command)
             )
         }
     }

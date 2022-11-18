@@ -6,7 +6,7 @@ enum class Direction(private val value: Int, private val displayName: String) {
     override fun toString() = this.displayName
 
     companion object {
-        private const val ERROR_NO_MATCHED_DIRECTION = "%s와 일치하는 Direction이 없습니다."
+        private const val ERROR_NO_MATCHED_DIRECTION = "%s와 일치하는 방향이 없습니다."
         fun getByValue(value: Int): Direction {
             return Direction.values().firstOrNull { it.value == value } ?: throw IllegalArgumentException(
                 ERROR_NO_MATCHED_DIRECTION.format(value.toString())

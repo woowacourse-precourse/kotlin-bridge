@@ -4,25 +4,25 @@ package bridge.model
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame(private val bridge: Bridge) {
-    data class MovingResult(val direction: Direction, val success: Boolean)
+    data class MovingResult(val direction: Direction, val isSuccess: Boolean)
 
     private var currentPosition = -1
 
     private var _tryCount = 1
     val tryCount get() = _tryCount
 
-    private var _state = BridgeGameState.ONGOING
-    val state get() = _state
+    private var _currentState = BridgeGameState.ONGOING
+    val currentState get() = _currentState
 
-    private val _movingTrace = ArrayDeque<MovingResult>()
-    val movingTrace get() = _movingTrace as List<MovingResult>
+    private val _movingResults = ArrayDeque<MovingResult>()
+    val movingResults get() = _movingResults as List<MovingResult>
 
     fun move(moving: String) {
         requireOnGoing()
         val direction = Direction.getByDisplayName(moving)
-        val success = canCross(direction, ++currentPosition)
-        setState(success)
-        _movingTrace.addLast(MovingResult(direction, success))
+        val isSuccess = canCross(direction, ++currentPosition)
+        setState(isSuccess)
+        _movingResults.addLast(MovingResult(direction, isSuccess))
     }
 
     fun retry(command: String) {
@@ -30,9 +30,9 @@ class BridgeGame(private val bridge: Bridge) {
         runCommand(gameCommand)
     }
 
-    fun isOnGoing() = (state == BridgeGameState.ONGOING)
+    fun isOnGoing() = (currentState == BridgeGameState.ONGOING)
 
-    fun isFail() = (state == BridgeGameState.FAIL)
+    fun isFailed() = (currentState == BridgeGameState.FAIL)
 
     private fun canCross(direction: Direction, position: Int): Boolean {
         return try {
@@ -43,16 +43,16 @@ class BridgeGame(private val bridge: Bridge) {
     }
 
     private fun runCommand(gameCommand: BridgeGameCommand) {
-        if (gameCommand == BridgeGameCommand.RETRY && movingTrace.isNotEmpty()) {
-            _movingTrace.removeLast()
+        if (gameCommand == BridgeGameCommand.RETRY && movingResults.isNotEmpty()) {
+            _movingResults.removeLast()
             currentPosition -= 1
             _tryCount += 1
-            _state = BridgeGameState.ONGOING
+            _currentState = BridgeGameState.ONGOING
         }
     }
 
     private fun requireOnGoing() {
-        if (state != BridgeGameState.ONGOING) {
+        if (currentState != BridgeGameState.ONGOING) {
             throw IllegalStateException(ERROR_GAME_ALREADY_END)
         }
     }
@@ -61,12 +61,12 @@ class BridgeGame(private val bridge: Bridge) {
         return bridge.isBridgeEnd(currentPosition)
     }
 
-    private fun setState(passed: Boolean) {
-        if (!passed) {
-            _state = BridgeGameState.FAIL
+    private fun setState(isSuccess: Boolean) {
+        if (!isSuccess) {
+            _currentState = BridgeGameState.FAIL
         }
-        if (passed && allPassed()) {
-            _state = BridgeGameState.PASS
+        if (isSuccess && allPassed()) {
+            _currentState = BridgeGameState.PASS
         }
     }
 

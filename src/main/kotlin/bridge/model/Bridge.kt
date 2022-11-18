@@ -4,25 +4,25 @@ import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
 
 class Bridge(directionNames: List<String>) {
-    private val directions: List<Direction>
+    private val availableDirections: List<Direction>
 
     init {
-        require(directionNames.size in MIN_LENGTH..MAX_LENGTH) { ERROR_BRIDGE_LENGTH }
-        directions = directionNames.map { Direction.getByDisplayName(it) }
+        require(directionNames.size in MIN_SIZE..MAX_SIZE) { ERROR_BRIDGE_SIZE }
+        availableDirections = directionNames.map { Direction.getByDisplayName(it) }
     }
 
     fun canCross(direction: Direction, position: Int): Boolean {
-        return directions[position] == direction
+        return availableDirections[position] == direction
     }
 
     fun isBridgeEnd(position: Int): Boolean {
-        return position == directions.lastIndex
+        return position == availableDirections.lastIndex
     }
 
     companion object {
-        const val MIN_LENGTH = 3
-        const val MAX_LENGTH = 20
-        private const val ERROR_BRIDGE_LENGTH = "다리길이는 $MIN_LENGTH 부터 $MAX_LENGTH 까지이어야 합니다."
+        const val MIN_SIZE = 3
+        const val MAX_SIZE = 20
+        private const val ERROR_BRIDGE_SIZE = "다리 길이는 $MIN_SIZE 부터 $MAX_SIZE 사이의 숫자여야 합니다."
 
         fun generateRandomBridge(size: Int): Bridge {
             val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())

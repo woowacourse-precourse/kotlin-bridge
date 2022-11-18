@@ -51,7 +51,7 @@ class BridgeController {
         while (bridgeGame.isOnGoing()) {
             runUntilValid { move(bridgeGame) }
             outputView.printMap(bridgeGame)
-            if (bridgeGame.isFail()) {
+            if (bridgeGame.isFailed()) {
                 runUntilValid { retry(bridgeGame) }
             }
         }

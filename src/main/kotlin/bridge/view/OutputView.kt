@@ -28,27 +28,27 @@ class OutputView {
     }
 
     fun printMap(bridgeGame: BridgeGame) {
-        printLine(bridgeGame, Direction.UP)
-        printLine(bridgeGame, Direction.DOWN)
+        printLineOfMap(bridgeGame, Direction.UP)
+        printLineOfMap(bridgeGame, Direction.DOWN)
     }
 
     fun printResult(bridgeGame: BridgeGame) {
         println("\n" + FINAL_GAME_RESULT)
         printMap(bridgeGame)
         println()
-        println(GAME_PASS_RESULT_FORMAT.format(bridgeGame.state.toString()))
+        println(GAME_PASS_RESULT_FORMAT.format(bridgeGame.currentState.toString()))
         println(GAME_TRY_NUMBER_FORMAT.format(bridgeGame.tryCount))
     }
 
-    private fun printLine(bridgeGame: BridgeGame, direction: Direction) {
-        val directionMarkers = bridgeGame.movingTrace.map { getDirectionMarker(direction, it) }
+    private fun printLineOfMap(bridgeGame: BridgeGame, direction: Direction) {
+        val directionMarkers = bridgeGame.movingResults.map { getDirectionMarker(direction, it) }
         val line = directionMarkers.joinToString(LINE_SEPARATOR)
         println("$LINE_START $line $LINE_END")
     }
 
     private fun getDirectionMarker(direction: Direction, result: BridgeGame.MovingResult): String {
         if (result.direction == direction) {
-            return getMatchedMarker(result.success)
+            return getMatchedMarker(result.isSuccess)
         }
         return NOT_SELECTED_DIRECTION
     }
