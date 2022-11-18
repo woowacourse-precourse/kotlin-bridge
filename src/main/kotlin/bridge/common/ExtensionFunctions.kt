@@ -1,7 +1,7 @@
 package bridge.common
 
-import bridge.constants.ErrorMessages
+import bridge.constants.ErrorMessage
 
 fun String.toIntOrThrow(): Int {
-    return requireNotNull(toIntOrNull()) { ErrorMessages.Common.InvalidNumberFormat }
+    return requireNotNull(toIntOrNull()) { ErrorMessage.InvalidNumberFormat }
 }
