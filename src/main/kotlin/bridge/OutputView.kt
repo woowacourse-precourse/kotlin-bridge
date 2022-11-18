@@ -11,6 +11,10 @@ class OutputView {
      */
 
     companion object {
+
+        fun printStart(){
+            println(BridgeMessage.Start.word)
+        }
         fun getBridgeSize() {
             println(BridgeMessage.GiveMeBridgeSize.word)
         }
