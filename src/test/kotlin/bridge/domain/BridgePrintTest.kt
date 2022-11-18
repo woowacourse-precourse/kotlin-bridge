@@ -42,4 +42,24 @@ class BridgePrintTest {
         )
     }
 
+    @Test
+    fun `최종 결과 출력`() {
+        val location = 2
+        val bridge = listOf<String>("U", "D", "D")
+        val answer = false
+
+        Assertions.assertThat(
+            OutputView().printResult(bridge, location, answer)
+        )
+    }
+
+    @Test
+    fun `게임 성공 여부 출력`() {
+        Assertions.assertThat(
+            OutputView().printEnd(true, 3)
+        )
+        Assertions.assertThat(
+            OutputView().printEnd(false, 4)
+        )
+    }
 }
