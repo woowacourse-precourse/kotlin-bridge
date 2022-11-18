@@ -1,5 +1,9 @@
 package bridge.domain
 
+import bridge.util.DOWN_INDEX
+import bridge.util.UP
+import bridge.util.UP_INDEX
+
 class Path(private val path: List<String> = emptyList()) {
     /**
      * @param newDirection 새로 추가 될 이동 방향
@@ -16,6 +20,16 @@ class Path(private val path: List<String> = emptyList()) {
      * */
     fun currentRound(): Int = path.size
 
+    fun userDirection(index: Int): String = path[index]
+
+    fun userDirectionAsDigit(index: Int): Int = userDirection(index).convertDigit()
+
     fun checkDirection(direction: String, round: Int): Boolean = direction == path[round]
 
+    private fun String.convertDigit(): Int {
+        if (this == UP) {
+            return UP_INDEX
+        }
+        return DOWN_INDEX
+    }
 }
