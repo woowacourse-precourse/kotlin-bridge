@@ -17,12 +17,14 @@ class InputView {
             print("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 한다.")
             Console.readLine().toInt()
         }
+        checkBridgeSize(bridgeSize)
+        return bridgeSize
+    }
 
+    private fun checkBridgeSize(bridgeSize: Int) {
         if (bridgeSize > 20 || bridgeSize < 3) {
             throw IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 한다.")
         }
-
-        return bridgeSize
     }
 
     /**
