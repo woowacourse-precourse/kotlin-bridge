@@ -44,4 +44,8 @@ class GameController {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
         return inputView.readMoving()
     }
+
+    private fun judgeMoving() : Boolean{
+        return bridgeGame.judgeMovingSuccess()
+    }
 }

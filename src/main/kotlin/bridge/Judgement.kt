@@ -8,4 +8,8 @@ class Judgement {
         correctBridgeMap.clear()
         correctBridgeMap = BridgeMaker(bridgeNumberGenerator).makeBridge(size).toMutableList()
     }
+
+    fun judgeMovingSuccess(currentMoving : List<String>) : Boolean{
+        return currentMoving.last()==correctBridgeMap[currentMoving.lastIndex]
+    }
 }
