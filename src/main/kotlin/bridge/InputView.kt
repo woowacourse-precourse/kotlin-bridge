@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.validator.InputValidator
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -8,7 +10,17 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return 0
+        println("다리의 길이를 입력해주세요.")
+        while (true) {
+            try {
+                val bridgeSize = readLine()!!.toInt()
+                InputValidator.validateBridgeSize(bridgeSize)
+                return bridgeSize
+            } catch (e: IllegalArgumentException) {
+                println("[ERROR] 다시 입력해 주세요.")
+                continue
+            }
+        }
     }
 
     /**
@@ -25,3 +37,5 @@ class InputView {
         return ""
     }
 }
+
+const val INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요."
