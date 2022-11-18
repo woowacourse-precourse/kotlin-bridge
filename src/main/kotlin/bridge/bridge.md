@@ -53,4 +53,5 @@
 - Compare (유저가 입력한 이동 칸 문자열과 다리 배열의 문자열 비교하는 클래스)
 - PrintForm (출력 로직을 담아 둘 클래스)
 - Regex (유효성 검사 로직을 담아 둘 클래스)
+- UserInputMovement (유저가 입력하는 이동칸 함수인 InputView를 BridgeGame에서 직접 호출하지 않도록 하기 위한 클래스)
 ---------
