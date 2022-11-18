@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.util.INPUT_BRIDGE_SIZE_MESSAGE
 import bridge.validator.InputValidator
 
 /**
@@ -28,7 +29,3 @@ class InputView {
         return ""
     }
 }
-
-const val INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요."
-
-const val ERROR_INVALID_INPUT_MESSAGE = "[ERROR] 다시 입력해 주세요."

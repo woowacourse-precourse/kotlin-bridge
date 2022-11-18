@@ -1,6 +1,6 @@
 package bridge.validator
 
-import bridge.ERROR_INVALID_INPUT_MESSAGE
+import bridge.util.ERROR_INVALID_INPUT_MESSAGE
 
 object InputValidator {
     fun validateInValidBridgeSize(input: Int) {
