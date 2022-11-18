@@ -35,7 +35,7 @@ class BridgeGame {
                 var restartGame = InputView().readGameCommand()
                 when (restartGame) {
                     "R" -> BridgeGame().retry(answerBridge, trial)
-                    "Q" -> OutputView().printResult()
+                    "Q" -> OutputView().printResult(inputBridge, success, trial)
                 }
             }
         }
