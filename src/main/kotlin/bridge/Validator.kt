@@ -1,7 +1,6 @@
 package bridge
 
-import bridge.constants.ERROR_BRIDGE_INPUT
-import bridge.constants.ERROR_MOVE_INPUT
+import bridge.constants.*
 
 class Validator {
     fun isNumber(input: String): Boolean {
@@ -24,6 +23,14 @@ class Validator {
     fun validateUpAndDown(input: String): Boolean {
         if (input != "U" && input != "D") {
             OutputView().printErrorMessage(ERROR_MOVE_INPUT)
+            throw IllegalArgumentException()
+        }
+        return true
+    }
+
+    fun validateRetryAndQuit(input: String): Boolean {
+        if (input != "R" && input != "Q") {
+            OutputView().printErrorMessage(ERROR_RETRY_OR_QUIT)
             throw IllegalArgumentException()
         }
         return true
