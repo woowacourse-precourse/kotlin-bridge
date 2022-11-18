@@ -16,7 +16,7 @@ class InputView {
     fun readBridgeSize(): Int {
         InputSentence.BRIDGE_LENGTH.print()
         val input = Console.readLine()
-        InputValidator.validateDigitNumber(input)
+        InputValidator.validateBridgeLength(input)
         return input.toInt()
     }
 
