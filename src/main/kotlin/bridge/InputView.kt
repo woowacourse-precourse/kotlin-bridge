@@ -10,20 +10,16 @@ import camp.nextstep.edu.missionutils.Console.readLine
  */
 
 class InputView {
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     fun readBridgeSize(): Int {
-        val num = readLine()
-        Exceptions().validateBridgeSize(num)
-        return num.toInt()
+        val size = readLine()
+        Exceptions().validateBridgeSize(size)
+        return size.toInt()
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     fun readMoving(): String {
-        return ""
+        val moving = readLine()
+        Exceptions().validateMoving(moving)
+        return moving
     }
 
     /**

@@ -28,13 +28,17 @@ class OutputView {
     companion object {
         private const val GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다."
         private const val REQUEST_INPUT_MESSAGE = "다리의 길이를 입력해주세요."
+        private const val UP_OR_DOWN_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
         private const val ERROR = "[ERROR] "
-        private const val WRONG_INPUT_MESSAGE = "잘못된 입력입니다."
-        private const val WRONG_SIZE_MESSAGE = "잘못된 범위의 숫자입니다."
+        private const val WRONG_SIZE_INPUT_MESSAGE = "다리의 길이는 숫자만 입력 가능합니다."
+        private const val WRONG_SIZE_Range_MESSAGE = "다리의 길이는 3과 20 사이의 숫자만 가능합니다."
+        private const val WRONG_MOVING_INPUT_MESSAGE = "움직이는 명령어는 U:위, D:아래 만 입력 가능합니다."
 
         fun printStart() = println(GAME_START_MESSAGE + "\n\n" + REQUEST_INPUT_MESSAGE)
-        fun printInputError() = println(ERROR + WRONG_INPUT_MESSAGE)
-        fun printSizeError() = println(ERROR + WRONG_SIZE_MESSAGE)
+        fun printUpOrDown() = println("\n" + UP_OR_DOWN_MESSAGE)
+        fun printSizeInputError() = println(ERROR + WRONG_SIZE_INPUT_MESSAGE)
+        fun printSizeRangeError() = println(ERROR + WRONG_SIZE_Range_MESSAGE)
+        fun printMovingInputError() = println(ERROR + WRONG_MOVING_INPUT_MESSAGE)
 
     }
 }

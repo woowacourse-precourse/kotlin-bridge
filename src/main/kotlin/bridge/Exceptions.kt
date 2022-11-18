@@ -4,11 +4,18 @@ class Exceptions {
     fun validateBridgeSize(x: String) {
         val size = x.toIntOrNull()
         require (size != null) {
-            OutputView.printInputError()
+            OutputView.printSizeInputError()
             throw IllegalArgumentException()
         }
         require (size in SIZE_RANGE_START..SIZE_RANGE_END) {
-            OutputView.printSizeError()
+            OutputView.printSizeRangeError()
+            throw IllegalArgumentException()
+        }
+    }
+
+    fun validateMoving(x: String) {
+        require(x in listOf("U", "D")) {
+            OutputView.printMovingInputError()
             throw IllegalArgumentException()
         }
     }
