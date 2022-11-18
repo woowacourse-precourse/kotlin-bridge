@@ -82,9 +82,9 @@
     - [x] 예외 처리
       - U 또는 D 인지 확인
 
-- [ ] 게임 재시작/종료 여부를 입력 받는다 => `readGameCommand()`
+- [x] 게임 재시작/종료 여부를 입력 받는다 => `readGameCommand()`
 
-    - [ ] 예외 처리
+    - [x] 예외 처리
       - R 또는 Q인지 확인
 
 ### OutputView
