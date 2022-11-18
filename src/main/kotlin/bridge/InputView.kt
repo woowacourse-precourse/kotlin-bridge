@@ -44,6 +44,11 @@ class InputView {
      */
     fun readGameCommand(): String {
         println("\n게임을 다시 시작할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
-        return Console.readLine()
+        val retryOrQuit = Console.readLine()
+
+        if (retryOrQuit != "R" && retryOrQuit != "Q") {
+            throw IllegalArgumentException("[ERROR] R이나 Q를 입력해주세요.")
+        }
+        return retryOrQuit
     }
 }
