@@ -58,6 +58,7 @@ ex) 정답이
 ### 기타
 
 - `BridgeParameter` : enum class로 여러가지 값을 저장한다.
+- `BridgeMessage` : enum class로 여러가지 문장을 저장한다.
 
 
 
