@@ -3,7 +3,7 @@ package bridge.domain
 import bridge.util.DOWN
 import bridge.util.UP
 
-class BridgeMap(
+class BridgeRoute(
     private val route: List<ArrayList<Mark>> = listOf(arrayListOf(), arrayListOf())
 ) {
     fun makeRoute(path: Path, bridge: Bridge): List<List<Mark>> {

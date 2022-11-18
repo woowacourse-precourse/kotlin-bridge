@@ -14,7 +14,7 @@ class OutputView {
      */
     fun printMap(route: List<List<Mark>>) {
         route.forEach { floor ->
-            println(floor.convertAsBridgeMap())
+            println(floor.convertAsBridgeRoute())
         }
         printNewLine()
     }
