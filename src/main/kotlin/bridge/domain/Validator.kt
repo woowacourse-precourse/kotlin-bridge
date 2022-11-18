@@ -1,12 +1,20 @@
 package bridge.domain
 
+import bridge.util.ErrorMessage.ERROR_NOT_VALID_NUMBER
+import java.lang.IllegalArgumentException
+
 object Validator {
 
     /**
      * 다리 길이 유효성 검사
      */
-    fun isValidBridgeSize() {
+    fun isValidBridgeSize(input: String): Int {
+        val regex = Regex("^[3-9]\$|^1[0-9]\$|^20\$")
+        if (!input.matches(regex)) {
+            throw IllegalArgumentException(ERROR_NOT_VALID_NUMBER)
+        }
 
+        return input.toInt()
     }
 
     /**
