@@ -1,5 +1,7 @@
 package bridge
 
+import constant.Message
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -8,7 +10,14 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return 0
+        var input: String?
+        do {
+            println(Message.BRIDGE_SIZE_INPUT.message)
+            input = readLine()
+            val retry = BridgeSizeChecker(input).checkAll()
+            println()
+        } while (retry)
+        return input?.toInt() ?: 0
     }
 
     /**
