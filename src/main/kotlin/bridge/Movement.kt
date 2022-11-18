@@ -3,7 +3,7 @@ package bridge
 class Movement(private val direction: String) {
     init {
         require(isLetter()) { ErrorType.DIRECTION_LETTER.errorMessage }
-        require(isUpperCaes()) { ErrorType.DIRECTION_UPPER.errorMessage }
+        require(isUpperCaese()) { ErrorType.DIRECTION_UPPER.errorMessage }
         require(isLength()) { ErrorType.DIRECTION_LENGTH.errorMessage }
         require(isRightDirection()) { ErrorType.DIRECTION.errorMessage }
     }
@@ -11,7 +11,7 @@ class Movement(private val direction: String) {
     private fun isLetter(): Boolean =
         direction.all { char -> char.isLetter() }
 
-    private fun isUpperCaes(): Boolean =
+    private fun isUpperCaese(): Boolean =
         direction.all { char -> char.isUpperCase() }
 
     private fun isLength(): Boolean =
