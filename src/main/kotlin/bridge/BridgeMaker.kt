@@ -12,8 +12,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         val bridges = mutableListOf<String>()
         for (index in 0 until size) {
             when (bridgeNumberGenerator.generate()) {
-                1 -> bridges.add("U")
-                0 -> bridges.add("D")
+                Enum.SIDE.UP.number -> bridges.add(Enum.SIDE.UP.command)
+                Enum.SIDE.DOWN.number -> bridges.add(Enum.SIDE.DOWN.command)
             }
         }
         return bridges

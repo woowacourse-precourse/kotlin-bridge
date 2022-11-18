@@ -36,17 +36,17 @@ class BridgeController {
     }
 
     private fun checkEnd(): Boolean {
-        if (bridgeGame.checkEnd()) {
+        if (bridgeGame.isEnd()) {
             output.printEndGame()
             output.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
-            output.printResult(bridgeGame.getTryCount(), "성공")
+            output.printResult(bridgeGame.getTryCount(), Enum.RESULT.SUCCESS.korean)
             return true
         }
         return false
     }
 
     private fun checkFail(): Boolean {
-        if (bridgeGame.checkFail()) {
+        if (bridgeGame.isFail()) {
             output.printRestart()
             if (checkRestart()) {
                 return true
@@ -57,9 +57,9 @@ class BridgeController {
 
     private fun checkRestart(): Boolean {
         when (input.readGameCommand()) {
-            "R" -> bridgeGame.retry()
-            "Q" -> {
-                output.printResult(bridgeGame.getTryCount(), "실패")
+            Enum.OPTION.RESTART.command -> bridgeGame.retry()
+            Enum.OPTION.QUIT.command -> {
+                output.printResult(bridgeGame.getTryCount(), Enum.RESULT.FAILURE.korean)
                 return true
             }
         }

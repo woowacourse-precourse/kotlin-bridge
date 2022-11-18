@@ -12,6 +12,7 @@ class OutputView {
     fun printMap(upSide: List<String>, downSide: List<String>) {
         println(upSide.joinToString(" | ", "[ ", " ]"))
         println(downSide.joinToString(" | ", "[ ", " ]"))
+        println()
     }
 
     /**
@@ -30,8 +31,12 @@ class OutputView {
         println("다리 건너기 게임을 시작합니다.")
     }
 
+    fun printEndGame() {
+        println("최종 게임 결과")
+    }
+
     fun printInputSize() {
-        println("다리의 길이를 입력해주세요.")
+        println("\n다리의 길이를 입력해주세요.")
     }
 
     fun printInputMove() {
