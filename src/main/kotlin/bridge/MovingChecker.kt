@@ -1,11 +1,13 @@
 package bridge
 
+import constant.Message
+
 class MovingChecker(private val input: String?) {
     fun checkAll(): Boolean {
         try {
             checkValue()
             } catch (e: IllegalArgumentException) {
-                println(e.message)
+                println(Message.BASIC_ERROR.message + Message.MOVING_ERROR.message)
             return true
         }
         return false
@@ -13,7 +15,7 @@ class MovingChecker(private val input: String?) {
 
     private fun checkValue() {
         if (input != "U" && input != "D") {
-            throw IllegalArgumentException("[ERROR] 이동할 칸은 U 또는 D여야 합니다.")
+            throw IllegalArgumentException()
         }
     }
 }

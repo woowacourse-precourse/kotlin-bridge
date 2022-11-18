@@ -26,7 +26,7 @@ class InputView {
     fun readMoving(): String {
         var input: String?
         do {
-            println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+            println(Message.MOVING_INPUT.message)
             input = readLine()
             val retry = MovingChecker(input).checkAll()
             if (retry) println()

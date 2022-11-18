@@ -8,7 +8,7 @@ class BridgeSizeChecker(private val input: String?) {
             checkNotNumber()
             checkRange()
         } catch (e: IllegalArgumentException) {
-            println(e.message)
+            println(Message.BASIC_ERROR.message + Message.BRIDGE_SIZE_ERROR.message)
             return true
         }
         return false
@@ -16,13 +16,13 @@ class BridgeSizeChecker(private val input: String?) {
 
     private fun checkNotNumber() {
         if(input?.toIntOrNull() == null) {
-            throw IllegalArgumentException(Message.BRIDGE_SIZE_ERROR.message)
+            throw IllegalArgumentException()
         }
     }
 
     private fun checkRange() {
         if(input?.toIntOrNull() !in 3..20) {
-            throw IllegalArgumentException(Message.BRIDGE_SIZE_ERROR.message)
+            throw IllegalArgumentException()
         }
     }
 }
