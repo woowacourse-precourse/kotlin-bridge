@@ -6,7 +6,7 @@ fun main() {
 
 private fun onProgramStart() {
     PrintForm().printGameStartText()
-    getUserInputBridgeLength()
+    println(getUserInputBridgeLength())
 }
 
 private fun getUserInputBridgeLength() = InputView().readBridgeSize()
