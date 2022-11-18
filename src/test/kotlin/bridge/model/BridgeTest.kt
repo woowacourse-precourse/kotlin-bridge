@@ -38,4 +38,20 @@ class BridgeTest {
         val bridge = Bridge(listOf("U", "D", "U", "U"))
         assert(bridge.canCross(moving, 1))
     }
+
+    @ValueSource(ints = [3, 5, 7, 18, 20])
+    @ParameterizedTest
+    fun `다리 길이를 벗어나 건널 수 있는지 여부를 물어본다면 예외를 발생시킨다`(size: Int) {
+        val bridge = Bridge.generateRandomBridge(size)
+        assertThrows<IndexOutOfBoundsException> {
+            bridge.canCross(Direction.DOWN, size + 1)
+        }
+    }
+
+    @ValueSource(ints = [3, 5, 7, 18, 20])
+    @ParameterizedTest
+    fun `다리의 끝을 알 수 있다`(size: Int) {
+        val bridge = Bridge.generateRandomBridge(size)
+        assert(bridge.isBridgeEnd(size - 1))
+    }
 }
