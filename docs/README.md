@@ -45,8 +45,8 @@
 ### 1.BridgeNumberGenerator, BridgeRandomNumberGenerator
   - [x] 0과 1 중 무작위 값을 이용해서 정한다.
 ### 2. BridgeMaker
-  - [ ] 세로길이2 , 가로길이 $size인 다리를 `$BridgeNumberGenerator.generate()` 호출해서 만든다.
-  - [ ] enum {0: D, 1: U}로 표현한다.
+  - [x] 세로길이2 , 가로길이 $size인 다리를 `$BridgeNumberGenerator.generate()` 호출해서 만든다.
+  - [x] enum {0: D, 1: U}로 표현한다.
 
 ### 3. BridgeGame
 - BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
