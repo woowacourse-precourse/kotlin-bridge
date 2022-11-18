@@ -11,7 +11,7 @@
 * [o] 현재 다리 칸 표시 - OutputView
 ___
 CASE 1.
-* [] 끝까지 가면 - 게임 종료
+* [o] 끝까지 가면 - 게임 종료
 * [] 최종 게임 결과 출력 - OutputView
 * [] 게임 성공 여부 출력 - OutputView
 * [] 시도 횟수 출력 - OutputView
