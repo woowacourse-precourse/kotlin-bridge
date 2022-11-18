@@ -44,22 +44,6 @@ class BridgeGameTest {
     }
 
     @Test
-    fun `이동을 U나 D가 아닌 문자로 하려하면 예외를 발생시킨다`() {
-        val moving = listOf("F")
-        assertThrows<IllegalArgumentException> {
-            moving.forEach { game.move(it) }
-        }
-    }
-
-    @Test
-    fun `재시도 여부를 R이나 Q가 아닌 문자로 입력할 때는 예외를 발생시킨다`() {
-        val command = "HI"
-        assertThrows<IllegalArgumentException> {
-            game.retry(command)
-        }
-    }
-
-    @Test
     fun `재시도 시 총 시도 횟수가 1 증가한다`() {
         val beforeTryCount = game.tryCount
         setGameEnd()

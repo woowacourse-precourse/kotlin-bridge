@@ -2,6 +2,8 @@ package bridge.model
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class DirectionTest {
     @Test
@@ -12,9 +14,9 @@ class DirectionTest {
         assert(results == expects)
     }
 
-    @Test
-    fun `이동 방향을 0과 1이 아닌 수로 만들려고 하면 예외를 발생시킨다`() {
-        val input = -1
+    @ValueSource(ints = [-1, -2, -999, 2, 3])
+    @ParameterizedTest
+    fun `이동 방향을 0과 1이 아닌 수로 만들려고 하면 예외를 발생시킨다`(input: Int) {
         assertThrows<IllegalArgumentException> {
             Direction.getByValue(input)
         }
@@ -28,9 +30,9 @@ class DirectionTest {
         assert(results == expects)
     }
 
-    @Test
-    fun `이동 방향을 U와 D가 아닌 문자로 만들려고 하면 예외를 발생시킨다`() {
-        val input = "0"
+    @ValueSource(strings = ["0", "HI", "1", "F", "가", "u", "d"])
+    @ParameterizedTest
+    fun `이동 방향을 대문자 U와 D가 아닌 문자로 만들려고 하면 예외를 발생시킨다`(input: String) {
         assertThrows<IllegalArgumentException> {
             Direction.getByDisplayName(input)
         }

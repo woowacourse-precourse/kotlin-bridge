@@ -7,7 +7,7 @@ class Bridge(directionNames: List<String>) {
     private val directions: List<Direction>
 
     init {
-        require(directionNames.size in MIN_LENGTH..MAX_LENGTH)
+        require(directionNames.size in MIN_LENGTH..MAX_LENGTH) { ERROR_BRIDGE_LENGTH }
         directions = directionNames.map { Direction.getByDisplayName(it) }
     }
 
@@ -22,6 +22,7 @@ class Bridge(directionNames: List<String>) {
     companion object {
         const val MIN_LENGTH = 3
         const val MAX_LENGTH = 20
+        private const val ERROR_BRIDGE_LENGTH = "다리길이는 $MIN_LENGTH 부터 $MAX_LENGTH 까지이어야 합니다."
 
         fun generateRandomBridge(size: Int): Bridge {
             val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
