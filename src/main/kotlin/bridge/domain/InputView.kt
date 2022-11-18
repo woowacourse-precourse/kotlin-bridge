@@ -56,7 +56,7 @@ class InputView {
 
     private fun validateMoving(): String {
         val moving = Console.readLine().trim()
-        require((moving == "U") or (moving == "D")){
+        require((moving == "U") or (moving == "D")) {
             throw IllegalArgumentException("$PREFIX $MOVE_EXCEPTION")
         }
         return moving
