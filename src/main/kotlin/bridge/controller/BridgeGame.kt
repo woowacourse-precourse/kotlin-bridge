@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator
 import bridge.domain.*
 import bridge.presentation.InputView
 import bridge.presentation.OutputView
+import bridge.util.RETRIAL
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -30,7 +31,14 @@ class BridgeGame : Game {
                 result(gameResult, finalRoute)
                 break
             } else { // 실패시
-
+                val isContinueGame = retry() // 재시도를 물음
+                if (isContinueGame) { // 재시도한다면 초기화하고 다시 시작
+                    init()
+                } else { // 재시도하지 않는다면 최종경로 출력
+                    val finalRoute = finalBridgeRoute.route()
+                    result(gameResult, finalRoute)
+                    break
+                }
             }
         } while (true)
     }
@@ -64,6 +72,15 @@ class BridgeGame : Game {
 
     private fun drawRoute(route: List<List<Mark>>) {
         outputView.printMap(route)
+    }
+
+    private fun retry(): Boolean {
+        outputView.printRetryQuestion()
+        return inputView.readGameCommand() == RETRIAL
+    }
+
+    private fun init() {
+        path = Path()
     }
 
     private fun result(gameResult: Result, map: List<List<Mark>>) {
