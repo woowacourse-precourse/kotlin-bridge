@@ -10,15 +10,20 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(bridge: List<String>) {
-        val move = InputView().readMoving()
-        when (move == bridge[order]) {
-            true -> moveSuccess(bridge)
-            false -> moveFail(bridge)
+    fun move(move : String): Boolean {
+        if (move == BridgeMaker.bridge[order]) {
+            moveSuccess(BridgeMaker.bridge)
+            return true
         }
+        if (move != BridgeMaker.bridge[order]) {
+            moveFail(BridgeMaker.bridge)
+            return false
+        }
+        return false
     }
 
-    fun discriminateEnd(size: Int) {
+    fun discriminateEnd(bridge: List<String>) {
+        val size = bridge.size
         if (order == size - 1) {
             endGame = true
             result = success
@@ -36,8 +41,6 @@ class BridgeGame {
             upBridge.add(" ")
             downBridge.add("O")
         }
-        OutputView().printMap()
-        discriminateEnd(bridge.size)
     }
 
     fun moveFail(bridge: List<String>) {
@@ -49,8 +52,6 @@ class BridgeGame {
             upBridge.add("X")
             downBridge.add(" ")
         }
-        OutputView().printMap()
-        retry()
     }
 
     /**
@@ -59,8 +60,7 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {
-        val answer = InputView().readGameCommand()
+    fun retry(answer : String) {
         if (answer == "Q") {
             endGame = true
         }
@@ -76,6 +76,7 @@ class BridgeGame {
         downBridge.clear()
     }
 
+    //TODO 객체 활용
     companion object {
         var upBridge = mutableListOf<String>()
         var downBridge = mutableListOf<String>()
