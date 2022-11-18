@@ -5,10 +5,18 @@ package bridge
  */
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     /**
-     * @param size 다리의 길이
+     * @param size   다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     fun makeBridge(size: Int): List<String> {
-        return listOf()
+        val bridgeNumberList = MutableList(size) { index -> bridgeNumberGenerator.generate() }
+        val bridge = bridgeNumberList.map { index ->
+            val bridgeNumber = bridgeNumberList[index].toString()
+            when (bridgeNumberList[index]) {
+                1 -> bridgeNumber.replace("1", "U |  ")
+                else -> bridgeNumber.replace("0", "  | D")
+            }
+        }
+        return bridge
     }
 }
