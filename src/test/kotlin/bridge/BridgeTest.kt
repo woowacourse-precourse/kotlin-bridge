@@ -26,6 +26,14 @@ class BridgeTest : NsTest() {
     }
 
     @Test
+    fun `다리 길이 입력 값이 빈칸일 경우 예외가 발생한다`() {
+        assertSimpleTest {
+            Regex(" ").checkBridgeLengthRegexes()
+            Assertions.assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
     fun `다리 길이 입력 값이 범위를 벗어날 경우 예외가 발생한다 - 넘을 경우`() {
         assertSimpleTest {
             Regex("36").checkBridgeLengthRegexes()
