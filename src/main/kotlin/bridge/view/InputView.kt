@@ -18,7 +18,10 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        val userMove = readLine()!!
+        //todo: 예외처리 필요
+        return userMove
     }
 
     /**
