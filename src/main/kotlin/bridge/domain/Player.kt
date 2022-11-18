@@ -10,4 +10,6 @@ class Player(
         blocks.clear()
         tries++
     }
+
+    fun getTries() = tries
 }
