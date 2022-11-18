@@ -38,6 +38,12 @@ class BridgeGame {
                     "Q" -> OutputView().printResult(inputBridge, success, trial)
                 }
             }
+
+            //전체 성공했을 때
+            if (inputBridge == answerBridge) {
+                OutputView().printResult(inputBridge, success, trial)
+                break
+            }
         }
     }
 
