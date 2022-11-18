@@ -34,7 +34,7 @@ class OutputView {
     }
 
     fun printGameStart() {
-        println(GAME_START_MESSAGE + "\n")
+        println(GAME_START_MESSAGE)
     }
 
     fun printBridgeLengthQuestion() {
