@@ -22,6 +22,9 @@ class BridgeGame(private val bridge : List<String>) {
         while(mBridge.size != 0) {
             val userMoveInput = UserInputMovement().userInputMovement()
             val isSuccess = compareUserMoveAndBridge(userMoveInput, mBridge)
+            if(!Compare(upperList, downList).checkIsSuccessOrFail(userMoveInput, isSuccess)) {
+                //재시도 여부 물어보기
+            }
         }
     }
 
