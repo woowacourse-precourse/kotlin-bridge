@@ -29,8 +29,9 @@ class GameController {
 
     private fun repeatMoving(){
         while(true){
-            //checkFinish by BridgeGame.compare return pair(isSuccess / isStop)
-            // than this function return isSuccess
+            if(bridgeGame.checkGameOver()){
+                break
+            }
             moving()
             outputMoving()
         }

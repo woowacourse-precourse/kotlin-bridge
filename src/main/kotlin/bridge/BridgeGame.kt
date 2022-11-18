@@ -15,6 +15,10 @@ class BridgeGame {
         return judgement.judgeMovingSuccess(currentMoving)
     }
 
+    fun checkGameOver() : Boolean {
+        return judgement.checkGameOver(currentMoving)
+    }
+
     fun move(moving : String) : List<String> {
         currentMoving.add(moving)
         return currentMoving.toList()
