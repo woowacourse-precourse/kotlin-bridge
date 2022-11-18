@@ -21,7 +21,15 @@ class BridgeGame(private val bridge : List<String>) {
     private fun loopToCheckBridge(mBridge : MutableList<String>, upperList : MutableList<String>, downList: MutableList<String>) {
         while(mBridge.size != 0) {
             val userMoveInput = UserInputMovement().userInputMovement()
+            val isSuccess = compareUserMoveAndBridge(userMoveInput, mBridge)
         }
+    }
+
+    private fun compareUserMoveAndBridge(userMove : String, mBridge : MutableList<String>) : Boolean {
+        return if (userMove == mBridge[0]) {
+            mBridge.removeAt(0)
+            true
+        } else false
     }
 
     /**
