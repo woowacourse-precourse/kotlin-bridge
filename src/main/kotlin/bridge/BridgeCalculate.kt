@@ -1,5 +1,9 @@
 package bridge
 
+const val WALK_AND_PASS = " O |"
+const val DO_NOT_WALK = "   |"
+const val WALK_AND_FAIL = " X |"
+
 object BridgeCalculate {
 
     fun bridgeMaking(size: Int): List<Int> {
@@ -16,8 +20,33 @@ object BridgeCalculate {
         return bridge[count] == InputView.readMoving()
     }
 
-    fun bridgemapPrint(bridge: List<Int>, record: List<Boolean>) {
+    fun bridgeMapPrint(bridge: List<Int>, record: List<Boolean>) {
+        OutputView.printMap(upLine(bridge, record))
+        OutputView.printMap(downLine(bridge, record))
 
     }
 
+    private fun upLine(bridge: List<Int>, successRecord: List<Boolean>): String {
+        var upLineMap = BridgeMessage.MapStart.word
+        for (count: Int in BridgeParameter.StartValue.value..successRecord.size) {
+            upLineMap += when {
+                bridge[count] == BridgeParameter.Up.value && successRecord[count] -> WALK_AND_PASS
+                (bridge[count] == BridgeParameter.Up.value && !successRecord[count]) || (bridge[count] == BridgeParameter.Down.value && successRecord[count]) -> DO_NOT_WALK
+                else -> WALK_AND_FAIL
+            }
+        }
+        return upLineMap + BridgeMessage.MapEnd.word
+    }
+
+    private fun downLine(bridge: List<Int>, successRecord: List<Boolean>): String {
+        var downLineMap = BridgeMessage.MapStart.word
+        for (count: Int in BridgeParameter.StartValue.value..successRecord.size) {
+            downLineMap += when {
+                bridge[count] == BridgeParameter.Down.value && successRecord[count] -> WALK_AND_PASS
+                (bridge[count] == BridgeParameter.Down.value && !successRecord[count]) || (bridge[count] == BridgeParameter.Up.value && successRecord[count]) -> DO_NOT_WALK
+                else -> WALK_AND_FAIL
+            }
+        }
+        return downLineMap + BridgeMessage.MapEnd.word
+    }
 }

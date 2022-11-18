@@ -17,7 +17,7 @@ class BridgeGame() {
     fun move(bridge: List<Int>) {
         for (count: Int in BridgeParameter.StartValue.value..bridge.size) {
             record.add(BridgeCalculate.bridgeMoving(bridge, count))
-            BridgeCalculate.bridgemapPrint(bridge, record)
+            BridgeCalculate.bridgeMapPrint(bridge, record)
             if (!record.last()) {
                 retry()
                 return

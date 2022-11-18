@@ -12,6 +12,8 @@ enum class BridgeMessage(val word: String) {
     Start("다리 건너기 게임을 시작합니다."),
     GiveMeBridgeSize("다리의 길이를 입력해주세요."),
     WhereAreYouGo("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
+    MapStart("["),
+    MapEnd("]"),
     End("최종 게임 결과"),
     WinorLose("게임 성공 여부: "),
     Win("승리"),
