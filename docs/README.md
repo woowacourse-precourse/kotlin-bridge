@@ -34,19 +34,19 @@ ex) 정답이
 - `BridgeGame` : 전체적인 게임의 흐름을 담당한다.
 
     >`InputView`과 `OutputView`의 직접 출력 불가.
+- `BridgeMaker` : 게임의 요점인 다리를 만든다.
 
 ### 계산영역
 
-- `BridgeMaker` : 게임의 요점인 다리를 만든다.
 - `BridgeNumberGenerator` : 다리를 만드는 기초공사. 
 - `BridgeRandomNumberGenerator` : 0과 1 둘 중 하나를 반환한다.
-- `InputView` : 여러가지 값을 사용자로부터 입력받는다.
     >다만, `BridgeNumberGenerator`와 `BridgeRandomNumberGenerator`의 수정은 불가. <br>기능적으로 완성되어있으니 문제는 없다.
 
 
-### 출력
+### 입출력
 
 - `OutputView` : 출력할 것들을 담당한다.
+- `InputView` : 여러가지 값을 사용자로부터 입력받는다.
 
 ## 추가 구성
 
@@ -55,7 +55,11 @@ ex) 정답이
 - `BridgeException` : 예외처리에 관한 함수들. 흐름제어가 아니라 계산영역인가?
 - 추후 추가될 수도 있음.
 
-### 기타
+### 계산영역
+
+- `BridgeCalculate` : 온갖 계산에 대한 오브젝트.
+
+### 입출력
 
 - `BridgeParameter` : enum class로 여러가지 값을 저장한다.
 - `BridgeMessage` : enum class로 여러가지 문장을 저장한다.
