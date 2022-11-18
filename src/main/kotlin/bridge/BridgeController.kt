@@ -9,6 +9,7 @@ class BridgeController {
 
     fun run() {
         makeBridge()
+        gameProgress()
     }
 
     private fun makeBridge() {
@@ -17,5 +18,18 @@ class BridgeController {
         val bridgeSize = input.readBridgeSize()
         val bridges = bridgeMaker.makeBridge(bridgeSize)
         bridgeGame = BridgeGame(bridges)
+    }
+
+    private fun gameProgress() {
+        while (true) {
+            move()
+        }
+    }
+
+    private fun move() {
+        output.printInputMove()
+        val direction = input.readMoving()
+        bridgeGame.move(direction)
+        output.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
     }
 }
