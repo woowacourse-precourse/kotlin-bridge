@@ -20,11 +20,11 @@ fun initBridge(): List<String> {
     return BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
 }
 
-fun moveBridge(){
+fun moveBridge() {
     val move = InputView().readMoving()
-    val result =BridgeGame().move(move)
+    val result = BridgeGame().move(move)
     OutputView().printMap()
-    when(result){
+    when (result) {
         true -> BridgeGame().discriminateEnd(BridgeMaker.bridge)
         false -> BridgeGame().retry(InputView().readGameCommand())
     }

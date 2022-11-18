@@ -31,11 +31,11 @@ class BridgeGameTest : NsTest() {
         }
     }
 
-    fun initGame(){
+    fun initGame() {
         BridgeMaker.bridge.clear()
         BridgeGame.upBridge.clear()
         BridgeGame.downBridge.clear()
-        order=0
+        order = 0
     }
 
     override fun runMain() {
