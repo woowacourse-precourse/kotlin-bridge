@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.sentence.ErrorSentence
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -10,5 +12,15 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      */
     fun makeBridge(size: Int): List<String> {
         return listOf()
+    }
+
+    private fun validateBridgeLength(size: Int) {
+        if(size !in BRIDGE_LENGTH_MIN..BRIDGE_LENGTH_MAX)
+            throw IllegalArgumentException(ErrorSentence.BRIDGE_LENGTH.sentence())
+    }
+
+    companion object {
+        const val BRIDGE_LENGTH_MIN = 3
+        const val BRIDGE_LENGTH_MAX = 20
     }
 }
