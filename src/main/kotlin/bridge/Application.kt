@@ -1,7 +1,7 @@
 package bridge
 
 fun main() {
-    println("다리 건너기 게임을 시작합니다.\n")
+    OutputView().printGameStart()
 
     val bridgeLength = InputView().readBridgeSize()
     val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
