@@ -1,5 +1,6 @@
 package bridge.view
 
+import bridge.GameCommand
 import bridge.InputValidator
 import bridge.domain.Direction
 import bridge.sentence.InputSentence
@@ -31,7 +32,9 @@ class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    fun readGameCommand(): String {
-        return ""
+    fun readGameCommand(): GameCommand {
+        InputSentence.RESTART.print()
+        val input = Console.readLine()
+        return GameCommand.getGameCommand(input)
     }
 }
