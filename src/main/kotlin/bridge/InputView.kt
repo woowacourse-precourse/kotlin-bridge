@@ -17,6 +17,7 @@ class InputView {
     private fun checkBridgeLengthRegex(userInput : String) : Int {
         try {
             Regex.checkItsNull(userInput)
+            Regex.checkItsAllNumber(userInput)
         } catch (exception : IllegalArgumentException) {
             runWhenCatchError()
         }
