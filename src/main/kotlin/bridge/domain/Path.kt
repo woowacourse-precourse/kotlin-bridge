@@ -1,6 +1,6 @@
 package bridge.domain
 
-class Path(private val path: List<String>) {
+class Path(private val path: List<String> = emptyList()) {
     /**
      * @param newDirection 새로 추가 될 이동 방향
      * @return 경로를 추가하여 새로운 일급 컬렉션 객체 반환
@@ -8,8 +8,7 @@ class Path(private val path: List<String>) {
     fun createNewPath(newDirection: String): Path {
         val newPath = ArrayList(path)
         newPath.add(newDirection)
-
-        return Path(path)
+        return Path(newPath)
     }
 
     /**

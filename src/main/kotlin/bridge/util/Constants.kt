@@ -20,6 +20,8 @@ const val BRIDGE_POSTFIX =" ]"
 // direction
 const val UP = "U"
 const val DOWN = "D"
+const val UP_INDEX = 0
+const val DOWN_INDEX = 1
 const val DIRECTION_SIZE = 2
 
 // restart
