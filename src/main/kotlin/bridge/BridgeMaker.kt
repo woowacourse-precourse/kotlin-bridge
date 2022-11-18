@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.domain.Direction
 import bridge.sentence.ErrorSentence
 
 /**
@@ -11,7 +12,13 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     fun makeBridge(size: Int): List<String> {
-        return listOf()
+        validateBridgeLength(size)
+        val result = mutableListOf<String>()
+        for(i in 0 until size) {
+            val direction = Direction.getDirection(bridgeNumberGenerator.generate())
+            result.add(direction.hotKey())
+        }
+        return result
     }
 
     private fun validateBridgeLength(size: Int) {
