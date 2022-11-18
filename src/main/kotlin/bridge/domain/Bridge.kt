@@ -1,15 +1,14 @@
 package bridge.domain
 
-import bridge.constants.ErrorMessage
-
 class Bridge(
     private val bridge: List<String>
 ) {
 
     init {
-        require(bridge.size == 3) { ErrorMessage.OutOfBridgeSize }
-        require(bridge.all { Element.contains(it) }) { ErrorMessage.InvalidBridgeElement }
+        require(bridge.size in SizeRange) { "Bridge's size is required in $SizeRange" }
+        require(bridge.all { Element.contains(it) }) { "Invalid bridge's elements" }
     }
+
 
 
     enum class Element {
