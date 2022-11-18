@@ -28,4 +28,13 @@ class PrintForm {
     fun printFinalResult() {
         println("최종 게임 결과")
     }
+
+    fun printGameResult(status : Boolean) {
+        val result = if(status) "성공" else "실패"
+        println("게임 성공 여부: $result")
+    }
+
+    fun printTryCount(tryCount : Int) {
+        println("총 시도한 횟수: $tryCount")
+    }
 }

@@ -21,6 +21,8 @@ class OutputView(private val upperList: MutableList<String>, private val downLis
      */
     fun printResult(status : Boolean, retryCount : Int) {
         printFinalResult()
+        PrintForm().printGameResult(status)
+        PrintForm().printTryCount(retryCount)
     }
 
     private fun printFinalResult() {
