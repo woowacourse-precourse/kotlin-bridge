@@ -20,6 +20,7 @@ class BridgeGame {
             userRoute.add(userMove)
 
             for (move in upDown) { control = OutputView().printMap(bridge, userRoute, move) }
+            if (wrongAnswer(bridge, upDown) == "break") break
             if (userRoute == bridge) { correctAnswer(bridge, upDown) }
         }
     }
@@ -30,9 +31,24 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {}
+    fun retry() {
+        userRoute.removeAt(userRoute.size-1)
+        control = 0
+        times++
+    }
 
-     fun correctAnswer(bridge: List<String>, upDown: List<String>){
+    fun wrongAnswer(bridge: List<String>, upDown : List<String>) : String{
+        if (control == 1){
+            var gameControl = InputView().readGameCommand()
+            if (gameControl == "Q"){
+
+            }
+            if (gameControl == "R") { retry() }
+        }
+        return ""
+    }
+
+    fun correctAnswer(bridge: List<String>, upDown: List<String>){
         OutputView().printResult(bridge, userRoute, upDown)
         OutputView().printGameSituation(control, times)
     }
