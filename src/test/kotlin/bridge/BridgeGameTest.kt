@@ -9,7 +9,6 @@ class BridgeGameTest : NsTest() {
 
     @Test
     fun `다리 건너기 성공 테스트`() {
-        initGame()
         BridgeMaker.bridge.add("U")
         BridgeMaker.bridge.add("U")
         BridgeMaker.bridge.add("D")
@@ -21,7 +20,6 @@ class BridgeGameTest : NsTest() {
 
     @Test
     fun `다리 건너기 실패 테스트`() {
-        initGame()
         BridgeMaker.bridge.add("U")
         BridgeMaker.bridge.add("U")
         BridgeMaker.bridge.add("D")
@@ -29,13 +27,6 @@ class BridgeGameTest : NsTest() {
         assertSimpleTest {
             assertThat(!BridgeGame().move("D"))
         }
-    }
-
-    fun initGame() {
-        BridgeMaker.bridge.clear()
-        BridgeGame.upBridge.clear()
-        BridgeGame.downBridge.clear()
-        order = 0
     }
 
     override fun runMain() {
