@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console
 
 
 const val up = "U"
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -18,12 +19,13 @@ class InputView {
             BridgeException.sizeCheck(size.toInt())
             return size.toInt()
         }
+
         fun readMoving(): Int {
             val userinput = Console.readLine()
             BridgeException.isitUorD(userinput)
-            if(userinput==up)
-                return 1
-            return 0
+            if (userinput == up)
+                return BridgeParameter.Up.value
+            return BridgeParameter.Down.value
         }
     }
     /**

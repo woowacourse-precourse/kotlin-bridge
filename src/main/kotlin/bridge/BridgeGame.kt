@@ -7,6 +7,7 @@ class BridgeGame() {
 
 
     private val record = mutableListOf<Boolean>()
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
@@ -16,8 +17,8 @@ class BridgeGame() {
     fun move(bridge: List<Int>) {
         for (count: Int in BridgeParameter.StartValue.value..bridge.size) {
             record.add(BridgeCalculate.bridgeMoving(bridge, count))
-            BridgeCalculate.bridgemapPrint(bridge,record)
-            if(!record.last()){
+            BridgeCalculate.bridgemapPrint(bridge, record)
+            if (!record.last()) {
                 retry()
                 return
             }
@@ -33,5 +34,5 @@ class BridgeGame() {
      */
     fun retry() {}
 
-    fun youWin(){}
+    fun youWin() {}
 }

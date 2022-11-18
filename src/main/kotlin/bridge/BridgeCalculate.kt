@@ -13,10 +13,10 @@ object BridgeCalculate {
 
     fun bridgeMoving(bridge: List<Int>, count: Int): Boolean {
         OutputView.getBridgeMoving()
-        return bridge[count]==InputView.readMoving()
+        return bridge[count] == InputView.readMoving()
     }
 
-    fun bridgemapPrint(bridge: List<Int>, record: List<Boolean>){
+    fun bridgemapPrint(bridge: List<Int>, record: List<Boolean>) {
 
     }
 
