@@ -19,6 +19,6 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     }
 
     companion object {
-        val bridge = mutableListOf<String>()
+        var bridge = mutableListOf<String>()
     }
 }

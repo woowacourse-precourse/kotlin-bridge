@@ -16,6 +16,13 @@ fun main() {
 }
 
 fun initBridge(): List<String> {
+    BridgeMaker.bridge = mutableListOf()
+    BridgeGame.upBridge = mutableListOf()
+    BridgeGame.downBridge = mutableListOf()
+    order = 0
+    tryCount = 1
+    result = false
+    endGame = false
     val size = InputView().readBridgeSize()
     return BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
 }
