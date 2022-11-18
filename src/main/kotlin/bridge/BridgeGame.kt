@@ -23,12 +23,12 @@ class BridgeGame(private val bridge : List<String>) {
     private fun loopToCheckBridge(mBridge : MutableList<String>, upperList : MutableList<String>, downList: MutableList<String>) {
         while(mBridge.size != 0) {
             val userMoveInput = UserInput().userInputMovement()
-            val isSuccess = compareUserMoveAndBridge(userMoveInput, mBridge)
-            if(!Compare(upperList, downList).checkIsSuccessOrFail(userMoveInput, isSuccess)) {
+            if(!Compare(upperList, downList).checkIsSuccessOrFail(userMoveInput, compareUserMoveAndBridge(userMoveInput, mBridge))) {
                 retry(upperList, downList)
+                break
             }
         }
-        OutputView(upperList, downList).printResult(true, retryCount)
+        if(mBridge.size == 0) OutputView(upperList, downList).printResult(true, retryCount)
     }
 
     private fun compareUserMoveAndBridge(userMove : String, mBridge : MutableList<String>) : Boolean {
