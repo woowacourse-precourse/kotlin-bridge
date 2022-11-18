@@ -11,6 +11,7 @@ class Regex(private val userInput: String) {
             checkBridgeLengthInRange(userInput)
             true
         } catch (e : IllegalArgumentException) {
+            PrintForm().printUserInputError()
             false
         }
     }
@@ -22,6 +23,7 @@ class Regex(private val userInput: String) {
             checkMoveIsRight(userInput)
             true
         } catch (e : IllegalArgumentException) {
+            PrintForm().printUserInputError()
             false
         }
     }
@@ -33,6 +35,7 @@ class Regex(private val userInput: String) {
             checkRetryIsRight(userInput)
             true
         } catch (e : IllegalArgumentException) {
+            PrintForm().printUserInputError()
             false
         }
     }

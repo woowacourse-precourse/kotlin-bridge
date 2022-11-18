@@ -12,7 +12,6 @@ class InputView {
     fun readBridgeSize(): Int {
         var userInputBridgeSize = getUserInputBridgeSize()
         while(!Regex(userInputBridgeSize).checkBridgeLengthRegexes()) {
-            PrintForm().printUserInputError()
             userInputBridgeSize = getUserInputBridgeSize()
         }
         return userInputBridgeSize.toInt()
@@ -29,7 +28,6 @@ class InputView {
     fun readMoving(): String {
         var userInputMovement = getUserInputMovement()
         while(!Regex(userInputMovement).checkUserMovementRegexes()) {
-            PrintForm().printUserInputError()
             userInputMovement = getUserInputBridgeSize()
         }
         return userInputMovement
@@ -48,7 +46,6 @@ class InputView {
     fun readGameCommand(): String {
         var userInputRetry = getUserRetry()
         while(!Regex(userInputRetry).checkUserRetryRegexes()) {
-            PrintForm().printUserInputError()
             userInputRetry = getUserRetry()
         }
         return userInputRetry
