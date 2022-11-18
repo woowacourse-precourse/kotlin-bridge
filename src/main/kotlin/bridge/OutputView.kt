@@ -10,12 +10,30 @@ package bridge
  *
  */
 class OutputView {
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun printMap() {}
+    fun printMap(bridge : List<String>, movingResult : List<String>) {
+        val upperMap = mutableListOf<String>()
+        val lowerMap = mutableListOf<String>()
+        for (i in 0 until movingResult.size) {
+            if (movingResult[i] == "O" && bridge[i] == "U") {
+                upperMap.add(" O ")
+                lowerMap.add("   ")
+            }
+            if (movingResult[i] == "O" && bridge[i] == "D") {
+                upperMap.add("   ")
+                lowerMap.add(" O ")
+            }
+            if (movingResult[i] == "X" && bridge[i] == "U") {
+                upperMap.add(" X ")
+                lowerMap.add("   ")
+            }
+            if (movingResult[i] == "X" && bridge[i] == "D") {
+                upperMap.add("   ")
+                lowerMap.add(" X ")
+            }
+        }
+        println(upperMap.toString().replace(", ","|"))
+        println(lowerMap.toString().replace(", ","|"))
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
