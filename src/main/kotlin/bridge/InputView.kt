@@ -10,17 +10,8 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        println(INPUT_BRIDGE_SIZE)
-        while (true) {
-            try {
-                val bridgeSize = readLine()!!.toInt()
-                InputValidator.validateBridgeSize(bridgeSize)
-                return bridgeSize
-            } catch (e: IllegalArgumentException) {
-                println(ERROR_INVALID_INPUT_MESSAGE)
-                continue
-            }
-        }
+        println(INPUT_BRIDGE_SIZE_MESSAGE)
+        return InputValidator.validateBridgeSize()
     }
 
     /**
@@ -38,6 +29,6 @@ class InputView {
     }
 }
 
-const val INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요."
+const val INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요."
 
 const val ERROR_INVALID_INPUT_MESSAGE = "[ERROR] 다시 입력해 주세요."
