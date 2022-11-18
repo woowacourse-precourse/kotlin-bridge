@@ -19,6 +19,7 @@ class Compare(private val upperList: MutableList<String>, private val downList: 
         if(userMove == "D") {
             actWhenSuccessDown()
         }
+        OutputView(upperList, downList).printMap()
     }
 
     private fun checkIsUpperOrDownOnFail(userMove : String) {
@@ -28,6 +29,7 @@ class Compare(private val upperList: MutableList<String>, private val downList: 
         if(userMove == "D") {
             actWhenFailDown()
         }
+        OutputView(upperList, downList).printMap()
     }
 
     private fun actWhenSuccessUpper() {
