@@ -22,8 +22,8 @@ CASE 2.
     * [] 예외 처리 필수
     * [o] 재시작 시 다리 재활용 - BridgeGame/retry()
 * [o] 최종 게임 결과 출력 - OutputView
-* [] 게임 성공 여부 출력 - OutputView
-* [] 시도 횟수 출력 - OutputView
+* [o] 게임 성공 여부 출력 - OutputView
+* [o] 시도 횟수 출력 - OutputView
 ___
 * 잘못된 값 입력시 오류 발생
     * [ERROR] 문 출력 - try-catch 사용
