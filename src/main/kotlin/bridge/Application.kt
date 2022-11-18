@@ -10,4 +10,15 @@ fun main() {
     val answerBridge = bridgeMaker.makeBridge(bridgeLength)
 
     var whereToMove = InputView().readMoving()
+    var inputBridge = listOf<String>()
+    inputBridge = inputBridge.plus(whereToMove)
+    var inputBridgeMutable = inputBridge.toMutableList()
+
+    inputBridge.forEachIndexed { index, it ->
+        if (answerBridge[index] != it) {
+            inputBridgeMutable[index] = it + "X"
+            inputBridge = inputBridgeMutable.toList()
+        }
+    }
+
 }
