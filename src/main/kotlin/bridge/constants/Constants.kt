@@ -7,3 +7,6 @@ const val MOVE_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: 
 const val ERROR_MOVE_INPUT = "U 또는 D 로 입력해주세요."
 const val ERROR_RETRY_OR_QUIT = "R 또는 Q 로 입력해주세요."
 const val RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+const val RESULT_MESSAGE = "최종 게임 결과"
+const val RESULT_SUCCESS_OR_FAIL = "게임 성공 여부: "
+const val RESULT_TRY_COUNT = "총 시도한 횟수: "

@@ -3,16 +3,18 @@ package bridge
 import bridge.constants.*
 
 fun main() {
+    var count = 0
     OutputView().printMessage(START_MESSAGE)
     OutputView().printMessage(BRIDGE_SIZE_MESSAGE)
     val size = InputView().readBridgeSize()
     val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
     println(bridge)
 
-
+    val userStep = mutableListOf<Boolean>()
     do {
+        count++
         var stop = false
-        val userStep = mutableListOf<Boolean>()
+        userStep.clear()
         for (index in bridge) {
             OutputView().printMessage(MOVE_MESSAGE)
             val moveDirection = InputView().readMoving()
@@ -29,6 +31,5 @@ fun main() {
         }
     } while (stop)
 
-
-
+    OutputView().printResult(bridge, userStep, count)
 }
