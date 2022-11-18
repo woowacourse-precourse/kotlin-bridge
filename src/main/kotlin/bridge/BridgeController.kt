@@ -48,12 +48,19 @@ class BridgeController {
     private fun checkFail(): Boolean {
         if (bridgeGame.checkFail()) {
             output.printRestart()
-            when (input.readGameCommand()) {
-                "R" -> bridgeGame.retry()
-                "Q" -> {
-                    output.printResult(bridgeGame.getTryCount(), "실패")
-                    return true
-                }
+            if (checkRestart()) {
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun checkRestart(): Boolean {
+        when (input.readGameCommand()) {
+            "R" -> bridgeGame.retry()
+            "Q" -> {
+                output.printResult(bridgeGame.getTryCount(), "실패")
+                return true
             }
         }
         return false
