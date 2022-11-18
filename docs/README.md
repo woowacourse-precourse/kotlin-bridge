@@ -34,3 +34,9 @@
 8. 최종 결과와 게임의 성공 여부와 총 시도한 횟수를 출력하는 기능[ ]
 
 ## 📦️ 생성 클래스
+1. BridgeGame - 게임의 전반적인 흐름을 주도하는 클래스
+2. BridgeMaker - 브릿지를 생성해주는 클래스
+3. BridgeRandoomNumberGenerator - 랜덤한 숫자를 생성해주는 클래스
+4. InputView = 입력을 관장하는 클래스
+5. OutputView - 출력을 관장하는 클래스
+6. Application - 메인 클래스
