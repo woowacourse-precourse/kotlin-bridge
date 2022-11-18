@@ -6,7 +6,7 @@
 - [x] 입력 받은 다리의 길이만큼 랜덤 값으로 다리 생성 *BridgeMaker#makeBridge()
   - [x] 랜덤값으로 들어온 0 또는 1 숫자를 `U` 또는 `D` 로 인지하여 변환 *Move#valueOf()
 ---
-- [ ] 이동할 칸을 입력 받는다
+- [x] 이동할 칸을 입력 받는다
   - [ERROR] 처리 *Validator#isValidMoving()
 - [ ] 이동할 칸을 체크한다. *Player
   - 현재 이동한 위치 index 값 최신화

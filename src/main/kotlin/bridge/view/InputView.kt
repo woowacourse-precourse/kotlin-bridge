@@ -15,7 +15,7 @@ class InputView {
         return try {
             println("다리의 길이를 입력해주세요.")
             return Validator.isValidBridgeSize(Console.readLine())
-        }catch (e: IllegalArgumentException) {
+        } catch (e: IllegalArgumentException) {
             println(e.message)
             readBridgeSize()
         }
@@ -25,7 +25,13 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        return try {
+            println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+            return Validator.isValidMoving(Console.readLine())
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            readMoving()
+        }
     }
 
     /**

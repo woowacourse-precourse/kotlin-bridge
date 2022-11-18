@@ -1,5 +1,6 @@
 package bridge.domain
 
+import bridge.util.ErrorMessage.ERROR_NOT_VALID_COMMAND
 import bridge.util.ErrorMessage.ERROR_NOT_VALID_NUMBER
 import java.lang.IllegalArgumentException
 
@@ -20,7 +21,11 @@ object Validator {
     /**
      * 플레이어 이동 유효성 검사
      */
-    fun isValidMoving() {
+    fun isValidMoving(input: String): String {
+        if (!(input == "U" || input == "D")) {
+            throw IllegalArgumentException(ERROR_NOT_VALID_COMMAND)
+        }
 
+        return input
     }
 }

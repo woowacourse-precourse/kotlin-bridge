@@ -29,4 +29,21 @@ internal class ValidatorTest {
         Assertions.assertThat(result).isEqualTo(Validator.isValidBridgeSize(input))
     }
 
+    @ParameterizedTest
+    @CsvSource("U,U", "D,D")
+    @DisplayName("U와 D 값이 잘 들어왔는 지 확인")
+    fun `입력한_이동할_칸_유효성_통과시_확인`(input: String, result: String) {
+        val expected = Validator.isValidMoving(input)
+        Assertions.assertThat(result).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @CsvSource("123", "0", "d", "%", "1", "u", "d", "!", "01", "A")
+    @DisplayName("U와 D 가 아닌 값이 입력 값으로 들어왔을 시, 예외처리 발생")
+    fun `입력한_이동할_칸_유효성_실패시_예외처리`(input: String) {
+        Assertions.assertThatThrownBy {
+            Validator.isValidMoving(input)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("[ERROR] 유요한 값이 아닙니다.")
+    }
 }
