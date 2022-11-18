@@ -33,6 +33,10 @@
 ### Method 목록
 - printMap(): 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력
 - printResult(): 게임의 최종 결과를 정해진 형식에 맞춰 출력
+- printBridge(): 다리 길이 입력 문구 출력
+- printMove(): 이동할 칸 입력 문구 출력
+- printRetry(): 재시도 문구 출력
+- printTryNumber(): 총 시도 횟수 출력
 
 ## BridgeGame
 클래스 기능 요약: 이동과 재시도등 게임 진행 과정을 담당
