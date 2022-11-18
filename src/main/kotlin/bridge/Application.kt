@@ -25,8 +25,14 @@ fun main() {
     }
     if (passORfail == 1) { // 실패했을시
         println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        gameCommand = InputView().readGameCommand() // 커맨드 입력
+        if (gameCommand == "R") tryCount = BridgeGame().retry(tryCount, bridge)
+        if (gameCommand == "Q") {
+            println("최종 게임 결과")
+            OutputView().printMap(bridge, movingResult)
+        }
     }
-    if (passORfail == 0) { // 성공했을시
+    if (passORfail == 0) {
         println("최종 게임 결과")
         OutputView().printMap(bridge, movingResult)
     }

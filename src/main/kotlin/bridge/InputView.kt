@@ -39,6 +39,8 @@ class InputView {
      * 표시
      */
     fun readGameCommand(): String {
-        return ""
+        val gameCommand = readLine()!!
+        println(gameCommand)
+        return gameCommand
     }
 }
