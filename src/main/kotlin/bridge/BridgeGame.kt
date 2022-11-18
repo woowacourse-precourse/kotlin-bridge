@@ -42,6 +42,11 @@ class BridgeGame(private val size : Int) {
         bridge = Bridge(size)
     }
 
+    fun getGameResult() : Boolean {
+        if(size == bridge.getGameResult()) return true
+        return false
+    }
+
     fun getInputMovePossible(input: String) : Boolean {
         if(bridge.movePossible(BridgeDirection.valueOf(input), bridgeMap, idx)) return true
         return false
