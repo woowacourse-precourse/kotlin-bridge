@@ -55,20 +55,20 @@ class Regex(private val userInput: String) {
         }
     }
 
-    fun checkMoveIsInLength(userMove : String) {
+    private fun checkMoveIsInLength(userMove : String) {
         if(userMove.length != 1) {
             throw IllegalArgumentException()
         }
     }
 
-    fun checkMoveIsRight(userMove : String) {
+    private fun checkMoveIsRight(userMove : String) {
         when(userMove) {
             "U", "D" -> return
             else -> throw IllegalArgumentException()
         }
     }
 
-    fun checkRetryIsRight (userRetry : String) {
+    private fun checkRetryIsRight (userRetry : String) {
         when(userRetry.toCharArray()[0].code) {
             in 81..82, in 113..114 -> return
             else -> throw IllegalArgumentException()

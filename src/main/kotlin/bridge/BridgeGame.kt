@@ -28,7 +28,7 @@ class BridgeGame(private val bridge : List<String>) {
                 retry(upperList, downList)
             }
         }
-        OutputView(upperList, downList).printResult()
+        OutputView(upperList, downList).printResult(true, retryCount)
     }
 
     private fun compareUserMoveAndBridge(userMove : String, mBridge : MutableList<String>) : Boolean {
@@ -49,7 +49,7 @@ class BridgeGame(private val bridge : List<String>) {
             retryCount++
             move()
         } else {
-            OutputView(upperList, downList).printResult()
+            OutputView(upperList, downList).printResult(false, retryCount)
         }
 
     }

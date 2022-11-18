@@ -19,5 +19,13 @@ class OutputView(private val upperList: MutableList<String>, private val downLis
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(status : Boolean, retryCount : Int) {
+        printFinalResult()
+    }
+
+    private fun printFinalResult() {
+        PrintForm().printFinalResult()
+        PrintForm().printListToString(upperList)
+        PrintForm().printListToString(downList)
+    }
 }
