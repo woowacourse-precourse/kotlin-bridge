@@ -16,8 +16,13 @@ class InputView {
      * BridgeMaker 으로 인자를 보내고 값을 받는다
      * 표시
      */
-    fun readBridgeSize(): Int {
-        return 0
+    fun readBridgeSize(): List<String> {
+        println("다리의 길이를 입력해주세요.")
+        val bridgeSize = readLine()!!.toInt()
+        val numberGenerator: BridgeNumberGenerator = BridgeRandomNumberGenerator()
+        val bridge: List<String> = BridgeMaker(numberGenerator).makeBridge(bridgeSize)
+        println(bridgeSize)
+        return bridge
     }
 
     /**
