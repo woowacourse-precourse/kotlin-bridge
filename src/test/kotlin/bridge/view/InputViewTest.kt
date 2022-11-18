@@ -10,19 +10,12 @@ import org.junit.jupiter.params.provider.ValueSource
 
 internal class InputViewTest : NsTest() {
 
-    private lateinit var inputView: InputView
-
-    @BeforeEach
-    fun beforeEach() {
-        inputView = InputView()
-    }
-
     @ParameterizedTest
     @ValueSource(strings = ["3", "10", "20"])
     fun `다리길이입력_3to20숫자_정상`(input: String) {
         assertSimpleTest {
             run(input)
-            inputView.readBridgeSize()
+            InputView.readBridgeSize()
         }
     }
 
@@ -32,7 +25,7 @@ internal class InputViewTest : NsTest() {
         assertSimpleTest {
             val thrown = assertThrows<IllegalArgumentException> {
                 runException(input)
-                inputView.readBridgeSize()
+                InputView.readBridgeSize()
             }
             assertThat(thrown.message).contains(ERROR_MESSAGE)
         }
@@ -44,7 +37,7 @@ internal class InputViewTest : NsTest() {
         assertSimpleTest {
             val thrown = assertThrows<IllegalArgumentException> {
                 runException(input)
-                inputView.readBridgeSize()
+                InputView.readBridgeSize()
             }
             assertThat(thrown.message).contains(ERROR_MESSAGE)
         }
@@ -55,7 +48,7 @@ internal class InputViewTest : NsTest() {
     fun `이동할칸입력_UorD_정상`(input: String) {
         assertSimpleTest {
             run(input)
-            inputView.readMoving()
+            InputView.readMoving()
         }
     }
 
@@ -65,7 +58,7 @@ internal class InputViewTest : NsTest() {
         assertSimpleTest {
             val thrown = assertThrows<IllegalArgumentException> {
                 runException(input)
-                inputView.readMoving()
+                InputView.readMoving()
             }
             assertThat(thrown.message).contains(ERROR_MESSAGE)
         }
@@ -76,7 +69,7 @@ internal class InputViewTest : NsTest() {
     fun `게임재시작종료입력_RorQ_정상`(input: String) {
         assertSimpleTest {
             run(input)
-            inputView.askRetryGame()
+            InputView.askRetryGame()
         }
     }
 
@@ -86,7 +79,7 @@ internal class InputViewTest : NsTest() {
         assertSimpleTest {
             val thrown = assertThrows<IllegalArgumentException> {
                 runException(input)
-                inputView.askRetryGame()
+                InputView.askRetryGame()
             }
             assertThat(thrown.message).contains(ERROR_MESSAGE)
         }
