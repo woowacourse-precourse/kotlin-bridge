@@ -27,23 +27,11 @@ class OutputView {
         println("$ERROR_PREFIX ${exception.message}")
     }
 
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     fun printMap(bridgeGame: BridgeGame) {
-        val upLine = getLineOfMap(bridgeGame, Direction.U)
-        val downLine = getLineOfMap(bridgeGame, Direction.D)
-        println(upLine)
-        println(downLine + "\n")
+        printLine(bridgeGame, Direction.UP)
+        printLine(bridgeGame, Direction.DOWN)
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     fun printResult(bridgeGame: BridgeGame) {
         println(FINAL_GAME_RESULT)
         printMap(bridgeGame)
@@ -52,27 +40,24 @@ class OutputView {
         println(GAME_TRY_NUMBER_FORMAT.format(bridgeGame.tryCount))
     }
 
-    private fun getLineOfMap(bridgeGame: BridgeGame, direction: Direction): String {
-        val movingTrace = bridgeGame.movingTrace
-        val sb = StringBuilder(LINE_START)
-        for (moving in movingTrace) {
-            if (Direction.getByName(moving.first) == direction) {
-                val result = getMovingResult(moving.second)
-                sb.append(result)
-            } else {
-                sb.append(NOT_SELECTED_DIRECTION)
-            }
-            sb.append(LINE_SEPARATOR)
-        }
-        return sb.removeRange(sb.length - 3 until sb.length).toString() + LINE_END
+    private fun printLine(bridgeGame: BridgeGame, direction: Direction) {
+        val directionMarkers = bridgeGame.movingTrace.map { getDirectionMarker(direction, it) }
+        val line = directionMarkers.joinToString(LINE_SEPARATOR)
+        println("$LINE_START $line $LINE_END")
     }
 
-    private fun getMovingResult(result: Boolean): String {
-        return if (result) {
-            MOVING_SUCCESS
-        } else {
-            MOVING_FAIL
+    private fun getDirectionMarker(direction: Direction, result: BridgeGame.MovingResult): String {
+        if (result.direction == direction) {
+            return getMatchedMarker(result.success)
         }
+        return NOT_SELECTED_DIRECTION
+    }
+
+    private fun getMatchedMarker(match: Boolean): String {
+        if (match) {
+            return MOVING_SUCCESS
+        }
+        return MOVING_FAIL
     }
 
     companion object {
@@ -89,8 +74,8 @@ class OutputView {
         private const val MOVING_FAIL = "X"
         private const val NOT_SELECTED_DIRECTION = " "
 
-        private const val LINE_START = "[ "
-        private const val LINE_END = " ]"
+        private const val LINE_START = "["
+        private const val LINE_END = "]"
         private const val LINE_SEPARATOR = " | "
     }
 }

@@ -74,7 +74,7 @@ class BridgeGameTest {
     fun `이동 과정과 성공 여부를 기록해야 한다`() {
         setGameEnd()
         val expects = directions.map {
-            BridgeGame.MovingResult(Direction.getByName(it), true)
+            BridgeGame.MovingResult(Direction.getByDisplayName(it), true)
         }
         assert(game.movingTrace == expects)
     }

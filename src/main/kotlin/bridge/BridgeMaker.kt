@@ -14,8 +14,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         val directionNames = mutableListOf<String>()
         repeat(size) {
             val value = bridgeNumberGenerator.generate()
-            val direction = Direction.valueOf(value)
-            directionNames.add(direction.name)
+            val direction = Direction.getByValue(value)
+            directionNames.add(direction.toString())
         }
         return directionNames
     }

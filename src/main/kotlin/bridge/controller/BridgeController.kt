@@ -21,9 +21,10 @@ class BridgeController {
 
     private fun runUtil() {
         outputView.printStartText()
-        val size = requireBridgeSize()
-        val bridgeGame = makeBridgeGame(size)
+
+        val bridgeGame = makeBridgeGame(requireBridgeSize())
         playBridgeGame(bridgeGame)
+
         outputView.printResult(bridgeGame)
     }
 
@@ -33,18 +34,17 @@ class BridgeController {
     }
 
     private fun makeBridgeGame(size: Int): BridgeGame {
-        val bridge = Bridge.generate(size)
+        val bridge = Bridge.generateRandomBridge(size)
         return BridgeGame(bridge)
     }
 
     private fun playBridgeGame(bridgeGame: BridgeGame) {
         while (bridgeGame.isOnGoing()) {
-            val moving = requireMoving()
-            bridgeGame.move(moving)
+            bridgeGame.move(requireMoving())
             outputView.printMap(bridgeGame)
+
             if (bridgeGame.isFail()) {
-                val command = requireGameCommand()
-                bridgeGame.retry(command)
+                bridgeGame.retry(requireGameCommand())
             }
         }
     }

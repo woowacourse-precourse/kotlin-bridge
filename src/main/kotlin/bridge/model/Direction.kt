@@ -1,22 +1,22 @@
 package bridge.model
 
-enum class Direction(private val value: Int) {
-    U(1),
-    D(0);
+enum class Direction(private val value: Int, val displayName: String) {
+    UP(1, "U"), DOWN(0, "D");
+
+    override fun toString() = this.displayName
 
     companion object {
-        fun valueOf(value: Int): Direction {
-            return Direction.values()
-                .firstOrNull { it.value == value }
-                ?: throw IllegalArgumentException(ERROR_NO_MATCHED_DIRECTION.format(value.toString()))
+        private const val ERROR_NO_MATCHED_DIRECTION = "%s와 일치하는 Direction이 없습니다."
+        fun getByValue(value: Int): Direction {
+            return Direction.values().firstOrNull { it.value == value } ?: throw IllegalArgumentException(
+                ERROR_NO_MATCHED_DIRECTION.format(value.toString())
+            )
         }
 
-        fun getByName(name: String): Direction {
-            return Direction.values()
-                .firstOrNull { it.name == name }
-                ?: throw IllegalArgumentException(ERROR_NO_MATCHED_DIRECTION.format(name))
+        fun getByDisplayName(displayName: String): Direction {
+            return Direction.values().firstOrNull { it.displayName == displayName } ?: throw IllegalArgumentException(
+                ERROR_NO_MATCHED_DIRECTION.format(displayName)
+            )
         }
-
-        private const val ERROR_NO_MATCHED_DIRECTION = "%s와 맞는 Direction이 없습니다."
     }
 }
