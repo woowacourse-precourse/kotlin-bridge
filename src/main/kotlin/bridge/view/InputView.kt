@@ -1,7 +1,8 @@
 package bridge.view
 
 import bridge.InputValidator
-import bridge.enum.InputSentence
+import bridge.domain.Direction
+import bridge.sentence.InputSentence
 import camp.nextstep.edu.missionutils.Console
 
 /**
@@ -21,8 +22,10 @@ class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    fun readMoving(): String {
-        return ""
+    fun readMoving(): Direction {
+        InputSentence.MOVE.print()
+        val input = Console.readLine()
+        return Direction.getDirection(input)
     }
 
     /**

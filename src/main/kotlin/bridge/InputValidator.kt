@@ -1,7 +1,6 @@
 package bridge
 
-import bridge.enum.Direction
-import bridge.enum.ErrorSentence
+import bridge.sentence.ErrorSentence
 
 object InputValidator {
     fun validateDigitNumber(input: String) {
