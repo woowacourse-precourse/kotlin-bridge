@@ -10,7 +10,6 @@ class InputView {
 
     fun readBridgeSize() = Console.readLine().toInt()
 
-
     fun readMoving(): String = Console.readLine()
 
     /**

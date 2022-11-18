@@ -1,12 +1,12 @@
 package bridge
 
-class Bridge (private val bridge:List<String>){
+class Bridge(private val bridge: List<String>) {
     var upBridge = ""
-    var downBridge =""
+    var downBridge = ""
     var currentLocation = 0
     private var hit = ""
-    fun matches(upDown : String): Boolean {
-        if(bridge[currentLocation] == upDown){
+    fun matches(upDown: String): Boolean {
+        if (bridge[currentLocation] == upDown) {
             return true
         }
         return false
@@ -15,18 +15,19 @@ class Bridge (private val bridge:List<String>){
     fun setHit(hit: String) {
         this.hit = hit
     }
+
     fun getHit() = hit
     fun clear() {
         currentLocation = 0
         upBridge = ""
         downBridge = ""
-        hit =""
+        hit = ""
     }
 
     fun finish(): Boolean {
-        if(currentLocation == bridge.size){
-            if(getHit() == "O")
-            return true
+        if (currentLocation == bridge.size) {
+            if (getHit() == "O")
+                return true
         }
         return false
     }

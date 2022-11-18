@@ -22,13 +22,13 @@ class BridgeGame {
             ifU(bridge, hit)
         }
         if (upDown == "D") {
-           ifD(bridge, hit)
+            ifD(bridge, hit)
         }
         bridge.setHit(hit)
         bridge.moveCurrentLocation()
     }
 
-    private fun ifU(bridge: Bridge, hit: String){
+    private fun ifU(bridge: Bridge, hit: String) {
         if (bridge.currentLocation != 0) {
             bridge.upBridge += "|"
             bridge.downBridge += "|"
