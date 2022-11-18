@@ -15,5 +15,4 @@ fun main() {
         BridgeGame(bridgeGame, START_TRY).move(START_LOCATION)
     } catch (_: IllegalArgumentException) {
     }
-
 }
