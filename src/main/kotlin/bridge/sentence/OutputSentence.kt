@@ -1,4 +1,4 @@
-package bridge.enum
+package bridge.sentence
 
 enum class OutputSentence(private val sentence: String) {
     START("다리 건너기 게임을 시작합니다."),

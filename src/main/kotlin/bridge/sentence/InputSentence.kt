@@ -1,4 +1,4 @@
-package bridge.enum
+package bridge.sentence
 
 enum class InputSentence(private val sentence: String) {
     BRIDGE_LENGTH("다리의 길이를 입력해주세요."),

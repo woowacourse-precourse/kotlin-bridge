@@ -1,4 +1,4 @@
-package bridge.enum
+package bridge.domain
 
 enum class Direction(private val hotKey: String, private val number: Int) {
     UP("U", 1),
