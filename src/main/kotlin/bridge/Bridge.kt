@@ -2,31 +2,16 @@ package bridge
 
 class Bridge(private val size: Int) {
 
-    private val upBridge = mutableListOf<String>()
-    private val downBridge = mutableListOf<String>()
-    private var idx : Int = 0
+    private val bridgeResult = BridgeResult()
 
-
-    fun move(input: String, bridgeMap: List<String>) {
-        when(input) {
-            "U" -> moveUp(input, bridgeMap)
-            "D" -> moveDown(input, bridgeMap)
-        }
-        idx++
+    fun move(input: BridgeDirection, bridgeMap: List<String>, idx : Int) {
+        val mark = movePossibleMark(movePossible(input, bridgeMap, idx))
+        bridgeResult.setMoveResult(input, mark)
     }
 
-    fun moveUp(input : String, bridgeMap : List<String>) {
-        upBridge.add(movePossibleMark(movePossible(input, bridgeMap)))
-        downBridge.add(" ")
-    }
 
-    fun moveDown(input : String, bridgeMap : List<String>) {
-        downBridge.add(movePossibleMark(movePossible(input, bridgeMap)))
-        upBridge.add(" ")
-    }
-
-    fun movePossible(input : String, bridgeMap : List<String>) : Boolean {
-        return input.equals(bridgeMap[idx])
+    fun movePossible(input : BridgeDirection, bridgeMap : List<String>, idx: Int) : Boolean {
+        return input.name.equals(bridgeMap[idx])
     }
 
     fun movePossibleMark(isPossible : Boolean) : String = when(isPossible) {
