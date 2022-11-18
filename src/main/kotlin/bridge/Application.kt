@@ -11,7 +11,7 @@ fun main() {
     try {
         val bridgeLength = InputView().readBridgeSize()
         val bridgeGame = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
-        println(bridgeGame)
+
         BridgeGame(bridgeGame, START_TRY).move(START_LOCATION)
     } catch (_: IllegalArgumentException) {
     }

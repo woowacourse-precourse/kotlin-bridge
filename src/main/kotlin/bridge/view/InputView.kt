@@ -16,7 +16,6 @@ class InputView {
     fun readBridgeSize(): Int {
         println(INPUT_BRIDGE_LENGTH)
         val inputBridgeSize = input()
-
         BridgeLengthException.exceptions(inputBridgeSize)
         return inputBridgeSize.toInt()
     }
@@ -27,7 +26,6 @@ class InputView {
     fun readMoving(): String {
         println(INPUT_CHOICE_ROOM)
         val inputMove = input()
-
         MoveException.exceptions(inputMove)
         return inputMove
     }
@@ -38,7 +36,6 @@ class InputView {
     fun readGameCommand(): String {
         println(INPUT_CHOICE_RESTART)
         val checkRetry = input()
-
         RetryException.exceptions(checkRetry)
         return checkRetry
     }

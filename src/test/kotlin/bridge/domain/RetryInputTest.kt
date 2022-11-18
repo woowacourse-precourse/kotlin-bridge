@@ -7,7 +7,6 @@ import org.junit.jupiter.api.assertThrows
 import java.lang.IllegalArgumentException
 
 class RetryInputTest {
-
     @Test
     fun `retryInput에 null이 들어갈 경우 예외가 발생한다`() {
         assertThrows<IllegalArgumentException> {

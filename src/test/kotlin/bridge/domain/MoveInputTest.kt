@@ -1,12 +1,6 @@
 package bridge.domain
 
-import bridge.BridgeGame
-import bridge.BridgeMaker
-import bridge.BridgeRandomNumberGenerator
 import bridge.Exception.MoveException
-import bridge.resources.DOWN
-import bridge.resources.UP
-import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import java.lang.IllegalArgumentException

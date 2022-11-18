@@ -26,7 +26,7 @@ class BridgeGame(val bridge: List<String>, private val retry: Int) {
         if (!answer) retry(location)
     }
 
-    fun inputMove() = InputView().readMoving()
+    private fun inputMove() = InputView().readMoving()
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -36,6 +36,7 @@ class BridgeGame(val bridge: List<String>, private val retry: Int) {
      */
     fun retry(location: Int) {
         val retryCheck = inputRetry()
+
         if (retryCheck == RETRY) BridgeGame(this.bridge, this.retry + NEXT_TRY).move(START_LOCATION)
         if (retryCheck == QUIT) {
             OutputView().printResult(bridge, location, false)
@@ -43,5 +44,5 @@ class BridgeGame(val bridge: List<String>, private val retry: Int) {
         }
     }
 
-    fun inputRetry() = InputView().readGameCommand()
+    private fun inputRetry() = InputView().readGameCommand()
 }
