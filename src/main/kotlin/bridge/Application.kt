@@ -9,22 +9,33 @@ fun main() {
     val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
     val answerBridge = bridgeMaker.makeBridge(bridgeLength)
 
-    var whereToMove = InputView().readMoving()
     var inputBridge = listOf<String>()
     var success = true
 
-    inputBridge = inputBridge.plus(whereToMove)
-    var inputBridgeMutable = inputBridge.toMutableList()
+    while (success) {
+        var whereToMove = InputView().readMoving()
 
-    inputBridge.forEachIndexed { index, it ->
-        if (answerBridge[index] != it) {
-            success = false
-            inputBridgeMutable[index] = it + "X"
-            inputBridge = inputBridgeMutable.toList()
+        inputBridge = inputBridge.plus(whereToMove)
+        var inputBridgeMutable = inputBridge.toMutableList()
+
+        inputBridge.forEachIndexed { index, it ->
+            if (answerBridge[index] != it) {
+                success = false
+                inputBridgeMutable[index] = it + "X"
+                inputBridge = inputBridgeMutable.toList()
+            }
+        }
+
+        var outputView = OutputView()
+        outputView.printMap(inputBridge)
+
+        if (!success) {
+            var restartGame = InputView().readGameCommand()
+            when (restartGame) {
+                "R" -> BridgeGame().retry()
+                "Q" -> OutputView().printResult()
+            }
         }
     }
-
-    var outputView = OutputView()
-    outputView.printMap(inputBridge)
 
 }
