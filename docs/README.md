@@ -50,8 +50,8 @@
 
 ### 3. BridgeGame
 - BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
-  - [ ] 클래스 생성자 `BridgeGame.init()`
-    - [ ] 다리를 만든다.`BridgeMaker.makeBridge()`
+  - [x] 클래스 생성자 `BridgeGame.init()`
+    - [x] 다리를 만든다.`BridgeMaker.makeBridge()`
   - [ ] 다리를 이동한다. `$BridgeGame.move()`
     - [ ] 현재까지의 Map을 가져온다.
     - [ ] 플레이어 이동할 칸을 입력 받는다 `InputView.readMoving()`
