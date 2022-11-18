@@ -2,12 +2,15 @@ package bridge
 
 fun main() {
     try {
-        val bridge = generateBridge()
-        print(bridge)
-
+        start()
     } catch (e: IllegalArgumentException) {
         return
     }
+}
+
+fun start() {
+    val bridge = generateBridge()
+    playGame(bridge)
 }
 
 fun generateBridge(): List<String> {
@@ -15,6 +18,16 @@ fun generateBridge(): List<String> {
     val bridgeSize = InputView().readBridgeSize()
     val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
     return bridgeMaker.makeBridge(bridgeSize)
+}
+
+fun playGame(bridge: List<String>) {
+    val bridgeGame =  BridgeGame(bridge)
+    var isOnGame = true
+    while (isOnGame) {
+        playerMove(bridgeGame)
+        isOnGame = playerOnGame(bridgeGame)
+    }
+    OutputView().printResult(bridgeGame)
 }
 
 
