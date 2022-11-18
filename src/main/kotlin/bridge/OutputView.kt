@@ -25,42 +25,40 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(bridge: List<String>, userRoute: MutableList<String>, upDown: List<String>) {
-
-    }
+    fun printResult(bridge: List<String>, userRoute: MutableList<String>, upDown: List<String>) {}
 
     fun printCorrectMap(userRoute: MutableList<String>, i : Int, move : String){
         if (userRoute[i] == move) {
-
+            print(" O ")
         }
         if (userRoute[i] != move) {
-
+            print("   ")
         }
     }
 
     fun printWrongMap(userRoute: MutableList<String>, i: Int, move: String) : Int{
         if (userRoute[i] == move){
-
+            print(" X ")
             return 1
         }
         if (userRoute[i] != move){
-
+            print("   ")
         }
         return  0
     }
 
     fun printStartMap(i: Int){
         if (i == 0){
-
+            print("[")
         }
     }
 
     fun printConnectMap(userRoute: MutableList<String>, i: Int){
         if (i != userRoute.size - 1) {
-
+            print("|")
         }
         if (i == userRoute.size - 1) {
-
+            println("]")
         }
     }
 
