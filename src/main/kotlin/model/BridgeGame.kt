@@ -10,24 +10,22 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(inputMove : String, answerMove: List<String>) : HashMap<String, String> {
+    fun move(inputMove : String, answerMoveSingle: String) : HashMap<String, String> {
         val hashMap = HashMap<String, String>()
-        for (move in answerMove) {
-            if (inputMove == "U") {
-                if (inputMove == move) {
-                    hashMap["U"] = "O"
-                    return hashMap
-                }
-                hashMap["U"] = "X"
-                return hashMap
-            } else if (inputMove == "D") {
-                if (inputMove == move) {
-                    hashMap["D"] = "0"
-                    return hashMap
-                }
-                hashMap["D"] = "X"
+        if (inputMove == "U") {
+            if (inputMove == answerMoveSingle) {
+                hashMap["U"] = "O"
                 return hashMap
             }
+            hashMap["U"] = "X"
+            return hashMap
+        } else if (inputMove == "D") {
+            if (inputMove == answerMoveSingle) {
+                hashMap["D"] = "O"
+                return hashMap
+            }
+            hashMap["D"] = "X"
+            return hashMap
         }
         return hashMap
     }
