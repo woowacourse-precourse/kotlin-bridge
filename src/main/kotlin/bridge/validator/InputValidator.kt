@@ -20,4 +20,11 @@ object InputValidator {
             }
         }
     }
+
+    fun validateInvalidMoveInput(input: String) {
+        val hasInvalidMoveInput = (input != "U" || input != "D")
+        if (hasInvalidMoveInput) throw IllegalArgumentException()
+    }
+
+
 }
