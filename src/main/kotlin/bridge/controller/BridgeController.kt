@@ -5,7 +5,6 @@ import bridge.model.BridgeGame
 import bridge.view.InputView
 import bridge.view.OutputView
 
-// TODO: 잘못된 입력 다시 받기
 class BridgeController {
     private val inputView = InputView()
     private val outputView = OutputView()

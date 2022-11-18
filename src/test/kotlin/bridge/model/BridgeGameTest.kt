@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-// TODO: use ValueSource
 class BridgeGameTest {
     private var _game: BridgeGame? = null
     private val game: BridgeGame get() = _game!!
