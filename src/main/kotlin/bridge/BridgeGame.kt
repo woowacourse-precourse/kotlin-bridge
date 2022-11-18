@@ -42,6 +42,7 @@ class BridgeGame {
             var gameControl = InputView().readGameCommand()
             if (gameControl == "Q"){
                 OutputView().printResult(bridge, userRoute, upDown)
+                OutputView().printGameSituation(control, times)
                 return "break"
             }
             if (gameControl == "R") { retry() }
