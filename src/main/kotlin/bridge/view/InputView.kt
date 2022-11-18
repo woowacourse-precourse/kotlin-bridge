@@ -1,11 +1,9 @@
 package bridge.view
 
 import bridge.common.toIntOrThrow
-import bridge.constants.ErrorMessages
-import bridge.data.Bridge
+import bridge.constants.ErrorMessage
+import bridge.domain.Bridge
 import camp.nextstep.edu.missionutils.Console.readLine
-
-private typealias InputError = ErrorMessages.InputViewEnum
 
 class InputView {
 
@@ -13,7 +11,7 @@ class InputView {
         val bridgeSize = readLine().toIntOrThrow()
 
         require(bridgeSize in Bridge.SizeRange) {
-            InputError.OutOfBridgeSize
+            ErrorMessage.OutOfBridgeSize
         }
 
         return bridgeSize
@@ -23,7 +21,7 @@ class InputView {
         val bridgeType = readLine()
 
         require(Bridge.Type.contains(bridgeType)) {
-            InputError.InvalidBridgeType
+            ErrorMessage.InvalidBridgeType
         }
 
         return bridgeType
@@ -33,7 +31,7 @@ class InputView {
         val command = readLine()
 
         require(command == RETRY || command == QUIT) {
-            InputError.InvalidGameCommand
+            ErrorMessage.InvalidGameCommand
         }
 
         return command == RETRY
