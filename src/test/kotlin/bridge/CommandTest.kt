@@ -12,4 +12,12 @@ class CommandTest {
             Command(execution)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["r", "q"])
+    fun `명령어가 소문자인 경우 예외 테스트`(execution: String) {
+        assertThrows<IllegalArgumentException> {
+            Command(execution)
+        }
+    }
 }
