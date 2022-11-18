@@ -6,7 +6,14 @@ fun main() {
 
 private fun onProgramStart() {
     PrintForm().printGameStartText()
-    println(getUserInputBridgeLength())
+    onStartGame()
+}
+
+private fun onStartGame() {
+    val userInputBridgeLength = getUserInputBridgeLength()
+    val bridge = makeBridge(userInputBridgeLength)
 }
 
 private fun getUserInputBridgeLength() = InputView().readBridgeSize()
+
+private fun makeBridge(userInputNumber : Int) : List<String> = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(userInputNumber)
