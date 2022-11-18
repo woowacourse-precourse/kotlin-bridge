@@ -14,5 +14,8 @@ object BridgeException {
         require(word == "U" || word == "D") { BridgeMessage.InputMovingError.word }
     }
 
+    fun isitRorQ(word : String){
+        require(word=="R" || word == "Q") {BridgeMessage.InputRetryError}
+    }
 
 }

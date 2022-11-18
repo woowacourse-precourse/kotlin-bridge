@@ -31,9 +31,7 @@ class InputView {
 
         fun readGameCommand(): Boolean {
             val userInput = Console.readLine()
-
-            //R이나 Q인지 확인하는 예외처리 작성
-
+            BridgeException.isitRorQ(userInput)
             return userInput == QUIT
         }
     }
