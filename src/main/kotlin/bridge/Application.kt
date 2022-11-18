@@ -21,4 +21,7 @@ fun main() {
         }
     }
 
+    var outputView = OutputView()
+    outputView.printMap(inputBridge)
+
 }
