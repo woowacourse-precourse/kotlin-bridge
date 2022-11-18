@@ -27,8 +27,20 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        var userInputMovement = getUserInputMovement()
+        while(!Regex(userInputMovement).checkUserMovementRegexes()) {
+            PrintForm().printUserInputError()
+            userInputMovement = getUserInputBridgeSize()
+        }
+        return userInputMovement
     }
+
+    private fun getUserInputMovement() : String {
+        PrintForm().printUserMovementForm()
+        return Console.readLine()
+    }
+
+
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.

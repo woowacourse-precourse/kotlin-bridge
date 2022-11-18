@@ -15,6 +15,17 @@ class Regex(private val userInput: String) {
         }
     }
 
+    fun checkUserMovementRegexes() : Boolean {
+        return try {
+            checkItsNull(userInput)
+            checkMoveIsInLength(userInput)
+            checkMoveIsRight(userInput)
+            true
+        } catch (e : IllegalArgumentException) {
+            false
+        }
+    }
+
     private fun checkItsNull(userInput: String) {
         if(userInput.isEmpty()) {
             throw IllegalArgumentException()
@@ -30,6 +41,19 @@ class Regex(private val userInput: String) {
     private fun checkBridgeLengthInRange(userInput: String) {
         if(userInput.toInt() !in 3..20) {
             throw IllegalArgumentException()
+        }
+    }
+
+    fun checkMoveIsInLength(userMove : String) {
+        if(userMove.length != 1) {
+            throw IllegalArgumentException()
+        }
+    }
+
+    fun checkMoveIsRight(userMove : String) {
+        when(userMove) {
+            "U", "D" -> return
+            else -> throw IllegalArgumentException()
         }
     }
 }

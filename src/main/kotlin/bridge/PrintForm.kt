@@ -12,4 +12,8 @@ class PrintForm {
     fun printUserInputError() {
         println("[ERROR] 입력값에 오류가 있습니다. 다시 입력해주세요.")
     }
+
+    fun printUserMovementForm() {
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+    }
 }
