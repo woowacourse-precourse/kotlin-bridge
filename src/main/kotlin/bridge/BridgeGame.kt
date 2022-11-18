@@ -18,7 +18,7 @@ class BridgeGame(private val bridges: List<String>) {
     fun move(direction: String) {
         if (direction == bridges[currentPosition]) {
             addSide(direction, "O")
-            currentPosition++
+            nextBridge()
         } else {
             addSide(direction, "X")
         }
@@ -51,7 +51,14 @@ class BridgeGame(private val bridges: List<String>) {
         }
     }
 
+    private fun nextBridge() = currentPosition.inc()
     fun checkFail() = downSide.contains("X") || upSide.contains("X")
 
     fun checkEnd() = currentPosition == bridges.size
+
+    fun getUpSide() = upSide
+
+    fun getDownSide() = downSide
+
+    fun getTryCount() = tryCount
 }
