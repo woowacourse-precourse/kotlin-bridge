@@ -20,7 +20,7 @@ class InputView {
     fun readMoving(): String {
         val bridgeType = readLine()
 
-        require(Bridge.Type.contains(bridgeType)) {
+        require(Bridge.Element.contains(bridgeType)) {
             ErrorMessage.InvalidBridgeType
         }
 

@@ -1,8 +1,11 @@
-package bridge.data
+package bridge.domain
+
+import bridge.constants.ErrorMessage
 
 class Bridge {
 
-    enum class Type {
+
+    enum class Element {
         U, D;
 
         companion object {
