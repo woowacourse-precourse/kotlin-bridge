@@ -12,13 +12,11 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap(bridge: Bridge, path: Path) {
-        val currentRound = path.currentRound()
-        val bridgeMap = BridgeMap(BridgeMap.defaultMap(currentRound), bridge, path).makeMap()
-
-        bridgeMap.forEach { floor ->
+    fun printMap(route: List<List<Mark>>) {
+        route.forEach { floor ->
             println(floor.convertAsBridgeMap())
         }
+        printNewLine()
     }
 
     /**
