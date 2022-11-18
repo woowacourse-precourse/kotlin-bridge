@@ -68,4 +68,35 @@ class InputViewTest {
             InputView("UU").readMoving()
         }
     }
+
+    @Test
+    @DisplayName("입력값이 R일 때 정상적으로 입력받는다.")
+    fun `readGameCommand normal R`() {
+        assertSimpleTest {
+            val gameRestart = InputView("R").readGameCommand()
+            assertThat(gameRestart).isEqualTo("R")
+        }
+    }
+    @Test
+    @DisplayName("입력값이 Q일 때 정상적으로 입력받는다.")
+    fun `readGameCommand normal Q`() {
+        assertSimpleTest {
+            val gameQuit = InputView("Q").readGameCommand()
+            assertThat(gameQuit).isEqualTo("Q")
+        }
+    }
+    @Test
+    @DisplayName("입력값이 R, Q가 아닐 때 예외를 발생시킨다.")
+    fun `readGameCommand exception !RQ`() {
+        assertThrows<IllegalArgumentException> {
+            InputView("a").readGameCommand()
+        }
+    }
+    @Test
+    @DisplayName("입력값이 RR일 때 예외를 발생시킨다.")
+    fun `readGameCommand exception RR`() {
+        assertThrows<IllegalArgumentException> {
+            InputView("RR").readGameCommand()
+        }
+    }
 }

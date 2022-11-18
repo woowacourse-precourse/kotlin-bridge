@@ -36,11 +36,18 @@ class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    fun readGameCommand(): String {
+    tailrec fun readGameCommand(): String {
         println(GAME_COMMAND_MESSAGE)
-        return ""
+        val gameCommand = Console.readLine()
+        return if (runCatching{validateGameCommand(gameCommand)}.onFailure { println(ERROR_GAME_COMMAND_MESSAGE) }.isSuccess) gameCommand
+        else readGameCommand()
     }
-
+    @Throws(IllegalArgumentException::class)
+    fun validateGameCommand(gameCommand: String) {
+        val gameCommandList = listOf("R", "Q")
+        if (!gameCommandList.contains(gameCommand)) throw IllegalArgumentException(ERROR_GAME_COMMAND_MESSAGE)
+    }
+    
     companion object {
         private const val BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요."
         private const val MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
@@ -48,5 +55,6 @@ class InputView {
 
         private const val ERROR_BRIDGE_SIZE_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."
         private const val ERROR_MOVING_MESSAGE = "[ERROR] 이동할 칸은 U 또는 D여야 합니다."
+        private const val ERROR_GAME_COMMAND_MESSAGE = "[ERROR] 게임을 다시 시작할지 종료할지는 R 또는 Q여야 합니다."
     }
 }
