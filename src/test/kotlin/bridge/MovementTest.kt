@@ -28,4 +28,12 @@ class MovementTest {
             Movement(direction)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["R", "L"])
+    fun `이동 방향은 U 또는 D가 아닌 경우 예외 테스트`(direction: String) {
+        assertThrows<IllegalArgumentException> {
+            Movement(direction)
+        }
+    }
 }
