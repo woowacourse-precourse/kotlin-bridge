@@ -4,8 +4,12 @@ object BridgeGameManager {
 
     fun GameStart(){
         val maker = BridgeMaker(BridgeRandomNumberGenerator())
-        maker.makeBridge()
+        val bridge = maker.makeBridge()
+        moving(bridge)
 
+    }
+
+    fun moving(bridge : List<Int>){
 
     }
 }

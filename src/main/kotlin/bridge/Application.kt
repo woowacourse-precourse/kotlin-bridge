@@ -1,5 +1,10 @@
 package bridge
 
 fun main() {
-    // TODO: 프로그램 구현
+    try {
+        BridgeGameManager.GameStart()
+    }
+    catch(error : IllegalArgumentException){
+        println(error.message)
+    }
 }
