@@ -13,12 +13,12 @@ class UnitTest : NsTest()  {
         Assertions.assertThat(bridge).containsExactly("U", "D", "D")
     }
 
-//    @Test
-//    fun `라운드마다 플레이어가 이동할 칸을 입력 받는다`() {
-//        val checkMove = BridgeGame().move("D")
-//        Assertions.assertThat(checkMove).containsExactly()
-//    }
-//
+    @Test
+    fun `라운드마다 플레이어가 이동할 칸을 입력 받는다`() {
+        val checkMove = BridgeGame().move("U","D")
+        Assertions.assertThat(checkMove).contains("X")
+    }
+
 //    @Test
 //    fun `게임 재시작, 종료 여부를 입력 받는다`() { // 재
 //        val checkEnd = BridgeGame().retry("Q")
