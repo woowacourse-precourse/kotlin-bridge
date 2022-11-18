@@ -21,4 +21,12 @@ class BridgeResult {
         downBridge.add(mark)
         upBridge.add(" ")
     }
+
+    fun upBridgeResult() : String {
+        return upBridge.joinToString(prefix = "[ ", separator = " | ", postfix = " ]")
+    }
+
+    fun downBridgeResult() : String {
+        return downBridge.joinToString(prefix = "[ ", separator = " | ", postfix = " ]")
+    }
 }

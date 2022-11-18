@@ -9,7 +9,6 @@ class Bridge(private val size: Int) {
         bridgeResult.setMoveResult(input, mark)
     }
 
-
     fun movePossible(input : BridgeDirection, bridgeMap : List<String>, idx: Int) : Boolean {
         return input.name.equals(bridgeMap[idx])
     }
@@ -19,13 +18,10 @@ class Bridge(private val size: Int) {
         false -> MOVE_IMPOSSIBLE_MARK
     }
 
-    fun upBridgeResult() : String {
-        return upBridge.joinToString(prefix = "[ ", separator = " | ", postfix = " ]")
-    }
+    fun getUpBridgeResult() : String = bridgeResult.upBridgeResult()
 
-    fun downBridgeResult() : String {
-        return downBridge.joinToString(prefix = "[ ", separator = " | ", postfix = " ]")
-    }
+    fun getDownBridgeResult() : String = bridgeResult.downBridgeResult()
+
 
     companion object {
         const val MOVE_POSSIBLE_MARK = "O"
