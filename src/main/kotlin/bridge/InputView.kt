@@ -10,8 +10,8 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        println("다리의 길이를 입력해주세요.")
-        while(true) {
+        println("\n다리의 길이를 입력해주세요.")
+        while (true) {
             try {
                 return sizeException(readLine())
             } catch (e: IllegalArgumentException) {
@@ -25,10 +25,10 @@ class InputView {
      */
     fun readMoving(): String {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
-        while(true){
-            try{
+        while (true) {
+            try {
                 return moveException(readLine())
-            }catch(e: IllegalArgumentException){
+            } catch (e: IllegalArgumentException) {
                 continue
             }
         }
@@ -39,16 +39,16 @@ class InputView {
      */
     fun readGameCommand(): String {
         println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
-        while(true){
-            try{
+        while (true) {
+            try {
                 return commandException(readLine())
-            }catch(e: IllegalArgumentException){
+            } catch (e: IllegalArgumentException) {
                 continue
             }
         }
     }
 
-    private fun sizeException(size: String?) : Int{
+    private fun sizeException(size: String?): Int {
         require(!size.isNullOrEmpty()) { println(ERROR_NULL) }
         val regex = "[0-9]+".toRegex()
         require(size.matches(regex)) { println(ERROR_NOT_NUMBER) }
@@ -56,15 +56,15 @@ class InputView {
         return size.toInt()
     }
 
-    private fun moveException(move: String?) : String{
+    private fun moveException(move: String?): String {
         require(!move.isNullOrEmpty()) { println(ERROR_NULL) }
-        require(move =="U"||move=="D") { println(ERROR_NOT_U_D) }
+        require(move == "U" || move == "D") { println(ERROR_NOT_U_D) }
         return move
     }
 
-    private fun commandException(command: String?) : String{
+    private fun commandException(command: String?): String {
         require(!command.isNullOrEmpty()) { println(ERROR_NULL) }
-        require(command =="R"||command=="Q") { println(ERROR_NOT_R_Q) }
+        require(command == "R" || command == "Q") { println(ERROR_NOT_R_Q) }
         return command
     }
 

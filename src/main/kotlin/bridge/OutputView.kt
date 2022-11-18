@@ -12,19 +12,20 @@ class OutputView {
     fun printMap() {
         printUpBridge()
         printDownBridge()
+        println("")
     }
 
-    fun printUpBridge(){
+    fun printUpBridge() {
         print("[ ")
-        for(index in 0 until order){
+        for (index in 0 until order) {
             print("${BridgeGame.upBridge[index]} | ")
         }
         print("${BridgeGame.upBridge[order]} ]\n")
     }
 
-    fun printDownBridge(){
+    fun printDownBridge() {
         print("[ ")
-        for(index in 0 until order){
+        for (index in 0 until order) {
             print("${BridgeGame.downBridge[index]} | ")
         }
         print("${BridgeGame.downBridge[order]} ]\n")
@@ -35,11 +36,11 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(success : Boolean) {
+    fun printResult(success: Boolean) {
         println("최종 게임 결과")
         printMap()
         print("게임 성공 여부: ")
-        when(success){
+        when (success) {
             true -> print("성공\n")
             false -> print("실패\n")
         }
