@@ -5,16 +5,16 @@ import constant.Message
 class BridgeSizeChecker(private val input: String?) {
     fun checkAll(): Boolean {
         try {
-            checkNumber()
+            checkNotNumber()
             checkRange()
-        } catch (e: java.lang.IllegalArgumentException) {
+        } catch (e: IllegalArgumentException) {
             println(e.message)
             return true
         }
         return false
     }
 
-    private fun checkNumber() {
+    private fun checkNotNumber() {
         if(input?.toIntOrNull() == null) {
             throw IllegalArgumentException(Message.BRIDGE_SIZE_ERROR.message)
         }
