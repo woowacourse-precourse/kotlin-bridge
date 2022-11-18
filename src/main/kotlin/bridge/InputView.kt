@@ -21,9 +21,9 @@ class InputView {
         }
 
         fun readMoving(): Int {
-            val userinput = Console.readLine()
-            BridgeException.isitUorD(userinput)
-            if (userinput == up)
+            val userInput = Console.readLine()
+            BridgeException.isitUorD(userInput)
+            if (userInput == up)
                 return BridgeParameter.Up.value
             return BridgeParameter.Down.value
         }

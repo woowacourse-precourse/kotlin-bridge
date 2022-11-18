@@ -11,8 +11,9 @@ object BridgeGameManager {
     }
 
     private fun moving(bridge: List<Int>) {
-        val game = BridgeGame()
-        while (true)
+        while (true){
+            val game = BridgeGame()
             game.move(bridge)
+        }
     }
 }
