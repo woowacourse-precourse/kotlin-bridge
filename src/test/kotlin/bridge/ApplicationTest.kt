@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.utils.BridgeMaker
+import bridge.utils.BridgeNumberGenerator
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
