@@ -44,3 +44,9 @@ fun playerOnGame(bridgeGame: BridgeGame): Boolean {
     return bridgeGame.over()
 }
 
+fun playerMove(bridgeGame: BridgeGame) {
+    OutputView.printUpOrDown()
+    val moving = InputView().readMoving()
+    bridgeGame.move(moving)
+    OutputView().printMap(bridgeGame)
+}
