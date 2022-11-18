@@ -20,7 +20,7 @@ class BridgeGame {
             userRoute.add(userMove)
 
             for (move in upDown) { control = OutputView().printMap(bridge, userRoute, move) }
-            if (userRoute == bridge) { correctAnswer() }
+            if (userRoute == bridge) { correctAnswer(bridge, upDown) }
         }
     }
 
@@ -32,5 +32,8 @@ class BridgeGame {
      */
     fun retry() {}
 
-    fun correctAnswer(){}
+     fun correctAnswer(bridge: List<String>, upDown: List<String>){
+        OutputView().printResult(bridge, userRoute, upDown)
+        OutputView().printGameSituation(control, times)
+    }
 }
