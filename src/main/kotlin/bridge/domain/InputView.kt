@@ -44,8 +44,30 @@ class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    fun readMoving(): String {
-        return ""
+    private fun readMoving(): String {
+        outputView.printMove()
+        return try {
+            validateMoving()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            ""
+        }
+    }
+
+    private fun validateMoving(): String {
+        val moving = Console.readLine().trim()
+        require((moving == "U") or (moving == "D")){
+            throw IllegalArgumentException("$PREFIX $MOVE_EXCEPTION")
+        }
+        return moving
+    }
+
+    fun retryReadMoving(): String {
+        var moving: String
+        do {
+            moving = readMoving()
+        } while (moving == "")
+        return moving
     }
 
     /**
@@ -57,7 +79,10 @@ class InputView {
 
     companion object {
         private const val PREFIX = "[ERROR]"
+
         private const val DIGIT_EXCEPTION = "숫자가 아닙니다."
         private const val RANGE_EXCEPTION = "범위가 맞지 않습니다."
+
+        private const val MOVE_EXCEPTION = "U 혹은 D가 아닙니다."
     }
 }
