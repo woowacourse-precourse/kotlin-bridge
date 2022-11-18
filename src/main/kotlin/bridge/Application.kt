@@ -11,11 +11,14 @@ fun main() {
 
     var whereToMove = InputView().readMoving()
     var inputBridge = listOf<String>()
+    var success = true
+
     inputBridge = inputBridge.plus(whereToMove)
     var inputBridgeMutable = inputBridge.toMutableList()
 
     inputBridge.forEachIndexed { index, it ->
         if (answerBridge[index] != it) {
+            success = false
             inputBridgeMutable[index] = it + "X"
             inputBridge = inputBridgeMutable.toList()
         }
