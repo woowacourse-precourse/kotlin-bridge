@@ -13,4 +13,13 @@ class BridgeGame(bridgeMaker: BridgeMaker, size: Int) {
         moveBlock.clear()
         tryCnt++
     }
+
+    fun isEnd(): Boolean {
+        if(moveBlock.isEmpty()) return false
+        if(moveBlock.size == makeBridge.size) return true
+        if(isSuccess()) return false
+        return true
+    }
+
+    fun isSuccess(): Boolean = moveBlock == makeBridge.subList(0, moveBlock.size)
 }
