@@ -30,4 +30,17 @@ fun playGame(bridge: List<String>) {
     OutputView().printResult(bridgeGame)
 }
 
+fun playerOnGame(bridgeGame: BridgeGame): Boolean {
+    if (!bridgeGame.check()) {
+        val input = InputView().readGameCommand()
+        if (input == "R") {
+            bridgeGame.retry()
+            return true
+        }
+        if (input == "Q") {
+            return false
+        }
+    }
+    return bridgeGame.over()
+}
 
