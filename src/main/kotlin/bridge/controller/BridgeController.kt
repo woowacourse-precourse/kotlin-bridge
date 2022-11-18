@@ -5,27 +5,36 @@ import bridge.model.BridgeGame
 import bridge.view.InputView
 import bridge.view.OutputView
 
+// TODO: 잘못된 입력 다시 받기
 class BridgeController {
     private val inputView = InputView()
     private val outputView = OutputView()
 
-    fun run() {
+    fun startGame() {
         try {
-            runUtil()
-        } catch (e: IllegalArgumentException) {
-            outputView.printException(e)
+            startGameUtil()
         } catch (e: IllegalStateException) {
             outputView.printException(e)
         }
     }
 
-    private fun runUtil() {
+    private fun startGameUtil() {
         outputView.printStartText()
 
-        val bridgeGame = makeBridgeGame(requireBridgeSize())
+        val bridgeGame = runUntilValid { makeBridgeGame() }
         playBridgeGame(bridgeGame)
 
         outputView.printResult(bridgeGame)
+    }
+
+    private fun <T> runUntilValid(method: () -> T): T {
+        while (true) {
+            try {
+                return method()
+            } catch (e: IllegalArgumentException) {
+                outputView.printException(e)
+            }
+        }
     }
 
     private fun requireBridgeSize(): Int {
@@ -33,18 +42,18 @@ class BridgeController {
         return inputView.readBridgeSize()
     }
 
-    private fun makeBridgeGame(size: Int): BridgeGame {
+    private fun makeBridgeGame(): BridgeGame {
+        val size = requireBridgeSize()
         val bridge = Bridge.generateRandomBridge(size)
         return BridgeGame(bridge)
     }
 
     private fun playBridgeGame(bridgeGame: BridgeGame) {
         while (bridgeGame.isOnGoing()) {
-            bridgeGame.move(requireMoving())
+            runUntilValid { move(bridgeGame) }
             outputView.printMap(bridgeGame)
-
             if (bridgeGame.isFail()) {
-                bridgeGame.retry(requireGameCommand())
+                runUntilValid { retry(bridgeGame) }
             }
         }
     }
@@ -54,8 +63,18 @@ class BridgeController {
         return inputView.readMoving()
     }
 
+    private fun move(bridgeGame: BridgeGame) {
+        val moving = requireMoving()
+        bridgeGame.move(moving)
+    }
+
     private fun requireGameCommand(): String {
         outputView.printRequireGameCommand()
         return inputView.readGameCommand()
+    }
+
+    private fun retry(bridgeGame: BridgeGame) {
+        val command = requireGameCommand()
+        bridgeGame.retry(command)
     }
 }

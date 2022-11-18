@@ -33,7 +33,7 @@ class OutputView {
     }
 
     fun printResult(bridgeGame: BridgeGame) {
-        println(FINAL_GAME_RESULT)
+        println("\n" + FINAL_GAME_RESULT)
         printMap(bridgeGame)
         println()
         println(GAME_PASS_RESULT_FORMAT.format(bridgeGame.state.toString()))
