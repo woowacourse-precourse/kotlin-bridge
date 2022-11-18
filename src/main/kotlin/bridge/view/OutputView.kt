@@ -8,8 +8,7 @@ import bridge.model.Direction
  */
 class OutputView {
     fun printStartText() {
-        println(GAME_START_TEXT)
-        println()
+        println(GAME_START_TEXT + "\n")
     }
 
     fun printRequireBridgeSize() {
@@ -17,13 +16,15 @@ class OutputView {
     }
 
     fun printRequireMoving() {
-        println()
-        println(REQUIRE_MOVING)
+        println("\n" + REQUIRE_MOVING)
     }
 
     fun printRequireGameCommand() {
-        println()
-        println(REQUIRE_GAME_COMMAND)
+        println("\n" + REQUIRE_GAME_COMMAND)
+    }
+
+    fun printException(exception: Exception) {
+        println("$ERROR_PREFIX ${exception.message}")
     }
 
     /**
@@ -35,7 +36,7 @@ class OutputView {
         val upLine = getLineOfMap(bridgeGame, Direction.U)
         val downLine = getLineOfMap(bridgeGame, Direction.D)
         println(upLine)
-        println(downLine)
+        println(downLine + "\n")
     }
 
     /**
@@ -63,9 +64,7 @@ class OutputView {
             }
             sb.append(LINE_SEPARATOR)
         }
-        sb.removeRange(sb.length - 1 until sb.length)
-        sb.append(LINE_END)
-        return sb.toString()
+        return sb.removeRange(sb.length - 3 until sb.length).toString() + LINE_END
     }
 
     private fun getMovingResult(result: Boolean): String {
@@ -84,13 +83,14 @@ class OutputView {
         private const val FINAL_GAME_RESULT = "최종 게임 결과"
         private const val GAME_PASS_RESULT_FORMAT = "게임 성공 여부: %s"
         private const val GAME_TRY_NUMBER_FORMAT = "총 시도한 횟수: %d"
+        private const val ERROR_PREFIX = "[ERROR]"
 
-        private const val MOVING_SUCCESS = " O "
-        private const val MOVING_FAIL = " X "
+        private const val MOVING_SUCCESS = "O"
+        private const val MOVING_FAIL = "X"
         private const val NOT_SELECTED_DIRECTION = " "
 
-        private const val LINE_START = "["
-        private const val LINE_END = "]"
-        private const val LINE_SEPARATOR = "|"
+        private const val LINE_START = "[ "
+        private const val LINE_END = " ]"
+        private const val LINE_SEPARATOR = " | "
     }
 }

@@ -10,6 +10,16 @@ class BridgeController {
     private val outputView = OutputView()
 
     fun run() {
+        try {
+            runUtil()
+        } catch (e: IllegalArgumentException) {
+            outputView.printException(e)
+        } catch (e: IllegalStateException) {
+            outputView.printException(e)
+        }
+    }
+
+    private fun runUtil() {
         outputView.printStartText()
         val size = requireBridgeSize()
         val bridgeGame = makeBridgeGame(size)
