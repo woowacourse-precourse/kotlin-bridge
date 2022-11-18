@@ -40,10 +40,24 @@ class OutputView {
         println(RESTART_MESSAGE)
     }
 
+    fun printSuccessFail(result : Boolean) {
+        val gameResult = when(result) {
+            true -> "성공"
+            false -> "실패"
+        }
+        println(BRIDGE_GAME_CHECK_SUCCESS_MESSAGE + gameResult)
+    }
+
+    fun printGameCount(count : Int) {
+        println(BRIDGE_GAME_COUNT_MESSAGE + count)
+    }
+
     companion object {
         const val BRIDGE_SIZE_INPUT_MESSAGE = "다리의 길이를 입력해주세요."
         const val MOVE_DIRECTION_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
         const val RESTART_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
         const val FINAL_RESULT_MESSAGE = "최종 게임 결과"
+        const val BRIDGE_GAME_CHECK_SUCCESS_MESSAGE= "게임 성공 여부: "
+        const val BRIDGE_GAME_COUNT_MESSAGE = "총 시도한 횟수: "
     }
 }

@@ -2,8 +2,43 @@ package bridge
 
 class Controller {
 
-    fun start() {
+    private lateinit var bridgeGame: BridgeGame
 
+    fun run() {
+        bridgeGame = BridgeGame(inputBridgeSize())
+        startGame()
+    }
+
+    fun startGame(){
+        val moveDirection = inputMoveDirection()
+        val movePossible = bridgeGame.getInputMovePossible(moveDirection)
+        bridgeGame.move(moveDirection)
+        OutputView().printMap(bridgeGame.getBridge())
+        if(bridgeGame.getGameResult()) {
+            return endGame()
+        }
+        if(movePossible) {
+            return startGame()
+        }
+        return restartGame()
+    }
+
+    fun restartGame() {
+        val input = inputRestartValue()
+        when(input) {
+            "Q" -> return endGame()
+            "R" -> {
+                bridgeGame.retry()
+                return startGame()
+            }
+        }
+
+    }
+
+    fun endGame() {
+        OutputView().printResult(bridgeGame.getBridge())
+        OutputView().printSuccessFail(bridgeGame.getGameResult())
+        OutputView().printGameCount(bridgeGame.getGameCount())
     }
 
     fun inputBridgeSize() : Int {
