@@ -14,19 +14,51 @@ class Compare(private val upperList: MutableList<String>, private val downList: 
 
     private fun checkIsUpperOrDownOnSuccess(userMove : String) {
         if (userMove == "U") {
-            //유저가 이동 성공했고 위쪽일 때
+            actWhenSuccessUpper()
         }
         if(userMove == "D") {
-            //유저가 이동 성공했고 아래쪽일 때
+            actWhenSuccessDown()
         }
     }
 
     private fun checkIsUpperOrDownOnFail(userMove : String) {
         if (userMove == "U") {
-            //유저가 이동 실패했고 위쪽일 때
+            actWhenFailUpper()
         }
         if(userMove == "D") {
-            //유저가 이동 실패했고 아래쪽일 때
+            actWhenFailDown()
         }
+    }
+
+    private fun actWhenSuccessUpper() {
+        addListSuccess(upperList)
+        addListOnNull(downList)
+    }
+
+    private fun actWhenSuccessDown() {
+        addListSuccess(downList)
+        addListOnNull(upperList)
+    }
+
+    private fun actWhenFailUpper() {
+        addListFail(upperList)
+        addListOnNull(downList)
+    }
+
+    private fun actWhenFailDown() {
+        addListFail(downList)
+        addListOnNull(upperList)
+    }
+
+    private fun addListSuccess(list : MutableList<String>) {
+        list.add("O")
+    }
+
+    private fun addListFail(list : MutableList<String>) {
+        list.add("X")
+    }
+
+    private fun addListOnNull(list : MutableList<String>) {
+        list.add(" ")
     }
 }
