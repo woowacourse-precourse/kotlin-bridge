@@ -1,12 +1,15 @@
 package bridge
 
 fun main() {
-    val bridgeNumbers = generateBridge()
-    println(bridgeNumbers)
+    try {
+        val bridgeNumbers = generateBridge()
+    } catch (e: IllegalArgumentException) {
+        return
+    }
 }
 
 fun generateBridge(): MutableList<Int> {
-    OutputView().printStart()
+    OutputView.printStart()
     val bridgeSize = InputView().readBridgeSize()
     val bridgeNumbers = mutableListOf<Int>()
     for (i in 0 until bridgeSize) {
