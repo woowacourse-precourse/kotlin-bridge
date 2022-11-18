@@ -1,9 +1,6 @@
 package bridge.presentation
 
-import bridge.domain.Bridge
-import bridge.domain.BridgeMap
-import bridge.domain.Path
-import bridge.domain.Result
+import bridge.domain.*
 import bridge.util.*
 
 /**
@@ -29,7 +26,9 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(gameResult: Result, trial: Int) {
+    fun printResult(gameResult: Result, trial: Int, route: List<List<Mark>>) {
+        println(GAME_FINISH_MESSAGE)
+        printMap(route)
         printSuccessOrFail(gameResult)
         printTrialCount(trial)
     }
@@ -58,4 +57,6 @@ class OutputView {
     private fun printTrialCount(trial: Int) {
         print(TRIAL_COUNT_MESSAGE.format(trial))
     }
+
+    fun printNewLine() = println()
 }

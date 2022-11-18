@@ -1,48 +1,46 @@
 package bridge.domain
 
-import bridge.BridgeRandomNumberGenerator.Companion.RANDOM_LOWER_INCLUSIVE
-import bridge.BridgeRandomNumberGenerator.Companion.RANDOM_UPPER_INCLUSIVE
-import bridge.util.*
+import bridge.util.DOWN
+import bridge.util.UP
 
 class BridgeMap(
-    private val map: Array<Array<Mark>>, private val bridge: Bridge, private val path: Path
+    private val route: List<ArrayList<Mark>> = listOf(arrayListOf(), arrayListOf())
 ) {
-    fun makeMap(): Array<Array<Mark>> {
-        val lastRound = map[0].size
-        for (round in 0 until lastRound) {
-            constructOf(round)
+    fun makeRoute(path: Path, bridge: Bridge): List<List<Mark>> {
+        route[0].add(Mark.DEFAULT)
+        route[1].add(Mark.DEFAULT)
+
+        for (round in 0 until path.currentRound()) {
+            constructRouteOf(round, path, bridge)
         }
-        return map
+        return route
     }
 
-    private fun constructOf(round: Int) {
+    private fun constructRouteOf(round: Int, path: Path, bridge: Bridge) {
         val bridgeDirection = bridge.getDirection(round)
         val isCorrectPath = path.checkDirection(bridgeDirection, round)
+        val userDigitDirection = path.userDirectionAsDigit(round)
 
         if (isCorrectPath) {
-            markCorrectPath(bridgeDirection, round)
+            markCorrectPath(bridgeDirection, userDigitDirection, round)
         } else {
-            markWrongPath(bridgeDirection, round)
+            markWrongPath(bridgeDirection, userDigitDirection, round)
         }
     }
 
-    private fun markCorrectPath(bridgeDirection: String, round: Int) {
+    private fun markCorrectPath(bridgeDirection: String, userDirection: Int, round: Int) {
         when (bridgeDirection) {
-            UP -> map[RANDOM_UPPER_INCLUSIVE][round] = Mark.CORRECT
-            DOWN -> map[RANDOM_LOWER_INCLUSIVE][round] = Mark.CORRECT
+            UP -> route[userDirection][round] = Mark.CORRECT
+            DOWN -> route[userDirection][round] = Mark.CORRECT
         }
     }
 
-    private fun markWrongPath(bridgeDirection: String, round: Int) {
+    private fun markWrongPath(bridgeDirection: String, userDirection: Int, round: Int) {
         when (bridgeDirection) {
-            UP -> map[RANDOM_UPPER_INCLUSIVE][round] = Mark.WRONG
-            DOWN -> map[RANDOM_LOWER_INCLUSIVE][round] = Mark.WRONG
+            UP -> route[userDirection][round] = Mark.WRONG
+            DOWN -> route[userDirection][round] = Mark.WRONG
         }
     }
 
-    companion object {
-        fun defaultMap(round: Int): Array<Array<Mark>> {
-            return Array(DIRECTION_SIZE) { Array(round) { Mark.DEFAULT } }
-        }
-    }
+    fun route() = route
 }
