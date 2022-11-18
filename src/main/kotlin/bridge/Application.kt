@@ -9,6 +9,7 @@ fun main() {
     val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
     val answerBridge = bridgeMaker.makeBridge(bridgeLength)
 
-    BridgeGame().move(answerBridge)
+    var trial = 1
+    BridgeGame().move(answerBridge, trial)
 
 }
