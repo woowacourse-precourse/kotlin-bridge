@@ -15,7 +15,13 @@ class BridgeGame(private val bridge : List<String>) {
         val upperList = mutableListOf<String>()
         val downList = mutableListOf<String>()
 
+        loopToCheckBridge(mBridge, upperList, downList)
+    }
 
+    private fun loopToCheckBridge(mBridge : MutableList<String>, upperList : MutableList<String>, downList: MutableList<String>) {
+        while(mBridge.size != 0) {
+
+        }
     }
 
     /**
