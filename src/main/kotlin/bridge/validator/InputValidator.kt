@@ -1,6 +1,9 @@
 package bridge.validator
 
-import bridge.util.ERROR_INVALID_INPUT_MESSAGE
+import bridge.util.DOWN_MOVE_STRING
+import bridge.util.ERROR_INVALID_MOVE_MESSAGE
+import bridge.util.ERROR_INVALID_SIZE_MESSAGE
+import bridge.util.UP_MOVE_STRING
 
 object InputValidator {
     fun validateInValidBridgeSize(input: Int) {
@@ -15,14 +18,14 @@ object InputValidator {
                 validateInValidBridgeSize(bridgeSize)
                 return bridgeSize
             } catch (e: IllegalArgumentException) {
-                println(ERROR_INVALID_INPUT_MESSAGE)
+                println(ERROR_INVALID_SIZE_MESSAGE)
                 continue
             }
         }
     }
 
     fun validateInvalidMoveInput(input: String) {
-        val hasInvalidMoveInput = (input != "U" && input != "D")
+        val hasInvalidMoveInput = (input != UP_MOVE_STRING && input != DOWN_MOVE_STRING)
         if (hasInvalidMoveInput) throw IllegalArgumentException()
     }
 
@@ -33,11 +36,9 @@ object InputValidator {
                 validateInvalidMoveInput(moveInput)
                 return moveInput
             } catch (e: IllegalArgumentException) {
-                println("[ERROR] U와 D만 이동 입력이 가능합니다.")
+                println(ERROR_INVALID_MOVE_MESSAGE)
                 continue
             }
         }
-
     }
-
 }

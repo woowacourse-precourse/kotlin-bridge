@@ -15,8 +15,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         val bridge = bridgeNumberList.map { index ->
             val bridgeNumber = bridgeNumberList[index].toString()
             when (bridgeNumberList[index]) {
-                UP_INT_NUMBER_ONE -> bridgeNumber.replace(UP_STRING_NUMBER_ONE, UP_EXPRESSION)
-                else -> bridgeNumber.replace(DOWN_STRING_NUMBER_ZERO, DOWN_EXPRESSION)
+                UP_INT_NUMBER_ONE -> bridgeNumber.replace(UP_STRING_NUMBER_ONE, UP_SIDE_EXPRESSION)
+                else -> bridgeNumber.replace(DOWN_STRING_NUMBER_ZERO, DOWN_SIDE_EXPRESSION)
             }
         }
         return bridge

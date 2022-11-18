@@ -1,6 +1,7 @@
 package bridge
 
 import bridge.util.INPUT_BRIDGE_SIZE_MESSAGE
+import bridge.util.INPUT_MOVE_INPUT_MESSAGE
 import bridge.validator.InputValidator
 
 /**
@@ -19,7 +20,7 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        println(INPUT_MOVE_INPUT_MESSAGE)
         return InputValidator.validateMoveInput()
     }
 
