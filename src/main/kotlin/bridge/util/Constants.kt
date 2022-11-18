@@ -8,9 +8,18 @@ const val DIRECTION_QUESTION_MESSAGE = "이동할 칸을 선택해주세요. (�
 const val GAME_SUCCESS_OR_FAIL_MESSAGE = "게임 성공 여부: %s"
 const val TRIAL_COUNT_MESSAGE = "총 시도한 횟수: %d"
 
+ // bridge map
+const val CORRECT_MARK = 'O'
+const val WRONG_MARK = 'X'
+const val DEFAULT_MARK = ' '
+const val BRIDGE_SEPARATOR = " | "
+const val BRIDGE_PREFIX = "[ "
+const val BRIDGE_POSTFIX =" ]"
+
 // direction
 const val UP = "U"
 const val DOWN = "D"
+const val DIRECTION_SIZE = 2
 
 // restart
 const val RETRIAL = "R"
