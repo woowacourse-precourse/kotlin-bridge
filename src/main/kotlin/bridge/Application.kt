@@ -8,4 +8,6 @@ fun main() {
 
     val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
     val answerBridge = bridgeMaker.makeBridge(bridgeLength)
+
+    var whereToMove = InputView().readMoving()
 }
