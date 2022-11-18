@@ -33,6 +33,7 @@
 7. readGameCommand - 오답일 경우 재시도 여부를 묻고 입력을 받는 기능[ ] - InputView
 8. printResult - 최종 결과와 게임의 성공 여부와 총 시도한 횟수를 출력하는 기능[ ] - OutputView
 9. playGame - 게임을 진행하는 기능[ ] - BridgeGameApp
+10. printData - 데이터를 출력해주는 기능[ ] - OutputView
 
 ## 📦️ 생성 클래스
 1. BridgeGame - 게임을 관리하는 클래스
