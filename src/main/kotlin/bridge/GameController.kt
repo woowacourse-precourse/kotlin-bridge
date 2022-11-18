@@ -29,15 +29,13 @@ class GameController {
 
     private fun repeatMoving(){
         while(true){
-            //checkFinish by BridgeGame.compare
-            inputMoving()
-            // BridgeGame.moving
-            // printCurrentMoving
+            //checkFinish by BridgeGame.compare return pair(isSuccess / isStop)
+            // than this function return isSuccess
+            moving()
         }
     }
-
-    private fun moving() : List<String> {
-        return bridgeGame.move(inputMoving())
+    private fun moving(){
+        bridgeGame.move(inputMoving())
     }
 
     private fun inputMoving() : String{
