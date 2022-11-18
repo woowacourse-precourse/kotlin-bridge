@@ -15,7 +15,7 @@ class InputView {
         InputSentence.BRIDGE_LENGTH.print()
         val input = Console.readLine()
         InputValidator.validateDigitNumber(input)
-        return Console.readLine().toInt()
+        return input.toInt()
     }
 
     /**
