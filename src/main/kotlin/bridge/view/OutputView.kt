@@ -10,16 +10,16 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap(currentMap: List<String>, isSuccess: Boolean) {
-        println(getUpBridgeForm(currentMap,isSuccess))
-        println(getDownBridgeForm(currentMap,isSuccess))
+        println(getUpBridgeForm(currentMap, isSuccess))
+        println(getDownBridgeForm(currentMap, isSuccess))
     }
 
-    private fun getUpBridgeForm(currentMap: List<String>, isSuccess : Boolean): String {
-        var result = "[ ${getUpValue(currentMap[0],isSuccess)}"
+    private fun getUpBridgeForm(currentMap: List<String>, isSuccess: Boolean): String {
+        var result = "[ ${getUpValue(currentMap[0], isSuccess)}"
         for (count in 1 until currentMap.size) {
-            result = result +" | "+ getUpValue(currentMap[count],isSuccess)
+            result = result + " | " + getUpValue(currentMap[count], isSuccess)
         }
-        result+=" ]"
+        result += " ]"
         return result
     }
 
@@ -31,12 +31,12 @@ class OutputView {
         return result
     }
 
-    private fun getDownBridgeForm(currentMap: List<String>, isSuccess : Boolean): String {
-        var result = "[ ${getDownValue(currentMap[0],isSuccess)}"
+    private fun getDownBridgeForm(currentMap: List<String>, isSuccess: Boolean): String {
+        var result = "[ ${getDownValue(currentMap[0], isSuccess)}"
         for (count in 1 until currentMap.size) {
-            result = result +" | "+ getDownValue(currentMap[count],isSuccess)
+            result = result + " | " + getDownValue(currentMap[count], isSuccess)
         }
-        result+=" ]"
+        result += " ]"
         return result
     }
 

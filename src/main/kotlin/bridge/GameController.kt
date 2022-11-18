@@ -18,38 +18,39 @@ class GameController {
         // check isSuccess than question restart
     }
 
-    private fun inputBridgeSize() : Int{
+    private fun inputBridgeSize(): Int {
         println("다리의 길이를 입력해주세요.")
         return inputView.readBridgeSize()
     }
 
-    private fun makeBridge(size : Int){
+    private fun makeBridge(size: Int) {
         bridgeGame.createCorrectBridgeMap(size)
     }
 
-    private fun repeatMoving(){
-        while(true){
-            if(bridgeGame.checkGameOver()){
+    private fun repeatMoving() {
+        while (true) {
+            if (bridgeGame.checkGameOver()) {
                 break
             }
             moving()
             outputMoving()
         }
     }
-    private fun moving(){
+
+    private fun moving() {
         bridgeGame.move(inputMoving())
     }
 
-    private fun inputMoving() : String{
+    private fun inputMoving(): String {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
         return inputView.readMoving()
     }
 
-    private fun outputMoving(){
-        outputView.printMap(bridgeGame.currentMoving,judgeMoving())
+    private fun outputMoving() {
+        outputView.printMap(bridgeGame.currentMoving, judgeMoving())
     }
 
-    private fun judgeMoving() : Boolean{
+    private fun judgeMoving(): Boolean {
         return bridgeGame.judgeMovingSuccess()
     }
 }

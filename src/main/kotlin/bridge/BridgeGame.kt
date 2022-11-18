@@ -11,15 +11,15 @@ class BridgeGame {
         judgement.createCorrectBridge(size)
     }
 
-    fun judgeMovingSuccess() : Boolean {
+    fun judgeMovingSuccess(): Boolean {
         return judgement.judgeMovingSuccess(currentMoving)
     }
 
-    fun checkGameOver() : Boolean {
+    fun checkGameOver(): Boolean {
         return judgement.checkGameOver(currentMoving)
     }
 
-    fun move(moving : String) : List<String> {
+    fun move(moving: String): List<String> {
         currentMoving.add(moving)
         return currentMoving.toList()
     }
