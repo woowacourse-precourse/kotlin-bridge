@@ -1,6 +1,6 @@
 package bridge.model
 
-enum class BridgeGameCommand(val command: String) {
+enum class BridgeGameCommand(private val command: String) {
     QUIT("Q"), RETRY("R");
 
     companion object {

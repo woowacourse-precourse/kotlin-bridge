@@ -1,6 +1,6 @@
 package bridge.model
 
-enum class Direction(private val value: Int, val displayName: String) {
+enum class Direction(private val value: Int, private val displayName: String) {
     UP(1, "U"), DOWN(0, "D");
 
     override fun toString() = this.displayName
