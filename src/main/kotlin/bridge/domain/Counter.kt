@@ -11,4 +11,10 @@ class Counter(private var count: Int = 0) {
     fun minus(): Int {
         return --count
     }
+
+    fun count(): Int = count
+
+    fun init() {
+        count = 0
+    }
 }
