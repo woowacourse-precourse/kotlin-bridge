@@ -1,6 +1,6 @@
 package bridge.view
 
-import bridge.GameCommand
+import bridge.domain.GameCommand
 import bridge.InputValidator
 import bridge.domain.Direction
 import bridge.sentence.InputSentence

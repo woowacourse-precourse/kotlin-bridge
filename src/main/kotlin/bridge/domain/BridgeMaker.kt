@@ -1,6 +1,6 @@
-package bridge
+package bridge.domain
 
-import bridge.domain.Direction
+import bridge.BridgeNumberGenerator
 import bridge.sentence.ErrorSentence
 
 /**
