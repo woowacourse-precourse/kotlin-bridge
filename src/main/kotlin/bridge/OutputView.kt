@@ -14,6 +14,9 @@ class OutputView {
         fun getBridgeSize() {
             println(BridgeMessage.GiveMeBridgeSize.word)
         }
+        fun getBridgeMoving(){
+            println(BridgeMessage.WhereAreYouGo.word)
+        }
     }
     fun printMap() {}
 

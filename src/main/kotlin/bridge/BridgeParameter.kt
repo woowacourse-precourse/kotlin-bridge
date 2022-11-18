@@ -2,7 +2,10 @@ package bridge
 
 enum class BridgeParameter(val value: Int) {
     BridgeMinLength(3),
-    BridgeMaxLength(20)
+    BridgeMaxLength(20),
+    Up(1),
+    Down(0),
+    StartValue(0)
 }
 
 enum class BridgeMessage(val word : String){
