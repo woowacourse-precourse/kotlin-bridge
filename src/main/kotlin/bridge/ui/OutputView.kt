@@ -25,4 +25,8 @@ class OutputView {
     fun printInputBridgeSize() {
         println(GameMessages.INPUT_BRIDGE_SIZE.toString())
     }
+
+    fun printMove() {
+        println(GameMessages.INPUT_UP_DOWN.toString())
+    }
 }
