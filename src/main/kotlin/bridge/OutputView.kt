@@ -6,6 +6,16 @@ class OutputView {
         println("[ " + bridgeGame.resultDownBridge.joinToString(" | ") + " ]")
     }
 
+    fun printResult(bridgeGame: BridgeGame) {
+        print("게임 성공 여부: ")
+        if (bridgeGame.check() && bridgeGame.over()) {
+            println("성공")
+        }
+        else {
+            println("실패")
+        }
+        println("총 시도한 횟수: " + bridgeGame.playCount)
+    }
 
     companion object {
         private const val GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다."
