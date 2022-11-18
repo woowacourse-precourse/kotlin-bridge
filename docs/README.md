@@ -21,7 +21,7 @@ CASE 2.
     * [o] R or Q 입력 가능
     * [] 예외 처리 필수
     * [o] 재시작 시 다리 재활용 - BridgeGame/retry()
-* [] 최종 게임 결과 출력 - OutputView
+* [o] 최종 게임 결과 출력 - OutputView
 * [] 게임 성공 여부 출력 - OutputView
 * [] 시도 횟수 출력 - OutputView
 ___
