@@ -7,24 +7,24 @@ import org.junit.jupiter.api.Test
 class UnitTest : NsTest()  {
     @Test
     fun `자동으로 생성할 다리 길이를 입력 받는다`() {
-        val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 0, 0)) // ApplicationTest.TestNumberGenerator 받은 리스트 형식지정
-        val bridgeMaker = BridgeMaker(numberGenerator) // 위 형식으로 입력시킨걸 BridgeMaker 클래스에 입력
-        val bridge: List<String> = bridgeMaker.makeBridge(3) // BridgeMaker 클래스안의 함수 makeBridge 3 입력
+        val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 0, 0))
+        val bridgeMaker = BridgeMaker(numberGenerator) // return numbers.removeAt(0) 으로 대체된 식에 BridgeMaker 클래스에 입력
+        val bridge: List<String> = bridgeMaker.makeBridge(3)
         Assertions.assertThat(bridge).containsExactly("U", "D", "D")
     }
 
-    @Test
-    fun `라운드마다 플레이어가 이동할 칸을 입력 받는다`() {
-        val checkMove = BridgeGame().move("D")
-        Assertions.assertThat(checkMove).containsExactly()
-    }
-
-    @Test
-    fun `게임 재시작, 종료 여부를 입력 받는다`() { // 재
-        val checkEnd = BridgeGame().retry("Q")
-        val checkRetry = BridgeGame().retry("R")
-        Assertions.assertThat(checkEnd).containsExactly()
-        Assertions.assertThat(checkRetry).containsExactly()
+//    @Test
+//    fun `라운드마다 플레이어가 이동할 칸을 입력 받는다`() {
+//        val checkMove = BridgeGame().move("D")
+//        Assertions.assertThat(checkMove).containsExactly()
+//    }
+//
+//    @Test
+//    fun `게임 재시작, 종료 여부를 입력 받는다`() { // 재
+//        val checkEnd = BridgeGame().retry("Q")
+//        val checkRetry = BridgeGame().retry("R")
+//        Assertions.assertThat(checkEnd).containsExactly()
+//        Assertions.assertThat(checkRetry).containsExactly()
 
     @Test
     fun `게임 시작, 다리 길이 입력 문구를 출력한다`() {
