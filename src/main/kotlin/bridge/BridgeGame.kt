@@ -51,7 +51,7 @@ class BridgeGame(private val bridges: List<String>) {
         }
     }
 
-    private fun nextBridge() = currentPosition.inc()
+    private fun nextBridge() = currentPosition++
     fun checkFail() = downSide.contains("X") || upSide.contains("X")
 
     fun checkEnd() = currentPosition == bridges.size
