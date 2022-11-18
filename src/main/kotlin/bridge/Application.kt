@@ -9,19 +9,26 @@ fun main() {
     val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
     println(bridge)
 
-    val userStep = mutableListOf<Boolean>()
-    for (index in bridge) {
-        OutputView().printMessage(MOVE_MESSAGE)
-        val moveDirection = InputView().readMoving()
-        val successOrFail = BridgeGame().move(index, moveDirection)
-        userStep.add(successOrFail)
-        OutputView().printMap(bridge, userStep)
 
-        if (!successOrFail) {
-            OutputView().printMessage(RETRY_MESSAGE)
-            val command = InputView().readGameCommand()
+    do {
+        var stop = false
+        val userStep = mutableListOf<Boolean>()
+        for (index in bridge) {
+            OutputView().printMessage(MOVE_MESSAGE)
+            val moveDirection = InputView().readMoving()
+            val successOrFail = BridgeGame().move(index, moveDirection)
+            userStep.add(successOrFail)
+            OutputView().printMap(bridge, userStep)
+
+            if (!successOrFail) {
+                OutputView().printMessage(RETRY_MESSAGE)
+                val command = InputView().readGameCommand()
+                stop = BridgeGame().retry(command)
+                break
+            }
         }
-    }
+    } while (stop)
+
 
 
 }

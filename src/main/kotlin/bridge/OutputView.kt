@@ -23,7 +23,7 @@ class OutputView {
 
         for (line in 1 downTo 0) {
             print("[ ")
-            printMapInner(printValue)
+            printMapInner(printValue, line)
             println(" ]")
         }
     }
@@ -49,9 +49,9 @@ class OutputView {
         return result
     }
 
-    private fun printMapInner(printValue: MutableList<MutableList<String>>) {
+    private fun printMapInner(printValue: MutableList<MutableList<String>>, line: Int) {
         for (answerLength in printValue.indices) {
-            print(printValue[answerLength][1])
+            print(printValue[answerLength][line])
             if (answerLength != printValue.size - 1)
                 print(" | ")
         }
