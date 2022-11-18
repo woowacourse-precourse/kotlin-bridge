@@ -12,9 +12,9 @@
 ___
 CASE 1.
 * [o] 끝까지 가면 - 게임 종료
-* [] 최종 게임 결과 출력 - OutputView
-* [] 게임 성공 여부 출력 - OutputView
-* [] 시도 횟수 출력 - OutputView
+* [o] 최종 게임 결과 출력 - OutputView
+* [o] 게임 성공 여부 출력 - OutputView
+* [o] 시도 횟수 출력 - OutputView
 ___
 CASE 2.
 * 실패 - 재시작 or 종료 - InputView
