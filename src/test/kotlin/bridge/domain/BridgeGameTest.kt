@@ -5,7 +5,6 @@ import bridge.resources.START_TRY
 import org.junit.jupiter.api.Test
 
 class BridgeGameTest {
-
     @Test
     fun `정상적인 범주의 값이 나온다`() {
         val size = 10
