@@ -2,19 +2,19 @@ package bridge
 
 fun main() {
     try {
-        val bridgeNumbers = generateBridge()
+        val bridge = generateBridge()
+        print(bridge)
+
     } catch (e: IllegalArgumentException) {
         return
     }
 }
 
-fun generateBridge(): MutableList<Int> {
+fun generateBridge(): List<String> {
     OutputView.printStart()
     val bridgeSize = InputView().readBridgeSize()
-    val bridgeNumbers = mutableListOf<Int>()
-    for (i in 0 until bridgeSize) {
-        bridgeNumbers.add(BridgeRandomNumberGenerator().generate())
-    }
-    return bridgeNumbers
+    val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
+    return bridgeMaker.makeBridge(bridgeSize)
 }
+
 
