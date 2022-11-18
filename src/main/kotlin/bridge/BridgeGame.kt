@@ -6,6 +6,7 @@ package bridge
 class BridgeGame {
     var userRoute = mutableListOf<String>()
     var times = 1
+    var control = 0
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
@@ -17,6 +18,8 @@ class BridgeGame {
         while (userRoute != bridge){
             var userMove = InputView().readMoving()
             userRoute.add(userMove)
+
+            for (move in upDown) { control = OutputView().printMap(bridge, userRoute, move) }
 
         }
     }
