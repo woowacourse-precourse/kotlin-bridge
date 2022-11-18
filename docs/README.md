@@ -24,19 +24,21 @@
 1. Error Message와 함께 IllegalArgumentException을 throw해준다.
 
 ## 📝기능 구현 리스트
-1. 게임의 시작을 알려주는 기능[ ]
-2. 다리의 길이를 입력 받는 기능[ ]
-3. 랜덤 넘버를 생성해주는 기능[ ]
-4. 랜덤 넘버를 받아서 다리를 생성하는 기능[ ]
-5. 사용자에게 이동할 칸을 입력받는 기능[ ]
-6. 사용자의 답과 다리를 비교하는 기능[ ]
-7. 오답일 경우 재시도 여부를 묻고 입력을 받는 기능[ ]
-8. 최종 결과와 게임의 성공 여부와 총 시도한 횟수를 출력하는 기능[ ]
+1. startGame - 게임의 시작을 알려주는 기능[ ] -  OutputView
+2. readBridgeSize - 다리의 길이를 입력 받는 기능[ ] - InputView
+3. generate - 랜덤 넘버를 생성해주는 기능[O] - BridgeRandoomNumberGenerator에서 주어짐
+4. makeBridge - 랜덤 넘버를 받아서 다리를 생성하는 기능[ ] - BridgeMaker
+5. readMoving - 사용자에게 이동할 칸을 입력받는 기능[ ] - InputView
+6. compareAnswer - 사용자의 답과 다리를 비교하는 기능[ ] - BridgeGame 
+7. readGameCommand - 오답일 경우 재시도 여부를 묻고 입력을 받는 기능[ ] - InputView
+8. printResult - 최종 결과와 게임의 성공 여부와 총 시도한 횟수를 출력하는 기능[ ] - OutputView
+9. playGame - 게임을 진행하는 기능[ ] - BridgeGameApp
 
 ## 📦️ 생성 클래스
-1. BridgeGame - 게임의 전반적인 흐름을 주도하는 클래스
+1. BridgeGame - 게임을 관리하는 클래스
 2. BridgeMaker - 브릿지를 생성해주는 클래스
 3. BridgeRandoomNumberGenerator - 랜덤한 숫자를 생성해주는 클래스
 4. InputView = 입력을 관장하는 클래스
 5. OutputView - 출력을 관장하는 클래스
 6. Application - 메인 클래스
+7. BridgeGameApp - 게임을 실행하는 클래스
