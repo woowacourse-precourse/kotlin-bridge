@@ -11,7 +11,21 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         PrintForm().printPleaseInputBridgeLength()
-        return Console.readLine().toInt()
+        return checkBridgeLengthRegex(Console.readLine())
+    }
+
+    private fun checkBridgeLengthRegex(userInput : String) : Int {
+        try {
+            Regex.checkItsNull(userInput)
+        } catch (exception : IllegalArgumentException) {
+            runWhenCatchError()
+        }
+        return userInput.toInt()
+    }
+
+    private fun runWhenCatchError() {
+        println("[ERROR] 입력값에 오류가 있습니다. 다시 입력해주세요.")
+        readBridgeSize()
     }
 
     /**
