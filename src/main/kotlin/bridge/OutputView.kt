@@ -5,7 +5,6 @@ package bridge
  */
 
 
-
 class OutputView {
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -15,9 +14,10 @@ class OutputView {
 
     companion object {
 
-        fun printStart(){
+        fun printStart() {
             println(BridgeMessage.Start.word)
         }
+
         fun getBridgeSize() {
             println(BridgeMessage.GiveMeBridgeSize.word)
         }
@@ -26,12 +26,26 @@ class OutputView {
             println(BridgeMessage.WhereAreYouGo.word)
         }
 
-        fun printMap(map : String) {
+        fun printMap(map: String) {
             println(map)
         }
-        fun printResult() {}
-    }
 
+        fun areYouRetry() {
+            println(BridgeMessage.AreYouWantRetry)
+        }
+
+        fun printGameEndMessage() {
+            println(BridgeMessage.End.word)
+        }
+
+        fun printResult(successRecord: List<Boolean>, count: Int) {
+            if (successRecord.last())
+                println(BridgeMessage.Win.word)
+            else
+                println(BridgeMessage.Lose.word)
+            println(BridgeMessage.HowManyTimeDidYouTry.word + count)
+        }
+    }
 
 
     /**

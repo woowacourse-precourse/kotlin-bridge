@@ -5,7 +5,8 @@ enum class BridgeParameter(val value: Int) {
     BridgeMaxLength(20),
     Up(1),
     Down(0),
-    StartValue(0)
+    StartValue(0),
+    LastCharCut(1)
 }
 
 enum class BridgeMessage(val word: String) {
@@ -15,9 +16,8 @@ enum class BridgeMessage(val word: String) {
     MapStart("["),
     MapEnd("]"),
     End("최종 게임 결과"),
-    WinorLose("게임 성공 여부: "),
-    Win("승리"),
-    Lose("실패"),
+    Win("게임 성공 여부: 승리"),
+    Lose("게임 성공 여부: 실패"),
     HowManyTimeDidYouTry("총 시도한 횟수: "),
     AreYouWantRetry("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
     InputNumberError("[Error] 숫자를 입력해주십시오."),

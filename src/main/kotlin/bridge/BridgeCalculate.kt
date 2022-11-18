@@ -35,7 +35,8 @@ object BridgeCalculate {
                 else -> WALK_AND_FAIL
             }
         }
-        return upLineMap + BridgeMessage.MapEnd.word
+        upLineMap = upLineMap.substring(BridgeParameter.StartValue.value,upLineMap.length - BridgeParameter.LastCharCut.value)
+        return  upLineMap+ BridgeMessage.MapEnd.word
     }
 
     private fun downLine(bridge: List<Int>, successRecord: List<Boolean>): String {
@@ -47,6 +48,9 @@ object BridgeCalculate {
                 else -> WALK_AND_FAIL
             }
         }
-        return downLineMap + BridgeMessage.MapEnd.word
+        return downLineMap.substring(
+            BridgeParameter.StartValue.value,
+            downLineMap.length - BridgeParameter.LastCharCut.value
+        ) + BridgeMessage.MapEnd.word
     }
 }
