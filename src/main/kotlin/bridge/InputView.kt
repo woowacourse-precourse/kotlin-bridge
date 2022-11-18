@@ -10,15 +10,16 @@ import camp.nextstep.edu.missionutils.Console.readLine
  */
 
 class InputView {
+    private val exceptions = Exceptions()
     fun readBridgeSize(): Int {
         val size = readLine()
-        Exceptions().validateBridgeSize(size)
+        exceptions.validateBridgeSize(size)
         return size.toInt()
     }
 
     fun readMoving(): String {
         val moving = readLine()
-        Exceptions().validateMoving(moving)
+        exceptions.validateMoving(moving)
         return moving
     }
 
@@ -26,6 +27,9 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        val command = readLine()
+        exceptions.validateCommand(command)
+        return command
     }
+
 }

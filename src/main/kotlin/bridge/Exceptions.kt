@@ -20,6 +20,13 @@ class Exceptions {
         }
     }
 
+    fun validateCommand(x: String?) {
+        require(x in listOf("R", "Q")) {
+            OutputView.printCommandInputError()
+            throw IllegalArgumentException()
+        }
+    }
+
     companion object {
         const val SIZE_RANGE_START = 3
         const val SIZE_RANGE_END = 20
