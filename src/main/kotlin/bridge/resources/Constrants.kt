@@ -8,3 +8,8 @@ const val INPUT_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력�
 // FOR ERROR HANDLING
 const val ERROR_INPUT_NUMBER = "숫자를 입력해주세요."
 const val ERROR_INPUT_ALLOWED_KEYS = "올바른 키를 입력해주세요."
+const val ERROR_INPUT_NUMBER_IN_RANGE = "범위 내에 값을 입력해주세요."
+
+// FOR BRIDGE GAME LOGIC
+const val BRIDGE_MIN_LENGTH = 3
+const val BRIDGE_MAX_LENGTH = 20

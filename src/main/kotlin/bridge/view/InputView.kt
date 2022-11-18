@@ -1,5 +1,6 @@
 package bridge.view
 
+import bridge.domain.BridgeMaker.Companion.UP_AND_DOWN_KEYS
 import bridge.resources.ERROR_INPUT_ALLOWED_KEYS
 import bridge.resources.INPUT_BRIDGE_SIZE
 import bridge.resources.INPUT_GAME_COMMAND
@@ -37,7 +38,6 @@ class InputView {
     }
 
     companion object {
-        private val UP_AND_DOWN_KEYS = listOf("U", "D")
         private val GAME_COMMAND_KEYS = listOf("R", "Q")
     }
 }
