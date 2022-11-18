@@ -33,6 +33,7 @@ const val START_LOCATION = 0
 const val START_TRY = 1
 const val NEXT_TRY = 1
 const val NEXT_MOVE = 1
+const val BRIDGE_PADDING = 1
 
 // FOR ERROR HANDLING
 private const val ERROR_MESSAGE_PREFIX = "[ERROR] "
