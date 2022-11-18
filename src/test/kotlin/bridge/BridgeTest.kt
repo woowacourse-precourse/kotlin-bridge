@@ -90,6 +90,14 @@ class BridgeTest : NsTest() {
         }
     }
 
+    @Test
+    fun `유저가 이동할 칸을 잘 입력했을 경우`() {
+        assertSimpleTest {
+            Regex("D").checkUserMovementRegexes()
+            Assertions.assertThat(output())
+        }
+    }
+
     /** 유저가 입력하는 재시도 문자열 관련 테스트 **/
 
     @Test
