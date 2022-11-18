@@ -11,6 +11,7 @@ class BridgeGameTest : NsTest() {
 
     @Test
     fun `다리 건너기 성공 테스트`() {
+        initGame()
         val bridge = listOf("U", "U", "D")
         tryCount = 0
         System.setIn("U".byteInputStream())
@@ -25,6 +26,7 @@ class BridgeGameTest : NsTest() {
 
     @Test
     fun `다리 건너기 실패 테스트`() {
+        initGame()
         val bridge = listOf("U", "U", "D")
         tryCount = 0
         val buf = String.join("\n", "D\nR").toByteArray()
@@ -36,6 +38,12 @@ class BridgeGameTest : NsTest() {
                 "[ X ]"
             )
         }
+    }
+
+    fun initGame(){
+        BridgeGame.upBridge.clear()
+        BridgeGame.downBridge.clear()
+        order=0
     }
 
     override fun runMain() {
