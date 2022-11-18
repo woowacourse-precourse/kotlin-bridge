@@ -41,6 +41,6 @@ class BridgeGame(val bridge: List<String>, private val retry: Int) {
             OutputView().printEnd(false, this.retry)
         }
     }
-    
+
     fun inputRetry() = InputView().readGameCommand()
 }

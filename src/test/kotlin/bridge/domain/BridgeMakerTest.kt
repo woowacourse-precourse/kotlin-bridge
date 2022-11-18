@@ -12,11 +12,20 @@ import java.lang.IllegalArgumentException
 
 class BridgeMakerTest {
     @Test
-    fun `정상적인 범주의 값이 나온다`() {
+    fun `정상 길이`() {
         val size = 10
         val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
         assertThat(
-            bridge.size == size && bridge.containsAll(listOf(UP, DOWN))
+            bridge.size == size
+        )
+    }
+
+    @Test
+    fun `정상 요소`() {
+        val size = 10
+        val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
+        assertThat(
+            bridge.filterNot { it == UP || it == DOWN }.isEmpty()
         )
     }
 }
