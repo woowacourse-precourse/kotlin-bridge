@@ -46,4 +46,22 @@ internal class ValidatorTest {
         }.isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("[ERROR] 유요한 값이 아닙니다.")
     }
+
+    @ParameterizedTest
+    @CsvSource("R,R", "Q,Q")
+    @DisplayName("R와 Q값이 잘 들어왔는 지 확인")
+    fun `입력한_재시도_유효성_통과시_확인`(input: String, result: String) {
+        val expected = Validator.isValidRetryCommand(input)
+        Assertions.assertThat(result).isEqualTo(expected)
+    }
+
+    @ParameterizedTest
+    @CsvSource("123dd", "0", "d-", "--", "1", "u", "d", "!", "01", "A")
+    @DisplayName("R와 Q가 아닌 값이 입력 값으로 들어왔을 시, 예외처리 발생")
+    fun `입력한_재시도_유효성_실패시_예외처리`(input: String) {
+        Assertions.assertThatThrownBy {
+            Validator.isValidRetryCommand(input)
+        }.isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessage("[ERROR] 유요한 값이 아닙니다.")
+    }
 }

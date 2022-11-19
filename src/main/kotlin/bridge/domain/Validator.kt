@@ -28,4 +28,12 @@ object Validator {
 
         return input
     }
+
+    fun isValidRetryCommand(input: String): String {
+        if (!(input == "R" || input == "Q")) {
+            throw IllegalArgumentException(ERROR_NOT_VALID_COMMAND)
+        }
+
+        return input
+    }
 }
