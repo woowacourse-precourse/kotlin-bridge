@@ -6,12 +6,6 @@ const val WALK_AND_FAIL = " X |"
 
 object BridgeCalculate {
 
-    fun numbertoBridge(number: Int): String {
-        if (number == BridgeParameter.Up.value)
-            return BridgeMessage.Up.word
-        return BridgeMessage.Down.word
-    }
-
     fun bridgeMoving(bridge: List<String>, count: Int): Boolean {
         OutputView.getBridgeMoving()
         return bridge[count] == InputView.readMoving()
