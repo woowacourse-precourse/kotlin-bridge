@@ -1,7 +1,7 @@
 package bridge
 
 class Bridge(
-    val bridgeInfo: List<String>
+    private val bridgeInfo: List<String>
 ) {
 
     fun isCrossable(position: Int, userMove: String): Boolean {
@@ -9,5 +9,9 @@ class Bridge(
             return true
         }
         return false
+    }
+
+    fun getBridgeSize(): Int {
+        return bridgeInfo.size
     }
 }
