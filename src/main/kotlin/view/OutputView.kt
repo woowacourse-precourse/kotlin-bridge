@@ -17,13 +17,13 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap(trialCount: Int, resultHashMap: MutableList<HashMap<String, String>>) : MutableList<String>{
+    fun printMap(trialCount: Int, resultHashMap: MutableList<HashMap<String, String>>): MutableList<String> {
         var moveUpperPath = "["
         var moveUnderPath = "["
         val splitter = "|"
         val blank = " _ "
         val emptyBlank = "   "
-        val totalMovePath = mutableListOf<String>("","")
+        val totalMovePath = mutableListOf<String>("", "")
         for (i in 0 until resultHashMap.size) {
             when {
                 resultHashMap[i].containsValue("X") && resultHashMap[i].contains("U") -> {
@@ -35,6 +35,7 @@ class OutputView {
                         moveUnderPath += splitter
                     }
                 }
+
                 resultHashMap[i].containsValue("O") && resultHashMap[i].contains("U") -> {
                     val newBlank = blank.replace("_", "O")
                     moveUpperPath += newBlank
@@ -44,6 +45,7 @@ class OutputView {
                         moveUnderPath += splitter
                     }
                 }
+
                 resultHashMap[i].containsValue("X") && resultHashMap[i].contains("D") -> {
                     val newBlank = blank.replace("_", "X")
                     moveUnderPath += newBlank
@@ -53,6 +55,7 @@ class OutputView {
                         moveUnderPath += splitter
                     }
                 }
+
                 resultHashMap[i].containsValue("O") && resultHashMap[i].contains("D") -> {
                     val newBlank = blank.replace("_", "O")
                     moveUnderPath += newBlank
@@ -82,25 +85,10 @@ class OutputView {
 
     fun printSingleResult(resultHashMap: MutableList<HashMap<String, String>>) {
         when {
-            resultHashMap[0].containsValue("X") && resultHashMap[0].contains("U") -> {
-                println("[ X ]")
-                println("[   ]")
-            }
-
-            resultHashMap[0].containsValue("O") && resultHashMap[0].contains("U") -> {
-                println("[ O ]")
-                println("[   ]")
-            }
-
-            resultHashMap[0].containsValue("X") && resultHashMap[0].contains("D") -> {
-                println("[   ]")
-                println("[ X ]")
-            }
-
-            resultHashMap[0].containsValue("O") && resultHashMap[0].contains("D") -> {
-                println("[   ]")
-                println("[ O ]")
-            }
+            resultHashMap[0].containsValue("X") && resultHashMap[0].contains("U") -> println("[ X ]\n[   ]")
+            resultHashMap[0].containsValue("O") && resultHashMap[0].contains("U") -> println("[ O ]\n[   ]")
+            resultHashMap[0].containsValue("X") && resultHashMap[0].contains("D") -> println("[   ]\n[ X ]")
+            resultHashMap[0].containsValue("O") && resultHashMap[0].contains("D") -> println("[   ]\n[ O ]")
         }
     }
 
@@ -125,10 +113,10 @@ class OutputView {
     }
 
     fun printCheckSuccessGame(resultGame: String) {
-        println(CHECK_SUCCESS_GAME+resultGame)
+        println(CHECK_SUCCESS_GAME + resultGame)
     }
 
     fun printNumTotalTrial(trial: Int) {
-        println(NUM_TOTAL_TRIAL+"$trial")
+        println(NUM_TOTAL_TRIAL + "$trial")
     }
 }
