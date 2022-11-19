@@ -109,28 +109,54 @@ class BrigeGameTest {
             assertThat(bridgeGame.isFailed()).isEqualTo(true)
         }
     }
+    @ParameterizedTest
+    @ValueSource(strings = ["UDD"])
+    @DisplayName("isFinished 테스트 normal")
+    fun `BridgeGame isFinished normal`(Moving: String) {
+        assertSimpleTest {
+            val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+            val bridgeGame = BridgeGame(BridgeMaker(numberGenerator),3)
+            Moving.forEachIndexed { index, it -> bridgeGame.move(it.toString(), index)}
+            assertThat(bridgeGame.isFinished(Moving.length)).isEqualTo(true)
+        }
+    }
+    @ParameterizedTest
+    @ValueSource(strings = ["UD"])
+    @DisplayName("isFinished 테스트 abnormal length under")
+    fun `BridgeGame isFinished abnormal length under`(Moving: String) {
+        assertSimpleTest {
+            val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+            val bridgeGame = BridgeGame(BridgeMaker(numberGenerator),3)
+            Moving.forEachIndexed { index, it -> bridgeGame.move(it.toString(), index)}
+            assertThat(bridgeGame.isFinished(Moving.length)).isEqualTo(false)
+        }
+    }
+    @ParameterizedTest
+    @ValueSource(strings = ["UDDD"])
+    @DisplayName("isFinished 테스트 abnormal length over")
+    fun `BridgeGame isFinished abnormal length over`(Moving: String) {
+        assertSimpleTest {
+            val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+            val bridgeGame = BridgeGame(BridgeMaker(numberGenerator),3)
+            assertThrows<IndexOutOfBoundsException> {
+                Moving.forEachIndexed { index, it -> bridgeGame.move(it.toString(), index)}
+                assertThat(bridgeGame.isFinished(Moving.length)).isEqualTo(false)
+            }
+        }
+    }
 
-//    @ParameterizedTest
-//    @ValueSource(strings = ["UU"])
-//    @DisplayName("isFailed 테스트 fail first")
-//    fun `BridgeGame isFailed fail first`(Moving: String) {
-//        assertSimpleTest {
-//            val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
-//            val bridgeGame = BridgeGame(BridgeMaker(numberGenerator),3)
-//            var curBridge = Pair("[","[")
-//            Moving.forEachIndexed { index, it ->
-//                curBridge = bridgeGame.move(curBridge, it.toString(), index)
-//            }
-//
-//            if (curBridge == Pair("[ O | X ]","[   |   ]") && bridgeGame.isFailed(curBridge) && curBridge.first.contains
-//                    (MOVE_WRONG))
-//                println("성공")
-//            else {
-//                println("실패")
-//                println(curBridge.first)
-//            }
-//        }
-//    }
+    @ParameterizedTest
+    @ValueSource(strings = ["UDU"])
+    @DisplayName("isFinished 테스트 abnormal direction")
+    fun `BridgeGame isFinished abnormal direction`(Moving: String) {
+        assertSimpleTest {
+            val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+            val bridgeGame = BridgeGame(BridgeMaker(numberGenerator),3)
+            Moving.forEachIndexed { index, it -> bridgeGame.move(it.toString(), index)}
+            assertThat(bridgeGame.isFinished(Moving.length)).isEqualTo(false)
+        }
+    }
+
     class TestNumberGenerator(numbers: List<Int>) : BridgeNumberGenerator {
         private val numbers: MutableList<Int> = numbers.toMutableList()
 
