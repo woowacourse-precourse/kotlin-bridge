@@ -62,7 +62,10 @@
   - [x] 플레이어가 다리를 건너다 실패 했는지 확인한다. `BridgeGame.isFailed()`
     - [x] 현재 위치의 칸이 X인지 확인한다.
     - [x] 현재 위치의 칸이 X이면 true를 반환한다.
-  
+  - [X] 플레이어가 재시작을 할경우 다시 게임을 시작한다. `BridgeGame.retry()`
+    - [X] 현재 위치 초기화
+    - [X] 시도횟수 증가
+
 ### 4. main
   - [ ] 게임시작 문구 `OutputView.printGameStart()`
   - [ ] 다리 길이를 입력 받는다. `InputView.readBridgeSize()`

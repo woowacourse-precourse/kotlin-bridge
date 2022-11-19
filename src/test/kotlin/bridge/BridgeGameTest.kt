@@ -157,6 +157,22 @@ class BrigeGameTest {
         }
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = ["UDU", "UU"])
+    @DisplayName("BridgeGame retry 테스트 normal retry")
+    fun `BridgeGame retry normal retry`(Moving: String) {
+        assertSimpleTest {
+            val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+            val bridgeGame = BridgeGame(BridgeMaker(numberGenerator),Moving.length)
+            Moving.forEachIndexed { index, it -> bridgeGame.move(it.toString(), index)}
+            if (bridgeGame.isFailed() || bridgeGame.isFinished(Moving.length)) {
+                bridgeGame.retry("R")
+                assertThat(bridgeGame.getCurBridge()).isEqualTo(Pair("[", "["))
+                assertThat(bridgeGame.getRound()).isEqualTo(2)
+            }
+        }
+    }
+
     class TestNumberGenerator(numbers: List<Int>) : BridgeNumberGenerator {
         private val numbers: MutableList<Int> = numbers.toMutableList()
 
