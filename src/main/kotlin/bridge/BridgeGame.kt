@@ -5,9 +5,10 @@ package bridge
  */
 class BridgeGame(private val bridge: List<String>) {
 
-    var userMoving = Array(ROW_COUNT) { Array(bridge.size) { " " } }
+    var userMoving = Array(ROW_COUNT) { mutableListOf<String>() }
 
-    var count = 0
+    var tryCount = 1
+    var colPosition = 0
         private set
 
     /**
@@ -17,22 +18,25 @@ class BridgeGame(private val bridge: List<String>) {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun move(moving: String): Boolean {
-        if (bridge[count] == moving) {
+        if (bridge[colPosition] == moving) {
             checkUserMoving(moving, "O")
-            count += 1
+            colPosition += 1
             return false
         }
 
         checkUserMoving(moving, "X")
-        count += 1
+        colPosition += 1
         return true
     }
 
     private fun checkUserMoving(moving: String, check: String) {
-        when (moving) {
-            "U" -> userMoving[0][count] = check
-            "D" -> userMoving[1][count] = check
+        val idx = when (moving) {
+            "U" -> 0
+            "D" -> 1
+            else -> throw NoSuchElementException()
         }
+        userMoving[idx].add(check)
+        userMoving[(idx + 1) % 2].add(" ")
     }
 
     /**
@@ -42,8 +46,9 @@ class BridgeGame(private val bridge: List<String>) {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun retry() {
-        userMoving = Array(ROW_COUNT) { Array(bridge.size) { " " } }
-        count = 0
+        userMoving = Array(ROW_COUNT) { mutableListOf() }
+        colPosition = 0
+        tryCount += 1
     }
 
     companion object {

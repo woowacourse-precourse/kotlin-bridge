@@ -32,7 +32,29 @@ class BridgeGameTest {
         bridgeGame.move("U")
         bridgeGame.move("D")
         bridgeGame.retry()
-        val result = bridgeGame.count
+        val result = bridgeGame.colPosition
         assertThat(result).isEqualTo(0)
+    }
+
+    @Test
+    fun `총 시도한 횟수가 한 번일 경우`() {
+        bridgeGame.move("U")
+        bridgeGame.move("U")
+        bridgeGame.move("D")
+        val result = bridgeGame.tryCount
+        assertThat(result).isEqualTo(1)
+    }
+
+    @Test
+    fun `총 시도한 횟수가 세 번일 경우`() {
+        bridgeGame.move("D")
+        bridgeGame.retry()
+        bridgeGame.move("D")
+        bridgeGame.retry()
+        bridgeGame.move("U")
+        bridgeGame.move("U")
+        bridgeGame.move("D")
+        val result = bridgeGame.tryCount
+        assertThat(result).isEqualTo(3)
     }
 }
