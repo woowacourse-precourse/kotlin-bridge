@@ -6,6 +6,7 @@ package bridge
 class BridgeGame {
     val currentMoving = mutableListOf<String>()
     private val judgement = Judgement()
+    var tryCount = 0
 
     fun createCorrectBridgeMap(size: Int) {
         judgement.createCorrectBridge(size)
@@ -24,9 +25,12 @@ class BridgeGame {
         return currentMoving.toList()
     }
 
-    fun retry() {}
-
     fun checkGameWin(): Boolean {
         return judgement.checkGameWin(currentMoving)
+    }
+
+    fun retry() {
+        currentMoving.clear()
+        tryCount++
     }
 }
