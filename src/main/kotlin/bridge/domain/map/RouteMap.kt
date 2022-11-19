@@ -6,16 +6,15 @@ import bridge.util.constant.DOWN
 import bridge.util.constant.UP
 
 class RouteMap(
-    private val routeMap: List<ArrayList<Mark>> = listOf(arrayListOf(), arrayListOf()),
-    private val bridge: Bridge
+    private val routeMap: List<ArrayList<Mark>> = listOf(arrayListOf(), arrayListOf())
 ) {
-    fun addPath(path: Path): RouteMap {
+    fun addPath(path: Path, bridge: Bridge): RouteMap {
         increaseMapSize()
-        updatePath(path, path.position())
-        return RouteMap(routeMap, bridge)
+        updatePath(path, bridge, path.position())
+        return RouteMap(routeMap)
     }
 
-    private fun updatePath(path: Path, position: Int) {
+    private fun updatePath(path: Path, bridge: Bridge, position: Int) {
         val bridgeDirection = bridge.directionOf(position)
         val playerDirection = path.userDirectionAsDigit(position)
         val isCorrectPath = path.checkDirection(bridgeDirection, position)

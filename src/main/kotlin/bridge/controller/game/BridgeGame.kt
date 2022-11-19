@@ -40,7 +40,7 @@ class BridgeGame : Game {
 
     private fun startBridgeGame(): Pair<Result, RouteMap> {
         val bridgeSize = bridge.size()
-        val playerRoute = RouteMap(bridge = bridge)
+        val playerRoute = RouteMap()
         increaseTryCount()
 
         for (round in 0 until bridgeSize) {
@@ -52,7 +52,7 @@ class BridgeGame : Game {
 
     private fun startRound(playerRoute: RouteMap, round: Int): Boolean {
         move()
-        drawRoute(playerRoute.addPath(path))
+        drawRoute(playerRoute.addPath(path, bridge))
 
         val realDirection = bridge.directionOf(round)
         val isRightPath = path.checkDirection(realDirection, round)
