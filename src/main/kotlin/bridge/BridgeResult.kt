@@ -9,8 +9,8 @@ class BridgeResult(private val size : Int) {
 
     fun setMoveResult(input : BridgeDirection, movePossible : Move) {
         when(input) {
-            BridgeDirection.U -> moveUp(movePossible.name)
-            BridgeDirection.D -> moveDown(movePossible.name)
+            BridgeDirection.U -> moveUp(movePossible.getMark())
+            BridgeDirection.D -> moveDown(movePossible.getMark())
         }
         gameResult.setGameResult(movePossible)
         this.movePossible = movePossible
