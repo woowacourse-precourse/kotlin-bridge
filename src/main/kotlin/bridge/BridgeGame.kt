@@ -30,6 +30,13 @@ class BridgeGame {
         }
     }
 
+    fun isSuccess(player: Player): String {
+        if (player.isGameSuccess) {
+            return "성공"
+        }
+        return "실패"
+    }
+
     private fun moveBridge(bridge: Bridge, direction: String, result: String) {
         when (direction) {
             "U" -> moveUpBridge(bridge, result)
