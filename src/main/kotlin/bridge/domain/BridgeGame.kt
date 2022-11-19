@@ -13,7 +13,7 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(bridge: Bridge, upDown: String, map: BridgeMap) :String{
+    fun move(bridge: Bridge, upDown: String, map: BridgeMap): String {
         var hit = ""
         if (bridge.matches(upDown)) {
             hit = "O"
@@ -28,7 +28,7 @@ class BridgeGame {
             ifD(bridge, hit, map)
         }
         bridge.moveCurrentLocation()
-        return  hit
+        return hit
     }
 
     private fun ifU(bridge: Bridge, hit: String, map: BridgeMap) {
@@ -55,7 +55,7 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry(bridge: Bridge,bridgeMap: BridgeMap) {
+    fun retry(bridge: Bridge, bridgeMap: BridgeMap) {
         bridge.clear()
         bridgeMap.clear()
 

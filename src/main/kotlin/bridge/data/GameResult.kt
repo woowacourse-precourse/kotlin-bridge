@@ -6,7 +6,8 @@ class GameResult {
     fun getGameResult(): Pair<String, Int> {
         return result to attempt
     }
-    fun succeed(){
+
+    fun succeed() {
         result = "성공"
     }
 

@@ -10,13 +10,11 @@ class Bridge(private val bridge: List<String>) {
     }
 
 
-
-
     fun clear() {
         currentLocation = 0
     }
 
-    fun finish(hit :String): Boolean {
+    fun finish(hit: String): Boolean {
         if (currentLocation == bridge.size) {
             if (hit == "O")
                 return true
