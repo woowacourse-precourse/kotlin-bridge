@@ -2,7 +2,8 @@ package bridge
 
 fun main() {
     // bridgeGame을 생성하고 게임을 시작 - start() 실행
-
+    val bridgeGame = BridgeGame()
+    bridgeGame.start()
     // 반복문으로 move()
     while(true) {
         // move를 통해 이동여부를 받은 후 false를 받으면 retry() 실행
