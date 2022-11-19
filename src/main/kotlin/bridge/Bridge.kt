@@ -15,8 +15,8 @@ class Bridge {
         val userBridge = Bridge(bridge)
         val bridgeResult = BridgeResult(this.bridge.size)
 
-        this.bridge.forEach {
-            val movePossible = userBridge.movePossible(it)
+        userBridge.bridge.forEach {
+            val movePossible = movePossible(it)
             bridgeResult.setMoveResult(it.getDirection(), movePossible)
         }
         return bridgeResult
