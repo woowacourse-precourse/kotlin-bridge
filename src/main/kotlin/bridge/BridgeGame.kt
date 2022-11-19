@@ -12,7 +12,7 @@ class BridgeGame {
 
     fun move(moving: String) {
         updateGameProgress(moving)
-        moveCount++
+        setMoveCount(moveCount + 1)
     }
 
     fun retry() {}
@@ -25,6 +25,8 @@ class BridgeGame {
     fun getMoveCount(): Int { return moveCount }
 
     fun setBridgeSize(inputLength: Int) { bridgeSize = inputLength }
+
+    fun setMoveCount(nextMoveCount: Int) { moveCount++ }
 
     fun setBridge(bridgeMaker: BridgeMaker) { bridge = bridgeMaker.makeBridge(bridgeSize) }
 
