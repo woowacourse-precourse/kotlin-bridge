@@ -35,6 +35,7 @@ class BridgeGame {
     }
 
     private fun processBridgeSizeIO() {
+        outputView.printFormattedMsg(OutputView.INPUT_BRIDGE_SIZE)
         val size = inputView.readBridgeSize()
         val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
         val bridgeSteps = bridgeMaker.makeBridge(size)
@@ -42,6 +43,7 @@ class BridgeGame {
     }
 
     private fun processMoveIO(): Boolean {
+        outputView.printFormattedMsg(OutputView.INPUT_STEP_SIDE)
         val moving = inputView.readMoving()
         val status = move(moving)
         outputView.printMap(userStep)
@@ -55,6 +57,7 @@ class BridgeGame {
     }
 
     private fun processRetryIO(): Boolean {
+        outputView.printFormattedMsg(OutputView.INPUT_RETRY)
         val gameCommand = inputView.readGameCommand()
         if (gameCommand == "R") {
             retry()
@@ -67,6 +70,7 @@ class BridgeGame {
     }
 
     fun gameLoop() {
+        outputView.printFormattedMsg(OutputView.START)
         while (true) {
             processBridgeSizeIO()
             if (!processMoveIO())
