@@ -1,9 +1,9 @@
-package bridge
+package view
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
-class OutputView {
+object OutputView {
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      *
@@ -11,8 +11,7 @@ class OutputView {
      */
     fun printMap(upSide: List<String>, downSide: List<String>) {
         println(upSide.joinToString(" | ", "[ ", " ]"))
-        println(downSide.joinToString(" | ", "[ ", " ]"))
-        println()
+        println(downSide.joinToString(" | ", "[ ", " ]\n"))
     }
 
     /**
@@ -28,15 +27,14 @@ class OutputView {
     }
 
     fun printStartGame() {
-        println("다리 건너기 게임을 시작합니다.")
+        println(
+            "다리 건너기 게임을 시작합니다.\n" +
+                    "\n다리의 길이를 입력해주세요."
+        )
     }
 
     fun printEndGame() {
         println("최종 게임 결과")
-    }
-
-    fun printInputSize() {
-        println("\n다리의 길이를 입력해주세요.")
     }
 
     fun printInputMove() {
