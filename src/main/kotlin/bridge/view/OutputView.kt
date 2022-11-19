@@ -14,6 +14,10 @@ class OutputView {
         println()
     }
 
+    fun printErrorMessage(errorMessage: String) {
+        println("$START_OF_ERROR_MESSAGE $errorMessage")
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      *
@@ -29,6 +33,7 @@ class OutputView {
     fun printResult(metadata: BridgeGameMetadataDTO) {}
 
     companion object {
+        const val START_OF_ERROR_MESSAGE = "[ERROR]"
         const val GAME_START_ANNOUNCEMENT = "다리 건너기 게임을 시작합니다."
     }
 }
