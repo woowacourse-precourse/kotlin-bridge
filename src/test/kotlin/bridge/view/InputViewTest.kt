@@ -2,7 +2,7 @@ package bridge.view
 
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions
-import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -31,7 +31,7 @@ internal class InputViewTest {
             @ParameterizedTest
             @MethodSource("readValues")
             fun `예외 메세지와 함께 예외를 던진다`(readValue: String) {
-                Assertions.assertThatThrownBy { runException(readValue) }
+                assertThatThrownBy { runException(readValue) }
                     .isInstanceOf(IllegalArgumentException::class.java)
                     .hasMessageContaining(ERROR_MESSAGE)
             }
@@ -39,6 +39,27 @@ internal class InputViewTest {
 
         override fun runMain() {
             inputView.readBridgeSize()
+        }
+    }
+
+    @Nested
+    inner class `askBridgeSizeToUser 메소드는`: NsTest() {
+        @Nested
+        inner class `사용자가 잘못된 값을 입력하면` {
+            private val readValues = listOf("-1", "2", "21", "3")
+            @Test
+            fun `예외 메세지를 출력 후 다시 입력받는다`() {
+                System.setIn(ByteArrayInputStream(readValues.joinToString("\n").toByteArray()))
+
+                val bridgeSize = inputView.askBridgeSizeToUser()
+
+                assertThat(output()).contains(ERROR_MESSAGE)
+                assertThat(bridgeSize).isEqualTo(3)
+            }
+        }
+
+        override fun runMain() {
+            inputView.askBridgeSizeToUser()
         }
     }
 
