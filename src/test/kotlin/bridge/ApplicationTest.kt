@@ -35,7 +35,7 @@ class ApplicationTest : NsTest() {
     @Test
     fun `잘못된 값 입력 시 재입력 받는다`() {
         assertRandomNumberInRangeTest({
-            run("25", "3", "e", "U", "D", "c", "R", "U", "U")
+            run("25", "3", "e", "U", "D", "c", "R", "U", "U", "U")
             assertThat(output()).contains(
                 "최종 게임 결과",
                 "[ O | O | O ]",

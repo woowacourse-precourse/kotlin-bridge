@@ -44,8 +44,8 @@ class BridgeGame(private val bridge: Bridge) {
 
     private fun runCommand(gameCommand: BridgeGameCommand) {
         if (gameCommand == BridgeGameCommand.RETRY && movingResults.isNotEmpty()) {
-            _movingResults.removeLast()
-            currentPosition -= 1
+            _movingResults.clear()
+            currentPosition = -1
             _tryCount += 1
             _currentState = BridgeGameState.ONGOING
         }
