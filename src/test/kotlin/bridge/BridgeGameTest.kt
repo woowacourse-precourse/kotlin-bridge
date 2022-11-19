@@ -2,16 +2,17 @@ package bridge
 
 import bridge.validator.BridgeGameValidator
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class BridgeGameTest {
-    @Test
-    fun `정답일 때 다음 라운드 반환 테스트`() {
-        assertThat(1).isEqualTo(BridgeGameValidator.validateMoveOutput(true, 0))
-    }
 
-    @Test
-    fun `정답이 아닐 때 현재 라운드 반환 테스트`() {
-        assertThat(0).isEqualTo(BridgeGameValidator.validateMoveOutput(false, 0))
+    @ParameterizedTest
+    @CsvSource(
+        "1, true, 0",
+        "0, false, 0"
+    )
+    fun `라운드 이동 기능 테스트`(nextRound: Int, isMatched: Boolean, currentRound: Int) {
+        assertThat(nextRound).isEqualTo(BridgeGameValidator.validateMoveOutput(isMatched, currentRound))
     }
 }
