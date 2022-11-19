@@ -1,7 +1,6 @@
 package bridge.ui.view
 
 import bridge.common.*
-import bridge.ui.common.*
 import bridge.ui.validator.InputValidator
 import camp.nextstep.edu.missionutils.Console
 
@@ -22,7 +21,7 @@ class InputView {
                 InputValidator.validateBridgeSize(bridgeSize = bridgeSize)
             }
                 .onSuccess { return bridgeSize.toInt() }
-                .onFailure { println(ERROR_MESSAGE_FORMAT.format(ERROR_BRIDGE_SIZE_MESSAGE)) }
+                .onFailure { println(it.message) }
         }
     }
 
@@ -38,7 +37,7 @@ class InputView {
                 InputValidator.validateMoving(moving = moving)
             }
                 .onSuccess { return moving }
-                .onFailure { println(ERROR_MESSAGE_FORMAT.format(ERROR_MOVING_MESSAGE)) }
+                .onFailure { println(it.message) }
         }
     }
 
@@ -54,7 +53,7 @@ class InputView {
                 InputValidator.validateGameCommand(command = command)
             }
                 .onSuccess { return command }
-                .onFailure { println(ERROR_MESSAGE_FORMAT.format(ERROR_GAME_COMMAND_MESSAGE)) }
+                .onFailure { println(it.message) }
         }
     }
 }
