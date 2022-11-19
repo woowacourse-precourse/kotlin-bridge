@@ -17,6 +17,14 @@ class BridgeGame {
 
     fun retry() {}
 
+    fun setBridgeSize(inputLength: Int) {
+        bridgeSize = inputLength
+    }
+
+    fun setBridge(bridgeMaker: BridgeMaker) {
+        bridge = bridgeMaker.makeBridge(bridgeSize)
+    }
+
     companion object {
         const val MOVING_DOWN = "D"
         const val MOVING_UP = "U"
