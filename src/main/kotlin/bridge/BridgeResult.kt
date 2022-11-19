@@ -5,10 +5,10 @@ class BridgeResult {
     private val upBridge = mutableListOf<String>()
     private val downBridge = mutableListOf<String>()
 
-    fun setMoveResult(input : BridgeDirection, mark : String) {
+    fun setMoveResult(input : BridgeDirection, movePossible : Move) {
         when(input) {
-            BridgeDirection.U -> moveUp(mark)
-            BridgeDirection.D -> moveDown(mark)
+            BridgeDirection.U -> moveUp(movePossible.name)
+            BridgeDirection.D -> moveDown(movePossible.name)
         }
     }
 
