@@ -1,4 +1,4 @@
-package bridge.domain
+package bridge.controller.game
 
 import bridge.util.FAIL_MESSAGE
 import bridge.util.SUCCESS_MESSAGE

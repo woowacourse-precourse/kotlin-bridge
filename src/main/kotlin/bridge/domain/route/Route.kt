@@ -1,5 +1,7 @@
-package bridge.domain
+package bridge.domain.route
 
+import bridge.domain.bridge.Bridge
+import bridge.domain.path.Path
 import bridge.util.DOWN
 import bridge.util.UP
 

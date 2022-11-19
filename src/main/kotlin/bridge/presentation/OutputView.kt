@@ -1,7 +1,8 @@
 package bridge.presentation
 
-import bridge.domain.*
 import bridge.util.*
+import bridge.domain.route.Mark
+import bridge.controller.game.Result
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

@@ -1,4 +1,4 @@
-package bridge.controller
+package bridge.controller.game
 
 interface Game {
     fun start()

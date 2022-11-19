@@ -1,6 +1,6 @@
 package bridge.presentation
 
-import bridge.util.Validator
+import bridge.util.validator.Validator
 import camp.nextstep.edu.missionutils.Console
 
 /**

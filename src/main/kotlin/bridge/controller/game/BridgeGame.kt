@@ -1,11 +1,15 @@
-package bridge.controller
+package bridge.controller.game
 
 import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
-import bridge.domain.*
+import bridge.domain.bridge.Bridge
+import bridge.domain.counter.TryCounter
+import bridge.domain.path.Path
+import bridge.domain.route.Route
 import bridge.presentation.InputView
 import bridge.presentation.OutputView
 import bridge.util.RETRIAL
+import bridge.domain.route.Mark
 
 /**
  * 다리 건너기 게임을 관리하는 클래스

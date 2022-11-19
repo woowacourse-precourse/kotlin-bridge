@@ -1,4 +1,6 @@
-package bridge.util
+package bridge.util.validator
+
+import bridge.util.*
 
 object Validator {
     fun validateIsNumber(value: String) {

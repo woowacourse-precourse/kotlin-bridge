@@ -1,6 +1,6 @@
 package bridge
 
-import bridge.controller.BridgeGame
+import bridge.controller.game.BridgeGame
 
 fun main() {
     BridgeGame().start()

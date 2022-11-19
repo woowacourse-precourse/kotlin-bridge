@@ -1,4 +1,4 @@
-package bridge.domain
+package bridge.domain.path
 
 import bridge.util.DOWN_INDEX
 import bridge.util.UP
