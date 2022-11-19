@@ -45,10 +45,10 @@ internal class InputViewTest {
     @Nested
     inner class `askBridgeSizeToUser 메소드는`: NsTest() {
         @Nested
-        inner class `사용자가 잘못된 값을 입력하면` {
+        inner class `실행하면` {
             private val readValues = listOf("-1", "2", "21", "3")
             @Test
-            fun `예외 메세지를 출력 후 다시 입력받는다`() {
+            fun `올바른 값을 입력받을 때까지 예외 메세지를 출력하며 반복한다`() {
                 System.setIn(ByteArrayInputStream(readValues.joinToString("\n").toByteArray()))
 
                 val bridgeSize = inputView.askBridgeSizeToUser()
