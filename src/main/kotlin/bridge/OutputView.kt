@@ -7,7 +7,9 @@ class OutputView {
     }
 
     fun printResult(bridgeGame: BridgeGame) {
-        print("게임 성공 여부: ")
+        println("최종 게임 결과")
+        printMap(bridgeGame)
+        print("\n게임 성공 여부: ")
         if (bridgeGame.check() && bridgeGame.over()) {
             println("성공")
         }
