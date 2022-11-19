@@ -124,11 +124,78 @@ class BrigeGameTest {
             }
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["U"])
+    @DisplayName("isFailed 테스트 not fail")
+    fun `BridgeGame isFailed not fail`(Moving: String) {
+        assertSimpleTest {
+            val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+            val bridgeGame = BridgeGame(BridgeMaker(numberGenerator),3)
+            var curBridge = Pair("[","[")
+            Moving.forEachIndexed { index, it ->
+                curBridge = bridgeGame.move(curBridge, it.toString(), index)
+            }
+            if (curBridge == Pair("[ O ]","[   ]") && !bridgeGame.isFailed(curBridge))
+                println("성공")
+            else {
+                println("실패")
+                println(curBridge)
+            }
+        }
+    }
+    @ParameterizedTest
+    @ValueSource(strings = ["D"])
+    @DisplayName("isFailed 테스트 fail second")
+    fun `BridgeGame isFailed fail second`(Moving: String) {
+        assertSimpleTest {
+            val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+            val bridgeGame = BridgeGame(BridgeMaker(numberGenerator),3)
+            var curBridge = Pair("[","[")
+            Moving.forEachIndexed { index, it ->
+                curBridge = bridgeGame.move(curBridge, it.toString(), index)
+            }
+
+            if (curBridge == Pair("[   ]","[ X ]") && bridgeGame.isFailed(curBridge) && curBridge.second.contains(MOVE_WRONG))
+                println("성공")
+            else {
+                println("실패")
+                println(curBridge.second)
+            }
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["UU"])
+    @DisplayName("isFailed 테스트 fail first")
+    fun `BridgeGame isFailed fail first`(Moving: String) {
+        assertSimpleTest {
+            val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+            val bridgeGame = BridgeGame(BridgeMaker(numberGenerator),3)
+            var curBridge = Pair("[","[")
+            Moving.forEachIndexed { index, it ->
+                curBridge = bridgeGame.move(curBridge, it.toString(), index)
+            }
+
+            if (curBridge == Pair("[ O | X ]","[   |   ]") && bridgeGame.isFailed(curBridge) && curBridge.first.contains
+                    (MOVE_WRONG))
+                println("성공")
+            else {
+                println("실패")
+                println(curBridge.first)
+            }
+        }
+    }
     class TestNumberGenerator(numbers: List<Int>) : BridgeNumberGenerator {
         private val numbers: MutableList<Int> = numbers.toMutableList()
 
         override fun generate(): Int {
             return numbers.removeAt(0)
         }
+    }
+    companion object {
+        private const val MOVE_CORRECT = " O "
+        private const val MOVE_WRONG   = " X "
+        private const val MOVE_NOT_CHOOSE = "   "
     }
 }

@@ -59,9 +59,9 @@
   - [ ] 플레이어가 다리를 건넜는지 확인한다. `BridgeGame.isFinished()` 
     - [ ] 현재 위치의 칸이 끝인지 확인한다.
     - [ ] 현재 위치의 칸이 끝이면 true를 반환한다.
-  - [ ] 플레이어가 다리를 건너다 실패 했는지 확인한다. `BridgeGame.isFailed()`
-    - [ ] 현재 위치의 칸이 X인지 확인한다.
-    - [ ] 현재 위치의 칸이 X이면 true를 반환한다.
+  - [x] 플레이어가 다리를 건너다 실패 했는지 확인한다. `BridgeGame.isFailed()`
+    - [x] 현재 위치의 칸이 X인지 확인한다.
+    - [x] 현재 위치의 칸이 X이면 true를 반환한다.
   
 ### 4. main
   - [ ] 게임시작 문구 `OutputView.printGameStart()`

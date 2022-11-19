@@ -28,6 +28,9 @@ class BridgeGame(private val bridgeMaker: BridgeMaker, private val size: Int) {
         return Pair(curBridge.first.removeSuffix("]")  + "|" + Moving.first + "]", curBridge.second.removeSuffix("]") + "|" + Moving.second + "]")
     }
 
+    fun isFailed(curBridge: Pair<String, String>) : Boolean {
+        return curBridge.first.contains(MOVE_WRONG) || curBridge.second.contains(MOVE_WRONG)
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      *
