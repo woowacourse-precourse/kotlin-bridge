@@ -18,7 +18,7 @@ enum class BridgeMessage(val word: String) {
     MapStart("["),
     MapEnd("]"),
     End("최종 게임 결과"),
-    Win("게임 성공 여부: 승리"),
+    Win("게임 성공 여부: 성공"),
     Lose("게임 성공 여부: 실패"),
     HowManyTimeDidYouTry("총 시도한 횟수: "),
     AreYouWantRetry("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
