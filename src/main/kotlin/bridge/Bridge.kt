@@ -1,6 +1,7 @@
 package bridge
 
-import bridge.ex.Move
+import bridge.ex.Bridges
+import bridge.ex.BridgesResult
 
 class Bridge {
 
@@ -13,9 +14,15 @@ class Bridge {
     fun mapBridges(bridge: List<String>) : List<BridgeSpace> =
         bridge.mapIndexed { index, s ->  BridgeSpace(BridgeDirection.valueOf(s), index)}
 
-    fun move(input: BridgeDirection, bridgeMap: List<String>, idx: Int) {
-        val mark = movePossibleMark(movePossible(input, bridgeMap, idx))
-        bridgeResult.setMoveResult(input, mark)
+    fun move(bridge: List<String>) : BridgeResult {
+        val userBridge = Bridge(bridge)
+        val bridgeResult = BridgeResult(this.bridge.size)
+
+        this.bridge.forEach {
+            val movePossible = userBridge.movePossible(it)
+            bridgeResult.setMoveResult(it.getDirection(), movePossible)
+        }
+        return bridgeResult
     }
 
     fun movePossible(bridgeSpace: BridgeSpace) : Move {

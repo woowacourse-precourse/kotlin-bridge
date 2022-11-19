@@ -1,11 +1,11 @@
 package bridge
 
-import bridge.ex.Move
-
 class BridgeSpace(
     private val direction: BridgeDirection,
     private val position: Int
 ) {
+
+    fun getDirection() : BridgeDirection = direction
 
     fun matchBridgeSpace(user: BridgeSpace): Move {
         if (this.equals(user)) return Move.POSSIBLE

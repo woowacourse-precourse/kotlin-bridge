@@ -1,6 +1,6 @@
 package bridge
 
-class BridgeResult {
+class BridgeResult(private val size : Int) {
 
     private val upBridge = mutableListOf<String>()
     private val downBridge = mutableListOf<String>()
