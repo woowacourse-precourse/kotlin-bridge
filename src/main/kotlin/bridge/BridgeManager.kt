@@ -7,7 +7,7 @@ class BridgeManager(private val inputView: InputView, private val outputView: Ou
     private var position = 0
 
     init {
-        println("다리 건너기 게임을 시작합니다.")
+        println(OutputView.PRINT_START)
         this.bridgeSize = this.setBridgeSize()
         this.bridgeGame = BridgeGame(this.bridgeSize)
         this.bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(this.bridgeSize)

@@ -27,8 +27,8 @@ class BridgeGame(private val bridgeSize: Int) {
 
     private fun moveNextBridge(move: String, position: Int, operation: String) {
         when (move) {
-            UP_COMMAND -> this.upBridge[position] = operation
-            DOWN_COMMAND -> this.downBridge[position] = operation
+            InputView.COMMAND_UP -> this.upBridge[position] = operation
+            InputView.COMMAND_DOWN -> this.downBridge[position] = operation
         }
     }
 
@@ -54,8 +54,6 @@ class BridgeGame(private val bridgeSize: Int) {
     }
 
     companion object {
-        const val UP_COMMAND = "U"
-        const val DOWN_COMMAND = "D"
         const val CORRECT_MOVE = "O"
         const val WRONG_MOVE = "X"
         const val INIT_MOVE = " "

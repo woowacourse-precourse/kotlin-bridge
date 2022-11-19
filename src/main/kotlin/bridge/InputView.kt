@@ -75,12 +75,16 @@ class InputView {
     companion object {
         const val MIN_BRIDGE_SIZE = 3
         const val MAX_BRIDGE_SIZE = 20
+        const val COMMAND_UP = "U"
+        const val COMMAND_DOWN = "D"
+        const val COMMAND_RESTART = "R"
+        const val COMMAND_QUIT = "Q"
         const val NOT_ALLOWED_NUMBER_INPUT = "[ERROR] 입력이 올바르지 않습니다(HINT: 숫자 입력)."
         const val NOT_ALLOWED_STRING_INPUT = "[ERROR] 입력이 올바르지 않습니다(HINT: 문자 입력)."
         const val NOT_ALLOWED_NUMBER_RANGE_INPUT = "[ERROR] 허용된 입력 범위가 아닙니다(HINT: $MIN_BRIDGE_SIZE ~ $MAX_BRIDGE_SIZE 사이 숫자입력)."
         const val NOT_ALLOWED_STRING_RANGE_INPUT = "[ERROR] 허용된 입력 범위가 아닙니다(HINT: 하나의 문자만 입력)"
-        val COMMAND_RANGE = listOf("R", "Q", "r", "q")
-        val MOVING_RANGE = listOf("U", "D", "u", "d")
+        val COMMAND_RANGE = listOf(COMMAND_RESTART, COMMAND_QUIT)
+        val MOVING_RANGE = listOf(COMMAND_UP, COMMAND_DOWN)
         const val NOT_ALLOWED_COMMAND_RANGE = "[ERROR] 허용된 입력 범위가 아닙니다(HINT: R, Q 중 하나 입력)"
         const val NOT_ALLOWED_MOVING_RANGE = "[ERROR] 허용된 입력 범위가 아닙니다(HINT: U, D 중 하나 입력)"
     }

@@ -38,9 +38,10 @@ class OutputView {
     fun printTryNumber(tryCounter: Int) = println("$PRINT_TOTAL_TRIED $tryCounter")
 
     companion object {
+        const val PRINT_START = "다리 건너기 게임을 시작합니다."
         const val PRINT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요."
-        const val PRINT_MOVING_COMMAND = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
-        const val PRINT_RETRY_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+        const val PRINT_MOVING_COMMAND = "이동할 칸을 선택해주세요. (위: ${InputView.COMMAND_UP}, 아래: ${InputView.COMMAND_DOWN})"
+        const val PRINT_RETRY_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: ${InputView.COMMAND_RESTART}, 종료: ${InputView.COMMAND_QUIT})"
         const val PRINT_RESULT = "최종 게임 결과"
         const val PRINT_RESULT_SUCCESS = "게임 성공 여부: 성공"
         const val PRINT_RESULT_FAIL = "게임 성공 여부: 실패"

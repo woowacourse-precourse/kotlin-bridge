@@ -12,8 +12,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         val bridge = mutableListOf<String>()
         for (i in 0 until  size) {
             when(bridgeNumberGenerator.generate()) {
-                BridgeRandomNumberGenerator.RANDOM_UPPER_INCLUSIVE -> bridge.add("U")
-                BridgeRandomNumberGenerator.RANDOM_LOWER_INCLUSIVE -> bridge.add("D")
+                BridgeRandomNumberGenerator.RANDOM_UPPER_INCLUSIVE -> bridge.add(InputView.COMMAND_UP)
+                BridgeRandomNumberGenerator.RANDOM_LOWER_INCLUSIVE -> bridge.add(InputView.COMMAND_DOWN)
             }
         }
         return bridge
