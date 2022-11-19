@@ -29,7 +29,7 @@ class UserInputValidate {
     }
 
     private fun isValidMovingInput(inputMoving: String) {
-        if (inputMoving.length != INPUT_MOVING_LENGTH || !inputMoving.contains("U") || !inputMoving.contains("D")) {
+        if (inputMoving.length != INPUT_MOVING_LENGTH || !inputMoving.contains("U") && !inputMoving.contains("D")) {
             throw IllegalArgumentException("[ERROR] 이동할 칸의 입력은 U(위 칸)와 D(아래 칸) 중 하나여야 합니다.")
         }
     }
