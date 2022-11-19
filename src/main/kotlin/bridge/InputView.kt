@@ -1,5 +1,7 @@
 package bridge
 
+import camp.nextstep.edu.missionutils.Console
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -7,8 +9,20 @@ class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(): Int {
-        return 0
+    fun readBridgeSize(): Int{
+        val temp = Console.readLine()
+
+        for(c in temp){
+            if(c !in '0'..'9')
+                throw IllegalArgumentException("[ERROR] 숫자가 아닙니다")
+        }
+
+        val sizeBridge = temp.toInt()
+
+        if(sizeBridge<3 || sizeBridge>20)
+            throw IllegalArgumentException("[ERROR] 숫자가 다리의 범위 밖입니다")
+
+        return sizeBridge
     }
 
     /**
