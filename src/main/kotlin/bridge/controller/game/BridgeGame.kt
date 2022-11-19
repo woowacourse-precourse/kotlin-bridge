@@ -4,8 +4,8 @@ import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
 import bridge.domain.bridge.Bridge
 import bridge.domain.counter.TryCounter
-import bridge.domain.path.Path
 import bridge.domain.map.RouteMap
+import bridge.domain.path.Path
 import bridge.presentation.InputView
 import bridge.presentation.OutputView
 import bridge.util.constant.RETRIAL
@@ -22,85 +22,109 @@ class BridgeGame : Game {
     private val tryCounter: TryCounter by lazy { TryCounter() }
     private var path = Path()
 
-    override fun start() {
-        outputView.printGameStart()
-        val bridgeSize = askBridgeSize()
-        outputView.printNewLine()
 
-        bridge = Bridge(bridgeMaker.makeBridge(bridgeSize))
+    override fun start() {
+        outputView.printStartMessage()
+        bridge = Bridge(bridgeMaker.makeBridge(bridgeSize()))
 
         do {
-            val (gameResult, finalBridgeRoute) = startGame()
-            if (gameResult == Result.SUCCESS) { // 성공시 결과 출력
-                val finalRoute = finalBridgeRoute.asList()
-                result(gameResult, finalRoute)
-                break
-            } else { // 실패시
-                val isContinueGame = retry() // 재시도를 물음
-                if (isContinueGame) { // 재시도한다면 초기화하고 다시 시작
-                    init()
-                } else { // 재시도하지 않는다면 최종경로 출력
-                    val finalRoute = finalBridgeRoute.asList()
-                    result(gameResult, finalRoute)
-                    break
-                }
-            }
-        } while (true)
+            val (gameResult, finalBridgeRoute) = startBridgeGame()
+            val isRetry = result(gameResult, finalBridgeRoute)
+        } while (isRetry)
     }
 
-    private fun startGame(): Pair<Result, RouteMap> {
+
+    /**
+     * 게임 시작 비즈니스 로직 그룹
+     * */
+
+    private fun startBridgeGame(): Pair<Result, RouteMap> {
         val bridgeSize = bridge.size()
         val playerRoute = RouteMap(bridge = bridge)
+        increaseTryCount()
 
-        tryCounter.plus()
         for (round in 0 until bridgeSize) {
-            move()
-            drawRoute(playerRoute.addPath(path))
-
-            val isFail = path.checkDirection(bridge.directionOf(round), round).not()
-            if (isFail) {
-                return Pair(Result.FAIL, playerRoute)
-            }
+            val isLose = startRound(playerRoute, round).not()
+            if (isLose) return Pair(Result.FAIL, playerRoute)
         }
         return Pair(Result.SUCCESS, playerRoute)
     }
 
-    private fun askBridgeSize(): Int {
-        outputView.printBridgeLengthQuestion()
+    private fun startRound(playerRoute: RouteMap, round: Int): Boolean {
+        move()
+        drawRoute(playerRoute.addPath(path))
 
-        var bridgeSize = 0
-        runCatching {
-            bridgeSize = inputView.readBridgeSize()
-        }.onFailure {
-            outputView.printError(it)
-            bridgeSize = askBridgeSize()
+        val realDirection = bridge.directionOf(round)
+        val isRightPath = path.checkDirection(realDirection, round)
+
+        if (isRightPath) {
+            return true
         }
-
-        return bridgeSize
+        return false
     }
 
-    private fun drawRoute(route: RouteMap) {
-        outputView.printMap(route.asList())
+    private fun increaseTryCount() {
+        tryCounter.plus()
     }
 
-    private fun retry(): Boolean {
-        outputView.printRetryQuestion()
-        var isRetry = false
-        runCatching {
-            isRetry = inputView.readGameCommand() == RETRIAL
-        }.onFailure {
-            outputView.printError(it)
-            isRetry = retry()
+
+    /**
+     * 게임 결과 관련 기능 그룹
+     * */
+
+    private fun result(gameResult: Result, playerRoute: RouteMap): Boolean = when (gameResult) {
+        Result.SUCCESS -> successResult(gameResult, playerRoute)
+        Result.FAIL -> failResult(gameResult, playerRoute)
+    }
+
+    private fun successResult(gameResult: Result, playerRoute: RouteMap): Boolean {
+        printResult(gameResult, playerRoute)
+        return false
+    }
+
+    private fun failResult(gameResult: Result, playerRoute: RouteMap): Boolean {
+        if (retry()) {
+            init()
+            return true
         }
-        return isRetry
+        printResult(gameResult, playerRoute)
+        return false
     }
 
     private fun init() {
         path = path.init()
     }
 
-    private fun result(gameResult: Result, map: List<List<Mark>>) {
-        outputView.printResult(gameResult, tryCounter.count(), map)
+
+    /**
+     * 게임 진행 상황 출력 기능 그룹
+     * */
+
+    private fun drawRoute(route: RouteMap) {
+        outputView.printMap(route.asList())
+    }
+
+    private fun printResult(gameResult: Result, playerRoute: RouteMap) {
+        val resultRouteMap = playerRoute.asList()
+        outputView.printResult(gameResult, tryCounter.count(), resultRouteMap)
+    }
+
+
+    /**
+     * 사용자 입력 기능 그룹
+     * */
+
+    private fun bridgeSize(): Int {
+        outputView.printBridgeLengthQuestion()
+        var bridgeSize = 0
+
+        runCatching {
+            bridgeSize = inputView.readBridgeSize()
+        }.onFailure {
+            outputView.printError(it)
+            bridgeSize = bridgeSize()
+        }
+        return bridgeSize
     }
 
     private fun move() {
@@ -113,5 +137,18 @@ class BridgeGame : Game {
             outputView.printError(it)
             move()
         }
+    }
+
+    private fun retry(): Boolean {
+        outputView.printRetryQuestion()
+        var isRetry = false
+
+        runCatching {
+            isRetry = inputView.readGameCommand() == RETRIAL
+        }.onFailure {
+            outputView.printError(it)
+            isRetry = retry()
+        }
+        return isRetry
     }
 }

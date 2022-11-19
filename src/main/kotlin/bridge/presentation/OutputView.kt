@@ -32,7 +32,7 @@ class OutputView {
         printTrialCount(trial)
     }
 
-    fun printGameStart() {
+    fun printStartMessage() {
         println(GAME_START_MESSAGE)
     }
 
