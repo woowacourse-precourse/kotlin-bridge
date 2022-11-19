@@ -14,9 +14,9 @@ class BridgeGameController() {
             moveBridge(bridge)
             gameFlag = askRetryGame(bridge)
             if (bridge.finish()) {
-                gameResult.result = "성공"
-                outputView.print()
-                outputView.printMap(bridge.upBridge, bridge.downBridge)
+                gameResult.succeed()
+                outputView.printResultGuide()
+                outputView.printMap(bridge.getMap())
                 gameFlag = closeGame()
             }
         }
@@ -34,8 +34,8 @@ class BridgeGameController() {
             outputView.printInputGameCommand()
             val gameCommand = inputView.readGameCommand()
             if (gameCommand == "Q") {
-                outputView.print()
-                outputView.printMap(bridge.upBridge, bridge.downBridge)
+                outputView.printResultGuide()
+                outputView.printMap(bridge.getMap())
                 return closeGame()
             }
             if (gameCommand == "R") {
@@ -58,7 +58,7 @@ class BridgeGameController() {
         outputView.printInputMove()
         val upDown = inputView.readMoving()
         bridgeGame.move(bridge, upDown)
-        outputView.printMap(bridge.upBridge, bridge.downBridge)
+        outputView.printMap(bridge.getMap())
     }
 
 }

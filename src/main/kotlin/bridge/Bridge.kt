@@ -35,5 +35,8 @@ class Bridge(private val bridge: List<String>) {
     fun moveCurrentLocation() {
         currentLocation++
     }
+    fun getMap(): Pair<String, String> {
+        return upBridge to downBridge
+    }
 
 }
