@@ -2,6 +2,7 @@ package bridge
 
 import bridge.util.Exceptions
 import bridge.util.INPUT_BRIDGE_SIZE
+import bridge.util.SELECT_KEY_TO_MOVE
 
 import camp.nextstep.edu.missionutils.Console
 import java.lang.IllegalArgumentException
@@ -29,7 +30,15 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        println(SELECT_KEY_TO_MOVE)
+        return try {
+            val move = Console.readLine()
+            Exceptions.checkInputMoveKey(move)
+            return move
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            readMoving()
+        }
     }
 
     /**
