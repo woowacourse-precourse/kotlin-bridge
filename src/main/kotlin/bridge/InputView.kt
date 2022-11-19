@@ -9,17 +9,18 @@ class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(): Int{
+    fun readBridgeSize(): Int {
+        println("다리의 길이를 입력해주세요.")
         val temp = Console.readLine() ?: "-1"
 
-        for(c in temp){
-            if(c !in '0'..'9')
+        for (c in temp) {
+            if (c !in '0'..'9')
                 throw IllegalArgumentException("[ERROR] 숫자가 아닙니다")
         }
 
         val sizeBridge = temp.toInt()
 
-        if(sizeBridge<3 || sizeBridge>20)
+        if (sizeBridge < 3 || sizeBridge > 20)
             throw IllegalArgumentException("[ERROR] 숫자가 다리의 범위 밖입니다")
 
         return sizeBridge
@@ -29,9 +30,10 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        val temp = Console.readLine() ?:"A"
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        val temp = Console.readLine() ?: "A"
 
-        if(temp != "U"&&temp !="D")
+        if (temp != "U" && temp != "D")
             throw IllegalArgumentException("[ERROR] 올바른 입력을 하세요")
 
         return temp
@@ -41,10 +43,11 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
+        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
         val temp = Console.readLine() ?: "A"
 
-        if(temp != "R"&&temp !="Q")
-            throw  IllegalArgumentException("[ERROR] 올바른 입력을 하세요")
+        if (temp != "R" && temp != "Q")
+            throw IllegalArgumentException("[ERROR] 올바른 입력을 하세요")
 
         return temp
     }
