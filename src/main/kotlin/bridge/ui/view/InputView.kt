@@ -1,7 +1,9 @@
 package bridge.ui.view
 
 import bridge.ui.common.ERROR_BRIDGE_SIZE_MESSAGE
+import bridge.ui.common.ERROR_GAME_COMMAND_MESSAGE
 import bridge.ui.common.ERROR_MESSAGE_FORMAT
+import bridge.ui.common.ERROR_MOVING_MESSAGE
 import bridge.ui.validator.InputValidator
 import camp.nextstep.edu.missionutils.Console
 
@@ -13,7 +15,7 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        do {
+        while (true) {
             val bridgeSize = Console.readLine()
 
             kotlin.runCatching {
@@ -21,20 +23,36 @@ class InputView {
             }
                 .onSuccess { return bridgeSize.toInt() }
                 .onFailure { println(ERROR_MESSAGE_FORMAT.format(ERROR_BRIDGE_SIZE_MESSAGE)) }
-        } while (true)
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        while (true) {
+            val moving = Console.readLine()
+
+            kotlin.runCatching {
+                InputValidator.validateMoving(moving = moving)
+            }
+                .onSuccess { return moving }
+                .onFailure { println(ERROR_MESSAGE_FORMAT.format(ERROR_MOVING_MESSAGE)) }
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        while (true) {
+            val command = Console.readLine()
+
+            kotlin.runCatching {
+                InputValidator.validateGameCommand(command = command)
+            }
+                .onSuccess { return command }
+                .onFailure { println(ERROR_MESSAGE_FORMAT.format(ERROR_GAME_COMMAND_MESSAGE)) }
+        }
     }
 }
