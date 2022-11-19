@@ -20,19 +20,24 @@ class BridgeGameController(
     private fun setUp() {}
 
     private fun getBridgeSize(): Int {
-        var isValid = false
-        val validator = BridgeValidator()
-        var input = ""
-        while (!isValid) {
-            try {
-                input = inputView.readBridgeSize()
-                validator.validate(input)
-                isValid = true
-            } catch (e: IllegalArgumentException) {
-                outputView.printErrorMessage(e.message ?: DEFAULT_ERROR_MESSAGE)
-            }
-        }
+        var input: String
+        do {
+            input = inputView.readBridgeSize()
+            val isValid = validateBridgeSize(input)
+        } while (!isValid)
+
         return input.toInt()
+    }
+
+    private fun validateBridgeSize(input: String): Boolean {
+        val validator = BridgeValidator()
+        return try {
+            validator.validate(input)
+            true
+        } catch (e: IllegalArgumentException) {
+            outputView.printErrorMessage(e.message ?: DEFAULT_ERROR_MESSAGE)
+            false
+        }
     }
 
     private fun play() {}
