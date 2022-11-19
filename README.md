@@ -312,7 +312,7 @@ val number = bridgeNumberGenerator.generate()
 
 - [x] 사용자 입력 받기
 - [x] 다리 길이에 따라 다리 모양 생성
-- [ ] 칸을 이동할 때마다 게임 결과 저장
+- [x] 칸을 이동할 때마다 게임 결과 저장
 - [ ] 최종 결과 출력
 - [ ] 게임 재시도 및 종료
 - [ ] 예외 처리
@@ -321,5 +321,5 @@ val number = bridgeNumberGenerator.generate()
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후, 그 부분부터 입력 다시 받기
 - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리
 - [ ] 다리 길이를 입력받을 때, 3부터 20 사이의 숫자가 아닌 경우
-- [ ] 이동할 칸을 입력받을 때, U나 D가 아닌 경우
-- [ ] 재시작 및 종료를 입력받을 때, R이나 Q가 아닌 경우
+- [ ] 이동할 칸을 입력받을 때, U(위)나 D(아래)가 아닌 경우
+- [ ] 재시작 및 종료를 입력받을 때, R(재시작)이나 Q(종료)가 아닌 경우
