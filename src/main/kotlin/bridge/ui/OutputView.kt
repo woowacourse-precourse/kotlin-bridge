@@ -83,4 +83,8 @@ class OutputView {
     fun printMove() {
         println(GameMessages.INPUT_UP_DOWN.toString())
     }
+
+    fun printRestart() {
+        println(GameMessages.INPUT_RESTART_QUIT.toString())
+    }
 }
