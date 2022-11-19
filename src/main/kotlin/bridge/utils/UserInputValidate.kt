@@ -23,8 +23,20 @@ class UserInputValidate {
         }
     }
 
+    fun validateMoving(inputMoving: String): String {
+        isValidMovingInput(inputMoving)
+        return inputMoving
+    }
+
+    private fun isValidMovingInput(inputMoving: String) {
+        if (inputMoving.length != INPUT_MOVING_LENGTH || !inputMoving.contains("U") || !inputMoving.contains("D")) {
+            throw IllegalArgumentException("[ERROR] 이동할 칸의 입력은 U(위 칸)와 D(아래 칸) 중 하나여야 합니다.")
+        }
+    }
+
     companion object {
         const val MIN_BRIDGE_SIZE = 3
         const val MAX_BRIDGE_SIZE = 20
+        const val INPUT_MOVING_LENGTH = 1
     }
 }
