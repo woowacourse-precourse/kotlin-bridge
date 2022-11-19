@@ -1,4 +1,11 @@
-package bridge
+package bridge.domain
+
+import bridge.BridgeRandomNumberGenerator
+import bridge.consol.InputView
+import bridge.consol.OutputView
+import bridge.data.Bridge
+import bridge.data.GameResult
+import bridge.data.BridgeMap
 
 
 class BridgeGameController() {
@@ -6,17 +13,19 @@ class BridgeGameController() {
     private val inputView = InputView()
     private val bridgeGame = BridgeGame()
     private val gameResult = GameResult()
+    private val map = BridgeMap()
     fun startGame() {
         outputView.printStartGame()
         val bridge = makeBridge()
         var gameFlag = true
+        var hit =""
         while (gameFlag) {
-            moveBridge(bridge)
-            gameFlag = askRetryGame(bridge)
-            if (bridge.finish()) {
+            hit = moveBridge(bridge)
+            gameFlag = askRetryGame(bridge,hit)
+            if (bridge.finish(hit)) {
                 gameResult.succeed()
                 outputView.printResultGuide()
-                outputView.printMap(bridge.getMap())
+                outputView.printMap(map.getMap())
                 gameFlag = closeGame()
             }
         }
@@ -28,14 +37,14 @@ class BridgeGameController() {
         return false
     }
 
-    private fun askRetryGame(bridge: Bridge): Boolean {
+    private fun askRetryGame(bridge: Bridge, hit:String): Boolean {
 
-        if (bridge.getHit() == "X") {
+        if (hit == "X") {
             outputView.printInputGameCommand()
             val gameCommand = inputView.readGameCommand()
             if (gameCommand == "Q") {
                 outputView.printResultGuide()
-                outputView.printMap(bridge.getMap())
+                outputView.printMap(map.getMap())
                 return closeGame()
             }
             if (gameCommand == "R") {
@@ -54,11 +63,12 @@ class BridgeGameController() {
         return Bridge(BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSIze))
     }
 
-    private fun moveBridge(bridge: Bridge) {
+    private fun moveBridge(bridge: Bridge) :String{
         outputView.printInputMove()
         val upDown = inputView.readMoving()
-        bridgeGame.move(bridge, upDown)
-        outputView.printMap(bridge.getMap())
+        val hit = bridgeGame.move(bridge, upDown, map)
+        outputView.printMap(map.getMap())
+        return hit
     }
 
 }

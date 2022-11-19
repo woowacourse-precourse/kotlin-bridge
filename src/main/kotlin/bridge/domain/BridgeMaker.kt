@@ -1,7 +1,6 @@
-package bridge
+package bridge.domain
 
-import bridge.BridgeRandomNumberGenerator.Companion.RANDOM_LOWER_INCLUSIVE
-import bridge.BridgeRandomNumberGenerator.Companion.RANDOM_UPPER_INCLUSIVE
+import bridge.BridgeNumberGenerator
 
 enum class UpDown(val number: Int, val space: String) {
     UP(1, "U"),

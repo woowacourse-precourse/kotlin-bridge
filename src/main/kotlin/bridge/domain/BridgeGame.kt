@@ -1,4 +1,7 @@
-package bridge
+package bridge.domain
+
+import bridge.data.Bridge
+import bridge.data.BridgeMap
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -10,7 +13,7 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(bridge: Bridge, upDown: String) {
+    fun move(bridge: Bridge, upDown: String, map: BridgeMap) :String{
         var hit = ""
         if (bridge.matches(upDown)) {
             hit = "O"
@@ -19,31 +22,31 @@ class BridgeGame {
             hit = "X"
         }
         if (upDown == "U") {
-            ifU(bridge, hit)
+            ifU(bridge, hit, map)
         }
         if (upDown == "D") {
-            ifD(bridge, hit)
+            ifD(bridge, hit, map)
         }
-        bridge.setHit(hit)
         bridge.moveCurrentLocation()
+        return  hit
     }
 
-    private fun ifU(bridge: Bridge, hit: String) {
+    private fun ifU(bridge: Bridge, hit: String, map: BridgeMap) {
         if (bridge.currentLocation != 0) {
-            bridge.upBridge += "|"
-            bridge.downBridge += "|"
+            map.upSide += "|"
+            map.downSide += "|"
         }
-        bridge.upBridge += " $hit "
-        bridge.downBridge += "   "
+        map.upSide += " $hit "
+        map.downSide += "   "
     }
 
-    private fun ifD(bridge: Bridge, hit: String) {
+    private fun ifD(bridge: Bridge, hit: String, map: BridgeMap) {
         if (bridge.currentLocation != 0) {
-            bridge.upBridge += "|"
-            bridge.downBridge += "|"
+            map.upSide += "|"
+            map.downSide += "|"
         }
-        bridge.upBridge += "   "
-        bridge.downBridge += " $hit "
+        map.upSide += "   "
+        map.downSide += " $hit "
     }
 
     /**

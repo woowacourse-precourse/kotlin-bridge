@@ -23,6 +23,7 @@
 
 - Bridge
 - GameResult
+- BridgeMap
 
 ### UI
 

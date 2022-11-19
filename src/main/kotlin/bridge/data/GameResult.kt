@@ -1,4 +1,4 @@
-package bridge
+package bridge.data
 
 class GameResult {
     var attempt = 1
