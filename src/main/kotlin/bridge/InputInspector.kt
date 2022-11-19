@@ -13,4 +13,12 @@ class InputInspector {
         }
     }
 
+    fun checkMoving(input: String): Boolean {
+        if (input == "U" || input == "D") {
+            return true
+        } else {
+            throw IllegalArgumentException()
+        }
+    }
+
 }
