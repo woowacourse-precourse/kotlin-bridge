@@ -38,8 +38,12 @@
 - [ ] 이동에 실패했을 경우 재시작 로직을 가동한다. - `retrt()`
 #### Bridge - BridgeMaker
 - [ ] 랜덤으로 다리(U와 D로 이루어진 list)를 생성한다. (인자: 다리의 길이)
-#### Bridge - BridgeManager (비교 클래스)
+#### Bridge - BridgeComparator (비교 클래스)
 - [ ] 이동한 칸을 bridge와 비교하여 건널 수 있는지 없는지 판단한다. -> ouput (인자: 이동할 칸)
+
+### Rule
+- [ ] 입력 값이 요구 사항에 따라 옳바르게 입력됐는지 확인한다.
+
 
 ## 🚀 기능 요구 사항
 
@@ -49,11 +53,6 @@
   - 재시작해도 처음에 만든 다리로 재사용한다.
   - 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
  - `Exception`이 아닌 `IllegalArgumentException`, `IllegalStateException` 등과 같은 명확한 유형을 처리한다.
-
-### 입출력 요구 사항
-
-#### 입력
-#### 출력
 
 - 게임 시작 문구
 
@@ -152,15 +151,15 @@ Q
 - else를 지양한다.
   - 힌트: if 조건절에서 값을 return하는 방식으로 구현하면 else를 사용하지 않아도 된다.
   - 때로는 if/else, when문을 사용하는 것이 더 깔끔해 보일 수 있다. 어느 경우에 쓰는 것이 적절할지 스스로 고민해 본다.
-- 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(println, readLine 등) 로직은 제외한다.
+- [ ] 도메인 로직에 단위 테스트를 구현해야 한다. 단, UI(println, readLine 등) 로직은 제외한다.
   - 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
 
 ### 추가된 요구 사항
 
-- 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현한다.
-  - 함수(또는 메서드)가 한 가지 일만 잘하도록 구현한다.
-- 메서드의 파라미터 개수는 최대 3개까지만 허용한다.
-- 아래 있는 `InputView`, `OutputView`, `BridgeGame`, `BridgeMaker`, `BridgeRandomNumberGenerator` 클래스의 요구사항을 참고하여 구현한다.
+- [ ] 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현한다.
+  - [ ] 함수(또는 메서드)가 한 가지 일만 잘하도록 구현한다.
+- [ ] 메서드의 파라미터 개수는 최대 3개까지만 허용한다.
+- [ ] 아래 있는 `InputView`, `OutputView`, `BridgeGame`, `BridgeMaker`, `BridgeRandomNumberGenerator` 클래스의 요구사항을 참고하여 구현한다.
   - 각 클래스의 제약 사항은 아래 클래스별 세부 설명을 참고한다.
   - 이외 필요한 클래스(또는 객체)와 메서드는 자유롭게 구현할 수 있다.
   - `InputView` 클래스에서만 `camp.nextstep.edu.missionutils.Console` 의 `readLine()` 메서드를 이용해 사용자의 입력을 받을 수 있다.
@@ -168,10 +167,10 @@ Q
 
 ### InputView 클래스
 
-- 제공된 `InputView` 클래스를 활용해 구현해야 한다.
-- `InputView`의 패키지는 변경할 수 있다.
-- `InputView`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
-- 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
+- [ ] 제공된 `InputView` 클래스를 활용해 구현해야 한다.
+- [ ] `InputView`의 패키지는 변경할 수 있다.
+- [ ] `InputView`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 있다.
+- [ ] 사용자 값 입력을 위해 필요한 메서드를 추가할 수 있다.
 
 ```kotlin
 class InputView {
@@ -189,10 +188,10 @@ class InputView {
 
 ### OutputView 클래스
 
-- 제공된 `OutputView` 클래스를 활용해 구현해야 한다.
-- `OutputView`의 패키지는 변경할 수 있다.
-- `OutputView`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
-- 값 출력을 위해 필요한 메서드를 추가할 수 있다.
+- [ ] 제공된 `OutputView` 클래스를 활용해 구현해야 한다.
+- [ ] `OutputView`의 패키지는 변경할 수 있다.
+- [ ] `OutputView`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+- [ ] 값 출력을 위해 필요한 메서드를 추가할 수 있다.
 
 ```kotlin
 class OutputView {
@@ -203,11 +202,11 @@ class OutputView {
 
 ### BridgeGame 클래스
 
-- 제공된 `BridgeGame` 클래스를 활용해 구현해야 한다.
-- `BridgeGame`에 필드를 추가할 수 있다.
-- `BridgeGame`의 패키지는 변경할 수 있다.
-- `BridgeGame`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
-- 게임 진행을 위해 필요한 메서드를 추가하거나 변경 할 수 있다.
+- [ ] 제공된 `BridgeGame` 클래스를 활용해 구현해야 한다.
+- [ ] `BridgeGame`에 필드를 추가할 수 있다.
+- [ ] `BridgeGame`의 패키지는 변경할 수 있다.
+- [ ] `BridgeGame`의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
+- [ ] 게임 진행을 위해 필요한 메서드를 추가하거나 변경 할 수 있다.
 
 ```kotlin
 class BridgeGame {
@@ -218,9 +217,9 @@ class BridgeGame {
 
 ### BridgeMaker 클래스
 
-- 제공된 `BridgeMaker` 클래스를 활용해 구현해야 한다.
-- `BridgeMaker`의 필드를 변경할 수 없다.
-- `BridgeMaker`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
+- [ ] 제공된 `BridgeMaker` 클래스를 활용해 구현해야 한다.
+- [ ] `BridgeMaker`의 필드를 변경할 수 없다.
+- [ ] `BridgeMaker`의 메서드의 시그니처(인자, 이름)와 반환 타입은 변경할 수 없다.
 
 ```kotlin
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
@@ -232,8 +231,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 
 ### BridgeRandomNumberGenerator 클래스
 
-- Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
-- `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
+- [ ] Random 값 추출은 제공된 `bridge.BridgeRandomNumberGenerator`의 `generate()`를 활용한다.
+- [ ] `BridgeRandomNumberGenerator`, `BridgeNumberGenerator` 클래스의 코드는 변경할 수 없다.
 
 #### 사용 예시
 
@@ -242,3 +241,5 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 ```kotlin
 val number = bridgeNumberGenerator.generate()
 ```
+
+- [ ] 도메인 별로 테스트를 작성했는가?
