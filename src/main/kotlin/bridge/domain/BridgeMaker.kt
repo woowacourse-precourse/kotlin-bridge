@@ -18,11 +18,16 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         val bridge = mutableListOf<String>()
         repeat(size) {
-            when (bridgeNumberGenerator.generate()) {
-                UpDown.UP.number -> bridge.add(UpDown.UP.space)
-                UpDown.DOWN.number -> bridge.add(UpDown.DOWN.space)
-            }
+            addUpDown(bridge)
         }
+
         return bridge.toList()
+    }
+
+    private fun addUpDown(bridge: MutableList<String>) {
+        when (bridgeNumberGenerator.generate()) {
+            UpDown.UP.number -> bridge.add(UpDown.UP.space)
+            UpDown.DOWN.number -> bridge.add(UpDown.DOWN.space)
+        }
     }
 }
