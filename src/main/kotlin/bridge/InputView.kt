@@ -21,12 +21,10 @@ class InputView {
             return size.toInt()
         }
 
-        fun readMoving(): Int {
+        fun readMoving(): String {
             val userInput = Console.readLine()
             BridgeException.isitUorD(userInput)
-            if (userInput == UP)
-                return BridgeParameter.Up.value
-            return BridgeParameter.Down.value
+            return userInput
         }
 
         fun readGameCommand(): Boolean {

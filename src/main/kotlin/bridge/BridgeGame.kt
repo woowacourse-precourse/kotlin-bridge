@@ -14,7 +14,7 @@ class BridgeGame() {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(bridge: List<Int>, gameCount: Int) {
+    fun move(bridge: List<String>, gameCount: Int) {
         for (count: Int in BridgeParameter.StartValue.value..bridge.size) {
             record.add(BridgeCalculate.bridgeMoving(bridge, count))
             BridgeCalculate.bridgeMapPrint(bridge, record)
@@ -32,7 +32,7 @@ class BridgeGame() {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry(bridge: List<Int>, record: List<Boolean>, gameCount: Int) {
+    fun retry(bridge: List<String>, record: List<Boolean>, gameCount: Int) {
         OutputView.areYouRetry()
         val doNotRetry = InputView.readGameCommand()
         if (doNotRetry) {
@@ -42,7 +42,7 @@ class BridgeGame() {
 
     }
 
-    private fun gameResult(bridge: List<Int>, record: List<Boolean>, gameCount: Int) {
+    private fun gameResult(bridge: List<String>, record: List<Boolean>, gameCount: Int) {
         OutputView.printGameEndMessage()
         BridgeCalculate.bridgeMapPrint(bridge, record)
         OutputView.printResult(record, gameCount)

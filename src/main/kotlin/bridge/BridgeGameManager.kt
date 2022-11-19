@@ -10,7 +10,7 @@ object BridgeGameManager {
 
     }
 
-    private fun moving(bridge: List<Int>) {
+    private fun moving(bridge: List<String>) {
         var count = BridgeParameter.StartValue.value
         while (true){
             count++

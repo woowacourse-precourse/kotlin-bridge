@@ -15,48 +15,50 @@ object BridgeCalculate {
         return bridge.toList()
     }
 
-    fun numbertoBridge(number : Int):String{
-        if(number==BridgeParameter.Up.value)
+    fun numbertoBridge(number: Int): String {
+        if (number == BridgeParameter.Up.value)
             return BridgeMessage.Up.word
         return BridgeMessage.Down.word
     }
 
-    fun bridgeMoving(bridge: List<Int>, count: Int): Boolean {
+    fun bridgeMoving(bridge: List<String>, count: Int): Boolean {
         OutputView.getBridgeMoving()
         return bridge[count] == InputView.readMoving()
     }
 
-    fun bridgeMapPrint(bridge: List<Int>, record: List<Boolean>) {
+    fun bridgeMapPrint(bridge: List<String>, record: List<Boolean>) {
         OutputView.printMap(upLine(bridge, record))
         OutputView.printMap(downLine(bridge, record))
 
     }
 
-    private fun upLine(bridge: List<Int>, successRecord: List<Boolean>): String {
+    private fun upLine(bridge: List<String>, successRecord: List<Boolean>): String {
         var upLineMap = BridgeMessage.MapStart.word
         for (count: Int in BridgeParameter.StartValue.value..successRecord.size) {
             upLineMap += when {
-                bridge[count] == BridgeParameter.Up.value && successRecord[count] -> WALK_AND_PASS
-                (bridge[count] == BridgeParameter.Up.value && !successRecord[count]) || (bridge[count] == BridgeParameter.Down.value && successRecord[count]) -> DO_NOT_WALK
+                bridge[count] == BridgeMessage.Up.word && successRecord[count] -> WALK_AND_PASS
+                (bridge[count] == BridgeMessage.Up.word && !successRecord[count]) || (bridge[count] == BridgeMessage.Down.word && successRecord[count]) -> DO_NOT_WALK
                 else -> WALK_AND_FAIL
             }
         }
-        upLineMap = upLineMap.substring(BridgeParameter.StartValue.value,upLineMap.length - BridgeParameter.LastCharCut.value)
-        return  upLineMap+ BridgeMessage.MapEnd.word
+        return mapEnd(upLineMap)
     }
 
-    private fun downLine(bridge: List<Int>, successRecord: List<Boolean>): String {
+    private fun downLine(bridge: List<String>, successRecord: List<Boolean>): String {
         var downLineMap = BridgeMessage.MapStart.word
         for (count: Int in BridgeParameter.StartValue.value..successRecord.size) {
             downLineMap += when {
-                bridge[count] == BridgeParameter.Down.value && successRecord[count] -> WALK_AND_PASS
-                (bridge[count] == BridgeParameter.Down.value && !successRecord[count]) || (bridge[count] == BridgeParameter.Up.value && successRecord[count]) -> DO_NOT_WALK
+                bridge[count] == BridgeMessage.Down.word && successRecord[count] -> WALK_AND_PASS
+                (bridge[count] == BridgeMessage.Down.word && !successRecord[count]) || (bridge[count] == BridgeMessage.Up.word && successRecord[count]) -> DO_NOT_WALK
                 else -> WALK_AND_FAIL
             }
         }
-        return downLineMap.substring(
-            BridgeParameter.StartValue.value,
-            downLineMap.length - BridgeParameter.LastCharCut.value
-        ) + BridgeMessage.MapEnd.word
+        return mapEnd(downLineMap)
     }
+
+    private fun mapEnd(map: String) = map.substring(
+        BridgeParameter.StartValue.value,
+        map.length - BridgeParameter.LastCharCut.value
+    ) + BridgeMessage.MapEnd.word
+
 }
