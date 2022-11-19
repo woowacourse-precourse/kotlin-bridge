@@ -17,6 +17,12 @@ class OutputView {
         makeMap(player, bridge)
         println(upBuilder)
         println(downBuilder)
+        printClear()
+    }
+
+    private fun printClear() {
+        upBuilder.setLength(0)
+        downBuilder.setLength(0)
     }
 
     private fun makeMap(player: Player, bridge: List<String>) {
