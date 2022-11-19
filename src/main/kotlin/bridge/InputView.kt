@@ -19,7 +19,7 @@ class InputView {
                 bridgeSize = rule.checkBridgeSize(input)
                 isMovable = true
             } catch (e: IllegalArgumentException) {
-                e.message
+                println(e.message)
                 isMovable = false
             }
         } while (!isMovable)

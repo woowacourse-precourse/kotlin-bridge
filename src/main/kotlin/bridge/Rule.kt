@@ -7,11 +7,13 @@ class Rule {
 
     // 자동으로 생성할 다리 길이를 입력 받는다.
     // 3 이상 20 이하의 '숫자'를 입력할 수 있으며 올바른 값이 아니면 예외 처리한다.
+    
+    // todo Error 메세지 상수 처리 or enum 처리
     fun checkBridgeSize(input: String): Int {
-        val bridgeSize = input.toIntOrNull() ?: throw IllegalArgumentException()
+        val bridgeSize = input.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 문자 주어짐")
 
         if(bridgeSize < RANGE_LOWER_INCLUSIVE || bridgeSize > RANGE_UPPER_INCLUSIVE)
-            throw IllegalArgumentException()
+            throw IllegalArgumentException("[ERROR] 3-20 범위 벗어남")
 
         return bridgeSize
     }

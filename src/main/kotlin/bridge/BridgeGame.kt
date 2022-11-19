@@ -20,9 +20,11 @@ class BridgeGame {
     fun start() {
         // 시작 메세지
         output.printGameStart()
+
         // 다리 길이 출력, 입력 -> 클래스 필드에 length 저장 (맵은 재활용이니까)
         output.printInputBridgeSize()
         bridgeSize = input.readBridgeSize()
+
         // 다리 길이를 갖고 맵 만들기 -> bridgeMaker 사용 -> 필드에 저장 (bridgeMaker는 만드는 작업만)
         bridgeMap = List(bridgeSize) {""}
         bridgeMap = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
