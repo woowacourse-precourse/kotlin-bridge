@@ -23,7 +23,7 @@ class OutputView {
         var bridgeTop = "["
         for (index in progress.indices) {
             bridgeTop += drawCircleOrBlankOnTop(progress[index], bridge[index])
-            if ((index < bridge.size - 1) and (progress[index] != Status.WRONG)) {
+            if ((index < progress.size - 1) and (progress[index] != Status.WRONG)) {
                 bridgeTop += drawDivider()
             }
         }
@@ -48,7 +48,7 @@ class OutputView {
         var bridgeBottom = "["
         for (index in progress.indices) {
             bridgeBottom += drawCircleOrBlankOnBottom(progress[index], bridge[index])
-            if ((index < bridge.size - 1) and (progress[index] != Status.WRONG)) {
+            if ((index < progress.size - 1) and (progress[index] != Status.WRONG)) {
                 bridgeBottom += drawDivider()
             }
         }
