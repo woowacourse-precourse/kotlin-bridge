@@ -19,7 +19,7 @@ object BridgeCalculate {
 
     private fun upLine(bridge: List<String>, successRecord: List<Boolean>): String {
         var upLineMap = BridgeMessage.MapStart.word
-        for (count: Int in BridgeParameter.StartValue.value..successRecord.size-1) {
+        for (count: Int in BridgeParameter.StartValue.value until successRecord.size-1) {
             upLineMap += when {
                 bridge[count] == BridgeMessage.Up.word && successRecord[count] -> WALK_AND_PASS
                 (bridge[count] == BridgeMessage.Up.word && !successRecord[count]) || (bridge[count] == BridgeMessage.Down.word && successRecord[count]) -> DO_NOT_WALK
@@ -31,7 +31,7 @@ object BridgeCalculate {
 
     private fun downLine(bridge: List<String>, successRecord: List<Boolean>): String {
         var downLineMap = BridgeMessage.MapStart.word
-        for (count: Int in BridgeParameter.StartValue.value..successRecord.size-1) {
+        for (count: Int in BridgeParameter.StartValue.value until successRecord.size-1) {
             downLineMap += when {
                 bridge[count] == BridgeMessage.Down.word && successRecord[count] -> WALK_AND_PASS
                 (bridge[count] == BridgeMessage.Down.word && !successRecord[count]) || (bridge[count] == BridgeMessage.Up.word && successRecord[count]) -> DO_NOT_WALK
