@@ -10,15 +10,28 @@ class BridgeGame {
     private var bridgeSize: Int = 0
     private var bridge: List<String> = listOf()
 
-    fun move() {
+    fun move(moving: String) {
         moveCount++
         // updateGameProgress()
     }
 
     fun retry() {}
 
+
+    fun getBridgeSize(): Int {
+        return bridgeSize
+    }
+
     fun setBridgeSize(inputLength: Int) {
         bridgeSize = inputLength
+    }
+
+    fun getTryCount(): Int {
+        return tryCount
+    }
+
+    fun getMoveCount(): Int {
+        return moveCount
     }
 
     fun setBridge(bridgeMaker: BridgeMaker) {
