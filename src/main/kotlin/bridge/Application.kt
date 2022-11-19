@@ -29,11 +29,11 @@ fun end(game: BridgeGame) {
 
 fun reStart(game: BridgeGame, bridge: List<String>) {
     when (InputView().readGameCommand()) {
-        "R" -> {
+        Constant.REPLAY -> {
             game.retry()
             play(game, bridge)
         }
 
-        "Q" -> end(game)
+        Constant.QUIT -> end(game)
     }
 }
