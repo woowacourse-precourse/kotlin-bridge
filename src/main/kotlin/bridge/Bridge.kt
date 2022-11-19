@@ -1,13 +1,10 @@
 package bridge
 
-class Bridge(private val bridge: List<BridgeStep>) {
+class Bridge(private val bridge: List<String>) {
     init {
-        require(!bridge.contains(BridgeStep.FAIL)) {
-
-        }
     }
 
-    fun getCurrentStepStatus(step: BridgeStep, index: Int): Boolean {
+    fun getCurrentStepStatus(step: String, index: Int): Boolean {
         return bridge[index] == step
     }
 

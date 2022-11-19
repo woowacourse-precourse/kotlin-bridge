@@ -5,7 +5,7 @@ package bridge
  */
 class BridgeGame {
     private lateinit var bridge: Bridge
-    private val userStep = mutableListOf<Pair<BridgeStep, Boolean>>()
+    private val userStep = mutableListOf<Pair<String, Boolean>>()
     private val inputView = InputView()
     private val outputView = OutputView()
 
@@ -16,7 +16,7 @@ class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    fun move(step: BridgeStep): Boolean {
+    fun move(step: String): Boolean {
         val status = bridge.getCurrentStepStatus(step, userStep.size)
 
         userStep.add(Pair(step, status))
@@ -38,13 +38,12 @@ class BridgeGame {
         val size = inputView.readBridgeSize()
         val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
         val bridgeSteps = bridgeMaker.makeBridge(size)
-        bridge = Bridge(bridgeSteps.map { if (it == "U") BridgeStep.UP else BridgeStep.DOWN })
+        bridge = Bridge(bridgeSteps)
     }
 
     private fun processMoveIO(): Boolean {
         val moving = inputView.readMoving()
-        val step = if (moving == "U") BridgeStep.UP else BridgeStep.DOWN
-        val status = move(step)
+        val status = move(moving)
         outputView.printMap()
         if (!status) {
             return processRetryIO()
