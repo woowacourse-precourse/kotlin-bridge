@@ -62,7 +62,7 @@ class GameController {
     private fun checkRetryGame(): Boolean {
         if (!bridgeGame.checkGameWin()) {
             println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
-            if (inputView.readGameCommand() == "R") {
+            if (inputView.readGameCommand() == COMMAND_RESTART) {
                 return true
             }
         }

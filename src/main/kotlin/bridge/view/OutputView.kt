@@ -1,5 +1,7 @@
 package bridge.view
 
+import bridge.*
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -16,7 +18,7 @@ class OutputView {
 
     private fun getUpBridgeForm(currentMap: List<String>, isSuccess: Boolean): String {
         var result = "[ ${getUpValue(currentMap[0], isSuccess, currentMap.lastIndex == 0)}"
-        for (count in 1 until currentMap.size) {
+        for (count in SECOND_INDEX until currentMap.size) {
             result = result + " | " + getUpValue(currentMap[count], isSuccess, count == currentMap.lastIndex)
         }
         result += " ]"
@@ -25,15 +27,15 @@ class OutputView {
 
     private fun getUpValue(bridgeValue: String, isSuccess: Boolean, isLastValue: Boolean): String {
         var result = ""
-        if (bridgeValue == "D") result = " "
-        else if (bridgeValue == "U" && !isSuccess && isLastValue) result = "X"
-        else if (bridgeValue == "U") result = "O"
+        if (bridgeValue == COMMAND_DONW_MOVING) result = " "
+        else if (bridgeValue == COMMAND_UP_MOVING && !isSuccess && isLastValue) result = MOVING_FAIL
+        else if (bridgeValue == COMMAND_UP_MOVING) result = MOVING_SUCCESS
         return result
     }
 
     private fun getDownBridgeForm(currentMap: List<String>, isSuccess: Boolean): String {
         var result = "[ ${getDownValue(currentMap[0], isSuccess, currentMap.lastIndex == 0)}"
-        for (count in 1 until currentMap.size) {
+        for (count in SECOND_INDEX until currentMap.size) {
             result = result + " | " + getDownValue(currentMap[count], isSuccess, count == currentMap.lastIndex)
         }
         result += " ]"
@@ -42,9 +44,9 @@ class OutputView {
 
     private fun getDownValue(bridgeValue: String, isSuccess: Boolean, isLastValue: Boolean): String {
         var result = ""
-        if (bridgeValue == "U") result = " "
-        else if (bridgeValue == "D" && !isSuccess && isLastValue) result = "X"
-        else if (bridgeValue == "D") result = "O"
+        if (bridgeValue == COMMAND_UP_MOVING) result = " "
+        else if (bridgeValue == COMMAND_DONW_MOVING && !isSuccess && isLastValue) result = MOVING_FAIL
+        else if (bridgeValue == COMMAND_DONW_MOVING) result = MOVING_SUCCESS
         return result
     }
 
