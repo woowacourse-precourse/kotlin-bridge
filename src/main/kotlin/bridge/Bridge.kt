@@ -31,8 +31,6 @@ class Bridge {
         return Move.IMPOSSIBLE
     }
 
-    fun getGameResult(): Int = success
-
 
     companion object {
         const val MOVE_POSSIBLE_MARK = "O"
