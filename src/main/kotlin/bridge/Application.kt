@@ -9,6 +9,9 @@ fun main() {
     outputView.printInputBridgeSize()
     val bridgeSize = inputView.readBridgeSize()
     val bridge = makeBridge(bridgeSize)
+
+    outputView.printInputMoving()
+    val moving = inputView.readMoving()
 }
 
 private fun makeBridge(bridgeSize: Int): List<String> {
