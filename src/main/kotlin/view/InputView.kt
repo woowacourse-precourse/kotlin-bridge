@@ -27,13 +27,15 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        val resultMove = readLine()
+        return resultMove.toString()
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        val resultGameRestart = readLine()
+        return resultGameRestart.toString()
     }
 }
