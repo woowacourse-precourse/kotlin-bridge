@@ -23,6 +23,7 @@ class GameController {
                 return gameStart()
             }
         }
+        printResult()
     }
 
     private fun inputBridgeSize(): Int {
@@ -59,5 +60,14 @@ class GameController {
 
     private fun judgeMoving(): Boolean {
         return bridgeGame.judgeMovingSuccess()
+    }
+
+    private fun printResult(){
+        outputResultBridge()
+    }
+
+    private fun outputResultBridge(){
+        println("최종 게임 결과")
+        outputMoving()
     }
 }
