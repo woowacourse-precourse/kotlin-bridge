@@ -1,5 +1,7 @@
 package bridge
 
+import java.util.NoSuchElementException
+
 class Judgement {
     private val bridgeNumberGenerator = BridgeRandomNumberGenerator()
     private var correctBridgeMap = mutableListOf<String>()
@@ -14,9 +16,13 @@ class Judgement {
     }
 
     fun checkGameOver(currentMoving: List<String>): Boolean {
-        var result = false
-        if (!judgeMovingSuccess(currentMoving) || currentMoving.lastIndex == correctBridgeMap.size - 1) {
-            result = true
+        var result : Boolean = false
+        try {
+            if (!judgeMovingSuccess(currentMoving) || currentMoving.lastIndex == correctBridgeMap.size - 1) {
+                result = true
+            }
+        } catch (exception: NoSuchElementException) {
+            result = false
         }
         return result
     }
