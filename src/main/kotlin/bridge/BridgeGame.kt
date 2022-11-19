@@ -8,28 +8,32 @@ class BridgeGame(private val bridge: List<String>) {
 
     fun move(moving: String) {
         playerBridge.add(moving)
+        if (bridge[playerBridge.size - 1] == moving) {
+            updateRightBridge(moving)
+        }
+        if (bridge[playerBridge.size - 1] != moving) {
+            updateWrongBridge(moving)
+        }
+    }
+
+    private fun updateRightBridge(moving: String) {
         if (moving == "U") {
-            updateUpBridge(moving)
+            resultUpBridge.add("O")
+            resultDownBridge.add(" ")
         }
         if (moving == "D") {
-            updateDownBridge(moving)
-        }
-    }
-
-    private fun updateUpBridge(moving: String) {
-        if (bridge[playerBridge.size -1] == moving) {
-            resultUpBridge.add("O")
-        }
-        else {
-            resultUpBridge.add("X")
-        }
-    }
-
-    private fun updateDownBridge(moving: String) {
-        if (bridge[playerBridge.size -1] == moving) {
+            resultUpBridge.add(" ")
             resultDownBridge.add("O")
         }
-        else {
+    }
+
+    private fun updateWrongBridge(moving: String) {
+        if (moving == "U") {
+            resultUpBridge.add("X")
+            resultDownBridge.add(" ")
+        }
+        if (moving == "D") {
+            resultUpBridge.add(" ")
             resultDownBridge.add("X")
         }
     }
@@ -41,10 +45,9 @@ class BridgeGame(private val bridge: List<String>) {
 
     }
     fun check(): Boolean {
-        val index = playerBridge.size
+        val index = playerBridge.size - 1
         return bridge[index] == playerBridge[index]
     }
 
     fun over(): Boolean = bridge.size == playerBridge.size
-
 }
