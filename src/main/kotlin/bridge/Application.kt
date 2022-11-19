@@ -38,6 +38,7 @@ fun main() {
 
             numberOfAttempts += 1
             if (isRetry == "R") {
+                bridgeGame.retry()
                 continue
             } else if (isRetry == "Q") {
                 successOrFailure = "실패"

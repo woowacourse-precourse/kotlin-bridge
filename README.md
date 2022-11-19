@@ -317,6 +317,7 @@ val number = bridgeNumberGenerator.generate()
 - [x] 최종 결과 출력
 - [x] 게임이 성공할 경우 구현
 - [x] 게임이 실패할 경우, 게임 종료 구현
+- [x] 게임이 실패할 경우, 게임 재시작 구현
 - [ ] 예외 처리
 
 ### ☑️ 예외 처리
