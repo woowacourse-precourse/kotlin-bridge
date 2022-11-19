@@ -12,22 +12,20 @@ class Route(
     fun addPath(path: Path): Route {
         route[0].add(Mark.DEFAULT)
         route[1].add(Mark.DEFAULT)
+        updatePath(path, path.position())
 
-        for (round in 0 until path.currentRound()) {
-            updatePath(round, path)
-        }
-        return this
+        return Route(route, bridge)
     }
 
-    private fun updatePath(round: Int, path: Path) {
-        val bridgeDirection = bridge.directionOf(round)
-        val isCorrectPath = path.checkDirection(bridgeDirection, round)
-        val userDigitDirection = path.userDirectionAsDigit(round)
+    private fun updatePath(path: Path, position: Int) {
+        val bridgeDirection = bridge.directionOf(position)
+        val playerDirection = path.userDirectionAsDigit(position)
+        val isCorrectPath = path.checkDirection(bridgeDirection, position)
 
         if (isCorrectPath) {
-            markCorrectPath(bridgeDirection, userDigitDirection, round)
+            markCorrectPath(bridgeDirection, playerDirection, position)
         } else {
-            markWrongPath(bridgeDirection, userDigitDirection, round)
+            markWrongPath(bridgeDirection, playerDirection, position)
         }
     }
 

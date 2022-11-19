@@ -97,7 +97,7 @@ class BridgeGame : Game {
     }
 
     private fun init() {
-        path = Path()
+        path = path.init()
     }
 
     private fun result(gameResult: Result, map: List<List<Mark>>) {

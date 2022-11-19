@@ -18,7 +18,7 @@ class Path(private val path: List<String> = emptyList()) {
     /**
      * @return 진행 중인 라운드 반환
      * */
-    fun currentRound(): Int = path.size
+    fun position(): Int = path.size - 1
 
     fun userDirectionOf(index: Int): String = path[index]
 
