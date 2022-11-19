@@ -15,9 +15,15 @@ class BridgeGameController {
         while (bridgeGame.getMoveCount() < bridgeGame.getBridgeSize()) {
             println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
             bridgeGame.move(inputView.readMoving())
+            // todo print 게임 진행 상황
+            println()
+            if(!bridgeGame.isSuccess()) break
         }
 
-        println("게임 성공 여부:")
+        // todo 최종 게임 결과 [...] [...]
+
+        if(bridgeGame.isSuccess()) println("게임 성공 여부: 성공")
+        else println("게임 성공 여부: 실패")
         println("총 시도한 횟수: ${bridgeGame.getTryCount()}")
 
     }

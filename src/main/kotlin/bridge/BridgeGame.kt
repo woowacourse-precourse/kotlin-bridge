@@ -12,7 +12,7 @@ class BridgeGame {
 
     fun move(moving: String) {
         updateGameProgress(moving)
-        setMoveCount(moveCount + 1)
+        moveCount++
     }
 
     fun retry() {}
@@ -24,13 +24,15 @@ class BridgeGame {
 
     fun getMoveCount(): Int { return moveCount }
 
-    fun setBridgeSize(inputLength: Int) { bridgeSize = inputLength }
+    fun getGameProgress(): List<List<String>> { return gameProgress }
 
-    fun setMoveCount(nextMoveCount: Int) { moveCount++ }
+    fun setBridgeSize(inputLength: Int) { bridgeSize = inputLength }
 
     fun setBridge(bridgeMaker: BridgeMaker) { bridge = bridgeMaker.makeBridge(bridgeSize) }
 
     fun isCorrect(moving: String): Boolean { return bridge[moveCount] == moving }
+
+    fun isSuccess(): Boolean { return !(gameProgress.any{ it.contains("X") }) }
 
     private fun updateGameProgress(moving: String) {
         if (moving == MOVING_UP) {
