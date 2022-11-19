@@ -1,9 +1,10 @@
-package bridge
+package bridge.domain.maker
 
 import bridge.common.BRIDGE_NUMBER_DOWN
 import bridge.common.BRIDGE_NUMBER_UP
 import bridge.common.MOVING_DOWN_CODE
 import bridge.common.MOVING_UP_CODE
+import bridge.domain.generator.BridgeNumberGenerator
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -18,6 +19,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 
         repeat(size) {
             val number = bridgeNumberGenerator.generate()
+
             if (number == BRIDGE_NUMBER_DOWN) bridge.add(MOVING_DOWN_CODE)
             if (number == BRIDGE_NUMBER_UP) bridge.add(MOVING_UP_CODE)
         }

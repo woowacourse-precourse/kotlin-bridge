@@ -1,9 +1,25 @@
-package bridge
+package bridge.domain.game
+
+import bridge.common.GAME_START_MESSAGE
+import bridge.domain.maker.BridgeMaker
+import bridge.ui.view.InputView
+import bridge.ui.view.OutputView
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame {
+class BridgeGame(
+    private val inputView: InputView,
+    private val outputView: OutputView,
+    private val bridgeMaker: BridgeMaker
+) {
+    private lateinit var bridge: List<String>
+    fun play() {
+        outputView.printMessage(GAME_START_MESSAGE)
+        val bridgeSize = inputView.readBridgeSize()
+        bridge = bridgeMaker.makeBridge(size = bridgeSize)
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
