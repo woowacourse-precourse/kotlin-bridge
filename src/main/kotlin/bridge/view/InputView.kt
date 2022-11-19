@@ -1,5 +1,7 @@
 package bridge.view
 
+import camp.nextstep.edu.missionutils.Console
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -7,8 +9,9 @@ class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(): Int {
-        return 0
+    fun readBridgeSize(): String {
+        println(BRIDGE_SIZE_INSTRUCTION)
+        return readLine()
     }
 
     /**
@@ -23,5 +26,13 @@ class InputView {
      */
     fun readGameCommand(): String {
         return ""
+    }
+
+    private fun readLine(): String {
+        return Console.readLine()
+    }
+
+    companion object {
+        const val BRIDGE_SIZE_INSTRUCTION = "다리의 길이를 입력해주세요."
     }
 }
