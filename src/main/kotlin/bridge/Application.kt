@@ -5,14 +5,9 @@ fun gameManager() {
     val outputView = OutputView()
     val bridgeManager = BridgeManager(inputView, outputView)
 
-    while (bridgeManager.getBridgeGame().isContinue && bridgeManager.getPosition() < bridgeManager.getBridgeSize()) {
-        bridgeManager.moveBridge()
-        if (bridgeManager.failChecker()) {
-            return
-        }
+    if(bridgeManager.gameLoop()) {
+        bridgeManager.printSuccess()
     }
-
-    bridgeManager.printSuccess()
 }
 
 fun main() {
