@@ -7,7 +7,7 @@ import bridge.util.constant.UP
 
 class RouteMap(
     private val routeMap: List<ArrayList<Mark>> = listOf(arrayListOf(), arrayListOf())
-) {
+) : List<ArrayList<Mark>> by routeMap {
     fun addPath(path: Path, bridge: Bridge): RouteMap {
         increaseMapSize()
         updatePath(path, bridge, path.position())
@@ -44,6 +44,4 @@ class RouteMap(
         routeMap[0].add(Mark.DEFAULT)
         routeMap[1].add(Mark.DEFAULT)
     }
-
-    fun asList() = routeMap
 }

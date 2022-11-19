@@ -29,8 +29,7 @@ class RouteMapTest {
     @Test
     fun `사용자가 올바른 경로로 이동한 경우 루트에 CORRECT 추가된다`() {
         playerPath = playerPath.add("D")
-        val routeMap = routeMap.addPath(playerPath, bridge)
-        val playerRoute = routeMap.asList()
+        val playerRoute = routeMap.addPath(playerPath, bridge)
 
         assertThat(playerRoute[UP_INDEX]).containsExactly(Mark.CORRECT, Mark.CORRECT, Mark.DEFAULT)
         assertThat(playerRoute[DOWN_INDEX]).containsExactly(Mark.WRONG, Mark.WRONG, Mark.CORRECT)
@@ -41,8 +40,7 @@ class RouteMapTest {
     @Test
     fun `사용자가 잘못된 경로로 이동한 경우 루트에 WRONG 추가된다`() {
         playerPath = playerPath.add("U")
-        val routeMap = routeMap.addPath(playerPath, bridge)
-        val playerRoute = routeMap.asList()
+        val playerRoute = routeMap.addPath(playerPath, bridge)
 
         assertThat(playerRoute[UP_INDEX]).containsExactly(Mark.CORRECT, Mark.CORRECT, Mark.WRONG)
         assertThat(playerRoute[DOWN_INDEX]).containsExactly(Mark.WRONG, Mark.WRONG, Mark.DEFAULT)

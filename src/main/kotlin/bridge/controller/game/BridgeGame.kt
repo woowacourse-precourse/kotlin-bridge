@@ -101,12 +101,11 @@ class BridgeGame : Game {
      * */
 
     private fun drawRoute(route: RouteMap) {
-        outputView.printMap(route.asList())
+        outputView.printMap(route)
     }
 
     private fun printResult(gameResult: Result, playerRoute: RouteMap) {
-        val resultRouteMap = playerRoute.asList()
-        outputView.printResult(gameResult, tryCounter.count(), resultRouteMap)
+        outputView.printResult(gameResult, tryCounter.count(), playerRoute)
     }
 
 
