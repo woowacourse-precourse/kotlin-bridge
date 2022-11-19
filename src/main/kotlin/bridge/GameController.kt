@@ -64,13 +64,17 @@ class GameController {
 
     private fun printResult(){
         outputResultBridge()
-        if(bridgeGame.checkGameWin()) println("게임 성공 여부: 성공") else println("게임 성공 여부: 실패")
+        outputGameResult()
         outputResultTryCount()
     }
 
     private fun outputResultBridge(){
         println("최종 게임 결과")
         outputMoving()
+    }
+
+    private fun outputGameResult(){
+        if(bridgeGame.checkGameWin()) println("게임 성공 여부: 성공") else println("게임 성공 여부: 실패")
     }
 
     private fun outputResultTryCount(){
