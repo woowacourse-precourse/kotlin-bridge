@@ -8,11 +8,13 @@ class BridgeGame {
     private val inputView = InputView()
     private val outputView = OutputView()
     private val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
+    private lateinit var result: Result
+    private lateinit var bridge: Bridge
 
     fun start() {
         outputView.printStartMessage()
         val bridgeSize = getBridgeSize()
-        val bridge = Bridge(BridgeMaker(bridgeRandomNumberGenerator).makeBridge(bridgeSize))
+        bridge = Bridge(BridgeMaker(bridgeRandomNumberGenerator).makeBridge(bridgeSize))
         startCycle()
     }
 
@@ -27,7 +29,8 @@ class BridgeGame {
     }
 
     fun startCycle() {
-
+        result = Result()
+        move(0)
     }
 
     /**
@@ -36,7 +39,19 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move() {}
+    fun move(position: Int): Boolean {
+        while (true) {
+            try {
+                val playerMove = inputView.readMoving()
+                val isCrossable = bridge.isCrossable(position, playerMove)
+                result.addResult(playerMove, isCrossable)
+                outputView.printMap(result.firstRowResult, result.secondRowResult)
+                return isCrossable
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
