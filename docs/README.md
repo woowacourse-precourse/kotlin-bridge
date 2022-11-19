@@ -12,6 +12,8 @@
   - [x] 플레이어 이동 후, 플레이어가 이동한 상태를 기록 *Player#go()
     - [x] 랜덤다리와 비교하여 플레이어가 건널 수 있는 지 여부 파악 #Player#canGo()
 - [x] 현재까지 건넌 다리 모두를 출력한다 *OutputView#pringMap()
+- [x] 잘못된 다리 길로 갔을 경우 게임진행 멈춤 *BridgeGame#isFail() > *Player#doNotGo()
+- [ ] 게임이 종료된 상황일 경우 로직 처리
 - [ ] 다리 끝까지 건넜는 지 확인을 한다. *Player#isDone()
   - [ ] 다 건너지 않았다면? 실패했는 지 확인 *Player#goWell()
     - [ ] 만약 실패했다면? *BridgeGame#retry()

@@ -19,6 +19,10 @@ class BridgeGame(private val bridgeNumberGenerator: BridgeNumberGenerator, priva
         player.go(move)
     }
 
+    fun isFail(): Boolean {
+        return player.doNotGo(bridge)
+    }
+
     fun retry() {
     }
 

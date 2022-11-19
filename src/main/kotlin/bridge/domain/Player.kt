@@ -7,6 +7,10 @@ class Player {
         position++
     }
 
+    fun doNotGo(bridge: List<String>): Boolean {
+        return bridge[position] != record.last()
+    }
+
     fun getState(): MutableList<String> {
         return record
     }
