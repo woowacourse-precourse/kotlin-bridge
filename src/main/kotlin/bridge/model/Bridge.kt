@@ -8,12 +8,12 @@ import bridge.BridgeRandomNumberGenerator
  * 특정 방향으로 건널 수 있는지 확인,
  * 다리의 마지막 위치인지 확인 해주는 역활을 한다.
  */
-class Bridge(directionNames: List<String>) {
+class Bridge(directionCommands: List<String>) {
     private val availableDirections: List<Direction>
 
     init {
-        require(directionNames.size in MIN_SIZE..MAX_SIZE) { ERROR_BRIDGE_SIZE }
-        availableDirections = directionNames.map { Direction.getByDisplayName(it) }
+        require(directionCommands.size in MIN_SIZE..MAX_SIZE) { ERROR_BRIDGE_SIZE }
+        availableDirections = directionCommands.map { Direction.getByCommand(it) }
     }
 
     fun canCross(direction: Direction, position: Int): Boolean {

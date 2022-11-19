@@ -7,12 +7,12 @@ import bridge.model.Direction
  */
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
-        val directionNames = mutableListOf<String>()
+        val directionCommands = mutableListOf<String>()
         repeat(size) {
             val value = bridgeNumberGenerator.generate()
             val direction = Direction.getByValue(value)
-            directionNames.add(direction.toString())
+            directionCommands.add(direction.toString())
         }
-        return directionNames
+        return directionCommands
     }
 }

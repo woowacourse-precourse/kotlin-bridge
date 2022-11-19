@@ -11,16 +11,16 @@ class OutputView {
         println(GAME_START_TEXT + "\n")
     }
 
-    fun printRequireBridgeSize() {
-        println(REQUIRE_BRIDGE_SIZE)
+    fun printRequestBridgeSize() {
+        println(REQUEST_BRIDGE_SIZE)
     }
 
-    fun printRequireMoving() {
-        println("\n" + REQUIRE_MOVING)
+    fun printRequestMoving() {
+        println("\n" + REQUEST_MOVING)
     }
 
-    fun printRequireGameCommand() {
-        println("\n" + REQUIRE_GAME_COMMAND)
+    fun printRequestGameCommand() {
+        println("\n" + REQUEST_GAME_COMMAND)
     }
 
     fun printException(exception: Exception) {
@@ -33,7 +33,7 @@ class OutputView {
     }
 
     fun printResult(bridgeGame: BridgeGame) {
-        println("\n" + FINAL_GAME_RESULT)
+        println("\n" + FINAL_GAME_RESULT_TEXT)
         printMap(bridgeGame)
         println()
         println(GAME_PASS_RESULT_FORMAT.format(bridgeGame.currentState.toString()))
@@ -62,13 +62,12 @@ class OutputView {
 
     companion object {
         private const val GAME_START_TEXT = "다리 건너기 게임을 시작합니다."
-        private const val REQUIRE_BRIDGE_SIZE = "다리의 길이를 입력해주세요."
-        private const val REQUIRE_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
-        private const val REQUIRE_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
-        private const val FINAL_GAME_RESULT = "최종 게임 결과"
+        private const val REQUEST_BRIDGE_SIZE = "다리의 길이를 입력해주세요."
+        private const val REQUEST_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
+        private const val REQUEST_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+        private const val FINAL_GAME_RESULT_TEXT = "최종 게임 결과"
         private const val GAME_PASS_RESULT_FORMAT = "게임 성공 여부: %s"
         private const val GAME_TRY_NUMBER_FORMAT = "총 시도한 횟수: %d"
-        private const val ERROR_PREFIX = "[ERROR]"
 
         private const val MOVING_SUCCESS = "O"
         private const val MOVING_FAIL = "X"
@@ -77,5 +76,7 @@ class OutputView {
         private const val LINE_START = "["
         private const val LINE_END = "]"
         private const val LINE_SEPARATOR = " | "
+
+        private const val ERROR_PREFIX = "[ERROR]"
     }
 }

@@ -25,7 +25,7 @@ class DirectionTest {
     @Test
     fun `이동 방향은 U이면 위 칸, D이면 아래 칸이다`() {
         val inputs = listOf("U", "D")
-        val results = inputs.map { Direction.getByDisplayName(it) }
+        val results = inputs.map { Direction.getByCommand(it) }
         val expects = listOf(Direction.UP, Direction.DOWN)
         assert(results == expects)
     }
@@ -34,7 +34,7 @@ class DirectionTest {
     @ParameterizedTest
     fun `이동 방향을 대문자 U와 D가 아닌 문자로 만들려고 하면 예외를 발생시킨다`(input: String) {
         assertThrows<IllegalArgumentException> {
-            Direction.getByDisplayName(input)
+            Direction.getByCommand(input)
         }
     }
 }

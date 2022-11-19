@@ -26,7 +26,7 @@ class BridgeGameController {
     private fun startGameUtil() {
         outputView.printStartText()
 
-        val bridgeGame = runUntilValid { makeBridgeGame() }
+        val bridgeGame = runUntilValid { readSizeAndMakeBridgeGame() }
         playBridgeGame(bridgeGame)
 
         outputView.printResult(bridgeGame)
@@ -42,44 +42,44 @@ class BridgeGameController {
         }
     }
 
-    private fun requireBridgeSize(): Int {
-        outputView.printRequireBridgeSize()
+    private fun readBridgeSize(): Int {
+        outputView.printRequestBridgeSize()
         return inputView.readBridgeSize()
     }
 
-    private fun makeBridgeGame(): BridgeGame {
-        val size = requireBridgeSize()
+    private fun readSizeAndMakeBridgeGame(): BridgeGame {
+        val size = readBridgeSize()
         val bridge = Bridge.generateRandomBridge(size)
         return BridgeGame(bridge)
     }
 
     private fun playBridgeGame(bridgeGame: BridgeGame) {
         while (bridgeGame.isOnGoing()) {
-            runUntilValid { move(bridgeGame) }
+            runUntilValid { readMovingAndMove(bridgeGame) }
             outputView.printMap(bridgeGame)
             if (bridgeGame.isFailed()) {
-                runUntilValid { retry(bridgeGame) }
+                runUntilValid { readCommandAndRetry(bridgeGame) }
             }
         }
     }
 
-    private fun requireMoving(): String {
-        outputView.printRequireMoving()
+    private fun readMoving(): String {
+        outputView.printRequestMoving()
         return inputView.readMoving()
     }
 
-    private fun move(bridgeGame: BridgeGame) {
-        val moving = requireMoving()
+    private fun readMovingAndMove(bridgeGame: BridgeGame) {
+        val moving = readMoving()
         bridgeGame.move(moving)
     }
 
-    private fun requireGameCommand(): String {
-        outputView.printRequireGameCommand()
+    private fun readGameCommand(): String {
+        outputView.printRequestGameCommand()
         return inputView.readGameCommand()
     }
 
-    private fun retry(bridgeGame: BridgeGame) {
-        val command = requireGameCommand()
+    private fun readCommandAndRetry(bridgeGame: BridgeGame) {
+        val command = readGameCommand()
         bridgeGame.retry(command)
     }
 }

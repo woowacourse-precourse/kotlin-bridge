@@ -19,7 +19,7 @@ class BridgeGame(private val bridge: Bridge) {
 
     fun move(moving: String) {
         requireOnGoing()
-        val direction = Direction.getByDisplayName(moving)
+        val direction = Direction.getByCommand(moving)
         val isSuccess = canCross(direction, ++currentPosition)
         setState(isSuccess)
         _movingResults.addLast(MovingResult(direction, isSuccess))
