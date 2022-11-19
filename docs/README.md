@@ -2,41 +2,42 @@
 
 ## 기능 목록
 
-1. 게임 시작 메시지 출력
-2. 다리 길이 입력 메시지 출력
-3. 다리 길이 입력
-   1. 숫자여부
-   2. 범위(3 ~ 20) 일치 여부
-4. 다리 생성
-5. 이동 메시지 출력
-6. 이동 메시지 입력
-   1. 알파벳 여부
-   2. 길이 여부
-   3. U or D 여부
-7. 정답 여부 판단
-   1. 정답일 경우
-      1. O표시 지도 출력
-      2. 다리 끝 도달까지 5 ~ 7까지 반복
-   2. 정답이 아닐 경우
-      1. 다시 시도 or 종료 메시지 출력
-      2. 게임 상태 입력
-         1. 알파벳 여부
-         2. 길이 여부
-         3. R or Q 여부
-      3. 게임 종료일 경우
-         1. 최종 결과 지도 출력
-         2. 게임 성공 실패 여부 메시지 출력
-         3. 총 시도한 횟수 출력
-      4. 재시작일 경우
-         1. 시도 횟수 1증가
-         2. 처음으로 복귀하여 5번부터 시작
-8. 다리 끝 도달 시 최종 결과 지도 출력
-9. 게임 성공 여부 성공 출력
-10. 시도 횟수 출력
+1. 게임 시작 - `play()`
+2. 다리 길이 입력 및 다리 생성 - `initializer()`
+   1. 게임 시작 메시지 출력 - `printStart()`
+   2. 다리 길이 입력 - `retryReadBridgeSize()`
+      1. 숫자 여부
+      2. 범위 3 ~ 20 일치 여부
+   3. 다리 생성 - `makeBridge()`
+3. 게임 진행 및 정답 여부 리턴 - `playGame()`
+   1. 이동 입력 - `retryReadBridge()`
+      1. U or D 여부
+   2. 정답 여부 - `move()`
+4. 게임 진행 반복 및 정지 여부 결정  - `playGameLoop()`
+   1. 진행 상황 출력 - `printMap()`
+   2. 정답 여부 판단. 틀릴 경우 혹은 다리 끝까지 갔을 경우 정지 - `escape()`
+5. 게임 재시작 혹은 종료 판단. 끝까지 갔을 경우 판단 없이 종료 - `judgeGameEnd()`
+   1. 재시작 판단 - `retry()`
+6. 최종 결과 출력 - `printResult()`
 
 ## 패키지 구조
 
-
+bridge
+- controller 
+    - BridgeGameController 
+- domain
+    - BridgeGame
+    - BridgeMaker
+    - InputView
+- enums
+    - GameMessages
+    - Status
+- ui
+    - OutputView
+- util
+    - BridgeNumberGenerator
+    - BridgeRandomNumberGenerator
+Application.kt
 
 ## 기능 요구 사항
 
