@@ -5,5 +5,7 @@ fun main() {
         BridgeGameManager.gameStart()
     } catch (error: IllegalArgumentException) {
         println(error.message)
-    } catch (error : IllegalStateException) {}
+    } catch (error : IllegalStateException) {
+        print("")
+    }
 }
