@@ -32,7 +32,10 @@ class BridgeGame {
 
     fun move() {
         // 이동할 칸 메세지 출력
+        output.printInputMoving()
+
         // 이동할 칸 입력 및 옳바른 값인지 체크
+        input.readMoving()
         // 맵과 비교해 이동할 수 있는지 없는지 체크
         // 맵을 출력
         // 이동 여부를 리턴

@@ -18,8 +18,9 @@ class Rule {
         return bridgeSize
     }
 
+    // U 또는 D가 아닐 경우 예외 처리, 소문자도 예외처리
     fun checkMoving(moving: String) {
-
+        if(moving != "U" && moving != "D") throw IllegalArgumentException("[ERROR] U 또는 D가 아님")
     }
 
     fun checkCommand(command: String) {

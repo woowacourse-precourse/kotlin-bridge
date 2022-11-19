@@ -10,7 +10,7 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        var bridgeSize: Int = 0
+        var bridgeSize = 0
         // todo 성공하면 반복문 나가게 수정
         var isMovable = false
         do {
@@ -20,7 +20,6 @@ class InputView {
                 isMovable = true
             } catch (e: IllegalArgumentException) {
                 println(e.message)
-                isMovable = false
             }
         } while (!isMovable)
 
@@ -31,8 +30,19 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        val input = Console.readLine()
-        // rule을 통해 옳바른 값을 받았는지 체크
+        var input = ""
+        var isUpOrDown = false
+        do {
+            input = Console.readLine()
+            try {
+                rule.checkMoving(input)
+                isUpOrDown = true
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+
+        } while(!isUpOrDown)
+
         return input
     }
 
