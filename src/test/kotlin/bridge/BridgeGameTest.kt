@@ -45,6 +45,8 @@ class BridgeGameTest : NsTest() {
         }
     }
 
+    // todo 테스트는 잘 작성한 것 같은데, 내 output에 이상이 있는 것 같다..? 잘 모르겠다.
+    // -> 한 줄 띄기를 하니까 갑자기 됨.. 근데 아래 테스트는 여전히 안 됨...
     @Test
     fun `이동한 결과에 따른 맵을 출력하는지 확인`() {
         assertRandomNumberInRangeTest ({
@@ -54,6 +56,13 @@ class BridgeGameTest : NsTest() {
                 "[   |   | O |   | O ]",
             )
         }, 1, 1, 0, 1, 0)
+    }
 
+    @Test
+    fun `이동에 실패할 경우 재시작 여부를 묻는지 확인`() {
+        assertRandomNumberInRangeTest ({
+            run("5", "U", "U", "D", "D")
+            assertThat(output()).contains("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        }, 1, 1, 0, 1, 0)
     }
 }

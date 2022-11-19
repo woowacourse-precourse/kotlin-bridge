@@ -61,12 +61,21 @@ class BridgeGame {
     fun retry(): Boolean {
         output.printRetry()
         val command = input.readGameCommand()
-        tryingCount++
+        tryingCount++ // todo 게임을 끝낸다고(Q) 해도 ++를 해버린다. 로직상 말이 안됨. gameOver의 tryingCount++을 지우고 다시 작성
 
         return command == "R"
     }
 
-    fun gameOver() {
+    fun arrivedBridgeEnd(position: Int): Boolean {
+        return position == bridgeSize
+    }
+
+
+    fun gameOver(position: Int, successOrFail: Boolean) {
+        tryingCount++
         // 최종 게임 결과를 알려준다.
+        output.printResult()
+        output.printMap(bridgeMap, position, successOrFail)
+        output.printTryingCount(successOrFail, tryingCount)
     }
 }
