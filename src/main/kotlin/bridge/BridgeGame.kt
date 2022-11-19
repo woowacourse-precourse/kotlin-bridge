@@ -15,7 +15,7 @@ class BridgeGame {
     var downBridge: MutableList<String> = mutableListOf<String>()
     var isSuccess = true
     var totalCount: Int = 1
-    var count: Int = 0
+    private var count: Int = 0
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -23,8 +23,8 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(moveAnswer: String, moveOrder: String) {
-        when (moveAnswer) {
+    fun move(bridge: List<String>, moveOrder: String) {
+        when (bridge[count]) {
             UP -> if (moveOrder == UP) upMove(true) else upMove(false)
             DOWN -> if (moveOrder == DOWN) downMove(true) else downMove(false)
             else -> throw IllegalArgumentException(ERROR_MESSAGE)
