@@ -17,61 +17,23 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    private val splitter = "|"
+    private val blank = " _ "
+    private val emptyBlank = "   "
+    private val twoPath = mutableListOf<String>("[","[")
+
     fun printMap(trialCount: Int, resultHashMap: MutableList<HashMap<String, String>>): MutableList<String> {
-        var moveUpperPath = "["
-        var moveUnderPath = "["
-        val splitter = "|"
-        val blank = " _ "
-        val emptyBlank = "   "
-        val totalMovePath = mutableListOf<String>("", "")
         for (i in 0 until resultHashMap.size) {
             when {
-                resultHashMap[i].containsValue("X") && resultHashMap[i].contains("U") -> {
-                    val newBlank = blank.replace("_", "X")
-                    moveUpperPath += newBlank
-                    moveUnderPath += emptyBlank
-                    if (i != (trialCount)) {
-                        moveUpperPath += splitter
-                        moveUnderPath += splitter
-                    }
-                }
-
-                resultHashMap[i].containsValue("O") && resultHashMap[i].contains("U") -> {
-                    val newBlank = blank.replace("_", "O")
-                    moveUpperPath += newBlank
-                    moveUnderPath += emptyBlank
-                    if (i != (trialCount)) {
-                        moveUpperPath += splitter
-                        moveUnderPath += splitter
-                    }
-                }
-
-                resultHashMap[i].containsValue("X") && resultHashMap[i].contains("D") -> {
-                    val newBlank = blank.replace("_", "X")
-                    moveUnderPath += newBlank
-                    moveUpperPath += emptyBlank
-                    if (i != (trialCount)) {
-                        moveUpperPath += splitter
-                        moveUnderPath += splitter
-                    }
-                }
-
-                resultHashMap[i].containsValue("O") && resultHashMap[i].contains("D") -> {
-                    val newBlank = blank.replace("_", "O")
-                    moveUnderPath += newBlank
-                    moveUpperPath += emptyBlank
-                    if (i != (trialCount)) {
-                        moveUpperPath += splitter
-                        moveUnderPath += splitter
-                    }
-                }
+                resultHashMap[i].containsValue("X") && resultHashMap[i].contains("U") -> printUpperMap("X", trialCount, i)
+                resultHashMap[i].containsValue("O") && resultHashMap[i].contains("U") -> printUpperMap("O", trialCount, i)
+                resultHashMap[i].containsValue("X") && resultHashMap[i].contains("D") -> printUnderMap("X", trialCount, i)
+                resultHashMap[i].containsValue("O") && resultHashMap[i].contains("D") -> printUnderMap("O", trialCount, i)
             }
         }
-        moveUpperPath += "]"
-        moveUnderPath += "]"
-        totalMovePath[0] = moveUpperPath
-        totalMovePath[1] = moveUnderPath
-        return totalMovePath
+        twoPath[0] += "]"
+        twoPath[1] += "]"
+        return twoPath
     }
 
     /**
@@ -79,8 +41,26 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(trialCount: Int, resultHashMap: MutableList<HashMap<String, String>>) {
-        printMap(trialCount, resultHashMap)
+    private fun printUpperMap(newMove: String, trialCount: Int, i: Int): MutableList<String> {
+        val newBlank = blank.replace("_", newMove)
+        twoPath[0] += newBlank
+        twoPath[1] += emptyBlank
+        if (i != (trialCount)) {
+            twoPath[0] += splitter
+            twoPath[1] += splitter
+        }
+        return twoPath
+    }
+
+    private fun printUnderMap(newMove: String, trialCount: Int, i: Int): MutableList<String> {
+        val newBlank = blank.replace("_", newMove)
+        twoPath[0] += emptyBlank
+        twoPath[1] += newBlank
+        if (i != (trialCount)) {
+            twoPath[0] += splitter
+            twoPath[1] += splitter
+        }
+        return twoPath
     }
 
     fun printSingleResult(resultHashMap: MutableList<HashMap<String, String>>) {
