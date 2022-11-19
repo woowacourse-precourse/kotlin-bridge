@@ -62,11 +62,10 @@ class BridgeGame(private val bridge: Bridge) {
     }
 
     private fun setState(isSuccess: Boolean) {
-        if (!isSuccess) {
-            _currentState = BridgeGameState.FAIL
-        }
-        if (isSuccess && allPassed()) {
-            _currentState = BridgeGameState.PASS
+        _currentState = when {
+            isSuccess.not() -> BridgeGameState.FAIL
+            isSuccess && allPassed() -> BridgeGameState.PASS
+            else -> currentState
         }
     }
 
