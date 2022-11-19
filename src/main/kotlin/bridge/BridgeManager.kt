@@ -1,6 +1,8 @@
 package bridge
 
-class BridgeManager(private val inputView: InputView, private val outputView: OutputView) {
+class BridgeManager {
+    private val inputView = InputView()
+    private val outputView = OutputView()
     private val bridgeSize: Int
     private val bridge: List<String>
     private val bridgeGame: BridgeGame
@@ -41,30 +43,20 @@ class BridgeManager(private val inputView: InputView, private val outputView: Ou
         val move = getMoveCommand()
         this.bridgeGame.move(this.bridge, move, this.position)
         this.outputView.printMap(this.position, this.bridgeGame)
-        this.position++
     }
 
-    private fun failChecker(): Boolean {
-        if (!this.bridgeGame.isContinue && this.position <  this.bridgeSize) {
+    private fun failChecker() {
+        if (!this.bridgeGame.isContinue && this.position <  this.bridgeSize - 1) {
             val retryCommand = getRetryCommand()
-            if (retryCommand == "R") {
+            if (retryCommand == InputView.COMMAND_RESTART) {
                 this.restartGame()
-            } else {
-                this.quitGame()
-                return true
             }
         }
-        return false
     }
 
     private fun restartGame() {
         this.bridgeGame.retry()
-        this.position = 0
-    }
-
-    private fun quitGame() {
-        this.outputView.printResult(false, this.position-1, this.bridgeGame)
-        this.outputView.printTryNumber(this.bridgeGame.getRetryCounter())
+        this.position = -1
     }
 
     private fun getRetryCommand(): String {
@@ -79,19 +71,18 @@ class BridgeManager(private val inputView: InputView, private val outputView: Ou
         }
     }
 
-    private fun printGameResult() {
-        outputView.printResult(true, this.position-1, this.bridgeGame)
+    private fun printGameResult(isSuccess: Boolean) {
+        outputView.printResult(isSuccess, this.position-1, this.bridgeGame)
         outputView.printTryNumber(this.bridgeGame.getRetryCounter())
     }
 
     fun gameLoop() {
         while (this.bridgeGame.isContinue && this.position < this.bridgeSize) {
             this.moveBridge()
-            if (this.failChecker()) {
-                return
-            }
+            this.failChecker()
+            this.position++
         }
-        this.printGameResult()
+        this.printGameResult(this.bridgeGame.isContinue)
     }
 
 }
