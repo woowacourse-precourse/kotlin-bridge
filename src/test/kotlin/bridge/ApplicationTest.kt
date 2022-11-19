@@ -39,7 +39,14 @@ class ApplicationTest : NsTest() {
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
+/*
+    @Test
+    fun ``(){
+        assertSimpleTest{
 
+        }
+    }
+*/
     override fun runMain() {
         main()
     }
