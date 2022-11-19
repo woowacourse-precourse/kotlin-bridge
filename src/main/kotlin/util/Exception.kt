@@ -5,6 +5,7 @@ class Exception {
         fun validateNumber(readLine: String) = require(readLine.matches(Regex("\\d+"))) {
             println("[ERROR] 숫자만 입력 가능합니다.")
         }
+
         fun validateBridgeSizeRange(readLine: Int) = require(readLine in 3..20) {
             println("[ERROR] 3-20 사이의 숫자만 입력 가능합니다.")
         }

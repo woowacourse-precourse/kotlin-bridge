@@ -1,65 +1,61 @@
 package bridge
 
+import util.Enum
+import view.InputView
+import view.OutputView
+
 class BridgeController {
-    private val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
-    private val input = InputView()
-    private val output = OutputView()
-    private val bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
     private lateinit var bridgeGame: BridgeGame
 
     fun run() {
         makeBridge()
-        gameProgress()
+        startGame()
     }
 
     private fun makeBridge() {
-        output.printStartGame()
-        output.printInputSize()
-        val bridgeSize = input.readBridgeSize()
-        val bridges = bridgeMaker.makeBridge(bridgeSize)
+        OutputView.printStartGame()
+        val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
+        val bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
+        val bridges = bridgeMaker.makeBridge(InputView.readBridgeSize())
         bridgeGame = BridgeGame(bridges)
     }
 
-    private fun gameProgress() {
-        while (true) {
-            move()
-            if (checkEnd() || checkFail())
-                break
+    private fun startGame() {
+        move()
+        if (bridgeGame.isEnd()) {
+            end(Enum.RESULT.SUCCESS.korean)
+            return
         }
+        if (fail())
+            return
+        startGame()
     }
 
     private fun move() {
-        output.printInputMove()
-        val direction = input.readMoving()
-        bridgeGame.move(direction)
-        output.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
+        OutputView.printInputMove()
+        bridgeGame.move(InputView.readMoving())
+        OutputView.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
     }
 
-    private fun checkEnd(): Boolean {
-        if (bridgeGame.isEnd()) {
-            output.printEndGame()
-            output.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
-            output.printResult(bridgeGame.getTryCount(), Enum.RESULT.SUCCESS.korean)
-            return true
+    private fun end(result: String) {
+        OutputView.printEndGame()
+        OutputView.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
+        OutputView.printResult(bridgeGame.getTryCount(), result)
+    }
+
+    private fun fail(): Boolean {
+        if (bridgeGame.isFail(Enum.RESULT.FAILURE.emoji)) {
+            OutputView.printRestart()
+            return restart()
         }
         return false
     }
 
-    private fun checkFail(): Boolean {
-        if (bridgeGame.isFail()) {
-            output.printRestart()
-            if (checkRestart()) {
-                return true
-            }
-        }
-        return false
-    }
-
-    private fun checkRestart(): Boolean {
-        when (input.readGameCommand()) {
+    private fun restart(): Boolean {
+        when (InputView.readGameCommand()) {
             Enum.OPTION.RESTART.command -> bridgeGame.retry()
             Enum.OPTION.QUIT.command -> {
-                output.printResult(bridgeGame.getTryCount(), Enum.RESULT.FAILURE.korean)
+                end(Enum.RESULT.FAILURE.korean)
                 return true
             }
         }
