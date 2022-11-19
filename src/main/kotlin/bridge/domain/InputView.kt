@@ -73,8 +73,30 @@ class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    fun readGameCommand(): String {
-        return ""
+    private fun readGameCommand(): String {
+        outputView.printRestart()
+        return try {
+            validateGameCommand()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            ""
+        }
+    }
+
+    private fun validateGameCommand(): String {
+        val gameCommand = Console.readLine().trim()
+        require((gameCommand == "R") or (gameCommand == "Q")) {
+            throw IllegalArgumentException("$PREFIX $COMMAND_EXCEPTION")
+        }
+        return gameCommand
+    }
+
+    fun retryReadGameCommand(): String {
+        var gameCommand: String
+        do {
+            gameCommand = readGameCommand()
+        } while (gameCommand == "")
+        return gameCommand
     }
 
     companion object {
@@ -84,5 +106,7 @@ class InputView {
         private const val RANGE_EXCEPTION = "범위가 맞지 않습니다."
 
         private const val MOVE_EXCEPTION = "U 혹은 D가 아닙니다."
+
+        private const val COMMAND_EXCEPTION = "R 혹은 Q가 아닙니다."
     }
 }
