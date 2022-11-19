@@ -6,6 +6,7 @@ package bridge
 class BridgeGame {
     private lateinit var bridge: Bridge
     private val userStep = mutableListOf<Pair<String, Boolean>>()
+    private var retryCount = 1
     private val inputView = InputView()
     private val outputView = OutputView()
 
@@ -46,7 +47,7 @@ class BridgeGame {
         if (!status) {
             return processRetryIO()
         } else if (bridge.getBridgeDone(userStep.size)) {
-            outputView.printResult(userStep)
+            outputView.printResult(userStep, retryCount)
             return false
         }
         return true
@@ -64,16 +65,18 @@ class BridgeGame {
         outputView.printFormattedMsg(OutputView.INPUT_RETRY)
         val gameCommand = inputView.readGameCommand()
         if (gameCommand == "R") {
+            retryCount += 1
             retry()
             return true
         } else if (gameCommand == "Q") {
-            outputView.printResult(userStep)
+            outputView.printResult(userStep, retryCount)
             return false
         }
         return true
     }
 
     fun gameLoop() {
+        retryCount = 1
         outputView.printFormattedMsg(OutputView.START)
         processBridgeSizeIO()
         while (true) {

@@ -47,10 +47,10 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(userStep: MutableList<Pair<String, Boolean>>) {
+    fun printResult(userStep: MutableList<Pair<String, Boolean>>, retryCount: Int) {
         printFormattedMsg(FINAL_RESULT)
         printMap(userStep)
         printFormattedMsg(GAME_CLEAR, if (userStep.map { it.second }.contains(false)) "실패" else "성공")
-        printFormattedMsg(RETRY_COUNT, userStep.size)
+        printFormattedMsg(RETRY_COUNT, retryCount)
     }
 }
