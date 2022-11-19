@@ -40,9 +40,37 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `숫자가아닐때`() {
+        assertSimpleTest {
+            runException("4a")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
 
+    @Test
+    fun `범위가3~20이아닐때`() {
+        assertSimpleTest {
+            runException("21")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
 
+    @Test
+    fun `칸입력이잘못됐을때`() {
+        assertSimpleTest {
+            runException("u")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
 
+    @Test
+    fun `커맨드입력이잘못됐을때`() {
+        assertSimpleTest {
+            runException("RQ")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
 
     override fun runMain() {
         main()
