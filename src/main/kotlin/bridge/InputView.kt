@@ -3,7 +3,6 @@ package bridge
 import camp.nextstep.edu.missionutils.Console
 
 
-const val UP = "U"
 const val QUIT = "Q"
 
 /**
