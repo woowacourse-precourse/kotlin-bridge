@@ -2,6 +2,7 @@ package bridge
 
 /*** 사용자에게게임진행상황과결과를출력하는역할을한다.*/
 class OutputView {
+
     /*** 현재까지이동한다리의상태를정해진형식에맞춰출력한다.
     출력을위해필요한메서드의인자(parameter)는자유롭게추가하거나변경할수있다.*/
     fun printMap(map : String){
@@ -11,9 +12,11 @@ class OutputView {
     출력을위해필요한메서드의인자(parameter)는자유롭게추가하거나변경할수있다.*/
     fun printResult() {
         println("최종 게임 결과")
-//        printMap()
-        println("게임 성공 여부: "+playBridgeGameTest().win) // 나중에 봐꿔줘야함
-        println("총 시도한 횟수: "+playBridgeGameTest().cnt)
+    }
+
+    fun printResult1(message : String, cnt : Int) {
+        println("게임 성공 여부: "+message) // 나중에 봐꿔줘야함
+        println("총 시도한 횟수: "+cnt)
     }
 
     fun printStartGame() {
