@@ -20,4 +20,11 @@ object Exceptions {
             throw IllegalArgumentException(ERROR_HEADER + ERROR_NUMBER_FORMAT)
         }
     }
+
+    // 이동할 칸 입력값 확인 -> (위: U, 아래: D)
+    fun checkInputMoveKey(move: String) {
+        if (move != UP && move != DOWN) {
+            throw IllegalArgumentException(ERROR_HEADER + ERROR_MOVE_KEY)
+        }
+    }
 }
