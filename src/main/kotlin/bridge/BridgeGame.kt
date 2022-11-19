@@ -11,8 +11,6 @@ class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     private var index = 0
-    private val upList = mutableListOf<String>()
-    private val downList = mutableListOf<String>()
     private val up = mutableMapOf<String, List<String>>()
     private val down = mutableMapOf<String, List<String>>()
 
@@ -44,5 +42,14 @@ class BridgeGame {
             downList.add(ox)
             down[space] = downList
         }
+    }
+
+    companion object {
+        private val upList = mutableListOf<String>()
+        private val downList = mutableListOf<String>()
+
+        fun getUpList() = upList
+
+        fun getDownList() = downList
     }
 }

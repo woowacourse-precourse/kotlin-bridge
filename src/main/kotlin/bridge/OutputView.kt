@@ -20,7 +20,12 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(up: List<String>, down: List<String>, successOrFailure: String, numberOfAttempts: Int) {
+        println("최종 게임 결과")
+        printMap(up, down)
+        println("게임 성공 여부: $successOrFailure")
+        print("총 시도한 횟수: $numberOfAttempts")
+    }
 
     private fun printAnswer(position: List<String>) {
         println(position.joinToString(" | ", "[ ", " ]"))

@@ -6,6 +6,10 @@ fun main() {
     val bridgeMaker = BridgeMaker(numberGenerator)
     val outputView = OutputView()
     val bridgeGame = BridgeGame()
+    var numberOfAttempts = 0
+    var successOrFailure = ""
+    val up = BridgeGame.getUpList()
+    val down = BridgeGame.getDownList()
 
     println("다리 건너기 게임을 시작합니다.\n")
 
@@ -20,5 +24,7 @@ fun main() {
         val upList = movingList.filter { it.key == "U" }.values.flatten()
         val downList = movingList.filter { it.key == "D" }.values.flatten()
         outputView.printMap(upList, downList)
+
+        outputView.printResult(up, down, successOrFailure, numberOfAttempts)
     }
 }
