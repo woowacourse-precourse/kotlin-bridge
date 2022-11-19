@@ -9,7 +9,20 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     fun makeBridge(size: Int): List<String> {
+        var bridge = ArrayList<String>()
 
-        return listOf()
+        repeat(size) {
+            var direction = changeNum(bridgeNumberGenerator.generate().toString())
+            direction?.let { direction -> bridge.add(direction) }
+        }
+
+        return bridge
+    }
+
+    fun changeNum(num: String): String? {
+        if (num == "0") return "D"
+        if (num == "1") return "U"
+
+        return null
     }
 }
