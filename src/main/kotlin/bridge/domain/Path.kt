@@ -6,6 +6,9 @@ enum class Path(private val pathNumber: Int, private val path: String) {
     UP(1, "U"),
     DOWN(0, "D");
 
+    fun getPath(): String {
+        return path
+    }
     companion object {
         fun valueOf(moveNumber: Int): String {
             return when (moveNumber) {
