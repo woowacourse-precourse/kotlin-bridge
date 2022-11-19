@@ -10,9 +10,9 @@ class BridgeGameTest {
         val bridgeGame = BridgeGame()
 
         println(bridgeMaker)
-        bridgeGame.move(bridgeMaker[0], "U")
-        bridgeGame.move(bridgeMaker[1], "U")
-        bridgeGame.move(bridgeMaker[2], "D")
+        bridgeGame.move(bridgeMaker, "U")
+        bridgeGame.move(bridgeMaker, "U")
+        bridgeGame.move(bridgeMaker, "D")
         assertThat(bridgeGame.isGameEnd(bridgeMaker)).isEqualTo(true)
     }
 
@@ -21,9 +21,9 @@ class BridgeGameTest {
         val bridgeMaker = BridgeMaker(TestNumberGenerator(listOf(1, 1, 0))).makeBridge(3)
         val bridgeGame = BridgeGame()
 
-        bridgeGame.move(bridgeMaker[0], "U")
-        bridgeGame.move(bridgeMaker[1], "U")
-        bridgeGame.move(bridgeMaker[2], "U")
+        bridgeGame.move(bridgeMaker, "U")
+        bridgeGame.move(bridgeMaker, "U")
+        bridgeGame.move(bridgeMaker, "U")
         assertThat(bridgeGame.isGameEnd(bridgeMaker)).isEqualTo(true)
     }
 
@@ -33,8 +33,8 @@ class BridgeGameTest {
         val bridgeMaker = BridgeMaker(TestNumberGenerator(listOf(1, 1, 0))).makeBridge(3)
         val bridgeGame = BridgeGame()
 
-        bridgeGame.move(bridgeMaker[0], "U")
-        bridgeGame.move(bridgeMaker[1], "D")
+        bridgeGame.move(bridgeMaker, "U")
+        bridgeGame.move(bridgeMaker, "D")
         assertThat(bridgeGame.isGameEnd(bridgeMaker)).isEqualTo(true)
     }
 
@@ -42,9 +42,9 @@ class BridgeGameTest {
     fun `다리를 끝까지 건너면 게임을 성공한다`() {
         val bridgeMaker = BridgeMaker(TestNumberGenerator(listOf(1, 1, 0))).makeBridge(3)
         val bridgeGame = BridgeGame()
-        bridgeGame.move(bridgeMaker[0],"U")
-        bridgeGame.move(bridgeMaker[1],"U")
-        bridgeGame.move(bridgeMaker[2],"D")
+        bridgeGame.move(bridgeMaker,"U")
+        bridgeGame.move(bridgeMaker,"U")
+        bridgeGame.move(bridgeMaker,"D")
         assertThat(bridgeGame.isSuccess).isEqualTo(true)
     }
 
@@ -52,9 +52,9 @@ class BridgeGameTest {
     fun `다리를 건너다가 사용자 입력 값과 다리의 값이 다른 경우 게임이 실패한다`() {
         val bridgeMaker = BridgeMaker(TestNumberGenerator(listOf(1, 1, 0))).makeBridge(3)
         val bridgeGame = BridgeGame()
-        bridgeGame.move(bridgeMaker[0],"U")
-        bridgeGame.move(bridgeMaker[1],"U")
-        bridgeGame.move(bridgeMaker[2],"U")
+        bridgeGame.move(bridgeMaker,"U")
+        bridgeGame.move(bridgeMaker,"U")
+        bridgeGame.move(bridgeMaker,"U")
         assertThat(bridgeGame.isSuccess).isEqualTo(false)
     }
 
