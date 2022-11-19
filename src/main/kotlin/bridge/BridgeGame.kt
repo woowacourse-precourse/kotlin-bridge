@@ -6,8 +6,8 @@ package bridge
 class BridgeGame(private val bridgeSize: Int) {
     private var retryCounter = 1
     var isContinue = true
-    private val upBridge: MutableList<String> = MutableList(this.bridgeSize) { " " }
-    private val downBridge: MutableList<String> = MutableList(this.bridgeSize) { " " }
+    private val upBridge: MutableList<String> = MutableList(this.bridgeSize) { INIT_MOVE }
+    private val downBridge: MutableList<String> = MutableList(this.bridgeSize) { INIT_MOVE }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -17,19 +17,18 @@ class BridgeGame(private val bridgeSize: Int) {
      */
     fun move(bridge: List<String>, move: String, position: Int) {
         when(bridge[position] == move) {
-            true -> {
-                when(move) {
-                    "U" -> upBridge[position] = "O"
-                    "D" -> downBridge[position] = "O"
-                }
-            }
+            true -> this.moveNextBridge(move, position, CORRECT_MOVE)
             false -> {
-                when(move) {
-                    "U" -> upBridge[position] = "X"
-                    "D" -> downBridge[position] = "X"
-                }
+                this.moveNextBridge(move, position, WRONG_MOVE)
                 this.isContinue = false
             }
+        }
+    }
+
+    private fun moveNextBridge(move: String, position: Int, operation: String) {
+        when (move) {
+            UP_COMMAND -> this.upBridge[position] = operation
+            DOWN_COMMAND -> this.downBridge[position] = operation
         }
     }
 
@@ -48,9 +47,17 @@ class BridgeGame(private val bridgeSize: Int) {
     fun retry() {
         this.retryCounter++
         for (i in 0 until this.bridgeSize) {
-            this.upBridge[i] = " "
-            this.downBridge[i] = " "
+            this.upBridge[i] = INIT_MOVE
+            this.downBridge[i] = INIT_MOVE
         }
         this.isContinue = true
+    }
+
+    companion object {
+        const val UP_COMMAND = "U"
+        const val DOWN_COMMAND = "D"
+        const val CORRECT_MOVE = "O"
+        const val WRONG_MOVE = "X"
+        const val INIT_MOVE = " "
     }
 }
