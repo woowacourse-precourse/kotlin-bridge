@@ -5,7 +5,7 @@ package bridge
  */
 class BridgeGame(private val bridgeSize: Int) {
     private var retryCounter = 1
-    var isContinue = true
+    private var isContinue = true
     private val upBridge: MutableList<String> = MutableList(this.bridgeSize) { INIT_MOVE }
     private val downBridge: MutableList<String> = MutableList(this.bridgeSize) { INIT_MOVE }
 
@@ -37,6 +37,8 @@ class BridgeGame(private val bridgeSize: Int) {
     fun getDownBridge() = this.downBridge
 
     fun getRetryCounter() = this.retryCounter
+
+    fun getIsContinue() = this.isContinue
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
