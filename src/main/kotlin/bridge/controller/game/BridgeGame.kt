@@ -106,8 +106,10 @@ class BridgeGame : Game {
 
     private fun move() {
         outputView.printDirectionQuestion()
+
         runCatching {
-            path = path.createNewPath(inputView.readDirection())
+            val direction = inputView.readDirection()
+            path = path.add(direction)
         }.onFailure {
             outputView.printError(it)
             move()

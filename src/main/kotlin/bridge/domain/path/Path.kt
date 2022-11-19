@@ -9,7 +9,7 @@ class Path(private val path: List<String> = emptyList()) {
      * @param newDirection 새로 추가 될 이동 방향
      * @return 경로를 추가하여 새로운 일급 컬렉션 객체 반환
      * */
-    fun createNewPath(newDirection: String): Path {
+    fun add(newDirection: String): Path {
         val newPath = ArrayList(path)
         newPath.add(newDirection)
         return Path(newPath)
