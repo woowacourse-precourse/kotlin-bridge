@@ -2,8 +2,8 @@ package bridge
 
 import bridge.BridgeRandomNumberGenerator.Companion.RANDOM_LOWER_INCLUSIVE
 import bridge.BridgeRandomNumberGenerator.Companion.RANDOM_UPPER_INCLUSIVE
-import bridge.util.DOWN
-import bridge.util.UP
+import bridge.util.constant.DOWN
+import bridge.util.constant.UP
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.

@@ -1,8 +1,8 @@
 package bridge.domain.path
 
-import bridge.util.DOWN_INDEX
-import bridge.util.UP
-import bridge.util.UP_INDEX
+import bridge.util.constant.DOWN_INDEX
+import bridge.util.constant.UP
+import bridge.util.constant.UP_INDEX
 
 class Path(private val path: List<String> = emptyList()) {
     /**

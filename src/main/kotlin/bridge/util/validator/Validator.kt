@@ -1,6 +1,6 @@
 package bridge.util.validator
 
-import bridge.util.*
+import bridge.util.constant.*
 
 object Validator {
     fun validateIsNumber(value: String) {

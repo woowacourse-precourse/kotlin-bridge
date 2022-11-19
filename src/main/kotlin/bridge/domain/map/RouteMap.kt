@@ -2,8 +2,8 @@ package bridge.domain.map
 
 import bridge.domain.bridge.Bridge
 import bridge.domain.path.Path
-import bridge.util.DOWN
-import bridge.util.UP
+import bridge.util.constant.DOWN
+import bridge.util.constant.UP
 
 class RouteMap(
     private val routeMap: List<ArrayList<Mark>> = listOf(arrayListOf(), arrayListOf()),

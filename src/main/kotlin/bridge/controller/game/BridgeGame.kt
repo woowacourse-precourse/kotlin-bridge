@@ -8,8 +8,7 @@ import bridge.domain.path.Path
 import bridge.domain.map.RouteMap
 import bridge.presentation.InputView
 import bridge.presentation.OutputView
-import bridge.util.RETRIAL
-import bridge.domain.map.Mark
+import bridge.util.constant.RETRIAL
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
