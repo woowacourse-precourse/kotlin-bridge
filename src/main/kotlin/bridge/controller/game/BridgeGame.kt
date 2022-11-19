@@ -20,7 +20,7 @@ class BridgeGame : Game {
     private lateinit var bridge: Bridge
     private val bridgeMaker: BridgeMaker by lazy { BridgeMaker(BridgeRandomNumberGenerator()) }
     private val tryCounter: TryCounter by lazy { TryCounter() }
-    private var path = Path()
+    private var playerPath = Path()
 
 
     override fun start() {
@@ -52,10 +52,10 @@ class BridgeGame : Game {
 
     private fun startRound(playerRoute: RouteMap, round: Int): Boolean {
         move()
-        drawRoute(playerRoute.addPath(path, bridge))
+        drawRoute(playerRoute.addPath(playerPath, bridge))
 
         val realDirection = bridge.directionOf(round)
-        val isRightPath = path.checkDirection(realDirection, round)
+        val isRightPath = playerPath.checkDirection(realDirection, round)
 
         if (isRightPath) {
             return true
@@ -92,7 +92,7 @@ class BridgeGame : Game {
     }
 
     private fun init() {
-        path = path.init()
+        playerPath = playerPath.init()
     }
 
 
@@ -132,7 +132,7 @@ class BridgeGame : Game {
 
         runCatching {
             val direction = inputView.readDirection()
-            path = path.add(direction)
+            playerPath = playerPath.add(direction)
         }.onFailure {
             outputView.printError(it)
             move()
