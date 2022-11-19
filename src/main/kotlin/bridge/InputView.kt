@@ -6,6 +6,7 @@ package bridge
 class InputView {
     /**
      * 다리의 길이를 입력받는다.
+     * @return 다리의 길이 반환. 예외일 경우 -1 반환
      */
     fun readBridgeSize(): Int {
         println(MESSAGE.INPUTBRIDGESIZE.message)
@@ -19,6 +20,8 @@ class InputView {
     }
     /**
      * 다리의 길이 입력값 예외 처리: 입력값이 정수형이 아닐 경우
+     * @param: User 입력값
+     * @return: Int 형을 보장 받은 입력값
      */
     private fun checkBridgeSizeInt(sizeString:String){
         try {
@@ -30,6 +33,8 @@ class InputView {
     }
     /**
      * 다리의 길이 입력값 예외 처리: 입력값이 3 - 20 사이 값이 아닐 경우
+     * @param: Int 형을 보장 받은 입력값
+     * @return: 예외가 없는 다리의 길이
      */
     private fun checkBridgeSizeRange(size:Int): Int {
         try {
