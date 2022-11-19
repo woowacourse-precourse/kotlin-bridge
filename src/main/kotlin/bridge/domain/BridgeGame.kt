@@ -31,8 +31,8 @@ class BridgeGame {
         return true
     }
 
-    fun escape(index: Int, progress: MutableList<Status>): Boolean {
-        if (index >= progress.size) {
+    fun escape(index: Int, bridge: List<String> ,progress: MutableList<Status>): Boolean {
+        if (index >= bridge.size) {
             return false
         }
         if (progress.last() == Status.WRONG) {
