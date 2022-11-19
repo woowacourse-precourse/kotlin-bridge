@@ -17,4 +17,10 @@ class UserInputValidateTest {
     fun `다리의 길이가 유효한 범위 내의 숫자가 아닐 경우 예외가 발생한다`(bridgeSize: String) {
         assertThrows<IllegalArgumentException> { UserInputValidate().validateBridgeSize(bridgeSize) }
     }
+
+    @ValueSource(strings = ["", "T", "UD"])
+    @ParameterizedTest
+    fun `입력받은 이동할 칸의 값이 U와 D 이외의 값이면 예외가 발생한다`(bridgeSize: String) {
+        assertThrows<IllegalArgumentException> { UserInputValidate().validateMoving(bridgeSize) }
+    }
 }
