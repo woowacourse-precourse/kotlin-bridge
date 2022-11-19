@@ -13,8 +13,7 @@ import bridge.Constant.UP
 class BridgeGame {
     var upBridge: MutableList<String> = mutableListOf<String>()
     var downBridge: MutableList<String> = mutableListOf<String>()
-    var isSuccess = true
-    var totalCount: Int = 1
+    private var isSuccess = true
     private var totalCount: Int = 1
     private var count: Int = 0
 
@@ -78,4 +77,7 @@ class BridgeGame {
     }
 
     fun getTotalCount(): Int = totalCount
+
+    fun getSuccessResult(): Boolean = isSuccess
+
 }
