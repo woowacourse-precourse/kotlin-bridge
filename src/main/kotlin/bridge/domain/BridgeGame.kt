@@ -33,4 +33,8 @@ class BridgeGame(private val bridgeNumberGenerator: BridgeNumberGenerator, priva
     fun getBridge(): List<String> {
         return bridge
     }
+
+    fun isDone(): Boolean {
+        return player.getState() == bridge
+    }
 }
