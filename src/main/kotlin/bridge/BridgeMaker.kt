@@ -13,8 +13,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         var upOrDown = ""
         for(index in 0 until size){
             val number = bridgeNumberGenerator.generate()
-            if(number == 0) upOrDown = "D"
-            else if (number == 1) upOrDown = "U"
+            if(number == BridgeRandomNumberGenerator.RANDOM_LOWER_INCLUSIVE) upOrDown = "D"
+            else if (number == BridgeRandomNumberGenerator.RANDOM_UPPER_INCLUSIVE) upOrDown = "U"
             randomBridge.add(upOrDown)
         }
         return randomBridge
