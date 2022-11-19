@@ -42,11 +42,7 @@ class BridgeGame {
         bridge = Bridge(bridgeSteps)
     }
 
-    private fun processMoveIO(): Boolean {
-        outputView.printFormattedMsg(OutputView.INPUT_STEP_SIDE)
-        val moving = inputView.readMoving()
-        val status = move(moving)
-        outputView.printMap(userStep)
+    private fun processMoveResult(status: Boolean): Boolean {
         if (!status) {
             return processRetryIO()
         } else if (bridge.getBridgeDone(userStep.size)) {
@@ -54,6 +50,14 @@ class BridgeGame {
             return false
         }
         return true
+    }
+
+    private fun processMoveIO(): Boolean {
+        outputView.printFormattedMsg(OutputView.INPUT_STEP_SIDE)
+        val moving = inputView.readMoving()
+        val status = move(moving)
+        outputView.printMap(userStep)
+        return processMoveResult(status)
     }
 
     private fun processRetryIO(): Boolean {
