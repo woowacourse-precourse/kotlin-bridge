@@ -16,14 +16,14 @@ private fun start() {
 fun play(game: BridgeGame, bridge: List<String>) {
     while (!game.isGameEnd(bridge)) {
         game.move(bridge, InputView().readMoving())
-        OutputView().printMap(game.upBridge, game.downBridge)
+        OutputView().printMap(game.getUpBridge(), game.getDownBridge())
     }
     if (game.getSuccessResult()) end(game) else reStart(game, bridge)
 }
 
 fun end(game: BridgeGame) {
     OutputView().printResult()
-    OutputView().printMap(game.upBridge, game.downBridge)
+    OutputView().printMap(game.getUpBridge(), game.getDownBridge())
     OutputView().printResultIsSuccess(game.getSuccessResult(), game.getTotalCount())
 }
 
