@@ -26,4 +26,8 @@ class Judgement {
         }
         return result
     }
+
+    fun checkGameWin(currentMoving : List<String>) : Boolean {
+        return judgeMovingSuccess(currentMoving) && currentMoving.lastIndex == correctBridgeMap.size - 1
+    }
 }

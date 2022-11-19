@@ -25,4 +25,8 @@ class BridgeGame {
     }
 
     fun retry() {}
+
+    fun checkGameWin(): Boolean {
+        return judgement.checkGameWin(currentMoving)
+    }
 }
