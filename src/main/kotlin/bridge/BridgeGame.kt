@@ -75,8 +75,8 @@ class BridgeGame {
 
     fun gameLoop() {
         outputView.printFormattedMsg(OutputView.START)
+        processBridgeSizeIO()
         while (true) {
-            processBridgeSizeIO()
             if (!processMoveIO())
                 break
         }

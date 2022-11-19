@@ -22,9 +22,11 @@ class OutputView {
     private fun printSingleBridge(userStep: MutableList<Pair<String, Boolean>>, side: String) {
         print("[ ")
         for (i in userStep.indices) {
-            if (side != userStep[i].first) continue
-            print(if (userStep[i].second) "O" else "X")
             print(if (i == 0) "" else " | ")
+            if (side != userStep[i].first)
+                print(" ")
+            else
+                print(if (userStep[i].second) "O" else "X")
         }
         println(" ]")
     }
