@@ -4,7 +4,7 @@ class BridgeGame(private val bridge: List<String>) {
     var playerBridge = mutableListOf<String>()
     var resultUpBridge = mutableListOf<String>()
     var resultDownBridge = mutableListOf<String>()
-    var playCount = 0
+    var playCount = 1
 
     fun move(moving: String) {
         playerBridge.add(moving)
@@ -39,10 +39,10 @@ class BridgeGame(private val bridge: List<String>) {
     }
 
     fun retry() {
+        playerBridge = mutableListOf()
         resultUpBridge = mutableListOf()
         resultDownBridge = mutableListOf()
         playCount++
-
     }
     fun check(): Boolean {
         val index = playerBridge.size - 1
