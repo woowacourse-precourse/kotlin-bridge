@@ -18,31 +18,24 @@ class BridgeGame(private val bridge: Bridge) {
     val movingResults get() = _movingResults as List<MovingResult>
 
     fun move(moving: String) {
-        requireOnGoing()
+        requireState(BridgeGameState.ONGOING) { ERROR_GAME_ALREADY_END }
         val direction = Direction.getByCommand(moving)
-        val isSuccess = canCross(direction, ++currentPosition)
+        val isSuccess = bridge.canCross(direction, ++currentPosition)
         setState(isSuccess)
         _movingResults.addLast(MovingResult(direction, isSuccess))
     }
 
     fun retry(command: String) {
+        requireState(BridgeGameState.FAIL) { ERROR_GAME_NOT_END }
         val gameCommand = BridgeGameCommand.getByCommand(command)
-        runCommand(gameCommand)
+        runGameCommand(gameCommand)
     }
 
     fun isOnGoing() = (currentState == BridgeGameState.ONGOING)
 
     fun isFailed() = (currentState == BridgeGameState.FAIL)
 
-    private fun canCross(direction: Direction, position: Int): Boolean {
-        return try {
-            bridge.canCross(direction, position)
-        } catch (e: IndexOutOfBoundsException) {
-            throw IllegalStateException(ERROR_POSITION_BOUND)
-        }
-    }
-
-    private fun runCommand(gameCommand: BridgeGameCommand) {
+    private fun runGameCommand(gameCommand: BridgeGameCommand) {
         if (gameCommand == BridgeGameCommand.RETRY && movingResults.isNotEmpty()) {
             _movingResults.clear()
             currentPosition = -1
@@ -51,9 +44,10 @@ class BridgeGame(private val bridge: Bridge) {
         }
     }
 
-    private fun requireOnGoing() {
-        if (currentState != BridgeGameState.ONGOING) {
-            throw IllegalStateException(ERROR_GAME_ALREADY_END)
+    private fun requireState(state: BridgeGameState, lazyMessage: () -> String) {
+        if (currentState != state) {
+            val msg = lazyMessage()
+            throw IllegalStateException(msg)
         }
     }
 
@@ -70,7 +64,7 @@ class BridgeGame(private val bridge: Bridge) {
     }
 
     companion object {
-        private const val ERROR_POSITION_BOUND = "플레이어 현재 위치가 올바르지 않습니다."
+        private const val ERROR_GAME_NOT_END = "게임이 아직 진행중 입니다."
         private const val ERROR_GAME_ALREADY_END = "게임이 이미 종료되었습니다."
     }
 }
