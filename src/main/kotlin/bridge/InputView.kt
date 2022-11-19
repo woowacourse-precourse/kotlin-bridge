@@ -10,7 +10,7 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int{
-        val temp = Console.readLine()
+        val temp = Console.readLine() ?: "-1"
 
         for(c in temp){
             if(c !in '0'..'9')
@@ -29,7 +29,12 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        val temp = Console.readLine() ?:"A"
+
+        if(temp != "U"&&temp !="D")
+            throw IllegalArgumentException("[ERROR] 올바른 입력을 하세요")
+
+        return temp
     }
 
     /**
