@@ -5,6 +5,7 @@ object BridgeGameManager {
     fun gameStart() {
         OutputView.printStart()
         val maker = BridgeMaker(BridgeRandomNumberGenerator())
+        OutputView.getBridgeSize()
         val bridge = maker.makeBridge(InputView.readBridgeSize())
         moving(bridge)
 
