@@ -7,10 +7,13 @@ class BridgeGame {
 
     private val inputView = InputView()
     private val outputView = OutputView()
+    private val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
 
     fun start() {
         outputView.printStartMessage()
         val bridgeSize = getBridgeSize()
+        val bridge = Bridge(BridgeMaker(bridgeRandomNumberGenerator).makeBridge(bridgeSize))
+        startCycle()
     }
 
     fun getBridgeSize(): Int {
