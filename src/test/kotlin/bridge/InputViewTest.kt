@@ -1,6 +1,7 @@
 package bridge
 
 import bridge.validator.InputValidator.validateInValidBridgeSize
+import bridge.validator.InputValidator.validateInvalidGameCommand
 import bridge.validator.InputValidator.validateInvalidMoveInput
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -14,5 +15,11 @@ class InputViewTest {
     @Test
     fun `U 또는 D가 아닌 값을 입력했을 때 예외`() {
         assertThrows<IllegalArgumentException> { validateInvalidMoveInput("F") }
+    }
+
+    @Test
+    fun `Q 또는 R 아닌 값을 입력했을 때 예외`() {
+        assertThrows<IllegalArgumentException> { validateInvalidGameCommand("a") }
+
     }
 }
