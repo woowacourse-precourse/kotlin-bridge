@@ -1,16 +1,9 @@
 package bridge
 
-fun gameManager() {
-    val inputView = InputView()
-    val outputView = OutputView()
-    val bridgeManager = BridgeManager(inputView, outputView)
-
-    bridgeManager.gameLoop()
-}
-
 fun main() {
     try {
-        gameManager()
+        val bridgeManager = BridgeManager()
+        bridgeManager.gameLoop()
     } catch (e: IllegalArgumentException) {
         println(e.message)
         return
