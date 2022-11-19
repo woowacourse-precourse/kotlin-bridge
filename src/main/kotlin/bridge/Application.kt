@@ -1,8 +1,6 @@
 package bridge
 
 fun playgame(){
-    println("다리 건너기 게임을 시작합니다")
-
     val bridge = buildBridge()
     var mybridge = mutableListOf<String>()
 
@@ -21,6 +19,6 @@ fun buildBridge(): List<String>{
     return bridge
 }
 fun main() {
+    println("다리 건너기 게임을 시작합니다")
     playgame()
-
 }
