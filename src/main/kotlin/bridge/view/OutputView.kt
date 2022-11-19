@@ -13,10 +13,10 @@ import kotlin.text.StringBuilder
 class OutputView {
 
     fun printMap(bridgeGame: BridgeGame) {
+        printClear()
         makeMap(bridgeGame.playerRecord(), bridgeGame.getBridge())
         println(upBuilder)
         println(downBuilder)
-        printClear()
     }
 
     private fun printClear() {
@@ -74,7 +74,21 @@ class OutputView {
         }
     }
 
-    fun printResult() {}
+    fun printResult(bridgeGame: BridgeGame) {
+
+        println(
+            String.format(
+                "\n최종 게임 결과\n%s\n%s\n\n게임 성공 여부: %s\n총 시도한 횟수: %d",
+                upBuilder.toString(),
+                downBuilder.toString(),
+                when (bridgeGame.isDone()) {
+                    true -> "성공"
+                    false -> "실패"
+                },
+                bridgeGame.getTryCount()
+            )
+        )
+    }
 
     companion object {
         private val upBuilder = StringBuilder()
