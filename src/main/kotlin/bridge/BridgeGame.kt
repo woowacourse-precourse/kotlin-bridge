@@ -15,7 +15,7 @@ class BridgeGame {
         outputView.printStartMessage()
         val bridgeSize = getBridgeSize()
         bridge = Bridge(BridgeMaker(bridgeRandomNumberGenerator).makeBridge(bridgeSize))
-        startCycle()
+        startCycle(bridgeSize)
     }
 
     fun getBridgeSize(): Int {
@@ -28,9 +28,12 @@ class BridgeGame {
         }
     }
 
-    fun startCycle() {
+    fun startCycle(bridgeSize: Int): Boolean {
         result = Result()
-        move(0)
+        for (pos in 0 until bridgeSize) {
+            if (!move(pos)) return false
+        }
+        return true
     }
 
     /**
