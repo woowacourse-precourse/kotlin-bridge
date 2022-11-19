@@ -40,8 +40,7 @@ class BridgeManager(private val inputView: InputView, private val outputView: Ou
     private fun moveBridge() {
         val move = getMoveCommand()
         this.bridgeGame.move(this.bridge, move, this.position)
-        val triple = Triple(this.position, this.bridgeGame.getUpBridge(), this.bridgeGame.getDownBridge())
-        this.outputView.printMap(triple)
+        this.outputView.printMap(this.position, this.bridgeGame)
         this.position++
     }
 
@@ -64,8 +63,7 @@ class BridgeManager(private val inputView: InputView, private val outputView: Ou
     }
 
     private fun quitGame() {
-        val triple = Triple(this.position-1, this.bridgeGame.getUpBridge(), this.bridgeGame.getDownBridge())
-        this.outputView.printResult(triple, false)
+        this.outputView.printResult(false, this.position-1, this.bridgeGame)
         this.outputView.printTryNumber(this.bridgeGame.getRetryCounter())
     }
 
@@ -82,8 +80,7 @@ class BridgeManager(private val inputView: InputView, private val outputView: Ou
     }
 
     private fun printGameResult() {
-        val triple = Triple(this.position-1, this.bridgeGame.getUpBridge(), this.bridgeGame.getDownBridge())
-        outputView.printResult(triple, true)
+        outputView.printResult(true, this.position-1, this.bridgeGame)
         outputView.printTryNumber(this.bridgeGame.getRetryCounter())
     }
 

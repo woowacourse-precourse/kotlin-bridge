@@ -13,8 +13,9 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap(triple: Triple<Int, MutableList<String>, MutableList<String>>) {
-        val (position, upBridge, downBridge) = triple
+    fun printMap(position: Int, bridgeGame: BridgeGame) {
+        val upBridge = bridgeGame.getUpBridge()
+        val downBridge = bridgeGame.getDownBridge()
         println("[ ${upBridge.slice(0..position).joinToString(SEP)} ]")
         println("[ ${downBridge.slice(0..position).joinToString(SEP)} ]")
     }
@@ -26,9 +27,9 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(triple: Triple<Int, MutableList<String>, MutableList<String>>, isSuccess: Boolean) {
+    fun printResult(isSuccess: Boolean,position: Int, bridgeGame: BridgeGame) {
         println(PRINT_RESULT)
-        this.printMap(triple)
+        this.printMap(position, bridgeGame)
         when (isSuccess) {
             true -> println(PRINT_RESULT_SUCCESS)
             false -> println(PRINT_RESULT_FAIL)
