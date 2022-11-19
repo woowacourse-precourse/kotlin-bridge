@@ -20,9 +20,9 @@ class Path(private val path: List<String> = emptyList()) {
      * */
     fun currentRound(): Int = path.size
 
-    fun userDirection(index: Int): String = path[index]
+    fun userDirectionOf(index: Int): String = path[index]
 
-    fun userDirectionAsDigit(index: Int): Int = userDirection(index).convertDigit()
+    fun userDirectionAsDigit(index: Int): Int = userDirectionOf(index).convertDigit()
 
     fun checkDirection(direction: String, round: Int): Boolean = direction == path[round]
 

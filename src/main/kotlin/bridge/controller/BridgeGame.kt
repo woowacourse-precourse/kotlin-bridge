@@ -16,7 +16,7 @@ class BridgeGame : Game {
 
     private lateinit var bridge: Bridge
     private val bridgeMaker: BridgeMaker by lazy { BridgeMaker(BridgeRandomNumberGenerator()) }
-    private val counter: Counter by lazy { Counter() }
+    private val tryCounter: TryCounter by lazy { TryCounter() }
     private var path = Path()
 
     override fun start() {
@@ -29,7 +29,7 @@ class BridgeGame : Game {
         do {
             val (gameResult, finalBridgeRoute) = startGame()
             if (gameResult == Result.SUCCESS) { // 성공시 결과 출력
-                val finalRoute = finalBridgeRoute.route()
+                val finalRoute = finalBridgeRoute.asList()
                 result(gameResult, finalRoute)
                 break
             } else { // 실패시
@@ -37,7 +37,7 @@ class BridgeGame : Game {
                 if (isContinueGame) { // 재시도한다면 초기화하고 다시 시작
                     init()
                 } else { // 재시도하지 않는다면 최종경로 출력
-                    val finalRoute = finalBridgeRoute.route()
+                    val finalRoute = finalBridgeRoute.asList()
                     result(gameResult, finalRoute)
                     break
                 }
@@ -45,23 +45,21 @@ class BridgeGame : Game {
         } while (true)
     }
 
-    private fun startGame(): Pair<Result, BridgeRoute> {
+    private fun startGame(): Pair<Result, Route> {
         val bridgeSize = bridge.size()
-        val bridgeRoute = BridgeRoute()
+        val playerRoute = Route(bridge = bridge)
 
-        counter.plus()
+        tryCounter.plus()
         for (round in 0 until bridgeSize) {
             move()
+            drawRoute(playerRoute.addPath(path))
 
-            val route = bridgeRoute.makeRoute(path, bridge)
-            drawRoute(route)
-
-            val isFail = path.checkDirection(bridge.getDirection(round), round).not()
+            val isFail = path.checkDirection(bridge.directionOf(round), round).not()
             if (isFail) {
-                return Pair(Result.FAIL, bridgeRoute)
+                return Pair(Result.FAIL, playerRoute)
             }
         }
-        return Pair(Result.SUCCESS, bridgeRoute)
+        return Pair(Result.SUCCESS, playerRoute)
     }
 
     private fun askBridgeSize(): Int {
@@ -78,8 +76,8 @@ class BridgeGame : Game {
         return bridgeSize
     }
 
-    private fun drawRoute(route: List<List<Mark>>) {
-        outputView.printMap(route)
+    private fun drawRoute(route: Route) {
+        outputView.printMap(route.asList())
     }
 
     private fun retry(): Boolean {
@@ -99,7 +97,7 @@ class BridgeGame : Game {
     }
 
     private fun result(gameResult: Result, map: List<List<Mark>>) {
-        outputView.printResult(gameResult, counter.count(), map)
+        outputView.printResult(gameResult, tryCounter.count(), map)
     }
 
     private fun move() {

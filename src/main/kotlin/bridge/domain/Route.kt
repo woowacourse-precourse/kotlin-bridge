@@ -3,21 +3,22 @@ package bridge.domain
 import bridge.util.DOWN
 import bridge.util.UP
 
-class BridgeRoute(
-    private val route: List<ArrayList<Mark>> = listOf(arrayListOf(), arrayListOf())
+class Route(
+    private val route: List<ArrayList<Mark>> = listOf(arrayListOf(), arrayListOf()),
+    private val bridge: Bridge
 ) {
-    fun makeRoute(path: Path, bridge: Bridge): List<List<Mark>> {
+    fun addPath(path: Path): Route {
         route[0].add(Mark.DEFAULT)
         route[1].add(Mark.DEFAULT)
 
         for (round in 0 until path.currentRound()) {
-            constructRouteOf(round, path, bridge)
+            updatePath(round, path)
         }
-        return route
+        return this
     }
 
-    private fun constructRouteOf(round: Int, path: Path, bridge: Bridge) {
-        val bridgeDirection = bridge.getDirection(round)
+    private fun updatePath(round: Int, path: Path) {
+        val bridgeDirection = bridge.directionOf(round)
         val isCorrectPath = path.checkDirection(bridgeDirection, round)
         val userDigitDirection = path.userDirectionAsDigit(round)
 
@@ -42,5 +43,5 @@ class BridgeRoute(
         }
     }
 
-    fun route() = route
+    fun asList() = route
 }
