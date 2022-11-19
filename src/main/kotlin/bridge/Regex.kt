@@ -11,7 +11,6 @@ class Regex(private val userInput: String) {
             checkBridgeLengthInRange(userInput)
             true
         } catch (e : IllegalArgumentException) {
-            PrintForm().printUserInputError()
             false
         }
     }
@@ -23,7 +22,6 @@ class Regex(private val userInput: String) {
             checkMoveIsRight(userInput)
             true
         } catch (e : IllegalArgumentException) {
-            PrintForm().printUserInputError()
             false
         }
     }
@@ -35,31 +33,34 @@ class Regex(private val userInput: String) {
             checkRetryIsRight(userInput)
             true
         } catch (e : IllegalArgumentException) {
-            PrintForm().printUserInputError()
             false
         }
     }
 
     private fun checkItsNull(userInput: String) {
         if(userInput.isEmpty()) {
+            PrintForm().printUserInputError(ErrorType.InputIsNull)
             throw IllegalArgumentException()
         }
     }
 
     private fun checkItsAllNumber(userInput: String) {
         if (!Pattern.matches("^[0-9]*$", userInput)) {
+            PrintForm().printUserInputError(ErrorType.InputIncludeWords)
             throw IllegalArgumentException()
         }
     }
 
     private fun checkBridgeLengthInRange(userInput: String) {
         if(userInput.toInt() !in 3..20) {
+            PrintForm().printUserInputError(ErrorType.BridgeLengthNotInRange)
             throw IllegalArgumentException()
         }
     }
 
     private fun checkMoveIsInLength(userMove : String) {
         if(userMove.length != 1) {
+            PrintForm().printUserInputError(ErrorType.MovementInputShouldBeSingleLetter)
             throw IllegalArgumentException()
         }
     }
@@ -67,14 +68,20 @@ class Regex(private val userInput: String) {
     private fun checkMoveIsRight(userMove : String) {
         when(userMove) {
             "U", "D" -> return
-            else -> throw IllegalArgumentException()
+            else -> {
+                PrintForm().printUserInputError(ErrorType.NotDefinedMovementInput)
+                throw IllegalArgumentException()
+            }
         }
     }
 
     private fun checkRetryIsRight (userRetry : String) {
         when(userRetry.toCharArray()[0].code) {
             in 81..82, in 113..114 -> return
-            else -> throw IllegalArgumentException()
+            else -> {
+                PrintForm().printUserInputError(ErrorType.NotDefinedRetryInput)
+                throw IllegalArgumentException()
+            }
         }
     }
 }

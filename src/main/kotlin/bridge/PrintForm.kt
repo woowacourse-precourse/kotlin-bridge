@@ -9,8 +9,8 @@ class PrintForm {
         println("다리의 길이를 입력해주세요.")
     }
 
-    fun printUserInputError() {
-        println("[ERROR] 입력값에 오류가 있습니다. 다시 입력해주세요.")
+    fun printUserInputError(errorType: ErrorType) {
+        println("[ERROR] ${EnumError().checkErrorType(errorType)}")
     }
 
     fun printUserMovementForm() {
