@@ -10,10 +10,8 @@ class RouteMap(
     private val bridge: Bridge
 ) {
     fun addPath(path: Path): RouteMap {
-        routeMap[0].add(Mark.DEFAULT)
-        routeMap[1].add(Mark.DEFAULT)
+        increaseMapSize()
         updatePath(path, path.position())
-
         return RouteMap(routeMap, bridge)
     }
 
@@ -41,6 +39,11 @@ class RouteMap(
             UP -> routeMap[userDirection][round] = Mark.WRONG
             DOWN -> routeMap[userDirection][round] = Mark.WRONG
         }
+    }
+
+    private fun increaseMapSize() {
+        routeMap[0].add(Mark.DEFAULT)
+        routeMap[1].add(Mark.DEFAULT)
     }
 
     fun asList() = routeMap
