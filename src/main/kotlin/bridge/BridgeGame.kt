@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.ex.Bridges
 import camp.nextstep.edu.missionutils.Console
 
 
@@ -8,17 +9,18 @@ import camp.nextstep.edu.missionutils.Console
  */
 class BridgeGame(private val size : Int) {
 
-    private var gameCount : Int = 1
-    private var idx : Int = 0
     private var bridgeMaker : BridgeMaker
     private var bridgeMap: List<String>
-    private var bridge : Bridge
+    private var comBridge : Bridge
+    private var userInputBridge = mutableListOf<String>()
+    private var gameCount : Int = 1
 
     init {
         bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
         bridgeMap = bridgeMaker.makeBridge(size)
-        bridge = Bridge(size)
+        comBridge = Bridge(bridgeMap)
     }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
