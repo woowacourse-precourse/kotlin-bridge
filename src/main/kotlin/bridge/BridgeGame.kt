@@ -15,6 +15,7 @@ class BridgeGame {
     var downBridge: MutableList<String> = mutableListOf<String>()
     var isSuccess = true
     var totalCount: Int = 1
+    private var totalCount: Int = 1
     private var count: Int = 0
 
     /**
@@ -75,4 +76,6 @@ class BridgeGame {
         if (count == bridge.size) return true
         return false
     }
+
+    fun getTotalCount(): Int = totalCount
 }
