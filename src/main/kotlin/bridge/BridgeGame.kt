@@ -10,9 +10,10 @@ import bridge.Constant.UP
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame {
-    var upBridge: MutableList<String> = mutableListOf<String>()
-    var downBridge: MutableList<String> = mutableListOf<String>()
+class BridgeGame() : BridgeGameGenerator{
+
+    private var upBridge: MutableList<String> = mutableListOf<String>()
+    private var downBridge: MutableList<String> = mutableListOf<String>()
     private var isSuccess = true
     private var totalCount: Int = 1
     private var count: Int = 0
@@ -23,7 +24,7 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(bridge: List<String>, moveOrder: String) {
+    override fun move(bridge: List<String>, moveOrder: String) {
         when (bridge[count]) {
             UP -> if (moveOrder == UP) upMove(true) else upMove(false)
             DOWN -> if (moveOrder == DOWN) downMove(true) else downMove(false)
@@ -32,7 +33,7 @@ class BridgeGame {
         count++
     }
 
-    fun upMove(isCorrect: Boolean) {
+    override fun upMove(isCorrect: Boolean) {
         isSuccess = if (isCorrect) {
             upBridge.add(ANSWER)
             downBridge.add(EMPTY)
@@ -44,7 +45,7 @@ class BridgeGame {
         }
     }
 
-    fun downMove(isCorrect: Boolean) {
+    override fun downMove(isCorrect: Boolean) {
         isSuccess = if (isCorrect) {
             upBridge.add(EMPTY)
             downBridge.add(ANSWER)
@@ -62,22 +63,26 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {
-        upBridge = mutableListOf<String>()
-        downBridge = mutableListOf<String>()
-        count = 0
-        totalCount++
-        isSuccess = true
+    override fun retry() {
+        this.upBridge = mutableListOf<String>()
+        this.downBridge = mutableListOf<String>()
+        this.count = 0
+        this.totalCount++
+        this.isSuccess = true
     }
 
-    fun isGameEnd(bridge: List<String>): Boolean {
+    override fun isGameEnd(bridge: List<String>): Boolean {
         if (!isSuccess) return true
         if (count == bridge.size) return true
         return false
     }
 
-    fun getTotalCount(): Int = totalCount
+    override fun getTotalCount(): Int = this.totalCount
 
-    fun getSuccessResult(): Boolean = isSuccess
+    override fun getSuccessResult(): Boolean = this.isSuccess
+
+    override fun getDownBridge(): MutableList<String> = this.downBridge
+
+    override fun getUpBridge(): MutableList<String> = this.upBridge
 
 }
