@@ -7,6 +7,14 @@ object InputValidator {
             println(Error.BRIDGE_RANGE_ERROR)
         }
 
+    fun validateNumericInput(input : String){
+        require(input.isNumeric()){
+            println(Error.NUMERIC_ERROR)
+        }
+    }
 
+
+    private fun String.isNumeric() =
+        this.chars().allMatch { eachChar -> Character.isDigit(eachChar) }
 
 }
