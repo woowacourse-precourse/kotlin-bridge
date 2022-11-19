@@ -25,6 +25,24 @@ class BridgeManager(private val inputView: InputView, private val outputView: Ou
         }
     }
 
+    private fun getMoveCommand(): String {
+        while (true) {
+            try {
+                this.outputView.printMove()
+                return inputView.readMoving()
+            } catch (e: IllegalArgumentException) {
+                continue
+            }
+        }
+    }
+
+    fun moveBridge(position: Int) {
+        val move = getMoveCommand()
+        this.bridgeGame.move(this.bridge, move, position)
+        val triple = Triple(position, this.bridgeGame.getUpBridge(), this.bridgeGame.getDownBridge())
+        this.outputView.printMap(triple)
+    }
+
     fun getBridgeSize() = this.bridgeSize
 
     fun getBridge() = this.bridge
