@@ -1,8 +1,6 @@
 package bridge
 
-import bridge.constants.RESULT_MESSAGE
-import bridge.constants.RESULT_SUCCESS_OR_FAIL
-import bridge.constants.RESULT_TRY_COUNT
+import bridge.constants.*
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -10,6 +8,11 @@ import bridge.constants.RESULT_TRY_COUNT
 class OutputView {
     fun printMessage(message: String) {
         println(message)
+    }
+
+    fun printMessage(startMessage: String, bridgeSizeMessage: String){
+        println(startMessage)
+        println(bridgeSizeMessage)
     }
 
     fun printErrorMessage(error: String) {
@@ -26,9 +29,9 @@ class OutputView {
         val printValue = determineMap(bridge, userStep)
 
         for (line in 1 downTo 0) {
-            print("[ ")
+            print(MAP_PRINT_START)
             printMapInner(printValue, line)
-            println(" ]")
+            println(MAP_PRINT_END)
         }
         println()
     }
@@ -39,18 +42,18 @@ class OutputView {
 
         for (index in userStep.indices) {
             val direction = converter[bridge[index]]!!
-            val result = determineOX(userStep, index, direction)
+            val result = determineOX(userStep[index], direction)
             printValue.add(result)
         }
         return printValue
     }
 
-    private fun determineOX(userStep: List<Boolean>, index: Int, direction: Int): MutableList<String> {
+    private fun determineOX(userAnswer: Boolean, direction: Int): MutableList<String> {
         val result = mutableListOf(" ", " ")
-        if (userStep[index])
-            result[direction] = "O"
-        if (!userStep[index])
-            result[1 - direction] = "X"
+        if (userAnswer)
+            result[direction] = MAP_PRINT_O
+        if (!userAnswer)
+            result[1 - direction] = MAP_PRINT_X
         return result
     }
 
@@ -58,7 +61,7 @@ class OutputView {
         for (answerLength in printValue.indices) {
             print(printValue[answerLength][line])
             if (answerLength != printValue.size - 1)
-                print(" | ")
+                print(MAP_PRINT_SEPARATOR)
         }
     }
 
@@ -70,7 +73,7 @@ class OutputView {
     fun printResult(bridge: List<String>, userStep: List<Boolean>, count: Int) {
         printMessage(RESULT_MESSAGE)
         printMap(bridge, userStep)
-        val converter = mapOf(true to "성공", false to "실패")
+        val converter = mapOf(true to SUCCESS, false to FAIL)
         println(RESULT_SUCCESS_OR_FAIL + converter[userStep.last()])
         println(RESULT_TRY_COUNT + count)
     }

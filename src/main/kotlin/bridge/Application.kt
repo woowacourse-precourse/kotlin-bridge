@@ -3,33 +3,41 @@ package bridge
 import bridge.constants.*
 
 fun main() {
-    var count = 0
-    OutputView().printMessage(START_MESSAGE)
-    OutputView().printMessage(BRIDGE_SIZE_MESSAGE)
+    OutputView().printMessage(START_MESSAGE, BRIDGE_SIZE_MESSAGE)
     val size = InputView().readBridgeSize()
     val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
     println(bridge)
-
     val userStep = mutableListOf<Boolean>()
-    do {
-        count++
-        var stop = false
-        userStep.clear()
-        for (index in bridge) {
-            OutputView().printMessage(MOVE_MESSAGE)
-            val moveDirection = InputView().readMoving()
-            val successOrFail = BridgeGame().move(index, moveDirection)
-            userStep.add(successOrFail)
-            OutputView().printMap(bridge, userStep)
-
-            if (!successOrFail) {
-                OutputView().printMessage(RETRY_MESSAGE)
-                val command = InputView().readGameCommand()
-                stop = BridgeGame().retry(command)
-                break
-            }
-        }
-    } while (stop)
+    val count = game(bridge, userStep)
 
     OutputView().printResult(bridge, userStep, count)
+}
+
+fun game(bridge: List<String>, userStep: MutableList<Boolean>): Int {
+    var count = 0
+    do {
+        count++
+        userStep.clear()
+        val stop = move(bridge, userStep)
+    } while (stop)
+    return count
+}
+
+fun move(bridge: List<String>, userStep: MutableList<Boolean>): Boolean {
+    for (index in bridge) {
+        OutputView().printMessage(MOVE_MESSAGE)
+        val moveDirection = InputView().readMoving()
+        val successOrFail = BridgeGame().move(index, moveDirection)
+        userStep.add(successOrFail)
+        OutputView().printMap(bridge, userStep)
+        if (!successOrFail)
+            return fail()
+    }
+    return false
+}
+
+fun fail(): Boolean {
+    OutputView().printMessage(RETRY_MESSAGE)
+    val command = InputView().readGameCommand()
+    return BridgeGame().retry(command)
 }

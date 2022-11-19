@@ -13,7 +13,7 @@ class Validator {
 
     fun validateBridgeSize(input: String): Boolean {
         val size = input.toInt()
-        if (size < 3 || size > 20) {
+        if (size < BRIDGE_LENGTH_START || size > BRIDGE_LENGTH_END) {
             OutputView().printErrorMessage(ERROR_BRIDGE_INPUT)
             throw IllegalArgumentException()
         }

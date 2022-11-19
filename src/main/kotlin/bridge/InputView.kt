@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.constants.ENTER_AGAIN
 import camp.nextstep.edu.missionutils.Console
 import java.lang.IllegalArgumentException
 
@@ -19,10 +20,9 @@ class InputView {
             var stop = false
             try {
                 stop = validator.isNumber(size) && validator.validateBridgeSize(size)
-            } catch (e: IllegalArgumentException) {
-                println("다시 입력하쇼잉~!")
-            }
+            } catch (e: IllegalArgumentException) { OutputView().printMessage(ENTER_AGAIN) }
         } while (!stop)
+
         return size.toInt()
     }
 
@@ -36,10 +36,9 @@ class InputView {
             var stop = false
             try {
                 stop = validator.validateUpAndDown(move)
-            } catch (e: IllegalArgumentException) {
-                println("다시 입력하쇼잉~!")
-            }
+            } catch (e: IllegalArgumentException) { OutputView().printMessage(ENTER_AGAIN) }
         } while (!stop)
+
         return move
     }
 
@@ -53,10 +52,9 @@ class InputView {
             var stop = false
             try {
                 stop = validator.validateRetryAndQuit(command)
-            } catch (e: IllegalArgumentException) {
-                println("다시 입력하쇼잉~!")
-            }
+            } catch (e: IllegalArgumentException) { OutputView().printMessage(ENTER_AGAIN) }
         } while (!stop)
+
         return command
     }
 }
