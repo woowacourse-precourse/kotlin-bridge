@@ -52,10 +52,10 @@
 - BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
   - [x] 클래스 생성자 `BridgeGame.init()`
     - [x] 다리를 만든다.`BridgeMaker.makeBridge()`
-  - [ ] 다리를 이동한다. `$BridgeGame.move()`
-    - [ ] 현재까지의 Map을 가져온다.
-    - [ ] 플레이어 이동할 칸을 입력 받는다 `InputView.readMoving()`
-    - [ ] 현재 위치의 칸을 건널 수 있다면 O로 표시한다. 건널 수 없다면 X로 표시하여 Map을업데이트한다.
+  - [x] 다리를 이동한다. `$BridgeGame.move()`
+    - [x] 현재까지의 Map을 가져온다.
+    - [x] 플레이어 이동할 칸을 입력 받는다 `InputView.readMoving()`
+    - [x] 현재 위치의 칸을 건널 수 있다면 O로 표시한다. 건널 수 없다면 X로 표시하여 Map을업데이트한다.
   - [ ] 플레이어가 다리를 건넜는지 확인한다. `BridgeGame.isFinished()` 
     - [ ] 현재 위치의 칸이 끝인지 확인한다.
     - [ ] 현재 위치의 칸이 끝이면 true를 반환한다.
