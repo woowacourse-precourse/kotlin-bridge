@@ -39,7 +39,7 @@ class BridgeGame : Game {
      * */
 
     private fun startBridgeGame(): Pair<Result, RouteMap> {
-        val bridgeSize = bridge.size()
+        val bridgeSize = bridge.size
         val playerRoute = RouteMap()
         increaseTryCount()
 
