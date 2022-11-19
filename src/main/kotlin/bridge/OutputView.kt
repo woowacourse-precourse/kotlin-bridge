@@ -41,12 +41,9 @@ class OutputView {
         println(RESTART_MESSAGE)
     }
 
-    fun printSuccessFail(result : Boolean) {
-        val gameResult = when(result) {
-            true -> "성공"
-            false -> "실패"
-        }
-        println(BRIDGE_GAME_CHECK_SUCCESS_MESSAGE + gameResult)
+    fun printSuccessFail(bridgeResult: BridgeResult) {
+        val result = bridgeResult.getGameResult()
+        println(BRIDGE_GAME_CHECK_SUCCESS_MESSAGE + result.name)
     }
 
     fun printGameCount(count : Int) {
