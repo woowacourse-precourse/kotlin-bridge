@@ -15,7 +15,7 @@ class BridgeGame {
         outputView.printStartMessage()
         val bridgeSize = getBridgeSize()
         bridge = Bridge(BridgeMaker(bridgeRandomNumberGenerator).makeBridge(bridgeSize))
-        startCycle(bridgeSize)
+        startCycle()
     }
 
     fun getBridgeSize(): Int {
@@ -28,7 +28,18 @@ class BridgeGame {
         }
     }
 
-    fun startCycle(bridgeSize: Int): Boolean {
+    fun startCycle() {
+        if (isFinished(bridge.getBridgeSize())) {
+            outputView.printResult()
+        } else {
+            if (retry()) {
+                startCycle()
+            }
+            return
+        }
+    }
+
+    fun isFinished(bridgeSize: Int): Boolean {
         result = Result()
         for (pos in 0 until bridgeSize) {
             if (!move(pos)) return false
@@ -62,5 +73,17 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {}
+    fun retry(): Boolean {
+        while (true) {
+            try {
+                val gameCommand = inputView.readGameCommand()
+                if (gameCommand == "R") {
+                    return true
+                }
+                return false
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
 }
