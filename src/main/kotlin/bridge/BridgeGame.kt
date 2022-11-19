@@ -46,5 +46,6 @@ class BridgeGame() {
         OutputView.printGameEndMessage()
         BridgeCalculate.bridgeMapPrint(bridge, record)
         OutputView.printResult(record, gameCount)
+        check(false)
     }
 }

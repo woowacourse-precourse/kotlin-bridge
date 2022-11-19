@@ -9,7 +9,7 @@ object BridgeCalculate {
     fun bridgeMaking(size: Int): List<String> {
         val bridge = mutableListOf<String>()
         val randomizer = BridgeRandomNumberGenerator()
-        for (number: Int in BridgeParameter.StartValue.value..size)
+        for (number: Int in BridgeParameter.StartValue.value..size-1)
             bridge.add(numbertoBridge(randomizer.generate()))
 
         return bridge.toList()
