@@ -20,6 +20,10 @@ class BridgeGame {
         return if (passableNumber == RANDOM_UPPER_INCLUSIVE) "O" else "X"
     }
 
+    private fun getColumnResult(bridgeColumn: String, column: Char) =
+        if (bridgeColumn.first() == column) isPassable(bridgeColumn.last().digitToInt())
+        else " "
+
 
 
 
