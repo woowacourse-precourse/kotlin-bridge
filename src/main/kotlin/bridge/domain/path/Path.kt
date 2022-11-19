@@ -26,6 +26,10 @@ class Path(private val path: List<String> = emptyList()) {
 
     fun checkDirection(direction: String, round: Int): Boolean = direction == path[round]
 
+    fun init(): Path {
+        return Path()
+    }
+
     private fun String.convertDigit(): Int {
         if (this == UP) {
             return UP_INDEX
