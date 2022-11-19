@@ -18,13 +18,13 @@ fun play(game: BridgeGame, bridge: List<String>) {
         game.move(bridge, InputView().readMoving())
         OutputView().printMap(game.upBridge, game.downBridge)
     }
-    if (game.isSuccess) end(game) else reStart(game, bridge)
+    if (game.getSuccessResult()) end(game) else reStart(game, bridge)
 }
 
 fun end(game: BridgeGame) {
     OutputView().printResult()
     OutputView().printMap(game.upBridge, game.downBridge)
-    OutputView().printResultIsSuccess(game.isSuccess, game.getTotalCount())
+    OutputView().printResultIsSuccess(game.getSuccessResult(), game.getTotalCount())
 }
 
 fun reStart(game: BridgeGame, bridge: List<String>) {
