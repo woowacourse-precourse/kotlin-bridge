@@ -48,7 +48,17 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        var input: String = ""
+
+        while (true) {
+            try {
+                input = Console.readLine()
+                if (inspector.checkGameCommand(input)) return input
+            } catch (e: IllegalArgumentException)  {
+                println(ERROR_MESSAGE + COMMAND_ONLY_R_OR_Q)
+                continue
+            }
+        }
     }
 
     companion object {
