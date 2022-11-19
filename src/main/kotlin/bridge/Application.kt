@@ -7,11 +7,7 @@ fun gameManager() {
 
     var position = 0
     while (bridgeManager.getBridgeGame().isContinue && position < bridgeManager.getBridgeSize()) {
-        outputView.printMove()
-        val move = inputView.readMoving()
-        bridgeManager.getBridgeGame().move(bridgeManager.getBridge(), move, position)
-        val triple = Triple(position, bridgeManager.getBridgeGame().getUpBridge(), bridgeManager.getBridgeGame().getDownBridge())
-        outputView.printMap(triple)
+        bridgeManager.moveBridge(position)
         position++
 
         // 중간에 실패한 경우
@@ -22,6 +18,7 @@ fun gameManager() {
                 bridgeManager.getBridgeGame().retry()
                 position = 0
             } else {
+                val triple = Triple(position, bridgeManager.getBridgeGame().getUpBridge(), bridgeManager.getBridgeGame().getDownBridge())
                 outputView.printResult(triple, false)
                 outputView.printTryNumber(bridgeManager.getBridgeGame().getRetryCounter())
                 return
