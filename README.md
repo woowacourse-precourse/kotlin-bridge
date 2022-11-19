@@ -315,6 +315,7 @@ val number = bridgeNumberGenerator.generate()
 - [x] 칸을 이동할 때마다 게임 결과 저장
 - [x] 현재까지 이동한 다리의 상태 출력
 - [x] 최종 결과 출력
+- [x] 게임이 성공할 경우 구현
 - [ ] 게임 재시도 및 종료
 - [ ] 예외 처리
 

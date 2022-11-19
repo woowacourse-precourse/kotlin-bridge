@@ -25,6 +25,11 @@ fun main() {
         val downList = movingList.filter { it.key == "D" }.values.flatten()
         outputView.printMap(upList, downList)
 
-        outputView.printResult(up, down, successOrFailure, numberOfAttempts)
+        if (BridgeGame.success(bridge)) {
+            numberOfAttempts += 1
+            successOrFailure = "성공"
+            outputView.printResult(up, down, successOrFailure, numberOfAttempts)
+            break
+        }
     }
 }
