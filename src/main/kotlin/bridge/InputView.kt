@@ -8,17 +8,17 @@ class InputView {
     val error = ErrorMessage()
 
     fun readBridgeSize(): Int {
-        try{
+        try {
             val bridgeSize = readLine()
-            if(!isNumeric(bridgeSize)) {
-                throw IllegalArgumentException(error.onlyNumber)
-            }
-                return bridgeSize.toInt()
-        }catch (e: IllegalArgumentException){
+            if (!isNumeric(bridgeSize)) throw IllegalArgumentException(error.onlyNumber)
+            if (bridgeSize.toInt() < 3 || bridgeSize.toInt() > 20) throw IllegalArgumentException(error.wrongNumber)
+            return bridgeSize.toInt()
+        } catch (e: IllegalArgumentException) {
             println(e.message)
             return readBridgeSize()
         }
     }
+
     // 숫자인지 물어보는 함수
     fun isNumeric(s: String): Boolean {
         return s.chars().allMatch { Character.isDigit(it) }
@@ -28,7 +28,7 @@ class InputView {
     fun readMoving(): String {
         try {
             val moving = readLine()
-            if (moving!="U" && moving!="D") {
+            if (moving != "U" && moving != "D") {
                 throw IllegalArgumentException(error.wrongMove)
             }
             return moving
@@ -40,13 +40,13 @@ class InputView {
 
     /*** 사용자가게임을다시시도할지종료할지여부를입력받는다.*/
     fun readGameCommand(): String {
-        try{
+        try {
             val gameCommand = readLine()
-            if (gameCommand!="R" && gameCommand!="Q") {
+            if (gameCommand != "R" && gameCommand != "Q") {
                 throw IllegalArgumentException(error.wrongcommand)
             }
             return gameCommand
-        }catch (e: IllegalArgumentException){
+        } catch (e: IllegalArgumentException) {
             println(e.message)
             return readGameCommand()
         }
