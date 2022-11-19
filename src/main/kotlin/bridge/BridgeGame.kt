@@ -14,7 +14,7 @@ class BridgeGame() : BridgeGameGenerator{
 
     private var upBridge: MutableList<String> = mutableListOf<String>()
     private var downBridge: MutableList<String> = mutableListOf<String>()
-    private var isSuccess = true
+    private var isSuccess : Boolean = true
     private var totalCount: Int = 1
     private var count: Int = 0
 

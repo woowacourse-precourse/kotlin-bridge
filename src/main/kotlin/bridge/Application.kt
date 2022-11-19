@@ -8,7 +8,7 @@ private fun start() {
     OutputView().printStart()
     val inputReadBridgeSize: Int = InputView().readBridgeSize()
     val bridgeMaker: BridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
-    val bridge = bridgeMaker.makeBridge(inputReadBridgeSize)
+    val bridge : List<String> = bridgeMaker.makeBridge(inputReadBridgeSize)
     val bridgeGame: BridgeGame = BridgeGame()
     play(bridgeGame, bridge)
 }
