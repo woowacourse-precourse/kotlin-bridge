@@ -27,7 +27,7 @@ class OutputView {
 
     private fun getUpValue(bridgeValue: String, isSuccess: Boolean, isLastValue: Boolean): String {
         var result = ""
-        if (bridgeValue == COMMAND_DONW_MOVING) result = " "
+        if (bridgeValue == COMMAND_DOWN_MOVING) result = " "
         else if (bridgeValue == COMMAND_UP_MOVING && !isSuccess && isLastValue) result = MOVING_FAIL
         else if (bridgeValue == COMMAND_UP_MOVING) result = MOVING_SUCCESS
         return result
@@ -45,8 +45,8 @@ class OutputView {
     private fun getDownValue(bridgeValue: String, isSuccess: Boolean, isLastValue: Boolean): String {
         var result = ""
         if (bridgeValue == COMMAND_UP_MOVING) result = " "
-        else if (bridgeValue == COMMAND_DONW_MOVING && !isSuccess && isLastValue) result = MOVING_FAIL
-        else if (bridgeValue == COMMAND_DONW_MOVING) result = MOVING_SUCCESS
+        else if (bridgeValue == COMMAND_DOWN_MOVING && !isSuccess && isLastValue) result = MOVING_FAIL
+        else if (bridgeValue == COMMAND_DOWN_MOVING) result = MOVING_SUCCESS
         return result
     }
 

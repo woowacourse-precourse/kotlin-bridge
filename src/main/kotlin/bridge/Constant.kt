@@ -1,7 +1,7 @@
 package bridge
 
 const val COMMAND_UP_MOVING = "U"
-const val COMMAND_DONW_MOVING = "D"
+const val COMMAND_DOWN_MOVING = "D"
 const val COMMAND_RESTART = "R"
 
 const val MOVING_SUCCESS = "O"

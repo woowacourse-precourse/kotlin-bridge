@@ -19,7 +19,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     private fun convertNumberToMoving(): String {
         val number = bridgeNumberGenerator.generate()
         if (number == 0) {
-            return COMMAND_DONW_MOVING
+            return COMMAND_DOWN_MOVING
         } else if (number == 1) {
             return COMMAND_UP_MOVING
         }
