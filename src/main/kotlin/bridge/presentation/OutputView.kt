@@ -3,6 +3,7 @@ package bridge.presentation
 import bridge.controller.game.Result
 import bridge.domain.map.Mark
 import bridge.util.*
+import bridge.util.constant.*
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -17,7 +18,6 @@ class OutputView {
         route.forEach { subRoute ->
             println(subRoute.convertAsBridgeRoute())
         }
-        printNewLine()
     }
 
     /**
@@ -56,8 +56,6 @@ class OutputView {
     private fun printTrialCount(trial: Int) {
         print(TRIAL_COUNT_MESSAGE.format(trial))
     }
-
-    fun printNewLine() = println()
 
     fun printError(throwable: Throwable) {
         println(throwable.message)
