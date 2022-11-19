@@ -5,9 +5,7 @@ fun gameManager() {
     val outputView = OutputView()
     val bridgeManager = BridgeManager(inputView, outputView)
 
-    if(bridgeManager.gameLoop()) {
-        bridgeManager.printSuccess()
-    }
+    bridgeManager.gameLoop()
 }
 
 fun main() {
