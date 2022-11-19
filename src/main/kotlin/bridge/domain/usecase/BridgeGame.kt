@@ -15,9 +15,9 @@ class BridgeGame {
     // val p = listOf<String>("U1,D0", "U0,D1", "U0,D1", "U0,D1")
     fun move(bridge: List<String>):List<String> {
         val result = mutableListOf<String>()
-        for (i in bridge) {
-            var a = Console.readLine()
-            result.add(getColumnsResult(i,a.first()))
+        for (bridgeColumns in bridge) {
+            var userInput = Console.readLine()
+            result.add(getColumnsResult(bridgeColumns,userInput.first()))
         }
         return result
     }
