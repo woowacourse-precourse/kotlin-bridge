@@ -33,10 +33,6 @@ class Bridge {
 
     fun getGameResult(): Int = success
 
-    fun getUpBridgeResult(): String = bridgeResult.upBridgeResult()
-
-    fun getDownBridgeResult(): String = bridgeResult.downBridgeResult()
-
 
     companion object {
         const val MOVE_POSSIBLE_MARK = "O"
