@@ -10,6 +10,7 @@ class BridgeGame {
     private var tryingCount = 0
     private var bridgeSize = 0
     private lateinit var bridgeMap: List<String> // todo 타입은 다시 생각
+    private val comparator = BridgeComparator()
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
@@ -30,15 +31,25 @@ class BridgeGame {
         bridgeMap = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
     }
 
-    fun move() {
+    fun move(position: Int): Boolean {
         // 이동할 칸 메세지 출력
         output.printInputMoving()
 
         // 이동할 칸 입력 및 옳바른 값인지 체크
-        input.readMoving()
-        // 맵과 비교해 이동할 수 있는지 없는지 체크
-        // 맵을 출력
+        val moving = input.readMoving()
+        
+        // 맵과 비교해 이동할 수 있는지 없는지 체크 todo 인자 수 줄여보기
+        val isMovable = comparator.calculateIsMovable(bridgeMap, moving, position)
+        if(isMovable) {
+            // 맵을 출력
+            output.printMap(bridgeMap, position, true)
+        }
+        else {
+            // 맵을 출력
+            output.printMap(bridgeMap, position, false)
+        }
         // 이동 여부를 리턴
+        return isMovable
     }
 
     /**
