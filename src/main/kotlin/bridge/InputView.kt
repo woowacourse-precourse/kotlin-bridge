@@ -1,4 +1,5 @@
 package bridge
+
 import camp.nextstep.edu.missionutils.Console
 
 /**
@@ -66,12 +67,13 @@ class InputView {
 
     private fun stringRangeChecker(input: String, range: List<String>) {
         if (input !in range) {
-            when(range) {
+            when (range) {
                 COMMAND_RANGE -> throw IllegalArgumentException(NOT_ALLOWED_COMMAND_RANGE)
                 MOVING_RANGE -> throw IllegalArgumentException(NOT_ALLOWED_MOVING_RANGE)
             }
         }
     }
+
     companion object {
         const val MIN_BRIDGE_SIZE = 3
         const val MAX_BRIDGE_SIZE = 20
@@ -81,12 +83,13 @@ class InputView {
         const val COMMAND_QUIT = "Q"
         const val NOT_ALLOWED_NUMBER_INPUT = "[ERROR] 입력이 올바르지 않습니다(HINT: 숫자 입력)."
         const val NOT_ALLOWED_STRING_INPUT = "[ERROR] 입력이 올바르지 않습니다(HINT: 문자 입력)."
-        const val NOT_ALLOWED_NUMBER_RANGE_INPUT = "[ERROR] 허용된 입력 범위가 아닙니다(HINT: $MIN_BRIDGE_SIZE ~ $MAX_BRIDGE_SIZE 사이 숫자입력)."
+        const val NOT_ALLOWED_NUMBER_RANGE_INPUT =
+            "[ERROR] 허용된 입력 범위가 아닙니다(HINT: $MIN_BRIDGE_SIZE ~ $MAX_BRIDGE_SIZE 사이 숫자입력)."
         const val NOT_ALLOWED_STRING_RANGE_INPUT = "[ERROR] 허용된 입력 범위가 아닙니다(HINT: 하나의 문자만 입력)"
         val COMMAND_RANGE = listOf(COMMAND_RESTART, COMMAND_QUIT)
         val MOVING_RANGE = listOf(COMMAND_UP, COMMAND_DOWN)
-        const val NOT_ALLOWED_COMMAND_RANGE = "[ERROR] 허용된 입력 범위가 아닙니다(HINT: R, Q 중 하나 입력)"
-        const val NOT_ALLOWED_MOVING_RANGE = "[ERROR] 허용된 입력 범위가 아닙니다(HINT: U, D 중 하나 입력)"
+        const val NOT_ALLOWED_COMMAND_RANGE = "[ERROR] 허용된 입력 범위가 아닙니다(HINT: $COMMAND_RESTART, $COMMAND_QUIT 중 하나 입력)"
+        const val NOT_ALLOWED_MOVING_RANGE = "[ERROR] 허용된 입력 범위가 아닙니다(HINT: $COMMAND_UP, $COMMAND_DOWN 중 하나 입력)"
     }
 
 }

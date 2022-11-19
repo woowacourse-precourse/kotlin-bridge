@@ -46,7 +46,7 @@ class BridgeManager {
     }
 
     private fun failChecker() {
-        if (!this.bridgeGame.getIsContinue() && this.position <  this.bridgeSize - 1) {
+        if (!this.bridgeGame.getIsContinue() && this.position < this.bridgeSize - 1) {
             val retryCommand = getRetryCommand()
             if (retryCommand == InputView.COMMAND_RESTART) {
                 this.restartGame()
@@ -72,7 +72,7 @@ class BridgeManager {
     }
 
     private fun printGameResult(isSuccess: Boolean) {
-        outputView.printResult(isSuccess, this.position-1, this.bridgeGame)
+        outputView.printResult(isSuccess, this.position - 1, this.bridgeGame)
         outputView.printTryNumber(this.bridgeGame.getRetryCounter())
     }
 
