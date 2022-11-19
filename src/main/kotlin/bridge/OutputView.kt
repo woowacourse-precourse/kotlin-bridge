@@ -31,7 +31,7 @@ class OutputView {
         }
 
         fun areYouRetry() {
-            println(BridgeMessage.AreYouWantRetry)
+            println(BridgeMessage.AreYouWantRetry.word)
         }
 
         fun printGameEndMessage() {
