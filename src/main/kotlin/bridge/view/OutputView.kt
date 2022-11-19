@@ -1,7 +1,7 @@
 package bridge.view
 
+import bridge.domain.BridgeGame
 import bridge.domain.Path
-import bridge.domain.Player
 import bridge.util.Constant.OPEN_PARENTHESIS
 import bridge.util.Constant.CLOSE_PARENTHESIS
 import bridge.util.Constant.BOUNDARY
@@ -13,8 +13,8 @@ import kotlin.text.StringBuilder
  */
 class OutputView {
 
-    fun printMap(player: Player, bridge: List<String>) {
-        makeMap(player, bridge)
+    fun printMap(bridgeGame: BridgeGame) {
+        makeMap(bridgeGame.playerRecord(), bridgeGame.getBridge())
         println(upBuilder)
         println(downBuilder)
         printClear()
@@ -25,12 +25,11 @@ class OutputView {
         downBuilder.setLength(0)
     }
 
-    private fun makeMap(player: Player, bridge: List<String>) {
+    private fun makeMap(record: List<String>, bridge: List<String>) {
         surroundMap(OPEN_PARENTHESIS)
-        val state = player.getState()
-        state.forEachIndexed() { index, move ->
+        record.forEachIndexed() { index, move ->
             printPlayerPosition(bridge[index], move)
-            printBridgeInMap(index, state.size)
+            printBridgeInMap(index, record.size)
         }
         surroundMap(CLOSE_PARENTHESIS)
     }
