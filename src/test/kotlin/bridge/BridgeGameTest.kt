@@ -1,5 +1,6 @@
 package bridge
 
+import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions
@@ -42,5 +43,17 @@ class BridgeGameTest : NsTest() {
             runException("3", "위", "u")
             assertThat(output()).contains("[ERROR]")
         }
+    }
+
+    @Test
+    fun `이동한 결과에 따른 맵을 출력하는지 확인`() {
+        assertRandomNumberInRangeTest ({
+            run("5", "U", "U", "D", "U", "D")
+            assertThat(output()).contains(
+                "[ O | O |   | O |   ]",
+                "[   |   | O |   | O ]",
+            )
+        }, 1, 1, 0, 1, 0)
+
     }
 }
