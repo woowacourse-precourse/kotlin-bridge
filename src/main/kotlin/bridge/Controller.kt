@@ -22,13 +22,12 @@ class Controller {
     fun restartGame() {
         val input = inputRestartValue()
         when(input) {
-            "Q" -> return endGame()
-            "R" -> {
+            GAME_QUIT_VALUE -> return endGame()
+            GAME_RESTART_VALUE -> {
                 bridgeGame.retry()
                 return startGame()
             }
         }
-
     }
 
     fun endGame() {
@@ -79,5 +78,10 @@ class Controller {
         } catch(e : IllegalArgumentException) {
             return inputRestartValue()
         }
+    }
+
+    companion object {
+        const val GAME_RESTART_VALUE = "R"
+        const val GAME_QUIT_VALUE = "Q"
     }
 }
