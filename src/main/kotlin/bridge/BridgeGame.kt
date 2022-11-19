@@ -44,11 +44,11 @@ class BridgeGame {
     private fun processMoveIO(): Boolean {
         val moving = inputView.readMoving()
         val status = move(moving)
-        outputView.printMap()
+        outputView.printMap(userStep)
         if (!status) {
             return processRetryIO()
         } else if (bridge.getBridgeDone(userStep.size)) {
-            outputView.printResult()
+            outputView.printResult(userStep)
             return false
         }
         return true
@@ -60,7 +60,7 @@ class BridgeGame {
             retry()
             return true
         } else if (gameCommand == "Q") {
-            outputView.printResult()
+            outputView.printResult(userStep)
             return false
         }
         return true
