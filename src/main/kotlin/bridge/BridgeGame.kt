@@ -27,9 +27,9 @@ class BridgeGame(private val size : Int) {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(input : String) {
-        bridge.move(BridgeDirection.valueOf(input), bridgeMap, idx)
-        idx++
+    fun move(input : String) : BridgeResult{
+        userInputBridge.add(input)
+        return comBridge.move(userInputBridge)
     }
 
     /**
@@ -43,18 +43,6 @@ class BridgeGame(private val size : Int) {
         idx = 0
         bridge = Bridge(size)
     }
-
-    fun getGameResult() : Boolean {
-        if(size == bridge.getGameResult()) return true
-        return false
-    }
-
-    fun getInputMovePossible(input: String) : Boolean {
-        if(bridge.movePossible(BridgeDirection.valueOf(input), bridgeMap, idx)) return true
-        return false
-    }
-
-    fun getBridge() : Bridge = bridge
 
     fun getGameCount() : Int = gameCount
 }
