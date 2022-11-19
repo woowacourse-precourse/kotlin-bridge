@@ -19,7 +19,8 @@ fun main() {
 
 fun play() {
     val bridge = initializer()
-    restartOrQuit(bridge)
+    val playResult = judgeGameEnd(bridge)
+    outputView.printResult(bridge, playResult.first, playResult.second)
 }
 
 fun initializer(): List<String> {
@@ -28,7 +29,7 @@ fun initializer(): List<String> {
     return bridgeMaker.makeBridge(bridgeSize)
 }
 
-fun inGame(bridge: String): Status {
+fun playGame(bridge: String): Status {
     val moving = inputView.retryReadMoving()
     when (bridgeGame.move(bridge, moving)) {
         Status.CORRECT -> return Status.CORRECT
@@ -36,21 +37,24 @@ fun inGame(bridge: String): Status {
     return Status.WRONG
 }
 
-fun inGameLoop(bridge: List<String>): List<Status> {
+fun playGameLoop(bridge: List<String>): List<Status> {
     var index = 0
     val progress: MutableList<Status> = mutableListOf()
     do {
-        progress.add(inGame(bridge[index])).also { outputView.printMap(bridge, progress) }
+        progress.add(playGame(bridge[index])).also { outputView.printMap(bridge, progress) }
         index += 1
-    } while (bridgeGame.escape(index, progress))
+    } while (bridgeGame.escape(index, bridge, progress))
     return progress
 }
 
-fun restartOrQuit(bridge: List<String>) {
+fun judgeGameEnd(bridge: List<String>): Pair<List<Status>, Int> {
+    var progress: List<Status>
+    var playCount = 0
     do {
-        val progress = inGameLoop(bridge)
+        progress = playGameLoop(bridge).also { playCount += 1 }
         if (progress.last() == Status.CORRECT) {
             break
         }
     } while (bridgeGame.retry(inputView.retryReadGameCommand()))
+    return progress to playCount
 }
