@@ -15,7 +15,7 @@ class InputView {
             checkBridgeSizeInt(sizeString)
             checkBridgeSizeRange(sizeString.toInt())
         } catch (e: IllegalArgumentException){
-            -1
+            readBridgeSize()
         }
     }
     /**
@@ -51,7 +51,22 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        println(Message.INPUT_BRIDGE_MOVE.message)
+        return try {
+            val move = camp.nextstep.edu.missionutils.Console.readLine()
+            checkMove(move)
+            move
+        }catch (e: IllegalArgumentException){
+            readMoving()
+        }
+    }
+    private fun checkMove(move:String){
+        try {
+            require(move == Move.Up.params || move == Move.Down.params)
+        } catch (e: IllegalArgumentException){
+            println(Message.BRIDGE_MOVE_ERROR.message)
+            throw e
+        }
     }
 
     /**
@@ -66,12 +81,20 @@ class InputView {
     ) {
         INPUT_BRIDGE_SIZE("다리의 길이를 입력해주세요."),
         BRIDGE_SIZE_INT_ERROR("[ERROR]: 다리의 길이는 숫자 형식이어야 합니다."),
-        BRIDGE_SIZE_RANGE_ERROR("[ERROR]: 다리의 길이는 3이상 20 이하의 값을 가져야합니다.")
+        BRIDGE_SIZE_RANGE_ERROR("[ERROR]: 다리의 길이는 3이상 20 이하의 값을 가져야합니다."),
+        INPUT_BRIDGE_MOVE("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
+        BRIDGE_MOVE_ERROR("[ERROR]: 이동할 칸 입력값은 U, D 둘 중 하나여야 합니다.")
     }
     enum class Bridge(
             val params:Int
     ){
         LESS_BRIDGE_SIZE(3),
         MOST_BRIDGE_SIZE(20)
+    }
+    enum class Move(
+            val params:String
+    ){
+        Up("U"),
+        Down("D")
     }
 }
