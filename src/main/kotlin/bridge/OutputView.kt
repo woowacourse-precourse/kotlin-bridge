@@ -22,14 +22,14 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap(userMoving: Array<Array<String>>) {
+    fun printMap(userMoving: Array<MutableList<String>>) {
         userMoving.forEach { row ->
             println(row.joinToString(" | ", "[ ", " ]"))
         }
     }
 
     fun printGameCommand() {
-        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
     }
 
     /**
@@ -37,5 +37,10 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(isFail: Boolean, count: Int, userMoving: Array<MutableList<String>>) {
+        println("\n최종 게임 결과")
+        printMap(userMoving)
+        println("\n게임 성공 여부: ${if (isFail) "실패" else "성공"}")
+        println("총 시도한 횟수: $count")
+    }
 }

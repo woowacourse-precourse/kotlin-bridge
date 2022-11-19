@@ -15,7 +15,7 @@ internal class BridgeExceptionTest {
 
     @Test
     fun `다리 길이가 숫자가 아닌 경우`() {
-        assertThrows<IllegalArgumentException> {
+        assertThrows<NoSuchElementException> {
             BridgeException.isValidBridgeSize("3a")
         }
     }
