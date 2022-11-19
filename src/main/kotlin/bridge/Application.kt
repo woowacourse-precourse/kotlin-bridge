@@ -4,6 +4,8 @@ fun main() {
     val inputView = InputView()
     val numberGenerator = BridgeRandomNumberGenerator()
     val bridgeMaker = BridgeMaker(numberGenerator)
+    val outputView = OutputView()
+    val bridgeGame = BridgeGame()
 
     println("다리 건너기 게임을 시작합니다.\n")
 
@@ -11,9 +13,12 @@ fun main() {
     val size = inputView.readBridgeSize()
     val bridge = bridgeMaker.makeBridge(size)
 
-    println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
-    inputView.readMoving()
-
-    println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
-    inputView.readGameCommand()
+    while (true) {
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        val space = inputView.readMoving()
+        val movingList = bridgeGame.move(space, bridge)
+        val upList = movingList.filter { it.key == "U" }.values.flatten()
+        val downList = movingList.filter { it.key == "D" }.values.flatten()
+        outputView.printMap(upList, downList)
+    }
 }
