@@ -1,4 +1,4 @@
-package bridge
+package util
 
 class Enum {
     enum class RESULT(val emoji: String, val korean: String) {
@@ -11,8 +11,8 @@ class Enum {
         RESTART("R");
     }
 
-    enum class SIDE(val command: String, val number: Int) {
-        UP("U", 1),
-        DOWN("D", 0);
+    enum class SIDE(val code: Int, val command: String) {
+        DOWN(0, "D"),
+        UP(1, "U");
     }
 }
