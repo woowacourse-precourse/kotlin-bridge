@@ -9,7 +9,11 @@ class BridgeGameController(
     private val inputView: InputView,
     private val outputView: OutputView
 ) {
-    fun start() {}
+    fun start() {
+        outputView.printStartGame()
+        outputView.printStepInterval()
+        setUp()
+    }
 
     private fun setUp() {}
 
