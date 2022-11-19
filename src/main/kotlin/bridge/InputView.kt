@@ -19,6 +19,8 @@ class InputView {
 
     private fun checkInValidRange(input: Int): Boolean = input in BRIDGE_MINIMUM_LENGTH..BRIDGE_MAXIMUM_LENGTH
 
+    private fun convertToInt(input: String): Int = input.toInt()
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
