@@ -5,11 +5,13 @@ import camp.nextstep.edu.missionutils.Console.readLine
 /*** 사용자로부터입력을받는역할을한다.*/
 class InputView {
     /*** 다리의길이를입력받는다.*/
+    val error = ErrorMessage()
+
     fun readBridgeSize(): Int {
         try{
             val bridgeSize = readLine()
             if(!isNumeric(bridgeSize)) {
-                throw IllegalArgumentException("[ERROR]")
+                throw IllegalArgumentException(error.onlyNumber)
             }
                 return bridgeSize.toInt()
         }catch (e: IllegalArgumentException){
@@ -27,7 +29,7 @@ class InputView {
         try {
             val moving = readLine()
             if (moving!="U" && moving!="D") {
-                throw IllegalArgumentException("[ERROR]")
+                throw IllegalArgumentException(error.wrongMove)
             }
             return moving
         } catch (e: IllegalArgumentException) {
@@ -41,7 +43,7 @@ class InputView {
         try{
             val gameCommand = readLine()
             if (gameCommand!="R" && gameCommand!="Q") {
-                throw IllegalArgumentException("[ERROR]")
+                throw IllegalArgumentException(error.wrongcommand)
             }
             return gameCommand
         }catch (e: IllegalArgumentException){
