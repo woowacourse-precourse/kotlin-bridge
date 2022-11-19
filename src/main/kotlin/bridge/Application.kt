@@ -2,13 +2,7 @@ package bridge
 
 fun playgame(){
     val bridge = buildBridge()
-    var mybridge = mutableListOf<String>()
-
-    while(mybridge.size != bridge.size){
-        val temp = InputView().readMoving()
-        BridgeGame().move(mybridge,temp)
-        //출력도 해줘야 함 + 리겜 기능
-    }
+    BridgeGame().playgame(bridge)
 
 }
 fun buildBridge(): List<String>{

@@ -18,7 +18,7 @@ class OutputView {
 
         if(temp1 != 0 || temp2 != 0){
             count++
-            BridgeGame().retry()
+            BridgeGame().retry(bridge, mybridge)
         }
         if(temp1 == 0 && temp2 == 0)    printResult(bridge, mybridge)
     }
