@@ -1,9 +1,7 @@
 package bridge.ui.view
 
-import bridge.ui.common.ERROR_BRIDGE_SIZE_MESSAGE
-import bridge.ui.common.ERROR_GAME_COMMAND_MESSAGE
-import bridge.ui.common.ERROR_MESSAGE_FORMAT
-import bridge.ui.common.ERROR_MOVING_MESSAGE
+import bridge.common.*
+import bridge.ui.common.*
 import bridge.ui.validator.InputValidator
 import camp.nextstep.edu.missionutils.Console
 
@@ -15,6 +13,8 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
+        // TODO : 검증 및 print를 inputView에서 하지 않기
+        print(INPUT_BRIDGE_SIZE_MESSAGE)
         while (true) {
             val bridgeSize = Console.readLine()
 
@@ -30,6 +30,7 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
+        print(INPUT_MOVING_MESSAGE)
         while (true) {
             val moving = Console.readLine()
 
@@ -45,6 +46,7 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
+        print(INPUT_GAME_COMMAND_MESSAGE)
         while (true) {
             val command = Console.readLine()
 

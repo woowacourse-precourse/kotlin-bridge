@@ -1,5 +1,6 @@
 package bridge.ui.validator
 
+import bridge.common.*
 import bridge.ui.common.*
 
 object InputValidator {
