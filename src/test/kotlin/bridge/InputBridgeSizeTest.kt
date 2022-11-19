@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.junit.jupiter.api.Test
 
-class InputViewTest : NsTest(){
+class InputBridgeSizeTest : NsTest(){
 
     @Test
     fun `다리 길이 입력 테스트`() {
