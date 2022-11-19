@@ -31,8 +31,8 @@ class Controller {
     }
 
     fun endGame() {
-        OutputView().printResult(bridgeGame.getBridge())
-        OutputView().printSuccessFail(bridgeGame.getGameResult())
+        OutputView().printResult(bridgeResult)
+        OutputView().printSuccessFail(bridgeResult)
         OutputView().printGameCount(bridgeGame.getGameCount())
     }
 
