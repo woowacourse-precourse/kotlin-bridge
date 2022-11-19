@@ -24,7 +24,7 @@ fun play(game: BridgeGame, bridge: List<String>) {
 fun end(game: BridgeGame) {
     OutputView().printResult()
     OutputView().printMap(game.upBridge, game.downBridge)
-    OutputView().printResultIsSuccess(game.isSuccess, game.totalCount)
+    OutputView().printResultIsSuccess(game.isSuccess, game.getTotalCount())
 }
 
 fun reStart(game: BridgeGame, bridge: List<String>) {
