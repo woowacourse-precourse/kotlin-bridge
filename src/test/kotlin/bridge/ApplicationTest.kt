@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import util.Enum
 
 class ApplicationTest : NsTest() {
     @Test
@@ -32,7 +33,7 @@ class ApplicationTest : NsTest() {
         directions.forEach {
             game.move(it)
         }
-        assertThat(game.isFail()).isTrue
+        assertThat(game.isFail(Enum.RESULT.FAILURE.emoji)).isTrue
     }
 
     @Test
