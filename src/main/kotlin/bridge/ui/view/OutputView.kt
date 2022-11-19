@@ -1,5 +1,8 @@
 package bridge.ui.view
 
+import bridge.common.MOVING_DOWN_CODE
+import bridge.common.MOVING_UP_CODE
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -18,7 +21,5 @@ class OutputView {
      */
     fun printResult() {}
 
-    fun printMessage(message: String) {
-        print(message)
-    }
+    fun printMessage(message: String) = print(message)
 }
