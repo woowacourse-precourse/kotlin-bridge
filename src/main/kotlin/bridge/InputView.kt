@@ -24,6 +24,7 @@ class InputView {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)\n")
         val direction = Console.readLine()
 
+        InputValidator.validateMoveInput(direction)
         return direction
     }
 
