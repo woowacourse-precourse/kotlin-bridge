@@ -12,9 +12,7 @@ fun gameManager() {
         }
     }
 
-    val triple = Triple(bridgeManager.getPosition()-1, bridgeManager.getBridgeGame().getUpBridge(), bridgeManager.getBridgeGame().getDownBridge())
-    outputView.printResult(triple, true)
-    outputView.printTryNumber(bridgeManager.getBridgeGame().getRetryCounter())
+    bridgeManager.printSuccess()
 }
 
 fun main() {
