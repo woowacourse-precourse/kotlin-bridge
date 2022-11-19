@@ -31,5 +31,19 @@ fun main() {
             outputView.printResult(up, down, successOrFailure, numberOfAttempts)
             break
         }
+
+        if (BridgeGame.failure()) {
+            println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+            val isRetry = inputView.readGameCommand()
+
+            numberOfAttempts += 1
+            if (isRetry == "R") {
+                continue
+            } else if (isRetry == "Q") {
+                successOrFailure = "실패"
+                outputView.printResult(up, down, successOrFailure, numberOfAttempts)
+                break
+            }
+        }
     }
 }
