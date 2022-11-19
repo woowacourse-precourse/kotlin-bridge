@@ -6,9 +6,9 @@ enum class BridgeGameCommand(private val command: String) {
     companion object {
         private const val ERROR_COMMAND_MATCH = "%s와 일치하는 명령어가 없습니다."
         fun getByCommand(command: String): BridgeGameCommand {
-            return BridgeGameCommand.values().firstOrNull { it.command == command } ?: throw IllegalArgumentException(
-                ERROR_COMMAND_MATCH.format(command)
-            )
+            return BridgeGameCommand.values()
+                .firstOrNull { it.command == command }
+                ?: throw IllegalArgumentException(ERROR_COMMAND_MATCH.format(command))
         }
     }
 }

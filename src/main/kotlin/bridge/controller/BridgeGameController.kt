@@ -11,7 +11,7 @@ import bridge.view.OutputView
  * 상황과 순서에 맞는 메서드 호출에 대한 책임을 가진다.
  * 잘못된 입력시 재입력 요구에 대한 책임을 가진다.
  */
-class BridgeController {
+class BridgeGameController {
     private val inputView = InputView()
     private val outputView = OutputView()
 
