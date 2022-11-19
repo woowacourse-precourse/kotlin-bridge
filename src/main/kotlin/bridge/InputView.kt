@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.BridgeGameRule.BRIDGE_MAXIMUM_LENGTH
+import bridge.BridgeGameRule.BRIDGE_MINIMUM_LENGTH
 import java.util.regex.Pattern
 
 /**
@@ -14,6 +16,8 @@ class InputView {
     }
 
     private fun isInputTypeNumber(input: String): Boolean = Pattern.matches("^[-]?[0-9]+$", input)
+
+    private fun checkInValidRange(input: Int): Boolean = input in BRIDGE_MINIMUM_LENGTH..BRIDGE_MAXIMUM_LENGTH
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
