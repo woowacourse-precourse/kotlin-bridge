@@ -10,8 +10,7 @@ class InputView {
     fun readBridgeSize(): Int {
         try{
             val bridgeSize = readLine()
-            val bridgeSizeToInt = bridgeSize.toInt()
-            if(!isNumeric(bridgeSize) || bridgeSizeToInt>20 || bridgeSizeToInt<3) {
+            if(!isNumeric(bridgeSize)) {
                 throw IllegalArgumentException(error.onlyNumber)
             }
                 return bridgeSize.toInt()
