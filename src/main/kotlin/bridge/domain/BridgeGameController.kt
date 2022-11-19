@@ -6,6 +6,7 @@ import bridge.consol.OutputView
 import bridge.data.Bridge
 import bridge.data.GameResult
 import bridge.data.BridgeMap
+import bridge.exceptions.ExceptionHandler
 
 
 class BridgeGameController() {
@@ -14,22 +15,27 @@ class BridgeGameController() {
     private val bridgeGame = BridgeGame()
     private val gameResult = GameResult()
     private val map = BridgeMap()
+    val exceptionHandler = ExceptionHandler()
     fun startGame() {
-        outputView.printStartGame()
-        val bridge = makeBridge()
-        var gameFlag = true
-        var hit =""
-        while (gameFlag) {
-            hit = moveBridge(bridge)
-            gameFlag = askRetryGame(bridge,hit)
-            if (bridge.finish(hit)) {
-                gameResult.succeed()
-                outputView.printResultGuide()
-                outputView.printMap(map.getMap())
-                gameFlag = closeGame()
-            }
-        }
+        try {
 
+
+            outputView.printStartGame()
+            val bridge = makeBridge()
+            var gameFlag = true
+            while (gameFlag) {
+                var hit = moveBridge(bridge)
+                gameFlag = askRetryGame(bridge, hit)
+                if (bridge.finish(hit)) {
+                    gameResult.succeed()
+                    outputView.printResultGuide()
+                    outputView.printMap(map.getMap())
+                    gameFlag = closeGame()
+                }
+            }
+        } catch (e: IllegalArgumentException) {
+
+        }
     }
 
     private fun closeGame(): Boolean {
@@ -37,38 +43,54 @@ class BridgeGameController() {
         return false
     }
 
-    private fun askRetryGame(bridge: Bridge, hit:String): Boolean {
+    private fun askRetryGame(bridge: Bridge, hit: String): Boolean {
 
         if (hit == "X") {
-            outputView.printInputGameCommand()
-            val gameCommand = inputView.readGameCommand()
-            if (gameCommand == "Q") {
-                outputView.printResultGuide()
-                outputView.printMap(map.getMap())
-                return closeGame()
+            try {
+                outputView.printInputGameCommand()
+                val gameCommand = inputView.readGameCommand()
+                exceptionHandler.checkCommand(gameCommand)
+                if (gameCommand == "Q") {
+                    outputView.printResultGuide()
+                    outputView.printMap(map.getMap())
+                    return closeGame()
+                }
+                if (gameCommand == "R") {
+                    bridgeGame.retry(bridge, map)
+                    gameResult.attempt++
+                    return true
+                }
+            } catch (e: IllegalArgumentException) {
+                println("[ERROR] ${e.message}")
+                askRetryGame(bridge, hit)
             }
-            if (gameCommand == "R") {
-                bridgeGame.retry(bridge)
-                gameResult.attempt++
-                return true
-            }
-
         }
         return true
     }
 
     private fun makeBridge(): Bridge {
-        outputView.printInputLength()
-        val bridgeSIze = inputView.readBridgeSize()
-        return Bridge(BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSIze))
+        return try {
+            outputView.printInputLength()
+            val bridgeSize = inputView.readBridgeSize()
+            exceptionHandler.checkSize(bridgeSize)
+            return Bridge(BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize))
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] ${e.message}")
+            makeBridge()
+        }
     }
 
-    private fun moveBridge(bridge: Bridge) :String{
-        outputView.printInputMove()
-        val upDown = inputView.readMoving()
-        val hit = bridgeGame.move(bridge, upDown, map)
-        outputView.printMap(map.getMap())
-        return hit
+    private fun moveBridge(bridge: Bridge): String {
+        return try {
+            outputView.printInputMove()
+            val upDown = inputView.readMoving()
+            exceptionHandler.checkUpDown(upDown)
+            val hit = bridgeGame.move(bridge, upDown, map)
+            outputView.printMap(map.getMap())
+            hit
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] ${e.message}")
+            moveBridge(bridge)
+        }
     }
-
 }

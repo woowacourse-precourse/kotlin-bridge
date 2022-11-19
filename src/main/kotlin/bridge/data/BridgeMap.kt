@@ -6,4 +6,9 @@ class BridgeMap {
     fun getMap(): Pair<String, String> {
         return upSide to downSide
     }
+
+    fun clear() {
+        upSide = ""
+        downSide = ""
+    }
 }

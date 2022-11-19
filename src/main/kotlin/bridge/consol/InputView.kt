@@ -1,6 +1,7 @@
 package bridge.consol
 
 import camp.nextstep.edu.missionutils.Console
+import java.lang.NumberFormatException
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -8,7 +9,14 @@ import camp.nextstep.edu.missionutils.Console
 class InputView {
 
 
-    fun readBridgeSize() = Console.readLine().toInt()
+    fun readBridgeSize(): Int {
+        return try {
+            Console.readLine().toInt()
+        } catch (e: NumberFormatException) {
+            println("[ERROR]숫자를 입력 해야 합니다.")
+            readBridgeSize()
+        }
+    }
 
     fun readMoving(): String = Console.readLine()
 
