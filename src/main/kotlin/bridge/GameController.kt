@@ -23,7 +23,7 @@ class GameController {
                 return gameStart()
             }
         }
-        printResult()
+        outputView.printResult(bridgeGame.currentMoving,judgeMoving(),bridgeGame.tryCount)
     }
 
     private fun inputBridgeSize(): Int {
@@ -60,24 +60,5 @@ class GameController {
 
     private fun judgeMoving(): Boolean {
         return bridgeGame.judgeMovingSuccess()
-    }
-
-    private fun printResult(){
-        outputResultBridge()
-        outputGameResult()
-        outputResultTryCount()
-    }
-
-    private fun outputResultBridge(){
-        println("최종 게임 결과")
-        outputMoving()
-    }
-
-    private fun outputGameResult(){
-        if(bridgeGame.checkGameWin()) println("게임 성공 여부: 성공") else println("게임 성공 여부: 실패")
-    }
-
-    private fun outputResultTryCount(){
-        println("총 시도한 횟수: ${bridgeGame.tryCount}")
     }
 }

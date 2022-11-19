@@ -54,5 +54,18 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(currentMap: List<String>, isSuccess: Boolean, tryCount : Int) {
+        println("최종 게임 결과")
+        printMap(currentMap,isSuccess)
+        outputGameResult(isSuccess)
+        outputResultTryCount(tryCount)
+    }
+
+    private fun outputGameResult(isGameWin : Boolean){
+        if(isGameWin) println("게임 성공 여부: 성공") else println("게임 성공 여부: 실패")
+    }
+
+    private fun outputResultTryCount(tryCount: Int){
+        println("총 시도한 횟수: $tryCount")
+    }
 }
