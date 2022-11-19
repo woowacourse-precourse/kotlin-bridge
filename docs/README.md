@@ -85,5 +85,5 @@ ex) 정답이
 
 ## 현재 수정해야할 사항
 
-- [ ] BridgeMaker의 makeBridge의 일부분을 사양서대로 수정
-- [ ] 위와 연관된 사항들 수정
+- [x] BridgeMaker의 makeBridge의 일부분을 사양서대로 수정
+- [x] 위와 연관된 사항들 수정
