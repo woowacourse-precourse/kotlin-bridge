@@ -44,6 +44,17 @@
 ### Method 목록
 - move(): 사용자가 칸을 이동할 때 사용하는 함수
 - retry(): 사용자가 게임을 다시 시도할 때 사용하는 함수
+- moveNextBridge(): 사용자의 입력에 따라 상태를 저장하는 함수
+- getUpBridge(): upBridge 배열 가져오는 함수
+- getDownBridge(): downBridge 배열 가져오는 함수
+- getRetryCounter(): retryCounter 값 가져오는 함수
+
+### Field 목록
+- bridgeSize: 다리 길이 상수 변수
+- retryCounter: 재시도 횟수 저장하는 상수 변수
+- isContinue: 게임 실패, 성공 여부를 저장하는 불린 변수
+- upBridge: 현재까지 진행상황 중 "U" 입력에 대한 정보를 저장하는 배열 변수
+- downBridge: 현재까지 진행상황 중 "D" 입력에 대한 정보를 저장하는 배열 변수
 
 ## BridgeMaker
 클래스 기능 요약: 다리를 생성하는 부분을 담당
