@@ -1,12 +1,14 @@
 package bridge
 
 import ui.InputView
+import ui.OutputView
 
 /**
  * 다리 건너기 게임의 진행을 관리하는 클래스
  */
 class BridgeGameController {
     private val inputView: InputView = InputView()
+    private val outputView: OutputView = OutputView()
     private val bridgeGame: BridgeGame = BridgeGame()
 
     fun runGame() {
@@ -20,12 +22,7 @@ class BridgeGameController {
             if(!bridgeGame.isSuccess()) break
         }
 
-        // todo 최종 게임 결과 [...] [...]
-
-        if(bridgeGame.isSuccess()) println("게임 성공 여부: 성공")
-        else println("게임 성공 여부: 실패")
-        println("총 시도한 횟수: ${bridgeGame.getTryCount()}")
-
+        outputView.printResult(bridgeGame)
     }
 
     private fun setGameInfoInit() {
