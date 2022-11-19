@@ -29,9 +29,9 @@ class BridgeGame {
     }
 
     fun String.decideNextPosition() = if (this == "U") {
-        0
-    } else {
         1
+    } else {
+        0
     }
 
     fun String.decideRetryOrQuit() = this == "R"
