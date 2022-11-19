@@ -45,7 +45,7 @@ class BridgeGameTest {
         bridgeGame.move(bridgeMaker,"U")
         bridgeGame.move(bridgeMaker,"U")
         bridgeGame.move(bridgeMaker,"D")
-        assertThat(bridgeGame.isSuccess).isEqualTo(true)
+        assertThat(bridgeGame.getSuccessResult()).isEqualTo(true)
     }
 
     @Test
@@ -55,7 +55,7 @@ class BridgeGameTest {
         bridgeGame.move(bridgeMaker,"U")
         bridgeGame.move(bridgeMaker,"U")
         bridgeGame.move(bridgeMaker,"U")
-        assertThat(bridgeGame.isSuccess).isEqualTo(false)
+        assertThat(bridgeGame.getSuccessResult()).isEqualTo(false)
     }
 
     class TestNumberGenerator(numbers: List<Int>) : BridgeNumberGenerator {
