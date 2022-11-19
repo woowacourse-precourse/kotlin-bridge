@@ -30,10 +30,4 @@ class Bridge {
             .forEach { return it.matchBridgeSpace(bridgeSpace) }
         return Move.IMPOSSIBLE
     }
-
-
-    companion object {
-        const val MOVE_POSSIBLE_MARK = "O"
-        const val MOVE_IMPOSSIBLE_MARK = "X"
-    }
 }
