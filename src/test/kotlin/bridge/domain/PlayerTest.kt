@@ -18,15 +18,16 @@ internal class PlayerTest {
     }
 
     @ParameterizedTest
-    @CsvSource("U,O,0", "D,O,1", "U,X,2")
-    @DisplayName("만들어진 다리에서 지나갈 다리가 멀쩡한지 확인하는 테스트")
-    fun `플레이어가_다리를_지날수_있는_확인`(move: String, pathCheck: String, index: Int) {
-        player.go(move, bridge)
-        Assertions.assertThat(pathCheck).isEqualTo(player.getState()[index])
+    @CsvSource("U,0,true", "D,1,true", "U,2,false")
+    @DisplayName("이동할 명령어대로 이동하고, 기록을 잘하는 지 확인 및 다리 칸이랑 비교")
+    fun `플레이어가_지나간_칸과_다리_비교_확인`(move: String, index: Int, flag: Boolean) {
+        val player = Player()
+        player.go(move)
+        println(player.getState())
+        Assertions.assertThat(bridge[index] == player.getState()[index]).isEqualTo(flag)
     }
 
     companion object {
         private lateinit var bridge: List<String>
-        val player = Player()
     }
 }

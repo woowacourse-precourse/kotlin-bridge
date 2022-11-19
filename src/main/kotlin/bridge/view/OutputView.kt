@@ -6,11 +6,10 @@ import bridge.util.Constant.OPEN_PARENTHESIS
 import bridge.util.Constant.CLOSE_PARENTHESIS
 import bridge.util.Constant.BOUNDARY
 import bridge.util.Constant.EMPTY
+import bridge.util.Constant.LOAD_GO
+import bridge.util.Constant.LOAD_STOP
 import kotlin.text.StringBuilder
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 class OutputView {
 
     fun printMap(bridgeGame: BridgeGame) {
@@ -28,10 +27,18 @@ class OutputView {
     private fun makeMap(record: List<String>, bridge: List<String>) {
         surroundMap(OPEN_PARENTHESIS)
         record.forEachIndexed() { index, move ->
-            printPlayerPosition(bridge[index], move)
+            val type = compareWith(bridge[index], move)
+            printPlayerPosition(move, type)
             printBridgeInMap(index, record.size)
         }
         surroundMap(CLOSE_PARENTHESIS)
+    }
+
+    private fun compareWith(bridgeState: String, move: String): String {
+        return when (bridgeState) {
+            move -> LOAD_GO
+            else -> LOAD_STOP
+        }
     }
 
     private fun printBridgeInMap(index: Int, size: Int) {
@@ -41,15 +48,15 @@ class OutputView {
         }
     }
 
-    private fun printPlayerPosition(bridgeState: String, move: String) {
-        when (bridgeState) {
+    private fun printPlayerPosition(move: String, type: String) {
+        when (move) {
             Path.UP.getPath() -> {
-                upBuilder.append(" $move ")
+                upBuilder.append(" $type ")
                 downBuilder.append(EMPTY)
             }
             Path.DOWN.getPath() -> {
                 upBuilder.append(EMPTY)
-                downBuilder.append(" $move ")
+                downBuilder.append(" $type ")
             }
         }
     }

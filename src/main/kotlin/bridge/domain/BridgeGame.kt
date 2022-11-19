@@ -16,7 +16,7 @@ class BridgeGame(private val bridgeNumberGenerator: BridgeNumberGenerator, priva
     }
 
     fun move(move: String) {
-        player.go(move, bridge)
+        player.go(move)
     }
 
     fun retry() {
