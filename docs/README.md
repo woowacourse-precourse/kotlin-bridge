@@ -119,7 +119,7 @@
 
 ### BridgeMaker
 
-- [ ] 다리 생성 => `makeBridge()`
+- [x] 다리 생성 => `makeBridge()`
 
     - 다리 길이를 전달 받아 길이에 해당하는 다리 생성
 
