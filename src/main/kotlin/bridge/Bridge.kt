@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.ex.Move
+
 class Bridge {
 
     private val bridge : List<BridgeSpace>
@@ -16,19 +18,12 @@ class Bridge {
         bridgeResult.setMoveResult(input, mark)
     }
 
-    fun movePossible(input: BridgeDirection, bridgeMap: List<String>, idx: Int): Boolean {
-        return input.name.equals(bridgeMap[idx])
+    fun movePossible(bridgeSpace: BridgeSpace) : Move {
+        bridge.filterNot { it.matchBridgeSpace(bridgeSpace).equals(Move.IMPOSSIBLE) }
+            .forEach { return it.matchBridgeSpace(bridgeSpace) }
+        return Move.IMPOSSIBLE
     }
 
-    fun movePossibleMark(isPossible: Boolean): String {
-        when (isPossible) {
-            true -> {
-                success++
-                return MOVE_POSSIBLE_MARK
-            }
-            false -> return MOVE_IMPOSSIBLE_MARK
-        }
-    }
     fun getGameResult(): Int = success
 
     fun getUpBridgeResult(): String = bridgeResult.upBridgeResult()
