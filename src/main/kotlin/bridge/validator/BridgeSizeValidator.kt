@@ -8,7 +8,7 @@ class BridgeSizeValidator : Validator() {
     }
 
     private fun checkBridgeSizeScopeException(input: String): Boolean {
-        return input.toInt() in 1..20
+        return input.toInt() in 3..20
     }
 
     private fun checkBridgeSizeIsNumeric(input: String): Boolean {
