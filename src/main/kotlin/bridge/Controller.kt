@@ -3,6 +3,7 @@ package bridge
 class Controller {
 
     private lateinit var bridgeGame: BridgeGame
+    private lateinit var bridgeResult: BridgeResult
 
     fun run() {
         bridgeGame = BridgeGame(inputBridgeSize())
@@ -11,15 +12,10 @@ class Controller {
 
     fun startGame(){
         val moveDirection = inputMoveDirection()
-        val movePossible = bridgeGame.getInputMovePossible(moveDirection)
-        bridgeGame.move(moveDirection)
-        OutputView().printMap(bridgeGame.getBridge())
-        if(bridgeGame.getGameResult()) {
-            return endGame()
-        }
-        if(movePossible) {
-            return startGame()
-        }
+        bridgeResult = bridgeGame.move(moveDirection)
+        OutputView().printMap(bridgeResult)
+        if(bridgeResult.getGameResult() == Result.SUCCESS) return endGame()
+        if(bridgeResult.getMovePossible() == Move.POSSIBLE) return startGame()
         return restartGame()
     }
 

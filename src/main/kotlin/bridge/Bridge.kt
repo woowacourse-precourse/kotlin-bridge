@@ -1,8 +1,5 @@
 package bridge
 
-import bridge.ex.Bridges
-import bridge.ex.BridgesResult
-
 class Bridge {
 
     private val bridge : List<BridgeSpace>

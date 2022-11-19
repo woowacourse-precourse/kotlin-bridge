@@ -5,6 +5,7 @@ class BridgeResult(private val size : Int) {
     private val upBridge = mutableListOf<String>()
     private val downBridge = mutableListOf<String>()
     private val gameResult = GameResult()
+    private lateinit var movePossible : Move
 
     fun setMoveResult(input : BridgeDirection, movePossible : Move) {
         when(input) {
@@ -12,7 +13,10 @@ class BridgeResult(private val size : Int) {
             BridgeDirection.D -> moveDown(movePossible.name)
         }
         gameResult.setGameResult(movePossible)
+        this.movePossible = movePossible
     }
+
+    fun getMovePossible() : Move = movePossible
 
     fun moveUp(mark : String) {
         upBridge.add(mark)
