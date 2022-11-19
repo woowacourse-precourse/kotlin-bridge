@@ -24,6 +24,13 @@ class BridgeGame {
         if (bridgeColumn.first() == column) isPassable(bridgeColumn.last().digitToInt())
         else " "
 
+    private  fun getColumnsResult(bridgeColumns:String,inputColumn: Char):String  {
+        bridgeColumns.split(",").map { bridgeColumn ->
+            if (bridgeColumn.first() == inputColumn) return "${getColumnResult(bridgeColumn,ONE_COLUMN_UP)}\n${getColumnResult(bridgeColumn,ONE_COLUMN_DOWN)}"
+        }
+        return " "
+    }
+
 
 
 
