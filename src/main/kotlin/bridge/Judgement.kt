@@ -16,7 +16,7 @@ class Judgement {
     }
 
     fun checkGameOver(currentMoving: List<String>): Boolean {
-        var result : Boolean = false
+        var result: Boolean = false
         try {
             if (!judgeMovingSuccess(currentMoving) || currentMoving.lastIndex == correctBridgeMap.size - 1) {
                 result = true
@@ -27,7 +27,7 @@ class Judgement {
         return result
     }
 
-    fun checkGameWin(currentMoving : List<String>) : Boolean {
+    fun checkGameWin(currentMoving: List<String>): Boolean {
         return judgeMovingSuccess(currentMoving) && currentMoving.lastIndex == correctBridgeMap.size - 1
     }
 }

@@ -15,15 +15,15 @@ class OutputView {
     }
 
     private fun getUpBridgeForm(currentMap: List<String>, isSuccess: Boolean): String {
-        var result = "[ ${getUpValue(currentMap[0], isSuccess,currentMap.lastIndex==0)}"
+        var result = "[ ${getUpValue(currentMap[0], isSuccess, currentMap.lastIndex == 0)}"
         for (count in 1 until currentMap.size) {
-            result = result + " | " + getUpValue(currentMap[count], isSuccess,count==currentMap.lastIndex)
+            result = result + " | " + getUpValue(currentMap[count], isSuccess, count == currentMap.lastIndex)
         }
         result += " ]"
         return result
     }
 
-    private fun getUpValue(bridgeValue: String, isSuccess: Boolean, isLastValue : Boolean): String {
+    private fun getUpValue(bridgeValue: String, isSuccess: Boolean, isLastValue: Boolean): String {
         var result = ""
         if (bridgeValue == "D") result = " "
         else if (bridgeValue == "U" && !isSuccess && isLastValue) result = "X"
@@ -32,15 +32,15 @@ class OutputView {
     }
 
     private fun getDownBridgeForm(currentMap: List<String>, isSuccess: Boolean): String {
-        var result = "[ ${getDownValue(currentMap[0], isSuccess,currentMap.lastIndex==0)}"
+        var result = "[ ${getDownValue(currentMap[0], isSuccess, currentMap.lastIndex == 0)}"
         for (count in 1 until currentMap.size) {
-            result = result + " | " + getDownValue(currentMap[count], isSuccess,count==currentMap.lastIndex)
+            result = result + " | " + getDownValue(currentMap[count], isSuccess, count == currentMap.lastIndex)
         }
         result += " ]"
         return result
     }
 
-    private fun getDownValue(bridgeValue: String, isSuccess: Boolean, isLastValue : Boolean): String {
+    private fun getDownValue(bridgeValue: String, isSuccess: Boolean, isLastValue: Boolean): String {
         var result = ""
         if (bridgeValue == "U") result = " "
         else if (bridgeValue == "D" && !isSuccess && isLastValue) result = "X"
@@ -54,18 +54,18 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(currentMap: List<String>, isSuccess: Boolean, tryCount : Int) {
+    fun printResult(currentMap: List<String>, isSuccess: Boolean, tryCount: Int) {
         println("최종 게임 결과")
-        printMap(currentMap,isSuccess)
+        printMap(currentMap, isSuccess)
         outputGameResult(isSuccess)
         outputResultTryCount(tryCount)
     }
 
-    private fun outputGameResult(isGameWin : Boolean){
-        if(isGameWin) println("게임 성공 여부: 성공") else println("게임 성공 여부: 실패")
+    private fun outputGameResult(isGameWin: Boolean) {
+        if (isGameWin) println("게임 성공 여부: 성공") else println("게임 성공 여부: 실패")
     }
 
-    private fun outputResultTryCount(tryCount: Int){
+    private fun outputResultTryCount(tryCount: Int) {
         println("총 시도한 횟수: $tryCount")
     }
 }

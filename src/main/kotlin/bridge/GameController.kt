@@ -16,11 +16,11 @@ class GameController {
     fun gameStart() {
         makeBridge(inputBridgeSize())
         repeatMoving()
-        if(checkRetryGame()){
+        if (checkRetryGame()) {
             bridgeGame.retry()
             return gameStart()
         }
-        outputView.printResult(bridgeGame.currentMoving,judgeMoving(),bridgeGame.tryCount)
+        outputView.printResult(bridgeGame.currentMoving, judgeMoving(), bridgeGame.tryCount)
     }
 
     private fun inputBridgeSize(): Int {
@@ -59,8 +59,8 @@ class GameController {
         return bridgeGame.judgeMovingSuccess()
     }
 
-    private fun checkRetryGame() : Boolean {
-        if(!bridgeGame.checkGameWin()) {
+    private fun checkRetryGame(): Boolean {
+        if (!bridgeGame.checkGameWin()) {
             println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
             if (inputView.readGameCommand() == "R") {
                 return true
