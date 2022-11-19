@@ -10,7 +10,7 @@ import bridge.Constant.UP
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame() : BridgeGameGenerator{
+class BridgeGame(private val bridge : List<String>) : BridgeGameGenerator{
 
     private var upBridge: MutableList<String> = mutableListOf<String>()
     private var downBridge: MutableList<String> = mutableListOf<String>()
@@ -24,7 +24,7 @@ class BridgeGame() : BridgeGameGenerator{
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    override fun move(bridge: List<String>, moveOrder: String) {
+    override fun move(moveOrder: String) {
         when (bridge[count]) {
             UP -> if (moveOrder == UP) upMove(true) else upMove(false)
             DOWN -> if (moveOrder == DOWN) downMove(true) else downMove(false)
@@ -71,7 +71,7 @@ class BridgeGame() : BridgeGameGenerator{
         this.isSuccess = true
     }
 
-    override fun isGameEnd(bridge: List<String>): Boolean {
+    override fun isGameEnd(): Boolean {
         if (!isSuccess) return true
         if (count == bridge.size) return true
         return false

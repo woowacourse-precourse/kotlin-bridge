@@ -9,16 +9,16 @@ private fun start() {
     val inputReadBridgeSize: Int = InputView().readBridgeSize()
     val bridgeMaker: BridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
     val bridge : List<String> = bridgeMaker.makeBridge(inputReadBridgeSize)
-    val bridgeGame: BridgeGame = BridgeGame()
-    play(bridgeGame, bridge)
+    val bridgeGame: BridgeGame = BridgeGame(bridge)
+    play(bridgeGame)
 }
 
-fun play(game: BridgeGame, bridge: List<String>) {
-    while (!game.isGameEnd(bridge)) {
-        game.move(bridge, InputView().readMoving())
+fun play(game: BridgeGame) {
+    while (!game.isGameEnd()) {
+        game.move(InputView().readMoving())
         OutputView().printMap(game.getUpBridge(), game.getDownBridge())
     }
-    if (game.getSuccessResult()) end(game) else reStart(game, bridge)
+    if (game.getSuccessResult()) end(game) else reStart(game)
 }
 
 fun end(game: BridgeGame) {
@@ -27,11 +27,11 @@ fun end(game: BridgeGame) {
     OutputView().printResultIsSuccess(game.getSuccessResult(), game.getTotalCount())
 }
 
-fun reStart(game: BridgeGame, bridge: List<String>) {
+fun reStart(game: BridgeGame) {
     when (InputView().readGameCommand()) {
         Constant.REPLAY -> {
             game.retry()
-            play(game, bridge)
+            play(game)
         }
 
         Constant.QUIT -> end(game)
