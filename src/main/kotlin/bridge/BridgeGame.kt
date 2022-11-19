@@ -11,31 +11,34 @@ class BridgeGame {
     private var bridge: List<String> = listOf()
 
     fun move(moving: String) {
+        updateGameProgress(moving)
         moveCount++
-        // updateGameProgress()
     }
 
     fun retry() {}
 
 
-    fun getBridgeSize(): Int {
-        return bridgeSize
-    }
+    fun getBridgeSize(): Int { return bridgeSize }
 
-    fun setBridgeSize(inputLength: Int) {
-        bridgeSize = inputLength
-    }
+    fun getTryCount(): Int { return tryCount }
 
-    fun getTryCount(): Int {
-        return tryCount
-    }
+    fun getMoveCount(): Int { return moveCount }
 
-    fun getMoveCount(): Int {
-        return moveCount
-    }
+    fun setBridgeSize(inputLength: Int) { bridgeSize = inputLength }
 
-    fun setBridge(bridgeMaker: BridgeMaker) {
-        bridge = bridgeMaker.makeBridge(bridgeSize)
+    fun setBridge(bridgeMaker: BridgeMaker) { bridge = bridgeMaker.makeBridge(bridgeSize) }
+
+    fun isCorrect(moving: String): Boolean { return bridge[moveCount] == moving }
+
+    private fun updateGameProgress(moving: String) {
+        if (moving == MOVING_UP) {
+            gameProgress[0].add(if (isCorrect(moving)) "O" else "X")
+            gameProgress[1].add(" ")
+        }
+        else if (moving == MOVING_DOWN) {
+            gameProgress[0].add(" ")
+            gameProgress[1].add(if (isCorrect(moving)) "O" else "X")
+        }
     }
 
     companion object {
