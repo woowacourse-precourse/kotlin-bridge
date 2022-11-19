@@ -23,8 +23,9 @@ class Rule {
         if(moving != "U" && moving != "D") throw IllegalArgumentException("[ERROR] U 또는 D가 아님")
     }
 
+    // R 또는 Q가 아닐 경우 예외 처리
     fun checkCommand(command: String) {
-
+        if(command != "R" && command != "Q") throw IllegalArgumentException("[ERROR] R 또는 Q가 아님")
     }
 
     // 이거 Constants에 옮기기?

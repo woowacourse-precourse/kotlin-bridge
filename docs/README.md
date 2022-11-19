@@ -243,3 +243,4 @@ val number = bridgeNumberGenerator.generate()
 ```
 
 - [ ] 도메인 별로 테스트를 작성했는가? (참고: https://tecoble.techcourse.co.kr/post/2020-05-07-appropriate_method_for_test_by_parameter/)
+- [ ] 객체는 객체스럽게 사용했는가?

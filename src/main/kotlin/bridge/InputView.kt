@@ -46,12 +46,25 @@ class InputView {
         return input
     }
 
+
+    // todo 위의 3개 로직 다 비슷하니까 하나로 통합하기 ( bridgeSize는 조금 다른 것 같기도 )
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        val input = Console.readLine()
-        // rule을 통해 옳바른 값을 받았는지 체크
+        var input = ""
+        var isCorrectCommand = false
+        do {
+            input = Console.readLine()
+            try {
+                rule.checkCommand(input)
+                isCorrectCommand = true
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+
+        } while(!isCorrectCommand)
+
         return input
     }
 }
