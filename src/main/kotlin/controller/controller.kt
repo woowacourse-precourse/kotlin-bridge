@@ -3,19 +3,30 @@ package controller
 import model.BridgeGame
 import view.InputView
 import view.OutputView
+import kotlin.reflect.typeOf
 
 class Controller {
     fun run() {
         val answerMove = startGame()
         var retry = true
-        var trial = 0
+        var gameResult = mutableListOf<Int>()
+        var resultGame = "실패"
+        var countRetry = 0
         while (retry) {
-            trial = totalGame(answerMove)
-            if (trial != answerMove.size) retry = BridgeGame().retry()
-            else break
+            gameResult = totalGame(answerMove)
+            if (gameResult[0] == 1) {
+                retry = BridgeGame().retry()
+                countRetry += 1
+                println("countRetry: $countRetry")
+            }
+            if (gameResult[2] == answerMove.size && gameResult[0] == 0) {
+                resultGame = "성공"
+                countRetry += 1
+                break
+            }
         }
-        finalGame()
-        resultGame(trial)
+        finalGame(resultGame)
+        resultGame(countRetry)
     }
 
     private fun startGame(): List<String> {
@@ -30,35 +41,47 @@ class Controller {
         return answerMove
     }
 
-    private fun totalGame(answerMove: List<String>): Int {
+    private fun totalGame(answerMove: List<String>): MutableList<Int> {
         var trialCount = 0
-        var gameOver = false
-        val moveHashmapList = MutableList(answerMove.size) { it -> HashMap<String, String>() }
-        while (!gameOver) {
+        var gameOver = mutableListOf<Int>(0, 0, 0)
+//        val moveHashmapList = MutableList(answerMove.size) { it -> HashMap<String, String>() }
+        val moveHashmapList = mutableListOf<HashMap<String, String>>()
+        while (true) {
             gameOver = singleGame(answerMove, trialCount, moveHashmapList)
-            println("trialCount: $trialCount")
             trialCount += 1
-            if (trialCount == answerMove.size) {
-                break
+            gameOver[1] = trialCount
+
+            println("totalGame_gameOver[0]: ${gameOver[0]}")
+            if (gameOver[0] == 1) {
+                return gameOver
+            }
+            if (gameOver[2] == answerMove.size) {
+                return gameOver
             }
         }
-        return trialCount
     }
 
-    private fun singleGame(answerMove: List<String>, trialCount: Int, moveHashmapList: MutableList<HashMap<String, String>>) : Boolean {
-        var gameOver = false
+    private fun singleGame(
+        answerMove: List<String>,
+        trialCount: Int,
+        moveHashmapList: MutableList<HashMap<String, String>>
+    ): MutableList<Int> {
+        val gameOver = mutableListOf<Int>(0, 0, 0)
         // 이동할 칸을 선택해주세요.
         OutputView().printMoveTarget()
-        val moveInput = InputView().readMoving()
+        val moveInput = InputView().readMoving().trim()
 
         // compare 로직, 내가 넣은 인풋과 정답 비교.
         val resultMoveHashmap = BridgeGame().move(moveInput, answerMove[trialCount])
-        moveHashmapList[trialCount] = resultMoveHashmap
+        moveHashmapList.add(trialCount, resultMoveHashmap)
+        gameOver[2] = moveHashmapList.size
         println("moveHashmapList: $moveHashmapList")
         if (resultMoveHashmap.containsValue("X")) {
-            gameOver = true
+            gameOver[0] = 1
         }
+//        gameOver[1] = trialCount
         showTotalMove(trialCount, moveHashmapList)
+        println("singleGameGameOver[0]: ${gameOver[0]}")
         return gameOver
     }
 
@@ -67,7 +90,7 @@ class Controller {
         return false
     }
 
-    private fun gameOverCheck(resultMoveHashmap: HashMap<String, String>) : Boolean {
+    private fun gameOverCheck(resultMoveHashmap: HashMap<String, String>): Boolean {
         var gameOver = false
         if (resultMoveHashmap.contains("X")) {
             gameOver = true
@@ -85,22 +108,14 @@ class Controller {
         }
     }
 
-    private fun finalGame() {
+    private fun finalGame(resultGame: String) {
         // 최종 게임 결과
-        view.OutputView().printResultFinalGame()
-//        val answerMove = BridgeGame().getAnswerMove(bridgeSize)
-//        var gameOver = false
-//        val moveHashmapList = MutableList(bridgeSize) { it -> HashMap<String, String>() }
-//
-//
-//        totalMovePath = view.OutputView().printMap(trialCount, moveHashmapList)
-//        println(totalMovePath[0])
-//        println(totalMovePath[1])
+        OutputView().printResultFinalGame()
+        OutputView().printCheckSuccessGame(resultGame)
     }
 
     private fun resultGame(trial: Int) {
         // 게임 성공 여부 및 시도 회수
-        view.OutputView().printCheckSuccessGame()
         view.OutputView().printNumTotalTrial(trial)
     }
 
