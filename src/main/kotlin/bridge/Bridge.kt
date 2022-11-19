@@ -1,9 +1,15 @@
 package bridge
 
-class Bridge(private val size: Int) {
+class Bridge {
 
-    private val bridgeResult = BridgeResult()
-    private var success = 0
+    private val bridge : List<BridgeSpace>
+
+    constructor(bridge: List<String>) {
+        this.bridge = mapBridges(bridge)
+    }
+
+    fun mapBridges(bridge: List<String>) : List<BridgeSpace> =
+        bridge.mapIndexed { index, s ->  BridgeSpace(BridgeDirection.valueOf(s), index)}
 
     fun move(input: BridgeDirection, bridgeMap: List<String>, idx: Int) {
         val mark = movePossibleMark(movePossible(input, bridgeMap, idx))
