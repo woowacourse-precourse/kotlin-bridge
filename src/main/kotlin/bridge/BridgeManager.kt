@@ -81,6 +81,12 @@ class BridgeManager(private val inputView: InputView, private val outputView: Ou
         }
     }
 
+    fun printSuccess() {
+        val triple = Triple(this.position-1, this.bridgeGame.getUpBridge(), this.bridgeGame.getDownBridge())
+        outputView.printResult(triple, true)
+        outputView.printTryNumber(this.bridgeGame.getRetryCounter())
+    }
+
     fun getBridgeSize() = this.bridgeSize
 
     fun getBridge() = this.bridge
