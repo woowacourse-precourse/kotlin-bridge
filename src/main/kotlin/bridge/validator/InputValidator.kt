@@ -1,9 +1,6 @@
 package bridge.validator
 
-import bridge.util.DOWN_DIRECTION
-import bridge.util.ERROR_INVALID_MOVE_MESSAGE
-import bridge.util.ERROR_INVALID_SIZE_MESSAGE
-import bridge.util.UP_DIRECTION
+import bridge.util.*
 
 object InputValidator {
     fun validateInValidBridgeSize(input: Int) {
@@ -43,7 +40,7 @@ object InputValidator {
     }
 
     fun validateInvalidGameCommand(input: String) {
-        val hasInvalidGameCommand = (input != "Q" && input != "R")
+        val hasInvalidGameCommand = (input != QUIT_COMMAND && input != RESTART_COMMAND)
         if (hasInvalidGameCommand) throw IllegalArgumentException()
     }
 
@@ -54,9 +51,10 @@ object InputValidator {
                 validateInvalidGameCommand(gameCommand)
                 return gameCommand
             } catch (e: IllegalArgumentException) {
-                println("[ERROR] R(재시작)과 Q(종료) 중 하나의 문자를 입력할 수 있습니다")
+                println(ERROR_INVALID_COMMAND_MESSAGE)
                 continue
             }
         }
     }
 }
+

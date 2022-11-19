@@ -1,6 +1,7 @@
 package bridge
 
 import bridge.util.INPUT_BRIDGE_SIZE_MESSAGE
+import bridge.util.SELECT_GAME_COMMAND_MESSAGE
 import bridge.util.SELECT_MOVE_INPUT_MESSAGE
 import bridge.validator.InputValidator
 
@@ -28,7 +29,8 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        println(SELECT_GAME_COMMAND_MESSAGE)
         return InputValidator.validateGameCommand()
     }
 }
+
