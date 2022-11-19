@@ -1,60 +1,13 @@
 package bridge
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- *
- * 제공된 BridgeGame 클래스를 활용해 구현해야 한다.
- * BridgeGame에 필드를 추가할 수 있다.
- * BridgeGame의 패키지는 변경할 수 있다.
- * BridgeGame의 메서드의 이름은 변경할 수 없고, 인자와 반환 타입은 필요에 따라 추가하거나 변경할 수 있다.
- * 게임 진행을 위해 필요한 메서드를 추가하거나 변경 할 수 있다.
- * BridgeGame 클래스에서 InputView, OutputView 를 사용하지 않는다.
- *
- */
 class BridgeGame {
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     *
-     *
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     fun move(route: String, moving: String): String {
         if (route == moving) return "O"
         return "X"
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     *
-     *
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun retry(Count: Int, bridge: List<String>): Int{
-        var moving: String
-        val movingResult = mutableListOf<String>()
-        var passORfail = 0
-        val gameCommand: String
-        var tryCount = Count + 1
-
-        for (route in bridge) {
-            moving = InputView().readMoving() // 이동 위치 입력
-            movingResult.add(BridgeGame().move(route, moving)) // 이동 결과
-            passORfail = OutputView().printMap(bridge, movingResult) // 출력
-            println("")
-            if (passORfail == 1) break
-        }
-        if (passORfail == 1) { // 실패했을시
-            gameCommand = InputView().readGameCommand() // 커맨드 입력
-            if (gameCommand == "R") tryCount = BridgeGame().retry(tryCount, bridge)
-            if (gameCommand == "Q") {
-                println("최종 게임 결과")
-                OutputView().printMap(bridge, movingResult)
-            }
-        }
-        if (passORfail == 0) {
-            println("최종 게임 결과")
-            OutputView().printMap(bridge, movingResult)
-        }
-        return tryCount
+    fun retry(bridge: List<String>, tryCount: Int) {
+        val movingResult = proceedGame(bridge)
+        finishGame(bridge, movingResult, tryCount)
     }
 }
