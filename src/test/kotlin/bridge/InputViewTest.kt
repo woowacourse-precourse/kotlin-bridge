@@ -54,12 +54,12 @@ class InputViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["u", "d", "U", "D"])
-    fun `이동할 칸의 입력이 대소문자를 구분하지 않아도 허용한다`(input: String) {
+    @ValueSource(strings = ["u", "d"])
+    fun `이동할 칸의 입력이 소문자를 허용하지 않는다`(input: String) {
         val gets = ByteArrayInputStream(input.toByteArray())
         System.setIn(gets)
 
-        assertEquals(input.uppercase(), inputView.readMoving())
+        assertThrows<IllegalArgumentException> { inputView.readMoving() }
     }
 
     @ParameterizedTest
@@ -72,12 +72,12 @@ class InputViewTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["q", "r", "Q", "R"])
-    fun `게임의 재시작 입력이 대소문자를 구분하지 않아도 허용한다`(input: String) {
+    @ValueSource(strings = ["q", "r"])
+    fun `게임의 재시작 입력이 소문자를 허용하지 않는다`(input: String) {
         val gets = ByteArrayInputStream(input.toByteArray())
         System.setIn(gets)
 
-        assertEquals(input.uppercase(), inputView.readGameCommand())
+        assertThrows<IllegalArgumentException> { inputView.readGameCommand() }
     }
 
 }
