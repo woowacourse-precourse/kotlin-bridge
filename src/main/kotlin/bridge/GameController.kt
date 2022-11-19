@@ -37,12 +37,12 @@ class GameController {
             if (bridgeGame.checkGameOver()) {
                 break
             }
-            moving()
+            move()
             outputMoving()
         }
     }
 
-    private fun moving() {
+    private fun move() {
         bridgeGame.move(inputMoving())
     }
 
