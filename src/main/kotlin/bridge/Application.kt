@@ -1,5 +1,8 @@
 package bridge
 
+import bridge.view.InputView
+
 fun main() {
-    // TODO: 프로그램 구현
+    val inputView = InputView()
+    var bridgeSize = inputView.askBridgeSizeToUser()
 }
