@@ -25,7 +25,18 @@
 - stringChecker(): 입력받은 문자열이 숫자인지 확인하는 함수, 숫자인 경우 오류 출력
 - numberRangeChecker(): 입력받은 문자열이 허용 범위 이내의 숫자인지 확인하는 함수, 초과된 입력이면 오류 출력
 - stringRangeChecker(): 입력받은 문자가 허용 범위 이내의 재시작 혹은 이동 문자인지 확인하는 함수, 허용되는 문자가 아닌 경우 오류 출력
-- companion object: 출력 문구나 허용범위에 대한 변수 지정
+
+### companion object
+출력 문구와 허용범위에 대한 변수 지정
+- MIN_BRIDGE_SIZE: 최소 다리 길이
+- MAX_BRIDGE_SIZE: 최대 다리 길이
+- COMMAND_UP: 위쪽 입력 커맨드
+- COMMAND_DOWN: 아래쪽 입력 커맨드
+- COMMAND_RESTART: 재시작 입력 커맨드
+- COMMAND_QUIT: 종료 입력 커맨드
+- NOT_ALLOWED_...: error 문구
+- COMMAND_RANGE: 허용 재시작 커맨드 리스트
+- MOVING_RANGE: 허용 이동 커맨드 리스트
 
 ## OutputView
 클래스 기능 요약: 입력에 대한 결과를 출력하는 과정을 담당
@@ -38,6 +49,11 @@
 - printRetry(): 재시도 문구 출력
 - printTryNumber(): 총 시도 횟수 출력
 
+### companion object
+출력 문구에 관련된 문자열 관리
+- PRINT_...: 각종 입력 이벤트 발생전 알려주는 문구
+- SEP: 구분자
+
 ## BridgeGame
 클래스 기능 요약: 이동과 재시도등 게임 진행 과정을 담당
 
@@ -48,6 +64,13 @@
 - getUpBridge(): upBridge 배열 가져오는 함수
 - getDownBridge(): downBridge 배열 가져오는 함수
 - getRetryCounter(): retryCounter 값 가져오는 함수
+- getIsContinue(): isContinue 값 가져오는 함수
+
+### companion object
+현재까지의 결과 저장을 위한 문자열 관리
+- MOVE_CORRECT: 이동에 성공했을 때 저장하는 변수
+- MOVE_WRONG: 이동에 실패했을 때 저장하는 변수
+- MOVE_INIT: 초기값 지정을 위한 변수
 
 ### Field 목록
 - bridgeSize: 다리 길이 상수 변수
@@ -66,3 +89,23 @@
 클래스 기능 요약: 다리를 생성하기 위한 난수 생성을 담당
 - generate(): 0 또는 1을 무작위로 반환하는 함수
 
+## BridgeManager
+클래스 기능 요약: 게임을 진행하는 과정을 총괄하는 클래스
+
+### Method 목록
+- setBridgeSize(): 다리 길이를 입력받는 함수
+- getMoveCommand(): 다리 이동 입력받는 함수
+- moveBridge(): 사용자의 입력으로부터 다리 이동을 적용하는 함수
+- failChecker(): 사용자의 다리 이동이 실패 후 재시작을 원하는지 확인하는 함수
+- restartGame(): 사용자의 재시작을 적용하는 함수
+- getRetryCommand(): 사용자의 재시작 입력받는 함수
+- printGameResult(): 게임 결과를 출력하는 함수
+- gameLoop(): 게임을 진행하는 함수
+
+### Field 목록
+- inputView: InputView 클래스 인스턴스
+- outputView: OutputView 클래스 인스턴스
+- bridgeSize: 다리 길이 상수 변수
+- bridge: 다리 리스트
+- bridgeGame: BridgeGame 클래스 인스턴스
+- position: 현재까지 진행된 인덱스 상수 변수
