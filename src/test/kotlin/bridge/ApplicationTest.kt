@@ -33,7 +33,41 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `잘못된 값 입력 시 재입력 받는다`() {
+    fun `실패 테스트`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "D", "D", "Q")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O |   |   ]",
+                "[   | O | X ]",
+                "게임 성공 여부: 실패",
+                "총 시도한 횟수: 1"
+            )
+            val upSideIndex = output().indexOf("[ O |   |   ]")
+            val downSideIndex = output().indexOf("[   | O | X ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 1, 0, 1)
+    }
+
+    @Test
+    fun `재시도 테스트`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "D", "D", "R", "U", "D", "U")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O |   | O ]",
+                "[   | O |   ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 2"
+            )
+            val upSideIndex = output().indexOf("[ O |   | O ]")
+            val downSideIndex = output().indexOf("[   | O |   ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 1, 0, 1)
+    }
+
+    @Test
+    fun `재입력 테스트`() {
         assertRandomNumberInRangeTest({
             run("25", "3", "e", "U", "D", "c", "R", "U", "U", "U")
             assertThat(output()).contains(
