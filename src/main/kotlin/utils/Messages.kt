@@ -12,4 +12,21 @@ object Messages {
     // 에러
     const val ERROR_PREFIX = "[ERROR] "
     const val ERROR_BRIDGE_SIZE = "올바른 다리 길이를 입력해주세요."
+    const val ERROR_RETRY_INPUT = "올바른 재시작 지시어를 입력해주세요."
+    
+    // 성공 실패
+    const val SUCCESS = "성공"
+    const val FAIL = "실패"
+
+    // 움직임
+    const val MOVE_UP = "U"
+    const val MOVE_DOWN = "D"
+
+    // 움직임 결과
+    const val MOVE_FAIL = "X"
+    const val MOVE_SUCCESS = "O"
+
+    // 재시작 키워드
+    const val RESTART = "R"
+    const val QUIT = "Q"
 }

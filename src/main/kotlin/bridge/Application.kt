@@ -1,6 +1,5 @@
 package bridge
 
-import model.BridgeGame
 import controller.Controller
 import utils.Messages.ERROR_PREFIX
 

@@ -12,15 +12,14 @@ class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(): Int {
+    fun readBridgeSize(): String {
 //        try {
 //            val numBridgeSize = readLine()
 //        } catch (e: IllgalArgumentException) {
 //            println(ERROR_PREFIX+ERROR_BRIDGE_SIZE)
 //            return
 //        }
-        val numBridgeSize = readLine()
-        return numBridgeSize!!.toInt()
+        return readLine()!!
     }
 
     /**

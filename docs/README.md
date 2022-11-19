@@ -38,9 +38,9 @@
 - [ ] 함수(또는 메서드)의 길이가 10라인을 넘어가지 않도록 구현한다.
 - [ ] 메서드의 파라미터 개수는 최대 3개까지만 허용한다.
 - [ ] 핵심 로직을 구현하는 코드와 UI를 담당하는 로직을 분리해 구현한다.
-  - [ ] InputView의 패키지는 변경할 수 있다. -> InputView 패키지: view로 변경
-  - [ ] OutputView의 패키지는 변경할 수 있다. -> OutputView 패키지: view로 변경
-  - [ ] BridgeGame의 패키지는 변경할 수 있다. -> model로 패키지 변경
+  - [X] InputView의 패키지는 변경할 수 있다. -> InputView 패키지: view로 변경
+  - [X] OutputView의 패키지는 변경할 수 있다. -> OutputView 패키지: view로 변경
+  - [X] BridgeGame의 패키지는 변경할 수 있다. -> model로 패키지 변경
   - [ ] BridgeMaker는 패키지 불변
 - [ ] BridgeRandomNumberGenerator 클래스 -> Random 값 추출은 제공된 bridge.BridgeRandomNumberGenerator의 generate()를 활용한다.
 - [ ] readline() -> 용자가 입력하는 값은 camp.nextstep.edu.missionutils.Console의 readLine()을 활용한다.

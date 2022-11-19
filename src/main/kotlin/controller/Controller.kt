@@ -16,12 +16,21 @@ class Controller {
     var retry = true
     var resultGame = FAIL
     var countRetry = 0
+    var gameResult = mutableListOf<Int>()
     fun run() {
         val answerMove = startGame()
         while (retry) {
-            if ((pipelineGame(answerMove)[2]) == 10) break
-            if ((pipelineGame(answerMove)[0]) == 0) resultGame = SUCCESS
-            countRetry = pipelineGame(answerMove)[1]
+            gameResult = totalGame(answerMove)
+            if (gameResult[0] == 1) {
+                retry = BridgeGame().retry(askRetry())
+                countRetry += 1
+                println("countRetry: $countRetry")
+            }
+            if (gameResult[2] == answerMove.size && gameResult[0] == 0) {
+                resultGame = "성공"
+                countRetry += 1
+                break
+            }
         }
         finalGame(resultGame)
         resultGame(countRetry)
@@ -31,12 +40,12 @@ class Controller {
         OutputView().printGameStart()
         OutputView().printBridgeLen()
         val bridgeSize = InputView().readBridgeSize()
-        try {
-            checkRightInputBridgeSize(bridgeSize)
-        } catch (e: IllegalArgumentException) {
-            println(ERROR_PREFIX+ERROR_BRIDGE_SIZE)
-            startGame()
-        }
+//        try {
+//            checkRightInputBridgeSize(bridgeSize)
+//        } catch (e: IllegalArgumentException) {
+//            println(ERROR_PREFIX+ERROR_BRIDGE_SIZE)
+//            startGame()
+//        }
         val answerMove = BridgeGame().getAnswerMove(bridgeSize.toInt())
         println()
         return answerMove
@@ -49,22 +58,6 @@ class Controller {
 //        if () {
 //
 //        }
-    }
-
-    private fun pipelineGame (answerMove: List<String>): MutableList<Int> {
-        val gameResult = totalGame(answerMove)
-        val resultList = mutableListOf<Int>(0,0,0)
-        if (gameResult[0] == 1) {
-            val inputGameRestartCommand = askRetry()
-            resultList[2] = BridgeGame().retry(inputGameRestartCommand)
-            resultList[1] += 1
-        }
-        if (gameResult[2] == answerMove.size && gameResult[0] == 0) {
-            resultList[0] = 0 // resultGame
-            resultList[1] += 1 // countRetry
-            resultList[2] = 10 // retry 10 = false // retry 11 = true
-        }
-        return resultList
     }
 
     private fun totalGame(answerMove: List<String>): MutableList<Int> {
@@ -98,12 +91,12 @@ class Controller {
     private fun askRetry(): String {
         OutputView().printAskGameResult()
         val inputGameRestartCommand = InputView().readGameCommand()
-        try {
-            checkRightInputRepeat(inputGameRestartCommand)
-        } catch (e: IllegalArgumentException) {
-            println(ERROR_PREFIX+ERROR_RETRY_INPUT)
-            askRetry() // TODO: 다시 입력시 콘솔의 이전 입력을 그대로 최신 입력으로 활용하는 이슈
-        }
+//        try {
+//            checkRightInputRepeat(inputGameRestartCommand)
+//        } catch (e: IllegalArgumentException) {
+//            println(ERROR_PREFIX+ERROR_RETRY_INPUT)
+//            askRetry() // TODO: 다시 입력시 콘솔의 이전 입력을 그대로 최신 입력으로 활용하는 이슈
+//        }
         return inputGameRestartCommand
     }
 

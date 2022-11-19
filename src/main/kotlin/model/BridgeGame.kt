@@ -2,6 +2,11 @@ package model
 
 import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
+import utils.Messages.MOVE_DOWN
+import utils.Messages.MOVE_FAIL
+import utils.Messages.MOVE_SUCCESS
+import utils.Messages.MOVE_UP
+import utils.Messages.RESTART
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -16,10 +21,10 @@ class BridgeGame {
     fun move(moveInput: String, answerMoveSingle: String): HashMap<String, String> {
         val resultHashMap = HashMap<String, String>()
         when {
-            (moveInput == answerMoveSingle) && (moveInput == "U") -> resultHashMap["U"] = "O"
-            (moveInput == answerMoveSingle) && (moveInput == "D") -> resultHashMap["D"] = "O"
-            (moveInput != answerMoveSingle) && (moveInput == "U") -> resultHashMap["U"] = "X"
-            (moveInput != answerMoveSingle) && (moveInput == "D") -> resultHashMap["D"] = "X"
+            (moveInput == answerMoveSingle) && (moveInput == MOVE_UP) -> resultHashMap[MOVE_UP] = MOVE_SUCCESS
+            (moveInput == answerMoveSingle) && (moveInput == MOVE_DOWN) -> resultHashMap[MOVE_DOWN] = MOVE_SUCCESS
+            (moveInput != answerMoveSingle) && (moveInput == MOVE_UP) -> resultHashMap[MOVE_UP] = MOVE_FAIL
+            (moveInput != answerMoveSingle) && (moveInput == MOVE_DOWN) -> resultHashMap[MOVE_DOWN] = MOVE_FAIL
         }
         return resultHashMap
     }
@@ -30,13 +35,11 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry(): Boolean {
-        view.OutputView().printAskGameResult()
-        val inputGameRestartCommand = view.InputView().readGameCommand()
-        if (inputGameRestartCommand == "R") {
-            return true
+    fun retry(inputGameRestartCommand: String): Boolean {
+        if (inputGameRestartCommand == RESTART) {
+            return true // true
         }
-        return false
+        return false // false
     }
 
     fun getAnswerMove(bridgeSize: Int): List<String> {
