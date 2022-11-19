@@ -13,11 +13,13 @@ fun main() {
 //다리 크기 입력 (예외 처리)
 fun printSize() : String{
     try{
+
         val size = InputView().readBridgeSize()
         CheckException().checkInput(size)
         return size
+
     } catch (e : IllegalArgumentException){
-        println(Strings.INPUT_SIZE_ERROR.phrases)
+        println(e)
         println("\n")
         val size = printSize()
         return size
