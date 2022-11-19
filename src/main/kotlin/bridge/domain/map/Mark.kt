@@ -1,4 +1,4 @@
-package bridge.domain.route
+package bridge.domain.map
 
 import bridge.util.CORRECT_MARK
 import bridge.util.DEFAULT_MARK

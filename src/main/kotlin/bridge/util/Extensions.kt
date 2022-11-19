@@ -1,6 +1,6 @@
 package bridge.util
 
-import bridge.domain.route.Mark
+import bridge.domain.map.Mark
 
 fun List<Mark>.convertAsBridgeRoute(): String =
     map { mark -> mark.mark }

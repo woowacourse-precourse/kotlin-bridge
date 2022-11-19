@@ -1,20 +1,20 @@
-package bridge.domain.route
+package bridge.domain.map
 
 import bridge.domain.bridge.Bridge
 import bridge.domain.path.Path
 import bridge.util.DOWN
 import bridge.util.UP
 
-class Route(
-    private val route: List<ArrayList<Mark>> = listOf(arrayListOf(), arrayListOf()),
+class RouteMap(
+    private val routeMap: List<ArrayList<Mark>> = listOf(arrayListOf(), arrayListOf()),
     private val bridge: Bridge
 ) {
-    fun addPath(path: Path): Route {
-        route[0].add(Mark.DEFAULT)
-        route[1].add(Mark.DEFAULT)
+    fun addPath(path: Path): RouteMap {
+        routeMap[0].add(Mark.DEFAULT)
+        routeMap[1].add(Mark.DEFAULT)
         updatePath(path, path.position())
 
-        return Route(route, bridge)
+        return RouteMap(routeMap, bridge)
     }
 
     private fun updatePath(path: Path, position: Int) {
@@ -31,17 +31,17 @@ class Route(
 
     private fun markCorrectPath(bridgeDirection: String, userDirection: Int, round: Int) {
         when (bridgeDirection) {
-            UP -> route[userDirection][round] = Mark.CORRECT
-            DOWN -> route[userDirection][round] = Mark.CORRECT
+            UP -> routeMap[userDirection][round] = Mark.CORRECT
+            DOWN -> routeMap[userDirection][round] = Mark.CORRECT
         }
     }
 
     private fun markWrongPath(bridgeDirection: String, userDirection: Int, round: Int) {
         when (bridgeDirection) {
-            UP -> route[userDirection][round] = Mark.WRONG
-            DOWN -> route[userDirection][round] = Mark.WRONG
+            UP -> routeMap[userDirection][round] = Mark.WRONG
+            DOWN -> routeMap[userDirection][round] = Mark.WRONG
         }
     }
 
-    fun asList() = route
+    fun asList() = routeMap
 }

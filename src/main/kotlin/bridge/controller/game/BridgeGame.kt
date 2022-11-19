@@ -5,11 +5,11 @@ import bridge.BridgeRandomNumberGenerator
 import bridge.domain.bridge.Bridge
 import bridge.domain.counter.TryCounter
 import bridge.domain.path.Path
-import bridge.domain.route.Route
+import bridge.domain.map.RouteMap
 import bridge.presentation.InputView
 import bridge.presentation.OutputView
 import bridge.util.RETRIAL
-import bridge.domain.route.Mark
+import bridge.domain.map.Mark
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -49,9 +49,9 @@ class BridgeGame : Game {
         } while (true)
     }
 
-    private fun startGame(): Pair<Result, Route> {
+    private fun startGame(): Pair<Result, RouteMap> {
         val bridgeSize = bridge.size()
-        val playerRoute = Route(bridge = bridge)
+        val playerRoute = RouteMap(bridge = bridge)
 
         tryCounter.plus()
         for (round in 0 until bridgeSize) {
@@ -80,7 +80,7 @@ class BridgeGame : Game {
         return bridgeSize
     }
 
-    private fun drawRoute(route: Route) {
+    private fun drawRoute(route: RouteMap) {
         outputView.printMap(route.asList())
     }
 
