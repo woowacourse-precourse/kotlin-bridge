@@ -1,9 +1,6 @@
 package bridge.validator
 
-import bridge.util.DOWN_MOVE_STRING
-import bridge.util.ERROR_INVALID_MOVE_MESSAGE
-import bridge.util.ERROR_INVALID_SIZE_MESSAGE
-import bridge.util.UP_MOVE_STRING
+import bridge.util.*
 
 object InputValidator {
     fun validateInValidBridgeSize(input: Int) {
@@ -25,7 +22,7 @@ object InputValidator {
     }
 
     fun validateInvalidMoveInput(input: String) {
-        val hasInvalidMoveInput = (input != UP_MOVE_STRING && input != DOWN_MOVE_STRING)
+        val hasInvalidMoveInput = (input != UP_DIRECTION && input != DOWN_DIRECTION)
         if (hasInvalidMoveInput) throw IllegalArgumentException()
     }
 
