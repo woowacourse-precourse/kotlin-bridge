@@ -43,7 +43,7 @@ class OutputView {
 
     fun printSuccessFail(bridgeResult: BridgeResult) {
         val result = bridgeResult.getGameResult()
-        println(BRIDGE_GAME_CHECK_SUCCESS_MESSAGE + result.name)
+        println(BRIDGE_GAME_CHECK_SUCCESS_MESSAGE + result.getResultMessage())
     }
 
     fun printGameCount(count : Int) {
