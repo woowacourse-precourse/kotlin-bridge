@@ -16,13 +16,29 @@ fun main() {
         tryCount += 1
         outputView.printInputMoving()
         val moving = inputView.readMoving()
-        val isFinished = bridgeGame.move(moving)
+        val isFail = bridgeGame.move(moving)
         outputView.printMap(bridgeGame.userMoving)
-    } while (!isFinished || bridgeSize == bridgeGame.count)
+
+        var isFinished = bridgeSize == bridgeGame.count
+        if (isFail) {
+            outputView.printGameCommand()
+            val command = inputView.readGameCommand()
+            isFinished = isFinished(command)
+            bridgeGame.retry()
+        }
+    } while (isFinished.not())
 }
 
 private fun makeBridge(bridgeSize: Int): List<String> {
     val bridgeNumberGenerator = BridgeRandomNumberGenerator()
     val bridgeMaker = BridgeMaker(bridgeNumberGenerator)
     return bridgeMaker.makeBridge(bridgeSize)
+}
+
+private fun isFinished(command: String): Boolean {
+    if (command == "R") {
+        return false
+    }
+
+    return true
 }

@@ -25,4 +25,14 @@ class BridgeGameTest {
         val isFinished = bridgeGame.move("D")
         assertThat(isFinished).isTrue
     }
+
+    @Test
+    fun `다시 시도 시 초기화 여부`() {
+        bridgeGame.move("U")
+        bridgeGame.move("U")
+        bridgeGame.move("D")
+        bridgeGame.retry()
+        val result = bridgeGame.count
+        assertThat(result).isEqualTo(0)
+    }
 }
