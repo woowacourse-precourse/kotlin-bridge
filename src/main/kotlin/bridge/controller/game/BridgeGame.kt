@@ -115,14 +115,8 @@ class BridgeGame : Game {
 
     private fun bridgeSize(): Int {
         outputView.printBridgeLengthQuestion()
-        var bridgeSize = 0
-
-        runCatching {
-            bridgeSize = inputView.readBridgeSize()
-        }.onFailure {
-            outputView.printError(it)
-            bridgeSize = bridgeSize()
-        }
+        val bridgeSize = inputView.readBridgeSize()
+        println()
         return bridgeSize
     }
 

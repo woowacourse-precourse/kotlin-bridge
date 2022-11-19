@@ -18,6 +18,7 @@ class OutputView {
         route.forEach { subRoute ->
             println(subRoute.convertAsBridgeRoute())
         }
+        println()
     }
 
     /**
