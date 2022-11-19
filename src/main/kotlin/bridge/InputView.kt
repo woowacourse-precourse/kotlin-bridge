@@ -9,7 +9,7 @@ class InputView {
      * @return 다리의 길이 반환. 예외일 경우 -1 반환
      */
     fun readBridgeSize(): Int {
-        println(MESSAGE.INPUTBRIDGESIZE.message)
+        println(Message.INPUT_BRIDGE_SIZE.message)
         return try {
             val sizeString = camp.nextstep.edu.missionutils.Console.readLine()
             checkBridgeSizeInt(sizeString)
@@ -27,7 +27,7 @@ class InputView {
         try {
             sizeString.toInt()
         }catch (e: IllegalArgumentException){
-            println(MESSAGE.BRIDGESIZEINTERROR.message)
+            println(Message.BRIDGE_SIZE_INT_ERROR.message)
             throw e
         }
     }
@@ -38,10 +38,11 @@ class InputView {
      */
     private fun checkBridgeSizeRange(size:Int): Int {
         try {
-            require(size in 3 .. 20)
+            // TODO: 3, 20 상수처리
+            require(size in Bridge.LESS_BRIDGE_SIZE.params .. Bridge.MOST_BRIDGE_SIZE.params)
             return size
         }catch (e: IllegalArgumentException){
-            println(MESSAGE.BRIDGESIZERANGEERROR.message)
+            println(Message.BRIDGE_SIZE_RANGE_ERROR.message)
             throw e
         }
     }
@@ -60,11 +61,17 @@ class InputView {
         return ""
     }
 
-    enum class MESSAGE(
+    enum class Message(
             val message: String
     ) {
-        INPUTBRIDGESIZE("다리의 길이를 입력해주세요."),
-        BRIDGESIZEINTERROR("[ERROR]: 다리의 길이는 숫자 형식이어야 합니다."),
-        BRIDGESIZERANGEERROR("[ERROR]: 다리의 길이는 3이상 20 이하의 값을 가져야합니다.")
+        INPUT_BRIDGE_SIZE("다리의 길이를 입력해주세요."),
+        BRIDGE_SIZE_INT_ERROR("[ERROR]: 다리의 길이는 숫자 형식이어야 합니다."),
+        BRIDGE_SIZE_RANGE_ERROR("[ERROR]: 다리의 길이는 3이상 20 이하의 값을 가져야합니다.")
+    }
+    enum class Bridge(
+            val params:Int
+    ){
+        LESS_BRIDGE_SIZE(3),
+        MOST_BRIDGE_SIZE(20)
     }
 }
