@@ -31,7 +31,17 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        var input: String = ""
+
+        while (true) {
+            try {
+                input = Console.readLine()
+                if (inspector.checkMoving(input)) return input
+            } catch (e: IllegalArgumentException) {
+                println(ERROR_MESSAGE + MOVING_ONLY_U_OR_D)
+                continue
+            }
+        }
     }
 
     /**
