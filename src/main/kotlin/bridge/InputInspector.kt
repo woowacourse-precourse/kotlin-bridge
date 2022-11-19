@@ -21,4 +21,12 @@ class InputInspector {
         }
     }
 
+    fun checkGameCommand(input: String): Boolean {
+        if (input == "R" || input == "Q") {
+            return true
+        } else {
+            throw IllegalArgumentException()
+        }
+    }
+
 }
