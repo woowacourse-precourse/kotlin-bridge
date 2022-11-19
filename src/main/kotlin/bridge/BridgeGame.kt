@@ -5,8 +5,22 @@ package bridge
  */
 class BridgeGame {
 
-    fun start() {
+    private val inputView = InputView()
+    private val outputView = OutputView()
 
+    fun start() {
+        outputView.printStartMessage()
+        val bridgeSize = getBridgeSize()
+    }
+
+    fun getBridgeSize(): Int {
+        while (true) {
+            try {
+                return inputView.readBridgeSize()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 
     fun startCycle() {
