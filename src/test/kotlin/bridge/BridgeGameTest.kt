@@ -8,6 +8,10 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class BridgeGameTest : NsTest() {
+    override fun runMain() {
+        main()
+    }
+
     @Test
     fun `다리길이 정상적인 입력값을 받았을 경우`() {
         assertSimpleTest {
@@ -31,7 +35,12 @@ class BridgeGameTest : NsTest() {
         }
     }
 
-    override fun runMain() {
-        main()
+    @Test
+    fun `이동할 칸 입력 값에 U 또는 D가 들어가지 않았을 경우 예외처리`() {
+        // 3-20 범위를 벗어났을 경우
+        assertSimpleTest {
+            runException("3", "위", "u")
+            assertThat(output()).contains("[ERROR]")
+        }
     }
 }
