@@ -16,12 +16,9 @@ class GameController {
     fun gameStart() {
         makeBridge(inputBridgeSize())
         repeatMoving()
-        if(!bridgeGame.checkGameWin()){
-            println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
-            if(inputView.readGameCommand()=="R"){
-                bridgeGame.retry()
-                return gameStart()
-            }
+        if(checkRetryGame()){
+            bridgeGame.retry()
+            return gameStart()
         }
         outputView.printResult(bridgeGame.currentMoving,judgeMoving(),bridgeGame.tryCount)
     }
@@ -60,5 +57,15 @@ class GameController {
 
     private fun judgeMoving(): Boolean {
         return bridgeGame.judgeMovingSuccess()
+    }
+
+    private fun checkRetryGame() : Boolean {
+        if(!bridgeGame.checkGameWin()) {
+            println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+            if (inputView.readGameCommand() == "R") {
+                return true
+            }
+        }
+        return false
     }
 }
