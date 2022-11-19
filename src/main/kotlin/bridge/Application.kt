@@ -1,5 +1,8 @@
 package bridge
 
+import bridge.controller.Controller
+import bridge.util.BridgeRandomNumberGenerator
+
 fun main() {
-    // TODO: 프로그램 구현
+    Controller().run(BridgeRandomNumberGenerator())
 }
