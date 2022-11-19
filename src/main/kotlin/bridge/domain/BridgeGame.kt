@@ -18,6 +18,7 @@ class BridgeGame {
         }
         return Status.WRONG
     }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      *
@@ -31,7 +32,7 @@ class BridgeGame {
         return true
     }
 
-    fun escape(index: Int, bridge: List<String> ,progress: MutableList<Status>): Boolean {
+    fun escape(index: Int, bridge: List<String>, progress: MutableList<Status>): Boolean {
         if (index >= bridge.size) {
             return false
         }
