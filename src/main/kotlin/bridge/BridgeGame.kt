@@ -37,7 +37,6 @@ class BridgeGame {
         var tryCount = Count + 1
 
         for (route in bridge) {
-            println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
             moving = InputView().readMoving() // 이동 위치 입력
             movingResult.add(BridgeGame().move(route, moving)) // 이동 결과
             passORfail = OutputView().printMap(bridge, movingResult) // 출력
@@ -45,7 +44,6 @@ class BridgeGame {
             if (passORfail == 1) break
         }
         if (passORfail == 1) { // 실패했을시
-            println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
             gameCommand = InputView().readGameCommand() // 커맨드 입력
             if (gameCommand == "R") tryCount = BridgeGame().retry(tryCount, bridge)
             if (gameCommand == "Q") {

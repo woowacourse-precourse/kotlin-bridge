@@ -13,7 +13,7 @@ class OutputView {
     fun printMap(bridge : List<String>, movingResult : List<String>): Int{
         val upperMap = mutableListOf<String>()
         val lowerMap = mutableListOf<String>()
-        var passORfail = 0 // default pass
+        var passORfail = 0 // default pass 이름변경필요
         for (i in 0 until movingResult.size) {
             if (movingResult[i] == "O" && bridge[i] == "U") {
                 upperMap.add(" O ")
@@ -48,7 +48,7 @@ class OutputView {
      */
     fun printResult(gameCommand: String, tryCount: Int) {
         if (gameCommand == "Q") println("게임 성공 여부: 실패")
-        println("게임 성공 여부: 성공")
+        if (gameCommand == "R") println("게임 성공 여부: 성공")
         println("총 시도한 횟수: " + tryCount)
     }
 }
