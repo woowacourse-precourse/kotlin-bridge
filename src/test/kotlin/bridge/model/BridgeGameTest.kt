@@ -73,6 +73,17 @@ class BridgeGameTest {
         assert(game.movingResults == expects)
     }
 
+    @Test
+    fun `재시도 시 마지막 이동결과에 대한 기록은 삭제된다`() {
+        setGameFailed()
+        game.retry("R")
+        val failMovingResult = BridgeGame.MovingResult(
+            Direction.getByDisplayName(getIncorrectMoving(0)),
+            false
+        )
+        assert(failMovingResult !in game.movingResults)
+    }
+
     private fun setGamePassed() {
         directions.forEach { game.move(it) }
     }
