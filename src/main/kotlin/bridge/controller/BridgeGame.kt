@@ -14,14 +14,16 @@ class BridgeGame : Game {
     private val inputView: InputView by lazy { InputView() }
     private val outputView: OutputView by lazy { OutputView() }
 
-    private val bridgeMaker: BridgeMaker by lazy { BridgeMaker(BridgeRandomNumberGenerator()) }
     private lateinit var bridge: Bridge
+    private val bridgeMaker: BridgeMaker by lazy { BridgeMaker(BridgeRandomNumberGenerator()) }
     private val counter: Counter by lazy { Counter() }
     private var path = Path()
 
     override fun start() {
         outputView.printGameStart()
         val bridgeSize = askBridgeSize()
+        outputView.printNewLine()
+
         bridge = Bridge(bridgeMaker.makeBridge(bridgeSize))
 
         do {
@@ -64,8 +66,14 @@ class BridgeGame : Game {
 
     private fun askBridgeSize(): Int {
         outputView.printBridgeLengthQuestion()
-        val bridgeSize = inputView.readBridgeSize()
-        outputView.printNewLine()
+
+        var bridgeSize = 0
+        runCatching {
+            bridgeSize = inputView.readBridgeSize()
+        }.onFailure {
+            outputView.printError(it)
+            bridgeSize = askBridgeSize()
+        }
 
         return bridgeSize
     }
@@ -76,7 +84,14 @@ class BridgeGame : Game {
 
     private fun retry(): Boolean {
         outputView.printRetryQuestion()
-        return inputView.readGameCommand() == RETRIAL
+        var isRetry = false
+        runCatching {
+            isRetry = inputView.readGameCommand() == RETRIAL
+        }.onFailure {
+            outputView.printError(it)
+            isRetry = retry()
+        }
+        return isRetry
     }
 
     private fun init() {
@@ -89,6 +104,11 @@ class BridgeGame : Game {
 
     private fun move() {
         outputView.printDirectionQuestion()
-        path = path.createNewPath(inputView.readDirection())
+        runCatching {
+            path = path.createNewPath(inputView.readDirection())
+        }.onFailure {
+            outputView.printError(it)
+            move()
+        }
     }
 }

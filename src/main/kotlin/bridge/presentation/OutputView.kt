@@ -57,4 +57,8 @@ class OutputView {
     }
 
     fun printNewLine() = println()
+
+    fun printError(throwable: Throwable) {
+        println(throwable.message)
+    }
 }
