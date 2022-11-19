@@ -8,11 +8,9 @@
 ---
 - [x] 이동할 칸을 입력 받는다
   - [ERROR] 처리 *Validator#isValidMoving()
-- [ ] 이동할 칸을 체크한다. *Player
-  - 현재 이동한 위치 index 값 최신화
-- [ ] 입력 받은 값에 따라 다리를 건넌다. #BaseGame#move()
-  - [ ] 현재까지 간 다리가 건널 수 있는 지 확인하기 *Bridge#checkGoingAcross()
-  - [ ] 입력 받은 값에 건넌 뒤, 상태 변화 및 포지션 변화 *Player#go()
+- [x] 플레이어가 이동한다. *BridgeGame#move()
+  - [x] 플레이어 이동 후, 플레이어가 이동한 상태를 기록 *Player#go()
+    - [x] 랜덤다리와 비교하여 플레이어가 건널 수 있는 지 여부 파악 #Player#canGo()
 - [ ] 현재까지 건넌 다리 모두를 출력한다 *OutputView#pringMap()
 - [ ] 다리 끝까지 건넜는 지 확인을 한다. *Player#isDone()
   - [ ] 다 건너지 않았다면? 실패했는 지 확인 *Player#goWell()
