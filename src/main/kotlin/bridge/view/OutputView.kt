@@ -15,38 +15,39 @@ class OutputView {
     }
 
     private fun getUpBridgeForm(currentMap: List<String>, isSuccess: Boolean): String {
-        var result = "[ ${getUpValue(currentMap[0], isSuccess)}"
+        var result = "[ ${getUpValue(currentMap[0], isSuccess,currentMap.lastIndex==0)}"
         for (count in 1 until currentMap.size) {
-            result = result + " | " + getUpValue(currentMap[count], isSuccess)
+            result = result + " | " + getUpValue(currentMap[count], isSuccess,count==currentMap.lastIndex)
         }
         result += " ]"
         return result
     }
 
-    private fun getUpValue(bridgeLastValue: String, isSuccess: Boolean): String {
+    private fun getUpValue(bridgeValue: String, isSuccess: Boolean, isLastValue : Boolean): String {
         var result = ""
-        if (bridgeLastValue == "D") result = " "
-        else if (bridgeLastValue == "U" && isSuccess) result = "O"
-        else if (bridgeLastValue == "U" && !isSuccess) result = "X"
+        if (bridgeValue == "D") result = " "
+        else if (bridgeValue == "U" && !isSuccess && isLastValue) result = "X"
+        else if (bridgeValue == "U") result = "O"
         return result
     }
 
     private fun getDownBridgeForm(currentMap: List<String>, isSuccess: Boolean): String {
-        var result = "[ ${getDownValue(currentMap[0], isSuccess)}"
+        var result = "[ ${getDownValue(currentMap[0], isSuccess,currentMap.lastIndex==0)}"
         for (count in 1 until currentMap.size) {
-            result = result + " | " + getDownValue(currentMap[count], isSuccess)
+            result = result + " | " + getDownValue(currentMap[count], isSuccess,count==currentMap.lastIndex)
         }
         result += " ]"
         return result
     }
 
-    private fun getDownValue(bridgeLastValue: String, isSuccess: Boolean): String {
+    private fun getDownValue(bridgeValue: String, isSuccess: Boolean, isLastValue : Boolean): String {
         var result = ""
-        if (bridgeLastValue == "U") result = " "
-        else if (bridgeLastValue == "D" && isSuccess) result = "O"
-        else if (bridgeLastValue == "D" && !isSuccess) result = "X"
+        if (bridgeValue == "U") result = " "
+        else if (bridgeValue == "D" && !isSuccess && isLastValue) result = "X"
+        else if (bridgeValue == "D") result = "O"
         return result
     }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
