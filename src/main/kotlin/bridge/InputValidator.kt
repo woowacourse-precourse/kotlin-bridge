@@ -2,14 +2,19 @@ package bridge
 
 object InputValidator {
 
-    fun validateBridgeSize(bridgeSize: Int) =
+    fun validateBridgeInput(bridgeSize: String) {
+        validateNumericInput(bridgeSize)
+        validateBridgeSize(bridgeSize.toInt())
+    }
+
+    private fun validateBridgeSize(bridgeSize: Int) =
         require(bridgeSize in 3..20) {
-            println(Error.BRIDGE_RANGE_ERROR)
+            println(Error.BRIDGE_RANGE_ERROR.errorMessage)
         }
 
-    fun validateNumericInput(input : String){
-        require(input.isNumeric()){
-            println(Error.NUMERIC_ERROR)
+    private fun validateNumericInput(input: String) {
+        require(input.isNumeric()) {
+            println(Error.NUMERIC_ERROR.errorMessage)
         }
     }
 
