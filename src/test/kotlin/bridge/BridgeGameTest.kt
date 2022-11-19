@@ -9,10 +9,10 @@ class BridgeGameTest {
 
     @ParameterizedTest
     @CsvSource(
-        "1, true, 0",
-        "0, false, 0"
+        "1, true",
+        "0, false"
     )
-    fun `라운드 이동 기능 테스트`(nextRound: Int, isMatched: Boolean, currentRound: Int) {
-        assertThat(nextRound).isEqualTo(BridgeGameValidator.validateMoveOutput(isMatched, currentRound))
+    fun `라운드 이동 기능 테스트`(nextRound: Int, isMatched: Boolean) {
+        assertThat(nextRound).isEqualTo(BridgeGameValidator.validateMoveOutput(isMatched))
     }
 }
