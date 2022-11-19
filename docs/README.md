@@ -90,7 +90,7 @@
 ### OutputView
 
 - [x] 게임 시작 문구를 출력한다
-- [ ] 지도를 출력한다 => `printMap()`
+- [x] 이동한 다리의 상태를 출력한다 => `printMap()`
 - [ ] 결과를 출력한다 => `printResult()`
 
 ### BridgeGame
