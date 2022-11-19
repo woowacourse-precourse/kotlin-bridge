@@ -15,7 +15,7 @@ private fun start() {
 
 fun play(game: BridgeGame, bridge: List<String>) {
     while (!game.isGameEnd(bridge)) {
-        game.move(bridge[game.count], InputView().readMoving())
+        game.move(bridge, InputView().readMoving())
         OutputView().printMap(game.upBridge, game.downBridge)
     }
     if (game.isSuccess) end(game) else reStart(game, bridge)
