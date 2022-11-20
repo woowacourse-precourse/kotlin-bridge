@@ -6,6 +6,7 @@ import bridge.view.InputView
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame(private val player: Player) {
+    private var tryNumber = 1
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
@@ -24,6 +25,7 @@ class BridgeGame(private val player: Player) {
      */
     fun retry(inputRetryCommand: String): Boolean {
         if (inputRetryCommand == "R") {
+            tryNumber += 1
             player.initializePlayer()
             return true
         }
@@ -40,5 +42,9 @@ class BridgeGame(private val player: Player) {
 
     fun getDownBridge(): List<String> {
         return player.getDownBridge()
+    }
+
+    fun getTryNumber(): Int {
+        return tryNumber
     }
 }

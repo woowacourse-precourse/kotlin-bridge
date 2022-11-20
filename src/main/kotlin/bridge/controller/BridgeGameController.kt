@@ -11,6 +11,7 @@ class BridgeGameController {
         val player = Player(Bridge(bridge))
         val game = BridgeGame(player)
         bridgeProgress(game)
+        OutputView().printResult(game)
     }
 
     private fun inputBridgeSize(): Int {
