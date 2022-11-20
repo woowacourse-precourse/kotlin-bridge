@@ -20,8 +20,8 @@ class InputView {
             val size = Console.readLine()
             //TODO: 예외체크 필요
             return size.toInt()
-        } catch (e: Exception) {
-            println(e.message)
+        } catch (error: Exception) {
+            println(error.message)
             readBridgeSize()
         }
     }
@@ -30,7 +30,14 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        return try {
+            val direction = Console.readLine()
+            //TODO: 예외체크 필요
+            return direction
+        } catch (error: Exception) {
+            println(error.message)
+            readMoving()
+        }
     }
 
     /**
