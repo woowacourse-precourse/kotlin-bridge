@@ -1,7 +1,12 @@
 package bridge.view
 
 import bridge.domain.BridgeGameInfo
-import bridge.resources.*
+import bridge.resources.OUTPUT_BRIDGE_MAP
+import bridge.resources.OUTPUT_FAILURE
+import bridge.resources.OUTPUT_RESULT_COUNT_OF_TRY
+import bridge.resources.OUTPUT_RESULT_NOTATION
+import bridge.resources.OUTPUT_RESULT_STATUS
+import bridge.resources.OUTPUT_SUCCESS
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
