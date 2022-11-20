@@ -20,4 +20,6 @@ fun main() {
 //    val bridgeGame = BridgeGame()
 //    bridgeGame.move(direction)
 
+    println(GAME_CMD_INPUT_MSG)
+    val gameCommand = inputView.readGameCommand()
 }
