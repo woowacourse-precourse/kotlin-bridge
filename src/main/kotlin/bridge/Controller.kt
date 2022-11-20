@@ -1,5 +1,7 @@
 package bridge
 
+import camp.nextstep.edu.missionutils.Console
+
 class Controller {
     private val inputView = InputView()
     private val outputView = OutputView()
@@ -18,6 +20,7 @@ class Controller {
         outputView.printInputBridgeLength()
         val bridgeLength = inputView.readBridgeSize()
         outputView.printBridgeLength(bridgeLength)
-        return bridgeLength
+        inputCheck.checkBridgeLength(bridgeLength)
+        return bridgeLength.toInt()
     }
 }
