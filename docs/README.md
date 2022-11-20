@@ -11,19 +11,19 @@
 - [x] 사용자의 입력 스트링을 올바른 타입으로 변환해줘야 한다 - InputConverter
   - [x] 입력받은 스트링을 다리길이 즉 정수형으로 변환
 
-- [] 게임 진행 상황을 화면에 출력해줘야 한다 - OutputView
+- [x] 게임 진행 상황을 화면에 출력해줘야 한다 - OutputView
   - [x] 게임 진행을 위한 UI 메시지를 출력해줘야 한다.
   - 게임 진행 단계에 따라 Controller 가 요청한 대로 화면을 출력해줘야 한다.
   - [x] 매 단계마다 다리 건너는 상황을 화면에 출력해줄 수 있어야 한다. - OutputView#printMap
   - [x] 게임의 최종 결과를 출력해줄 수 있어야 한다. - OutputView#printResult
   
-- [] 전반적인 게임 시스템 과정을 총괄해주는 클래스가 필요하다. - Controller
-  - [] 사용자로부터 받은 입력을 BridgeGame 에게 주입해주고
-  - [] BridgeGame 에게 받은 게임 진행 결과를 토대로 적절한 출력을 하도록 OutputView 를 통제해줘야 한다. 
-    - [] 게임 진행 UI 출력을 OutputView 에게 요청해야 한다.
-    - [] 에러가 발생하면 OutputView 에게 에러 문구 출력을 요청해야 한다.
-    - [] 정답지 데이터와 건넌 다리 데이터를 보고 적절한 화면을 출력해줘야 한다. - OutputView#printMap 
-    - [] 게임 최종 결과(성공여부, 시도횟수)를 보고, 적절한 게임 종료 화면을 출력해줘야 한다. - OutputView#printResult
+- [x] 전반적인 게임 시스템 과정을 총괄해주는 클래스가 필요하다. - Controller
+  - [x] 사용자로부터 받은 입력을 BridgeGame 에게 주입해주고
+  - [x] BridgeGame 에게 받은 게임 진행 결과를 토대로 적절한 출력을 하도록 OutputView 를 통제해줘야 한다. 
+    - [x] 게임 진행 UI 출력을 OutputView 에게 요청해야 한다.
+    - [x] 에러가 발생하면 OutputView 에게 에러 문구 출력을 요청해야 한다.
+    - [x] 정답지 데이터와 건넌 다리 데이터를 보고 적절한 화면을 출력해줘야 한다. - OutputView#printMap 
+    - [x] 게임 최종 결과(성공여부, 시도횟수)를 보고, 적절한 게임 종료 화면을 출력해줘야 한다. - OutputView#printResult
     
 - [x] BridgeMaker 클래스의 기능 목록
   - [x] 다리를 랜덤으로 생성해줘야 한다. 이걸보고 BridgeGame 객체가 비교해서 게임 진행 상황을 판단할 수 있도록
