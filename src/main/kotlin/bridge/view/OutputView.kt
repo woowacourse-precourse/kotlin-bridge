@@ -22,5 +22,15 @@ class OutputView {
         println("$upperBoard\n$lowerBoard")
     }
 
-    fun printResult() {}
+    fun printResult(success: Boolean, attemps: Int, board: MutableList<MutableList<String>>) {
+        println("최종 게임 결과")
+        printMap(board)
+        print("게임 성공 여부: ")
+        if(success)
+            println("성공")
+        else
+            println("실패")
+        println("총 시도한 횟수: $attemps")
+
+    }
 }
