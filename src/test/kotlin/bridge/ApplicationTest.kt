@@ -67,7 +67,7 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `기능 테스트_3`() {
+    fun `기능 테스트 4`() {
         assertRandomNumberInRangeTest({
             run("3", "U", "D", "D", "Q")
             assertThat(output()).contains(
@@ -84,7 +84,7 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `기능 테스트_4`() {
+    fun `기능 테스트 5`() {
         assertRandomNumberInRangeTest({
             run("3", "U", "D", "D", "R", "U", "D", "D", "R", "U", "D", "U")
             assertThat(output()).contains(
@@ -96,6 +96,23 @@ class ApplicationTest : NsTest() {
             )
             val upSideIndex = output().indexOf("[ O |   | O ]")
             val downSideIndex = output().indexOf("[   | O |   ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 1, 0, 1)
+    }
+
+    @Test
+    fun `기능 테스트 6`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "D", "D", "R", "D", "Q")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[   ]",
+                "[ X ]",
+                "게임 성공 여부: 실패",
+                "총 시도한 횟수: 2"
+            )
+            val upSideIndex = output().indexOf("[   ]")
+            val downSideIndex = output().indexOf("[ X ]")
             assertThat(upSideIndex).isLessThan(downSideIndex)
         }, 1, 0, 1)
     }
