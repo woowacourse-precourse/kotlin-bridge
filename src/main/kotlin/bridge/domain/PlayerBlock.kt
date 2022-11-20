@@ -6,4 +6,13 @@ class PlayerBlock(
 ) {
     fun getDirection() = direction
     fun getIsMovable() = isMovable
+
+    override fun toString(): String {
+        return if(isMovable) SUCCESS_BLOCK else FAIL_BLOCK
+    }
+
+    companion object {
+        const val SUCCESS_BLOCK = "O"
+        const val FAIL_BLOCK = "X"
+    }
 }
