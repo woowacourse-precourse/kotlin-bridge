@@ -7,6 +7,8 @@ import camp.nextstep.edu.missionutils.Console
  */
 class InputView {
     private var bridgeSize = ""
+    private var direction = ""
+    private var gameCommand = ""
 
     /**
      * 다리의 길이를 입력받는다.
@@ -32,7 +34,19 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        direction = Console.readLine()
+        validateDirection(direction)
+        return direction
+    }
+
+    private fun validateDirection(direction: String) {
+        try {
+            val validator = Validator()
+            validator.handleExceptionalDirection(direction)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            readMoving()
+        }
     }
 
     /**
