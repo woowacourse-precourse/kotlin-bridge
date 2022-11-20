@@ -33,6 +33,16 @@ class BridgeGameController {
         }
     }
 
+    private fun inputGameCommand(): String {
+        while (true) {
+            try {
+                return InputView().readGameCommand()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+    }
+
     private fun bridgeProgress(bridgeGame: BridgeGame) {
         while (!bridgeGame.isClear()) {
             if (moving(bridgeGame)) {

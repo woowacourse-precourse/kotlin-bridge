@@ -34,6 +34,17 @@ class UserInputValidate {
         }
     }
 
+    fun validateGameCommand(inputMoving: String): String {
+        isValidGameCommand(inputMoving)
+        return inputMoving
+    }
+
+    private fun isValidGameCommand(inputMoving: String) {
+        if (inputMoving.length != 1 || !inputMoving.contains("Q") && !inputMoving.contains("R")) {
+            throw IllegalArgumentException("[ERROR] 게임 재시작/종료 여부 입력은 R(재시작)과 Q(종료) 중 하나여야 합니다.")
+        }
+    }
+
     companion object {
         const val MIN_BRIDGE_SIZE = 3
         const val MAX_BRIDGE_SIZE = 20
