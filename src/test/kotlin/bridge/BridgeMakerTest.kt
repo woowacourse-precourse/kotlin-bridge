@@ -2,7 +2,6 @@ package bridge
 
 import bridge.BridgeGame.Companion.MOVING_DIRECT_DOWN
 import bridge.BridgeGame.Companion.MOVING_DIRECT_UP
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class BridgeMakerTest {
@@ -19,7 +18,7 @@ class BridgeMakerTest {
     @Test
     fun `U와 D로 이루어진 다리 만들기`() {
         bridgeMaker.makeBridge(100).forEach {
-            assertThat(
+            assert(
                 it == MOVING_DIRECT_UP || it == MOVING_DIRECT_DOWN
             )
         }
