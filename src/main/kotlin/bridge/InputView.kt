@@ -24,8 +24,12 @@ class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    fun readMoving(): String {
-        return ""
+    fun readMoving(inputInvalidCheck: InputInvalidCheck): String {
+        val inputTrim = input().trim()
+        OutputView.errorType = OutputView.Error.MOVE_INPUT_ERROR
+        if (!inputInvalidCheck.checkMoving(inputTrim)) return "-1"
+        OutputView.errorType = OutputView.Error.NON_ERROR
+        return inputTrim
     }
 
     /**

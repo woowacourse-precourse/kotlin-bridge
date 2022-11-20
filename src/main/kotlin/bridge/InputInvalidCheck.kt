@@ -13,4 +13,9 @@ class InputInvalidCheck() {
     }
 
     private fun isNumber(char: Char): Boolean = char.code in 48..57
+
+    fun checkMoving(input: String): Boolean {
+        if (input == "U" || input == "D") return true
+        return false
+    }
 }
