@@ -24,8 +24,7 @@ class OutputView {
             print(BridgePrint.TRUE_O_END.message)
         else
             print(BridgePrint.BLANK_END.message)
-        if (upDown == BridgePrint.UP.message)
-            print('\n')
+        print('\n')
     }
     /**
      * 오답인 경우 다리 출력
@@ -41,8 +40,7 @@ class OutputView {
             print(BridgePrint.FALSE_X_END.message)
         else
             print(BridgePrint.BLANK_END.message)
-        if (upDown == BridgePrint.UP.message)
-            print('\n')
+        print('\n')
     }
     /**
      * 단순 반복인 중간 부분 출력 (이 경우 정답, 오답 차이가 없음)
