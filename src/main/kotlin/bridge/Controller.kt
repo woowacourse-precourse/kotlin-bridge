@@ -8,6 +8,7 @@ class Controller {
         try {
             InputView().readBridgeSize()
             InputView().readMoving()
+            InputView().readGameCommand()
         } catch (e: IllegalArgumentException) {
             print(e)
         }
