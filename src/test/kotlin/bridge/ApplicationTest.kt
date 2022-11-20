@@ -40,6 +40,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `3 이상 20 이하의 숫자가 아닌 경우`() {
+        assertSimpleTest {
+            runException("21")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
     override fun runMain() {
         main()
     }
