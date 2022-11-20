@@ -1,7 +1,9 @@
 package bridge.view
 
 import bridge.domain.Direction
+import bridge.domain.Player
 import bridge.domain.PlayerBlock
+import bridge.sentence.OutputSentence
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -52,5 +54,17 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(player: Player) {
+        OutputSentence.RESULT.print()
+        val playerBlocks = player.getPlayerBlocks()
+        val checkSuccess = if(player.isSuccess()) SUCCESS else FAIL
+        printMap(playerBlocks)
+        println("\n${OutputSentence.CHECK_SUCCESS.sentence()}$checkSuccess")
+        println("${OutputSentence.TOTAL_TRIAL.sentence()}${player.getTries()}")
+    }
+
+    companion object {
+        const val SUCCESS = "성공"
+        const val FAIL = "실패"
+    }
 }
