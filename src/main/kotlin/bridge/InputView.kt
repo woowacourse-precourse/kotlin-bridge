@@ -1,6 +1,6 @@
 package bridge
 
-import camp.nextstep.edu.missionutils.Randoms
+import camp.nextstep.edu.missionutils.Console
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -9,8 +9,8 @@ class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(): Int {
-        return Randoms.pickNumberInRange(3, 20)
+    fun readBridgeSize(): String {
+        return Console.readLine()
     }
 
     /**
