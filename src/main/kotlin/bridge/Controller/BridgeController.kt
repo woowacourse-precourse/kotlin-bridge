@@ -8,6 +8,8 @@ import bridge.Model.BridgeData.bridgeSize
 import bridge.Model.BridgeData.isOver
 import bridge.Model.BridgeData.roundResult
 import bridge.Model.BridgeGame
+import bridge.Model.BridgeGame.Companion.downResult
+import bridge.Model.BridgeGame.Companion.upResult
 import bridge.Model.BridgeResult
 import bridge.Model.Referee
 import bridge.View.InputView
@@ -16,6 +18,7 @@ import bridge.View.OutputView
 class BridgeController {
     private var inputView = InputView()
     private var outputView = OutputView()
+    private var bridgeGame = BridgeGame()
     private var bridgeSelect = ""
 
     fun startGame() {
@@ -27,6 +30,7 @@ class BridgeController {
             bridgeSelect = getBridgeSelect()
             moveBridge()
         }
+        outputView.printMap(upResult, downResult)
     }
 
     fun getBridgeSize() {
@@ -38,7 +42,6 @@ class BridgeController {
         var bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
         var bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
         bridgeShape = bridgeMaker.makeBridge(bridgeSize)
-        println(bridgeShape)
     }
 
     fun getBridgeSelect(): String {
@@ -48,13 +51,13 @@ class BridgeController {
 
     fun moveBridge() {
         val result = compareBridge()
-        var bridgeGame = BridgeGame()
         if (result == BridgeResult.UP_WIN || result == BridgeResult.DOWN_WIN) {
             bridgeGame.move()
         } else {
+            outputView.printGameOver()
             isOver = true
-            bridgeGame.gameOver()
         }
+        bridgeGame.makeUpDownResult(result)
     }
 
     fun compareBridge(): BridgeResult {
@@ -70,4 +73,5 @@ class BridgeController {
             isOver = true
         }
     }
+
 }

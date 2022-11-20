@@ -32,9 +32,9 @@ class Referee() {
 
     fun judgeLoseResult(selectBridge: String): BridgeResult {
         if (selectBridge == "D") {
-            return BridgeResult.UP_LOSE
+            return BridgeResult.DOWN_LOSE
         }
-        return BridgeResult.DOWN_LOSE
+        return BridgeResult.UP_LOSE
     }
 
     fun judgeLastBridge(nowLocation: Int): Boolean {
