@@ -4,13 +4,13 @@
 - [ ] 사용자가 게임 재시도 - retry()
 - [ ] 플레이어가 살아는지 확인 - isAlive()
 ### BridgeMaker
-- [ ] 다리의 길이를 입력 받아서 다리를 생성 - makeBridge()
+- [x] 다리의 길이를 입력 받아서 다리를 생성 - makeBridge()
 ### BridgeState
 - [ ] 다리와 사용자 입력을 비교 - BridgeState#compare()
 ### InputView
-- [ ] 다리의 길이를 입력 받음 - readBridgeSize()
-- [ ] 이동할 칸을 입력 받음 - readMoving()
-- [ ] 게임을 다시 시도할지 입력받음 - readGameCommand()
+- [x] 다리의 길이를 입력 받음 - readBridgeSize()
+- [x] 이동할 칸을 입력 받음 - readMoving()
+- [x] 게임을 다시 시도할지 입력받음 - readGameCommand()
 ### OutputView
 - [ ] 현재까지 이동한 다리의 상태를 출력 - printMap()
 - [ ] 게임의 최종 결과 출력 - printResult()
@@ -21,4 +21,7 @@
 - [ ] R(재시작), Q(종료) 가 아닌 입력
 ### Enum 목록 작성
 - [ ] Games : 플레이어가 입력한 U, D, R, Q 를 상수로 저장
-- [ ] Moves : 플레이어의 이동 결과 리스트를 상수로 저장
+
+# 테스트 목록 작성
+### BridgeGameTest
+- [ ] 사용자 칸 이동 테스트
