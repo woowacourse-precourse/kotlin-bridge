@@ -14,7 +14,9 @@ class OutViewTest {
         @JvmStatic
         fun bridge() = listOf(
             Arguments.of("[ O ]", "[   ]", listOf("U", "D", "D"), 0, "U"),
-            Arguments.of("[   ]", "[ O ]", listOf("D", "D", "D"), 0, "D"),
+            Arguments.of("[   ]", "[ X ]", listOf("U", "D", "D"), 0, "D"),
+            Arguments.of("[ O |   ]", "[   | O ]", listOf("U", "D", "D"), 1, "D"),
+            Arguments.of("[ O |   ]", "[   | X ]", listOf("U", "D", "D"), 1, "U"),
         )
 
     }
