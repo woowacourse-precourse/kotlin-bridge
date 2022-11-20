@@ -6,6 +6,7 @@ fun main() {
     val bridgeMade = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
     var answer: Boolean
     var regame = ""
+    var tryCount = 1
 
     while (true) {
         var caseList = mutableListOf<Int>()
@@ -16,14 +17,19 @@ fun main() {
         }
         //틀리고 재시작시 Q가 들어온 경우
         if (!answer && BridgeGame().retry(regame)) {
+            //실패결과 출력후 종료
+            OutputView().printResult(false, caseList, tryCount)
             break
         }
         //틀리고 재시작시 R이 들어온 경우
         if (!answer && !BridgeGame().retry(regame)) {
             regame = ""
+            tryCount += 1
         }
         //맞추기 성공한 경우
         if (answer) {
+            //성공결과 출력후 종료
+            OutputView().printResult(true, caseList, tryCount)
             break
         }
     }

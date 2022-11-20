@@ -37,7 +37,6 @@ class OutputView {
         println("총 시도한 횟수: $tryCount")
     }
 
-
     fun correctAnswer(case: Int) {
         if (case == 1) {
             upBridge.add(" O ")
