@@ -47,7 +47,21 @@ class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun retry(restartCommand: String): Boolean {
+        if (restartCommand == RESTART_COMMAND) {
+            ++gameCount
+            clearMap()
+            return true
+        }
+        return false
     }
+
+    private fun clearMap() {
+        with(BridgeRandomNumberGenerator){
+            bridgeMap[RANDOM_LOWER_INCLUSIVE].clear()
+            bridgeMap[RANDOM_UPPER_INCLUSIVE].clear()
+        }
+    }
+
 
     fun getGameCount(): Int = gameCount
 
@@ -56,6 +70,7 @@ class BridgeGame {
     companion object {
         private val bridgeMap = Array(2) { mutableListOf<String>() }
         private var gameCount = 1
+        const val RESTART_COMMAND = "R"
         const val CORRECT_SYMBOL = "O"
         const val NOT_CORRECT_SYMBOL = "X"
     }
