@@ -30,8 +30,6 @@ class BridgeGame {
     fun retry(retryOrquit: String): Boolean {
         if (retryOrquit == "Q")
             return true
-        if (retryOrquit == "R")
-            return false
         return false
     }
 }
