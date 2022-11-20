@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
-class InputView {
+class InputView(private val inputValidator: InputValidator) {
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -13,7 +13,7 @@ class InputView {
         println("다리의 길이를 입력해주세요.\n")
         val bridgeSize = Console.readLine()
 
-        InputValidator.validateBridgeInput(bridgeSize)
+        inputValidator.validateBridgeInput(bridgeSize)
         return bridgeSize.toInt()
     }
 
@@ -24,7 +24,7 @@ class InputView {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)\n")
         val direction = Console.readLine()
 
-        InputValidator.validateMoveInput(direction)
+        inputValidator.validateMoveInput(direction)
         return direction
     }
 
@@ -35,7 +35,7 @@ class InputView {
         println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n")
         val retryFlag = Console.readLine()
 
-        InputValidator.validateRetryFlag(retryFlag)
+        inputValidator.validateRetryFlag(retryFlag)
         return retryFlag
     }
 }

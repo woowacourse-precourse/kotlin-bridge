@@ -1,6 +1,6 @@
 package bridge
 
-object InputValidator {
+class InputValidator {
 
     fun validateBridgeInput(bridgeSize: String) {
         validateNumericInput(bridgeSize)
