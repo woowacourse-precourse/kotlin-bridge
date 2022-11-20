@@ -15,6 +15,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
             if(ud ==0) bridgeData.add("D")
             if(ud==1) bridgeData.add("U")
         }
-        return bridgeData.toList()
+
+        return bridgeData.reversed()
     }
 }
