@@ -21,14 +21,7 @@ class OutputView {
     }
 
     private fun printBlocks(blocks: List<String>) {
-        print(BRIDGE_START)
-        blocks.forEach {
-            print(it)
-            if (it != blocks.last()) {
-                print(DIVISION_LINE)
-            }
-        }
-        println(BRIDGE_END)
+        println(blocks.joinToString(prefix = BRIDGE_START, postfix = BRIDGE_END, separator = DIVISION_LINE))
     }
 
     /**
