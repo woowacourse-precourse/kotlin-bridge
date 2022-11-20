@@ -2,12 +2,17 @@ package bridge
 
 class CheckException {
 
-
-    fun checkInput(size : String){
+    fun checkInputSize(size : String){
         when{
-            !isNumber(size) -> throw IllegalArgumentException(Strings.INPUT_SIZE_ERROR.phrases)
-            size.toInt() < 3 || size.toInt() > 20 -> throw IllegalArgumentException(Strings.INPUT_SIZE_ERROR.phrases)
+            !isNumber(size) -> throw IllegalArgumentException(Strings.ERROR_INPUT_SIZE.phrases)
+            size.toInt() < 3 || size.toInt() > 20 -> throw IllegalArgumentException(Strings.ERROR_INPUT_SIZE.phrases)
 
+        }
+    }
+
+    fun checkInputDirection(move : String){
+        if (move != "U" && move != "D"){
+            throw IllegalArgumentException(Strings.ERROR_INPUT_DIRECTION.phrases)
         }
     }
 

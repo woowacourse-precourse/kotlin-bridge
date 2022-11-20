@@ -13,7 +13,7 @@ class BridgeTest {
     @Test
     fun `다리 길이 입력값이 숫자이고 올바른 범위인지 확인`() {
         assertThrows<IllegalArgumentException> {
-            CheckException().checkInput("20")
+            CheckException().checkInputSize("20")
         }
     }
 
@@ -23,4 +23,13 @@ class BridgeTest {
         assertEquals(bridgeTest.size,3)
         println(bridgeTest)
     }
+
+    @Test
+    fun `이동할 칸이 올바른 입력인지 확인`() {
+        assertThrows<IllegalArgumentException> {
+            CheckException().checkInputDirection("a")
+        }
+    }
+
+
 }

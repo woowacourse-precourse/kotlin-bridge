@@ -16,19 +16,20 @@ class InputView {
     }
 
     /** 게임 시작 문구 */
-    fun startPhrases(){
-        println(Strings.GAME_START.phrases+"\n")
+    fun startPhrases() {
+        println(Strings.GAME_START.phrases + "\n")
     }
 
     /** 이동할 칸 입력 문구 */
-    fun directionPhrases(){
-        println(Strings.INPUT_BRIDGE_DIRECTION.phrases+"\n")
+    fun directionPhrases() {
+        println(Strings.INPUT_BRIDGE_DIRECTION.phrases + "\n")
     }
 
     /**사용자가 이동할 칸을 입력받는다. */
     fun readMoving(): String {
         directionPhrases()
         val direction = Console.readLine()
+
         return direction
     }
 
