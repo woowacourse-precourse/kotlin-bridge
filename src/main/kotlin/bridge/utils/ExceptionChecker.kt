@@ -13,6 +13,10 @@ class ExceptionChecker {
         require(moving == "U" || moving == "D"){ println(ERROR_PREFIX + "이동할 칸은 U 나 D 로만 입력되어야 합니다.") }
     }
 
+    fun gameCommandException(gameCommand: String){
+        require(gameCommand == "R" || gameCommand == "Q"){ println(ERROR_PREFIX + "재시작 여부는 R 이나 Q 로만 입력되어야 합니다.") }
+    }
+
     companion object {
         const val ERROR_PREFIX = "[ERROR] "
     }
