@@ -23,21 +23,21 @@ class BridgeGameStatusTest {
     fun `모두 참이고 길이가 다르면 진행중이다`() {
         val stage = listOf(true, true)
         val bridgeGameInfo = BridgeGameInfo(bridge, stage, 1)
-        assertThat(BridgeGameStatus.getStatus(bridgeGameInfo)).isEqualTo(BridgeGameStatus.RUNNING)
+        assertThat(BridgeGameStatus.of(bridgeGameInfo)).isEqualTo(BridgeGameStatus.RUNNING)
     }
 
     @Test
     fun `모두 참이고 길이가 같다면 성공이다`() {
         val stage = listOf(true, true, true)
         val bridgeGameInfo = BridgeGameInfo(bridge, stage, 1)
-        assertThat(BridgeGameStatus.getStatus(bridgeGameInfo)).isEqualTo(BridgeGameStatus.SUCCESS)
+        assertThat(BridgeGameStatus.of(bridgeGameInfo)).isEqualTo(BridgeGameStatus.SUCCESS)
     }
 
     @Test
     fun `마지막이 참이 아니면 실패다`() {
         val stage = listOf(true, true, false)
         val bridgeGameInfo = BridgeGameInfo(bridge, stage, 1)
-        assertThat(BridgeGameStatus.getStatus(bridgeGameInfo)).isEqualTo(BridgeGameStatus.FAILURE)
+        assertThat(BridgeGameStatus.of(bridgeGameInfo)).isEqualTo(BridgeGameStatus.FAILURE)
     }
 
     @Test
@@ -45,7 +45,7 @@ class BridgeGameStatusTest {
         val stage = listOf(true, false, true)
         val bridgeGameInfo = BridgeGameInfo(bridge, stage, 1)
         assertThrows<IllegalArgumentException> {
-            BridgeGameStatus.getStatus(bridgeGameInfo)
+            BridgeGameStatus.of(bridgeGameInfo)
         }
     }
 
@@ -54,7 +54,7 @@ class BridgeGameStatusTest {
         val stage = listOf(true, false, true, true)
         val bridgeGameInfo = BridgeGameInfo(bridge, stage, 1)
         assertThrows<IllegalArgumentException> {
-            BridgeGameStatus.getStatus(bridgeGameInfo)
+            BridgeGameStatus.of(bridgeGameInfo)
         }
     }
 

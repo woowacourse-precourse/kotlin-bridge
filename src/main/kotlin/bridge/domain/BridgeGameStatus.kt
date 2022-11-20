@@ -10,7 +10,7 @@ enum class BridgeGameStatus(val command: String?) {
     QUIT("Q");
 
     companion object {
-        fun getStatus(bridgeGameResult: BridgeGameInfo): BridgeGameStatus {
+        fun of(bridgeGameResult: BridgeGameInfo): BridgeGameStatus {
             bridgeGameResult.apply {
                 require(stage.isNoFalseExceptLast()) { ERROR_INPUT_COMMAND }
                 return when {

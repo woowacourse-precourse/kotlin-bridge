@@ -19,7 +19,7 @@ class BridgeGameController {
         info.bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(InputView().readBridgeSize())
         while (status == RUNNING) {
             info = BridgeGame().move(info, InputView().readMoving())
-            status = BridgeGameStatus.getStatus(info)
+            status = BridgeGameStatus.of(info)
             OutputView().printMap(info)
             handleStatus()
         }
