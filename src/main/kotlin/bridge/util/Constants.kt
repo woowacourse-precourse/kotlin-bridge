@@ -3,8 +3,12 @@ package bridge.util
 const val RANGE_START = 3
 const val RANGE_END = 20
 const val NUMBER_ONE = 1
+const val BRIDGE_HEIGHT = 2
 const val UP = "U"
 const val DOWN = "D"
+const val CORRECT = "O"
+const val MISS = "X"
+const val BLANK = " "
 const val RESTART = "R"
 const val QUIT = "Q"
 
