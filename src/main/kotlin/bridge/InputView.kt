@@ -55,6 +55,15 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q")
+        val inputGameCommand = Console.readLine()
+        inputGameCommandException(inputGameCommand)
+        return inputGameCommand
+    }
+
+    fun inputGameCommandException(inputGameCommand: String) {
+        when {
+            inputGameCommand != "Q" && inputGameCommand != "R" -> return throw IllegalArgumentException("[ERROR] 게임을 다시 시도할지 여부는 Q와 R만 입력 가능합니다.")
+        }
     }
 }
