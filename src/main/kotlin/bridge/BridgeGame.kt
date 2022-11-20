@@ -12,21 +12,33 @@ class BridgeGame {
      */
     var upBridge = "["
     var downBridge = "["
+    var tryNumber = 0
+    var winFlag = "성공"
 
     fun move(bridgeAns: String, userMovingInput: String) {
         if (bridgeAns == "U" && userMovingInput == "U") {
             upBridge += " O "
             upBridge += "|"
+            tryNumber += 1
         }
         else if (bridgeAns == "D" &&userMovingInput == "D") {
             downBridge += " O "
             downBridge += "|"
+            tryNumber += 1
         }
         else if (bridgeAns == "U" && userMovingInput == "D"){
             downBridge += " X ]"
+            tryNumber += 1
         }
         else {
             upBridge += " X ]"
+            tryNumber += 1
+        }
+    }
+
+    fun checkWinLose() {
+        if ("X" in upBridge || "X" in downBridge) {
+            winFlag = "실패"
         }
     }
 
