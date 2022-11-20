@@ -7,7 +7,8 @@ class Processor(
     val outputView: OutputView,
 ) {
     var playerPosition = 0
-    var numberOfTry = 0
+    var numberOfTry = 1
+    var isSucceeded=false
     lateinit var bridgeMap: Array<String>
     lateinit var bridge: List<String>
 
@@ -26,6 +27,9 @@ class Processor(
         val isPlayerAlive = bridgeGame.move(bridge, playerDirection)
         playerPosition++
 
+        if(playerPosition==bridge.size){
+            isSucceeded=true
+        }
         return Pair(isPlayerAlive, playerDirection)
     }
 
@@ -67,5 +71,9 @@ class Processor(
         0
     } else {
         1
+    }
+
+    fun finish() {
+        outputView.printResult(bridgeMap, numberOfTry, isSucceeded)
     }
 }
