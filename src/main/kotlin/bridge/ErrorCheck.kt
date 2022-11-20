@@ -27,12 +27,12 @@ class ErrorCheck {
         }
     }
 
-    fun continueCheck(continues : String) : String {
-        if (continues == "") throw IllegalArgumentException(ErrorMessage.NOTHING.message)
-        if (continues.length != 1) throw IllegalArgumentException(ErrorMessage.LENGTH.message)
-        return when(continues){
-            "R" -> continues
-            "Q" -> continues
+    fun commandCheck(command : String) : String {
+        if (command == "") throw IllegalArgumentException(ErrorMessage.NOTHING.message)
+        if (command.length != 1) throw IllegalArgumentException(ErrorMessage.LENGTH.message)
+        return when(command){
+            "R" -> command
+            "Q" -> command
             else -> throw IllegalArgumentException(ErrorMessage.FORMATION.message)
         }
     }
