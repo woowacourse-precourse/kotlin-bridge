@@ -11,8 +11,14 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         println("다리의 길이를 입력해주세요.")
-        var bridgeLength = Console.readLine().toInt()
-        return bridgeLength
+        var bridgeLength = Console.readLine()
+        try {
+            Exception().bridgesizeFormatException(bridgeLength)
+            Exception().bridgesizeRangeException(bridgeLength)
+        }catch (e : IllegalArgumentException){
+            return readBridgeSize()
+        }
+        return bridgeLength.toInt()
     }
 
     /**
@@ -21,6 +27,11 @@ class InputView {
     fun readMoving(): String {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
         var userMove = Console.readLine().toString()
+        try {
+            Exception().movingFormatException(userMove)
+        } catch (e : IllegalArgumentException){
+            return readMoving()
+        }
         return userMove
     }
 
@@ -30,6 +41,11 @@ class InputView {
     fun readGameCommand(): String {
         println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
         var gameControl = Console.readLine()
+        try {
+            Exception().commandFormatException(gameControl)
+        } catch (e : IllegalArgumentException){
+            readGameCommand()
+        }
         return gameControl
     }
 }
