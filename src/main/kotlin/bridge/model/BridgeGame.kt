@@ -8,7 +8,7 @@ import bridge.X
  */
 class BridgeGame {
     private val bridge = Bridge()
-    private val progressMatrix = ProgressMatrix()
+    val progressMatrix = ProgressMatrix()
     private var isCorrect = false
 
     fun makeBridge(size: Int) {

@@ -26,6 +26,7 @@ class GameController {
             val direction = getMoveDirection()
             bridgeGame.compare(direction, position)
             bridgeGame.move(direction, position)
+            OutputView.printMap(bridgeGame.progressMatrix.progress, position)
         }
     }
 

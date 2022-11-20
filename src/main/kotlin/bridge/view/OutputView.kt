@@ -3,24 +3,35 @@ package bridge.view
 import bridge.INPUT_BRIDGE_LENGTH
 import bridge.SELECT_MOVE_DIRECTION
 import bridge.START_BRIDGE_GAME
+import bridge.ZERO
 import java.lang.IllegalArgumentException
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 object OutputView {
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun printMap() {}
+    fun printMap(progress: Array<Array<String>>, position: Int) {
+        progress.map { oneLine ->
+            oneLine.mapIndexed { index, str ->
+                printOneLineOfMatrix(str, index, position)
+            }
+            println()
+        }
+        println()
+    }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    private fun printOneLineOfMatrix(str: String, index: Int, size: Int) {
+        if (str != "") {
+            if (index == ZERO) {
+                print("[ $str ")
+                if (size == ZERO) print("]")
+            } else {
+                print("| $str ")
+                if (size == index) print("]")
+            }
+        }
+    }
+
     fun printResult() {}
 
     fun startGame() {
