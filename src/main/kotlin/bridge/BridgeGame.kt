@@ -44,9 +44,11 @@ class BridgeGame {
             upList.add(ox)
             downList.add(" ")
             up[space] = upList
+            down["D"] = downList
         } else if (space == "D") {
             upList.add(" ")
             downList.add(ox)
+            up["U"] = upList
             down[space] = downList
         }
     }
