@@ -10,17 +10,17 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private val up = mutableMapOf<String, List<String>>()
-    private val down = mutableMapOf<String, List<String>>()
+    private val upMap = mutableMapOf<String, List<String>>()
+    private val downMap = mutableMapOf<String, List<String>>()
 
     fun move(space: String, bridge: List<String>): Map<String, List<String>> {
         if (space == bridge[index]) {
-            addToList(space, "O")
+            checkSpace(space, "O")
             index += 1
         } else {
-            addToList(space, "X")
+            checkSpace(space, "X")
         }
-        return up + down
+        return upMap + downMap
     }
 
     /**
@@ -35,25 +35,30 @@ class BridgeGame {
         upList.clear()
         downList.clear()
 
-        up.clear()
-        down.clear()
+        upMap.clear()
+        downMap.clear()
     }
 
-    private fun addToList(space: String, ox: String) {
-        if (space == "U") {
-            upList.add(ox)
-            downList.add(" ")
-            up[space] = upList
-            down["D"] = downList
-        } else if (space == "D") {
-            upList.add(" ")
-            downList.add(ox)
-            up["U"] = upList
-            down[space] = downList
+    private fun checkSpace(space: String, ox: String) {
+        if (space == UP) {
+            addToList(ox, BLANK)
+        } else {
+            addToList(BLANK, ox)
         }
     }
 
+    private fun addToList(up: String, down: String) {
+        upList.add(up)
+        downList.add(down)
+        upMap[UP] = upList
+        downMap[DOWN] = downList
+    }
+
     companion object {
+        const val UP = "U"
+        const val DOWN = "D"
+        const val BLANK = " "
+
         private var index = 0
         private val upList = mutableListOf<String>()
         private val downList = mutableListOf<String>()
