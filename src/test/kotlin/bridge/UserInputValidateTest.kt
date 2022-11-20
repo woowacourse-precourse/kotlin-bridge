@@ -23,4 +23,10 @@ class UserInputValidateTest {
     fun `입력받은 이동할 칸의 값이 U와 D 이외의 값이면 예외가 발생한다`(bridgeSize: String) {
         assertThrows<IllegalArgumentException> { UserInputValidate().validateMoving(bridgeSize) }
     }
+
+    @ValueSource(strings = ["", "T", "UD"])
+    @ParameterizedTest
+    fun `재시작 여부 입력 값이 R(재시작)과 Q(종료) 이외의 값이면 예외가 발생한다`(bridgeSize: String) {
+        assertThrows<IllegalArgumentException> { UserInputValidate().validateGameCommand(bridgeSize) }
+    }
 }
