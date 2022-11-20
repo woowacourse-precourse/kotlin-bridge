@@ -2,7 +2,9 @@ package exception
 
 import bridge.InputView
 
-class MovingSpace(private val inputView: InputView, private var space: String) {
+class MovingSpace(private val inputView: InputView) {
+    private var space = ""
+
     fun verify() {
         while (true) {
             try {

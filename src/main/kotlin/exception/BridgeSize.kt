@@ -2,7 +2,9 @@ package exception
 
 import bridge.InputView
 
-class BridgeSize(private val inputView: InputView, private var size: Int) {
+class BridgeSize(private val inputView: InputView) {
+    private var size = 0
+
     fun verify() {
         while (true) {
             try {

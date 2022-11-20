@@ -2,7 +2,9 @@ package exception
 
 import bridge.InputView
 
-class GameOver(private val inputView: InputView, private var retryOrQuit: String) {
+class GameOver(private val inputView: InputView) {
+    private var retryOrQuit = ""
+
     fun verify() {
         while (true) {
             try {
