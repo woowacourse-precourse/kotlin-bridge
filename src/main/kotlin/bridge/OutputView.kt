@@ -17,6 +17,8 @@ class OutputView {
 
     fun printInputBridgeLength() {
         println(Output.BRIDGE_LENGTH.message)
+        println(InputView().readBridgeSize())
+        println()
     }
 
     /**
