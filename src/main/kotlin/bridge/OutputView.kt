@@ -15,6 +15,7 @@ class OutputView {
      */
     fun printMap(string: String) {
         println(string)
+        println()
     }
 
     /**
@@ -24,5 +25,10 @@ class OutputView {
      */
     fun printResult(string: String) {
         println(string)
+        println()
+    }
+
+    fun log(message: String) {
+        println(message)
     }
 }

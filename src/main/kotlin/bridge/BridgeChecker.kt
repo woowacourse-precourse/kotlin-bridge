@@ -9,7 +9,7 @@ class BridgeChecker(
 ) {
     private val bridgeInFog = bridgeMaker.makeBridge(size)
     private var bridgeRevealed = mutableListOf<List<String>>()
-
+    private var numberOfAttempts = 1
     fun toVisualizationOpenedPart(): String {
         val sb: StringBuilder = StringBuilder().also {
             it.append(makeLine(0)).append("\n")
@@ -20,7 +20,7 @@ class BridgeChecker(
 
     fun toVisualizationGameResult(): String {
         return BridgeGameMessages.makeFinalMessage(
-            toVisualizationOpenedPart(), isSuccess(), bridgeRevealed.size
+            toVisualizationOpenedPart(), isSuccess(), numberOfAttempts
         )
     }
 
@@ -37,6 +37,7 @@ class BridgeChecker(
     }
 
     fun resetBridgeRevealed() {
+        numberOfAttempts += 1
         bridgeRevealed = mutableListOf()
     }
 

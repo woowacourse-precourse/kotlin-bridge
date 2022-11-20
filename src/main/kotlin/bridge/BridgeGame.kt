@@ -1,13 +1,14 @@
 package bridge
 
+import bridge.exceptions.InvalidRangeException
 import bridge.exceptions.InvalidRequestException
 import bridge.exceptions.NullBridgeException
+import bridge.exceptions.RequestFormatException
 import bridge.strings.BridgeGameErrorMessages
 import bridge.strings.BridgeGameMessages
 
-
 enum class RequestType {
-    LAUNCH, MOVE, RETRY, INIT, NOW_STATE_MESSAGE, NONE;
+    LAUNCH, MOVE, RETRY, INIT, GUID_MESSAGE, NONE;
 }
 
 /**
@@ -31,7 +32,7 @@ class BridgeGame {
 
     private fun acceptRequest(request: RequestType) {
         when (request) {
-            RequestType.NOW_STATE_MESSAGE -> return
+            RequestType.GUID_MESSAGE -> return
             RequestType.LAUNCH -> launchGame()
             else -> throw IllegalArgumentException(BridgeGameErrorMessages.INVALID_REQUEST.message)
         }
@@ -48,7 +49,7 @@ class BridgeGame {
 
     private fun launchGame() {
         val responsePacket1 =
-            ResponsePacket(BridgeGameMessages.GUID_GAME_START_MESSAGE.message, RequestType.NOW_STATE_MESSAGE)
+            ResponsePacket(BridgeGameMessages.GUID_GAME_START_MESSAGE.message, RequestType.GUID_MESSAGE)
         val responsePacket2 = ResponsePacket(BridgeGameMessages.INPUT_LENGTH_OF_BRIDGE.message, RequestType.INIT)
         responseMessageQueue.addLast(responsePacket1)
         responseMessageQueue.addLast(responsePacket2)
@@ -75,7 +76,7 @@ class BridgeGame {
 
     private fun makeResponsePacketByMovedResult(movedResult: List<Boolean>): List<ResponsePacket> {
         val result = mutableListOf<ResponsePacket>()
-        result.add(ResponsePacket(bridgeChecker!!.toVisualizationOpenedPart(), RequestType.NOW_STATE_MESSAGE))
+        result.add(ResponsePacket(bridgeChecker!!.toVisualizationOpenedPart(), RequestType.GUID_MESSAGE))
         // 0번 -> 마지막 블록이 정답으로 체크되었는지 여부, 1번 -> 마지막 블록까지 진행했는지 여부
         if (movedResult[0] && !movedResult[1])
             result.add(ResponsePacket(BridgeGameMessages.INPUT_TYPE_OF_MOVEMENT.message, RequestType.MOVE))
@@ -112,7 +113,7 @@ class BridgeGame {
 
     private fun validateRetry(how: String) {
         if (how != "R" && how != "Q")
-            throw IllegalArgumentException(BridgeGameErrorMessages.INVALID_RETRY_REQUEST.message)
+            throw RequestFormatException(BridgeGameErrorMessages.INVALID_RETRY_REQUEST.message)
         if (bridgeChecker == null)
             throw NullBridgeException(BridgeGameErrorMessages.NULL_BRIDGE_RETRY_EXCEPTION.message)
     }
@@ -120,15 +121,15 @@ class BridgeGame {
     private fun validateRequestInit(how: String) {
         try {
             val size = how.toInt()
-            if (size < 3 || size > 20) throw IllegalArgumentException(BridgeGameErrorMessages.INVALID_BRIDGE_SIZE.message)
+            if (size < 3 || size > 20) throw InvalidRangeException(BridgeGameErrorMessages.INVALID_BRIDGE_SIZE.message)
         } catch (e: NumberFormatException) {
-            throw NumberFormatException(BridgeGameErrorMessages.NUMBER_FORMAT_EXCEPTION.message)
+            throw RequestFormatException(BridgeGameErrorMessages.NUMBER_FORMAT_EXCEPTION.message)
         }
     }
 
     private fun validateMoveRequest(how: String) {
         if (bridgeChecker == null) throw NullPointerException(BridgeGameErrorMessages.NULL_BRIDGE_CHECKER_MOVE_EXCEPTION.message)
-        if (how != "U" && how != "D") throw IllegalArgumentException(BridgeGameErrorMessages.INVALID_MOVE_REQUEST.message)
+        if (how != "U" && how != "D") throw RequestFormatException(BridgeGameErrorMessages.INVALID_MOVE_REQUEST.message)
     }
 
     private fun validateRequest(request: RequestType) {

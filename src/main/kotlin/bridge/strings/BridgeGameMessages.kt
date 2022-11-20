@@ -10,15 +10,16 @@ enum class BridgeGameMessages(val message: String) {
     INPUT_LENGTH_OF_BRIDGE("다리의 길이를 입력해주세요."),
     INPUT_TYPE_OF_MOVEMENT("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
     INPUT_TYPE_OF_RETRY("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)");
+
     companion object {
         fun makeFinalMessage(gameResultVisualization: String, isSuccess: Boolean, totalTryCount: Int): String {
-            val result = if (isSuccess) BridgeGameMessages.GUID_GAME_SUCCESSFUL.message else BridgeGameMessages.GUID_GAME_FAIL.message
+            val result = if (isSuccess) GUID_GAME_SUCCESSFUL.message else GUID_GAME_FAIL.message
             return """
-                ${BridgeGameMessages.GUID_FINAL_GAME_RESULT.message}
-                $gameResultVisualization
-                
-                ${BridgeGameMessages.GUID_GAME_IS_SUCCESS.message}${result}
-                ${BridgeGameMessages.GUID_TOTAL_TRY_COUNT.message}$totalTryCount
+${GUID_FINAL_GAME_RESULT.message}
+$gameResultVisualization
+
+${GUID_GAME_IS_SUCCESS.message}${result}
+${GUID_TOTAL_TRY_COUNT.message}$totalTryCount
             """.trimIndent()
         }
     }

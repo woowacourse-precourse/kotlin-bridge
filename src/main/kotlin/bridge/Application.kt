@@ -1,42 +1,60 @@
 package bridge
 
-import camp.nextstep.edu.missionutils.Console
-val bridgeGame = BridgeGame()
-val outputView = OutputView()
-fun main() {
+import bridge.exceptions.InvalidRangeException
+import bridge.exceptions.RequestFormatException
 
+val outputView = OutputView()
+val inputView = InputView()
+
+fun main() {
+    val bridgeGame = BridgeGame()
     var responsePacket = bridgeGame.respondToRequest(RequestType.LAUNCH)
     var responsePacketFor = ResponsePacketFor(RequestType.LAUNCH, responsePacket)
 
     while (true) {
-        if(responsePacketFor.requestType == RequestType.LAUNCH) {
-            outputView.printGuidMessage(responsePacketFor.popResponseMessage())
-        }
-        else if(responsePacketFor.popAdditionalMessage() == RequestType.NONE) {
-            outputView.printResult(responsePacketFor.popResponseMessage())
-            break
-        }
-        else if(responsePacketFor.requestType == RequestType.NOW_STATE_MESSAGE) {
-            outputView.printGuidMessage(responsePacketFor.popResponseMessage())
-        }
-        else if(responsePacketFor.requestType == RequestType.MOVE) {
-            outputView.printMap(responsePacketFor.popResponseMessage())
-        }
+        if (isEnd(responsePacketFor)) break
+        printProgressMessage(responsePacketFor)
 
-        var userInput = ""
-        if(responsePacketFor.popAdditionalMessage() != RequestType.NOW_STATE_MESSAGE) {
-            userInput = inputView.readLineAbout(responsePacketFor.popAdditionalMessage())
-        }
-        responsePacket = bridgeGame.respondToRequest(responsePacketFor.popAdditionalMessage(), userInput)
+        responsePacket = getResponsePacketFrom(bridgeGame, responsePacketFor)
         responsePacketFor = ResponsePacketFor(responsePacketFor.popAdditionalMessage(), responsePacket)
     }
 }
 
-class ResponsePacketFor(val requestType: RequestType, val responsePacket: ResponsePacket) {
-    fun popResponseMessage(): String {
-        return responsePacket.popResponseMessage()
+fun isEnd(responsePacketFor: ResponsePacketFor): Boolean {
+    if (responsePacketFor.popAdditionalMessage() == RequestType.NONE) {
+        outputView.printResult(responsePacketFor.popResponseMessage())
+        return true
     }
-    fun popAdditionalMessage(): RequestType {
-        return responsePacket.popAdditionalMessage()
+    return false
+}
+
+fun printProgressMessage(responsePacketFor: ResponsePacketFor) {
+    when (responsePacketFor.requestType) {
+        RequestType.MOVE -> outputView.printMap(responsePacketFor.popResponseMessage())
+        else -> outputView.printGuidMessage(responsePacketFor.popResponseMessage())
+    }
+}
+
+fun readLineIfUserInputNeeded(responsePacketFor: ResponsePacketFor): String {
+    var userInput = ""
+    if (responsePacketFor.popAdditionalMessage() != RequestType.GUID_MESSAGE) {
+        userInput = inputView.readLineAbout(responsePacketFor.popAdditionalMessage())
+    }
+    return userInput
+}
+
+fun getResponsePacketFrom(
+    bridgeGame: BridgeGame,
+    responsePacketFor: ResponsePacketFor
+): ResponsePacket {
+    var responsePacket: ResponsePacket
+    while (true) try {
+        val userInput = readLineIfUserInputNeeded(responsePacketFor)
+        responsePacket = bridgeGame.respondToRequest(responsePacketFor.popAdditionalMessage(), userInput)
+        return responsePacket
+    } catch (e: InvalidRangeException) {
+        outputView.log(e.message)
+    } catch (e: RequestFormatException) {
+        outputView.log(e.message)
     }
 }
