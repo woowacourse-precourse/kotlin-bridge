@@ -22,8 +22,13 @@ class BridgeGame {
         goalBridge = BridgeMaker(generator).makeBridge(input.readBridgeSize())
     }
 
+    fun move(moving: String) {
+        if(goalBridge[board[0].size] == moving){
+            bridgeBoard.updateBoard(true, moving)
+        }else
+            bridgeBoard.updateBoard(false, moving)
+    }
 
-    fun move() {}
 
     fun retry() {}
 }
