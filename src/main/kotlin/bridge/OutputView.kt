@@ -11,11 +11,70 @@ class OutputView {
         println(MESSAGE.GAMESTART.message)
     }
     /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
+     * 정답인 경우 다리 출력
+     * 단순 반복인 중간 부분은 따로 메소드 처리
+     * @param index 어디까지 진행됐는지 확인한 지표
+     * @param bridge 다리 모습
+     * @param upDown 위 다리, 아래 다리 구분
      */
-    fun printMap() {}
+    fun printMapTrue(index:Int,bridge:List<String>,upDown:String){
+        print("[")
+        printMapMiddle(index,bridge,upDown)
+        if (bridge[index] == upDown)
+            print(" O ]")
+        else
+            print("   ]")
+        if (upDown == "U")
+            print('\n')
+    }
+    /**
+     * 오답인 경우 다리 출력
+     * 단순 반복인 중간 부분은 따로 메소드 처리
+     * @param index 어디까지 진행됐는지 확인한 지표
+     * @param bridge 다리 모습
+     * @param upDown 위 다리, 아래 다리 구분
+     */
+    fun printMapFalse(index:Int,bridge:List<String>,upDown:String){
+        print("[")
+        printMapMiddle(index,bridge,upDown)
+        if (bridge[index] != upDown)
+            print(" X ]")
+        else
+            print("   ]")
+        if (upDown == "U")
+            print('\n')
+    }
+    /**
+     * 단순 반복인 중간 부분 출력 (이 경우 정답, 오답 차이가 없음)
+     * @param index 어디까지 진행됐는지 확인한 지표
+     * @param bridge 다리 모습
+     * @param upDown 위 다리, 아래 다리 구분
+     */
+    private fun printMapMiddle(index:Int,bridge:List<String>, upDown:String){
+        for (idx in 0 until index) {
+            if (bridge[idx] == upDown)
+                print(" O |")
+            else
+                print("   |")
+        }
+    }
+    /**
+     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
+     * 정답인 경우와 오답인 경우를 나눠서 출력한다.
+     * @param index 어디까지 진행됐는지 확인한 지표
+     * @param bridge 다리 모습
+     * @param check 현재 정답인 경우인지 오답인 경우인지
+     */
+    fun printMap(index:Int,bridge:List<String>,check:Boolean) {
+        if (check) {
+            printMapTrue(index,bridge,"U")
+            printMapTrue(index,bridge,"D")
+        }
+        if (!check) {
+            printMapFalse(index,bridge,"U")
+            printMapFalse(index,bridge,"D")
+        }
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
