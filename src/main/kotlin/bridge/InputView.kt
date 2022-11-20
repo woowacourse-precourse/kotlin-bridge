@@ -15,6 +15,7 @@ class InputView {
         println("다리의 길이를 입력해주세요.")
         val bridgeLength = Console.readLine()
         val checkedLength = errorCheck.sentenceCheck(bridgeLength)
+        println()
         return checkedLength
     }
 
@@ -26,6 +27,7 @@ class InputView {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
         val oneMove = Console.readLine()
         val checkMove = errorCheck.movingCheck(oneMove)
+        println()
         return checkMove
     }
 
@@ -33,6 +35,10 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        val errorCheck = ErrorCheck()
+        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        val gameCommand = Console.readLine()
+        val checkGameCommand = errorCheck.commandCheck(gameCommand)
+        return checkGameCommand
     }
 }
