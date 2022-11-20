@@ -13,7 +13,7 @@ class InputView {
      */
     fun readBridgeSize(input : String): Int {
         return try{
-            //val input = Console.readLine()!!
+            val input = Console.readLine()!!
             checkInputIsDigit(input)
             val bridgeSize = input.toInt()
             checkValidBridgeSize(bridgeSize)
