@@ -71,6 +71,7 @@ class BridgeGame {
         private val bridgeMap = Array(2) { mutableListOf<String>() }
         private var gameCount = 1
         const val RESTART_COMMAND = "R"
+        const val EXIT_COMMAND = "Q"
         const val CORRECT_SYMBOL = "O"
         const val NOT_CORRECT_SYMBOL = "X"
     }
