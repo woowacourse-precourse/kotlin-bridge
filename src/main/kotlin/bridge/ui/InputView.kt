@@ -1,11 +1,21 @@
 package bridge.ui
 import camp.nextstep.edu.missionutils.Console
+import bridge.data.ErrorMessage.ERROR_NUM_NOT_IN_RANGE
+import bridge.inputRangeException
+import bridge.inputTypeException
 
 class InputView {
     fun readBridgeSize(): Int {
-        println("다리의 길이를 입력해주세요.")
-        val bridgeSize = Console.readLine()
-        return bridgeSize.toInt()
+        while(true) {
+            println("다리의 길이를 입력해주세요.")
+            try{
+                val bridgeSize = Console.readLine().inputTypeException()
+                bridgeSize.inputRangeException()
+                return bridgeSize
+            }catch(e:IllegalArgumentException){
+                println(e.message)
+            }
+        }
     }
 
     fun readMoving(): String {
