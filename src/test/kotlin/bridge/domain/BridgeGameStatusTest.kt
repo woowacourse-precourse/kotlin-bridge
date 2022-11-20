@@ -68,7 +68,7 @@ class BridgeGameStatusTest {
         assertThat(BridgeGameStatus.of("Q")).isEqualTo(BridgeGameStatus.QUIT)
     }
 
-    @ParameterizedTest(name = "나머지를 입력하면 에러처리한다 {argumentsWithNames}")
+    @ParameterizedTest(name = "R와 Q를 제외한 문자를 입력하면 에러처리한다 {argumentsWithNames}")
     @ValueSource(strings = ["RR", "D", "1", "A"])
     fun `나머지를 입력하면 에러처리한다`(command: String) {
         assertThrows<IllegalArgumentException> {
