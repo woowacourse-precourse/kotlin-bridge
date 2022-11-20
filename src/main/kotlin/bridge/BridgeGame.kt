@@ -60,8 +60,8 @@ class BridgeGame {
 
         fun getDownList() = downList
 
-        fun success(bridge: List<String>) = index == bridge.size
+        fun successConditions(bridge: List<String>) = index == bridge.size
 
-        fun failure() = upList.contains("X") || downList.contains("X")
+        fun failureConditions() = upList.contains("X") || downList.contains("X")
     }
 }
