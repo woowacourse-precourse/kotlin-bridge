@@ -50,6 +50,9 @@ class InputView {
         GET_MOVE_MESSAGE("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
         GET_RETRY_MESSAGE("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
         RESULT_MESSAGE("최종 게임 결과"),
-        DETAIL_RESULT_MESSAGE("게임 성공 여부: %s\n 총 시도한 횟수: %d");
+        DETAIL_RESULT_MESSAGE("게임 성공 여부: %s\n총 시도한 횟수: %d");
+
+        val messages: List<String> = args.toList()
+        override fun toString() = messages.joinToString("\n")
     }
 }
