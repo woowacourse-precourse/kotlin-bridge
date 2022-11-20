@@ -19,6 +19,8 @@ class Util {
         throw IllegalArgumentException(Error.NOT_UD.info)
     }
     fun isRQ(input : String): Boolean{
-      return true
+        if(input=="R" || input=="Q")
+            return true
+        throw IllegalArgumentException(Error.NOT_RQ.info)
     }
 }
