@@ -6,7 +6,7 @@ package bridge
 class OutputView {
 
     fun printData(data: String){
-
+        println(data)
     }
 
     fun startGame(): String{
