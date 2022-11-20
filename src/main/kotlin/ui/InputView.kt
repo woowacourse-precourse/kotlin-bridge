@@ -11,14 +11,12 @@ class InputView {
     private val inspector: InputInspector = InputInspector()
 
     fun readBridgeSize(): Int {
-        var input: String = ""
-
         while (true) {
             try {
-                input = Console.readLine()
+                val input: String = Console.readLine()
                 if (inspector.checkBridgeSize(input)) return input.toInt()
             } catch (e: IllegalArgumentException) {
-                println(ERROR_MESSAGE + BRIDGE_LENGTH_ONLY_BETWEEN_3_AND_20)
+                println("$ERROR_MESSAGE $BRIDGE_LENGTH_ONLY_BETWEEN_3_AND_20")
                 continue
             }
         }
@@ -32,7 +30,7 @@ class InputView {
                 input = Console.readLine()
                 if (inspector.checkMoving(input)) return input
             } catch (e: IllegalArgumentException) {
-                println(ERROR_MESSAGE + MOVING_ONLY_U_OR_D)
+                println("$ERROR_MESSAGE $MOVING_ONLY_U_OR_D")
                 continue
             }
         }
@@ -46,7 +44,7 @@ class InputView {
                 input = Console.readLine()
                 if (inspector.checkGameCommand(input)) return input
             } catch (e: IllegalArgumentException)  {
-                println(ERROR_MESSAGE + COMMAND_ONLY_R_OR_Q)
+                println("$ERROR_MESSAGE $COMMAND_ONLY_R_OR_Q")
                 continue
             }
         }
