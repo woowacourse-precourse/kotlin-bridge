@@ -7,12 +7,19 @@ class Player(private val bridge: Bridge) {
 
     fun updateStage(inputMoving: String): Boolean {
         val isClearStage = bridge.match(stage, inputMoving)
-        when (isClearStage) {
-            true -> updateBridge(inputMoving, MOVE_CORRECT)
-            false -> updateBridge(inputMoving, MOVE_FAIL)
-        }
         stage += 1
+        moveToNext(inputMoving, isClearStage)
         return isClearStage
+    }
+
+    private fun moveToNext(inputUpOrDown: String, isClearStage: Boolean) {
+        when (isClearStage) {
+            true -> updateBridge(inputUpOrDown, MOVE_CORRECT)
+            false -> {
+                updateBridge(inputUpOrDown, MOVE_FAIL)
+                stage -= 1
+            }
+        }
     }
 
     private fun updateBridge(inputUpOrDown: String, stageResult: String) {
@@ -33,7 +40,7 @@ class Player(private val bridge: Bridge) {
     }
 
     fun isClear(): Boolean {
-        return bridge.finishCrossBridge(upBridge.size)
+        return bridge.finishCrossBridge(stage)
     }
 
     fun getUpBridge(): List<String> {
