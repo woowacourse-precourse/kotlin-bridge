@@ -4,11 +4,34 @@
 
 ## 🚀 Application.kt
 
+Application.kt는 프로그램이 동작하는데 필요한 함수들을 제공한다.
+
+| 함수                        | 파라미터              | 반환 값           | 설명                                                                                                                                                          |
+|---------------------------|-------------------|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `isEnd`                     | `ResponsePacketFor` | `Boolean`        | `BridgeGame`의 응답이 게임이 끝났다는 응답인지 확인한다.                                                                                                                         |
+| `printProgressMessage`      | `ResponsePacketFor` | `Unit`           | `BridgeGame`의 응답에 해당하는 메시지를 `OutputView`에게 요청하여 출력한다.                                                                                                           |
+| `readLineIfUserInputNeeded` | `ResponsePacketFor` | `String`         | 매개변수가 필요한 `BridgeGame`으로의 요청의 경우 유저의 입력이 필요하다. 만일 유저의 입력이 필요하면 `InputView`을 통하여 입력 받는다.                                                                         |
+| `getResponsePacketFrom`     | `BridgeGame`, `ResponsePacketFor`      | `ResponsePacket` | 유저의 입력이 필요하다면 `readLineIfUserInputNeeded` 함수를 사용하여 처리하고 `BridgeGame`으로부터 응답 메시지를 받아 `ResponsePacket`으로 만들고 반환한다. 만일 잘못된 입력이 있었을 경우 에러 메시지를 출력하고 해당 입력을 다시 받도록 한다. |
+
 ### 🚨 Exception
+`InvalidRangeException`: 잘못된 범위의 수를 입력했을 때 발생시킨다.
+`RequestFormatException`: 잘못된 입력 형식을 입력했을 때 발생시킨다.
 
 ---  
 
-## 🚀 BridgeGame 클래스
+## 🚀 BridgeGame.kt
+
+### RequestType
+
+`RequestType` 클래스는 `BridgeGame` 클래스에서 제어 가능한 요청들에 대해 사전 정의된 타입이다. `BridgeGame`가 동작하도록 하기 위해서는 이 타입 중 하나를 사용해야 한다.
+
+```kotlin
+enum class RequestType {
+    LAUNCH, MOVE, RETRY, INIT, GUID_MESSAGE, NONE;
+}
+```
+
+### BridgeGame
 
 `BridgeGame` 클래스는 BridgeGame을 관리하는 클래스이다.
 `BridgeGame` 클래스는 요청(request)을 받는다면 그에 해당하는 응답(response)을 하도록 한다.
@@ -35,33 +58,36 @@ var responsePacket = bridgeGame.respondToRequest(RequestType.LAUNCH)
 //...
 
 println(responsePacket.popMessageToPrint())
-if(responsePacket.popAdditionalMessage() == RequestType.GUID_MESSAGE)
-    println("RequestType.GUID_MESSAGE를 요청해 달라고 전달 받았습니다.")
+
+if (responsePacket.popAdditionalMessage() == RequestType.GUID_MESSAGE)
+    println("RequestType.GUID_MESSAGE 요청해 달라고 전달 받았습니다.")
 
 ```
 
 - 출력
 
 ```kotlin
-다리 건너기 게임을 시작합니다.
+다리 건너기 게임을 시작합니다 .
+
 RequestType.GUID_MESSAGE를 요청해 달라고 전달 받았습니다.
 ```
 
 ### 🚨 Exception
 
-- `acceptReuest`: 만일 사전에 지정되지 않은 요청 타입을 전달 받았을 경우 `IllegalArgumentException`을 발생시킨다.
-- 재시작할 때 입력이 `R` 또는 `Q`가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
+- `acceptReuest`: 만일 사전에 지정되지 않은 요청 타입을 전달 받았을 경우 `InvalidRequestException`을 발생시킨다.
+- 재시작할 때 입력이 `R` 또는 `Q`가 아닌 경우 `InvalidRangeException`을 발생시킨다.
 - `BridgeChecker`가 초기화되지 않았지만 `BridgeChecker`에 접근한 경우 `NullBridgeException`을 발생시킨다.
-- 숫자를 입력해야 할 때 숫자로 변환시킬 수 없는 문자열을 입력했을 경우 `NumberFormatException`을 발생시킨다.
-- 다리 크기를 입력 받아 초기화 하는데 크기가 3보다 작거나 20보다 클 경우 `IllegalArgumentException`을 발생시킨다.
-- 입력받은 움직이는 방식이 `U` 또는 `D`가 아니었을 경우 `IllegalArgumentException`을 발생시킨다.
+- 숫자를 입력해야 할 때 숫자로 변환시킬 수 없는 문자열을 입력했을 경우 `RequestFormatException`을 발생시킨다.
+- 다리 크기를 입력 받아 초기화 하는데 크기가 3보다 작거나 20보다 클 경우 `InvalidRangeException`을 발생시킨다.
+- 입력받은 움직이는 방식이 `U` 또는 `D`가 아니었을 경우 `RequestFormatException`을 발생시킨다.
 - 만일 시작하지 않은 상태에서 어떤 요청을 받았을 경우 `InvalidRequestException`을 발생시킨다.
-- 만일 `BridgeGame`이 `ResponsePacket`으로 다음에 요청해야할 `RequestType`을 보냈지만 `respondToRequest`로 전달 받은 `RequestType`이 적절하지 않으면 `InvalidRequestException`을 발생시킨다.
-  - 간단히 말해서 게임의 순서에 무관한 요청은 예외처리한다.
+- 만일 `BridgeGame`이 `ResponsePacket`으로 다음에 요청해야할 `RequestType`을 보냈지만 `respondToRequest`로 전달 받은 `RequestType`이 적절하지
+  않으면 `InvalidRequestException`을 발생시킨다.
+    - 간단히 말해서 게임의 순서에 무관한 요청은 예외처리한다.
 
 ---  
 
-## 🚀 BridgeMaker 클래스
+## 🚀 BridgeMaker
 
 |함수|파라미터|반환 값|설명|
 |---|---|---|---|
@@ -73,16 +99,17 @@ RequestType.GUID_MESSAGE를 요청해 달라고 전달 받았습니다.
 
 ---
 
-## 🚀 BridgeChecker 클래스
+## 🚀 BridgeChecker
 
 `BridgeChecker` 클래스는 크기와 `BridgeMaker` 클래스를 파라미터로 전달 받아 생성된다. BridgeMaker로 다리를 만들고 요청에 따라 현재 진행 상황을 문자열로 전달해주는 함수와 현재 진행
 상황을 갱신하는 함수, 게임 진행 내용을 초기화 하는 함수를 제공한다.
 
-| 함수                  |파라미터| 반환 값    | 설명                                                   |
-|---------------------|---|---------|------------------------------------------------------|
-| `toStringOpenPart`    |`Unit`| `String`  | 사용자가 현재까지 다리를 얼마나 건넜는지를 문자열로 시각화하여 반환한다.             |
-| `checkWithUpdating`   |`String`| `Boolean` | 사용자가 입력한 정답을 파라미터로 받아 답이 맞았는지 확인하고 갱한 뒤 정답 여부를 반환한다. |
-| `resetBridgeRevealed` |`Unit`| `Unit`    | 사용자가 다리를 건너는 진행 상황을 초기화 한다.                          |
+| 함수                  | 파라미터     | 반환 값   | 설명                                                  |
+|---------------------|----------|--------|-----------------------------------------------------|
+| `toVisualizationOpenedPart`    | `Unit`   | `String` | 사용자가 현재까지 다리를 얼마나 건넜는지를 문자열로 시각화하여 반환한다.            |
+|`toVisualizationGameResult`| `Unit`     |`String`|                                                     |
+| `checkWithUpdating`   | `String` | `Boolean` | 사용자가 입력한 정답을 파라미터로 받아 답이 맞았는지 확인하고 갱한 뒤 정답 여부를 반환한다. |
+| `resetBridgeRevealed` | `Unit`   | `Unit` | 사용자가 다리를 건너는 진행 상황을 초기화 한다.                         |
 
 ### 🚨 Exception
 
@@ -90,7 +117,7 @@ RequestType.GUID_MESSAGE를 요청해 달라고 전달 받았습니다.
 
 ---
 
-## 🚀 BridgeRandomNumberGenerator 클레스
+## 🚀 BridgeRandomNumberGenerator
 
 `BridgeRandomNumberGenerator` 클래스는 `BridgeNumberGenerator` 인터페이스를 상속받아 구현된다.
 다리를 생성할 때 U형과 D형을 정하기 위한 클래스이다.
@@ -103,28 +130,36 @@ RequestType.GUID_MESSAGE를 요청해 달라고 전달 받았습니다.
 
 ---
 
-## 🚀 InputView 클래스
+## 🚀 InputView
 
-|함수|파라미터|반환 값|설명|
-|---|---|---|---|
-
-### 🚨 Exception
-
----
-
-## 🚀 OutputView 클래스
-
-|함수|파라미터|반환 값|설명|
-|---|---|---|---|
+|함수|파라미터| 반환 값   | 설명                                 |
+|---|---|--------|------------------------------------|
+|`readLineAbout`|`RequestType`| `String` | `RequestType`에 대해 적절한 함수로의 입력을 수행한다. |
 
 ### 🚨 Exception
 
 ---
 
-## 🚀 NextMyClass 클래스
+## 🚀 OutputView
 
-|함수|파라미터|반환 값|설명|
-|---|---|---|---|
+|함수| 파라미터     | 반환 값   | 설명                                 |
+|---|----------|--------|------------------------------------|
+|`printGuidMessage`| `String` | `Unit` | 안내 메시지를 출력해야 하는 경우, 이 함수를 통해 출력한다. |
+|`printMap`| `String` | `Unit` | 진행 상황을 출력해야 하는 경우, 이 함수를 통해 출력한다.  |
+|`printResult`| `String` | `Unit` | 결과를 출력해야 하는 경우, 이 함수를 통해 출력한다.     |
+|`log`| `String`   | `Unit`   | 에러 메시지를 출력해야 하는 경우, 이 함수를 통해 출력한다. |
+
+### 🚨 Exception
+
+---
+
+## 🚀 ResponsePacket.kt
+
+### ResponsePacket
+`BridgeGame` 클래스가 `Application`과 정보를 주고 받을 수 있도록 돕는 데이터 클래스이다.
+
+### ResponsePacketFor
+`Application`의 `main` 함수가 `BridgeGame` 클래스와 정보를 주고 받을 수 있도록 돕는 클래스이다.
 
 ### 🚨 Exception
 
