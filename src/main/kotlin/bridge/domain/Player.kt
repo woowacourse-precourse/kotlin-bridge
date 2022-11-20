@@ -11,6 +11,8 @@ class Player(
         tries++
     }
 
+    fun nextIndex() = blocks.size
+
     fun getTries() = tries
     fun getPlayerBlocks(): List<PlayerBlock> = blocks
 }
