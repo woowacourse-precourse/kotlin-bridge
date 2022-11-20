@@ -328,3 +328,5 @@ val number = bridgeNumberGenerator.generate()
   - 재시도하면 다리를 생성한 이후 부터 재시작한다.
 
 5. 다리의 길이만큼 모두 이동하면 게임이 끝나고 최종 결과가 출력된다.
+
+
