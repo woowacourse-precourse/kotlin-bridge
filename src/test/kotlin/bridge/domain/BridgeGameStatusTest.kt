@@ -1,6 +1,6 @@
 package bridge.domain
 
-import bridge.BridgeGameTest
+import bridge.ApplicationTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -13,7 +13,7 @@ class BridgeGameStatusTest {
 
     @BeforeEach
     fun beforeEach() {
-        val numberGenerator: BridgeNumberGenerator = BridgeGameTest.TestNumberGenerator(listOf(1, 0, 0))
+        val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 0, 0))
         bridge = BridgeMaker(numberGenerator).makeBridge(3)
     }
 
