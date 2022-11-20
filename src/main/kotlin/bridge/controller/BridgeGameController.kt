@@ -30,19 +30,13 @@ class BridgeGameController {
 
     private fun startBridgeGame(): Boolean {
         bridgeGame.startBridgeGame()
-
         for (round in BASE_ROUND until bridgeGame.bridgeSize()) {
             val roundResult = startRound(round)
             val finalPosition = bridgeGame.finalPosition()
             val retry = processResult(roundResult, finalPosition)
 
-            // 재시도 요청시 반복
-            if (retry) {
-                return RETRY_GAME
-            }
-            if (roundResult.result == Result.FAIL) {
-                return FINISH_GAME
-            }
+            if (retry) { return RETRY_GAME }
+            if (roundResult.result == Result.FAIL) { return FINISH_GAME }
         }
         return FINISH_GAME
     }
