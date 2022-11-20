@@ -15,8 +15,8 @@ class BridgeGame {
     fun move(playerMoves:MutableList<List<String>>,upOrDown:String,alive:Boolean):MutableList<List<String>>{
         var jump = listOf("")
         when (upOrDown) {
-            Games.UP.game -> if(alive) jump = UP_RIGHT else UP_WRONG
-            Games.DOWN.game -> if(alive) jump = DOWN_RIGHT else DOWN_WRONG
+            Games.UP.game -> jump = if(alive) UP_RIGHT else UP_WRONG
+            Games.DOWN.game -> jump = if(alive) DOWN_RIGHT else DOWN_WRONG
         }
         playerMoves.add(jump)
         return playerMoves
