@@ -17,7 +17,7 @@ class BridgeGameTest : NsTest() {
     fun `다리길이 정상적인 입력값을 받았을 경우`() {
         assertSimpleTest {
             run("3")
-            assertThat(output())
+            assertThat(output()).contains("다리 건너기 게임을 시작합니다.")
         }
     }
 
