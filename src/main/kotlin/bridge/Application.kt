@@ -1,6 +1,8 @@
 package bridge
 
+import bridge.ui.InputView
+import bridge.ui.OutputView
+
 fun main() {
-    val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
-    print(BridgeMaker(bridgeRandomNumberGenerator).makeBridge(10))
+        Player().playGame()
 }

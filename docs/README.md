@@ -8,6 +8,9 @@
 - [x] 다리와 플레이어 입력을 비교 - BridgeState#compare()
 - [x] 플레이어 이동을 리스트에 추가하고 반환- BridgeState#insertMove()
 ### Player
+- [x] 게임 플레이 - playGame()
+- [X] 다리 건너기 - crossBridge()
+### PlayerLife
 - [x] 플레이어가 살아는지 확인 - isAlive()
 # UI 로직 작성
 ### InputView
