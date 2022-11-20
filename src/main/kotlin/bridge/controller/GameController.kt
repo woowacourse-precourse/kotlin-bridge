@@ -2,15 +2,12 @@ package bridge.controller
 
 import bridge.ERROR
 import bridge.ZERO
-import bridge.model.Bridge
-import bridge.model.ProgressMatrix
+import bridge.model.BridgeGame
 import bridge.view.InputView
 import bridge.view.OutputView
 
 class GameController {
-
-    private val bridge = Bridge()
-    private val progressMatrix = ProgressMatrix()
+    private val bridgeGame = BridgeGame()
     private var size = ZERO
     private var isPlaying = true
 
@@ -18,8 +15,8 @@ class GameController {
         OutputView.startGame()
         getBridgeLength()
         println()
-        bridge.getBridge(size)
-        progressMatrix.initMatrix(size)
+        bridgeGame.makeBridge(size)
+        bridgeGame.initMatrix(size)
     }
 
     fun start() {
