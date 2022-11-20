@@ -51,6 +51,12 @@ class Player(private val bridge: Bridge) {
         return downBridge
     }
 
+    fun initializePlayer() {
+        stage = 0
+        upBridge = mutableListOf<String>()
+        downBridge = mutableListOf<String>()
+    }
+
     companion object {
         const val MOVE_UP = "U"
         const val MOVE_DOWN = "D"

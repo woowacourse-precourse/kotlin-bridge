@@ -48,6 +48,9 @@ class BridgeGameController {
             if (moving(bridgeGame)) {
                 continue
             }
+            if (!retry(bridgeGame)) {
+                break
+            }
         }
     }
 
@@ -56,5 +59,10 @@ class BridgeGameController {
         val successOrFail = bridgeGame.move(inputMove)
         OutputView().printMap(bridgeGame)
         return successOrFail
+    }
+
+    private fun retry(bridgeGame: BridgeGame): Boolean {
+        val inputRetryCommand = inputGameCommand()
+        return bridgeGame.retry(inputRetryCommand)
     }
 }
