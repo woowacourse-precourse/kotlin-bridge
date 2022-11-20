@@ -13,17 +13,28 @@ import bridge.view.OutputView
 
 class BridgeGameController {
     private var status: BridgeGameStatus = RUNNING
-    private var info: BridgeGameInfo = BridgeGameInfo(emptyList(), emptyList(), 1)
+    private var info: BridgeGameInfo
 
+    init {
+        status = RUNNING
+        info = BridgeGameInfo(
+            BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(InputView().readBridgeSize()),
+            emptyList(),
+            1
+        )
+    }
     fun run() {
-        info.bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(InputView().readBridgeSize())
         while (status == RUNNING) {
-            info = BridgeGame().move(info, InputView().readMoving())
-            status = BridgeGameStatus.of(info)
-            OutputView().printMap(info)
+            play()
             handleStatus()
         }
         OutputView().printResult(info)
+    }
+
+    private fun play() {
+        BridgeGame().move(info, InputView().readMoving())
+        status = BridgeGameStatus.of(info)
+        OutputView().printMap(info)
     }
 
     private fun handleStatus() {
