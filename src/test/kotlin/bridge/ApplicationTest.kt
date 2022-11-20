@@ -64,4 +64,12 @@ class ApplicationTest : NsTest() {
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
+
+    @Test
+    fun `이동 방향 입력 예외 테스트`() {
+        assertSimpleTest {
+            runException("C")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
 }

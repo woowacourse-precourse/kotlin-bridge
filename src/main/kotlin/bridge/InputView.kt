@@ -42,7 +42,8 @@ class InputView {
 
     fun checkMovingInputException() {
         try {
-            if (chooseUpOrDown != "U" || chooseUpOrDown != "D") {
+            if (chooseUpOrDown != "U" && chooseUpOrDown != "D") {
+                chooseUpOrDown.toInt()
             }
         } catch (e: IllegalArgumentException) {
             println("[ERROR] U(위 칸)나 D(아래 칸)만 입력할 수 있습니다.")
