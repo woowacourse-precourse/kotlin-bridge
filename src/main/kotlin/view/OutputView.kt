@@ -9,7 +9,28 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap() {}
+
+    fun printMap(bridge: List<Int>, upInput: List<Int>, downInput: List<Int>) {
+        printDecide(bridge, upInput)
+        println()
+        printDecide(bridge, downInput)
+    }
+
+    private fun printDecide(bridge: List<Int>, input: List<Int>) {
+        print("[")
+        input.forEachIndexed { idx, value ->
+            when {
+                bridge[idx] == value && value == 0 ->
+                    print(" ")
+                bridge[idx] == value && value == 1 ->
+                    print("O")
+                bridge[idx] != value ->
+                    print("X")
+            }
+        }
+        print("]")
+    }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -24,7 +45,7 @@ class OutputView {
 
     fun printMoveBridge() = println(MOVE_BRIDGE)
 
-    fun printRetryGame()= println(RETRY_GAME)
+    fun printRetryGame() = println(RETRY_GAME)
 
     companion object {
         const val START_GAME = "다리 건너기 게임을 시작합니다."
