@@ -15,6 +15,7 @@ class ApplicationTest : NsTest() {
         assertThat(bridge).containsExactly("U", "D", "D")
     }
 
+
     @Test
     fun `기능 테스트`() {
         assertRandomNumberInRangeTest({
@@ -39,6 +40,8 @@ class ApplicationTest : NsTest() {
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
+
+
 
     override fun runMain() {
         main()
