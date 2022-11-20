@@ -1,5 +1,7 @@
 package bridge.domain
 
+import bridge.BridgeMaker
+import bridge.BridgeRandomNumberGenerator
 import bridge.resources.BRIDGE_MAX_LENGTH
 import bridge.resources.BRIDGE_MIN_LENGTH
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest

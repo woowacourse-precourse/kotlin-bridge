@@ -1,6 +1,6 @@
 package bridge.view
 
-import bridge.domain.BridgeMaker.Companion.UP_AND_DOWN_KEYS
+import bridge.BridgeMaker.Companion.UP_AND_DOWN_KEYS
 import bridge.resources.ERROR_INPUT_ALLOWED_KEYS
 import bridge.resources.INPUT_BRIDGE_SIZE
 import bridge.resources.INPUT_GAME_COMMAND

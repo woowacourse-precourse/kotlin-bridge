@@ -1,4 +1,4 @@
-package bridge.domain
+package bridge
 
 import bridge.resources.BRIDGE_MAX_LENGTH
 import bridge.resources.BRIDGE_MIN_LENGTH
