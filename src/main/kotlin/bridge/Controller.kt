@@ -15,7 +15,7 @@ class Controller {
         val moveDirection = inputMoveDirection()
         bridgeResult = bridgeGame.move(moveDirection)
         OutputView().printMap(bridgeResult)
-        if(bridgeResult.getGameResult() == Result.SUCCESS) return endGame()
+        if(bridgeResult.getGameResult().isSuccess()) return endGame()
         if(bridgeResult.getMovePossible().isPossible()) return startGame()
         return restartGame()
     }
