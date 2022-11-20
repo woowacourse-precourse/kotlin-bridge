@@ -19,19 +19,34 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
 
     fun checkPlayerCanMove(input : String){
         val input = inputView.readMoving()
-        if(input == bridge[move]){
-            when (input){
-                "U" -> {
-                    upProcess("O")
-                    downProcess(" ")
-                }
-
-                "D" -> {
-                    upProcess(" ")
-                    downProcess("O")
-                }
+        var isFail = false
+        when(input == bridge[move]){
+            true -> checkSuccessDistinguishUpDown(input)
+            false -> {
+                checkFailDistinguishUpDown(input)
+                isFail = true
             }
         }
+        move++
+        outputView.printMap()
+        checkMoveEnd(move, isFail)
+    }
+
+    private fun checkSuccessDistinguishUpDown(input: String){
+        when (input){
+            "U" -> {
+                upProcess("O")
+                downProcess(" ")
+            }
+
+            "D" -> {
+                upProcess(" ")
+                downProcess("O")
+            }
+        }
+    }
+
+    private fun checkFailDistinguishUpDown(input: String){
         when(input){
             "U" -> {
                 upProcess("X")
@@ -42,7 +57,12 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
                 downProcess("X")
             }
         }
-        outputView.printMap()
+    }
+
+    private fun checkMoveEnd(move : Int, isFail : Boolean){
+        if(move == bridge.size || isFail){
+
+        }
     }
 
     private fun upProcess(result: String){
