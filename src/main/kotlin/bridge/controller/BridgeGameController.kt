@@ -12,7 +12,7 @@ import bridge.view.InputView
 import bridge.view.OutputView
 
 class BridgeGameController {
-    private var status: BridgeGameStatus = RUNNING
+    private var status: BridgeGameStatus
     private var info: BridgeGameInfo
 
     init {
