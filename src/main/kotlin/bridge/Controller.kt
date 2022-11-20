@@ -11,6 +11,7 @@ class Controller {
     }
 
     fun startGame(){
+        OutputView().pringGameStartMessage()
         val moveDirection = inputMoveDirection()
         bridgeResult = bridgeGame.move(moveDirection)
         OutputView().printMap(bridgeResult)
