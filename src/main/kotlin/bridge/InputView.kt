@@ -20,7 +20,7 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        println(UI.GET_LENGTH_MESSAGE)
+        println(UI.GET_BRIDGE_SIZE_MESSAGE)
         val location = Console.readLine()
         ExceptionHandler.checkValidMoving(location)
         return location
@@ -46,7 +46,7 @@ class InputView {
 
     enum class UI(vararg args: String) {
         START_MESSAGE("다리 건너기 게임을 시작합니다."),
-        GET_LENGTH_MESSAGE("다리의 길이를 입력해주세요."),
+        GET_BRIDGE_SIZE_MESSAGE("다리의 길이를 입력해주세요."),
         GET_MOVE_MESSAGE("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
         GET_RETRY_MESSAGE("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
         RESULT_MESSAGE("최종 게임 결과"),
