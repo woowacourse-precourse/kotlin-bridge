@@ -1,8 +1,5 @@
 package bridge.domain
 
-import bridge.bridge
-import bridge.player
-
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -26,10 +23,10 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry(command: String) {
+    fun retry(command: String, player: Player, bridge: Bridge) {
         when (command) {
-            "R" -> setRetry()
-            "Q" -> setQuit()
+            "R" -> setRetry(player, bridge)
+            "Q" -> setQuit(player)
         }
     }
 
@@ -64,13 +61,13 @@ class BridgeGame {
         return "| $result "
     }
 
-    private fun setRetry() {
+    private fun setRetry(player: Player, bridge: Bridge) {
         player.setGameRetry()
         player.setRetryCount()
         bridge.resetBridge()
     }
 
-    private fun setQuit() {
+    private fun setQuit(player: Player) {
         player.setGameFailure()
         player.setGameQuit()
     }
