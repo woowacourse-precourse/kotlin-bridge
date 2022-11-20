@@ -27,6 +27,7 @@ class InputView {
             }
         } catch (e: IllegalArgumentException) {
             println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
+            readBridgeSize()
         }
     }
 
@@ -47,6 +48,7 @@ class InputView {
             }
         } catch (e: IllegalArgumentException) {
             println("[ERROR] U(위 칸)나 D(아래 칸)만 입력할 수 있습니다.")
+            readMoving()
         }
     }
 
