@@ -18,4 +18,9 @@ class InputInvalidCheck() {
         if (input == "U" || input == "D") return true
         return false
     }
+
+    fun checkGameCommand(input: String): Boolean {
+        if (input == "R" || input == "Q") return true
+        return false
+    }
 }

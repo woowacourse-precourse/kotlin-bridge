@@ -28,6 +28,7 @@ class OutputView {
     enum class Error(val error: String) {
         BRIDGE_INPUT_ERROR("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."),
         MOVE_INPUT_ERROR("[ERROR] 이동에 대한 입력은 U(위) 혹은 D(아래)만 가능합니다."),
+        RETRY_INPUT_ERROR("[ERROR] 게임 재시도에 대한 입력은 R(재시도) 혹은 Q(종료)만 가능합니다."),
         NON_ERROR("에러 없음"),
     }
 }
