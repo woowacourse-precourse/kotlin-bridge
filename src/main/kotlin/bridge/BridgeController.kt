@@ -6,6 +6,8 @@ import view.OutputView
 
 class BridgeController {
     private lateinit var bridgeGame: BridgeGame
+    private val outputView = OutputView()
+    private val inputView = InputView()
 
     fun run() {
         makeBridge()
@@ -13,10 +15,10 @@ class BridgeController {
     }
 
     private fun makeBridge() {
-        OutputView.printStartGame()
+        outputView.printStartGame()
         val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
         val bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
-        val bridges = bridgeMaker.makeBridge(InputView.readBridgeSize())
+        val bridges = bridgeMaker.makeBridge(inputView.readBridgeSize())
         bridgeGame = BridgeGame(bridges)
     }
 
@@ -32,27 +34,27 @@ class BridgeController {
     }
 
     private fun move() {
-        OutputView.printInputMove()
-        bridgeGame.move(InputView.readMoving())
-        OutputView.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
+        outputView.printInputMove()
+        bridgeGame.move(inputView.readMoving())
+        outputView.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
     }
 
     private fun end(result: String) {
-        OutputView.printEndGame()
-        OutputView.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
-        OutputView.printResult(bridgeGame.getTryCount(), result)
+        outputView.printEndGame()
+        outputView.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
+        outputView.printResult(bridgeGame.getTryCount(), result)
     }
 
     private fun fail(): Boolean {
         if (bridgeGame.isFail(Enum.RESULT.FAILURE.emoji)) {
-            OutputView.printRestart()
+            outputView.printRestart()
             return restart()
         }
         return false
     }
 
     private fun restart(): Boolean {
-        when (InputView.readGameCommand()) {
+        when (inputView.readGameCommand()) {
             Enum.OPTION.RESTART.command -> bridgeGame.retry()
             Enum.OPTION.QUIT.command -> {
                 end(Enum.RESULT.FAILURE.korean)
