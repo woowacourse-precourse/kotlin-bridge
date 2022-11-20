@@ -1,10 +1,13 @@
 package bridge.controller
 
 import bridge.BridgeMaker
+import bridge.domain.BridgeGame
+import bridge.model.BridgeDTO
 import bridge.view.InputView
 import bridge.view.OutputView
 
 class BridgeGameController(
+    private val bridgeGame: BridgeGame,
     private val bridgeMaker: BridgeMaker,
     private val inputView: InputView,
     private val outputView: OutputView
@@ -13,13 +16,26 @@ class BridgeGameController(
 
     fun start() {
         outputView.printStartGame()
+
         outputView.printStepInterval()
+
         setUp()
     }
 
-    private fun setUp() {}
+    private fun setUp() {
+        val bridgeSize = getBridgeSize()
 
-    fun getBridgeSize(): Int {
+        val bridge = bridgeMaker.makeBridge(bridgeSize)
+
+        val bridgeDTO = BridgeDTO(bridge)
+        bridgeGame.setBridge(bridgeDTO)
+
+        outputView.printStepInterval()
+
+        play()
+    }
+
+    private fun getBridgeSize(): Int {
         var input: String
         do {
             input = inputView.readBridgeSize()
