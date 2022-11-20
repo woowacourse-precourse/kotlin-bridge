@@ -4,8 +4,12 @@ import bridge.common.*
 
 object InputValidator {
     fun validateBridgeSize(bridgeSize: String) {
-        (bridgeSize.isDigit() && bridgeSize.isCorrectSize()).let { isCorrectBridgeSize ->
-            if (!isCorrectBridgeSize) throw IllegalArgumentException(ERROR_MESSAGE_FORMAT.format(ERROR_BRIDGE_SIZE_MESSAGE))
+        (bridgeSize.isNotBlank() && bridgeSize.isDigit() && bridgeSize.isCorrectSize()).let { isCorrectBridgeSize ->
+            if (!isCorrectBridgeSize) throw IllegalArgumentException(
+                ERROR_MESSAGE_FORMAT.format(
+                    ERROR_BRIDGE_SIZE_MESSAGE
+                )
+            )
         }
     }
 
@@ -23,6 +27,6 @@ object InputValidator {
         this.all { eachChar -> eachChar.isDigit() }
 
     private fun String.isCorrectSize(): Boolean =
-        this.toInt() in MIN_BRIDGE_SIZE .. MAX_BRIDGE_SIZE
+        this.toInt() in MIN_BRIDGE_SIZE..MAX_BRIDGE_SIZE
 
 }

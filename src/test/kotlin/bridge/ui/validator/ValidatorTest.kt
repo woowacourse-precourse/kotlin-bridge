@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class ValidatorTest {
     @ParameterizedTest
-    @ValueSource(strings = ["2", "21", ""])
+    @ValueSource(strings = ["2", "21", "", " "])
     fun `다리 크기가 3 이상 20 이하의 숫자가 아니면 예외 발생`(bridgeSize: String) {
         assertThatIllegalArgumentException().isThrownBy {
             InputValidator.validateBridgeSize(bridgeSize = bridgeSize)
@@ -16,7 +16,7 @@ class ValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["UD", "A", ""])
+    @ValueSource(strings = ["UD", "A", "", " "])
     fun `이동할 칸 입력이 U 또는 D가 아닌 문자면 예외 발생`(moving: String) {
         assertThatIllegalArgumentException().isThrownBy {
             InputValidator.validateMoving(moving = moving)
@@ -25,7 +25,7 @@ class ValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["RQ", "A", ""])
+    @ValueSource(strings = ["RQ", "A", "", " "])
     fun `게임 진행 여부 입력이 R 또는 Q가 아닌 문자면 예외 발생`(command: String) {
         assertThatIllegalArgumentException().isThrownBy {
             InputValidator.validateGameCommand(command = command)
