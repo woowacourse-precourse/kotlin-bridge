@@ -18,7 +18,7 @@ object OutputView {
     }
 
     private fun handleWhenIsNotNull(str: String, index: Int, size: Int) {
-        if (str != "") {
+        if (str != NULL) {
             printOneLineOfMatrix(str, index, size)
         }
     }
