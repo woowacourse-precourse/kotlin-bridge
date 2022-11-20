@@ -1,7 +1,6 @@
 package bridge.controller
 
-import bridge.ERROR
-import bridge.ZERO
+import bridge.*
 import bridge.model.BridgeGame
 import bridge.view.InputView
 import bridge.view.OutputView
@@ -12,6 +11,7 @@ class GameController {
     private var size = ZERO
     private var isPlaying = true
     private var position = ZERO
+    private var tryCount = 1
 
     init {
         OutputView.startGame()
@@ -24,9 +24,10 @@ class GameController {
     fun start() {
         while (isPlaying) {
             val direction = getMoveDirection()
-            bridgeGame.compare(direction, position)
+            val isSuccess = bridgeGame.compare(direction, position)
             bridgeGame.move(direction, position)
             OutputView.printMap(bridgeGame.progressMatrix.progress, position)
+            completeOrFail(isSuccess)
         }
     }
 
@@ -49,6 +50,18 @@ class GameController {
                 return InputView.readMoving()
             } catch (e: Exception) {
                 println("$ERROR ${e.message}\n")
+            }
+        }
+    }
+
+    private fun completeOrFail(isSuccess: Boolean) {
+        if (isSuccess) {
+            if (position == size - 1) {
+                OutputView.finalResult()
+                OutputView.printResult(bridgeGame.progressMatrix.progress, position)
+                OutputView.isSuccess(SUCCESS)
+                OutputView.totalTryCount(tryCount)
+                isPlaying = false
             }
         }
     }

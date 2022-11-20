@@ -1,9 +1,6 @@
 package bridge.view
 
-import bridge.INPUT_BRIDGE_LENGTH
-import bridge.SELECT_MOVE_DIRECTION
-import bridge.START_BRIDGE_GAME
-import bridge.ZERO
+import bridge.*
 import java.lang.IllegalArgumentException
 
 /**
@@ -36,7 +33,9 @@ object OutputView {
         }
     }
 
-    fun printResult() {}
+    fun printResult(arr: Array<Array<String>>, pos: Int) {
+        printMap(arr, pos)
+    }
 
     fun startGame() {
         println(START_BRIDGE_GAME)
@@ -51,6 +50,17 @@ object OutputView {
         println(SELECT_MOVE_DIRECTION)
     }
 
+    fun finalResult() {
+        println(FINAL_GAME_RESULT)
+    }
+
+    fun isSuccess(resultText: String) {
+        println("$WHETHER_SUCCESS_OR_NOT $resultText")
+    }
+
+    fun totalTryCount(tryCnt: Int) {
+        println("$TOTAL_TRY_COUNT $tryCnt")
+    }
 
     fun throwException(errorMessage: String) {
         throw IllegalArgumentException(errorMessage)

@@ -19,8 +19,9 @@ class BridgeGame {
         progressMatrix.initMatrix(rowCount)
     }
 
-    fun compare(direction: String, position: Int) {
+    fun compare(direction: String, position: Int): Boolean {
         isCorrect = bridge.compare(direction, position)
+        return isCorrect
     }
 
     fun move(direction: String, position: Int) {
