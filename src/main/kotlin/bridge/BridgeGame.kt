@@ -9,7 +9,7 @@ class BridgeGame {
     var tryCount = 0
 
     fun createCorrectBridgeMap(size: Int) {
-        judgement.createCorrectBridge(size)
+        judgement.createBridge(size)
     }
 
     fun judgeMovingSuccess(): Boolean {
