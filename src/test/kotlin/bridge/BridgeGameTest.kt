@@ -27,9 +27,31 @@ class BridgeGameTest {
         assertThat(result).isEqualTo(false)
     }
 
+    @Test
+    fun `이동 테스트`(){
+        bridgeGame.move("U")
+        bridgeGame.move("U")
+        bridgeGame.move("D")
+        assertThat(bridgeGame.currentMoving).isEqualTo(listOf("U","U","D"))
+    }
 
-//    @Test
-//    fun `다리 생성시 사이즈 테스트`(){
-//
-//    }
+    @Test
+    fun `게임 성공 테스트`(){
+        bridgeGame.move("U")
+        bridgeGame.move("U")
+        bridgeGame.move("D")
+        bridgeGame.move("U")
+        val result = bridgeGame.checkGameWin()
+        assertThat(result).isEqualTo(true)
+    }
+
+    @Test
+    fun `게임 실패 테스트`(){
+        bridgeGame.move("U")
+        bridgeGame.move("U")
+        bridgeGame.move("D")
+        bridgeGame.move("D")
+        val result = bridgeGame.checkGameWin()
+        assertThat(result).isEqualTo(false)
+    }
 }
