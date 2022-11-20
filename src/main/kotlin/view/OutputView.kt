@@ -47,10 +47,19 @@ class OutputView {
 
     fun printRetryGame() = println(RETRY_GAME)
 
+    fun printFinalResult() = println(FINAL_RESULT)
+
+    fun printGameSuccess(isSuccess: String) = println("$isSuccess $SUCCESS_GAME_CHECK")
+
+    fun printTryCount(count: Int) = println("$TRY_COUNT $count")
+
     companion object {
         const val START_GAME = "다리 건너기 게임을 시작합니다."
         const val INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요."
         const val MOVE_BRIDGE = "이동할 칸을 선택해주세요. (위 : U, 아래 : D)"
         const val RETRY_GAME = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+        const val FINAL_RESULT = "최종 게임 결과"
+        const val SUCCESS_GAME_CHECK = "게임 성공 여부:"
+        const val TRY_COUNT = "총 시도한 횟수:"
     }
 }
