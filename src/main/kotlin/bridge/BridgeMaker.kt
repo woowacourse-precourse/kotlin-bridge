@@ -11,13 +11,12 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         val bridge = mutableListOf<String>()
         for (number in 0 until size) {
-            bridge.add(convertNumberToMoving())
+            bridge.add(convertNumberToMoving(bridgeNumberGenerator.generate()))
         }
         return bridge
     }
 
-    private fun convertNumberToMoving(): String {
-        val number = bridgeNumberGenerator.generate()
+    private fun convertNumberToMoving(number : Int): String {
         if (number == 0) {
             return COMMAND_DOWN_MOVING
         } else if (number == 1) {
