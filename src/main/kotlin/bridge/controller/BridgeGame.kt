@@ -55,6 +55,13 @@ class BridgeGame {
             false
     }
 
-
-    fun retry() {}
+    private fun retry() {
+        if(input.readGameCommand() == "R"){
+            attempts++
+            gameStatus = true
+            playGame()
+        }else{
+            endGame(false)
+        }
+    }
 }
