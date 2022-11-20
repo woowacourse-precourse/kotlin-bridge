@@ -10,7 +10,7 @@ class BridgeGame() {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(bridge: List<String>, direction: String, turn: Int): Boolean = direction == bridge[turn]
+    fun move(bridge: List<String>, direction: String, turn: Int) = bridge[turn] == direction
 
 
     /**
