@@ -13,29 +13,21 @@ class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     // val p = listOf<String>("U1,D0", "U0,D1", "U0,D1", "U0,D1")
-    fun move(bridge: List<String>):List<String> {
-        val result = mutableListOf<String>()
-        for (bridgeColumns in bridge) {
-            var userInput = Console.readLine()
-            result.add(getColumnsResult(bridgeColumns,userInput.first()))
+    fun move(bridgeColumns: String,inputColumn:String):String {
+        bridgeColumns.split(",").map { bridgeColumn ->
+            if (bridgeColumn.first() == inputColumn.first()) return "${getColumnResult(bridgeColumn,ONE_COLUMN_UP)},${getColumnResult(bridgeColumn,ONE_COLUMN_DOWN)}"
         }
-        return result
+        return " "
     }
 
     private fun isPassable(passableNumber: Int): String {
-        return if (passableNumber == RANDOM_UPPER_INCLUSIVE) "O" else "X"
+        return if (passableNumber == RANDOM_UPPER_INCLUSIVE) " O " else " X "
     }
 
     private fun getColumnResult(bridgeColumn: String, column: Char) =
         if (bridgeColumn.first() == column) isPassable(bridgeColumn.last().digitToInt())
-        else " "
+        else "   "
 
-    private  fun getColumnsResult(bridgeColumns:String,inputColumn: Char):String  {
-        bridgeColumns.split(",").map { bridgeColumn ->
-            if (bridgeColumn.first() == inputColumn) return "${getColumnResult(bridgeColumn,ONE_COLUMN_UP)}\n${getColumnResult(bridgeColumn,ONE_COLUMN_DOWN)}"
-        }
-        return " "
-    }
 
 
 
