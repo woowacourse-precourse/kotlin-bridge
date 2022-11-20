@@ -11,6 +11,7 @@ import bridge.model.BridgeGameMetadataDTO
 class BridgeGame {
     private lateinit var bridge: List<String>
     private lateinit var gameStatus: BridgeGameStatus
+    private var movementCount = 0
     private val movementStatuses = mutableListOf<MovementStatus>()
     private var trialCount = 1
 
@@ -36,8 +37,26 @@ class BridgeGame {
      */
     fun retry() {}
 
-    private fun checkMovementStatus(movement: String): Boolean {
-        return true
+    private fun checkMovementStatus(movement: String): MovementStatus {
+        val answer = bridge[movementCount]
+        if (movement == answer) {
+            return checkRightMovementStatus(movement)
+        }
+        return checkWrongMovementStatus(movement)
+    }
+
+    private fun checkRightMovementStatus(movement: String): MovementStatus {
+        if (movement == "U") {
+            return MovementStatus.UP_RIGHT
+        }
+        return MovementStatus.DOWN_RIGHT
+    }
+
+    private fun checkWrongMovementStatus(movement: String): MovementStatus {
+        if (movement == "U") {
+            return MovementStatus.UP_WRONG
+        }
+        return MovementStatus.DOWN_WRONG
     }
 
     private fun checkGameStatus() {}
