@@ -1,6 +1,8 @@
 package bridge.Model
 
+
 import bridge.Model.BridgeData.bridgeLocation
+import bridge.Model.BridgeData.bridgeShape
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -13,8 +15,13 @@ class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun move() {
-        bridgeLocation++
-        TODO("마지막 다리 판단")
+        var referee = Referee(bridgeShape, bridgeLocation)
+        var isLast = referee.judgeLastBridge(bridgeLocation)
+
+        when(isLast){
+            true ->  TODO("최종 결과 출력")
+            false -> bridgeLocation++
+        }
     }
 
     fun gameOver() {

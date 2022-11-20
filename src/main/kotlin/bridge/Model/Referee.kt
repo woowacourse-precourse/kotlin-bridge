@@ -33,4 +33,10 @@ class Referee(private val bridgeShapes: List<String>, private val location: Int)
         return BridgeResult.DOWN_LOSE
     }
 
+    fun judgeLastBridge(nowLocation: Int): Boolean {
+        if (nowLocation == bridgeShapes.size-1){
+            return true
+        }
+        return false
+    }
 }
