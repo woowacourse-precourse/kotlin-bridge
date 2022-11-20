@@ -12,16 +12,17 @@ enum class BridgeGameStatus(val command: String?) {
     companion object {
         fun getStatus(bridgeGameResult: BridgeGameInfo): BridgeGameStatus {
             bridgeGameResult.apply {
+                require(stage.isNoFalseExceptLast()) { ERROR_INPUT_COMMAND }
                 return when {
-                    stage.slice(0 until stage.size - 1).firstOrNull { it.not() } != null ->
-                        throw IllegalArgumentException(ERROR_INPUT_COMMAND)
-                    stage.size !in 0..bridge.size -> throw IllegalArgumentException(ERROR_INPUT_COMMAND)
+                    stage.size < bridge.size && stage.last() -> RUNNING
                     stage.size == bridge.size && stage.last() -> SUCCESS
                     stage.size <= bridge.size && stage.last().not() -> FAILURE
-                    else -> RUNNING
+                    else -> throw IllegalArgumentException(ERROR_INPUT_COMMAND)
                 }
             }
         }
+
+        private fun List<Boolean>.isNoFalseExceptLast() = this.subList(0, this.size - 1).all { it }
 
         fun setStatus(command: String): BridgeGameStatus {
             return values().firstOrNull { it.command == command }
