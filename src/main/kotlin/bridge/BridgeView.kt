@@ -5,16 +5,20 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
     private var move = 0
     private var moveUpMap = ""
     private var moveDownMap = ""
+    private var tryCount = 1
+    private var isEnd = false
 
     fun initBridge(){
         val size = inputView.readBridgeSize()
         bridge = bridgeMaker.makeBridge(size)
     }
 
-    fun restart(){
+    fun initialize(){
         move = 0
         moveUpMap = ""
         moveDownMap = ""
+        tryCount = 1
+        isEnd = false
     }
 
     fun checkPlayerCanMove(input : String){
@@ -61,8 +65,24 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
 
     private fun checkMoveEnd(move : Int, isFail : Boolean){
         if(move == bridge.size || isFail){
-
+            isEnd = true
         }
+    }
+
+    fun checkRestart(){
+        initialize()
+        when(inputView.readGameCommand()){
+            "R" -> {
+                
+            }
+            "Q" -> {
+
+            }
+        }
+    }
+
+    private fun finalResult() {
+
     }
 
     private fun upProcess(result: String){

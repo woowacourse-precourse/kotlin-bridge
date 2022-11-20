@@ -24,6 +24,8 @@ fun checkValidMoveInput(input : String){
     }
 }
 
-fun checkValidRestartInput(){
-
+fun checkValidRestartInput(input : String){
+    if(input != "R" || input != "Q"){
+        throw IllegalArgumentException()
+    }
 }
