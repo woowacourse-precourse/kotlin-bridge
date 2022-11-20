@@ -1,7 +1,7 @@
 package bridge.ui.view
 
 import bridge.common.*
-import bridge.domain.moving.Moving
+import bridge.domain.moving.MovingInfo
 
 
 /**
@@ -13,18 +13,18 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap(bridgeCrossingInfo: List<Pair<Moving, Boolean>>) {
+    fun printMap(bridgeCrossingInfo: List<Pair<MovingInfo, Boolean>>) {
         repeat(BRIDGE_ROW_SIZE) { bridgeIndex ->
             checkBridge(bridgeCrossingInfo, bridgeIndexInfo[bridgeIndex]!!)
         }
     }
 
-    private fun checkBridge(bridgeCrossingInfo: List<Pair<Moving, Boolean>>, bridgeNumber: Int) {
+    private fun checkBridge(bridgeCrossingInfo: List<Pair<MovingInfo, Boolean>>, bridgeNumber: Int) {
         val round = bridgeCrossingInfo.size - 1
 
         print("[ ")
         bridgeCrossingInfo.forEachIndexed { curRound, (moving, isCrossed) ->
-            printCrossingResult(moving = moving, bridgeNumber = bridgeNumber, isCrossed = isCrossed)
+            printCrossingResult(movingInfo = moving, bridgeNumber = bridgeNumber, isCrossed = isCrossed)
 
             if (curRound == round) print(" ]\n")
             else print(" | ")
@@ -35,8 +35,8 @@ class OutputView {
      * 현재 출력해야 할 bridgeNumber이고, 건널 수 있으면 O 아니면 X
      * 현재 출력해야 할 bridgeNumber가 아니라면 공백
      */
-    private fun printCrossingResult(moving: Moving, bridgeNumber: Int, isCrossed: Boolean) {
-        if (moving.bridgeNumber == bridgeNumber) {
+    private fun printCrossingResult(movingInfo: MovingInfo, bridgeNumber: Int, isCrossed: Boolean) {
+        if (movingInfo.bridgeNumber == bridgeNumber) {
             if (isCrossed) print(CROSSED_SUCCESS_RESULT)
             else print(CROSSED_FAIL_RESULT)
         }
@@ -49,7 +49,7 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(bridgeCrossingInfo: List<Pair<Moving, Boolean>>, gameSuccessResult: String, numberOfTry: Int) {
+    fun printResult(bridgeCrossingInfo: List<Pair<MovingInfo, Boolean>>, gameSuccessResult: String, numberOfTry: Int) {
         print(FINAL_GAME_RESULT_MESSAGE)
 
         printMap(bridgeCrossingInfo = bridgeCrossingInfo)
