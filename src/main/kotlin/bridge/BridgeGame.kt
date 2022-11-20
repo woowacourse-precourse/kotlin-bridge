@@ -5,7 +5,7 @@ package bridge
  */
 class BridgeGame {
     var tryGame: Int = 0
-    var moveData = mutableListOf<String>("U","D","U","D")
+    var moveData = mutableListOf<String>()
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
