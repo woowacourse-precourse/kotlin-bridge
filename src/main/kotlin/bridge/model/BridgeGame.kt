@@ -11,6 +11,7 @@ import bridge.ZERO
 class BridgeGame {
     private val bridge = Bridge()
     val progressMatrix = ProgressMatrix()
+
     private var isCorrect = false
     var position = ZERO
     var tryCount = 1
