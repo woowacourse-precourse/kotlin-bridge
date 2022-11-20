@@ -4,6 +4,9 @@ package bridge.util
 const val INPUT_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요."
 const val SELECT_MOVE_INPUT_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
 const val SELECT_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+const val FINAL_GAME_RESULT_MESSAGE = "최종 게임 결과"
+const val GAME_FAILURE_MESSAGE = "게임 성공 여부: 실패"
+const val GAME_SUCCESS_MESSAGE = "게임 성공 여부: 성공"
 
 // ERROR
 const val ERROR_INVALID_SIZE_MESSAGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 한다."

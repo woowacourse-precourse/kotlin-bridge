@@ -13,7 +13,6 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      */
     fun makeBridge(size: Int): List<String> {
         val bridgeNumberList = List(size) { index -> bridgeNumberGenerator.generate() }
-        println(bridgeNumberList)
         val bridge =bridgeNumberList.map { number ->
             val bridgeNumber = number.toString()
             when (number) {
@@ -21,7 +20,6 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
                 else -> bridgeNumber.replace(DOWN_STRING_NUMBER_ZERO, DOWN_DIRECTION)
             }
         }
-        println(bridge)
         return bridge
     }
 }

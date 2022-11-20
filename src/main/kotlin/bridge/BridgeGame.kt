@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.util.QUIT_COMMAND
+import bridge.util.RESTART_COMMAND
 import bridge.validator.BridgeGameValidator
 
 /**
@@ -55,10 +57,10 @@ class BridgeGame {
 
     fun retry(map: String, round: Int, isEndedGame: Boolean): Boolean {
         val gameCommand = InputView().readGameCommand()
-        if (gameCommand == "Q") {
+        if (gameCommand == QUIT_COMMAND) {
             OutputView().printResult(map, round, isEndedGame)
         }
-        if (gameCommand == "R") return true
+        if (gameCommand == RESTART_COMMAND) return true
         return false
     }
 }

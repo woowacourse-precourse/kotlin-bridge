@@ -1,5 +1,8 @@
 package bridge
 
+import bridge.util.FINAL_GAME_RESULT_MESSAGE
+import bridge.util.GAME_FAILURE_MESSAGE
+import bridge.util.GAME_SUCCESS_MESSAGE
 import bridge.validator.OutputValidator
 
 /**
@@ -23,10 +26,11 @@ class OutputView {
     fun printResult(map: String, round: Int, isNotMatched: Boolean) {
         var trialCount = round
         trialCount++
-        println("최종 게임 결과")
+        println(FINAL_GAME_RESULT_MESSAGE)
         println(map)
-        if (isNotMatched) println("게임 성공 여부: 실패")
-        if (!isNotMatched) println("게임 성공 여부: 성공")
+        if (isNotMatched) println(GAME_FAILURE_MESSAGE)
+        if (!isNotMatched) println(GAME_SUCCESS_MESSAGE)
         println("총 시도한 횟수:${trialCount}")
     }
 }
+
