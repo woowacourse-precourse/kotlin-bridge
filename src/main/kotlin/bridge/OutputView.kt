@@ -27,6 +27,7 @@ class OutputView {
     fun printMap(upBridge: Bridge, downBridge: Bridge) {
         println(upBridge.toString())
         println(downBridge.toString())
+        println()
     }
 
     /**
