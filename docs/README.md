@@ -58,6 +58,7 @@ var responsePacket = bridgeGame.respondToRequest(RequestType.LAUNCH)
 //...
 
 println(responsePacket.popMessageToPrint())
+
 if (responsePacket.popAdditionalMessage() == RequestType.GUID_MESSAGE)
     println("RequestType.GUID_MESSAGE 요청해 달라고 전달 받았습니다.")
 
@@ -67,6 +68,7 @@ if (responsePacket.popAdditionalMessage() == RequestType.GUID_MESSAGE)
 
 ```kotlin
 다리 건너기 게임을 시작합니다 .
+
 RequestType.GUID_MESSAGE를 요청해 달라고 전달 받았습니다.
 ```
 
