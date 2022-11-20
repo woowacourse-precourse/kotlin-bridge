@@ -1,5 +1,8 @@
 package bridge
 
+import bridge.Controller.BridgeController
+
 fun main() {
-    // TODO: 프로그램 구현
+    var bridgeController = BridgeController()
+    bridgeController.startGame()
 }

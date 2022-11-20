@@ -1,14 +1,28 @@
-package bridge
+package bridge.View
+
+import bridge.util.Validator
+import camp.nextstep.edu.missionutils.Console
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 class InputView {
+
     /**
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return 0
+        var size = ""
+        while (true) {
+            try {
+                size = Console.readLine()
+                Validator.checkBridgeSize(size)
+                break
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
+        return size.toInt()
     }
 
     /**
