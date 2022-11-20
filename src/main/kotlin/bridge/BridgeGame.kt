@@ -23,11 +23,11 @@ class BridgeGame(private val realBridges: List<String>) {
      */
     fun move(curMove: String): BridgeMoveResult {
         bridges[curStep] = curMove
-        if (bridges[curStep] == realBridges[curStep] && curStep + 1 == realBridges.size) {
+        curStep++
+        if (bridges[curStep - 1] == realBridges[curStep - 1] && curStep == realBridges.size) {
             success = true
             return BridgeMoveResult.MOVE_END
-        } else if (bridges[curStep] == realBridges[curStep]) {
-            curStep++
+        } else if (bridges[curStep - 1] == realBridges[curStep - 1]) {
             return BridgeMoveResult.MOVE_SUCCESS
         }
         return BridgeMoveResult.MOVE_FAILED
@@ -40,11 +40,18 @@ class BridgeGame(private val realBridges: List<String>) {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun retry() {
-        if (curStep + 1 == realBridges.size)
+        if (curStep == realBridges.size)
             return
         success = false
         tryCount++
+        curStep--
     }
+
+    fun realBridges(): List<String> = realBridges.toList()
+    fun gameBridges(): List<String> = bridges.toList()
+    fun curStep(): Int = curStep - 1
+    fun isGameSuccess(): Boolean = success
+    fun tryCount(): Int = tryCount
 
     enum class BridgeMoveResult {
         MOVE_SUCCESS, MOVE_FAILED, MOVE_END
