@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.test.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class BridgeMakeTest {
+class BridgeMakerTest {
     val bridgemaker = BridgeMaker(BridgeRandomNumberGenerator())
     @Test
     fun makeBridgeTest(){
