@@ -46,6 +46,15 @@ class BridgeGame {
             bridgeBoard.updateBoard(false, moving)
     }
 
+    private fun fail():Boolean{
+        return if(board[0][board[0].size-1] == "X" || board[1][board[0].size-1] == "X") {
+            gameStatus = false
+            retry()
+            true
+        }else
+            false
+    }
+
 
     fun retry() {}
 }
