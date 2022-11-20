@@ -9,7 +9,56 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap() {}
+    fun printMap(realBridges: List<String>, gameBridges: List<String>, curStep: Int) {
+        println(upperMap(realBridges, gameBridges, curStep))
+        println(downMap(realBridges, gameBridges, curStep))
+    }
+
+    private fun upperMap(realBridges: List<String>, gameBridges: List<String>, curStep: Int): String {
+        val upperBridge = StringBuilder("[ ")
+        for (i in 0..curStep) {
+            when (judgementUpperStepMatch(realBridges[i], gameBridges[i])) {
+                Match.MATCH -> upperBridge.append("O ")
+                Match.FAILED -> upperBridge.append("X ")
+                else -> upperBridge.append("  ")
+            }
+            if (i != curStep) upperBridge.append("| ")
+        }
+        return upperBridge.append("]").toString()
+    }
+
+    private fun judgementUpperStepMatch(realBridgesStep: String, gameBridgesStep: String): Match {
+        return if (realBridgesStep == "U" && gameBridgesStep == realBridgesStep) {
+            Match.MATCH
+        } else if (realBridgesStep == "U" && gameBridgesStep != realBridgesStep) {
+            Match.FAILED
+        } else {
+            Match.EMPTY
+        }
+    }
+
+    private fun downMap(realBridges: List<String>, gameBridges: List<String>, curStep: Int): String {
+        val downBridge = StringBuilder("[ ")
+        for (i in 0..curStep) {
+            when (judgementDownStepMatch(realBridges[i], gameBridges[i])) {
+                Match.MATCH -> downBridge.append("O ")
+                Match.FAILED -> downBridge.append("X ")
+                else -> downBridge.append("  ")
+            }
+            if (i != curStep) downBridge.append("| ")
+        }
+        return downBridge.append("]").toString()
+    }
+
+    private fun judgementDownStepMatch(realBridgesStep: String, gameBridgesStep: String): Match {
+        return if (realBridgesStep == "D" && gameBridgesStep == realBridgesStep) {
+            Match.MATCH
+        } else if (realBridgesStep == "D" && gameBridgesStep != realBridgesStep) {
+            Match.FAILED
+        } else {
+            Match.EMPTY
+        }
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -48,5 +97,9 @@ class OutputView {
         MOVE_INPUT_ERROR("[ERROR] 이동에 대한 입력은 U(위) 혹은 D(아래)만 가능합니다."),
         RETRY_INPUT_ERROR("[ERROR] 게임 재시도에 대한 입력은 R(재시도) 혹은 Q(종료)만 가능합니다."),
         NON_ERROR("에러 없음"),
+    }
+
+    enum class Match {
+        MATCH, FAILED, EMPTY
     }
 }
