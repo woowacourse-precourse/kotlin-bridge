@@ -17,8 +17,7 @@ class BridgeGameController {
         while (bridgeGame.getMoveCount() < bridgeGame.getBridgeSize()) {
             println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
             bridgeGame.move(inputView.readMoving())
-            // todo print 게임 진행 상황
-            println()
+            outputView.printMap(bridgeGame.getGameProgress())
             if(!bridgeGame.isSuccess()) break
         }
 
