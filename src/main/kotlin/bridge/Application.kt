@@ -1,5 +1,23 @@
 package bridge
 
 fun main() {
-    // TODO: 프로그램 구현
+    val player = getPlayer()
+    player.startGame()
 }
+
+
+private fun getPlayer() = Player(
+    getGameView(),
+    getBridgeGame()
+)
+
+private fun getGameView() = GameView(
+    InputView(),
+    OutputView()
+)
+private fun getBridgeGame() =
+    BridgeGame(
+        BridgeMaker(
+            BridgeRandomNumberGenerator()
+        )
+    )

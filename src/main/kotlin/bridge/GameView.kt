@@ -9,25 +9,25 @@ import bridge.BridgeGame.Companion.MOVING_DIRECT_UP
 
 class GameView(
     private val inputView: InputView,
-    private val outputView: OutputView,
+    private val outputView: OutputView
 ) {
     init {
         outputView.printGameStart()
     }
 
-    fun readBridgeSize() {
+    fun readBridgeSize(): Int {
         outputView.printInputNotice(InputType.BRIDGE_SIZE)
-        inputView.readBridgeSize()
+        return inputView.readBridgeSize()
     }
 
-    fun readMoving() {
+    fun readMoving(): String {
         outputView.printInputNotice(InputType.MOVING)
-        inputView.readMoving()
+        return inputView.readMoving()
     }
 
-    fun readGameCommand() {
+    fun readGameCommand(): Char {
         outputView.printInputNotice(InputType.GAME_COMMAND)
-        inputView.readGameCommand()
+        return inputView.readGameCommand()
     }
 
     companion object {
