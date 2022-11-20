@@ -29,17 +29,40 @@ class BridgeGame {
     fun compareAnswer(bridgeData:List<String>): List<String>{
         val compareList = moveData
         for(i in 0 until moveData.size){
-            if(moveData[i]!=bridgeData[i] && moveData[i] == "U") {
+            if(moveData[i]!=bridgeData[i] && moveData[i] == "U")
                 compareList[i]="UX"
-            }
-            if(moveData[i]!=bridgeData[i] && moveData[i] == "D") {
+            if(moveData[i]!=bridgeData[i] && moveData[i] == "D")
                 compareList[i]="DX"
-            }
         }
         return compareList.toList()
     }
 
     fun resultToString(result:List<String>):String{
+        val uresult = resultToUString(result)
+        val dresult = resultToDString(result)
+        return uresult + dresult
+    }
+    fun resultToUString(result:List<String>):String{
+        var output:String = "["
+        for(i in 0 until result.size){
+            if(result[i] == "U") output = output + " O |"
+            if(result[i] == "UX") output = output + " X ]\n"
+            if(result[i] == "D") output = output + "   |"
+            if(result[i] == "DX") output = output + "   ]\n"
+        }
+        if(output[output.length-1]=='|') output = output.substring(0 until output.length-1) +"]\n"
+        return output
+    }
 
+    fun resultToDString(result:List<String>):String{
+        var output:String = "["
+        for(i in 0 until result.size){
+            if(result[i] == "U") output = output + "   |"
+            if(result[i] == "UX") output = output + "   ]\n"
+            if(result[i] == "D") output = output + " O |"
+            if(result[i] == "DX") output = output + " X ]\n"
+        }
+        if(output[output.length-1]=='|') output = output.substring(0 until output.length-1) +"]\n"
+        return output
     }
 }

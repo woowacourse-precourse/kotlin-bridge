@@ -10,8 +10,11 @@ class BridgeGameTest {
         assertThat(bridgeGame.compareAnswer(listOf("U","D","D","D"))).isEqualTo(listOf("U","D","UX","D"))
     }
 
+    @Test
     fun resultToStringTest(){
-        assertThat(bridgeGame.resultToString(listOf("U","D","UX"))).isEqualTo("[ O |   | X ]\n[   | O  |   ]\n")
-        assertThat(bridgeGame.resultToString(listOf("U","D","U"))).isEqualTo("[ O |   | O ]\n[   | O  |   ]\n")
+        assertThat(bridgeGame.resultToUString(listOf("U","D","UX"))).isEqualTo("[ O |   | X ]\n")
+        assertThat(bridgeGame.resultToDString(listOf("U","D","U"))).isEqualTo("[   | O |   ]\n")
+        assertThat(bridgeGame.resultToString(listOf("U","D","UX"))).isEqualTo("[ O |   | X ]\n[   | O |   ]\n")
+
     }
 }
