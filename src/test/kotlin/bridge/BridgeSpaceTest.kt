@@ -3,6 +3,7 @@ package bridge
 import bridge.Move
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class BridgeSpaceTest {
@@ -18,7 +19,7 @@ class BridgeSpaceTest {
     }
 
     @ValueSource(ints = [0, 3])
-    @Test
+    @ParameterizedTest
     fun `칸이 이동불가능한지 확인`(position : Int) {
         val userBridgeSpace = BridgeSpace(BridgeDirection.D, position)
         val result = Move.IMPOSSIBLE
