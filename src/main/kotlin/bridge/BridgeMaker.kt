@@ -11,18 +11,19 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
 
         // 0, 1로 이루어진 답지 만들기
-        val answer = mutableListOf<String>()
+        val answerAnswer = mutableListOf<String>()
 
         // 일단 0으로만 이루어진 다리 만들기
         for (eachBridge in 0 until size*2-1) {
-            answer.add("0")
+            answerAnswer.add("0")
         }
 
         // randomNumber generator을 통해 최종 정답 다리 만들기
+        // 초반 size개는 길 윗칸, 이후 size개는 길 아랫칸
         for (eachBridge in 0 until size*2-1) {
-            answer[eachBridge] = bridgeNumberGenerator.generate().toString()
+            answerAnswer[eachBridge] = bridgeNumberGenerator.generate().toString()
         }
 
-        return answer
+        return answerAnswer
     }
 }
