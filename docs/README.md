@@ -100,7 +100,7 @@
 - restartGame(): 사용자의 재시작을 적용하는 함수
 - getRetryCommand(): 사용자의 재시작 입력받는 함수
 - printGameResult(): 게임 결과를 출력하는 함수
-- gameLoop(): 게임을 진행하는 함수
+- start(): 게임을 진행하는 함수
 
 ### Field 목록
 - inputView: InputView 클래스 인스턴스
