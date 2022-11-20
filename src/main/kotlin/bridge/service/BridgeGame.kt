@@ -7,6 +7,7 @@ import bridge.domain.counter.TryCounter
 import bridge.domain.map.RouteMap
 import bridge.domain.path.Path
 import bridge.domain.result.RoundResult
+import bridge.util.constant.INITIAL_TRY_COUNT
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -15,7 +16,7 @@ class BridgeGame : GameService {
     private lateinit var bridge: Bridge
     private lateinit var playerRoute: RouteMap
     private val bridgeMaker: BridgeMaker by lazy { BridgeMaker(BridgeRandomNumberGenerator()) }
-    private val tryCounter: TryCounter by lazy { TryCounter() }
+    private val tryCounter: TryCounter by lazy { TryCounter(INITIAL_TRY_COUNT) }
     private var playerPath = Path()
 
 
@@ -35,12 +36,12 @@ class BridgeGame : GameService {
     fun retry() {
         initPath()
         initPlayerRoute()
+        increaseTryCount()
     }
 
 
     fun startBridgeGame() {
         initPlayerRoute()
-        increaseTryCount()
     }
 
     fun startRound(round: Int): RoundResult {

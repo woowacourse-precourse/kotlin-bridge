@@ -36,6 +36,9 @@ const val FAIL_MESSAGE = "실패"
 // round
 const val BASE_ROUND = 0
 
+// count
+const val INITIAL_TRY_COUNT = 1
+
 // error
 private const val ERROR_PREFIX = "[ERROR] "
 const val BRIDGE_LENGTH_NOT_NUMBER_EXCEPTION_MESSAGE = ERROR_PREFIX + "입력한 값이 숫자가 아닙니다."
