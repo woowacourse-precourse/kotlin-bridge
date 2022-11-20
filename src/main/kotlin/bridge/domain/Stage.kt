@@ -11,5 +11,19 @@ enum class Stage(val upOrDown: String, val isClearStage: String) {
             return Stage.values().filter { stage -> stage.upOrDown == moving }
                 .first() { stage -> isClearStage == stage.isClearStage }
         }
+
+        fun makeUpBridgeMap(stage: Stage): String {
+            if (stage == UP || stage == UP_FAIL) {
+                return stage.isClearStage
+            }
+            return " "
+        }
+
+        fun makeDownBridgeMap(stage: Stage): String {
+            if (stage == DOWN || stage == DOWN_FAIL) {
+                return stage.isClearStage
+            }
+            return " "
+        }
     }
 }
