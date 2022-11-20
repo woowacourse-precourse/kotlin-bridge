@@ -59,5 +59,15 @@ class BridgeGame {
         return MovementStatus.DOWN_WRONG
     }
 
-    private fun checkGameStatus() {}
+    private fun checkGameStatus(movementStatus: MovementStatus): BridgeGameStatus {
+        if (movementStatus.status == "X") {
+            return BridgeGameStatus.FAILURE
+        }
+
+        if (movementCount == bridge.size) {
+            return BridgeGameStatus.SUCCESS
+        }
+
+        return BridgeGameStatus.CONTINUE
+    }
 }
