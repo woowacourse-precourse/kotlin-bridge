@@ -1,6 +1,7 @@
 package bridge.domain
 
 import bridge.ERROR_BIG_NUMBER_MESSAGE
+import bridge.ERROR_MOVE_DIRECTION_MESSAGE
 import bridge.ERROR_NOT_NUMBER_MESSAGE
 import bridge.ERROR_RANGE_BRIDGE_SIZE_MESSAGE
 
@@ -24,5 +25,11 @@ class InputCheck {
         if (bridgeSize.toInt() < 3 || bridgeSize.toInt() > 20)
             return false
         return true
+    }
+
+    fun checkMoveDirection(moveDirection: String): String {
+        if(!(moveDirection=="U"||moveDirection=="D"))
+            throw IllegalArgumentException(ERROR_MOVE_DIRECTION_MESSAGE)
+        return moveDirection
     }
 }
