@@ -13,17 +13,17 @@
 `BridgeGame` 클래스는 BridgeGame을 관리하는 클래스이다.
 `BridgeGame` 클래스는 요청(request)을 받는다면 그에 해당하는 응답(response)을 하도록 한다.
 
-| 접근 제어자  | 함수                              | 파라미터                | 반환 값                 | 설명                                                                                                                                                                   |
-|---------|---------------------------------|---------------------|----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| public  | respondToRequest                | ReqyestType, String | ResponsePacket       | 지정된 request 요청을 acceptRequest 함수로 전달하고 요청에 대한 응답을 반환한다.                                                                                                              |
-| private | acceptReuest                    | RequestType, String | Unit                 | 파라미터로 요청의 종류를 전달 받아 그에 해당하는 함수로 전달하여 처리할 수 있도록 한다.                                                                                                                   |         
-| private | launchGame                      | Unit                | Unit                 | BridgeGame 클래스가 게임을 시작하도록 만드는 함수이다. 요청자에게 게임이 시작되었다는 문구를 요청해야 한다는 ResponsePacket과 다리를 초기화 해야 한다는 문구 출력과 input을 요청하는 RequestPacket을 보내도록 설정한다.                        |
-| private | initBridgeChecker               | String              | Unit                 | BridgeGame 클래스가 게임을 진행하는데 필요한 클래스인 BridgeChecker 클래스를 초기화하는 함수이다. 사용자에게 전달 받은 파라미터를 통해 크기를 설정하고 이제 어떻게 움직일 것인지 input을 요청하는 RequestPacket을 보내도록 설정한다.                 |
-| private | updateWithMove                  | String              | Unit                 | 사용자로부터 전달받은 어떻게 움직일 것인지에 대한 파라미터를 통해 move 함수를 실행하고 그 움직인 결과에 대한 ResponsePacket을 보내도록 설정한다.                                                                           |
-| private | makeResponsePacketByMovedResult | List<Boolean>       | List<ResponsePacket> | move 함수가 호출되고 난 뒤의 결과는 3가지(실패, 성공, 진행중)으로 나뉜다. 이 함수는 이동 결과를 String으로 보여주는 ResponsePacket을 만들고 서로 다른 결과에 맞는 ResponsePacket을 추가적으로 만들어 2개의 ResponsePacket을 List로 반환한다. |
-| private | updateWithRetry| String              | Unit                 | 게임 재시작 요청을 처리하는 함수이다. 사전에 정해진 R, Q 입력에 대해 retry 함수를 실행하도록 하고, R과 Q에 대해 적절한 ResponsePacket을 보낼 수 있도록 설정한다.                                                            |
-| private |move| String              | List<Boolean>        | BridgeChecker 클래스에게 움직임 처리를 요청하고 그 결과를 List로 반환한다.|
-| private |retry| String|Unit|만일 사용자 요청이 'R'이었을 경우 BridgeChecker 클래스가 현재까지 진행 결과를 초기화 하도록 만든다.|
+| 접근 제어자  | 함수                              | 파라미터                | 반환 값                 | 설명                                                                                                                                                                 |
+|---------|---------------------------------|---------------------|----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `public`  | `respondToRequest`                | `ReqyestType`, `String` | `ResponsePacket`       | 지정된 `request` 요청을 `acceptRequest` 함수로 전달하고 요청에 대한 응답을 반환한다.                                                                                                            |
+| `private` | `acceptReuest`                    | `RequestType`, `String` | `Unit`                 | 파라미터로 요청의 종류를 전달 받아 그에 해당하는 함수로 전달하여 처리할 수 있도록 한다.                                                                                                                 |         
+| `private` | `launchGame`                      | `Unit`               | `Unit`                 | `BridgeGame` 클래스가 게임을 시작하도록 만드는 함수이다. 요청자에게 게임이 시작되었다는 문구를 요청해야 한다는 `ResponsePacket`과 다리를 초기화 해야 한다는 문구 출력과 input을 요청하는 `RequestPacket`을 보내도록 설정한다.                      |
+| `private` | `initBridgeChecker`               | `String`             | `Unit`                 | `BridgeGame` 클래스가 게임을 진행하는데 필요한 클래스인 `BridgeChecker` 클래스를 초기화하는 함수이다. 사용자에게 전달 받은 파라미터를 통해 크기를 설정하고 이제 어떻게 움직일 것인지 input을 요청하는 `RequestPacket`을 보내도록 설정한다.               |
+| `private` | `updateWithMove`                  | `String`             | `Unit`                 | 사용자로부터 전달받은 어떻게 움직일 것인지에 대한 파라미터를 통해 `move` 함수를 실행하고 그 움직인 결과에 대한 `ResponsePacket`을 보내도록 설정한다.                                                                         |
+| `private` | `makeResponsePacketByMovedResult` | `List<Boolean>`      | `List<ResponsePacket>` | `move` 함수가 호출되고 난 뒤의 결과는 3가지(실패, 성공, 진행중)으로 나뉜다. 이 함수는 이동 결과를 `String`으로 보여주는 `ResponsePacket`을 만들고 서로 다른 결과에 맞는 `ResponsePacket`을 추가적으로 만들어 2개의 `ResponsePacket`을 `List`로 반환한다. |
+| `private` | `updateWithRetry`| `String`              | `Unit`                 | 게임 재시작 요청을 처리하는 함수이다. 사전에 정해진 R, Q 입력에 대해 `retry` 함수를 실행하도록 하고, `R`과 `Q`에 대해 적절한 `ResponsePacket`을 보낼 수 있도록 설정한다.                                                          |
+| `private` |`move`| `String`              | `List<Boolean>`        | `BridgeChecker` 클래스에게 움직임 처리를 요청하고 그 결과를 `List`로 반환한다.|
+| `private` |`retry`| `String`|`Unit`|만일 사용자 요청이 `R`이었을 경우 `BridgeChecker` 클래스가 현재까지 진행 결과를 초기화 하도록 만든다.|
 
 - 사용 예시
 
@@ -49,12 +49,15 @@ RequestType.NOW_STATE_MESSAGE를 요청해 달라고 전달 받았습니다.
 
 ### 🚨 Exception
 
-- acceptReuest: 만일 사전에 지정되지 않은 요청 타입을 전달 받았을 경우 IllegalArgumentException을 발생시킨다.
-- 재시작할 때 입력이 R 또는 Q가 아닌 경우 IllegalArgumentException을 발생시킨다.
-- BridgeChecker가 초기화되지 않았지만 BridgeChecker에 접근한 경우 NullBridgeException을 발생시킨다.
-- 숫자를 입력해야 할 때 숫자로 변환시킬 수 없는 문자열을 입력했을 경우 NumberFormatException을 발생시킨다.
-- 다리 크기를 입력 받아 초기화 하는데 크기가 3보다 작거나 20보다 클 경우 IllegalArgumentException을 발생시킨다.
-- 입력받은 움직이는 방식이 U 또는 D가 아니었을 경우 IllegalArgumentException을 발생시킨다.
+- `acceptReuest`: 만일 사전에 지정되지 않은 요청 타입을 전달 받았을 경우 `IllegalArgumentException`을 발생시킨다.
+- 재시작할 때 입력이 `R` 또는 `Q`가 아닌 경우 `IllegalArgumentException`을 발생시킨다.
+- `BridgeChecker`가 초기화되지 않았지만 `BridgeChecker`에 접근한 경우 `NullBridgeException`을 발생시킨다.
+- 숫자를 입력해야 할 때 숫자로 변환시킬 수 없는 문자열을 입력했을 경우 `NumberFormatException`을 발생시킨다.
+- 다리 크기를 입력 받아 초기화 하는데 크기가 3보다 작거나 20보다 클 경우 `IllegalArgumentException`을 발생시킨다.
+- 입력받은 움직이는 방식이 `U` 또는 `D`가 아니었을 경우 `IllegalArgumentException`을 발생시킨다.
+- 만일 시작하지 않은 상태에서 어떤 요청을 받았을 경우 `InvalidRequestException`을 발생시킨다.
+- 만일 `BridgeGame`이 `ResponsePacket`으로 다음에 요청해야할 `RequestType`을 보냈지만 `respondToRequest`로 전달 받은 `RequestType`이 적절하지 않으면 `InvalidRequestException`을 발생시킨다.
+  - 간단히 말해서 게임의 순서에 무관한 요청은 예외처리한다.
 
 ---  
 
