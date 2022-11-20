@@ -12,7 +12,7 @@ class BridgeValidatorTest {
     private lateinit var validator: BridgeValidator
 
     @BeforeEach
-    private fun setUp() {
+    fun setUp() {
         validator = BridgeValidator()
     }
 

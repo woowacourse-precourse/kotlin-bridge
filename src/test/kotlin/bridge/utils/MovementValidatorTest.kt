@@ -12,7 +12,7 @@ class MovementValidatorTest {
     private lateinit var validator: MovementValidator
 
     @BeforeEach
-    private fun setUp() {
+    fun setUp() {
         validator = MovementValidator()
     }
 
