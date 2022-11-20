@@ -12,4 +12,5 @@ class Player(
     }
 
     fun getTries() = tries
+    fun getPlayerBlocks(): List<PlayerBlock> = blocks
 }
