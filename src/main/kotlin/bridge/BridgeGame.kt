@@ -38,4 +38,8 @@ class BridgeGame {
         }
         return compareList.toList()
     }
+
+    fun resultToString(result:List<String>):String{
+
+    }
 }
