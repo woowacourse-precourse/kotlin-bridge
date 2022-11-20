@@ -14,7 +14,9 @@ class BridgeGame {
     private val movementStatuses = mutableListOf<MovementStatus>()
     private var trialCount = 1
 
-    fun setBridge(bridgeDTO: BridgeDTO) {}
+    fun setBridge(bridgeDTO: BridgeDTO) {
+        bridge = bridgeDTO.getBridge()
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
