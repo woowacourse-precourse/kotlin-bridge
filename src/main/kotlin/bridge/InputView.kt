@@ -30,9 +30,9 @@ class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    fun readMoving(): Char {
+    fun readMoving(): String {
         var moving = readValidatedMoving()
-        while (moving == ' ') {
+        while (moving.isBlank()) {
             moving = readValidatedMoving()
         }
         return moving
@@ -61,15 +61,15 @@ class InputView {
         }
     }
 
-    private fun readValidatedMoving(): Char {
+    private fun readValidatedMoving(): String {
         return try {
             with(Console.readLine()) {
-                if (this.length == 1 && (this[0] == MOVING_DIRECT_UP || this[0] == MOVING_DIRECT_DOWN)) this[0]
+                if (this.length == 1 && (this == MOVING_DIRECT_UP || this == MOVING_DIRECT_DOWN)) this
                 else throw IllegalArgumentException()
             }
         } catch (e: Exception) {
             printErrorMessage(MovingInvalidException())
-            ' '
+            ""
         }
     }
 
