@@ -22,11 +22,12 @@ const val UP = "U"
 const val DOWN = "D"
 const val UP_INDEX = 0
 const val DOWN_INDEX = 1
-const val DIRECTION_SIZE = 2
 
 // restart
 const val RETRIAL = "R"
 const val QUIT = "Q"
+const val RETRY_GAME = true
+const val FINISH_GAME = false
 
 // result
 const val SUCCESS_MESSAGE = "성공"

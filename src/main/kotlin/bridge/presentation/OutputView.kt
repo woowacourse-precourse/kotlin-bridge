@@ -1,9 +1,9 @@
 package bridge.presentation
 
-import bridge.controller.game.Result
 import bridge.domain.map.Mark
-import bridge.util.*
+import bridge.service.Result
 import bridge.util.constant.*
+import bridge.util.convertAsBridgeRoute
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -26,11 +26,11 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(gameResult: Result, trial: Int, route: List<List<Mark>>) {
+    fun printResult(gameResult: Result, route: List<List<Mark>>, tryCount: Int) {
         println(GAME_FINISH_MESSAGE)
         printMap(route)
         printSuccessOrFail(gameResult)
-        printTrialCount(trial)
+        printTrialCount(tryCount)
     }
 
     fun printStartMessage() {
@@ -61,4 +61,6 @@ class OutputView {
     fun printError(throwable: Throwable) {
         println(throwable.message)
     }
+
+    fun enter() = println()
 }

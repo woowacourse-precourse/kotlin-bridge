@@ -1,4 +1,4 @@
-package bridge.controller.game
+package bridge.service
 
 import bridge.util.constant.FAIL_MESSAGE
 import bridge.util.constant.SUCCESS_MESSAGE
