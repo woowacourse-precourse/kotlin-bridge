@@ -27,4 +27,10 @@ object Exceptions {
             throw IllegalArgumentException(ERROR_HEADER + ERROR_MOVE_KEY)
         }
     }
+
+    fun checkInputCommandKey(command: String) {
+        if (command != RESTART && command != QUIT) {
+            throw IllegalArgumentException(ERROR_HEADER + ERROR_COMMAND_KEY)
+        }
+    }
 }
