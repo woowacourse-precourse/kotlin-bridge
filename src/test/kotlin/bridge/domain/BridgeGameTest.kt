@@ -4,6 +4,7 @@ import bridge.ApplicationTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class BridgeGameTest {
     private var bridge = emptyList<String>()
@@ -25,16 +26,17 @@ class BridgeGameTest {
     }
 
     @Test
-    fun `끝까지 왔으면 더이상 움직이지 않는다`() {
-        listOf("U", "D", "D", "D").forEach {
-            bridgeGameInfo = BridgeGame().move(bridgeGameInfo, it)
+    fun `끝에서 입력을 더 움직이려하면 에러처리한다`() {
+        assertThrows<IllegalArgumentException> {
+            listOf("U", "D", "D", "D").forEach {
+                bridgeGameInfo = BridgeGame().move(bridgeGameInfo, it)
+            }
         }
-        assertThat(bridgeGameInfo.stage).isEqualTo(listOf(true, true, true))
     }
 
     @Test
     fun `재도전을하면 stage가 초기화 되고 도전 횟수 증가한다`() {
-        listOf("U", "D", "D", "D").forEach {
+        listOf("U", "D", "D").forEach {
             bridgeGameInfo = BridgeGame().move(bridgeGameInfo, it)
         }
         bridgeGameInfo = BridgeGame().retry(bridgeGameInfo)

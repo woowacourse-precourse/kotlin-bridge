@@ -1,4 +1,7 @@
 package bridge.domain
+
+import bridge.resources.ERROR_ALREADY_ARRIVED
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -11,9 +14,8 @@ class BridgeGame {
      */
     fun move(bridgeGameInfo: BridgeGameInfo, userSelect: String): BridgeGameInfo {
         return bridgeGameInfo.apply {
-            if (stage.size < bridge.size) {
-                stage = stage.plus(userSelect == bridge[stage.size])
-            }
+            require(stage.size < bridge.size) { ERROR_ALREADY_ARRIVED }
+            stage = stage.plus(userSelect == bridge[stage.size])
         }
     }
 
