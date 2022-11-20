@@ -10,7 +10,7 @@ class OutputView {
         println(message)
     }
 
-    fun printMessage(message1: String, message2: String){
+    fun printMessage(message1: String, message2: String) {
         println(message1)
         println(message2)
     }
@@ -29,9 +29,9 @@ class OutputView {
         val printValue = determineMap(bridge, userStep)
 
         for (line in 1 downTo 0) {
-            print(MAP_PRINT_START)
+            print(MapPrint.START.symbol)
             printMapInner(printValue, line)
-            println(MAP_PRINT_END)
+            println(MapPrint.END.symbol)
         }
         println()
     }
@@ -50,10 +50,11 @@ class OutputView {
 
     private fun determineOX(userAnswer: Boolean, direction: Int): MutableList<String> {
         val result = mutableListOf(" ", " ")
-        if (userAnswer)
-            result[direction] = MAP_PRINT_O
-        if (!userAnswer)
-            result[1 - direction] = MAP_PRINT_X
+        if (userAnswer) {
+            result[direction] = MapPrint.CORRECT_ANSWER.symbol
+            return result
+        }
+        result[1 - direction] = MapPrint.WRONG_ANSWER.symbol
         return result
     }
 
@@ -61,7 +62,7 @@ class OutputView {
         for (answerLength in printValue.indices) {
             print(printValue[answerLength][line])
             if (answerLength != printValue.size - 1)
-                print(MAP_PRINT_SEPARATOR)
+                print(MapPrint.SEPARATOR.symbol)
         }
     }
 

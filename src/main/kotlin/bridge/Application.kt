@@ -6,7 +6,7 @@ fun main() {
     OutputView().printMessage(START_MESSAGE, BRIDGE_SIZE_MESSAGE)
     val size = InputView().readBridgeSize()
     val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
-    println(bridge)
+
     val userStep = mutableListOf<Boolean>()
     val count = game(bridge, userStep)
 
