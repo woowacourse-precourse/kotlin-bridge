@@ -10,6 +10,10 @@ enum class BridgeGameStatus(val command: String?) {
     QUIT("Q");
 
     companion object {
+        fun of(command: String): BridgeGameStatus {
+            return values().find { it.command == command } ?: throw IllegalArgumentException(ERROR_INPUT_COMMAND)
+        }
+
         fun of(bridgeGameResult: BridgeGameInfo): BridgeGameStatus {
             bridgeGameResult.apply {
                 require(stage.isNoFalseExceptLast()) { ERROR_INPUT_COMMAND }
@@ -23,10 +27,5 @@ enum class BridgeGameStatus(val command: String?) {
         }
 
         private fun List<Boolean>.isNoFalseExceptLast() = this.subList(0, this.size - 1).all { it }
-
-        fun setStatus(command: String): BridgeGameStatus {
-            return values().firstOrNull { it.command == command }
-                ?: throw IllegalArgumentException(ERROR_INPUT_COMMAND)
-        }
     }
 }

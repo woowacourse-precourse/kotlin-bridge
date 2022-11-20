@@ -39,7 +39,7 @@ class BridgeGameController {
 
     private fun handleStatus() {
         if (status == FAILURE) {
-            status = BridgeGameStatus.setStatus(InputView().readGameCommand())
+            status = BridgeGameStatus.of(InputView().readGameCommand())
         }
         if (status == RETRY) {
             info = BridgeGame().retry(info)

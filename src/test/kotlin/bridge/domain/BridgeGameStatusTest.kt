@@ -60,19 +60,19 @@ class BridgeGameStatusTest {
 
     @Test
     fun `R을 입력하면 재시작이다`() {
-        assertThat(BridgeGameStatus.setStatus("R")).isEqualTo(BridgeGameStatus.RETRY)
+        assertThat(BridgeGameStatus.of("R")).isEqualTo(BridgeGameStatus.RETRY)
     }
 
     @Test
     fun `Q을 입력하면 게임을 끝낸다`() {
-        assertThat(BridgeGameStatus.setStatus("Q")).isEqualTo(BridgeGameStatus.QUIT)
+        assertThat(BridgeGameStatus.of("Q")).isEqualTo(BridgeGameStatus.QUIT)
     }
 
     @ParameterizedTest(name = "나머지를 입력하면 에러처리한다 {argumentsWithNames}")
     @ValueSource(strings = ["RR", "D", "1", "A"])
     fun `나머지를 입력하면 에러처리한다`(command: String) {
         assertThrows<IllegalArgumentException> {
-            BridgeGameStatus.setStatus(command)
+            BridgeGameStatus.of(command)
         }
     }
 }
