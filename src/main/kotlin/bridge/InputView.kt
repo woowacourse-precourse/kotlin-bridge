@@ -1,14 +1,26 @@
 package bridge
 
+import java.lang.IllegalArgumentException
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 class InputView {
+    val MESSAGE_ERROR = "[ERROR]"
+
     /**
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return 0
+        try {
+            val bridgeSize = readLine()!!.toInt()
+            if (bridgeSize in 3..20)
+                return bridgeSize
+        }catch (e: IllegalArgumentException){
+            println("$MESSAGE_ERROR $e")
+            throw IllegalArgumentException("$MESSAGE_ERROR $e")
+        }
+        throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값 입니다.")
     }
 
     /**

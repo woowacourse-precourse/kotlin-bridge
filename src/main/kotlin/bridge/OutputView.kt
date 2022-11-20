@@ -5,10 +5,15 @@ package bridge
  */
 class OutputView {
 
-    val MESSAGE_START = "다리 건너기 게임을 시작합니다.\n"
+    private val MESSAGE_START = "다리 건너기 게임을 시작합니다.\n"
+    private val MESSAGE_BRIDGE_SIZE = "다리의 길이를 입력해주세요."
 
     fun printStart():String{
         return MESSAGE_START
+    }
+
+    fun printBridgeSize():String{
+        return MESSAGE_BRIDGE_SIZE
     }
 
     /**
