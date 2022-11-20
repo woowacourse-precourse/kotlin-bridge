@@ -36,6 +36,14 @@ class Player(private val bridge: Bridge) {
         return bridge.finishCrossBridge(upBridge.size)
     }
 
+    fun getUpBridge(): List<String> {
+        return upBridge
+    }
+
+    fun getDownBridge(): List<String> {
+        return downBridge
+    }
+
     companion object {
         const val MOVE_UP = "U"
         const val MOVE_DOWN = "D"

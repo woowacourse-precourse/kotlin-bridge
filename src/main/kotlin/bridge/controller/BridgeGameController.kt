@@ -2,6 +2,7 @@ package bridge.controller
 
 import bridge.domain.*
 import bridge.view.InputView
+import bridge.view.OutputView
 
 class BridgeGameController {
     fun start() {
@@ -42,6 +43,8 @@ class BridgeGameController {
 
     private fun moving(bridgeGame: BridgeGame): Boolean {
         val inputMove = inputMoving()
-        return bridgeGame.move(inputMove)
+        val successOrFail = bridgeGame.move(inputMove)
+        OutputView().printMap(bridgeGame)
+        return successOrFail
     }
 }

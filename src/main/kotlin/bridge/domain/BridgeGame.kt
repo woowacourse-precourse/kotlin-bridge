@@ -28,7 +28,11 @@ class BridgeGame(private val player: Player) {
         return player.isClear()
     }
 
-    companion object {
-        const val FAIL_TO_CORRECT = "F"
+    fun getUpBridge(): List<String> {
+        return player.getUpBridge()
+    }
+
+    fun getDownBridge(): List<String> {
+        return player.getDownBridge()
     }
 }
