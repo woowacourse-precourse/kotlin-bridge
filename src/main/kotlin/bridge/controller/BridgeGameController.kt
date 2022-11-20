@@ -33,11 +33,11 @@ class BridgeGameController {
 
     private fun play() {
         BridgeGame().move(info, InputView().readMoving())
-        status = BridgeGameStatus.of(info)
         OutputView().printMap(info)
     }
 
     private fun handleStatus() {
+        status = BridgeGameStatus.of(info)
         if (status == FAILURE) {
             status = BridgeGameStatus.of(InputView().readGameCommand())
         }
