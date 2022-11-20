@@ -19,11 +19,6 @@ class OutputView {
         println(Output.BRIDGE_LENGTH.message)
     }
 
-    fun printBridgeLength(input: String) {
-        println(input)
-        println()
-    }
-
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      *

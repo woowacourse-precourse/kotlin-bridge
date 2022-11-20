@@ -19,7 +19,6 @@ class Controller {
     private fun inputBridgeLengthStep(): Int {
         outputView.printInputBridgeLength()
         val bridgeLength = inputView.readBridgeSize()
-        outputView.printBridgeLength(bridgeLength)
         inputCheck.checkBridgeLength(bridgeLength)
         return bridgeLength.toInt()
     }
