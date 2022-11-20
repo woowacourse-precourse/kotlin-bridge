@@ -24,6 +24,7 @@ class Processor(
     fun move(): Pair<Boolean, String> {
         val playerDirection = inputView.readMoving()
         val isPlayerAlive = bridgeGame.move(bridge, playerDirection)
+        playerPosition++
 
         return Pair(isPlayerAlive, playerDirection)
     }
@@ -44,6 +45,7 @@ class Processor(
     fun askRetry(): Boolean {
         val retryInput = inputView.readGameCommand() == "R"
         initBridgeMap()
+        playerPosition=0
         bridgeGame.retry()
         numberOfTry++
 
