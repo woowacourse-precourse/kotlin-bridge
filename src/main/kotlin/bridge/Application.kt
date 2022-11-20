@@ -1,6 +1,9 @@
 package bridge
 
+import bridge.domain.InputCheck
+
 fun main() {
+    val checkInput = InputCheck()
     val showInputView = InputView()
-    val bridgeSize = showInputView.readBridgeSize()
+    val bridgeSize = checkInput.checkBridgeSize(showInputView.readBridgeSize())
 }
