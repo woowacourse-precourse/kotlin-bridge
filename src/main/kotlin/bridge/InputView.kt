@@ -39,7 +39,16 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        val inputMoving = Console.readLine()
+        inputMovingException(inputMoving)
+        return inputMoving
+    }
+
+    fun inputMovingException(inputMoving: String) {
+        when {
+            inputMoving != "U" && inputMoving != "D" -> return throw IllegalArgumentException("[ERROR] 이동할 칸은 U와 D만 입력 가능합니다.")
+        }
     }
 
     /**
