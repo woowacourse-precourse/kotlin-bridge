@@ -48,7 +48,7 @@ class InputView {
                 chooseUpOrDown.toInt()
             }
         } catch (e: IllegalArgumentException) {
-            println("[ERROR] U(위 칸)나 D(아래 칸)만 입력할 수 있습니다.")
+            println("[ERROR] U(위 칸)나 D(아래 칸) 중 하나만 입력할 수 있습니다.")
             readMoving()
         }
     }
@@ -61,5 +61,15 @@ class InputView {
         chooseRestartOrQuit = Console.readLine()
 
         return chooseRestartOrQuit
+    }
+
+    fun checkGameCommandInputException() {
+        try {
+            if (chooseUpOrDown != "R" && chooseUpOrDown != "Q") {
+                chooseUpOrDown.toInt()
+            }
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] R(재시작)과 Q(종료) 중 하나만 입력할 수 있습니다.")
+        }
     }
 }
