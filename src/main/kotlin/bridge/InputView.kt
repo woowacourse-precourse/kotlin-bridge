@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.Console
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
-class InputView(private val checker: ValidChecker) {
+class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -23,7 +23,11 @@ class InputView(private val checker: ValidChecker) {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        val choice:String= Console.readLine()
+        ValidChecker.checkUorD(choice)
+        return choice
+
     }
 
     /**
