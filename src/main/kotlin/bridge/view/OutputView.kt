@@ -13,22 +13,26 @@ object OutputView {
     fun printMap(progress: Array<Array<String>>, position: Int) {
         progress.map { oneLine ->
             oneLine.mapIndexed { index, str ->
-                printOneLineOfMatrix(str, index, position)
+                handleWhenIsNotNull(str, index, position)
             }
             println()
         }
         println()
     }
 
-    private fun printOneLineOfMatrix(str: String, index: Int, size: Int) {
+    private fun handleWhenIsNotNull(str: String, index: Int, size: Int) {
         if (str != "") {
-            if (index == ZERO) {
-                print("[ $str ")
-                if (size == ZERO) print("]")
-            } else {
-                print("| $str ")
-                if (size == index) print("]")
-            }
+            printOneLineOfMatrix(str, index, size)
+        }
+    }
+
+    private fun printOneLineOfMatrix(str: String, index: Int, size: Int) {
+        if (index == ZERO) {
+            print("[ $str ")
+            if (size == ZERO) print("]")
+        } else {
+            print("| $str ")
+            if (size == index) print("]")
         }
     }
 
