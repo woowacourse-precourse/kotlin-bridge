@@ -13,9 +13,9 @@ class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     // val p = listOf<String>("U1,D0", "U0,D1", "U0,D1", "U0,D1")
-    fun move(bridgeColumns: String,inputColumn:String):String {
+    fun move(bridgeColumns: String,userInputColumn:String):String {
         bridgeColumns.split(",").map { bridgeColumn ->
-            if (bridgeColumn.first() == inputColumn.first()) return "${getColumnResult(bridgeColumn,ONE_COLUMN_UP)},${getColumnResult(bridgeColumn,ONE_COLUMN_DOWN)}"
+            if (bridgeColumn.first() == userInputColumn.first()) return "${getColumnResult(bridgeColumn,ONE_COLUMN_UP)},${getColumnResult(bridgeColumn,ONE_COLUMN_DOWN)}"
         }
         return " "
     }
