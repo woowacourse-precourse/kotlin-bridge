@@ -13,10 +13,15 @@ const val ENTER_U_OR_D = "U 또는 D를 정확하게 입력해주세요."
 
 
 const val ZERO = 0
+const val UPSIDE = 0
+const val DOWNSIDE = 1
 const val COLUMN_COUNT = 2
 const val RANGE_LOWER_BOUND = 3
 const val RANGE_UPPER_BOUND = 20
 const val NULL = ""
+const val BLANK = " "
+const val O = "O"
+const val X = "X"
 const val UP = "U"
 const val DOWN = "D"
 const val ERROR = "[ERROR]"

@@ -25,6 +25,7 @@ class GameController {
         while (isPlaying) {
             val direction = getMoveDirection()
             bridgeGame.compare(direction, position)
+            bridgeGame.move(direction, position)
         }
     }
 
