@@ -39,7 +39,6 @@ class InputView {
      */
     private fun checkBridgeSizeRange(size:Int): Int {
         try {
-            // TODO: 3, 20 상수처리
             require(size in Bridge.LESS_BRIDGE_SIZE.params .. Bridge.MOST_BRIDGE_SIZE.params)
             return size
         }catch (e: IllegalArgumentException){
