@@ -1,4 +1,4 @@
-package bridge
+package domain
 
 interface BridgeNumberGenerator {
     fun generate(): Int

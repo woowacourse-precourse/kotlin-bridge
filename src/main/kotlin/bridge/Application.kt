@@ -1,5 +1,8 @@
 package bridge
 
+import view.InputView
+import view.OutputView
+
 fun main() {
 
     val outputView = OutputView()
@@ -12,6 +15,8 @@ fun main() {
     println(outputView.printBridgeSize())
     val bridgeSize = inputView.readBridgeSize()
     println("$bridgeSize\n")
+
+
 
 
 
