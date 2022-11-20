@@ -55,4 +55,10 @@ class JudgementTest {
         val result = judgement.checkGameWin(listOf("U","U","D","D"))
         assertThat(result).isEqualTo(false)
     }
+
+    @Test
+    fun `정답 다리 추가시 사이즈가 맞는지 테스트`(){
+        judgement.createBridge(3)
+        assertThat(CorrectBridge.correctBridge.size).isEqualTo(3)
+    }
 }
