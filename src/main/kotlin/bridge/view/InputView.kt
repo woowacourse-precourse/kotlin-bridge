@@ -1,5 +1,6 @@
 package bridge.view
 
+import bridge.BridgeGame
 import bridge.BridgeMaker
 import bridge.utils.ErrorMessage
 import bridge.utils.Print
@@ -17,7 +18,7 @@ class InputView {
         while (true) {
             try {
                 val bridgeLength = Console.readLine().trim()
-                require(bridgeLength.toInt() in 3..20)
+                require(bridgeLength.toInt() in MIN_LENGTH..MAX_LENGTH)
                 return bridgeLength.toInt()
             } catch (e: IllegalArgumentException) {
                 println(ErrorMessage.ERROR_LENGTH)
@@ -49,11 +50,16 @@ class InputView {
         while (true) {
             try {
                 val command = Console.readLine().trim()
-                require(command == "R" || command == "Q")
+                require(command == BridgeGame.RESTART_COMMAND || command == BridgeGame.EXIT_COMMAND)
                 return command
             } catch (e: IllegalArgumentException) {
                 println(ErrorMessage.ERROR_COMMAND)
             }
         }
+    }
+
+    companion object {
+        const val MIN_LENGTH = 3
+        const val MAX_LENGTH = 20
     }
 }
