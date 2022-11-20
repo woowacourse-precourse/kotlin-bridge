@@ -16,7 +16,7 @@ class Controller {
         bridgeResult = bridgeGame.move(moveDirection)
         OutputView().printMap(bridgeResult)
         if(bridgeResult.getGameResult() == Result.SUCCESS) return endGame()
-        if(bridgeResult.getMovePossible() == Move.POSSIBLE) return startGame()
+        if(bridgeResult.getMovePossible().isPossible()) return startGame()
         return restartGame()
     }
 

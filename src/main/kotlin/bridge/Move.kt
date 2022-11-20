@@ -5,4 +5,6 @@ enum class Move(private val mark : String) {
 
     fun getMark() : String = mark
 
+    fun isPossible() : Boolean = POSSIBLE == this
+
 }
