@@ -7,6 +7,7 @@ class Controller {
     fun play() {
         try {
             InputView().readBridgeSize()
+            InputView().readMoving()
         } catch (e: IllegalArgumentException) {
             print(e)
         }
