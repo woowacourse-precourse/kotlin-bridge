@@ -7,6 +7,7 @@ class Processor(
     val outputView: OutputView,
 ) {
     var playerPosition = 0
+    var numberOfTry = 0
     lateinit var bridgeMap: Array<String>
     lateinit var bridge: List<String>
 
@@ -39,6 +40,16 @@ class Processor(
             bridgeMap[playerDirection.oppositeDirectionToInt()].replaceFirst(" N ", "   ")
     }
 
+
+    fun askRetry(): Boolean {
+        val retryInput = inputView.readGameCommand() == "R"
+        initBridgeMap()
+        bridgeGame.retry()
+        numberOfTry++
+
+        return retryInput
+    }
+
     fun printMap() {
         outputView.printMap(bridgeMap[0])
         outputView.printMap(bridgeMap[1])
@@ -55,5 +66,4 @@ class Processor(
     } else {
         1
     }
-
 }
