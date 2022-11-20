@@ -2,10 +2,13 @@ package bridge
 
 fun BridgeGameMain(){
     var InputView = InputView()
-    var a = -1
-    while(a ==-1) {
-        a = InputView.readBridgeSize()
+    var size = -1
+    while(size ==-1) {
+        size = InputView.readBridgeSize()
     }
+    var bridgeNumberGenerator = BridgeRandomNumberGenerator()
+    var bridgeMaker = BridgeMaker(bridgeNumberGenerator)
+    var bridge = bridgeMaker.makeBridge(size)
 }
 
 fun main() {
