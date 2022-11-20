@@ -11,6 +11,9 @@ const val MISS = "X"
 const val BLANK = " "
 const val RESTART = "R"
 const val QUIT = "Q"
+const val SEPARATOR = " | "
+const val PREFIX = "[ "
+const val POSTFIX = " ]"
 
 // Messages
 const val INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요."
