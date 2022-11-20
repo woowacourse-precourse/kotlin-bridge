@@ -11,8 +11,10 @@ const val NOT_IN_RANGE = "3 이상 20 이하의 수가 아닙니다."
 
 
 const val ZERO = 0
+const val COLUMN_COUNT = 2
 const val RANGE_LOWER_BOUND = 3
 const val RANGE_UPPER_BOUND = 20
+const val NULL = ""
 const val UP = "U"
 const val DOWN = "D"
 const val ERROR = "[ERROR]"
