@@ -29,28 +29,20 @@ class BridgeGameTest {
 
     @Test
     fun `이동 테스트`(){
-        bridgeGame.move("U")
-        bridgeGame.move("U")
-        bridgeGame.move("D")
+        repeatMove(listOf("U","U","D"))
         assertThat(bridgeGame.currentMoving).isEqualTo(listOf("U","U","D"))
     }
 
     @Test
     fun `게임 성공 테스트`(){
-        bridgeGame.move("U")
-        bridgeGame.move("U")
-        bridgeGame.move("D")
-        bridgeGame.move("U")
+        repeatMove(listOf("U","U","D","U"))
         val result = bridgeGame.checkGameWin()
         assertThat(result).isEqualTo(true)
     }
 
     @Test
     fun `게임 실패 테스트`(){
-        bridgeGame.move("U")
-        bridgeGame.move("U")
-        bridgeGame.move("D")
-        bridgeGame.move("D")
+        repeatMove(listOf("U","U","D","D"))
         val result = bridgeGame.checkGameWin()
         assertThat(result).isEqualTo(false)
     }
@@ -60,5 +52,11 @@ class BridgeGameTest {
         bridgeGame.retry()
         assertThat(bridgeGame.tryCount).isEqualTo(1)
         assertThat(bridgeGame.currentMoving.size).isEqualTo(0)
+    }
+
+    fun repeatMove(movings : List<String>){
+        for(moving in movings){
+            bridgeGame.move(moving)
+        }
     }
 }
