@@ -15,22 +15,22 @@ class ApplicationTest : NsTest() {
         assertThat(bridge).containsExactly("U", "D", "D")
     }
 
-//    @Test
-//    fun `재시작 테스트`() {
-//        assertRandomNumberInRangeTest({
-//            run("5", "D" , "R" , "U", "D", "U", "D", "U")
-//            assertThat(output()).contains(
-//                    "최종 게임 결과",
-//                    "[ O |   | O |   | O ]",
-//                    "[   | O |   | O |   ]",
-//                    "게임 성공 여부: 성공",
-//                    "총 시도한 횟수: 2"
-//            )
-//            val upSideIndex = output().indexOf("[ O |   | O |   | O ]")
-//            val downSideIndex = output().indexOf("[   | O |   | O |   ]")
-//            assertThat(upSideIndex).isLessThan(downSideIndex)
-//        }, 1, 0, 1)
-//    }
+    @Test
+    fun `재시작 테스트`() {
+        assertRandomNumberInRangeTest({
+            run("5", "D" , "R" , "U", "D", "U", "D", "U")
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O |   | O ]",
+                    "[   | O |   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 2"
+            )
+            val upSideIndex = output().indexOf("[ O |   | O |   | O ]")
+            val downSideIndex = output().indexOf("[   | O |   | O |   ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 1, 0, 1, 0, 1)
+    }
 
     @Test
     fun `기능 테스트`() {
@@ -50,12 +50,31 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `예외 테스트`() {
+    fun `문자 입력 예외 테스트`() {
+        assertSimpleTest {
+            runException("a")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+   @Test
+   fun `범위 밖의 숫자 입력 예외 테스트`() {
         assertSimpleTest {
             runException("1")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
+
+    @Test
+    fun `U와 D말고 다른 입력 예외 테스트`() {
+        assertSimpleTest {
+            runException("3","E")
+
+            assertThat(output()).contains(ERROR_MESSAGE)
+
+
+        }
+    }
+
 
     override fun runMain() {
         main()
