@@ -4,7 +4,8 @@ class Util {
     fun isInt(input: String): Boolean{
         val num:Int? = input.toIntOrNull()
         if(num==null)
-            throw IllegalArgumentException
+            throw IllegalArgumentException(Error.NOT_INT.info)
+        return true
     }
     fun isInRange(input : Int): Boolean{
         return true

@@ -13,19 +13,21 @@ class UtilTest {
             util.isInt("abc")
         }
     }
+    @Test
     fun isInRangeTest(){
         assertThat(util.isInRange(12)).isEqualTo(true)
         assertThrows<IllegalArgumentException> {
             util.isInRange(33)
         }
     }
-
+    @Test
     fun isUDTest(){
         assertThat(util.isUD("U")).isEqualTo(true)
         assertThrows<IllegalArgumentException> {
             util.isInt("C")
         }
     }
+    @Test
     fun isRQTest(){
         assertThat(util.isRQ("R")).isEqualTo(true)
         assertThrows<IllegalArgumentException> {
