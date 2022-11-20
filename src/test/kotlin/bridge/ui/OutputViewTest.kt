@@ -23,6 +23,10 @@ internal class OutputViewTest : NsTest() {
         assertThat(output()).contains("[ O | O |   ]", "[   |   | X ]")
     }
 
+    @Test
+    fun printRestart() {
+    }
+
     override fun runMain() {}
 
     companion object {

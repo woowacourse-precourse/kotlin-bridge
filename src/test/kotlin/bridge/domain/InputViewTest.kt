@@ -30,6 +30,10 @@ class InputViewTest : NsTest() {
         }
     }
 
+    @Test
+    fun retryReadGameCommand() {
+    }
+
     override fun runMain() {
         // 다리 길이 입력 테스트: inputView.retryReadBridgeSize()
         // 이동 입력 테스트:
