@@ -7,7 +7,9 @@ class BridgeGameController {
     fun start() {
         val bridgeSize = inputBridgeSize()
         val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
-        bridgeProgress(Bridge(bridge))
+        val player = Player(Bridge(bridge))
+        val game = BridgeGame(player)
+        bridgeProgress(game)
     }
 
     private fun inputBridgeSize(): Int {
@@ -30,12 +32,16 @@ class BridgeGameController {
         }
     }
 
-    private fun bridgeProgress(bridge: Bridge) {
-        val player = Player()
-        val bridgeGame = BridgeGame(player)
-        while (!bridgeGame.isClear(bridge)) {
-            val inputString = inputMoving()
-            val gameProgressResult = bridgeGame.move(bridge, inputString)
+    private fun bridgeProgress(bridgeGame: BridgeGame) {
+        while (!bridgeGame.isClear()) {
+            if (moving(bridgeGame)) {
+                continue
+            }
         }
+    }
+
+    private fun moving(bridgeGame: BridgeGame): Boolean {
+        val inputMove = inputMoving()
+        return bridgeGame.move(inputMove)
     }
 }

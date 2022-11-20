@@ -12,13 +12,8 @@ class BridgeGame(private val player: Player) {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(bridge: Bridge, inputMoving: String): Player {
-        if (bridge.match(inputMoving)) {
-            player.updateStage(inputMoving)
-        } else {
-            player.updateStage(inputMoving + FAIL_TO_CORRECT)
-        }
-        return player
+    fun move(inputMoving: String): Boolean {
+        return player.updateStage(inputMoving)
     }
 
     /**
@@ -29,8 +24,8 @@ class BridgeGame(private val player: Player) {
      */
     fun retry() {}
 
-    fun isClear(bridge: Bridge): Boolean {
-        return player.isClear(bridge.getBridge())
+    fun isClear(): Boolean {
+        return player.isClear()
     }
 
     companion object {
