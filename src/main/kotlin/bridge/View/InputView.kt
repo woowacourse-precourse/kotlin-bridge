@@ -21,14 +21,21 @@ class InputView {
                 println(e.message)
             }
         }
-        return 0
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        while (true) {
+            try {
+                var move = Console.readLine()
+                Validator.checkBridgeSelect(move)
+                return move
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 
     /**

@@ -6,6 +6,7 @@ package bridge.View
 class OutputView {
     private val GAME_START = "다리 건너기 게임을 시작합니다."
     private val BRIDGE_SIZE = "다리의 길이를 입력해주세요."
+    private val BRIDGE_SELECT = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
 
     fun printStart() {
         println(GAME_START)
@@ -14,6 +15,11 @@ class OutputView {
 
     fun printBridgeSize() {
         println(BRIDGE_SIZE)
+    }
+
+    fun printBridgeSelect() {
+        println()
+        println(BRIDGE_SELECT)
     }
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.

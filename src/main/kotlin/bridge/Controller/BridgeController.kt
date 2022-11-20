@@ -14,6 +14,7 @@ class BridgeController {
         outputView.printStart()
         getBridgeSize()
         makeBridge()
+        getBridgeSelect()
     }
 
     fun getBridgeSize() {
@@ -25,5 +26,10 @@ class BridgeController {
         var bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
         var bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
         bridgeMaker.makeBridge(bridgeSize)
+    }
+
+    fun getBridgeSelect() {
+        outputView.printBridgeSelect()
+        var move = inputView.readMoving()
     }
 }
