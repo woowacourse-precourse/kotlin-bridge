@@ -7,7 +7,7 @@
 - [x] 다리의 길이를 입력 받아서 다리를 생성 - makeBridge()
 ### BridgeState
 - [x] 다리와 플레이어 입력을 비교 - BridgeState#compare()
-- [ ] 플레이어 이동을 리스트에 추가하고 반환- BridgeState#insertMove()
+- [x] 플레이어 이동을 리스트에 추가하고 반환- BridgeState#insertMove()
 ### InputView
 - [x] 다리의 길이를 입력 받음 - readBridgeSize()
 - [x] 이동할 칸을 입력 받음 - readMoving()

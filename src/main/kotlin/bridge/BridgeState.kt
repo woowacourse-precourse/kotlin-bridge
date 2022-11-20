@@ -17,4 +17,10 @@ class BridgeState {
         outputView.printResult(playerMoves)
         return true
     }
+
+    private fun insertMove(playerMoves:MutableList<List<String>>,upOrDown:String,alive:Boolean){
+        var playerMoves = playerMoves
+        playerMoves = bridgeGame.move(playerMoves,upOrDown,alive)
+        outputView.printMap(playerMoves)
+    }
 }
