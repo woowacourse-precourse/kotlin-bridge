@@ -18,6 +18,7 @@ class BridgeGame {
     fun retry() {
         initGameProgress()
         tryCount++
+        moveCount = 0
     }
 
     private fun updateGameProgress(moving: String) {
@@ -34,7 +35,7 @@ class BridgeGame {
     private fun initGameProgress() {
         gameProgress = List(2) { mutableListOf() }
     }
-    
+
 
     fun getBridgeSize(): Int { return bridgeSize }
 
@@ -46,7 +47,7 @@ class BridgeGame {
 
     fun setBridgeSize(inputLength: Int) { bridgeSize = inputLength }
 
-    fun setBridge(bridgeMaker: BridgeMaker) { bridge = bridgeMaker.makeBridge(bridgeSize) }
+    fun setBridge(randomBridge: List<String>) { bridge = randomBridge }
 
     fun isCorrect(moving: String): Boolean { return bridge[moveCount] == moving }
 

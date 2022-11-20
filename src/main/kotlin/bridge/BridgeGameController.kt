@@ -36,7 +36,8 @@ class BridgeGameController {
         bridgeGame.setBridgeSize(inputView.readBridgeSize())
         println()
 
-        bridgeGame.setBridge(BridgeMaker(BridgeRandomNumberGenerator()))
+        val bridgeRandomGenerator = BridgeRandomNumberGenerator()
+        bridgeGame.setBridge(BridgeMaker(bridgeRandomGenerator).makeBridge(bridgeGame.getBridgeSize()))
     }
 
 }
