@@ -72,7 +72,7 @@ class BridgeGame(private val answerBridge: List<String>) {
     private fun restartGame(inputBridge: List<String>, trial: Int) {
         var inputRestartGame = InputView().readGameCommand()
         when (inputRestartGame) {
-            "R" -> retry(answerBridge, trial)
+            "R" -> retry(trial)
             "Q" -> OutputView().printResult(inputBridge, false, trial)
         }
     }
@@ -83,7 +83,7 @@ class BridgeGame(private val answerBridge: List<String>) {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry(answerBridge: List<String>, trial: Int) {
+    private fun retry(trial: Int) {
         var trial = trial
         trial += 1
         moveAndCheckAnswer(trial)
