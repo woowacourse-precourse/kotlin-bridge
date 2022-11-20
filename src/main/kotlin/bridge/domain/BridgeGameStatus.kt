@@ -2,12 +2,12 @@ package bridge.domain
 
 import bridge.resources.ERROR_INPUT_COMMAND
 
-enum class BridgeGameStatus {
-    SUCCESS,
-    FAILURE,
-    RUNNING,
-    RETRY,
-    QUIT;
+enum class BridgeGameStatus(val command: String?) {
+    SUCCESS(null),
+    FAILURE(null),
+    RUNNING(null),
+    RETRY("R"),
+    QUIT("Q");
 
     companion object {
         fun getStatus(bridgeGameResult: BridgeGameInfo): BridgeGameStatus {
@@ -24,11 +24,8 @@ enum class BridgeGameStatus {
         }
 
         fun setStatus(command: String): BridgeGameStatus {
-            return when (command) {
-                "R" -> RETRY
-                "Q" -> QUIT
-                else -> throw IllegalArgumentException(ERROR_INPUT_COMMAND)
-            }
+            return values().firstOrNull { it.command == command }
+                ?: throw IllegalArgumentException(ERROR_INPUT_COMMAND)
         }
     }
 }
