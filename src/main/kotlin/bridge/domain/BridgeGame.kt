@@ -12,7 +12,7 @@ class BridgeGame {
     fun move(bridgeGameInfo: BridgeGameInfo, userSelect: String): BridgeGameInfo {
         return bridgeGameInfo.apply {
             if (stage.size < bridge.size) {
-                stage += userSelect.isSame(bridge[stage.size])
+                stage = stage.plus(userSelect == bridge[stage.size])
             }
         }
     }
@@ -29,6 +29,4 @@ class BridgeGame {
             countOfTry++
         }
     }
-
-    private fun String.isSame(bridgeLocation: String) = this == bridgeLocation
 }
