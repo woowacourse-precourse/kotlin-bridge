@@ -18,7 +18,25 @@ class OutputView {
      */
     fun printResult() {}
 
+    fun gameStartMessage() = println(BRIDGE_GAME_START)
+    fun bridgeLengthInputPleaseMessage() = println(BRIDGE_LENGTH_INPUT_PLEASE)
+    fun moveLengthInputPleaseMessage() = println(MOVE_INPUT_PLEASE)
+    fun retryInputPleaseMessage() = println(RETRY_INPUT_PLEASE)
+    fun finalGameResult() = println(FINAL_GAME_RESULT)
+    fun gameResultSuccess() = println(GAME_RESULT_SUCCESS)
+    fun gameResultFailed() = println(GAME_RESULT_FAILED)
+    fun gameTryCount(tryCount: Int) = println("$TRY_COUNT$tryCount")
+
     companion object {
+        private const val BRIDGE_GAME_START = "다리 건너기 게임을 시작합니다."
+        private const val BRIDGE_LENGTH_INPUT_PLEASE = "\n다리의 길이를 입력해주세요."
+        private const val MOVE_INPUT_PLEASE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)"
+        private const val RETRY_INPUT_PLEASE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+        private const val FINAL_GAME_RESULT = "최종 게임 결과"
+        private const val GAME_RESULT_SUCCESS = "게임 성공 여부: 성공"
+        private const val GAME_RESULT_FAILED = "게임 성공 여부: 실패"
+        private const val TRY_COUNT = "총 시도한 횟수: "
+
         lateinit var errorType: Error
         fun errorMessage() {
             println(errorType.error)
