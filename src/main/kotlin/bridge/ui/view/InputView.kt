@@ -14,6 +14,7 @@ class InputView {
     fun readBridgeSize(): Int {
         // TODO : 검증 및 print를 inputView에서 해야 하는지 생각
         print(INPUT_BRIDGE_SIZE_MESSAGE)
+
         while (true) {
             val bridgeSize = Console.readLine()
 
@@ -30,6 +31,7 @@ class InputView {
      */
     fun readMoving(): String {
         print(INPUT_MOVING_MESSAGE)
+
         while (true) {
             val moving = Console.readLine()
 
@@ -46,6 +48,7 @@ class InputView {
      */
     fun readGameCommand(): String {
         print(INPUT_GAME_COMMAND_MESSAGE)
+
         while (true) {
             val command = Console.readLine()
 
