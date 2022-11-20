@@ -28,7 +28,7 @@ fun main() {
 
 
 
-fun elsemoon(i : Int) : Int {
+fun bridgegamejud(i : Int) : Int {
     var checkretry = inputview.readGameCommand()
     if (checkretry == "R"){
         bridgegame.retry()
@@ -47,7 +47,8 @@ fun bridgegame(size : Int, makeBridge : List<String>) {
         if (bridgegame.userselectupdown[i] == makeBridge[i]){
             outputview.printMap(bridgegame.userselectupdown,++i) }
         else {
-            var ivalue = elsemoon(i)
+            outputview.printfail(bridgegame.userselectupdown,++i)
+            var ivalue = bridgegamejud(i)
             i=ivalue }
         if (sucess == false) break }
 }
@@ -55,7 +56,7 @@ fun bridgegame(size : Int, makeBridge : List<String>) {
 fun endprint(a: List<String>,b: Int) {
     println("최종 게임 결과")
     var outputview = OutputView()
-    outputview.printResult(a,b)
+    outputview.printMap(a,b)
     if (sucess == true){
         println("\n게임 성공 여부: 성공")
     }

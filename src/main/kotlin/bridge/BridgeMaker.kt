@@ -25,6 +25,6 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         if (a == 1) {
             return "U"
         }
-        return "[ERROR] updownjudgement"
+        return "[ERROR] D와 U중에 입력해주세요."
     }
 }
