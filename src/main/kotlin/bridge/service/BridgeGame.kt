@@ -46,9 +46,9 @@ class BridgeGame {
 
     fun startRound(round: Int): RoundResult {
         val realDirection = bridge.directionOf(round)
-        val isRightPath = playerPath.checkDirection(realDirection, round)
+        val isCorrectPath = playerPath.checkDirection(realDirection, round)
 
-        if (isRightPath) {
+        if (isCorrectPath) {
             return RoundResult(round, Result.SUCCESS, playerRoute, tryCounter.count())
         }
         return RoundResult(round, Result.FAIL, playerRoute, tryCounter.count())
