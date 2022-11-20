@@ -12,20 +12,21 @@ class BridgeGame {
      */
     var upBridge = "["
     var downBridge = "["
+
     fun move(bridgeAns: String, userMovingInput: String) {
         if (bridgeAns == "U" && userMovingInput == "U") {
-            upBridge += "O"
+            upBridge += " O "
             upBridge += "|"
         }
         else if (bridgeAns == "D" &&userMovingInput == "D") {
-            downBridge += "O"
+            downBridge += " O "
             downBridge += "|"
         }
         else if (bridgeAns == "U" && userMovingInput == "D"){
-            downBridge += "X"
+            downBridge += " X ]"
         }
         else {
-            upBridge += "X"
+            upBridge += " X ]"
         }
     }
 
@@ -35,5 +36,9 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {}
+    fun retry() {
+        // 이전 상태로 되돌려주는 메서드
+        if ("| X ]" in upBridge) upBridge.replace("| X", "")
+        if ("| X ]" in downBridge) downBridge.replace("| X", "")
+    }
 }
