@@ -16,8 +16,7 @@ class GameController(
         val size = inputView.readBridgeSize()
         bridgeGame = BridgeGame(bridgeMaker.makeBridge(size))
         val result = gameProgress(size)
-        // 결과 출력
-        outputView.printResult()
+        outputView.printResult(bridgeGame, result)
     }
 
     // 다리 건너기 게임 진행
