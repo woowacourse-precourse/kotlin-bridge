@@ -15,6 +15,11 @@ object InputValidator {
         checkIsUpOrDown(input)
     }
 
+    fun checkRetryOrQuit(command: String) {
+        checkIsNotBlank(command)
+        checkIsRetryOrQuit(command)
+    }
+
     private fun checkIsNotBlank(input: String) {
         if (input.isBlank()) throwException(NO_INPUT)
     }
@@ -36,5 +41,9 @@ object InputValidator {
 
     private fun checkIsUpOrDown(direction: String) {
         if (!(listOf(UP, DOWN).contains(direction))) throwException(ENTER_U_OR_D)
+    }
+
+    private fun checkIsRetryOrQuit(command: String) {
+        if (!(listOf(QUIT, RETRY).contains(command))) throwException(ENTER_R_OR_Q)
     }
 }
