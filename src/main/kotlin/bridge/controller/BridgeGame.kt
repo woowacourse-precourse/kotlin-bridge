@@ -17,6 +17,11 @@ class BridgeGame {
     private var attempts = 1
     private var gameStatus = true
 
+    fun startGame(){
+        output.printStartMessage()
+        goalBridge = BridgeMaker(generator).makeBridge(input.readBridgeSize())
+    }
+
 
     fun move() {}
 
