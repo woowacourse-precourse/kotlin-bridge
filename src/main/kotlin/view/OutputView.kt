@@ -18,14 +18,18 @@ class OutputView {
      */
     fun printResult() {}
 
-    fun printGameStart() = println(START_GAME)
+    fun printStartGame() = println(START_GAME)
 
     fun printInputBridgeLength() = println(INPUT_BRIDGE_LENGTH)
 
     fun printMoveBridge() = println(MOVE_BRIDGE)
+
+    fun printRetryGame()= println(RETRY_GAME)
+
     companion object {
         const val START_GAME = "다리 건너기 게임을 시작합니다."
         const val INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요."
         const val MOVE_BRIDGE = "이동할 칸을 선택해주세요. (위 : U, 아래 : D)"
+        const val RETRY_GAME = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
     }
 }
