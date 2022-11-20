@@ -1,5 +1,7 @@
 package bridge
 
+import kotlin.system.exitProcess
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -8,7 +10,14 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return 0
+        try {
+            val inp = readLine()
+            val bridgeSize = BridgeException(inp).toBridgeSize()
+            return bridgeSize
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] bridge Size error")
+            exitProcess(0)
+        }
     }
 
     /**
