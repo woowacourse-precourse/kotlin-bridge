@@ -17,4 +17,12 @@ class ErrorCheck {
         }
     }
 
+    fun movingCheck(move : String) : String {
+        if (move.length != 1) throw IllegalArgumentException(ErrorMessage.LENGTH.message)
+        return when(move){
+            "U" -> move
+            "D" -> move
+            else -> throw IllegalArgumentException(ErrorMessage.FORMATION.message)
+        }
+    }
 }
