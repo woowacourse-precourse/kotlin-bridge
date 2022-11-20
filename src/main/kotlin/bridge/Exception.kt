@@ -14,15 +14,21 @@ fun checkValidBridgeSize(bridgeSize : Int){
     }
 }
 
+// 당연히 둘 중 하나가 아니라면 !! 오류지 바보 아님?
+// UP, DOWN인 것만 통과하도록 만들기
 fun checkValidMoveInput(input : String){
-    if(input != UP || input != DOWN){
-        println(input)
-        throw IllegalArgumentException()
+    when(input){
+        UP -> return
+        DOWN -> return
+        else -> throw IllegalArgumentException()
     }
+
 }
 
 fun checkValidRestartInput(input : String){
-    if(input != RETRY || input != QUIT){
-        throw IllegalArgumentException()
+    when(input){
+        RETRY -> return
+        QUIT -> return
+        else -> throw IllegalArgumentException()
     }
 }
