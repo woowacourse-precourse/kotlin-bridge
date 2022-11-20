@@ -22,7 +22,11 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-
+        val errorCheck = ErrorCheck()
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        val oneMove = Console.readLine()
+        val checkMove = errorCheck.movingCheck(oneMove)
+        return checkMove
     }
 
     /**
