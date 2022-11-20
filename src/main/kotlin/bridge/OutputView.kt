@@ -16,11 +16,11 @@ class OutputView {
     }
 
     fun upMap(result: String){
-        up = "[" + result + "]"
+        up = "[ " + result.substring(0, result.length - 2)+ "]"
     }
 
     fun downMap(result: String){
-        down = "[" + result + "]"
+        down = "[ " + result.substring(0, result.length - 2) + "]"
     }
 
     fun printStartMessage() {

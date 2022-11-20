@@ -27,14 +27,13 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
         outputView.printGetMoveMessage()
         val input = inputView.readMoving()
         var isFail = false
-        when(input == bridge[move]){
+        when(input == bridge[move++]){
             true -> checkSuccessDistinguishUpDown(input)
             false -> {
                 checkFailDistinguishUpDown(input)
                 isFail = true
             }
         }
-        move++
         outputView.printMap()
         checkMoveEnd(move, isFail)
     }
@@ -108,7 +107,7 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
         outputView.upMap(moveUpMap)
     }
 
-    private fun downProcess(result: String){
+    private fun downProcess(result: String) {
         val str = result + " | "
         moveDownMap = moveDownMap + str
         outputView.downMap(moveDownMap)
