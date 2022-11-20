@@ -14,7 +14,9 @@ class Util {
     }
 
     fun isUD(input : String):Boolean{
-        return true
+        if(input=="U" || input=="D")
+            return true
+        throw IllegalArgumentException(Error.NOT_UD.info)
     }
     fun isRQ(input : String): Boolean{
       return true
