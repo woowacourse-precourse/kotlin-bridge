@@ -32,7 +32,7 @@ class Player {
                 isSuccess = SUCCESS
                 break
             }
-            if(BridgeGame().retry(inputView.readGameCommand())) command = QUIT
+            if(!BridgeGame().retry(inputView.readGameCommand())) command = QUIT
         }
         outputView.printCount(count)
         return isSuccess
