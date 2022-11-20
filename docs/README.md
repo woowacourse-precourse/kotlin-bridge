@@ -96,7 +96,7 @@
 - setBridgeSize(): 다리 길이를 입력받는 함수
 - getMoveCommand(): 다리 이동 입력받는 함수
 - moveBridge(): 사용자의 입력으로부터 다리 이동을 적용하는 함수
-- failChecker(): 사용자의 다리 이동이 실패 후 재시작을 원하는지 확인하는 함수
+- retryChecker(): 사용자의 다리 이동 실패 후 재시작을 확인하는 함수
 - restartGame(): 사용자의 재시작을 적용하는 함수
 - getRetryCommand(): 사용자의 재시작 입력받는 함수
 - printGameResult(): 게임 결과를 출력하는 함수
