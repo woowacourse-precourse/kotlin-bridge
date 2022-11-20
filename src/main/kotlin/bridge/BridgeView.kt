@@ -10,18 +10,21 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
     private var result = ""
 
     fun initBridge(){
+        outputView.printStartMessage()
+        outputView.printGetBridgeSizeMessage()
         val size = inputView.readBridgeSize()
         bridge = bridgeMaker.makeBridge(size)
     }
 
-    fun initialize(){
+    private fun initialize(){
         move = 0
         moveUpMap = ""
         moveDownMap = ""
         isEnd = false
     }
 
-    fun checkPlayerCanMove(input : String){
+    fun checkPlayerCanMove(){
+        outputView.printGetMoveMessage()
         val input = inputView.readMoving()
         var isFail = false
         when(input == bridge[move]){
@@ -74,9 +77,14 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
         }
     }
 
+    fun getGameIsEnd() : Boolean{
+        return isEnd
+    }
+
     fun checkRestart() : Boolean{
         initialize()
         var restart = true
+        outputView.printRetryMessage()
         when(inputView.readGameCommand()){
             "R" -> {
                 tryCount++
