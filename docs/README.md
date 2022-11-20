@@ -27,7 +27,7 @@
 1. startGame - 게임의 시작을 알려주는 기능[O] -  OutputView
 2. readBridgeSize - 다리의 길이를 입력 받는 기능[O] - InputView
 3. generate - 랜덤 넘버를 생성해주는 기능[O] - BridgeRandoomNumberGenerator에서 주어짐
-4. makeBridge - 랜덤 넘버를 받아서 다리를 생성하는 기능[ ] - BridgeMaker
+4. makeBridge - 랜덤 넘버를 받아서 다리를 생성하는 기능[O] - BridgeMaker
 5. readMoving - 사용자에게 이동할 칸을 입력받는 기능[O] - InputView
 6. compareAnswer - 사용자의 답과 다리를 비교하는 기능[ ] - BridgeGame 
 7. readGameCommand - 오답일 경우 재시도 여부를 묻고 입력을 받는 기능[O] - InputView
