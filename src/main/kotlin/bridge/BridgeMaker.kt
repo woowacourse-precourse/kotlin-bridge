@@ -27,13 +27,13 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      * @param isUpBridge 위에 위치한 다리인지?
      * @return 정답 다리의 값에 맞추어 "O" 또는 " "으로 이루어진 List<String> 타입의 다리 반환
      */
-    fun makeCompletedBridge(answerBridge: List<String> , isUpBridge : Boolean): List<String>{
+    fun makeCompletedBridge(answerBridge: List<String>, isUpBridge: Boolean): List<String> {
         val bridge = mutableListOf<String>()
-        for (answer in answerBridge){
-            if(answer == "U" && isUpBridge) bridge.add("O")
-            if(answer == "U" && !isUpBridge) bridge.add(" ")
-            if(answer == "D" && isUpBridge) bridge.add(" ")
-            if(answer == "D" && !isUpBridge) bridge.add("O")
+        for (answer in answerBridge) {
+            when (answer) {
+                "U" -> if (isUpBridge) bridge.add("O") else bridge.add(" ")
+                "D" -> if (isUpBridge) bridge.add(" ") else bridge.add("O")
+            }
         }
         return bridge
     }
