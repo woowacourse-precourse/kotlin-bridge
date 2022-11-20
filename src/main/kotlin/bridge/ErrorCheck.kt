@@ -18,10 +18,21 @@ class ErrorCheck {
     }
 
     fun movingCheck(move : String) : String {
+        if (move == "") throw IllegalArgumentException(ErrorMessage.NOTHING.message)
         if (move.length != 1) throw IllegalArgumentException(ErrorMessage.LENGTH.message)
         return when(move){
             "U" -> move
             "D" -> move
+            else -> throw IllegalArgumentException(ErrorMessage.FORMATION.message)
+        }
+    }
+
+    fun continueCheck(continues : String) : String {
+        if (continues == "") throw IllegalArgumentException(ErrorMessage.NOTHING.message)
+        if (continues.length != 1) throw IllegalArgumentException(ErrorMessage.LENGTH.message)
+        return when(continues){
+            "R" -> continues
+            "Q" -> continues
             else -> throw IllegalArgumentException(ErrorMessage.FORMATION.message)
         }
     }
