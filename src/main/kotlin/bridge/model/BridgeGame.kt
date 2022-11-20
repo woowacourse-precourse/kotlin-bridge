@@ -7,12 +7,16 @@ class BridgeGame {
     private val bridge = Bridge()
     private val progressMatrix = ProgressMatrix()
 
-    fun makeBridge(size: Int){
+    fun makeBridge(size: Int) {
         bridge.makeBridge(size)
     }
 
     fun initMatrix(rowCount: Int) {
         progressMatrix.initMatrix(rowCount)
+    }
+
+    fun compare(direction: String, position: Int) {
+        bridge.compare(direction, position)
     }
 
     fun move() {}

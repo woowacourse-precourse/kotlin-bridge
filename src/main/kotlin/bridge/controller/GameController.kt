@@ -7,9 +7,11 @@ import bridge.view.InputView
 import bridge.view.OutputView
 
 class GameController {
+
     private val bridgeGame = BridgeGame()
     private var size = ZERO
     private var isPlaying = true
+    private var position = ZERO
 
     init {
         OutputView.startGame()
@@ -21,7 +23,8 @@ class GameController {
 
     fun start() {
         while (isPlaying) {
-            getMoveDirection()
+            val direction = getMoveDirection()
+            bridgeGame.compare(direction, position)
         }
     }
 
