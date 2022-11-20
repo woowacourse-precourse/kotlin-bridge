@@ -10,6 +10,7 @@ class BridgeGame(private val bridges: List<String>) {
     private val downSide = mutableListOf<String>()
     private var bridgeIndex = BEGIN_BRIDGE_INDEX
     private var tryCount = BEGIN_TRY_COUNT
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
@@ -19,13 +20,14 @@ class BridgeGame(private val bridges: List<String>) {
     fun move(direction: String) {
         when (direction) {
             bridges[bridgeIndex] -> {
-                addSide(direction, Enum.RESULT.SUCCESS.emoji)
+                checkSide(direction, Enum.RESULT.SUCCESS.emoji)
                 nextBridge()
             }
 
-            else -> addSide(direction, Enum.RESULT.FAILURE.emoji)
+            else -> checkSide(direction, Enum.RESULT.FAILURE.emoji)
         }
     }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      *
@@ -39,23 +41,32 @@ class BridgeGame(private val bridges: List<String>) {
         downSide.clear()
     }
 
-    private fun addSide(side: String, result: String) {
+    private fun checkSide(side: String, result: String) {
         when (side) {
             Enum.SIDE.DOWN.command -> {
-                upSide.add(BLANK)
-                downSide.add(result)
+                addDownSide(result)
             }
 
             Enum.SIDE.UP.command -> {
-                upSide.add(result)
-                downSide.add(BLANK)
+                addUpSide(result)
             }
         }
+    }
+
+    private fun addUpSide(result: String) {
+        upSide.add(result)
+        downSide.add(BLANK)
+    }
+
+    private fun addDownSide(result: String) {
+        upSide.add(BLANK)
+        downSide.add(result)
     }
 
     private fun nextBridge() = bridgeIndex++
 
     private fun increaseTryCount() = tryCount++
+
     fun isFail(emoji: String) = downSide.contains(emoji) || upSide.contains(emoji)
 
     fun isEnd() = bridgeIndex == bridges.size
