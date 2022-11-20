@@ -40,6 +40,15 @@ class InputView {
         return chooseUpOrDown
     }
 
+    fun checkMovingInputException() {
+        try {
+            if (chooseUpOrDown != "U" || chooseUpOrDown != "D") {
+            }
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] U(위 칸)나 D(아래 칸)만 입력할 수 있습니다.")
+        }
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
