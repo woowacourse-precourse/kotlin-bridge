@@ -12,7 +12,13 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move() {}
+    fun move(bridgeGameInfo: BridgeGameInfo): BridgeGameInfo {
+        return bridgeGameInfo.apply {
+            if (stage.size < bridge.size) {
+                stage += User().inputMoving().isSame(bridge[stage.size])
+            }
+        }
+    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -22,8 +28,10 @@ class BridgeGame {
      */
     fun retry(bridgeGameInfo: BridgeGameInfo): BridgeGameInfo {
         return bridgeGameInfo.apply {
+            stage = emptyList()
             countOfTry++
         }
     }
 
+    private fun String.isSame(bridgeLocation: String) = this == bridgeLocation
 }
