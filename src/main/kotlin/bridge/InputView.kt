@@ -2,10 +2,13 @@ package bridge
 
 import bridge.BridgeGame.Companion.BRIDGE_LENGTH_LOWER_INCLUSIVE
 import bridge.BridgeGame.Companion.BRIDGE_LENGTH_UPPER_INCLUSIVE
+import bridge.BridgeGame.Companion.GAME_COMMAND_QUIT
+import bridge.BridgeGame.Companion.GAME_COMMAND_RESTART
 import bridge.BridgeGame.Companion.MOVING_DIRECT_DOWN
 import bridge.BridgeGame.Companion.MOVING_DIRECT_UP
 import bridge.OutputView.Companion.printErrorMessage
 import bridge.exception.BridgeSizeInvalidException
+import bridge.exception.GameCommandInvalidException
 import bridge.exception.MovingInvalidException
 import camp.nextstep.edu.missionutils.Console
 
@@ -17,9 +20,9 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        var bridgeSize = readValidateBridgeSize()
+        var bridgeSize = readValidatedBridgeSize()
         while (bridgeSize == 0) {
-            bridgeSize = readValidateBridgeSize()
+            bridgeSize = readValidatedBridgeSize()
         }
         return bridgeSize
     }
@@ -28,9 +31,9 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): Char {
-        var moving = readValidateMoving()
+        var moving = readValidatedMoving()
         while (moving == ' ') {
-            moving = readValidateMoving()
+            moving = readValidatedMoving()
         }
         return moving
     }
@@ -38,11 +41,15 @@ class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    fun readGameCommand(): String {
-        return ""
+    fun readGameCommand(): Char {
+        var gameCommand = readValidatedGameCommand()
+        while (gameCommand == ' ') {
+            gameCommand = readValidatedGameCommand()
+        }
+        return gameCommand
     }
 
-    private fun readValidateBridgeSize(): Int {
+    private fun readValidatedBridgeSize(): Int {
         return try {
             with(Console.readLine().toInt()) {
                 if (this in BRIDGE_LENGTH_LOWER_INCLUSIVE..BRIDGE_LENGTH_UPPER_INCLUSIVE) this
@@ -54,7 +61,7 @@ class InputView {
         }
     }
 
-    private fun readValidateMoving(): Char {
+    private fun readValidatedMoving(): Char {
         return try {
             with(Console.readLine()) {
                 if (this.length == 1 && (this[0] == MOVING_DIRECT_UP || this[0] == MOVING_DIRECT_DOWN)) this[0]
@@ -62,6 +69,18 @@ class InputView {
             }
         } catch (e: Exception) {
             printErrorMessage(MovingInvalidException())
+            ' '
+        }
+    }
+
+    private fun readValidatedGameCommand(): Char {
+        return try {
+            with(Console.readLine()) {
+                if (this.length == 1 && (this[0] == GAME_COMMAND_RESTART || this[0] == GAME_COMMAND_QUIT)) this[0]
+                else throw IllegalArgumentException()
+            }
+        } catch (e: Exception) {
+            printErrorMessage(GameCommandInvalidException())
             ' '
         }
     }

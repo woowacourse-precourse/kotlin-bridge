@@ -1,10 +1,12 @@
 package bridge
 
 import bridge.GameView.Companion.ERROR_MESSAGE_INPUT_BRIDGE_LENGTH
+import bridge.GameView.Companion.ERROR_MESSAGE_INPUT_GAME_COMMAND
 import bridge.GameView.Companion.ERROR_MESSAGE_INPUT_MOVING
 import bridge.GameView.Companion.ERROR_MESSAGE_PREFIX
-import bridge.GameView.Companion.ERROR_UNKNOWN
+import bridge.GameView.Companion.ERROR_MESSAGE_UNKNOWN
 import bridge.exception.BridgeSizeInvalidException
+import bridge.exception.GameCommandInvalidException
 import bridge.exception.MovingInvalidException
 
 /**
@@ -32,7 +34,8 @@ class OutputView {
                 when (e) {
                     is BridgeSizeInvalidException -> ERROR_MESSAGE_INPUT_BRIDGE_LENGTH
                     is MovingInvalidException -> ERROR_MESSAGE_INPUT_MOVING
-                    else -> ERROR_UNKNOWN
+                    is GameCommandInvalidException -> ERROR_MESSAGE_INPUT_GAME_COMMAND
+                    else -> ERROR_MESSAGE_UNKNOWN
                 }
             )
         }
