@@ -13,16 +13,20 @@ class BridgeGame(private val answerBridge: List<String>) {
     fun moveAndCheckAnswer(trial: Int) {
         var inputBridge = listOf<String>()
         var success = true
-        while (success) {
+        while (success && (inputBridge != answerBridge)) {
             inputBridge = move(inputBridge)
             success = checkSuccess(inputBridge)
-            if (inputBridge == answerBridge) {
-                OutputView().printResult(inputBridge, success, trial)
-                break
-            }
         }
-        if (!success)
-            restartGame(inputBridge, trial)
+        printResultWhenAllAnswer(inputBridge, trial)
+        restartGameWhenFail(success, inputBridge, trial)
+    }
+
+    private fun printResultWhenAllAnswer(inputBridge: List<String>, trial: Int) {
+        if (inputBridge == answerBridge) OutputView().printResult(inputBridge, true, trial)
+    }
+
+    private fun restartGameWhenFail(success: Boolean, inputBridge: List<String>, trial: Int) {
+        if (!success) restartGame(inputBridge, trial)
     }
 
     private fun move(inputBridge: List<String>): List<String> {
