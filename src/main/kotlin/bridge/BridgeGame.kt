@@ -133,6 +133,8 @@ class BridgeGame {
 
     private fun validateRequest(request: RequestType) {
         if (lastResponsePacket == null) {
+            if(request == RequestType.LAUNCH) return
+
             throw InvalidRequestException(BridgeGameErrorMessages.INVALID_REQUEST_NOT_STARTED.message)
         }
         if (lastResponsePacket!!.popAdditionalMessage() != request) {
