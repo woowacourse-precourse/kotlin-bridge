@@ -4,14 +4,19 @@ package bridge
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 
-enum class Output(val message: String){
+enum class Output(val message: String) {
     GAME_START("다리 건너기 게임을 시작합니다."),
+    BRIDGE_LENGTH("다리의 길이를 입력해주세요."),
 }
 
 class OutputView {
-    fun gameStart() {
+    fun printGameStart() {
         println(Output.GAME_START.message)
         println()
+    }
+
+    fun printInputBridgeLength() {
+        println(Output.BRIDGE_LENGTH.message)
     }
 
     /**
