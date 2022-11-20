@@ -17,4 +17,16 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printResult() {}
+
+    companion object {
+        lateinit var errorType: Error
+        fun errorMessage() {
+            println(errorType.error)
+        }
+    }
+
+    enum class Error(val error: String) {
+        BRIDGE_INPUT_ERROR("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."),
+        NON_ERROR("에러 없음"),
+    }
 }
