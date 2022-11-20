@@ -85,7 +85,7 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
     }
 
     private fun finalResult() {
-        
+
     }
 
     private fun upProcess(result: String){
