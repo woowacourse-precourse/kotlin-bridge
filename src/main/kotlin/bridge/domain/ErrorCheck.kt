@@ -10,4 +10,10 @@ object ErrorCheck {
             makeError(ErrorType.NOT_INTEGER)
         }
     }
+
+    fun checkInRange(value: Int) {
+        if (value < RANGE_START || value > RANGE_END) {
+            makeError(ErrorType.OUT_OF_RANGE)
+        }
+    }
 }
