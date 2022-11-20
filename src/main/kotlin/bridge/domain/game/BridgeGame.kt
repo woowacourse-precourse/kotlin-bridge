@@ -1,8 +1,6 @@
 package bridge.domain.game
 
 import bridge.common.GAME_START_MESSAGE
-import bridge.common.MOVING_DOWN_CODE
-import bridge.common.MOVING_UP_CODE
 import bridge.domain.maker.BridgeMaker
 import bridge.ui.view.InputView
 import bridge.ui.view.OutputView
@@ -16,7 +14,9 @@ class BridgeGame(
     private val bridgeMaker: BridgeMaker
 ) {
     private lateinit var bridge: List<String>
-    private var round = 0
+    private lateinit var bridgeCrossingInfo: MutableList<Boolean>
+    private val userMovingInfo = mutableListOf<String>()
+    private var round = 1
     private var numberOfTry = 0
 
     fun play() {
@@ -24,10 +24,13 @@ class BridgeGame(
 
         val bridgeSize = inputView.readBridgeSize()
         bridge = bridgeMaker.makeBridge(size = bridgeSize)
+        bridgeCrossingInfo = MutableList(bridge.size) { false }
 
-        while (true) {
+        do {
             val moving = inputView.readMoving()
-        }
+            userMovingInfo.add(moving)
+            move(moving)
+        } while (true)
     }
 
     /**
@@ -38,12 +41,14 @@ class BridgeGame(
      */
     fun move(moving: String) {
         checkMoving(moving = moving)
-        outputView.printMap()
+        outputView.printMap(bridgeCrossingInfo.take(round), userMovingInfo)
         round++
     }
 
-    private fun checkMoving(moving: String): Boolean =
-        moving == bridge[round]
+    private fun checkMoving(moving: String) {
+        bridgeCrossingInfo[round - 1] = moving == bridge[round - 1]
+    }
+
 
 
     /**

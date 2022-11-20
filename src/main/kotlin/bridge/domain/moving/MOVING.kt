@@ -1,4 +1,4 @@
-package bridge.domain
+package bridge.domain.moving
 
 import bridge.common.BRIDGE_NUMBER_DOWN
 import bridge.common.BRIDGE_NUMBER_UP
