@@ -26,8 +26,7 @@ class OutputView {
     fun printResult(map: String, round: Int, isNotMatched: Boolean) {
         var trialCount = round
         trialCount++
-        println(FINAL_GAME_RESULT_MESSAGE)
-        println(map)
+        println(FINAL_GAME_RESULT_MESSAGE + "\n" + map)
         if (isNotMatched) println(GAME_FAILURE_MESSAGE)
         if (!isNotMatched) println(GAME_SUCCESS_MESSAGE)
         println("총 시도한 횟수:${trialCount}")

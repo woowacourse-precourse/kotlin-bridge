@@ -13,9 +13,9 @@ class BridgeGame {
     *
     * */
     fun start() {
-/*      val bridgeSize = InputView().readBridgeSize()
-        val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)*/
-        progress(listOf("U"))
+        val bridgeSize = InputView().readBridgeSize()
+        val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
+        progress(bridge)
     }
 
     /**
@@ -39,7 +39,7 @@ class BridgeGame {
             val moving = InputView().readMoving()
             val map = OutputView().printMap(bridge, 0, moving)
             println(map)
-            val isEndedGame = ("U" != moving)
+            val isEndedGame = (bridge[0] == "U" && moving == "D") || (bridge[0] == "D" && moving == "U")
             if (isEndedGame) {
                 isProgressing = retry(map, 0, isEndedGame)
             }
