@@ -1,9 +1,25 @@
 package exception
 
-class MovingSpace(private val space: String) {
-    init {
+import bridge.InputView
+
+class MovingSpace(private val inputView: InputView, private var space: String) {
+    fun verify() {
+        while (true) {
+            try {
+                space = inputView.readMoving()
+                checkException()
+            } catch (e: IllegalArgumentException) {
+                continue
+            }
+            break
+        }
+    }
+
+    fun getInput() = space
+
+    private fun checkException() {
         require(space == "U" || space == "D") {
-            print("[ERROR] 이동할 칸은 U(위)나 D(아래)여야 합니다.")
+            println("[ERROR] 이동할 칸은 U(위)나 D(아래)여야 합니다. 다시 입력해주세요.")
         }
     }
 }

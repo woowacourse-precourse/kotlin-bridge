@@ -319,6 +319,7 @@ val number = bridgeNumberGenerator.generate()
 - [x] 게임이 실패할 경우, 게임 종료 구현
 - [x] 게임이 실패할 경우, 게임 재시작 구현
 - [x] 예외 처리 클래스 생성
+- [x] 예외 처리 후 입력 다시 받기
 
 ### ☑️ 예외 처리
 - 사용자가 잘못된 값을 입력할 경우 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후, 그 부분부터 입력 다시 받기
