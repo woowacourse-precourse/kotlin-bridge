@@ -1,18 +1,19 @@
 # 기능 목록 작성
 ### BridgeGame
-- [ ] 플레이어가 이동 - move()
+- [x] 플레이어가 이동 - move()
 - [ ] 플레이어가 게임 재시도 - retry()
-- [ ] 플레이어가 살아는지 확인 - isAlive()
+- [x] 플레이어가 살아는지 확인 - isAlive()
 ### BridgeMaker
 - [x] 다리의 길이를 입력 받아서 다리를 생성 - makeBridge()
 ### BridgeState
-- [ ] 다리와 플레이어 입력을 비교 - BridgeState#compare()
+- [x] 다리와 플레이어 입력을 비교 - BridgeState#compare()
+- [ ] 플레이어 이동을 리스트에 추가하고 반환- BridgeState#insertMove()
 ### InputView
 - [x] 다리의 길이를 입력 받음 - readBridgeSize()
 - [x] 이동할 칸을 입력 받음 - readMoving()
 - [x] 게임을 다시 시도할지 입력받음 - readGameCommand()
 ### OutputView
-- [ ] 현재까지 이동한 다리의 상태를 출력 - printMap()
+- [x] 현재까지 이동한 다리의 상태를 출력 - printMap()
 - [ ] 게임의 최종 결과 출력 - printResult()
 ### Exception
 - [ ] 공백 입력
@@ -24,4 +25,4 @@
 
 # 테스트 목록 작성
 ### BridgeGameTest
-- [ ] 플레이어 칸 이동 테스트
+- [x] 플레이어 칸 이동 테스트
