@@ -2,19 +2,25 @@ package bridge.Controller
 
 import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
+import bridge.Model.BridgeData.bridgeLocation
+import bridge.Model.BridgeData.bridgeShape
 import bridge.Model.BridgeData.bridgeSize
+import bridge.Model.BridgeGame
+import bridge.Model.Referee
 import bridge.View.InputView
 import bridge.View.OutputView
 
 class BridgeController {
-    var inputView = InputView()
-    var outputView = OutputView()
+    private var inputView = InputView()
+    private var outputView = OutputView()
+    private var bridgeSelect = ""
 
     fun startGame() {
         outputView.printStart()
         getBridgeSize()
         makeBridge()
-        getBridgeSelect()
+        bridgeSelect = getBridgeSelect()
+        moveBridge()
     }
 
     fun getBridgeSize() {
@@ -25,11 +31,25 @@ class BridgeController {
     fun makeBridge() {
         var bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
         var bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
-        bridgeMaker.makeBridge(bridgeSize)
+        bridgeShape = bridgeMaker.makeBridge(bridgeSize)
     }
 
-    fun getBridgeSelect() {
+    fun getBridgeSelect(): String {
         outputView.printBridgeSelect()
-        var move = inputView.readMoving()
+        return inputView.readMoving()
+    }
+
+    fun moveBridge() {
+        val result = compareBridge()
+        var bridgeGame = BridgeGame()
+        when (result) {
+            "O" -> bridgeGame.move()
+            "X" -> bridgeGame.gameOver()
+        }
+    }
+
+    fun compareBridge(): String {
+        var referee = Referee(bridgeShape, bridgeLocation)
+        return referee.judgeMove(bridgeSelect)
     }
 }
