@@ -29,6 +29,16 @@ class InputView {
     private fun validateBridgeSize(readValue: String) =
         require(readValue.matches(Regex("[1-9][0-9]?")) && readValue.toInt() in 3..20) { "[ERROR] 3 이상 20 이하의 숫자로 입력바랍니다." }
 
+    fun askMovingToUser(): String {
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        while (true)
+            try {
+                return readMoving()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+    }
+
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
