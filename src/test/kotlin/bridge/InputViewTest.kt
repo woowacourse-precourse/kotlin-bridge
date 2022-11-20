@@ -42,6 +42,22 @@ class InputViewTest : NsTest() {
         }
     }
 
+    @Test
+    fun `재시작 여부 테스트`() {
+        assertSimpleTest {
+            runException("3", "U", "R")
+            assertThat(output()).contains("")
+        }
+    }
+
+    @Test
+    fun `재시작 여부 예외 테스트`() {
+        assertSimpleTest {
+            runException("3", "D", "W")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
     override fun runMain() {
         main()
     }
