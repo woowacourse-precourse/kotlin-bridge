@@ -54,4 +54,11 @@ class BridgeGameTest {
         val result = bridgeGame.checkGameWin()
         assertThat(result).isEqualTo(false)
     }
+
+    @Test
+    fun `재시작 테스트`(){
+        bridgeGame.retry()
+        assertThat(bridgeGame.tryCount).isEqualTo(1)
+        assertThat(bridgeGame.currentMoving.size).isEqualTo(0)
+    }
 }
