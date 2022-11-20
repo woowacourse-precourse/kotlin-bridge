@@ -1,7 +1,7 @@
 package bridge.ui.view
 
 import bridge.common.*
-import bridge.domain.moving.MOVING
+import bridge.domain.moving.Moving
 
 
 /**
@@ -13,31 +13,35 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap(bridgeCrossingInfo: List<Pair<MOVING, Boolean>>) {
+    fun printMap(bridgeCrossingInfo: List<Pair<Moving, Boolean>>) {
         repeat(BRIDGE_ROW_SIZE) { bridgeIndex ->
             checkBridge(bridgeCrossingInfo, bridgeIndexInfo[bridgeIndex]!!)
         }
     }
 
-    private fun checkBridge(bridgeCrossingInfo: List<Pair<MOVING, Boolean>>, bridgeNumber: Int) {
+    private fun checkBridge(bridgeCrossingInfo: List<Pair<Moving, Boolean>>, bridgeNumber: Int) {
         val round = bridgeCrossingInfo.size - 1
 
         print("[ ")
         bridgeCrossingInfo.forEachIndexed { curRound, (moving, isCrossed) ->
-            if (moving.bridgeNumber == bridgeNumber) {
-                printCrossingResult(isCrossed = isCrossed)
-            }
-
-            else print(" ")
+            printCrossingResult(moving = moving, bridgeNumber = bridgeNumber, isCrossed = isCrossed)
 
             if (curRound == round) print(" ]\n")
             else print(" | ")
         }
     }
 
-    private fun printCrossingResult(isCrossed: Boolean) {
-        if (isCrossed) print(CROSSED_SUCCESS_RESULT)
-        else print(CROSSED_FAIL_RESULT)
+    /**
+     * 현재 출력해야 할 bridgeNumber이고, 건널 수 있으면 O 아니면 X
+     * 현재 출력해야 할 bridgeNumber가 아니라면 공백
+     */
+    private fun printCrossingResult(moving: Moving, bridgeNumber: Int, isCrossed: Boolean) {
+        if (moving.bridgeNumber == bridgeNumber) {
+            if (isCrossed) print(CROSSED_SUCCESS_RESULT)
+            else print(CROSSED_FAIL_RESULT)
+        }
+
+        else print(" ")
     }
 
     /**
@@ -45,7 +49,14 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(bridgeCrossingInfo: List<Pair<Moving, Boolean>>, gameSuccessResult: String, numberOfTry: Int) {
+        print(FINAL_GAME_RESULT_MESSAGE)
+
+        printMap(bridgeCrossingInfo = bridgeCrossingInfo)
+
+        print(GAME_SUCCESSFUL_FORMAT.format(gameSuccessResult))
+        print(GAME_TRY_NUMBER_FORMAT.format(numberOfTry))
+    }
 
     fun printMessage(message: String) = print(message)
 

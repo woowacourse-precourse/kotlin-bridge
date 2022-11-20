@@ -14,6 +14,7 @@ const val MOVING_DOWN_CODE = "D"
 const val GAME_RESTART_CODE = "R"
 const val GAME_QUIT_CODE = "Q"
 
+
 const val CROSSED_SUCCESS_RESULT = "O"
 const val CROSSED_FAIL_RESULT = "X"
 
@@ -23,8 +24,8 @@ const val INPUT_MOVING_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 
 const val INPUT_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n"
 
 const val FINAL_GAME_RESULT_MESSAGE = "최종 게임 결과\n"
-const val GAME_SUCCESSFUL_MESSAGE = "게임 성공 여부: %s\n"
-const val GAME_TRY_NUMBER_MESSAGE = "총 시도한 횟수: %d\n"
+const val GAME_SUCCESSFUL_FORMAT = "\n게임 성공 여부: %s\n"
+const val GAME_TRY_NUMBER_FORMAT = "총 시도한 횟수: %d\n"
 const val SUCCESS_MESSAGE = "성공"
 const val FAIL_MESSAGE = "실패"
 

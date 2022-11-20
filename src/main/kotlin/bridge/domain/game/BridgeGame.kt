@@ -1,9 +1,8 @@
 package bridge.domain.game
 
-import bridge.common.GAME_START_MESSAGE
-import bridge.common.MOVING_UP_CODE
+import bridge.common.*
 import bridge.domain.maker.BridgeMaker
-import bridge.domain.moving.MOVING
+import bridge.domain.moving.Moving
 import bridge.ui.view.InputView
 import bridge.ui.view.OutputView
 
@@ -16,34 +15,41 @@ class BridgeGame(
     private val bridgeMaker: BridgeMaker
 ) {
     private lateinit var bridge: List<String>
-    private val bridgeCrossingInfo = mutableListOf<Pair<MOVING, Boolean>>()
+    private val bridgeCrossingInfo = mutableListOf<Pair<Moving, Boolean>>()
 
     private var round = 0 // 다리 건너는 라운드
     private var numberOfTry = 0 // 시도 횟수
 
     fun play() {
-        outputView.printMessage(GAME_START_MESSAGE)
-
-        val bridgeSize = inputView.readBridgeSize()
-        bridge = bridgeMaker.makeBridge(size = bridgeSize)
-        println(bridge)
+        // 게임에 필요한 다리 정보 생성 및 게임 시작 문구 출력
+        initGame()
 
         // 사용자 입력 받아서 이동 & 맵 출력
+        crossBridge()
+    }
+
+    private fun crossBridge() {
         do {
             val moving = inputView.readMoving()
             move(moving)
 
-//            if (bridgeCrossingInfo.contains(false)) {
-//                // retry
-//                bridgeCrossingInfo.clear()
-//                userMovingInfo.clear()
-//                numberOfTry++
-//                round = 0
-//                break
-//            }
+            // 건너지 못했을 때
+            if (isFailCrossing()) {
+
+                // 재시도 여부를 물어본다.
+                val command = inputView.readGameCommand()
+                checkGameCommand(command = command)
+            }
 
         } while (round < bridge.size)
+    }
 
+    private fun initGame() {
+        val bridgeSize = inputView.readBridgeSize()
+        bridge = bridgeMaker.makeBridge(size = bridgeSize)
+
+        outputView.printMessage(GAME_START_MESSAGE)
+        println(bridge)
     }
 
     /**
@@ -59,9 +65,16 @@ class BridgeGame(
     }
 
     private fun checkMoving(moving: String) {
-        val userMoving = if (moving == MOVING_UP_CODE) MOVING.UP else MOVING.DOWN
+        val userMoving = if (moving == MOVING_UP_CODE) Moving.UP else Moving.DOWN
         val isCrossed = moving == bridge[round]
         bridgeCrossingInfo.add(userMoving to isCrossed)
+    }
+
+    private fun checkGameCommand(command: String) {
+        when (command) {
+            GAME_RESTART_CODE -> retry()
+            GAME_QUIT_CODE -> end()
+        }
     }
 
 
@@ -71,5 +84,21 @@ class BridgeGame(
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {}
+    private fun retry() {
+        bridgeCrossingInfo.clear()
+
+        numberOfTry++
+        round = 0
+    }
+
+    /**
+     * 게임이 끝났을 때 실행되는 메서드
+     */
+    private fun end() {
+        val gameSuccessResult = if (isFailCrossing()) SUCCESS_MESSAGE else FAIL_MESSAGE
+        outputView.printResult(bridgeCrossingInfo = bridgeCrossingInfo, gameSuccessResult, numberOfTry)
+        return
+    }
+
+    private fun isFailCrossing(): Boolean = bridgeCrossingInfo.any { (_, isCrossed) -> !isCrossed }
 }
