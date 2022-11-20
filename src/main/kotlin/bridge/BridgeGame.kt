@@ -7,7 +7,9 @@ import bridge.validator.BridgeGameValidator
  */
 class BridgeGame {
 
-    // 진행 메소드
+    /*진행 메소드
+    *
+    * */
     fun start() {
         progress()
     }
@@ -29,21 +31,23 @@ class BridgeGame {
     fun progress(): Boolean {
 /*        val bridgeSize = InputView().readBridgeSize()
         val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)*/
-        // 사용자 입력
-        val moving = InputView().readMoving()
-        // 현재 출력
-        val map = OutputView().printMap(listOf("U"), 0, moving)
-        println(map)
         // 오답일 때
-        val isNotMatched = ("U" != moving)
-        if (isNotMatched) {
-            val gameCommand = InputView().readGameCommand()
-            if (gameCommand == "Q") {
-                OutputView().printResult(map, 0, isNotMatched)
-                return false
+        while (true) {
+            val moving = InputView().readMoving()
+            val map = OutputView().printMap(listOf("U"), 0, moving)
+            println(map)
+            val isNotMatched = ("U" != moving)
+            if (isNotMatched) {
+                val gameCommand = InputView().readGameCommand()
+                if (gameCommand == "Q") {
+                    OutputView().printResult(map, 0, isNotMatched)
+                }
+                if (gameCommand == "R") {
+                    continue
+                }
             }
+            return true
         }
-        return true
     }
 
     /**
@@ -52,5 +56,6 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+
     fun retry() {}
 }
