@@ -18,7 +18,18 @@ class BridgeGameController {
             info = BridgeGame().move(info)
             status = BridgeGameStatus.getStatus(info)
             OutputView().printMap(info)
+            handleStatus()
         }
         OutputView().printResult(info)
+    }
+
+    private fun handleStatus() {
+        if (status == FAILURE) {
+            status = BridgeGameStatus.setStatus(User().inputGameCommand())
+        }
+        if (status == RETRY) {
+            info = BridgeGame().retry(info)
+            status = RUNNING
+        }
     }
 }
