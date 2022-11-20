@@ -20,7 +20,9 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        val input = Console.readLine()
+        util.isUD(input)
+        return input
     }
 
     /**
