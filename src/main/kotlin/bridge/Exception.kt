@@ -8,10 +8,6 @@ fun checkInputIsDigit(input : String){
     }
 }
 
-fun checkInputHasBlank(){
-
-}
-
 fun checkValidBridgeSize(bridgeSize : Int){
     if(bridgeSize < 3 || bridgeSize > 20){
         throw IllegalArgumentException()

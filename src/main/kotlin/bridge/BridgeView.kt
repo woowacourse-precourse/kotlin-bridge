@@ -17,7 +17,6 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
         move = 0
         moveUpMap = ""
         moveDownMap = ""
-        tryCount = 1
         isEnd = false
     }
 
@@ -69,20 +68,24 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
         }
     }
 
-    fun checkRestart(){
+    fun checkRestart() : Boolean{
         initialize()
+        var restart = true
         when(inputView.readGameCommand()){
             "R" -> {
-                
+                tryCount++
+                restart = true
             }
             "Q" -> {
-
+                tryCount = 1
+                restart = false
             }
         }
+        return restart
     }
 
     private fun finalResult() {
-
+        
     }
 
     private fun upProcess(result: String){
