@@ -25,4 +25,20 @@ class InputView {
         }
     }
 
+    /**
+     * 사용자가 이동할 칸을 입력받는다.
+     */
+    fun readMoving(): String {
+        Print.showInputMove()
+        while (true) {
+            try {
+                val moveStair = Console.readLine().trim()
+                require(moveStair == BridgeMaker.UP_STAIR || moveStair == BridgeMaker.DOWN_STAIR)
+                return moveStair
+            } catch (e: IllegalArgumentException) {
+                println(ErrorMessage.ERROR_INPUT)
+            }
+        }
+    }
+
 }
