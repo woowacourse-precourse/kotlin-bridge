@@ -18,7 +18,7 @@ class ApplicationTest : NsTest() {
     @Test
     fun `기능 테스트`() {
         assertRandomNumberInRangeTest({
-            run("3", "U", "D", "U")
+            run("3", "U", "D", "U", "Q")
             assertThat(output()).contains(
                 "최종 게임 결과",
                 "[ O |   | O ]",
