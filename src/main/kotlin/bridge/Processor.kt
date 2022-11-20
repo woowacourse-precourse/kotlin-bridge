@@ -13,9 +13,14 @@ class Processor(
     lateinit var bridge: List<String>
 
     fun initBridge() {
-        val bridgeSize = inputView.readBridgeSize()
-        bridge = bridgeMaker.makeBridge(bridgeSize)
-        initBridgeMap()
+        do{
+            val isInitialized = runCatching {
+                val bridgeSize = inputView.readBridgeSize()
+
+                bridge = bridgeMaker.makeBridge(bridgeSize)
+                initBridgeMap()
+            }
+        }while(isInitialized.isFailure)
     }
 
     fun initBridgeMap(){
@@ -52,7 +57,6 @@ class Processor(
         playerPosition=0
         bridgeGame.retry()
         numberOfTry++
-
         return retryInput
     }
 
