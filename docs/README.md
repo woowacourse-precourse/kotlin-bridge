@@ -5,8 +5,10 @@
 ### BridgeMaker
 - [ ] 다리의 길이를 입력 받아서 다리를 생성 - makeBridge()
 ### BridgeState
-- [ ] 현재 다리 상태  - Bridge()#alive()
-- [ ] 다리와 입력을 비교 - Bridge()#compare()
+- [ ] 다리와 사용자 입력을 비교 - BridgeState#compare()
+### Player
+- [ ] 플레이어가 다음 칸으로 점프 - jump()
+- [ ] 플레이어가 살았는가 - isAlive()
 ### InputView
 - [ ] 다리의 길이를 입력 받음 - readBridgeSize()
 - [ ] 이동할 칸을 입력 받음 - readMoving()
