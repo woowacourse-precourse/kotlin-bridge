@@ -1,6 +1,6 @@
 package bridge
 
-import bridge.OutputView.throwException
+import bridge.view.OutputView.throwException
 
 object InputValidator {
     fun checkBridgeLength(input: String) {

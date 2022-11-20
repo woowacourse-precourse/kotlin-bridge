@@ -1,5 +1,6 @@
-package bridge
+package bridge.view
 
+import bridge.InputValidator
 import camp.nextstep.edu.missionutils.Console
 
 /**

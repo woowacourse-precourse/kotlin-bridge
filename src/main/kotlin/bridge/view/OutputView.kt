@@ -1,5 +1,7 @@
-package bridge
+package bridge.view
 
+import bridge.INPUT_BRIDGE_LENGTH
+import bridge.START_BRIDGE_GAME
 import java.lang.IllegalArgumentException
 
 /**

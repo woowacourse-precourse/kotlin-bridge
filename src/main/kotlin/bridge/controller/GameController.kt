@@ -1,4 +1,9 @@
-package bridge
+package bridge.controller
+
+import bridge.ERROR
+import bridge.ZERO
+import bridge.view.InputView
+import bridge.view.OutputView
 
 class GameController {
 
