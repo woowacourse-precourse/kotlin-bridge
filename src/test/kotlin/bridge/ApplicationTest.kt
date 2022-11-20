@@ -67,6 +67,40 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
+    fun `기능 테스트_3`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "D", "D", "Q")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O |   |   ]",
+                "[   | O | X ]",
+                "게임 성공 여부: 실패",
+                "총 시도한 횟수: 1"
+            )
+            val upSideIndex = output().indexOf("[ O |   |   ]")
+            val downSideIndex = output().indexOf("[   | O | X ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 1, 0, 1)
+    }
+
+    @Test
+    fun `기능 테스트_4`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "D", "D", "R", "U", "D", "D", "R", "U", "D", "U")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O |   | O ]",
+                "[   | O |   ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 3"
+            )
+            val upSideIndex = output().indexOf("[ O |   | O ]")
+            val downSideIndex = output().indexOf("[   | O |   ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 1, 0, 1)
+    }
+
+    @Test
     fun `허용 범위 미만의 다리 길이 입력이 들어오면 에러 출력 후 다시 입력받고 진행한다`() {
         assertRandomNumberInRangeTest({
             run("2", "4", "U", "D", "D", "U")
