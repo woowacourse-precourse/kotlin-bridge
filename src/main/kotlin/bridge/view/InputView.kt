@@ -11,16 +11,18 @@ object InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        val input = Console.readLine()
-        InputValidator.checkBridgeLength(input)
-        return input.toInt()
+        val sizeString = Console.readLine()
+        InputValidator.checkBridgeLength(sizeString)
+        return sizeString.toInt()
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return Console.readLine()
+        val direction = Console.readLine()
+        InputValidator.checkMoveDirection(direction)
+        return direction
     }
 
     /**

@@ -9,6 +9,7 @@ const val NO_INPUT = "입력 값이 없습니다."
 const val INCLUDE_CHARACTER = "문자를 포함하고 있습니다."
 const val START_WITH_ZERO = "0으로 시작하는 수입니다."
 const val NOT_IN_RANGE = "3 이상 20 이하의 수가 아닙니다."
+const val ENTER_U_OR_D = "U 또는 D를 정확하게 입력해주세요."
 
 
 const val ZERO = 0
