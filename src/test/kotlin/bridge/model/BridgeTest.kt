@@ -4,15 +4,19 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class BridgeTest {
 
-    @ValueSource(ints = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20])
+    @CsvSource("3, 20")
     @ParameterizedTest
-    fun `길이가 3이상 20이하인 다리를 만들 수 있다`(size: Int) {
-        assertDoesNotThrow {
-            Bridge.generateRandomBridge(size)
+    fun `길이가 3이상 20이하인 다리를 만들 수 있다`(start: Int, end: Int) {
+        val sizeRange = start..end
+        for (size in sizeRange) {
+            assertDoesNotThrow {
+                Bridge.generateRandomBridge(size)
+            }
         }
     }
 
