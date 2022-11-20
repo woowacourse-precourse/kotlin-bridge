@@ -8,8 +8,18 @@
 
 ---  
 
-## 🚀 BridgeGame 클래스
+## 🚀 BridgeGame.kt
 
+### RequestType
+`RequestType` 클래스는 `BridgeGame` 클래스에서 제어 가능한 요청들에 대해 사전 정의된 타입이다. `BridgeGame`가 동작하도록 하기 위해서는 이 타입 중 하나를 사용해야 한다.
+
+```kotlin
+enum class RequestType {
+    LAUNCH, MOVE, RETRY, INIT, NOW_STATE_MESSAGE, NONE;
+}
+```
+
+### BridgeGame
 `BridgeGame` 클래스는 BridgeGame을 관리하는 클래스이다.
 `BridgeGame` 클래스는 요청(request)을 받는다면 그에 해당하는 응답(response)을 하도록 한다.
 
