@@ -12,7 +12,7 @@ import bridge.util.constant.INITIAL_TRY_COUNT
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame : GameService {
+class BridgeGame {
     private lateinit var bridge: Bridge
     private lateinit var playerRoute: RouteMap
     private val bridgeMaker: BridgeMaker by lazy { BridgeMaker(BridgeRandomNumberGenerator()) }
