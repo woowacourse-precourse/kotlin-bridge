@@ -1,7 +1,9 @@
 package bridge.domain.game
 
 import bridge.common.GAME_START_MESSAGE
+import bridge.common.MOVING_UP_CODE
 import bridge.domain.maker.BridgeMaker
+import bridge.domain.moving.MOVING
 import bridge.ui.view.InputView
 import bridge.ui.view.OutputView
 
@@ -14,23 +16,34 @@ class BridgeGame(
     private val bridgeMaker: BridgeMaker
 ) {
     private lateinit var bridge: List<String>
-    private lateinit var bridgeCrossingInfo: MutableList<Boolean>
-    private val userMovingInfo = mutableListOf<String>()
-    private var round = 1
-    private var numberOfTry = 0
+    private val bridgeCrossingInfo = mutableListOf<Pair<MOVING, Boolean>>()
+
+    private var round = 0 // 다리 건너는 라운드
+    private var numberOfTry = 0 // 시도 횟수
 
     fun play() {
         outputView.printMessage(GAME_START_MESSAGE)
 
         val bridgeSize = inputView.readBridgeSize()
         bridge = bridgeMaker.makeBridge(size = bridgeSize)
-        bridgeCrossingInfo = MutableList(bridge.size) { false }
+        println(bridge)
 
+        // 사용자 입력 받아서 이동 & 맵 출력
         do {
             val moving = inputView.readMoving()
-            userMovingInfo.add(moving)
             move(moving)
-        } while (true)
+
+//            if (bridgeCrossingInfo.contains(false)) {
+//                // retry
+//                bridgeCrossingInfo.clear()
+//                userMovingInfo.clear()
+//                numberOfTry++
+//                round = 0
+//                break
+//            }
+
+        } while (round < bridge.size)
+
     }
 
     /**
@@ -39,16 +52,17 @@ class BridgeGame(
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(moving: String) {
+    private fun move(moving: String) {
         checkMoving(moving = moving)
-        outputView.printMap(bridgeCrossingInfo.take(round), userMovingInfo)
+        outputView.printMap(bridgeCrossingInfo)
         round++
     }
 
     private fun checkMoving(moving: String) {
-        bridgeCrossingInfo[round - 1] = moving == bridge[round - 1]
+        val userMoving = if (moving == MOVING_UP_CODE) MOVING.UP else MOVING.DOWN
+        val isCrossed = moving == bridge[round]
+        bridgeCrossingInfo.add(userMoving to isCrossed)
     }
-
 
 
     /**

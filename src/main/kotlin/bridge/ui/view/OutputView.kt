@@ -1,5 +1,8 @@
 package bridge.ui.view
 
+import bridge.common.*
+import bridge.domain.moving.MOVING
+
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -10,61 +13,31 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap(bridgeCrossingInfo: List<Boolean>, userMovingInfo: List<String>) {
-        println(bridgeCrossingInfo)
-        val round = bridgeCrossingInfo.size
+    fun printMap(bridgeCrossingInfo: List<Pair<MOVING, Boolean>>) {
+        repeat(BRIDGE_ROW_SIZE) { bridgeIndex ->
+            checkBridge(bridgeCrossingInfo, bridgeIndexInfo[bridgeIndex]!!)
+        }
+    }
 
-        val isPrintedRoundOf = MutableList(round) { false }
+    private fun checkBridge(bridgeCrossingInfo: List<Pair<MOVING, Boolean>>, bridgeNumber: Int) {
+        val round = bridgeCrossingInfo.size - 1
 
-        // 윗 다리
-        // TODO : U 일때만 출력
         print("[ ")
-        bridgeCrossingInfo.forEachIndexed { curRound, isCrossed ->
-            if (userMovingInfo[curRound] == "U") {
-                if (isCrossed) print("O")
-                else print("X")
+        bridgeCrossingInfo.forEachIndexed { curRound, (moving, isCrossed) ->
+            if (moving.bridgeNumber == bridgeNumber) {
+                printCrossingResult(isCrossed = isCrossed)
             }
 
             else print(" ")
 
-            if (curRound + 1 == round) print(" ]\n")
+            if (curRound == round) print(" ]\n")
             else print(" | ")
-
-            // if (isPrintedRoundOf[curRound]) print(" ")
-
-//            else {
-//                if (isCrossed) print("O")
-//                else print("X")
-//                isPrintedRoundOf[curRound] = true
-//            }
-//
-//            if (curRound + 1 == round) print(" ]\n")
-//            else print(" | ")
         }
+    }
 
-        // 아랫 다리
-        print("[ ")
-        bridgeCrossingInfo.forEachIndexed { curRound, isCrossed ->
-            if (userMovingInfo[curRound] == "D") {
-                if (isCrossed) print("O")
-                else print("X")
-            }
-
-            else print(" ")
-
-            if (curRound + 1 == round) print(" ]\n")
-            else print(" | ")
-//            if (isPrintedRoundOf[curRound]) print(" ")
-//
-//            else {
-//                if (isCrossed) print("O")
-//                else print("X")
-//                isPrintedRoundOf[curRound] = true
-//            }
-//
-//            if (curRound + 1 == round) print(" ]\n")
-//            else print(" | ")
-        }
+    private fun printCrossingResult(isCrossed: Boolean) {
+        if (isCrossed) print(CROSSED_SUCCESS_RESULT)
+        else print(CROSSED_FAIL_RESULT)
     }
 
     /**
@@ -75,4 +48,8 @@ class OutputView {
     fun printResult() {}
 
     fun printMessage(message: String) = print(message)
+
+    companion object {
+        private val bridgeIndexInfo = hashMapOf(0 to BRIDGE_NUMBER_UP, 1 to BRIDGE_NUMBER_DOWN)
+    }
 }
