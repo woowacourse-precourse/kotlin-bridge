@@ -90,7 +90,6 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
                 restart = true
             }
             QUIT -> {
-                tryCount = 1
                 restart = false
             }
         }
