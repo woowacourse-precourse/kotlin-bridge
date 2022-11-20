@@ -12,17 +12,13 @@ import bridge.view.InputView
 import bridge.view.OutputView
 
 class BridgeGameController {
-    private var status: BridgeGameStatus
-    private var info: BridgeGameInfo
+    private var status = RUNNING
+    private val info = BridgeGameInfo(
+        BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(InputView().readBridgeSize()),
+        emptyList(),
+        1
+    )
 
-    init {
-        status = RUNNING
-        info = BridgeGameInfo(
-            BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(InputView().readBridgeSize()),
-            emptyList(),
-            1
-        )
-    }
     fun run() {
         while (status == RUNNING) {
             play()
