@@ -8,7 +8,7 @@ import bridge.domain.BridgeGameStatus.RETRY
 import bridge.domain.BridgeGameStatus.RUNNING
 import bridge.domain.BridgeMaker
 import bridge.domain.BridgeRandomNumberGenerator
-import bridge.domain.User
+import bridge.view.InputView
 import bridge.view.OutputView
 
 class BridgeGameController {
@@ -16,9 +16,9 @@ class BridgeGameController {
     private var info: BridgeGameInfo = BridgeGameInfo(emptyList(), emptyList(), 1)
 
     fun run() {
-        info.bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(User().inputBridgeSize())
+        info.bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(InputView().readBridgeSize())
         while (status == RUNNING) {
-            info = BridgeGame().move(info, User().inputMoving())
+            info = BridgeGame().move(info, InputView().readMoving())
             status = BridgeGameStatus.getStatus(info)
             OutputView().printMap(info)
             handleStatus()
@@ -28,7 +28,7 @@ class BridgeGameController {
 
     private fun handleStatus() {
         if (status == FAILURE) {
-            status = BridgeGameStatus.setStatus(User().inputGameCommand())
+            status = BridgeGameStatus.setStatus(InputView().readGameCommand())
         }
         if (status == RETRY) {
             info = BridgeGame().retry(info)
