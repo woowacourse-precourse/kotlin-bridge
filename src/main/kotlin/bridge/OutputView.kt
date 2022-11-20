@@ -12,7 +12,7 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap() {
-        println(up + "\n" + down)
+        println(up + "\n" + down + "\n")
     }
 
     fun upMap(result: String){
@@ -24,19 +24,19 @@ class OutputView {
     }
 
     fun printStartMessage() {
-
+        println(START_MESSAGE + "\n")
     }
 
     fun printGetBridgeSizeMessage() {
-
+        println(GET_BRIDGE_SIZE_MESSAGE)
     }
 
     fun printGetMoveMessage() {
-
+        println(GET_MOVE_MESSAGE)
     }
 
     fun printRetryMessage() {
-
+        println(GET_RETRY_MESSAGE)
     }
 
     fun printResult(result : String, tryCount: Int) {
