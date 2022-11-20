@@ -30,6 +30,13 @@ class InputTest : NsTest() {
         }
     }
 
+    @Test
+    fun `이동할 칸이 U 또는 D가 아닐 경우`() {
+        assertThrows<IllegalArgumentException> {
+            inputTest.checkMoveDirection("L")
+        }
+    }
+
     override fun runMain() {
         main()
     }
