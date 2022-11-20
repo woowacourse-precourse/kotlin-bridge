@@ -13,15 +13,15 @@ class BridgeCheckerTest : NsTest() {
         val sb = StringBuilder()
 
         bridgeChecker.checkWithUpdating("U")
-        sb.append(bridgeChecker.toStringOpenPart()).append("\n")
+        sb.append(bridgeChecker.toVisualizationOpenedPart()).append("\n")
 
         bridgeChecker.checkWithUpdating("D")
-        sb.append(bridgeChecker.toStringOpenPart()).append("\n")
+        sb.append(bridgeChecker.toVisualizationOpenedPart()).append("\n")
 
         bridgeChecker.checkWithUpdating("D")
-        sb.append(bridgeChecker.toStringOpenPart()).append("\n")
+        sb.append(bridgeChecker.toVisualizationOpenedPart()).append("\n")
 
-        println(bridgeChecker.toStringOpenPart())
+        println(bridgeChecker.toVisualizationOpenedPart())
 
         Assertions.assertThat(sb.toString()).contains(
             """[ O |   |   ]
@@ -37,12 +37,12 @@ class BridgeCheckerTest : NsTest() {
         val sb = StringBuilder()
 
         bridgeChecker.checkWithUpdating("U")
-        sb.append(bridgeChecker.toStringOpenPart()).append("\n")
+        sb.append(bridgeChecker.toVisualizationOpenedPart()).append("\n")
 
         bridgeChecker.checkWithUpdating("U")
-        sb.append(bridgeChecker.toStringOpenPart()).append("\n")
+        sb.append(bridgeChecker.toVisualizationOpenedPart()).append("\n")
 
-        println(bridgeChecker.toStringOpenPart())
+        println(bridgeChecker.toVisualizationOpenedPart())
 
         Assertions.assertThat(sb.toString()).contains(
             """[ O | X ]
@@ -58,9 +58,9 @@ class BridgeCheckerTest : NsTest() {
         val sb = StringBuilder()
 
         bridgeChecker.checkWithUpdating("U")
-        sb.append(bridgeChecker.toStringOpenPart()).append("\n")
+        sb.append(bridgeChecker.toVisualizationOpenedPart()).append("\n")
 
-        println(bridgeChecker.toStringOpenPart())
+        println(bridgeChecker.toVisualizationOpenedPart())
 
         Assertions.assertThat(sb.toString()).contains(
             """[ O ]

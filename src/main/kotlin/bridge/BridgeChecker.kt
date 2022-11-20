@@ -1,5 +1,8 @@
 package bridge
 
+import bridge.strings.BridgeGameErrorMessages
+import bridge.strings.BridgeGameMessages
+
 class BridgeChecker(
     private val size: Int,
     private val bridgeMaker: BridgeMaker,
@@ -7,7 +10,7 @@ class BridgeChecker(
     private val bridgeInFog = bridgeMaker.makeBridge(size)
     private var bridgeRevealed = mutableListOf<List<String>>()
 
-    fun toStringOpenPart(): String {
+    fun toVisualizationOpenedPart(): String {
         val sb: StringBuilder = StringBuilder().also {
             it.append(makeLine(0)).append("\n")
             it.append(makeLine(1))
@@ -15,21 +18,33 @@ class BridgeChecker(
         return sb.toString()
     }
 
+    fun toVisualizationGameResult(): String {
+        return BridgeGameMessages.makeFinalMessage(
+            toVisualizationOpenedPart(), isSuccess(), bridgeRevealed.size
+        )
+    }
+
     fun checkWithUpdating(ans: String): List<Boolean> {
         if (bridgeRevealed.size != 0 && bridgeRevealed.last().contains("X"))
-            throw IllegalArgumentException("[ERROR] 이미 실패한 BridgeGame: check 함수를 요청함")
+            throw IllegalArgumentException(BridgeGameErrorMessages.INVALID_ACCESS_TO_CHECK.message)
 
         val addingBlock = generateBlock(ans)
         bridgeRevealed.add(addingBlock)
 
         if(addingBlock.contains("X")) return listOf(false)
-        if(bridgeRevealed.size == bridgeInFog.size) return listOf(true, true)
+        if(isSuccess()) return listOf(true, true)
         return listOf(true, false)
     }
 
     fun resetBridgeRevealed() {
         bridgeRevealed = mutableListOf()
     }
+
+    private fun isSuccess(): Boolean {
+        if(bridgeRevealed.size == bridgeInFog.size) return true
+        return false
+    }
+
 
     private fun generateBlock(ans: String): List<String> {
         if(checkAnswer(ans)) {

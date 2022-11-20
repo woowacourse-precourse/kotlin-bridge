@@ -1,136 +1,143 @@
 package bridge
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
-enum class RequestType() {
+import bridge.exceptions.InvalidRequestException
+import bridge.exceptions.NullBridgeException
+import bridge.strings.BridgeGameErrorMessages
+import bridge.strings.BridgeGameMessages
+
+
+enum class RequestType {
     LAUNCH, MOVE, RETRY, INIT, NOW_STATE_MESSAGE, NONE;
 }
 
-class BridgeGame() {
+/**
+ * 다리 건너기 게임을 관리하는 클래스
+ * BridgeGame를 사용하기 위해서는 정의된 RequestType을 사용해야 한다
+ */
+class BridgeGame {
     private var responseMessageQueue: ArrayDeque<ResponsePacket> = ArrayDeque()
     private var bridgeChecker: BridgeChecker? = null
+    private var lastResponsePacket: ResponsePacket? = null
 
     fun respondToRequest(request: RequestType, how: String = ""): ResponsePacket {
+        validateRequest(request)
         when (how) {
             "" -> acceptRequest(request)
             else -> acceptRequest(request, how)
         }
-
-        return responseMessageQueue.removeFirst()
+        lastResponsePacket = responseMessageQueue.removeFirst()
+        return lastResponsePacket!!
     }
 
-    private fun acceptRequest(request: RequestType) { // 변경 요청
+    private fun acceptRequest(request: RequestType) {
         when (request) {
             RequestType.NOW_STATE_MESSAGE -> return
             RequestType.LAUNCH -> launchGame()
-            else -> throw IllegalArgumentException("[ERROR] $request -> 처리할 수 없는 요청입니다")
+            else -> throw IllegalArgumentException(BridgeGameErrorMessages.INVALID_REQUEST.message)
         }
     }
 
-    private fun acceptRequest(request: RequestType, how: String) { // 변경 요청
-        return when (request) {
+    private fun acceptRequest(request: RequestType, how: String) {
+        when (request) {
             RequestType.MOVE -> updateWithMove(how)
-            RequestType.INIT -> initBridgeChecker(how)
             RequestType.RETRY -> updateWithRetry(how)
-            else -> throw IllegalArgumentException("[ERROR] $request -> 처리할 수 없는 요청입니다")
+            RequestType.INIT -> initBridgeChecker(how)
+            else -> throw IllegalArgumentException(BridgeGameErrorMessages.INVALID_REQUEST.message)
         }
     }
 
     private fun launchGame() {
-        val responsePacket1 = ResponsePacket(BridgeGameMessages.GUID_GAME_START_MESSAGE, RequestType.NOW_STATE_MESSAGE)
+        val responsePacket1 =
+            ResponsePacket(BridgeGameMessages.GUID_GAME_START_MESSAGE.message, RequestType.NOW_STATE_MESSAGE)
+        val responsePacket2 = ResponsePacket(BridgeGameMessages.INPUT_LENGTH_OF_BRIDGE.message, RequestType.INIT)
         responseMessageQueue.addLast(responsePacket1)
-        val responsePacket2 = ResponsePacket(BridgeGameMessages.INPUT_LENGTH_OF_BRIDGE, RequestType.INIT)
         responseMessageQueue.addLast(responsePacket2)
     }
 
     private fun initBridgeChecker(how: String) {
         validateRequestInit(how)
+
         val size = how.toInt()
         bridgeChecker = BridgeChecker(size, BridgeMaker(BridgeRandomNumberGenerator()))
 
-        val responsePacket = ResponsePacket(BridgeGameMessages.INPUT_TYPE_OF_MOVEMENT, RequestType.MOVE)
+        val responsePacket = ResponsePacket(BridgeGameMessages.INPUT_TYPE_OF_MOVEMENT.message, RequestType.MOVE)
         responseMessageQueue.addLast(responsePacket)
     }
 
     private fun updateWithMove(how: String) {
-        val result = move(how)
+        val movedResult = move(how)
 
-        val responsePacket1 = ResponsePacket(bridgeChecker!!.toStringOpenPart(), RequestType.NOW_STATE_MESSAGE)
-        responseMessageQueue.add(responsePacket1)
-
-        if (result[0] && !result[1]) {
-            val responsePacket2 = ResponsePacket(BridgeGameMessages.INPUT_TYPE_OF_MOVEMENT, RequestType.MOVE)
-            responseMessageQueue.add(responsePacket2)
-        } else if (result[0] && result[1]) {
-            val responsePacket2 = ResponsePacket(
-                BridgeGameMessages.GUID_FINAL_GAME_RESULT + "\n" +
-                        bridgeChecker!!.toStringOpenPart() + "\n\n" +
-                        BridgeGameMessages.GUID_GAME_IS_SUCESSFUL + "\n" +
-                        BridgeGameMessages.GUID_TOTAL_TRY_COUNT + "1", RequestType.NONE
-            )
-            responseMessageQueue.add(responsePacket2)
-        } else {
-            val responsePacket2 = ResponsePacket(BridgeGameMessages.INPUT_TYPE_OF_RETRY, RequestType.RETRY)
-            responseMessageQueue.add(responsePacket2)
+        val responsePacket = makeResponsePacketByMovedResult(movedResult)
+        for (packet in responsePacket) {
+            responseMessageQueue.addLast(packet)
         }
-
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     *
-     *
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    private fun makeResponsePacketByMovedResult(movedResult: List<Boolean>): List<ResponsePacket> {
+        val result = mutableListOf<ResponsePacket>()
+        result.add(ResponsePacket(bridgeChecker!!.toVisualizationOpenedPart(), RequestType.NOW_STATE_MESSAGE))
+        // 0번 -> 마지막 블록이 정답으로 체크되었는지 여부, 1번 -> 마지막 블록까지 진행했는지 여부
+        if (movedResult[0] && !movedResult[1])
+            result.add(ResponsePacket(BridgeGameMessages.INPUT_TYPE_OF_MOVEMENT.message, RequestType.MOVE))
+        else if (movedResult[0] && movedResult[1])
+            result.add(ResponsePacket(bridgeChecker!!.toVisualizationGameResult(), RequestType.NONE))
+        else if (!movedResult[0])
+            result.add(ResponsePacket(BridgeGameMessages.INPUT_TYPE_OF_RETRY.message, RequestType.RETRY))
+        return result
+    }
+
+    private fun updateWithRetry(how: String) {
+        retry(how)
+        if (how == "R") {
+            val responsePacket = ResponsePacket(BridgeGameMessages.INPUT_TYPE_OF_MOVEMENT.message, RequestType.MOVE)
+            responseMessageQueue.addLast(responsePacket)
+            return
+        }
+        if (how == "Q") {
+            val responsePacket = ResponsePacket(bridgeChecker!!.toVisualizationGameResult(), RequestType.NONE)
+            responseMessageQueue.addLast(responsePacket)
+        }
+    }
+
     private fun move(how: String): List<Boolean> {
         validateMoveRequest(how)
         return bridgeChecker!!.checkWithUpdating(how)
     }
 
-    private fun updateWithRetry(how: String) {
-        if (how == "R") {
-            retry()
-            val responsePacket = ResponsePacket(BridgeGameMessages.INPUT_TYPE_OF_MOVEMENT, RequestType.MOVE)
-            responseMessageQueue.addLast(responsePacket)
-        } else if (how == "Q") {
-
-            val responsePacket1 = ResponsePacket(
-                BridgeGameMessages.GUID_FINAL_GAME_RESULT + "\n" +
-                        bridgeChecker!!.toStringOpenPart() + "\n\n" +
-                        BridgeGameMessages.GUID_GAME_IS_SUCESSFUL + "\n" +
-                        BridgeGameMessages.GUID_TOTAL_TRY_COUNT + "1", RequestType.NONE
-            )
-
-            responseMessageQueue.addLast(responsePacket1)
-        }
+    private fun retry(how: String) {
+        validateRetry(how)
+        if (how == "R")
+            bridgeChecker!!.resetBridgeRevealed()
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     *
-     *
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    private fun retry() {
-        bridgeChecker!!.resetBridgeRevealed()
-    }
-
-    private fun updateState(string: String) {
-
+    private fun validateRetry(how: String) {
+        if (how != "R" && how != "Q")
+            throw IllegalArgumentException(BridgeGameErrorMessages.INVALID_RETRY_REQUEST.message)
+        if (bridgeChecker == null)
+            throw NullBridgeException(BridgeGameErrorMessages.NULL_BRIDGE_RETRY_EXCEPTION.message)
     }
 
     private fun validateRequestInit(how: String) {
         try {
             val size = how.toInt()
-            if (size < 3 || size > 20) throw IllegalArgumentException("[ERROR] Bridge size(= $size)가 정해진 범위를 벗어납니다")
+            if (size < 3 || size > 20) throw IllegalArgumentException(BridgeGameErrorMessages.INVALID_BRIDGE_SIZE.message)
         } catch (e: NumberFormatException) {
-            throw NumberFormatException("[ERROR] $how -> Bridge를 초기화 하기 위해 정수를 입력해야 하는데 정수 형식을 지키지 않았습니다")
+            throw NumberFormatException(BridgeGameErrorMessages.NUMBER_FORMAT_EXCEPTION.message)
         }
     }
 
     private fun validateMoveRequest(how: String) {
-        if (bridgeChecker == null) throw NullPointerException("[ERROR] 도로를 초기화하지 않았는데 MOVE 요청을 받았습니다")
-        if (how != "U" && how != "D") throw IllegalArgumentException("[ERROR] $how -> 올바른 MOVE 요청이 아닙니다")
+        if (bridgeChecker == null) throw NullPointerException(BridgeGameErrorMessages.NULL_BRIDGE_CHECKER_MOVE_EXCEPTION.message)
+        if (how != "U" && how != "D") throw IllegalArgumentException(BridgeGameErrorMessages.INVALID_MOVE_REQUEST.message)
+    }
+
+    private fun validateRequest(request: RequestType) {
+        if (lastResponsePacket == null) {
+            throw InvalidRequestException(BridgeGameErrorMessages.INVALID_REQUEST_NOT_STARTED.message)
+        }
+        if (lastResponsePacket!!.popAdditionalMessage() != request) {
+            throw InvalidRequestException(BridgeGameErrorMessages.INVALID_REQUEST.message)
+        }
     }
 }
+
