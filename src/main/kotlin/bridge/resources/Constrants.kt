@@ -7,6 +7,9 @@ const val INPUT_GAME_COMMAND = "게임을 다시 시도할지 여부를 입력�
 
 // FOR OUTPUT VIEW
 const val OUTPUT_BRIDGE_MAP = "[ %s ]"
+const val OUTPUT_RESULT_NOTATION = "최종 게임 결과"
+const val OUTPUT_RESULT_STATUS = "게임 성공 여부: %s"
+const val OUTPUT_RESULT_COUNT_OF_TRY = "총 시도한 횟수: %d"
 
 // FOR ERROR HANDLING
 const val ERROR_INPUT_NUMBER = "숫자를 입력해주세요."
