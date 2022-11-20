@@ -13,6 +13,8 @@ class Player(
 
     fun nextIndex() = blocks.size
 
+    fun isSuccess() = blocks.last().getIsMovable()
+
     fun getTries() = tries
     fun getPlayerBlocks(): List<PlayerBlock> = blocks
 }
