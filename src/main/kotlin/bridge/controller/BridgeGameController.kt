@@ -12,9 +12,13 @@ import bridge.view.InputView
 import bridge.view.OutputView
 
 class BridgeGameController {
+    private val game by lazy { BridgeGame() }
+    private val output by lazy { OutputView() }
+    private val input by lazy { InputView() }
+
     private var status = RUNNING
     private val info = BridgeGameInfo(
-        BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(InputView().readBridgeSize()),
+        BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(input.readBridgeSize()),
         emptyList(),
         1
     )
@@ -24,21 +28,21 @@ class BridgeGameController {
             play()
             handleStatus()
         }
-        OutputView().printResult(info)
+        output.printResult(info)
     }
 
     private fun play() {
-        BridgeGame().move(info, InputView().readMoving())
-        OutputView().printMap(info)
+        game.move(info, input.readMoving())
+        output.printMap(info)
     }
 
     private fun handleStatus() {
         status = BridgeGameStatus.of(info)
         if (status == FAILURE) {
-            status = BridgeGameStatus.of(InputView().readGameCommand())
+            status = BridgeGameStatus.of(input.readGameCommand())
         }
         if (status == RETRY) {
-            info = BridgeGame().retry(info)
+            game.retry(info)
             status = RUNNING
         }
     }
