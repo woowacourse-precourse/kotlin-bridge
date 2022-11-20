@@ -43,7 +43,13 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        val readValue = Console.readLine()
+        validateReadMoving(readValue)
+        return readValue
+    }
+
+    private fun validateReadMoving(readValue: String) {
+        require(readValue in "UD") { "[ERROR] U(위) 또는 D(아래)를 입력바랍니다." }
     }
 
     /**
