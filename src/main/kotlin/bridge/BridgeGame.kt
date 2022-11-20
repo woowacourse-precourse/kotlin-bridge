@@ -10,32 +10,12 @@ class BridgeGame(private val answerBridge: List<String>) {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun moveAndCheckAnswer(trial: Int) {
-        var inputBridge = listOf<String>()
-        var success = true
-        while (success && (inputBridge != answerBridge)) {
-            inputBridge = move(inputBridge)
-            success = checkSuccess(inputBridge)
-        }
-        printResultWhenAllAnswer(inputBridge, trial)
-        restartGameWhenFail(success, inputBridge, trial)
-    }
 
-    private fun printResultWhenAllAnswer(inputBridge: List<String>, trial: Int) {
-        if (inputBridge == answerBridge) OutputView().printResult(inputBridge, true, trial)
-    }
-
-    private fun restartGameWhenFail(success: Boolean, inputBridge: List<String>, trial: Int) {
-        if (!success) restartGame(inputBridge, trial)
-    }
-
-    private fun move(inputBridge: List<String>): List<String> {
+    fun move(whereToMove: String, inputBridge: List<String>): List<String> {
         var inputBridge = inputBridge
-        var whereToMove = InputView().readMoving()
 
         inputBridge = inputBridge.plus(whereToMove)
         inputBridge = checkOX(inputBridge)
-        OutputView().printMap(inputBridge)
 
         return inputBridge
     }
@@ -59,7 +39,7 @@ class BridgeGame(private val answerBridge: List<String>) {
         return inputBridgeMutable
     }
 
-    private fun checkSuccess(inputBridge: List<String>): Boolean {
+    fun checkSuccess(inputBridge: List<String>): Boolean {
         var success = true
         inputBridge.forEachIndexed { index, it ->
             if (answerBridge[index] != it) {
@@ -69,21 +49,13 @@ class BridgeGame(private val answerBridge: List<String>) {
         return success
     }
 
-    private fun restartGame(inputBridge: List<String>, trial: Int) {
-        var inputRestartGame = InputView().readGameCommand()
-        when (inputRestartGame) {
-            "R" -> retry(trial)
-            "Q" -> OutputView().printResult(inputBridge, false, trial)
-        }
-    }
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      *
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    private fun retry(trial: Int) {
+    fun retry(trial: Int) {
         var trial = trial
         trial += 1
         moveAndCheckAnswer(trial)
