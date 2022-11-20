@@ -10,20 +10,22 @@ class BridgeTest {
     val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 0, 0))
     val bridgeMaker = BridgeMaker(numberGenerator)
     val bridgeMap: List<String> = bridgeMaker.makeBridge(3)
-    var bridge = Bridge(3)
+    val comBridge = Bridge(bridgeMap)
 
     @Test
     fun `이동 가능한 칸인지 확인`() {
-        val input = BridgeDirection.U
-        val result = true
-        assertThat(bridge.movePossible(input, bridgeMap, 0)).isEqualTo(result)
+        val userBridgeSpace = BridgeSpace(BridgeDirection.U, 0)
+        val result = Move.POSSIBLE
+
+        assertThat(comBridge.movePossible(userBridgeSpace)).isEqualTo(result)
     }
 
     @Test
     fun `이동 불가능한 칸인지 확인`() {
-        val input = BridgeDirection.D
-        val result = false
-        assertThat(bridge.movePossible(input, bridgeMap, 0)).isEqualTo(result)
+        val userBridgeSpace = BridgeSpace(BridgeDirection.U, 1)
+        val result = Move.IMPOSSIBLE
+
+        assertThat(comBridge.movePossible(userBridgeSpace)).isEqualTo(result)
     }
 
     @Test
