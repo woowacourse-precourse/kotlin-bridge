@@ -17,6 +17,7 @@ class BridgeGame {
     fun move(bridgeSize: Int) {
         for (i in 0 until bridgeSize){
             val move = inputView.readMoving()
+            println("$move\n")
         }
     }
 
