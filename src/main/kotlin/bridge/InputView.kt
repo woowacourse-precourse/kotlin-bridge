@@ -10,7 +10,7 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        println(UI.START_MESSAGE)
+        println(UI.GET_BRIDGE_SIZE_MESSAGE)
         val number = Console.readLine().toIntOrThrow()
         checkValidLength(number)
         return number
@@ -20,7 +20,7 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        println(UI.GET_BRIDGE_SIZE_MESSAGE)
+        println(UI.GET_MOVE_MESSAGE)
         val location = Console.readLine()
         ExceptionHandler.checkValidMoving(location)
         return location
@@ -30,10 +30,14 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        println(UI.GET_MOVE_MESSAGE)
+        println(UI.GET_RETRY_MESSAGE)
         val restart = Console.readLine()
         ExceptionHandler.checkValidRestart(restart)
         return restart
+    }
+
+    fun startGame(){
+        println(UI.START_MESSAGE)
     }
 
     private fun String.toIntOrThrow(): Int {
@@ -43,6 +47,7 @@ class InputView {
     private fun checkValidLength(size: Int) {
         require(size in 3..20) { Message.InputViewEnum.INVALID_MSG }
     }
+
 
     enum class UI(vararg args: String) {
         START_MESSAGE("다리 건너기 게임을 시작합니다."),
