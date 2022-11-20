@@ -5,6 +5,7 @@ import bridge.GameView.Companion.ERROR_MESSAGE_INPUT_GAME_COMMAND
 import bridge.GameView.Companion.ERROR_MESSAGE_INPUT_MOVING
 import bridge.GameView.Companion.ERROR_MESSAGE_PREFIX
 import bridge.GameView.Companion.ERROR_MESSAGE_UNKNOWN
+import bridge.GameView.Companion.MESSAGE_GAME_START
 import bridge.exception.BridgeSizeInvalidException
 import bridge.exception.GameCommandInvalidException
 import bridge.exception.MovingInvalidException
@@ -27,6 +28,19 @@ class OutputView {
      */
     fun printResult() {}
 
+    fun printGameStart(){
+        println(MESSAGE_GAME_START)
+    }
+
+    fun printInputNotice(inputType: InputType) {
+        println(
+            when (inputType) {
+                InputType.BRIDGE_SIZE -> InputType.BRIDGE_SIZE.message
+                InputType.MOVING -> InputType.MOVING.message
+                InputType.GAME_COMMAND -> InputType.GAME_COMMAND.message
+            }
+        )
+    }
 
     companion object {
         fun printErrorMessage(e: Exception) {
