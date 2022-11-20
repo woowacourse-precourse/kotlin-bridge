@@ -1,4 +1,4 @@
-package bridge
+package bridge.view
 
 import bridge.util.Exceptions
 import bridge.util.INPUT_BRIDGE_SIZE

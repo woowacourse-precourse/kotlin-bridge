@@ -1,4 +1,4 @@
-package bridge
+package bridge.domain
 
 import bridge.util.NUMBER_ONE
 import bridge.util.UP

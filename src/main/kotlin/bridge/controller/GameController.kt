@@ -1,7 +1,13 @@
-package bridge
+package bridge.controller
+
+import bridge.domain.BridgeGame
+import bridge.domain.BridgeMaker
 
 import bridge.util.RESTART
 import bridge.util.START_GAME
+
+import bridge.view.InputView
+import bridge.view.OutputView
 
 class GameController(
     private val inputView: InputView,
