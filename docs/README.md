@@ -14,3 +14,6 @@ BridegeGame:
 
 ** OutputView:
 1. 각 클래스의 기능을 이용하여 입력에 따른 결과물을 반환없이 print한다.
+
+** Application(main함수):
+1. 각각의 모듈화된 클래스를 메인함수에서 실행하게 한다
