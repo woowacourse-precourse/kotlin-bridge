@@ -1,7 +1,7 @@
-package bridge
+package bridge.data
 
 enum class Games(
-    private val game:String
+    val game:String
 ){
     UP("U"),
     DOWN("D"),
