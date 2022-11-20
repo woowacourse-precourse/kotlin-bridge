@@ -1,20 +1,24 @@
-# 기능 목록 작성
+# 비즈니스 로직 작성
 ### BridgeGame
 - [x] 플레이어가 이동 - move()
-- [ ] 플레이어가 게임 재시도 - retry()
-- [x] 플레이어가 살아는지 확인 - isAlive()
+- [x] 플레이어가 게임 재시도 - retry()
 ### BridgeMaker
 - [x] 다리의 길이를 입력 받아서 다리를 생성 - makeBridge()
 ### BridgeState
 - [x] 다리와 플레이어 입력을 비교 - BridgeState#compare()
 - [x] 플레이어 이동을 리스트에 추가하고 반환- BridgeState#insertMove()
+### Player
+- [x] 플레이어가 살아는지 확인 - isAlive()
+# UI 로직 작성
 ### InputView
 - [x] 다리의 길이를 입력 받음 - readBridgeSize()
 - [x] 이동할 칸을 입력 받음 - readMoving()
 - [x] 게임을 다시 시도할지 입력받음 - readGameCommand()
 ### OutputView
 - [x] 현재까지 이동한 다리의 상태를 출력 - printMap()
-- [ ] 게임의 최종 결과 출력 - printResult()
+- [x] 게임의 최종 결과 출력 - printResult()
+- [x] 게임의 성공 여부 출력 - printSuccess()
+- [x] 게임의 시도 횟수 출력 - printResult()
 ### Exception
 - [ ] 공백 입력
 - [ ] 3 ~ 20 숫자가 아닌 입력
