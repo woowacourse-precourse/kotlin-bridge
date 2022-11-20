@@ -1,6 +1,8 @@
 package bridge
 
 import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import java.lang.IllegalArgumentException
@@ -13,5 +15,12 @@ class BridgeTest {
         assertThrows<IllegalArgumentException> {
             CheckException().checkInput("20")
         }
+    }
+
+    @Test
+    fun `다리 생성 확인`() {
+        var bridgeTest = printBridge(3)
+        assertEquals(bridgeTest.size,3)
+        println(bridgeTest)
     }
 }
