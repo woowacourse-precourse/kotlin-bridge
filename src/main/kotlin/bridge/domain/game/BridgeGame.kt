@@ -15,15 +15,13 @@ class BridgeGame(
     private val inputView: InputView,
     private val outputView: OutputView,
     private val bridgeMaker: BridgeMaker
-): GameService {
+) : GameService {
     private lateinit var bridge: List<String>
-    // private val bridgeCrossingInfo = mutableListOf<Pair<MovingInfo, Boolean>>()
-    private var round = 0 // 다리 건너는 라운드
+    private var round = 0 // 현재 건널 다리 라운드
     private var numberOfTry = 1 // 시도 횟수
 
     override fun play() {
         initGame()
-
         crossBridge()
     }
 
@@ -75,13 +73,16 @@ class BridgeGame(
     private fun move() {
         val moving = inputView.readMoving()
         checkMoving(moving = moving)
+
         outputView.printMap(BridgeCrossingProcessor.getCurrentMap())
+
         round++
     }
 
     private fun checkMoving(moving: String) {
         val userMovingInfo = if (moving == MOVING_UP_CODE) MovingInfo.UP else MovingInfo.DOWN
         val isCrossed = (moving == bridge[round])
+
         BridgeCrossingProcessor.updateBridgeCrossingInfo(userMovingInfo, isCrossed)
     }
 
@@ -112,6 +113,4 @@ class BridgeGame(
         val gameSuccessResult = if (BridgeCrossingProcessor.isCrossingFail()) FAIL_MESSAGE else SUCCESS_MESSAGE
         outputView.printResult(BridgeCrossingProcessor.getCurrentMap(), gameSuccessResult, numberOfTry)
     }
-
-    // private fun isFailCrossing(): Boolean = bridgeCrossingInfo.any { (_, isCrossed) -> !isCrossed }
 }

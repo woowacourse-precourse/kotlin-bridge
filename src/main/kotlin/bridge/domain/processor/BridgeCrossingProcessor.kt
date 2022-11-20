@@ -13,6 +13,7 @@ object BridgeCrossingProcessor {
 
     fun getCurrentMap(): List<String> {
         currentMapInfo.clear()
+
         repeat(BRIDGE_ROW_SIZE) { bridgeIndex ->
             currentMapInfo.add(createCurrentMap(bridgeIndexInfo[bridgeIndex]!!))
         }
@@ -45,6 +46,3 @@ object BridgeCrossingProcessor {
 
     fun clearBridgeCrossingInfo() = bridgeCrossingInfo.clear()
 }
-
-//val upSideIndex = output().indexOf("[ O |   | O ]")
-//val downSideIndex = output().indexOf("[   | O |   ]")
