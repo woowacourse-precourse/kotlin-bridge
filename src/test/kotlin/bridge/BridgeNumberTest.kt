@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.domain.BridgeNumber
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest

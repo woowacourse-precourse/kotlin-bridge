@@ -1,4 +1,8 @@
-package bridge
+package bridge.domain
+
+import bridge.BRIDGE
+import bridge.ERROR
+import bridge.ErrorType
 
 class BridgeNumber(private val size: String) {
     init {

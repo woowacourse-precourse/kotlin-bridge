@@ -1,4 +1,4 @@
-package bridge
+package bridge.domain
 
 data class Bridge(
     var up: String = "",

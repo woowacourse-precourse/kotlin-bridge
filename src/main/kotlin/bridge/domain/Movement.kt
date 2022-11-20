@@ -1,4 +1,9 @@
-package bridge
+package bridge.domain
+
+import bridge.CommandException
+import bridge.ERROR
+import bridge.ErrorType
+import bridge.MOVEMENT
 
 class Movement(private val direction: String) {
     init {

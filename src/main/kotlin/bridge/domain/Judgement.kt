@@ -1,4 +1,4 @@
-package bridge
+package bridge.domain
 
 class Judgement {
     fun compareDirection(playerDirection: String, computerDirection: String): String {

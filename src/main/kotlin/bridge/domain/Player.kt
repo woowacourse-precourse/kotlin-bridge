@@ -1,4 +1,4 @@
-package bridge
+package bridge.domain
 
 data class Player(
     var isGameOver: Boolean = true,

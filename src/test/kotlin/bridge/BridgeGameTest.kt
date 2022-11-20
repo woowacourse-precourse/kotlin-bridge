@@ -1,9 +1,11 @@
 package bridge
 
+import bridge.domain.BridgeGame
+import bridge.domain.Bridge
+import bridge.domain.Player
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
-import org.junit.jupiter.params.provider.ValueSource
 
 class BridgeGameTest {
 
