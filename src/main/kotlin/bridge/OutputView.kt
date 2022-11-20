@@ -11,7 +11,7 @@ class OutputView {
      */
     fun printMap(realBridges: List<String>, gameBridges: List<String>, curStep: Int) {
         println(upperMap(realBridges, gameBridges, curStep))
-        println(downMap(realBridges, gameBridges, curStep) + "\n")
+        println(downMap(realBridges, gameBridges, curStep))
     }
 
     private fun upperMap(realBridges: List<String>, gameBridges: List<String>, curStep: Int): String {
@@ -28,9 +28,9 @@ class OutputView {
     }
 
     private fun judgementUpperStepMatch(realBridgesStep: String, gameBridgesStep: String): Match {
-        return if (realBridgesStep == "U" && gameBridgesStep == realBridgesStep) {
+        return if (gameBridgesStep == "U" && gameBridgesStep == realBridgesStep) {
             Match.MATCH
-        } else if (realBridgesStep == "U" && gameBridgesStep != realBridgesStep) {
+        } else if (gameBridgesStep == "U" && gameBridgesStep != realBridgesStep) {
             Match.FAILED
         } else {
             Match.EMPTY
@@ -51,9 +51,9 @@ class OutputView {
     }
 
     private fun judgementDownStepMatch(realBridgesStep: String, gameBridgesStep: String): Match {
-        return if (realBridgesStep == "D" && gameBridgesStep == realBridgesStep) {
+        return if (gameBridgesStep == "D" && gameBridgesStep == realBridgesStep) {
             Match.MATCH
-        } else if (realBridgesStep == "D" && gameBridgesStep != realBridgesStep) {
+        } else if (gameBridgesStep == "D" && gameBridgesStep != realBridgesStep) {
             Match.FAILED
         } else {
             Match.EMPTY
@@ -74,7 +74,7 @@ class OutputView {
 
     fun gameStartMessage() = println(BRIDGE_GAME_START)
     fun bridgeLengthInputPleaseMessage() = println(BRIDGE_LENGTH_INPUT_PLEASE)
-    fun moveLengthInputPleaseMessage() = println(MOVE_INPUT_PLEASE)
+    fun moveInputPleaseMessage() = println(MOVE_INPUT_PLEASE)
     fun retryInputPleaseMessage() = println(RETRY_INPUT_PLEASE)
     fun finalGameResult() = println(FINAL_GAME_RESULT)
     private fun gameTryCount(tryCount: Int) = println("$TRY_COUNT$tryCount")
@@ -84,9 +84,9 @@ class OutputView {
         private const val BRIDGE_LENGTH_INPUT_PLEASE = "\n다리의 길이를 입력해주세요."
         private const val MOVE_INPUT_PLEASE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)"
         private const val RETRY_INPUT_PLEASE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
-        private const val FINAL_GAME_RESULT = "최종 게임 결과"
-        private const val GAME_RESULT_SUCCESS = "게임 성공 여부: 성공"
-        private const val GAME_RESULT_FAILED = "게임 성공 여부: 실패"
+        private const val FINAL_GAME_RESULT = "\n최종 게임 결과"
+        private const val GAME_RESULT_SUCCESS = "\n게임 성공 여부: 성공"
+        private const val GAME_RESULT_FAILED = "\n게임 성공 여부: 실패"
         private const val TRY_COUNT = "총 시도한 횟수: "
 
         lateinit var errorType: Error
