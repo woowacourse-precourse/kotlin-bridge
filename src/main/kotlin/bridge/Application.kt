@@ -1,5 +1,6 @@
 package bridge
 
+import domain.BridgeGame
 import view.InputView
 import view.OutputView
 
@@ -16,8 +17,9 @@ fun main() {
     val bridgeSize = inputView.readBridgeSize()
     println("$bridgeSize\n")
 
-
-
+    // 이동 칸 입력
+    val bridgeGame = BridgeGame()
+    bridgeGame.move(bridgeSize)
 
 
 }

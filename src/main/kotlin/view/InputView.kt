@@ -1,5 +1,6 @@
 package view
 
+import camp.nextstep.edu.missionutils.Console
 import java.lang.IllegalArgumentException
 
 /**
@@ -7,27 +8,37 @@ import java.lang.IllegalArgumentException
  */
 class InputView {
     val MESSAGE_ERROR = "[ERROR]"
+    val MESSAGE_READ_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
 
     /**
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
         try {
-            val bridgeSize = readLine()!!.toInt()
+            val bridgeSize = Console.readLine().toInt()
             if (bridgeSize in 3..20)
                 return bridgeSize
         }catch (e: IllegalArgumentException){
             println("$MESSAGE_ERROR $e")
             throw IllegalArgumentException("$MESSAGE_ERROR $e")
         }
-        throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값 입니다.")
+        throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        println(MESSAGE_READ_MOVING)
+        try {
+            val move = Console.readLine()
+            if (move == "U"|| move == "D" )
+                return move
+        }catch (e: IllegalArgumentException){
+            println("$MESSAGE_ERROR $e")
+            throw IllegalArgumentException("$MESSAGE_ERROR $e")
+        }
+        throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
     }
 
     /**
