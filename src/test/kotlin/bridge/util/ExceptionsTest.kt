@@ -21,4 +21,20 @@ class ExceptionsTest {
             Exceptions.checkInputBrideSize(element)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1", "ㅁㅁ", "u", "d"])
+    fun `U, D이외의 입력값 예외 확인`(element: String) {
+        assertThrows<IllegalArgumentException> {
+            Exceptions.checkInputMoveKey(element)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1", "ㅁㅁ", "q", "r", "test"])
+    fun `R, Q이외의 입력값 예외 확인`(element: String) {
+        assertThrows<IllegalArgumentException> {
+            Exceptions.checkInputCommandKey(element)
+        }
+    }
 }
