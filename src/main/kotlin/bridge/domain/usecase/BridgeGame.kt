@@ -13,41 +13,25 @@ class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     // val p = listOf<String>("U1,D0", "U0,D1", "U0,D1", "U0,D1")
-    fun move(bridge: List<String>) {
-        var upRowsResult = ""
-        var downRowsResult = ""
-        var columnCount = 1
-        var line = ""
-        for (bridgeRows in bridge) {
-            val userInputRow = Console.readLine()
-            if (columnCount > 1) line = " | "
-            upRowsResult += "$line${getColumnsResult(bridgeRows, userInputRow).split(",").first()}"
-            downRowsResult += "$line${getColumnsResult(bridgeRows, userInputRow).split(",").last()}"
-            println("[ $upRowsResult ]")
-            println("[ $downRowsResult ]")
-            columnCount++
+    fun move(bridgeRows: String, userInputRow: String):String{
+        bridgeRows.split(",").map { bridgeRow ->
+            if (bridgeRow.first() == userInputRow.first()) return "${
+                getRowResult(
+                    bridgeRow,
+                    ONE_COLUMN_UP
+                )
+            },${getRowResult(bridgeRow, ONE_COLUMN_DOWN)}"
         }
+        return " "
     }
 
     private fun isPassable(passableNumber: Int): String {
         return if (passableNumber == RANDOM_UPPER_INCLUSIVE) "O" else "X"
     }
 
-    private fun getColumnResult(bridgeRows: String, row: Char) =
+    private fun getRowResult(bridgeRows: String, row: Char) =
         if (bridgeRows.first() == row) isPassable(bridgeRows.last().digitToInt())
         else " "
-
-    private fun getColumnsResult(bridgeRows: String, userInputRow: String): String {
-        bridgeRows.split(",").map { bridgeRow ->
-            if (bridgeRow.first() == userInputRow.first()) return "${
-                getColumnResult(
-                    bridgeRow,
-                    ONE_COLUMN_UP
-                )
-            },${getColumnResult(bridgeRow, ONE_COLUMN_DOWN)}"
-        }
-        return " "
-    }
 
 
     /**
