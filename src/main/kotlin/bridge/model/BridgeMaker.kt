@@ -10,7 +10,7 @@ import bridge.ZERO
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         var randomNumber: Int
-        var bridge = mutableListOf<String>()
+        val bridge = mutableListOf<String>()
         repeat(size) {
             randomNumber = bridgeNumberGenerator.generate()
             if (randomNumber == ZERO) bridge.add(DOWN)
