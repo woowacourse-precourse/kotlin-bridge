@@ -1,5 +1,6 @@
 package bridge
 
+import camp.nextstep.edu.missionutils.Console
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -11,7 +12,7 @@ class InputView {
     fun readBridgeSize(): Int {
         println(Message.INPUT_BRIDGE_SIZE.message)
         return try {
-            val sizeString = camp.nextstep.edu.missionutils.Console.readLine()
+            val sizeString = Console.readLine()
             checkBridgeSizeInt(sizeString)
             checkBridgeSizeRange(sizeString.toInt())
         } catch (e: IllegalArgumentException){
@@ -53,7 +54,7 @@ class InputView {
     fun readMoving(): String {
         println(Message.INPUT_BRIDGE_MOVE.message)
         return try {
-            val move = camp.nextstep.edu.missionutils.Console.readLine()
+            val move = Console.readLine()
             checkMove(move)
             move
         }catch (e: IllegalArgumentException){
@@ -73,7 +74,23 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        println(Message.INPUT_GAME_COMMAND.message)
+        return try {
+            val gameCommand = Console.readLine()
+            checkGameCommand(gameCommand)
+            gameCommand
+        }catch (e: IllegalArgumentException){
+            readGameCommand()
+        }
+    }
+
+    private fun checkGameCommand(gameCommand:String){
+        try {
+            require(gameCommand == GameCommand.Retry.params || gameCommand == GameCommand.Exit.params)
+        } catch (e: IllegalArgumentException){
+            println(Message.GAME_COMMAND_ERROR.message)
+            throw e
+        }
     }
 
     enum class Message(
@@ -83,7 +100,9 @@ class InputView {
         BRIDGE_SIZE_INT_ERROR("[ERROR]: 다리의 길이는 숫자 형식이어야 합니다."),
         BRIDGE_SIZE_RANGE_ERROR("[ERROR]: 다리의 길이는 3이상 20 이하의 값을 가져야합니다."),
         INPUT_BRIDGE_MOVE("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
-        BRIDGE_MOVE_ERROR("[ERROR]: 이동할 칸 입력값은 U, D 둘 중 하나여야 합니다.")
+        BRIDGE_MOVE_ERROR("[ERROR]: 이동할 칸 입력값은 U, D 둘 중 하나여야 합니다."),
+        INPUT_GAME_COMMAND("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
+        GAME_COMMAND_ERROR("[ERROR]: 재시도 여부 입력값은 R, Q 둘 중 하나여야 합니다."),
     }
     enum class Bridge(
             val params:Int
@@ -96,5 +115,11 @@ class InputView {
     ){
         Up("U"),
         Down("D")
+    }
+    enum class GameCommand(
+            val params:String
+    ){
+        Retry("R"),
+        Exit("Q")
     }
 }
