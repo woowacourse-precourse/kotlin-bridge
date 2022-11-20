@@ -1,7 +1,10 @@
 package bridge
 
 fun main() {
-    // TODO: 프로그램 구현
-    OutputView().printGameStart()
-    OutputView().printInputBridgeLength()
+    try {
+        val controller = Controller()
+        controller.run()
+    } catch (e: Exception) {
+
+    }
 }
