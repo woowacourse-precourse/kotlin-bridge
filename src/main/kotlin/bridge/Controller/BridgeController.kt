@@ -6,6 +6,7 @@ import bridge.Model.BridgeData.bridgeLocation
 import bridge.Model.BridgeData.bridgeShape
 import bridge.Model.BridgeData.bridgeSize
 import bridge.Model.BridgeGame
+import bridge.Model.BridgeResult
 import bridge.Model.Referee
 import bridge.View.InputView
 import bridge.View.OutputView
@@ -42,13 +43,14 @@ class BridgeController {
     fun moveBridge() {
         val result = compareBridge()
         var bridgeGame = BridgeGame()
-        when (result) {
-            "O" -> bridgeGame.move()
-            "X" -> bridgeGame.gameOver()
+        if (result == BridgeResult.UP_WIN || result == BridgeResult.DOWN_WIN) {
+            bridgeGame.move()
+        } else {
+            bridgeGame.gameOver()
         }
     }
 
-    fun compareBridge(): String {
+    fun compareBridge(): BridgeResult {
         var referee = Referee(bridgeShape, bridgeLocation)
         return referee.judgeMove(bridgeSelect)
     }
