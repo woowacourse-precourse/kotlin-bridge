@@ -64,4 +64,11 @@ class BridgeGame {
             endGame(false)
         }
     }
+
+    private fun correct(): Boolean{
+        if(board[0].size == goalBridge.size)
+            if(board[0][board.size-1] == "O" || board[1][board.size-1] == "O" )
+                return true
+        return false
+    }
 }
