@@ -1,6 +1,7 @@
 package bridge
 
 import bridge.constructor.BridgeMaker
+import bridge.constructor.BridgeNumberGenerator
 import bridge.constructor.BridgeRandomNumberGenerator
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import org.assertj.core.api.Assertions.assertThat
@@ -17,7 +18,23 @@ class BridgeMakerTest {
     }
 
     @Test
+    fun `랜덤값 변환 테스트 - 전략 패턴`() {
+        val input = listOf(0, 1, 0, 1)
+        val result = listOf("D", "U", "D", "U")
+        val bridgeMaker = BridgeMaker(TestBridgeNumberGenerator(input))
+        val bridge = bridgeMaker.makeBridge(input.size)
+        assertThat(bridge).isEqualTo(result)
+    }
+
+    @Test
     fun `만든 다리 개수 테스트`() {
         assertThat(bridgeMaker.makeBridge(4)).hasSize(4)
+    }
+
+    class TestBridgeNumberGenerator(numbers: List<Int>) : BridgeNumberGenerator {
+        private val numbers: MutableList<Int> = numbers.toMutableList()
+        override fun generate(): Int {
+            return numbers.removeAt(0)
+        }
     }
 }
