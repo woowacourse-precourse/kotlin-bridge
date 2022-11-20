@@ -2,7 +2,7 @@ package bridge
 
 fun main() {
     try {
-        BridgeGame().gameLoop()
+        GameMng().gameLoop()
     } catch (e: IllegalArgumentException) {
         print("[ERROR] ${e.message}")
     }
