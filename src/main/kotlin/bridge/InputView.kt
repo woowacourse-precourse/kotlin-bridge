@@ -9,12 +9,11 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        val errorCheck = ErrorCheck()
-        println("다리 건너기 게임을 시작합니다.")
-        println()
-        println("다리의 길이를 입력해주세요.")
+        println("""다리 건너기 게임을 시작합니다.
+            |
+            |다리의 길이를 입력해주세요.""".trimMargin())
         val bridgeLength = Console.readLine()
-        val checkedLength = errorCheck.sentenceCheck(bridgeLength)
+        val checkedLength = parseToInteger(bridgeLength)
         println()
         return checkedLength
     }
@@ -23,10 +22,9 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        val errorCheck = ErrorCheck()
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
         val oneMove = Console.readLine()
-        val checkMove = errorCheck.movingCheck(oneMove)
+        val checkMove = movingCheck(oneMove)
         println()
         return checkMove
     }
@@ -35,10 +33,9 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        val errorCheck = ErrorCheck()
         println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
         val gameCommand = Console.readLine()
-        val checkGameCommand = errorCheck.commandCheck(gameCommand)
+        val checkGameCommand = commandCheck(gameCommand)
         return checkGameCommand
     }
 }
