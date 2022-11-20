@@ -15,7 +15,7 @@ class BridgeGameController {
 
     fun run() {
         while (status == RUNNING) {
-            info = BridgeGame().move(info)
+            info = BridgeGame().move(info, User().inputMoving())
             status = BridgeGameStatus.getStatus(info)
             OutputView().printMap(info)
             handleStatus()
