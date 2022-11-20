@@ -18,9 +18,9 @@ class OutputViewTest {
      */
     @Test
     fun printMapTest(){
-        assertThat(ov.printMap(listOf(1,0,1,0), listOf(1,0,1,0))).isEqualTo("[ O |   | O |   ]\n[   | O |   | O ]")
-        assertThat(ov.printMap(listOf(1,1), listOf(1,1))).isEqualTo("[ O | O ]\n[   |   ]")
-        assertThat(ov.printMap(listOf(1,0,1,0), listOf(1,0,1,1))).isEqualTo("[ O |   | O | X ]\n[   | O |   |   ]")
+        assertThat(ov.printMap("[ O |   | O |   ]\n[   | O |   | O ]\n")).isEqualTo("[ O |   | O |   ]\n[   | O |   | O ]\n")
+        assertThat(ov.printMap("[ O | O ]\n[   |   ]\n")).isEqualTo("[ O | O ]\n[   |   ]\n")
+        assertThat(ov.printMap("[ O |   | O | X ]\n[   | O |   |   ]\n")).isEqualTo("[ O |   | O | X ]\n[   | O |   |   ]\n")
     }
 
     /**
