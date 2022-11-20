@@ -18,7 +18,8 @@ class InputView {
      * 사용자가 이동할 칸을 물어본다.
      */
     fun askMovement(): String {
-        return ""
+        println(MOVEMENT_INSTRUCTION)
+        return readInput()
     }
 
     /**
@@ -34,5 +35,6 @@ class InputView {
 
     companion object {
         const val BRIDGE_SIZE_INSTRUCTION = "다리의 길이를 입력해주세요."
+        const val MOVEMENT_INSTRUCTION = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
     }
 }
