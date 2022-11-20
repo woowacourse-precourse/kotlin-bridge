@@ -1,5 +1,7 @@
 package bridge
 
+import java.lang.IllegalArgumentException
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -18,7 +20,7 @@ object OutputView {
      */
     fun printResult() {}
 
-    fun startGame(){
+    fun startGame() {
         println(START_BRIDGE_GAME)
         println()
     }
@@ -26,4 +28,10 @@ object OutputView {
     fun inputLength() {
         println(INPUT_BRIDGE_LENGTH)
     }
+
+
+    fun throwException(errorMessage: String) {
+        throw IllegalArgumentException(errorMessage)
+    }
+
 }

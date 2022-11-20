@@ -10,7 +10,9 @@ object InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return Console.readLine().toInt()
+        val input = Console.readLine()
+        InputValidator.checkBridgeLength(input)
+        return input.toInt()
     }
 
     /**

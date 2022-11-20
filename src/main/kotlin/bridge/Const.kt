@@ -4,5 +4,12 @@ package bridge
 const val START_BRIDGE_GAME = "다리 건너기 게임을 시작합니다."
 const val INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요."
 
+const val NO_INPUT = "입력 값이 없습니다."
+const val INCLUDE_CHARACTER = "문자를 포함하고 있습니다."
+const val START_WITH_ZERO = "0으로 시작하는 수입니다."
+const val NOT_IN_RANGE = "3 이상 20 이하의 수가 아닙니다."
+
 const val ZERO = 0
+const val RANGE_LOWER_BOUND = 3
+const val RANGE_UPPER_BOUND = 20
 const val ERROR = "[ERROR]"
