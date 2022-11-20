@@ -2,8 +2,10 @@ package bridge.Controller
 
 import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
+import bridge.Model.BridgeData.bridgeLocation
 import bridge.Model.BridgeData.bridgeShape
 import bridge.Model.BridgeData.bridgeSize
+import bridge.Model.BridgeData.isOver
 import bridge.Model.BridgeData.roundResult
 import bridge.Model.BridgeGame
 import bridge.Model.BridgeResult
@@ -20,7 +22,8 @@ class BridgeController {
         outputView.printStart()
         getBridgeSize()
         makeBridge()
-        while (true) {
+        while (!isOver) {
+            checkLastRound()
             bridgeSelect = getBridgeSelect()
             moveBridge()
         }
@@ -35,6 +38,7 @@ class BridgeController {
         var bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
         var bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
         bridgeShape = bridgeMaker.makeBridge(bridgeSize)
+        println(bridgeShape)
     }
 
     fun getBridgeSelect(): String {
@@ -48,6 +52,7 @@ class BridgeController {
         if (result == BridgeResult.UP_WIN || result == BridgeResult.DOWN_WIN) {
             bridgeGame.move()
         } else {
+            isOver = true
             bridgeGame.gameOver()
         }
     }
@@ -57,5 +62,12 @@ class BridgeController {
         var result = referee.judgeMove(bridgeSelect)
         roundResult.add(result)
         return result
+    }
+
+    fun checkLastRound() {
+        var referee = Referee()
+        if (referee.judgeLastBridge(bridgeLocation)) {
+            isOver = true
+        }
     }
 }
