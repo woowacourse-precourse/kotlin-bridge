@@ -18,13 +18,13 @@ class OutputView {
      * @param upDown 위 다리, 아래 다리 구분
      */
     fun printMapTrue(index:Int,bridge:List<String>,upDown:String){
-        print("[")
+        print(BridgePrint.START.message)
         printMapMiddle(index,bridge,upDown)
         if (bridge[index] == upDown)
-            print(" O ]")
+            print(BridgePrint.TRUE_O_END.message)
         else
-            print("   ]")
-        if (upDown == "U")
+            print(BridgePrint.BLANK_END.message)
+        if (upDown == BridgePrint.UP.message)
             print('\n')
     }
     /**
@@ -35,13 +35,13 @@ class OutputView {
      * @param upDown 위 다리, 아래 다리 구분
      */
     fun printMapFalse(index:Int,bridge:List<String>,upDown:String){
-        print("[")
+        print(BridgePrint.START.message)
         printMapMiddle(index,bridge,upDown)
         if (bridge[index] != upDown)
-            print(" X ]")
+            print(BridgePrint.FALSE_X_END.message)
         else
-            print("   ]")
-        if (upDown == "U")
+            print(BridgePrint.BLANK_END.message)
+        if (upDown == BridgePrint.UP.message)
             print('\n')
     }
     /**
@@ -53,9 +53,9 @@ class OutputView {
     private fun printMapMiddle(index:Int,bridge:List<String>, upDown:String){
         for (idx in 0 until index) {
             if (bridge[idx] == upDown)
-                print(" O |")
+                print(BridgePrint.MIDDLE_O.message)
             else
-                print("   |")
+                print(BridgePrint.MIDDLE_BLANK.message)
         }
     }
     /**
@@ -67,12 +67,12 @@ class OutputView {
      */
     fun printMap(index:Int,bridge:List<String>,check:Boolean) {
         if (check) {
-            printMapTrue(index,bridge,"U")
-            printMapTrue(index,bridge,"D")
+            printMapTrue(index,bridge,BridgePrint.UP.message)
+            printMapTrue(index,bridge,BridgePrint.DOWN.message)
         }
         if (!check) {
-            printMapFalse(index,bridge,"U")
-            printMapFalse(index,bridge,"D")
+            printMapFalse(index,bridge,BridgePrint.UP.message)
+            printMapFalse(index,bridge,BridgePrint.DOWN.message)
         }
     }
 
@@ -84,9 +84,21 @@ class OutputView {
     fun printResult() {}
 
     enum class MESSAGE(
-            val message: String
+        val message: String
     ) {
         GAMESTART("다리 건너기 게임을 시작합니다.")
+    }
+    enum class BridgePrint(
+        val message: String
+    ){
+        START("["),
+        MIDDLE_O(" O |"),
+        MIDDLE_BLANK("   |"),
+        TRUE_O_END(" O ]"),
+        FALSE_X_END(" X ]"),
+        BLANK_END("   ]"),
+        UP("U"),
+        DOWN("D")
     }
 
 }
