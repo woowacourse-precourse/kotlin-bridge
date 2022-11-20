@@ -45,12 +45,10 @@ class BridgeManager {
         this.outputView.printMap(this.position, this.bridgeGame)
     }
 
-    private fun failChecker() {
-        if (!this.bridgeGame.getIsContinue() && this.position < this.bridgeSize - 1) {
-            val retryCommand = getRetryCommand()
-            if (retryCommand == InputView.COMMAND_RESTART) {
-                this.restartGame()
-            }
+    private fun retryChecker() {
+        val retryCommand = getRetryCommand()
+        if (retryCommand == InputView.COMMAND_RESTART) {
+            this.restartGame()
         }
     }
 
@@ -79,7 +77,9 @@ class BridgeManager {
     fun gameLoop() {
         while (this.bridgeGame.getIsContinue() && this.position < this.bridgeSize) {
             this.moveBridge()
-            this.failChecker()
+            if (!this.bridgeGame.getIsContinue()) {
+                this.retryChecker()
+            }
             this.position++
         }
         this.printGameResult(this.bridgeGame.getIsContinue())
