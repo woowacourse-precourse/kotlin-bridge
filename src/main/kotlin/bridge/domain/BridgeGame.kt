@@ -36,12 +36,8 @@ class BridgeGame(private val player: Player) {
         return player.isClear()
     }
 
-    fun getUpBridge(): List<String> {
-        return player.getUpBridge()
-    }
-
-    fun getDownBridge(): List<String> {
-        return player.getDownBridge()
+    fun getPlayerBridge(): List<Stage> {
+        return player.getPlayerBridge()
     }
 
     fun getTryNumber(): Int {
