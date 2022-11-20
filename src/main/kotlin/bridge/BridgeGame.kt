@@ -26,7 +26,15 @@ class BridgeGame {
         tryGame++
     }
 
-    fun compareAnswer(bridgeData:List<String>): String{
-
+    fun compareAnswer(bridgeData:List<String>): List<String>{
+        val compareList = moveData
+        for(i in 0 until moveData.size){
+            if(moveData[i]!=bridgeData[i] && moveData[i] == "U") {
+                compareList[i]="UX"
+            }
+            if(moveData[i]!=bridgeData[i] && moveData[i] == "D") {
+                compareList[i]="DX"
+            }
+        }
     }
 }
