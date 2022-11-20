@@ -1,53 +1,34 @@
 package bridge
 
-import exception.BridgeSize
-import exception.GameOver
-import exception.MovingSpace
-
 fun main() {
-    val inputView = InputView()
-    val numberGenerator = BridgeRandomNumberGenerator()
-    val bridgeMaker = BridgeMaker(numberGenerator)
+    val bridge = Bridge()
     val outputView = OutputView()
     val bridgeGame = BridgeGame()
-    var numberOfAttempts = 0
-    var successOrFailure = ""
     val up = BridgeGame.getUpList()
     val down = BridgeGame.getDownList()
-    var size = 0
-    var space = ""
-    var retryOrQuit = ""
-    val bridgeSize = BridgeSize(inputView, size)
-    val movingSpace = MovingSpace(inputView, space)
-    val gameOver = GameOver(inputView, retryOrQuit)
+    var numberOfAttempts = 0
+    var successOrFailure = ""
 
     println("다리 건너기 게임을 시작합니다.\n")
     println("다리의 길이를 입력해주세요.")
-    bridgeSize.verify()
-    size = bridgeSize.getInput()
-    val bridge = bridgeMaker.makeBridge(size)
+    val bridgeList = bridge.make()
 
     while (true) {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
-        movingSpace.verify()
-        space = movingSpace.getInput()
+        val space = bridge.selectToMove()
 
-        val movingList = bridgeGame.move(space, bridge)
-        val upList = movingList.filter { it.key == "U" }.values.flatten()
-        val downList = movingList.filter { it.key == "D" }.values.flatten()
-        outputView.printMap(upList, downList)
+        bridge.printMovingList(space, bridgeList)
 
-        if (BridgeGame.success(bridge)) {
+        if (BridgeGame.successConditions(bridgeList)) {
             numberOfAttempts += 1
             successOrFailure = "성공"
             outputView.printResult(up, down, successOrFailure, numberOfAttempts)
             break
         }
 
-        if (BridgeGame.failure()) {
+        if (BridgeGame.failureConditions()) {
             println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
-            gameOver.verify()
-            retryOrQuit = gameOver.getInput()
+            val retryOrQuit = bridge.selectRetryOrQuit()
 
             numberOfAttempts += 1
             if (retryOrQuit == "R") {
