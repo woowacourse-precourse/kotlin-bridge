@@ -10,9 +10,9 @@ class OutputView {
         println(message)
     }
 
-    fun printMessage(startMessage: String, bridgeSizeMessage: String){
-        println(startMessage)
-        println(bridgeSizeMessage)
+    fun printMessage(message1: String, message2: String){
+        println(message1)
+        println(message2)
     }
 
     fun printErrorMessage(error: String) {
