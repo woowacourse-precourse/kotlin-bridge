@@ -1,6 +1,7 @@
 package bridge.domain
 
 class Player(private val bridge: Bridge) {
+    private var playerBridge = mutableListOf<Stage>()
     private var upBridge = mutableListOf<String>()
     private var downBridge = mutableListOf<String>()
     private var stage = 0
@@ -41,6 +42,10 @@ class Player(private val bridge: Bridge) {
 
     fun isClear(): Boolean {
         return bridge.finishCrossBridge(stage)
+    }
+
+    fun getPlayerBridge(): List<Stage> {
+        return playerBridge
     }
 
     fun getUpBridge(): List<String> {
