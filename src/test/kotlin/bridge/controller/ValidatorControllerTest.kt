@@ -27,4 +27,16 @@ class ValidatorControllerTest {
     fun `다리 길이가 유효하지 않으면 거짓이다`(input: String) {
         assertThat(controller.validateBridgeSize(input)).isFalse
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["U", "D"])
+    fun `이동할 칸이 유효하면 참이다`(input: String) {
+        assertThat(controller.validateMovement(input)).isTrue
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["u", "d", "a", "", " "])
+    fun `이동할 칸이 유효하지 않으면 거짓이다`(input: String) {
+        assertThat(controller.validateMovement(input)).isFalse
+    }
 }
