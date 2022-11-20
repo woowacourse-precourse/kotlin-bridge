@@ -60,8 +60,11 @@ class OutputView {
         for (count in 1..round) {
             if (movingRecord[count - 1] == bridge[count - 1])
                 addBlockRightAnswer(movingRecord[count - 1], upsideBridge, downsideBridge)
-            else
+            else {
                 addBlockWrongAnswer(movingRecord[count - 1], upsideBridge, downsideBridge)
+                break
+            }
+
             addBlockBoundary(upsideBridge, round, count)
             addBlockBoundary(downsideBridge, round, count)
         }
