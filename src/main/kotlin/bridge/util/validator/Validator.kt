@@ -15,7 +15,7 @@ object Validator {
         require(direction == UP || direction == DOWN) { INVALID_DIRECTION_EXCEPTION_MESSAGE }
     }
 
-    fun validateRetrial(retry: String) {
-        require(retry == RETRIAL || retry == QUIT) { INVALID_RETRIAL_EXCEPTION_MESSAGE }
+    fun validateRetry(retry: String) {
+        require(retry == RETRY || retry == QUIT) { INVALID_RETRY_EXCEPTION_MESSAGE }
     }
 }

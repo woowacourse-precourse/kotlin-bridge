@@ -8,7 +8,7 @@ import bridge.service.BridgeGame
 import bridge.service.Result
 import bridge.util.constant.BASE_ROUND
 import bridge.util.constant.FINISH_GAME
-import bridge.util.constant.RETRIAL
+import bridge.util.constant.RETRY
 import bridge.util.constant.RETRY_GAME
 
 class BridgeGameController {
@@ -90,7 +90,7 @@ class BridgeGameController {
     }
 
     private fun requestRetry(): Boolean = try {
-        (inputView.readGameCommand() == RETRIAL)
+        (inputView.readGameCommand() == RETRY)
     } catch (error: IllegalArgumentException) {
         outputView.printError(error)
         requestRetry()

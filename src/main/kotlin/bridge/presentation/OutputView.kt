@@ -30,7 +30,7 @@ class OutputView {
         println(GAME_FINISH_MESSAGE)
         printMap(route)
         printSuccessOrFail(gameResult)
-        printTrialCount(tryCount)
+        printTryCount(tryCount)
     }
 
     fun printStartMessage() {
@@ -54,8 +54,8 @@ class OutputView {
         println(GAME_SUCCESS_OR_FAIL_MESSAGE.format(resultMessage))
     }
 
-    private fun printTrialCount(trial: Int) {
-        print(TRIAL_COUNT_MESSAGE.format(trial))
+    private fun printTryCount(tryCount: Int) {
+        print(TRY_COUNT_MESSAGE.format(tryCount))
     }
 
     fun printError(throwable: Throwable) {

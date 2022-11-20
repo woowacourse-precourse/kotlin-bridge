@@ -33,7 +33,7 @@ class InputView {
      */
     fun readGameCommand(): String {
         val retry = Console.readLine()
-        Validator.validateRetrial(retry)
+        Validator.validateRetry(retry)
 
         return retry
     }
