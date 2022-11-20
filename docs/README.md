@@ -15,7 +15,7 @@
   - [x] 게임 진행을 위한 UI 메시지를 출력해줘야 한다.
   - 게임 진행 단계에 따라 Controller 가 요청한 대로 화면을 출력해줘야 한다.
   - [x] 매 단계마다 다리 건너는 상황을 화면에 출력해줄 수 있어야 한다. - OutputView#printMap
-  - [ ] 게임의 최종 결과를 출력해줄 수 있어야 한다. - OutputView#printResult
+  - [x] 게임의 최종 결과를 출력해줄 수 있어야 한다. - OutputView#printResult
   
 - [] 전반적인 게임 시스템 과정을 총괄해주는 클래스가 필요하다. - Controller
   - [] 사용자로부터 받은 입력을 BridgeGame 에게 주입해주고

@@ -11,7 +11,7 @@ class OutputView {
      */
     fun printMap(realBridges: List<String>, gameBridges: List<String>, curStep: Int) {
         println(upperMap(realBridges, gameBridges, curStep))
-        println(downMap(realBridges, gameBridges, curStep))
+        println(downMap(realBridges, gameBridges, curStep) + "\n")
     }
 
     private fun upperMap(realBridges: List<String>, gameBridges: List<String>, curStep: Int): String {
@@ -65,16 +65,19 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(isSuccess: Boolean, tryCount: Int) {
+        var result = GAME_RESULT_FAILED
+        if (isSuccess) result = GAME_RESULT_SUCCESS
+        println(result)
+        gameTryCount(tryCount)
+    }
 
     fun gameStartMessage() = println(BRIDGE_GAME_START)
     fun bridgeLengthInputPleaseMessage() = println(BRIDGE_LENGTH_INPUT_PLEASE)
     fun moveLengthInputPleaseMessage() = println(MOVE_INPUT_PLEASE)
     fun retryInputPleaseMessage() = println(RETRY_INPUT_PLEASE)
     fun finalGameResult() = println(FINAL_GAME_RESULT)
-    fun gameResultSuccess() = println(GAME_RESULT_SUCCESS)
-    fun gameResultFailed() = println(GAME_RESULT_FAILED)
-    fun gameTryCount(tryCount: Int) = println("$TRY_COUNT$tryCount")
+    private fun gameTryCount(tryCount: Int) = println("$TRY_COUNT$tryCount")
 
     companion object {
         private const val BRIDGE_GAME_START = "다리 건너기 게임을 시작합니다."
