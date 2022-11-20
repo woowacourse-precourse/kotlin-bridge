@@ -19,4 +19,37 @@ class Processor(
     fun initBridgeMap(){
         bridgeMap = Array(2) { "[ N ]".repeat(bridge.size).replace("][", "|") }
     }
+
+    fun move(): Pair<Boolean, String> {
+        val playerDirection = inputView.readMoving()
+        val isPlayerAlive = bridgeGame.move(bridge, playerDirection)
+
+        return Pair(isPlayerAlive, playerDirection)
+    }
+
+    fun recordToBridgeMap(isPlayerAlive: Boolean, playerDirection: String) {
+        val recordSign = if (isPlayerAlive) {
+            "O"
+        } else {
+            "X"
+        }
+        bridgeMap[playerDirection.directionToInt()] =
+            bridgeMap[playerDirection.directionToInt()].replaceFirst(" N ", " $recordSign ")
+        bridgeMap[playerDirection.oppositeDirectionToInt()] =
+            bridgeMap[playerDirection.oppositeDirectionToInt()].replaceFirst(" N ", "   ")
+    }
+
+
+    private fun String.directionToInt() = if (this == "D") {
+        1
+    } else {
+        0
+    }
+
+    private fun String.oppositeDirectionToInt() = if (this == "D") {
+        0
+    } else {
+        1
+    }
+
 }
