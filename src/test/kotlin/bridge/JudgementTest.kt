@@ -43,4 +43,16 @@ class JudgementTest {
         val result = judgement.checkGameOver(listOf("U","U","D"))
         assertThat(result).isEqualTo(false)
     }
+
+    @Test
+    fun `게임 승리 테스트`(){
+        val result = judgement.checkGameWin(listOf("U","U","D","U"))
+        assertThat(result).isEqualTo(true)
+    }
+
+    @Test
+    fun `게임 실패 테스트`(){
+        val result = judgement.checkGameWin(listOf("U","U","D","D"))
+        assertThat(result).isEqualTo(false)
+    }
 }
