@@ -12,9 +12,10 @@ const val OUTPUT_RESULT_STATUS = "게임 성공 여부: %s"
 const val OUTPUT_RESULT_COUNT_OF_TRY = "총 시도한 횟수: %d"
 
 // FOR ERROR HANDLING
-const val ERROR_INPUT_NUMBER = "숫자를 입력해주세요."
-const val ERROR_INPUT_ALLOWED_KEYS = "올바른 키를 입력해주세요."
-const val ERROR_INPUT_NUMBER_IN_RANGE = "범위 내에 값을 입력해주세요."
+private const val ERROR_MESSAGE_PREFIX = "[ERROR] "
+const val ERROR_INPUT_NUMBER = ERROR_MESSAGE_PREFIX + "숫자를 입력해주세요."
+const val ERROR_INPUT_ALLOWED_KEYS = ERROR_MESSAGE_PREFIX + "올바른 키를 입력해주세요."
+const val ERROR_INPUT_NUMBER_IN_RANGE = ERROR_MESSAGE_PREFIX + "범위 내에 값을 입력해주세요."
 
 // FOR BRIDGE GAME LOGIC
 const val BRIDGE_MIN_LENGTH = 3
