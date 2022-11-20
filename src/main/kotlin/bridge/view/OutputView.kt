@@ -70,4 +70,8 @@ object OutputView {
         throw IllegalArgumentException(errorMessage)
     }
 
+    fun printError(e: Exception){
+        println("$ERROR ${e.message}\n")
+    }
+
 }

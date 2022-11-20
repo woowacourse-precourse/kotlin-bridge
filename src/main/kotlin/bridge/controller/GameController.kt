@@ -4,9 +4,9 @@ import bridge.*
 import bridge.model.BridgeGame
 import bridge.view.InputView
 import bridge.view.OutputView
+import bridge.view.OutputView.printError
 
 class GameController {
-
     private val bridgeGame = BridgeGame()
     private var size = ZERO
     private var isPlaying = true
@@ -37,7 +37,7 @@ class GameController {
                 size = InputView.readBridgeSize()
                 break
             } catch (e: Exception) {
-                println("$ERROR ${e.message}\n")
+                printError(e)
             }
         }
     }
@@ -48,7 +48,7 @@ class GameController {
                 OutputView.selectMove()
                 return InputView.readMoving()
             } catch (e: Exception) {
-                println("$ERROR ${e.message}\n")
+                printError(e)
             }
         }
     }
@@ -70,7 +70,7 @@ class GameController {
                 OutputView.retryOrQuit()
                 return InputView.readGameCommand()
             } catch (e: Exception) {
-                println("$ERROR ${e.message}\n")
+                printError(e)
             }
         }
     }
