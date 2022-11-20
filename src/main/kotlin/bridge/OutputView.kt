@@ -57,16 +57,12 @@ class OutputView {
     ) {
         val round = movingRecord.size
 
-        for (count in 1..round) {
-            if (movingRecord[count - 1] == bridge[count - 1])
-                addBlockRightAnswer(movingRecord[count - 1], upsideBridge, downsideBridge)
-            else {
-                addBlockWrongAnswer(movingRecord[count - 1], upsideBridge, downsideBridge)
-                break
-            }
-
-            addBlockBoundary(upsideBridge, round, count)
-            addBlockBoundary(downsideBridge, round, count)
+        for (i in 1..round) {
+            if (movingRecord[i - 1] == bridge[i - 1])
+                addBlockRightAnswer(movingRecord[i - 1], upsideBridge, downsideBridge)
+            else addBlockWrongAnswer(movingRecord[i - 1], upsideBridge, downsideBridge)
+            addBlockBoundary(upsideBridge, round, i)
+            addBlockBoundary(downsideBridge, round, i)
         }
     }
 
