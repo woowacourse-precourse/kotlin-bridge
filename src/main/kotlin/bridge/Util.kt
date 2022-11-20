@@ -8,7 +8,9 @@ class Util {
         return true
     }
     fun isInRange(input : Int): Boolean{
-        return true
+        if(input>=3 && input<=20)
+            return true
+        throw IllegalArgumentException(Error.NOT_IN_RANGE.info)
     }
 
     fun isUD(input : String):Boolean{
