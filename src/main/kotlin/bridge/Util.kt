@@ -3,8 +3,11 @@ package bridge
 class Util {
     fun isInt(input: String): Boolean{
         val num:Int? = input.toIntOrNull()
-        if(num==null)
-            throw IllegalArgumentException(Error.NOT_INT.info)
+        if(num==null){
+            println(Error.NOT_INT.info)
+            return false
+        }
+
         return true
     }
     fun isInRange(input : Int): Boolean{

@@ -40,7 +40,7 @@
 14. isRQ - 입력이 R/Q인지 판별해주는 기능[O] - Util
 15. move - 게임에서 이동을 관장하는 기능[O] - BridgeGame
 16. retry - 게임에서 재시작을 관장하는 기능[O] - BridgeGame
-17. resultToString - 게임 비교 결과를 스트링으로 변환하는 기능[ ] - BridgeGame
+17. resultToString - 게임 비교 결과를 스트링으로 변환하는 기능[O] - BridgeGame
 
 ## 📦️ 생성 클래스
 1. BridgeGame - 게임을 관리하는 클래스
