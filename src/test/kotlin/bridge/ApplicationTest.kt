@@ -55,4 +55,13 @@ class ApplicationTest : NsTest() {
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
     }
+
+    // 여기서부터 추가 테스트
+    @Test
+    fun `다리 길이 범위 예외 테스트`() {
+        assertSimpleTest {
+            runException("100")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
 }
