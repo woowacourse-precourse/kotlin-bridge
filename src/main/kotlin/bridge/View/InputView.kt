@@ -12,17 +12,16 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        var size = ""
         while (true) {
             try {
-                size = Console.readLine()
+                var size = Console.readLine()
                 Validator.checkBridgeSize(size)
-                break
+                return size.toInt()
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
-        return size.toInt()
+        return 0
     }
 
     /**
