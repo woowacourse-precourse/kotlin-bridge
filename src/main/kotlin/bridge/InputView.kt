@@ -24,4 +24,12 @@ class InputView {
     fun readGameCommand(): String {
         return ""
     }
+
+    private fun String.toIntOrThrow(): Int {
+        return requireNotNull(toIntOrNull()) { Message.InputViewEnum.INVALID_MSG }
+    }
+
+    private fun checkValidLength(size: Int) {
+        require(size in 3..20) { Message.InputViewEnum.INVALID_MSG }
+    }
 }
