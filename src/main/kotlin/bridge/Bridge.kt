@@ -5,10 +5,10 @@ class Bridge {
     private val bridge : List<BridgeSpace>
 
     constructor(bridge: List<String>) {
-        this.bridge = mapBridges(bridge)
+        this.bridge = mapBridge(bridge)
     }
 
-    fun mapBridges(bridge: List<String>) : List<BridgeSpace> =
+    fun mapBridge(bridge: List<String>) : List<BridgeSpace> =
         bridge.mapIndexed { index, s ->  BridgeSpace(BridgeDirection.valueOf(s), index)}
 
     fun move(bridge: List<String>) : BridgeResult {
