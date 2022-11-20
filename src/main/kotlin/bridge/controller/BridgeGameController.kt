@@ -6,6 +6,7 @@ import bridge.presentation.InputView
 import bridge.presentation.OutputView
 import bridge.service.BridgeGame
 import bridge.service.Result
+import bridge.util.constant.BASE_ROUND
 import bridge.util.constant.FINISH_GAME
 import bridge.util.constant.RETRIAL
 import bridge.util.constant.RETRY_GAME
@@ -30,7 +31,7 @@ class BridgeGameController {
     private fun startBridgeGame(): Boolean {
         bridgeGame.startBridgeGame()
 
-        for (round in 0 until bridgeGame.bridgeSize()) {
+        for (round in BASE_ROUND until bridgeGame.bridgeSize()) {
             val roundResult = startRound(round)
             val finalPosition = bridgeGame.finalPosition()
             val retry = processResult(roundResult, finalPosition)
