@@ -2,7 +2,11 @@ package bridge
 
 import bridge.BridgeGame.Companion.BRIDGE_LENGTH_LOWER_INCLUSIVE
 import bridge.BridgeGame.Companion.BRIDGE_LENGTH_UPPER_INCLUSIVE
+import bridge.BridgeGame.Companion.MOVING_DIRECT_DOWN
+import bridge.BridgeGame.Companion.MOVING_DIRECT_UP
 import bridge.OutputView.Companion.printErrorMessage
+import bridge.exception.BridgeSizeInvalidException
+import bridge.exception.MovingInvalidException
 import camp.nextstep.edu.missionutils.Console
 
 /**
@@ -23,8 +27,12 @@ class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    fun readMoving(): String {
-        return ""
+    fun readMoving(): Char {
+        var moving = readValidateMoving()
+        while (moving == ' ') {
+            moving = readValidateMoving()
+        }
+        return moving
     }
 
     /**
@@ -41,8 +49,20 @@ class InputView {
                 else throw NumberFormatException()
             }
         } catch (e: Exception) {
-            printErrorMessage(e)
+            printErrorMessage(BridgeSizeInvalidException())
             0
+        }
+    }
+
+    private fun readValidateMoving(): Char {
+        return try {
+            with(Console.readLine()) {
+                if (this.length == 1 && (this[0] == MOVING_DIRECT_UP || this[0] == MOVING_DIRECT_DOWN)) this[0]
+                else throw IllegalArgumentException()
+            }
+        } catch (e: Exception) {
+            printErrorMessage(MovingInvalidException())
+            ' '
         }
     }
 }

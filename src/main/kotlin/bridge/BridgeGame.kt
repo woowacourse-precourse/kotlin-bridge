@@ -23,5 +23,7 @@ class BridgeGame {
     companion object{
         const val BRIDGE_LENGTH_LOWER_INCLUSIVE = 3
         const val BRIDGE_LENGTH_UPPER_INCLUSIVE = 20
+        const val MOVING_DIRECT_UP = 'U'
+        const val MOVING_DIRECT_DOWN = 'D'
     }
 }
