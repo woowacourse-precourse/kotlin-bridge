@@ -1,5 +1,7 @@
 package bridge.domain
 
+import bridge.utils.*
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -25,22 +27,22 @@ class BridgeGame {
      */
     fun retry(command: String, player: Player, bridge: Bridge) {
         when (command) {
-            "R" -> setRetry(player, bridge)
-            "Q" -> setQuit(player)
+            RETRY -> setRetry(player, bridge)
+            QUIT -> setQuit(player)
         }
     }
 
     fun isSuccess(player: Player): String {
         if (player.isGameSuccess) {
-            return "성공"
+            return GAME_SUCCESS
         }
-        return "실패"
+        return GAME_FAILURE
     }
 
     private fun moveBridge(bridge: Bridge, direction: String, result: String) {
         when (direction) {
-            "U" -> moveUpBridge(bridge, result)
-            "D" -> moveDownBridge(bridge, result)
+            UP -> moveUpBridge(bridge, result)
+            DOWN -> moveDownBridge(bridge, result)
         }
     }
 

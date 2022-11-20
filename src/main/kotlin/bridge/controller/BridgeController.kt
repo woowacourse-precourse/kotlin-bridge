@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator
 import bridge.domain.Bridge
 import bridge.domain.BridgeGame
 import bridge.domain.Player
+import bridge.utils.MOVING_FAILURE
 import bridge.view.OutputView
 
 class BridgeController {
@@ -28,7 +29,7 @@ class BridgeController {
     }
 
     fun retry(result: String) {
-        if (result == "X") {
+        if (result == MOVING_FAILURE) {
             val command = InputController().getBridgeCommand()
             BridgeGame().retry(command, player, bridge)
         }

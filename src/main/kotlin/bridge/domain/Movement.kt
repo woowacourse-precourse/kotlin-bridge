@@ -4,6 +4,8 @@ import bridge.CommandException
 import bridge.ERROR
 import bridge.utils.ErrorType
 import bridge.MOVEMENT
+import bridge.utils.DOWN
+import bridge.utils.UP
 
 class Movement(private val direction: String) {
     init {
@@ -13,9 +15,4 @@ class Movement(private val direction: String) {
 
     private fun isRightDirection(): Boolean =
         direction == UP || direction == DOWN
-
-    companion object {
-        const val UP = "U"
-        const val DOWN = "D"
-    }
 }

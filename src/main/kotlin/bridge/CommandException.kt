@@ -1,6 +1,8 @@
 package bridge
 
 import bridge.utils.ErrorType
+import bridge.utils.ONE
+import bridge.utils.ZERO
 
 class CommandException(private val message: String, private val key: String) {
 
@@ -22,9 +24,4 @@ class CommandException(private val message: String, private val key: String) {
 
     private fun isEmpty(): Boolean =
         key.isNotEmpty() || key.length > ZERO
-
-    companion object {
-        const val ZERO = 0
-        const val ONE = 1
-    }
 }

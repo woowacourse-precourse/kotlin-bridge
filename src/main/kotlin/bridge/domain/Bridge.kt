@@ -1,9 +1,12 @@
 package bridge.domain
 
+import bridge.utils.ONE
+import bridge.utils.ZERO
+
 data class Bridge(
     var up: String = "",
     var down: String = "",
-    var size: Int = 0
+    var size: Int = ZERO
 ) {
     fun setUpBridge(result: String) {
         up += result
@@ -14,11 +17,11 @@ data class Bridge(
     }
 
     fun setBridgeSize() {
-        size += 1
+        size += ONE
     }
 
     fun resetBridge() {
-        size = 0
+        size = ZERO
         up = ""
         down = ""
     }

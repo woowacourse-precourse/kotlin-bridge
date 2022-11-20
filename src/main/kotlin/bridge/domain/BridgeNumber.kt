@@ -3,6 +3,9 @@ package bridge.domain
 import bridge.BRIDGE
 import bridge.ERROR
 import bridge.utils.ErrorType
+import bridge.utils.MAX_LENGTH
+import bridge.utils.MIN_LENGTH
+import bridge.utils.ZERO
 
 class BridgeNumber(private val size: String) {
     init {
@@ -18,10 +21,5 @@ class BridgeNumber(private val size: String) {
         size.all { char -> char.isDigit() }
 
     private fun isEmtpy(): Boolean =
-        size.isNotEmpty() || size.length > 0
-
-    companion object {
-        const val MIN_LENGTH = 3
-        const val MAX_LENGTH = 20
-    }
+        size.isNotEmpty() || size.length > ZERO
 }

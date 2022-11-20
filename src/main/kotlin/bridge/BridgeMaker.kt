@@ -1,5 +1,8 @@
 package bridge
 
+import bridge.utils.DOWN
+import bridge.utils.UP
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -20,8 +23,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     private fun getDirection(): String {
         val randomNumber = bridgeNumberGenerator.generate()
         if (randomNumber == 1) {
-            return "U"
+            return UP
         }
-        return "D"
+        return DOWN
     }
 }

@@ -4,6 +4,8 @@ import bridge.COMMAND
 import bridge.CommandException
 import bridge.ERROR
 import bridge.utils.ErrorType
+import bridge.utils.QUIT
+import bridge.utils.RETRY
 
 class Command(private val execution: String) {
     init {
@@ -12,10 +14,5 @@ class Command(private val execution: String) {
     }
 
     private fun isRightCommand(): Boolean =
-        execution == RESTART || execution == QUIT
-
-    companion object {
-        const val RESTART = "R"
-        const val QUIT = "Q"
-    }
+        execution == RETRY || execution == QUIT
 }
