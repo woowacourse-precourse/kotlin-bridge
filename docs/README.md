@@ -55,7 +55,6 @@ RequestType.NOW_STATE_MESSAGE를 요청해 달라고 전달 받았습니다.
 - 숫자를 입력해야 할 때 숫자로 변환시킬 수 없는 문자열을 입력했을 경우 NumberFormatException을 발생시킨다.
 - 다리 크기를 입력 받아 초기화 하는데 크기가 3보다 작거나 20보다 클 경우 IllegalArgumentException을 발생시킨다.
 - 입력받은 움직이는 방식이 U 또는 D가 아니었을 경우 IllegalArgumentException을 발생시킨다.
-- ResponsePacket이 없는 상태에서 
 
 ---  
 
