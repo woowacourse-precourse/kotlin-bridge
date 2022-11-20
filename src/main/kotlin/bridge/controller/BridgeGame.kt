@@ -36,8 +36,13 @@ class BridgeGame {
             if(correct())
                 endGame(true)
         }
-
     }
+
+    private fun endGame(success: Boolean){
+        gameStatus = false
+        output.printResult(success, attempts, board)
+    }
+
 
     fun move(moving: String) {
         if(goalBridge[board[0].size] == moving){
