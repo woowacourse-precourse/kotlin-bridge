@@ -2,6 +2,7 @@ package bridge
 
 import bridge.util.Exceptions
 import bridge.util.INPUT_BRIDGE_SIZE
+import bridge.util.RESTART_OR_QUIT
 import bridge.util.SELECT_KEY_TO_MOVE
 
 import camp.nextstep.edu.missionutils.Console
@@ -45,6 +46,14 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        println(RESTART_OR_QUIT)
+        return try {
+            val command = Console.readLine()
+            Exceptions.checkInputCommandKey(command)
+            return command
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            readGameCommand()
+        }
     }
 }
