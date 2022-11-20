@@ -8,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 
-class InputViewTest: NsTest() {
+class InputViewTest : NsTest() {
     @Test
     fun `다리 길이 입력 테스트1`() {
         assertSimpleTest {
@@ -22,6 +22,22 @@ class InputViewTest: NsTest() {
     fun `다리 길이 입력 예외 테스트`(input: String) {
         assertSimpleTest {
             runException(input)
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `이동할 칸 입력 테스트`() {
+        assertSimpleTest {
+            runException("3", "D")
+            assertThat(output()).contains("")
+        }
+    }
+
+    @Test
+    fun `이동할 칸 입력 예외 테스트`() {
+        assertSimpleTest {
+            runException("3", "A")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
