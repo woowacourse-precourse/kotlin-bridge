@@ -39,6 +39,10 @@ class Processor(
             bridgeMap[playerDirection.oppositeDirectionToInt()].replaceFirst(" N ", "   ")
     }
 
+    fun printMap() {
+        outputView.printMap(bridgeMap[0])
+        outputView.printMap(bridgeMap[1])
+    }
 
     private fun String.directionToInt() = if (this == "D") {
         1
