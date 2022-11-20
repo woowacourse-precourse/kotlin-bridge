@@ -7,6 +7,7 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
     private var moveDownMap = ""
     private var tryCount = 1
     private var isEnd = false
+    private var result = ""
 
     fun initBridge(){
         val size = inputView.readBridgeSize()
@@ -63,7 +64,12 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
     }
 
     private fun checkMoveEnd(move : Int, isFail : Boolean){
-        if(move == bridge.size || isFail){
+        if(move == bridge.size){
+            result = "성공"
+            isEnd = true
+        }
+        else if(isFail){
+            result = "실패"
             isEnd = true
         }
     }
@@ -84,8 +90,8 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
         return restart
     }
 
-    private fun finalResult() {
-
+    fun finalResult() {
+        outputView.printResult(result, tryCount)
     }
 
     private fun upProcess(result: String){
