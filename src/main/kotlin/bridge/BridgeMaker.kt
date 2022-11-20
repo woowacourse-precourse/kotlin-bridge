@@ -20,10 +20,10 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 
     fun updownjudgment(a:Int) : String {
         if (a == 0) {
-            return "U"
+            return "D"
         }
         if (a == 1) {
-            return "D"
+            return "U"
         }
         return "[ERROR] updownjudgement"
     }

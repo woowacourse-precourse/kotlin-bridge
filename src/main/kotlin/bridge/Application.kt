@@ -1,57 +1,71 @@
 package bridge
 
 import camp.nextstep.edu.missionutils.Console
+import java.lang.Exception
+
+
+var count = 1
+var sucess = true
+var inputview = InputView()
+var outputview = OutputView()
+var bridgegame = BridgeGame()
+var bridgeNumberGenerator = BridgeRandomNumberGenerator()
+var bridgemaker = BridgeMaker(bridgeNumberGenerator)
+
+
 
 fun main() {
-    // TODO: 프로그램 구현
-    println("다리 건너기 게임을 시작합니다.")
-    var inputview = InputView()
-    var outputview = OutputView()
-    var bridgegame = BridgeGame()
-    var size = inputview.readBridgeSize()
-    var bridgeNumberGenerator = BridgeRandomNumberGenerator()
-    var bridgemaker = BridgeMaker(bridgeNumberGenerator)
-    var makeBridge = bridgemaker.makeBridge(size)
-    var i = 0
-    var count=0
-    while(i < size)
-    {
-        bridgegame.move(inputview.readMoving())
-        if (bridgegame.userselectupdown[i] == makeBridge[i])
-        {
-            outputview.printMap(bridgegame.userselectupdown , i+1)
-            i++
-        }
-        else
-        {
-            var checkretry = inputview.readGameCommand()
-            if (checkretry == "R")
-            {
-                bridgegame.userselectupdown.clear()
-                i = 0
-                count+=1
-            }
-            else if (checkretry == "Q")
-            {
-                println("종료합니다.")
-                break
-            }
-        }
+    try {
+        var size = inputview.readBridgeSize()
+        var makeBridge = bridgemaker.makeBridge(size)
+        println("다리 건너기 게임을 시작합니다.")
+        bridgegame(size,makeBridge)
+        endprint(makeBridge,size)
+    } catch (e : Exception){
+        e.printStackTrace()
     }
-    endprint(makeBridge,size,count)
 }
 
-fun endprint(a: List<String>,b: Int,c: Int) {
+
+
+fun elsemoon(i : Int) : Int {
+    var checkretry = inputview.readGameCommand()
+    if (checkretry == "R"){
+        bridgegame.retry()
+        return 0 }
+    else if (checkretry == "Q") {
+        println("종료합니다.")
+        sucess = false
+    }
+    return i
+}
+
+fun bridgegame(size : Int, makeBridge : List<String>) {
+    var i = 0
+    while(i < size) {
+        bridgegame.move(inputview.readMoving())
+        if (bridgegame.userselectupdown[i] == makeBridge[i]){
+            outputview.printMap(bridgegame.userselectupdown,++i) }
+        else {
+            var ivalue = elsemoon(i)
+            i=ivalue }
+        if (sucess == false) break }
+}
+
+fun endprint(a: List<String>,b: Int) {
     println("최종 게임 결과")
     var outputview = OutputView()
     outputview.printResult(a,b)
-    println("총 시도한 횟수: ${c}")
+    if (sucess == true){
+        println("\n게임 성공 여부: 성공")
+    }
+    else println("\n게임 성공 여부: 실패")
+    println("총 시도한 횟수: ${count}")
 }
 
-//fun roof(a: Int , b: Int , c: Int) {
-//
-//    while (a < c) {
-//
-//    }
-//}
+
+
+
+
+
 
