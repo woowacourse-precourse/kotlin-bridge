@@ -31,9 +31,13 @@
 5. readMoving - 사용자에게 이동할 칸을 입력받는 기능[ ] - InputView
 6. compareAnswer - 사용자의 답과 다리를 비교하는 기능[ ] - BridgeGame 
 7. readGameCommand - 오답일 경우 재시도 여부를 묻고 입력을 받는 기능[ ] - InputView
-8. printResult - 최종 결과와 게임의 성공 여부와 총 시도한 횟수를 출력하는 기능[ ] - OutputView
+8. printResult - 최종 결과와 게임의 성공 여부와 총 시도한 횟수를 출력하는 기능[O] - OutputView
 9. playGame - 게임을 진행하는 기능[ ] - BridgeGameApp
 10. printData - 데이터를 출력해주는 기능[O] - OutputView
+11. isInt - 입력이 정수인지 판별해주는 기능[ ] - Util
+12. isInRange - 정수의 범위가 맞는지 판별해주는 기능[ ] - Util
+13. isUD - 입력이 U/D인지 판별해주는 기능[ ] - Util
+14. isRQ - 입력이 R/Q인지 판별해주는 기능[ ] - Util
 
 ## 📦️ 생성 클래스
 1. BridgeGame - 게임을 관리하는 클래스
@@ -43,3 +47,4 @@
 5. OutputView - 출력을 관장하는 클래스
 6. Application - 메인 클래스
 7. BridgeGameApp - 게임을 실행하는 클래스
+8. Util - 예외 처리 클래스
