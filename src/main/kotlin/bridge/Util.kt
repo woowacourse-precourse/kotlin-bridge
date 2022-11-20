@@ -2,7 +2,9 @@ package bridge
 
 class Util {
     fun isInt(input: String): Boolean{
-        return true
+        val num:Int? = input.toIntOrNull()
+        if(num==null)
+            throw IllegalArgumentException
     }
     fun isInRange(input : Int): Boolean{
         return true

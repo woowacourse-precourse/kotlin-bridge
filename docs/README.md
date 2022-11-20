@@ -48,3 +48,4 @@
 6. Application - 메인 클래스
 7. BridgeGameApp - 게임을 실행하는 클래스
 8. Util - 예외 처리 클래스
+9. Error - 에러 데이터 클래스
