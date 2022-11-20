@@ -27,19 +27,18 @@ class Processor(
         bridgeMap = Array(2) { "[ N ]".repeat(bridge.size).replace("][", "|") }
     }
 
-    fun move(): Pair<Boolean, String> {
+    fun move(): Pair<GameStatus, String> {
         val playerDirection = inputView.readMoving()
-        val isPlayerAlive = bridgeGame.move(bridge, playerDirection)
-        playerPosition++
+        val gameStatus = bridgeGame.move(bridge, playerDirection)
 
-        if(playerPosition==bridge.size){
+        if(gameStatus==GameStatus.SUCCEEDED){
             isSucceeded=true
         }
-        return Pair(isPlayerAlive, playerDirection)
+        return Pair(gameStatus, playerDirection)
     }
 
-    fun recordToBridgeMap(isPlayerAlive: Boolean, playerDirection: String) {
-        val recordSign = if (isPlayerAlive) {
+    fun recordToBridgeMap(gameStatus: GameStatus, playerDirection: String) {
+        val recordSign = if (gameStatus!=GameStatus.FAILED) {
             "O"
         } else {
             "X"
@@ -54,7 +53,6 @@ class Processor(
     fun askRetry(): Boolean {
         val retryInput = inputView.readGameCommand() == "R"
         initBridgeMap()
-        playerPosition=0
         bridgeGame.retry()
         numberOfTry++
         return retryInput
