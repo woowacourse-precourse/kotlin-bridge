@@ -23,8 +23,10 @@ class BridgeGame(private val realBridges: List<String>) {
      */
     fun move(curMove: String): BridgeMoveResult {
         bridges[curStep] = curMove
-        if (bridges[curStep] == realBridges[curStep] && curStep + 1 == realBridges.size) return BridgeMoveResult.MOVE_END
-        if (bridges[curStep] == realBridges[curStep]) {
+        if (bridges[curStep] == realBridges[curStep] && curStep + 1 == realBridges.size) {
+            success = true
+            return BridgeMoveResult.MOVE_END
+        } else if (bridges[curStep] == realBridges[curStep]) {
             curStep++
             return BridgeMoveResult.MOVE_SUCCESS
         }
