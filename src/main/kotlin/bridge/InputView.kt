@@ -9,9 +9,17 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
+        print("다리의 길이를 입력하세요")
         var a = Console.readLine().toString();
+        var CheckTrue = CheckTrue()
 
-        return 0
+        try {
+            var lengthToInt =CheckTrue.checkBridgeLength(a);
+            return lengthToInt
+        }catch(e:IllegalArgumentException){
+           print("[ERROR] 잘못 입력하셨습니다.")
+            return -1
+        }
     }
 
     /**
