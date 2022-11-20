@@ -22,4 +22,9 @@ class UnitTest {
     fun `다리 길이 입력값 예외`() {
         inputView.readBridgeSize("안녕")
     }
+
+    @Test
+    fun `이동 입력값 예외`() {
+        inputView.readMoving("안녕")
+    }
 }

@@ -18,7 +18,7 @@ class InputView {
             val bridgeSize = input.toInt()
             checkValidBridgeSize(bridgeSize)
             bridgeSize
-        } catch (e: Exception){
+        } catch (e: IllegalArgumentException){
             throw e
         }
     }
@@ -26,8 +26,14 @@ class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    fun readMoving(): String {
-        return ""
+    fun readMoving(input : String): String {
+        return try {
+            val input = Console.readLine()!!
+            checkValidMoveInput(input)
+            input
+        } catch (e: IllegalArgumentException){
+            throw e
+        }
     }
 
     /**

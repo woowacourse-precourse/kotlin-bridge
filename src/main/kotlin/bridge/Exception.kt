@@ -18,8 +18,10 @@ fun checkValidBridgeSize(bridgeSize : Int){
     }
 }
 
-fun checkValidMoveInput(){
-
+fun checkValidMoveInput(input : String){
+    if(input != "U" || input != "D"){
+        throw IllegalArgumentException()
+    }
 }
 
 fun checkValidRestartInput(){
