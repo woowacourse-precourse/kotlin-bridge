@@ -1,18 +1,22 @@
 package bridge.Model
 
-enum class BridgeResult (
+import bridge.Model.BridgeData.bridgeLocation
+import bridge.Model.BridgeData.bridgeShape
+import bridge.Model.BridgeData.getShape
+
+enum class BridgeResult(
     private val selectBridge: String,
     private val bridgeState: String
-    ) {
+) {
     UP_WIN("U", "U"),
     UP_LOSE("U", "D"),
     DOWN_WIN("D", "D"),
-    DOWN_LOSE("D","U")
+    DOWN_LOSE("D", "U")
 }
 
-class Referee(private val bridgeShapes: List<String>, private val location: Int) {
+class Referee() {
     fun judgeMove(selectBridge: String): BridgeResult {
-        var shape = bridgeShapes[location]
+        var shape = getShape(bridgeLocation)
         if (shape == selectBridge) {
             return judgeWinResult(selectBridge)
         }
@@ -34,7 +38,7 @@ class Referee(private val bridgeShapes: List<String>, private val location: Int)
     }
 
     fun judgeLastBridge(nowLocation: Int): Boolean {
-        if (nowLocation == bridgeShapes.size-1){
+        if (nowLocation == bridgeShape.size - 1) {
             return true
         }
         return false

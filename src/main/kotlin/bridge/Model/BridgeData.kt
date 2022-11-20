@@ -4,5 +4,9 @@ object BridgeData {
     var bridgeSize = 0
     var bridgeShape = listOf<String>()
     var bridgeLocation = 0
-    var roundResult = mutableListOf<String>()
+    var roundResult = mutableListOf<BridgeResult>()
+
+    fun getShape(location: Int): String {
+        return bridgeShape[location]
+    }
 }
