@@ -25,19 +25,21 @@
 
 ## 📝기능 구현 리스트
 1. startGame - 게임의 시작을 알려주는 기능[O] -  OutputView
-2. readBridgeSize - 다리의 길이를 입력 받는 기능[ ] - InputView
+2. readBridgeSize - 다리의 길이를 입력 받는 기능[O] - InputView
 3. generate - 랜덤 넘버를 생성해주는 기능[O] - BridgeRandoomNumberGenerator에서 주어짐
 4. makeBridge - 랜덤 넘버를 받아서 다리를 생성하는 기능[ ] - BridgeMaker
-5. readMoving - 사용자에게 이동할 칸을 입력받는 기능[ ] - InputView
+5. readMoving - 사용자에게 이동할 칸을 입력받는 기능[O] - InputView
 6. compareAnswer - 사용자의 답과 다리를 비교하는 기능[ ] - BridgeGame 
-7. readGameCommand - 오답일 경우 재시도 여부를 묻고 입력을 받는 기능[ ] - InputView
+7. readGameCommand - 오답일 경우 재시도 여부를 묻고 입력을 받는 기능[O] - InputView
 8. printResult - 최종 결과와 게임의 성공 여부와 총 시도한 횟수를 출력하는 기능[O] - OutputView
 9. playGame - 게임을 진행하는 기능[ ] - BridgeGameApp
 10. printData - 데이터를 출력해주는 기능[O] - OutputView
-11. isInt - 입력이 정수인지 판별해주는 기능[ ] - Util
-12. isInRange - 정수의 범위가 맞는지 판별해주는 기능[ ] - Util
-13. isUD - 입력이 U/D인지 판별해주는 기능[ ] - Util
-14. isRQ - 입력이 R/Q인지 판별해주는 기능[ ] - Util
+11. isInt - 입력이 정수인지 판별해주는 기능[O] - Util
+12. isInRange - 정수의 범위가 맞는지 판별해주는 기능[O] - Util
+13. isUD - 입력이 U/D인지 판별해주는 기능[O] - Util
+14. isRQ - 입력이 R/Q인지 판별해주는 기능[O] - Util
+15. move - 게임에서 이동을 관장하는 기능[ ] - BridgeGame
+16. retry - 게임에서 재시작을 관장하는 기능[ ] - BridgeGame
 
 ## 📦️ 생성 클래스
 1. BridgeGame - 게임을 관리하는 클래스
