@@ -18,7 +18,7 @@ class OutputView {
 
     fun printMoving(): String{
         val move = InputView().readMoving()
-        println(move)
+        println("$move\n")
         return move
     }
 
