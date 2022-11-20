@@ -24,7 +24,7 @@
 1. Error Message와 함께 IllegalArgumentException을 throw해준다.
 
 ## 📝기능 구현 리스트
-1. startGame - 게임의 시작을 알려주는 기능[ ] -  OutputView
+1. startGame - 게임의 시작을 알려주는 기능[O] -  OutputView
 2. readBridgeSize - 다리의 길이를 입력 받는 기능[ ] - InputView
 3. generate - 랜덤 넘버를 생성해주는 기능[O] - BridgeRandoomNumberGenerator에서 주어짐
 4. makeBridge - 랜덤 넘버를 받아서 다리를 생성하는 기능[ ] - BridgeMaker
