@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.view.InputView
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -24,5 +26,18 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         if (num == "1") return "U"
 
         return null
+    }
+
+    fun printSize(): String {
+        try {
+            val size = InputView().readBridgeSize()
+            CheckException().checkInputSize(size)
+            return size
+        } catch (e: IllegalArgumentException) {
+            println(e)
+            println("\n")
+            val size = printSize()
+            return size
+        }
     }
 }
