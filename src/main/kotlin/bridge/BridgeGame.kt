@@ -20,9 +20,8 @@ class BridgeGame {
         return judgement.checkGameOver(currentMoving)
     }
 
-    fun move(moving: String): List<String> {
+    fun move(moving: String) {
         currentMoving.add(moving)
-        return currentMoving.toList()
     }
 
     fun checkGameWin(): Boolean {
