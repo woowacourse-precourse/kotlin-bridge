@@ -1,6 +1,7 @@
 package bridge.view
 
 import bridge.INPUT_BRIDGE_LENGTH
+import bridge.SELECT_MOVE_DIRECTION
 import bridge.START_BRIDGE_GAME
 import java.lang.IllegalArgumentException
 
@@ -29,6 +30,10 @@ object OutputView {
 
     fun inputLength() {
         println(INPUT_BRIDGE_LENGTH)
+    }
+
+    fun selectMove() {
+        println(SELECT_MOVE_DIRECTION)
     }
 
 

@@ -12,6 +12,7 @@ class GameController {
     private val bridge = Bridge()
     private val progressMatrix = ProgressMatrix()
     private var size = ZERO
+    private var isPlaying = true
 
     init {
         OutputView.startGame()
@@ -22,6 +23,9 @@ class GameController {
     }
 
     fun start() {
+        while (isPlaying) {
+            getMoveDirection()
+        }
     }
 
     private fun getBridgeLength() {
@@ -30,6 +34,17 @@ class GameController {
                 OutputView.inputLength()
                 size = InputView.readBridgeSize()
                 break
+            } catch (e: Exception) {
+                println("$ERROR ${e.message}\n")
+            }
+        }
+    }
+
+    private fun getMoveDirection(): String {
+        while (true) {
+            try {
+                OutputView.selectMove()
+                return InputView.readMoving()
             } catch (e: Exception) {
                 println("$ERROR ${e.message}\n")
             }
