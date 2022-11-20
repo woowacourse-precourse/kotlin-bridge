@@ -3,7 +3,7 @@ package bridge
 fun main() {
     try {
         val bridgeManager = BridgeManager()
-        bridgeManager.gameLoop()
+        bridgeManager.start()
     } catch (e: IllegalArgumentException) {
         println(e.message)
         return

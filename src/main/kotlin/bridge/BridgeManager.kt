@@ -74,7 +74,7 @@ class BridgeManager {
         outputView.printTryNumber(this.bridgeGame.getRetryCounter())
     }
 
-    fun gameLoop() {
+    fun start() {
         while (this.bridgeGame.getIsContinue() && this.position < this.bridgeSize) {
             this.moveBridge()
             if (!this.bridgeGame.getIsContinue()) {
