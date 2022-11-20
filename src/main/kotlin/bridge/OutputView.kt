@@ -10,13 +10,17 @@ package bridge
  */
 class OutputView {
 
-    fun printGameStart(){
+    fun printGameStart() {
         println(GAME_START)
         println()
     }
 
-    fun printRequestInputBridgeSize(){
+    fun printRequestInputBridgeSize() {
         println(REQUEST_INPUT_BRIDGE_SIZE)
+    }
+
+    fun printRequestInputDirectionToMove() {
+        println(REQUEST_INPUT_DIRECTION_TO_MOVE)
     }
 
     /**
@@ -37,8 +41,9 @@ class OutputView {
      */
     fun printResult() {}
 
-    companion object{
+    companion object {
         const val GAME_START = "다리 건너기 게임을 시작합니다."
         const val REQUEST_INPUT_BRIDGE_SIZE = "다리의 길이를 입력해주세요."
+        const val REQUEST_INPUT_DIRECTION_TO_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
     }
 }
