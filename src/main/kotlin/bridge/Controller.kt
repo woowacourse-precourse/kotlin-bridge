@@ -23,9 +23,7 @@ class Controller() {
             try {
                 outputView.bridgeLengthInputPleaseMessage()
                 val bridgeSize = inputView.readBridgeSize(inputInvalidCheck, inputConverter)
-                val random = bridgeMaker.makeBridge(bridgeSize)
-                //println("정답: " + random + "\n")
-                bridgeGame = BridgeGame(random)
+                bridgeGame = BridgeGame(bridgeMaker.makeBridge(bridgeSize))
                 break
             } catch (e: IllegalArgumentException) {
                 OutputView.errorMessage() // 다리 개수 입력 시 에러 처리
