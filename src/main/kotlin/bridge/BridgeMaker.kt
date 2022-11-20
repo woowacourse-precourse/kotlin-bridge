@@ -18,6 +18,6 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
                 1 -> bridgeAnswer.add("U")
             }
         }
-        return listOf()
+        return bridgeAnswer
     }
 }

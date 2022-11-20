@@ -11,7 +11,7 @@ class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(input : String): Int {
+    fun readBridgeSize(): Int {
         return try{
             val input = Console.readLine()!!
             checkInputIsDigit(input)
@@ -26,7 +26,7 @@ class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    fun readMoving(input : String): String {
+    fun readMoving(): String {
         return try {
             val input = Console.readLine()!!
             checkValidMoveInput(input)
