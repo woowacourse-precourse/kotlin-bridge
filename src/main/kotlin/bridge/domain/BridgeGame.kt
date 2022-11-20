@@ -30,10 +30,5 @@ class BridgeGame {
         }
     }
 
-    fun build(): List<String> {
-        val bridgeSize = User().inputBridgeSize()
-        return BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
-    }
-
     private fun String.isSame(bridgeLocation: String) = this == bridgeLocation
 }
