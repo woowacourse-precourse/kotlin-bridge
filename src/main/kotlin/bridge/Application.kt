@@ -8,5 +8,5 @@ fun main() {
     val answerBridge = bridgeMaker.makeBridge(bridgeLength)
 
     var trial = 1
-    BridgeGame().moveAndCheckAnswer(answerBridge, trial)
+    BridgeGame(answerBridge).moveAndCheckAnswer(trial)
 }
