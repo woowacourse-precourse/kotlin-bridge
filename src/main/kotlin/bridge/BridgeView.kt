@@ -41,27 +41,27 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
 
     private fun checkSuccessDistinguishUpDown(input: String){
         when (input){
-            "U" -> {
-                upProcess("O")
-                downProcess(" ")
+            UP -> {
+                upProcess(SUCCESS)
+                downProcess(EMPTY)
             }
 
-            "D" -> {
-                upProcess(" ")
-                downProcess("O")
+            DOWN -> {
+                upProcess(EMPTY)
+                downProcess(SUCCESS)
             }
         }
     }
 
     private fun checkFailDistinguishUpDown(input: String){
         when(input){
-            "U" -> {
-                upProcess("X")
-                downProcess(" ")
+            UP -> {
+                upProcess(FAIL)
+                downProcess(EMPTY)
             }
-            "D" -> {
-                upProcess(" ")
-                downProcess("X")
+            DOWN -> {
+                upProcess(EMPTY)
+                downProcess(FAIL)
             }
         }
     }
@@ -86,11 +86,11 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
         var restart = true
         outputView.printRetryMessage()
         when(inputView.readGameCommand()){
-            "R" -> {
+            RETRY -> {
                 tryCount++
                 restart = true
             }
-            "Q" -> {
+            QUIT -> {
                 tryCount = 1
                 restart = false
             }

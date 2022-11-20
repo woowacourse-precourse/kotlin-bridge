@@ -12,3 +12,14 @@ const val GET_RETRY_MESSAGE = "게임을 다시 시도할지 여부를 입력해
 const val RESULT_MESSAGE = "최종 게임 결과"
 const val RESULT_SUCCESS_OR_NOT_MESSAGE = "게임 성공 여부: "
 const val RESULT_TRYCOUNT_MESSAGE = "총 시도한 횟수: "
+
+const val UP = "U"
+const val DOWN = "D"
+const val EMPTY = " "
+const val SUCCESS = "O"
+const val FAIL = "X"
+const val RETRY = "R"
+const val QUIT = "Q"
+
+const val MIN_SIZE = 3
+const val MAX_SIZE = 20

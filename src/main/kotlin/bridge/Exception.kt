@@ -9,19 +9,20 @@ fun checkInputIsDigit(input : String){
 }
 
 fun checkValidBridgeSize(bridgeSize : Int){
-    if(bridgeSize < 3 || bridgeSize > 20){
+    if(bridgeSize < MIN_SIZE || bridgeSize > MAX_SIZE){
         throw IllegalArgumentException()
     }
 }
 
 fun checkValidMoveInput(input : String){
-    if(input != "U" || input != "D"){
+    if(input != UP || input != DOWN){
+        println(input)
         throw IllegalArgumentException()
     }
 }
 
 fun checkValidRestartInput(input : String){
-    if(input != "R" || input != "Q"){
+    if(input != RETRY || input != QUIT){
         throw IllegalArgumentException()
     }
 }
