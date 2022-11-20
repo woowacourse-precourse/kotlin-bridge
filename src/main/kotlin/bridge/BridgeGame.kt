@@ -10,40 +10,67 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(answerBridge: List<String>, trial: Int) {
+    fun moveAndCheckAnswer(answerBridge: List<String>, trial: Int) {
         var inputBridge = listOf<String>()
         var success = true
-
         while (success) {
-            var whereToMove = InputView().readMoving()
-
-            inputBridge = inputBridge.plus(whereToMove)
-            var inputBridgeMutable = inputBridge.toMutableList()
-
-            inputBridge.forEachIndexed { index, it ->
-                if (answerBridge[index] != it) {
-                    success = false
-                    inputBridgeMutable[index] = it + "X"
-                    inputBridge = inputBridgeMutable.toList()
-                }
-            }
-
-            var outputView = OutputView()
-            outputView.printMap(inputBridge)
-
-            if (!success) {
-                var restartGame = InputView().readGameCommand()
-                when (restartGame) {
-                    "R" -> BridgeGame().retry(answerBridge, trial)
-                    "Q" -> OutputView().printResult(inputBridge, success, trial)
-                }
-            }
-
-            //전체 성공했을 때
+            inputBridge = move(inputBridge, answerBridge)
+            success = checkSuccess(inputBridge, answerBridge)
             if (inputBridge == answerBridge) {
                 OutputView().printResult(inputBridge, success, trial)
                 break
             }
+        }
+        if (!success)
+            restartGame(inputBridge, answerBridge, trial)
+    }
+
+    private fun move(inputBridge: List<String>, answerBridge: List<String>): List<String> {
+        var inputBridge = inputBridge
+        var whereToMove = InputView().readMoving()
+
+        inputBridge = inputBridge.plus(whereToMove)
+        inputBridge = checkOX(inputBridge, answerBridge)
+        OutputView().printMap(inputBridge)
+
+        return inputBridge
+    }
+
+    private fun checkOX(inputBridge: List<String>, answerBridge: List<String>): List<String> {
+        var inputBridge = inputBridge
+        var inputBridgeMutable = inputBridge.toMutableList()
+        inputBridgeMutable = addX(inputBridge, answerBridge, inputBridgeMutable)
+        return inputBridgeMutable.toList()
+    }
+
+    private fun addX(
+        inputBridge: List<String>,
+        answerBridge: List<String>,
+        inputBridgeMutable: MutableList<String>,
+    ): MutableList<String> {
+        inputBridge.forEachIndexed { index, it ->
+            if (answerBridge[index] != it) {
+                inputBridgeMutable[index] = it + "X"
+            }
+        }
+        return inputBridgeMutable
+    }
+
+    private fun checkSuccess(inputBridge: List<String>, answerBridge: List<String>): Boolean {
+        var success = true
+        inputBridge.forEachIndexed { index, it ->
+            if (answerBridge[index] != it) {
+                success = false
+            }
+        }
+        return success
+    }
+
+    private fun restartGame(inputBridge: List<String>, answerBridge: List<String>, trial: Int) {
+        var inputRestartGame = InputView().readGameCommand()
+        when (inputRestartGame) {
+            "R" -> retry(answerBridge, trial)
+            "Q" -> OutputView().printResult(inputBridge, false, trial)
         }
     }
 
@@ -56,6 +83,6 @@ class BridgeGame {
     fun retry(answerBridge: List<String>, trial: Int) {
         var trial = trial
         trial += 1
-        move(answerBridge, trial)
+        moveAndCheckAnswer(answerBridge, trial)
     }
 }
