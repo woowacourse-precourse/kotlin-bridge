@@ -22,9 +22,10 @@ class OutputView {
 
     fun printInputBridgeLength() = println(INPUT_BRIDGE_LENGTH)
 
-
+    fun printMoveBridge() = println(MOVE_BRIDGE)
     companion object {
         const val START_GAME = "다리 건너기 게임을 시작합니다."
         const val INPUT_BRIDGE_LENGTH = "다리의 길이를 입력해주세요."
+        const val MOVE_BRIDGE = "이동할 칸을 선택해주세요. (위 : U, 아래 : D)"
     }
 }
