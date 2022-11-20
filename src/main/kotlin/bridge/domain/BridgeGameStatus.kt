@@ -4,7 +4,9 @@ enum class BridgeGameStatus {
     SUCCESS,
     FAILURE,
     ERROR,
-    RUNNING;
+    RUNNING,
+    RETRY,
+    QUIT;
 
     companion object {
         fun getStatus(bridgeGameResult: BridgeGameInfo): BridgeGameStatus {
@@ -15,6 +17,14 @@ enum class BridgeGameStatus {
                     stage.size !in 0..bridge.size -> ERROR
                     else -> RUNNING
                 }
+            }
+        }
+
+        fun setStatus(command: String): BridgeGameStatus {
+            return when (command) {
+                "R" -> RETRY
+                "Q" -> QUIT
+                else -> ERROR
             }
         }
     }
