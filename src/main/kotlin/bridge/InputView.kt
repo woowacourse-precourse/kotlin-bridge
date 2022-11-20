@@ -9,11 +9,20 @@ class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(): Int {
+    fun readBridgeSize(): String? {
         println("다리의 길이를 입력해주세요.")
-        val bridgeSize: Int = Console.readLine().toInt()
+        val bridgeSize: String? = Console.readLine()
 
         return bridgeSize
+    }
+
+    fun checkBridgeSizeException() {
+        try {
+            // 입력받은 숫자가 범위 밖인지, toInt를 통해 문자를 입력받았는지 판별 가능
+            readBridgeSize()!!.toInt() < 3 || readBridgeSize()!!.toInt() > 20
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
+        }
     }
 
     /**
