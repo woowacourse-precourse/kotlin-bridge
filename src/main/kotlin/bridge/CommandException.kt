@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.utils.ErrorType
+
 class CommandException(private val message: String, private val key: String) {
 
     init {

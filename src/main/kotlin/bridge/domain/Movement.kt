@@ -2,7 +2,7 @@ package bridge.domain
 
 import bridge.CommandException
 import bridge.ERROR
-import bridge.ErrorType
+import bridge.utils.ErrorType
 import bridge.MOVEMENT
 
 class Movement(private val direction: String) {

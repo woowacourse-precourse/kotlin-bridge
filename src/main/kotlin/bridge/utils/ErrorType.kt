@@ -1,4 +1,6 @@
-package bridge
+package bridge.utils
+
+import bridge.*
 
 enum class ErrorType(val errorMessage: String) {
     RANGE(ERROR_NUMBER_RANGE_MESSAGE),

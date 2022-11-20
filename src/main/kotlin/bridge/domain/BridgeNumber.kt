@@ -2,7 +2,7 @@ package bridge.domain
 
 import bridge.BRIDGE
 import bridge.ERROR
-import bridge.ErrorType
+import bridge.utils.ErrorType
 
 class BridgeNumber(private val size: String) {
     init {

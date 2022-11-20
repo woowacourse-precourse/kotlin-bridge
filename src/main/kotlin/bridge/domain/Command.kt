@@ -3,7 +3,7 @@ package bridge.domain
 import bridge.COMMAND
 import bridge.CommandException
 import bridge.ERROR
-import bridge.ErrorType
+import bridge.utils.ErrorType
 
 class Command(private val execution: String) {
     init {
