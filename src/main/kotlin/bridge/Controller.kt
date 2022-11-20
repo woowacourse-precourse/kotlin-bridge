@@ -3,6 +3,7 @@ package bridge
 class Controller {
     private val inputView = InputView()
     private val outputView = OutputView()
+    private val inputCheck = InputCheck()
 
     fun run() {
         gameStartStep()
@@ -15,6 +16,8 @@ class Controller {
 
     private fun inputBridgeLengthStep(): Int {
         outputView.printInputBridgeLength()
-        return inputView.readBridgeSize()
+        val bridgeLength = inputView.readBridgeSize()
+        outputView.printBridgeLength(bridgeLength)
+        return bridgeLength
     }
 }
