@@ -50,6 +50,10 @@ object OutputView {
         println(SELECT_MOVE_DIRECTION)
     }
 
+    fun retryOrQuit() {
+        println(INPUT_RETRY_OR_QUIT)
+    }
+
     fun finalResult() {
         println(FINAL_GAME_RESULT)
     }
