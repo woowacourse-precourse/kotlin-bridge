@@ -19,6 +19,7 @@ class InputView {
             checkValidBridgeSize(bridgeSize)
             bridgeSize
         } catch (e: IllegalArgumentException){
+            println(EXCEPTION_WRONG_SIZE)
             throw e
         }
     }
@@ -32,6 +33,7 @@ class InputView {
             checkValidMoveInput(input)
             input
         } catch (e: IllegalArgumentException){
+            println(EXCEPTION_WRONG_MOVE)
             throw e
         }
     }
@@ -45,6 +47,7 @@ class InputView {
             checkValidRestartInput(input)
             input
         } catch (e: IllegalArgumentException){
+            println(EXCEPTION_WRONG_RESTART)
             throw e
         }
     }

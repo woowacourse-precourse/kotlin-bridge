@@ -1,8 +1,8 @@
 package bridge
 
-const val EXCEPTION_WRONG_SIZE = ""
-const val EXCEPTION_WRONG_MOVE = ""
-const val EXCEPTION_WRONG_RESTART = ""
+const val EXCEPTION_WRONG_SIZE = "[ERROR] 3에서 20 사이의 숫자를 입력해 주세요."
+const val EXCEPTION_WRONG_MOVE = "[ERROR] U와 D 중 하나를 입력해 주세요."
+const val EXCEPTION_WRONG_RESTART = "[ERROR] R과 Q 중 하나를 입력해 주세요."
 
 const val START_MESSAGE = "다리 건너기 게임을 시작합니다."
 const val GET_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요."
