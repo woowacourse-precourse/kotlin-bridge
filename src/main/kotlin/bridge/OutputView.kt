@@ -5,6 +5,7 @@ package bridge
  */
 class OutputView {
     private val input = InputView()
+    private val validationInput = ValidationInput()
     private val randomNumberGenerator = BridgeRandomNumberGenerator()
     private val bridgeMaker = BridgeMaker(randomNumberGenerator)
     private val bridge = bridgeMaker.makeBridge(input.readBridgeSize())
@@ -50,6 +51,10 @@ class OutputView {
         downsideBridge.add(BRIDGE_BEGINNING)
     }
 
+    private fun addBridgeBoundary(bridge: MutableList<String>, round: Int, count: Int) {
+        if (round != 1 && count != round) bridge.add(BRIDGE_BOUNDARY)
+    }
+
     private fun addBridgeMiddle(
             upsideBridge: MutableList<String>,
             downsideBridge: MutableList<String>,
@@ -59,10 +64,10 @@ class OutputView {
 
         for (i in 1..round) {
             if (movingRecord[i - 1] == bridge[i - 1])
-                addBlockRightAnswer(movingRecord[i - 1], upsideBridge, downsideBridge)
-            else addBlockWrongAnswer(movingRecord[i - 1], upsideBridge, downsideBridge)
-            addBlockBoundary(upsideBridge, round, i)
-            addBlockBoundary(downsideBridge, round, i)
+                addBridgeCorrectBlock(movingRecord[i - 1], upsideBridge, downsideBridge)
+            else addBridgeWrongBlock(movingRecord[i - 1], upsideBridge, downsideBridge)
+            addBridgeBoundary(upsideBridge, round, i)
+            addBridgeBoundary(downsideBridge, round, i)
         }
     }
 
@@ -73,41 +78,44 @@ class OutputView {
         upsideBridge.add(BRIDGE_END)
         downsideBridge.add(BRIDGE_END)
     }
-
-    private fun addBlockBoundary(block: MutableList<String>, round: Int, count: Int) {
-        if (round != 1 && count != round) block.add("|")
-    }
-
-    private fun addBlockRightAnswer(
+    
+    private fun addBridgeCorrectBlock(
             movingDirection: String,
             upsideBridge: MutableList<String>,
             downsideBridge: MutableList<String>
     ) {
         when (movingDirection) {
-            "U" -> {
+            validationInput.getMoveUpValue(),
+            validationInput.getMoveUpValue().lowercase() ->
+            {
                 upsideBridge.add(RIGHT_ANSWER)
                 downsideBridge.add(NO_INPUT)
             }
-
-            "D" -> {
+            validationInput.getMoveDownValue(),
+            validationInput.getMoveDownValue().lowercase() ->
+            {
                 upsideBridge.add(NO_INPUT)
                 downsideBridge .add(RIGHT_ANSWER)
             }
         }
     }
 
-    private fun addBlockWrongAnswer(
+    private fun addBridgeWrongBlock(
             movingDirection: String,
             upsideBridge: MutableList<String>,
             downsideBridge: MutableList<String>
     ) {
         when (movingDirection) {
-            "U" -> {
+            validationInput.getMoveUpValue(),
+            validationInput.getMoveUpValue().lowercase() ->
+            {
                 upsideBridge.add(WRONG_ANSWER)
                 downsideBridge.add(NO_INPUT)
             }
 
-            "D" -> {
+            validationInput.getMoveDownValue(),
+            validationInput.getMoveDownValue().lowercase() ->
+            {
                 upsideBridge.add(NO_INPUT)
                 downsideBridge .add(WRONG_ANSWER)
             }
@@ -117,6 +125,7 @@ class OutputView {
     companion object {
         const val BRIDGE_BEGINNING = "["
         const val BRIDGE_END = "]"
+        const val BRIDGE_BOUNDARY = "|"
         const val NO_INPUT = "   "
         const val RIGHT_ANSWER = " o "
         const val WRONG_ANSWER = " x "
