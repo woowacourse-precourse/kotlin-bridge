@@ -38,7 +38,7 @@ class BridgeGameController(
     private fun getBridgeSize(): Int {
         var input: String
         do {
-            input = inputView.readBridgeSize()
+            input = inputView.askBridgeSize()
             val isValid = validatorController.validateBridgeSize(input)
         } while (!isValid)
 

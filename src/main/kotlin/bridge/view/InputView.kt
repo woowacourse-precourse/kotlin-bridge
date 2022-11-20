@@ -7,28 +7,28 @@ import camp.nextstep.edu.missionutils.Console
  */
 class InputView {
     /**
-     * 다리의 길이를 입력받는다.
+     * 다리의 길이를 물어본다.
      */
-    fun readBridgeSize(): String {
+    fun askBridgeSize(): String {
         println(BRIDGE_SIZE_INSTRUCTION)
-        return readLine()
+        return readInput()
     }
 
     /**
-     * 사용자가 이동할 칸을 입력받는다.
+     * 사용자가 이동할 칸을 물어본다.
      */
-    fun readMovement(): String {
+    fun askMovement(): String {
         return ""
     }
 
     /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 물어본다.
      */
-    fun readGameCommand(): String {
+    fun askGameCommand(): String {
         return ""
     }
 
-    private fun readLine(): String {
+    private fun readInput(): String {
         return Console.readLine()
     }
 
