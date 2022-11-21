@@ -1,5 +1,8 @@
 package bridge.domain
 
+import bridge.domain.resource.GAME_END
+import bridge.domain.resource.GAME_RESTART
+
 class BridgeGame(
     private val gameManager: BridgeGameManager,
     private val bridgeMaker: BridgeMaker
@@ -9,10 +12,10 @@ class BridgeGame(
         val bridgeSize = gameManager.getBridgeSize()
         val bridge = bridgeMaker.makeBridge(bridgeSize)
 
-        val movement = move(bridge)
+        move(bridge)
     }
 
-    fun move(bridge: List<String>): List<String> {
+    fun move(bridge: List<String>) {
         val path = mutableListOf<String>()
 
         for (i in bridge.indices) {
@@ -21,17 +24,21 @@ class BridgeGame(
 
             gameManager.printMap(path, bridge)
 
-            if(movement != bridge[i]) { break }
+            if(movement != bridge[i]) {
+                retry(bridge)
+                break
+            }
         }
 
-        return path
+        // TODO: 다리 건너기 성공
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     *
-     *
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun retry() {}
+    fun retry(bridge: List<String>) {
+        val command = gameManager.getRestartCommand()
+
+        when (command) {
+            GAME_RESTART -> move(bridge)
+        //    GAME_END ->
+        }
+    }
 }

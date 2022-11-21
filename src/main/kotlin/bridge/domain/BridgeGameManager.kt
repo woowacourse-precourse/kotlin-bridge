@@ -34,6 +34,17 @@ class BridgeGameManager(
         }
     }
 
+    fun getRestartCommand(): String {
+        while (true) {
+            try {
+                return inputView.readGameCommand()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+                continue
+            }
+        }
+    }
+
     fun printMap(path: List<String>, bridge: List<String>) {
         for (value in MoveType.values()) {
             outputView.printMap(MoveType.getMap(value, path, bridge))
