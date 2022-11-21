@@ -10,17 +10,16 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      */
     fun makeBridge(size: Int): List<String> {
         val bridge = ArrayList<String>()
-
         repeat(size) {
-            val eachBridge = bridgeNumberGenerator.generate().convertIntToDirection()
+            val eachBridge = bridgeNumberGenerator.generate().numberToDirection()
             bridge.add(eachBridge)
         }
         return bridge.toList()
     }
 
-    fun Int.convertIntToDirection() = if (this == 0) {
-        "D"
-    } else {
+    private fun Int.numberToDirection() = if (this == 0) {
         "U"
+    } else {
+        "D"
     }
 }
