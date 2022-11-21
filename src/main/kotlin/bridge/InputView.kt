@@ -12,8 +12,7 @@ class InputView {
     fun readBridgeSize(): Int {
         try {
             val inp = readLine()
-            val bridgeSize = BridgeException(inp).toBridgeSize()
-            return bridgeSize
+            return BridgeException(inp).toBridgeSize()
         } catch (e: IllegalArgumentException) {
             println("[ERROR] bridge Size should be integer(3~20)")
             exitProcess(0)
@@ -24,7 +23,13 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        try {
+            val inp = readLine()
+            return BridgeException(inp).toBridgeMoving()
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] bridge can move only 'U' or 'D'")
+            exitProcess(0)
+        }
     }
 
     /**
