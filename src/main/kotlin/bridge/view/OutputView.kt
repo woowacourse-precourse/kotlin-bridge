@@ -1,4 +1,4 @@
-package bridge
+package bridge.view
 
 import constant.Message
 import constant.Symbol

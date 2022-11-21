@@ -1,4 +1,4 @@
-package bridge
+package bridge.view
 
 import constant.Message
 
@@ -15,13 +15,13 @@ class BridgeSizeChecker(private val input: String?) {
     }
 
     private fun checkNotNumber() {
-        if(input?.toIntOrNull() == null) {
+        if (input?.toIntOrNull() == null) {
             throw IllegalArgumentException()
         }
     }
 
     private fun checkRange() {
-        if(input?.toIntOrNull() !in 3..20) {
+        if (input?.toIntOrNull() !in 3..20) {
             throw IllegalArgumentException()
         }
     }

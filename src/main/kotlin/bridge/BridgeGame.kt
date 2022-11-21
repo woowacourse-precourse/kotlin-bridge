@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.view.InputView
+import bridge.view.OutputView
 import constant.Message
 import constant.Symbol
 
