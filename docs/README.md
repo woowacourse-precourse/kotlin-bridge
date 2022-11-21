@@ -36,5 +36,5 @@
 - [] R,Q,O,X,U,D 에 따른 enum 클래스 만들기
 - [] 데이터를 객체에서 꺼내지 않기
   - BridgeGame의 up, down 꺼내는 method 따로 빼기 [참고문서](https://tecoble.techcourse.co.kr/post/2020-04-28-ask-instead-of-getter/)
-- 코틀린 컨벤션 따르기
-- 메인 함수 리팩토링
+- [] 코틀린 컨벤션 따르기
+- [x] 메인 함수 리팩토링

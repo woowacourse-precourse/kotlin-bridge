@@ -7,8 +7,8 @@ class BridgeGame(private val bridge: List<String>) {
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      */
-    var up = mutableListOf<String>()
-    var down = mutableListOf<String>()
+    val up = mutableListOf<String>()
+    val down = mutableListOf<String>()
     var index = 0
     fun move(moving: String) {
         val isMovable = (moving == bridge[index])
