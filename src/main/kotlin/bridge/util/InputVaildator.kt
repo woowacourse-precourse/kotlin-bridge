@@ -20,7 +20,7 @@ class InputVaildator {
         }
     }
 
-    fun checkInputBridgePatten(checkOverlap: String) {
+    fun checkBridgeSizePatten(checkOverlap: String) {
         val messageform = "^[0-9]*$"
         val pattern: Pattern = Pattern.compile(messageform)
         if (checkOverlap.toInt()<3||checkOverlap.toInt()>20) throw java.lang.IllegalArgumentException()
@@ -41,6 +41,15 @@ class InputVaildator {
             println("[ERROR]")
             throw IllegalArgumentException()
         }
+    }
 
+    fun checkRetryPatten(checkOverlap: String) {
+        val messageform = "^[R,Q]*$"
+        val pattern: Pattern = Pattern.compile(messageform)
+        val matcher: Matcher = pattern.matcher(checkOverlap)
+        if (matcher.find().toString() == "false") {
+            println("[ERROR]")
+            throw IllegalArgumentException()
+        }
     }
 }
