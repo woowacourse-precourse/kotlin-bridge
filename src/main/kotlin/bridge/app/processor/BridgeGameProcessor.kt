@@ -27,8 +27,6 @@ object BridgeGameProcessor {
         bridgePassInfo.add(moving to hasPassed)
 
 
-
-
     // 통과 했으면 O, 통과 못하면 X 출력해줌
     fun updatePassed(moving: Moving, bridgeNumber: Int, hasPassed: Boolean): String {
         val passedResult = when (moving.bridgeNumber) {
@@ -41,5 +39,19 @@ object BridgeGameProcessor {
         return passedResult
     }
 
+    /*
+    * 현재 맵을 출력
+    * [,O, X,] 추가
+    * */
+    fun createMapPrint(bridgeNumber: Int): String {
+        var mapPrint = ""
+        val round = bridgePassInfo.size - 1
 
+        mapPrint += "[ "
+        bridgePassInfo.forEachIndexed { index, (moving, hasPassed) ->
+            mapPrint += updatePassed(moving, bridgeNumber, hasPassed)
+            mapPrint += if (index == round) " ]\n" else  " | "
+        }
+        return mapPrint
+    }
 }
