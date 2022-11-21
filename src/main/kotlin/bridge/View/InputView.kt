@@ -1,4 +1,4 @@
-package bridge
+package bridge.View
 import bridge.utils.Messages
 import camp.nextstep.edu.missionutils.Console
 
