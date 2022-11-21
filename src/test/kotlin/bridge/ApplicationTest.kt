@@ -48,6 +48,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `이동할 칸 입력이 U나 D가 아닌 경우`() {
+        assertSimpleTest {
+            runException("3", "t")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
     override fun runMain() {
         main()
     }
