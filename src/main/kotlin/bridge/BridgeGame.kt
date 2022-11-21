@@ -34,9 +34,9 @@ class BridgeGame {
 
     private fun convertIndex(readMoving: String): Int {
         return if (readMoving == BridgeMaker.UP_STAIR) {
-            0
+            BridgeRandomNumberGenerator.RANDOM_LOWER_INCLUSIVE
         } else {
-            1
+            BridgeRandomNumberGenerator.RANDOM_UPPER_INCLUSIVE
         }
     }
 
@@ -56,7 +56,7 @@ class BridgeGame {
     }
 
     private fun clearMap() {
-        with(BridgeRandomNumberGenerator){
+        with(BridgeRandomNumberGenerator) {
             bridgeMap[RANDOM_LOWER_INCLUSIVE].clear()
             bridgeMap[RANDOM_UPPER_INCLUSIVE].clear()
         }
