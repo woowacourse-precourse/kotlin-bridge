@@ -8,22 +8,26 @@ import camp.nextstep.edu.missionutils.Console
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 class InputView {
+
+    private val inputValidation =InputValidation()
+    private val converter = Converter()
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(inputValidation: InputValidation,converter: Converter): Int {
+    fun readBridgeSize(): Int {
         println(INPUT_BRIDGE_SIZE_MESSAGE)
         val input = Console.readLine()
         inputValidation.checkInputInteger(input)
         val bridgeSize = converter.convertStringToInt(input)
         inputValidation.checkBridgeSizeRange(bridgeSize)
+        println()
         return bridgeSize
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    fun readMoving(inputValidation: InputValidation): String {
+    fun readMoving(): String {
         println(INPUT_MOVING_MESSAGE)
         val moving = Console.readLine()
         inputValidation.checkInputLength(moving)
@@ -34,7 +38,7 @@ class InputView {
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
-    fun readGameCommand(inputValidation: InputValidation): String {
+    fun readGameCommand(): String {
         println(INPUT_GAME_COMMAND_MESSAGE)
         val gameCommand = Console.readLine()
         inputValidation.checkInputLength(gameCommand)
