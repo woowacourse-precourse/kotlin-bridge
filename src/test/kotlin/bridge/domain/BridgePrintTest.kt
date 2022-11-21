@@ -59,7 +59,7 @@ class BridgePrintTest {
             OutputView().printResult(bridge, true, 3)
         )
         Assertions.assertThat(
-            OutputView().printResult(bridge,false, 4)
+            OutputView().printResult(bridge, false, 4)
         )
     }
 }

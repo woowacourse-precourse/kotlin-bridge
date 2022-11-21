@@ -22,6 +22,7 @@ const val NOT_ANSWER = "X"
 const val SPACING = " "
 
 // FOR LOGIC
+const val ANSWER_LOCATION = 1
 const val MIN_RANGE_LENGTH = 3
 const val MAX_RANGE_LENGTH = 20
 const val UP = "U"
@@ -32,8 +33,8 @@ const val INPUT_MOVE_SIZE = 1
 const val START_LOCATION = 0
 const val START_TRY = 1
 const val NEXT_TRY = 1
-const val NEXT_MOVE = 1
 const val BRIDGE_PADDING = 1
+const val SHIFT = 2
 
 // FOR ERROR HANDLING
 private const val ERROR_MESSAGE_PREFIX = "[ERROR] "

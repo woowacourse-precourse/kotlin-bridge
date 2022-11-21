@@ -22,8 +22,9 @@ class OutputView {
     }
 
     private fun printSign(bridge: List<String>, line: String) {
+        val maxLocation = bridge.size - SHIFT
         print(START_BRACKET)
-        for (idx in 0..bridge.size - 2) {
+        for (idx in START_LOCATION..maxLocation) {
             if (bridge[idx] == line) print(ANSWER)
             else print(SPACING)
             print(SEPARATOR)

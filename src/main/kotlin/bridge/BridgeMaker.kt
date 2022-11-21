@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.resources.ANSWER_LOCATION
 import bridge.resources.DOWN
 import bridge.resources.UP
 
@@ -15,7 +16,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         val bridge = mutableListOf<String>()
 
         List(size) { bridgeNumberGenerator.generate() }.forEach {
-            if (it == 1) bridge.add(UP)
+            if (it == ANSWER_LOCATION) bridge.add(UP)
             else bridge.add(DOWN)
         }
         return bridge

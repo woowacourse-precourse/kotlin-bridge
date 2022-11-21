@@ -12,22 +12,21 @@ fun main() {
         val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
         val tryCount = START_TRY
         val game = BridgeGame(bridge, bridgeLength)
-        println(bridge)
         gameStart(game, tryCount)
     } catch (_: IllegalArgumentException) {
     }
 }
 
 
-
 fun gameStart(game: BridgeGame, tryCount: Int) {
-    for (location in 0 until game.bridgeLength) {
+    for (location in START_LOCATION until game.length) {
         val answer = game.move(location, inputMove())
-        if (answer && location < game.bridgeLength - BRIDGE_PADDING) OutputView().printMap(shortBridge(game.bridge, location), true)
-        if (answer && location == game.bridgeLength - BRIDGE_PADDING) OutputView().printResult(shortBridge(game.bridge, location), true, tryCount)
+        val nowBridge = shortBridge(game.bridge, location)
+        if (answer && location < game.length - BRIDGE_PADDING) output().printMap(nowBridge, true)
+        if (answer && location == game.length - BRIDGE_PADDING) output().printResult(nowBridge, true, tryCount)
+        if (!answer && game.retry(inputRetry())) gameStart(game, tryCount + NEXT_TRY)
         if (!answer) {
-            if (game.retry(inputRetry())) gameStart(game, tryCount + NEXT_TRY)
-            else OutputView().printResult(shortBridge(game.bridge, location), false, tryCount)
+            output().printResult(nowBridge, false, tryCount)
             break
         }
     }
@@ -35,11 +34,14 @@ fun gameStart(game: BridgeGame, tryCount: Int) {
 
 fun shortBridge(bridge: List<String>, location: Int): MutableList<String> {
     val reduceList = mutableListOf<String>()
-    for (idx in 0..location) {
+    for (idx in START_LOCATION..location) {
         reduceList.add(bridge[idx])
     }
     return reduceList
 }
+
+fun output() = OutputView()
+
 fun inputMove() = InputView().readMoving()
 
 fun inputRetry() = InputView().readGameCommand()
