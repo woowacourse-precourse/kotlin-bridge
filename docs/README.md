@@ -21,8 +21,7 @@
 ### OutputView
 - [x] 현재까지 이동한 다리의 상태를 출력 - printMap()
 - [x] 게임의 최종 결과 출력 - printResult()
-- [x] 게임의 성공 여부 출력 - printSuccess()
-- [x] 게임의 시도 횟수 출력 - printResult()
+- [x] 게임의 성공 여부와 시도 횟수 출력 -printStats()
 ### Exception
 - [x] 공백이나 문자 입력
 - [x] 3 ~ 20 숫자가 아닌 입력

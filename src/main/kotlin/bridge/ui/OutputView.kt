@@ -18,11 +18,8 @@ class OutputView {
         printMap(playerMoves)
     }
 
-    fun printCount(count:Int){
+    fun printStats(count:Int,message:String){
         println("총 시도한 횟수: $count")
-    }
-
-    fun printSuccess(message:String){
         println("게임 성공 여부: $message")
     }
 }
