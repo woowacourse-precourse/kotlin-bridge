@@ -6,9 +6,6 @@ import bridge.Model.BridgeData.bridgeLocation
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame {
-    private val MOVE = "O"
-    private val MISS = "X"
-    private val NOT_CHOICE = " "
     private val WIN = "성공"
     private val LOSE = "실패"
 
@@ -27,17 +24,9 @@ class BridgeGame {
         finalResult = LOSE
     }
 
-    fun getResult(result: BridgeResult): Pair<String, String> {
-        return when (result) {
-            BridgeResult.UP_WIN -> Pair(MOVE, NOT_CHOICE)
-            BridgeResult.DOWN_WIN -> Pair(NOT_CHOICE, MOVE)
-            BridgeResult.UP_LOSE -> Pair(MISS, NOT_CHOICE)
-            BridgeResult.DOWN_LOSE -> Pair(NOT_CHOICE, MISS)
-        }
-    }
-
     fun makeUpDownResult(roundResult: BridgeResult) {
-        var (up, down) = getResult(roundResult)
+        var up = roundResult.upState
+        var down = roundResult.downState
         upResult.add(up)
         downResult.add(down)
     }
@@ -57,7 +46,7 @@ class BridgeGame {
     companion object {
         var upResult = mutableListOf<String>()
         var downResult = mutableListOf<String>()
-        var tryCount = 0
+        var tryCount = 1
         var finalResult = ""
     }
 }

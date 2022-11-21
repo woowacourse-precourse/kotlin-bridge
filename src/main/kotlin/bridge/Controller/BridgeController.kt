@@ -33,12 +33,15 @@ class BridgeController {
 
     fun processGame() {
         while (isPlay) {
-            checkLastRound()
+            if (checkLastRound()) {
+                break
+            }
             bridgeSelect = getBridgeSelect()
             moveBridge()
-            outputView.printMap(upResult, downResult)
         }
-        getGameCommand()
+        if (finalResult == "실패") {
+            getGameCommand()
+        }
     }
 
     fun getBridgeSize() {
@@ -67,6 +70,7 @@ class BridgeController {
             isPlay = false
         }
         bridgeGame.makeUpDownResult(result)
+        outputView.printMap(upResult, downResult)
     }
 
     fun compareBridge(): BridgeResult {
@@ -76,12 +80,13 @@ class BridgeController {
         return result
     }
 
-    fun checkLastRound() {
+    fun checkLastRound(): Boolean {
         var referee = Referee()
         if (referee.judgeLastBridge(bridgeLocation)) {
             printFinalResult()
-            isPlay = false
+            return true
         }
+        return false
     }
 
     fun getGameCommand() {
@@ -89,18 +94,18 @@ class BridgeController {
         var command = inputView.readGameCommand()
         when (command) {
             "R" -> {
-                bridgeGame.retry()
-                gameRetry()
+                retryGame()
                 isPlay = true
                 processGame()
             }
+
             "Q" -> {
                 printFinalResult()
             }
         }
     }
 
-    fun gameRetry() {
+    fun retryGame() {
         bridgeGame.retry()
         resetData()
     }
