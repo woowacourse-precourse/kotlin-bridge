@@ -1,15 +1,17 @@
 package bridge.ui
 
+import bridge.Exception.inputNoGameException
+
 class OutputView {
-    fun printMap(playerMoves:MutableList<List<String>>) {
-        for(upDown in 0..1) {
+    fun printMap(playerMoves: MutableList<List<String>>) {
+        for (upDown in 0..1) {
             var index = 0
             print("[ ")
-            while(index < playerMoves.size - 1) {
+            while (index < playerMoves.size - 1) {
                 print(playerMoves[index][upDown] + " | ")
                 index++
             }
-            println(playerMoves[index][upDown]+" ]")
+            println(playerMoves[index][upDown] + " ]")
         }
     }
 
@@ -18,8 +20,13 @@ class OutputView {
         printMap(playerMoves)
     }
 
-    fun printStats(count:Int,message:String){
-        println("총 시도한 횟수: $count")
-        println("게임 성공 여부: $message")
+    fun printStats(count: Int, message: String) {
+        try {
+            count.inputNoGameException()
+            println("총 시도한 횟수: $count")
+            println("게임 성공 여부: $message")
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+        }
     }
 }
