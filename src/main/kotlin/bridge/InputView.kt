@@ -4,6 +4,8 @@ import bridge.BridgeGameRule.BRIDGE_MAXIMUM_LENGTH
 import bridge.BridgeGameRule.BRIDGE_MINIMUM_LENGTH
 import bridge.BridgePhrases.BRIDGE_SIZE_INPUT_NOT_IN_CORRECT_RANGE_ERROR
 import bridge.BridgePhrases.BRIDGE_SIZE_INPUT_TYPE_ERROR
+import bridge.BridgePhrases.INPUT_IS_NOT_ALPHABET_ERROR
+import bridge.BridgePhrases.MOVING_CODE_INCORRECT_ERROR
 import camp.nextstep.edu.missionutils.Console.*
 import java.util.regex.Pattern
 
@@ -23,10 +25,14 @@ class InputView {
 
     private fun convertToInt(input: String): Int = input.toInt()
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     fun readMoving(): String = readLine()
+
+    fun getValidateMovingCode(userInput: String): String {
+        require(isAlphabet(userInput)) { INPUT_IS_NOT_ALPHABET_ERROR }
+        val processedUserInput = userInput.uppercase()
+        require(checkCorrectMovingCode(processedUserInput)) { MOVING_CODE_INCORRECT_ERROR }
+        return processedUserInput
+    }
 
     private fun checkCorrectMovingCode(input: String): Boolean =
         input == BridgeType.UP.charCode.toString() || input == BridgeType.DOWN.charCode.toString()
