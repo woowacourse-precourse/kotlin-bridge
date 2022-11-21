@@ -11,7 +11,7 @@ import camp.nextstep.edu.missionutils.Console.*
 import java.util.regex.Pattern
 
 class InputView {
-    fun readBridgeSize(): String = readLine()
+    fun readBridgeSize(): Int = getValidateBridgeSize(readLine())
 
     fun getValidateBridgeSize(userInput: String): Int {
         require(isNumber(userInput)) { BRIDGE_SIZE_INPUT_TYPE_ERROR }
@@ -26,7 +26,7 @@ class InputView {
 
     private fun convertToInt(input: String): Int = input.toInt()
 
-    fun readMoving(): String = readLine()
+    fun readMoving(): String = getValidateMovingCode(readLine())
 
     fun getValidateMovingCode(userInput: String): String {
         require(isAlphabet(userInput)) { INPUT_IS_NOT_ALPHABET_ERROR }
@@ -38,7 +38,7 @@ class InputView {
     private fun checkCorrectMovingCode(input: String): Boolean =
         input == BridgeType.UP.charCode.toString() || input == BridgeType.DOWN.charCode.toString()
 
-    fun readGameCommand(): String = readLine()
+    fun readGameCommand(): String = getValidateGameCommend(readMoving())
 
     fun getValidateGameCommend(userInput: String): String {
         require(isAlphabet(userInput)) { INPUT_IS_NOT_ALPHABET_ERROR }
