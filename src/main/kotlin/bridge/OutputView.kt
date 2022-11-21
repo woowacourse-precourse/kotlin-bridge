@@ -10,6 +10,10 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap(bridgeAnswer : List<String>, currentMove : Boolean, turnCount : Int) {
+        val bridgeUpperSide = upperSide(bridgeAnswer,currentMove,turnCount)
+        val bridgeDownSide = downSide(bridgeAnswer,currentMove,turnCount)
+        println("[ $bridgeUpperSide ]")
+        println("[ $bridgeDownSide ]")
     }
 
     fun upperSide(bridgeAnswer : List<String>, currentMove : Boolean, turnCount : Int): List<String> {
