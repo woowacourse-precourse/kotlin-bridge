@@ -2,10 +2,22 @@ package bridge
 
 class Result {
 
-    var isSuccess: Boolean = false
-    var firstRowResult: ArrayList<String> = arrayListOf()
-    var secondRowResult: ArrayList<String> = arrayListOf()
-    var tryCount = 0
+    private var isSuccess: Boolean = false
+    private var firstRowResult: ArrayList<String> = arrayListOf()
+    private var secondRowResult: ArrayList<String> = arrayListOf()
+    private var tryCount = 0
+
+    fun getFirstRowResult(): ArrayList<String> {
+        return firstRowResult
+    }
+
+    fun getSecondRowResult(): ArrayList<String> {
+        return secondRowResult
+    }
+
+    fun getSuccess(): Boolean {
+        return isSuccess
+    }
 
     fun setSuccess() {
         isSuccess = true
@@ -37,6 +49,11 @@ class Result {
         firstRowResult = arrayListOf()
         secondRowResult.clear()
         secondRowResult = arrayListOf()
+        isSuccess = false
+    }
+
+    fun getTryCount(): Int {
+        return tryCount
     }
 
     fun increaseTryCount() {
