@@ -5,7 +5,7 @@ import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-class ExceptionTest: NsTest() {
+class InputViewTest: NsTest() {
     @Test
     fun `다리 개수 테스트`() {
         val bridgeSize = BridgeException("12").toBridgeSize()

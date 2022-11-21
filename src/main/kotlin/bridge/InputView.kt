@@ -15,7 +15,7 @@ class InputView {
             val bridgeSize = BridgeException(inp).toBridgeSize()
             return bridgeSize
         } catch (e: IllegalArgumentException) {
-            println("[ERROR] bridge Size error")
+            println("[ERROR] bridge Size should be integer(3~20)")
             exitProcess(0)
         }
     }
