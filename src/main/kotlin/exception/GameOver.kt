@@ -10,7 +10,7 @@ class GameOver(private val inputView: InputView) {
             try {
                 retryOrQuit = inputView.readGameCommand()
                 checkException()
-            } catch (e: IllegalStateException) {
+            } catch (e: IllegalArgumentException) {
                 continue
             }
             break
@@ -20,7 +20,7 @@ class GameOver(private val inputView: InputView) {
     fun getInput() = retryOrQuit
 
     private fun checkException() {
-        check(retryOrQuit == "R" || retryOrQuit == "Q") {
+        require(retryOrQuit == "R" || retryOrQuit == "Q") {
             println("[ERROR] 게임을 재시작 및 종료할 수 없습니다. R(재시작)이나 Q(종료)를 입력해주세요.")
         }
     }
