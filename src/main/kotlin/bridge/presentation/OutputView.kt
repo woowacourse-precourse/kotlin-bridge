@@ -25,8 +25,8 @@ class OutputView {
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      */
     fun printMap(bridgeGame: BridgeGame) {
-        println(bridgeGame.up.toString().replace(", ","|"))
-        println(bridgeGame.down.toString().replace(", ","|"))
+        println(bridgeGame.toUpBridgeMap())
+        println(bridgeGame.toDownBridgeMap())
     }
     fun printGameCommand() {
         println()

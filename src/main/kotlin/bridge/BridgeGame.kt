@@ -29,6 +29,15 @@ class BridgeGame(private val bridge: List<String>) {
     }
 
     /**
+     * 위, 아래의 다리를 list 형태에서 올바른 징검다리 형태로 바꾸어지는 메서드
+     */
+    fun toUpBridgeMap(): String {
+        return up.toString().replace(", ","|")
+    }
+    fun toDownBridgeMap(): String {
+        return down.toString().replace(", ","|")
+    }
+    /**
      * 게임의 진행상황을 결정하는 메서드 (실패/성공/진행)
      */
     fun isGameContinue(): String {
