@@ -26,7 +26,6 @@ class InputView {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
         val oneMove = Console.readLine()
         val checkMove = movingCheck(oneMove)
-        println()
         return checkMove
     }
 

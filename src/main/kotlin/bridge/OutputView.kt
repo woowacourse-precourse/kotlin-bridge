@@ -12,8 +12,10 @@ class OutputView {
     fun printMap(bridgeAnswer : List<String>, currentMove : Boolean, turnCount : Int) {
         val bridgeUpperSide = upperSide(bridgeAnswer,currentMove,turnCount)
         val bridgeDownSide = downSide(bridgeAnswer,currentMove,turnCount)
-        println("[ $bridgeUpperSide ]")
-        println("[ $bridgeDownSide ]")
+        println("""[ $bridgeUpperSide ]
+            |[ $bridgeDownSide ]
+            |
+        """.trimMargin())
     }
 
     fun upperSide(bridgeAnswer : List<String>, currentMove : Boolean, turnCount : Int): List<String> {
