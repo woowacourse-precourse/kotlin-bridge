@@ -35,6 +35,10 @@ class OutputView {
         println("최종 게임 결과")
 
     }
+
+    fun printGameEnd(){
+        print( "총 시도한 횟수: "+BridgeGame().startBridge(BridgeGame().guideSet()))
+    }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      *
