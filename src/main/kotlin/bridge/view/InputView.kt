@@ -1,6 +1,9 @@
 package bridge.view
 
 import bridge.domain.*
+import bridge.domain.resource.GAME_END
+import bridge.domain.resource.GAME_RESTART
+import bridge.domain.resource.MoveType
 import camp.nextstep.edu.missionutils.Console.readLine
 
 class InputView {

@@ -1,6 +1,7 @@
 package bridge.domain
 
 import bridge.domain.ErrorType.Companion.makeError
+import bridge.domain.resource.*
 
 object ErrorCheck {
     fun checkIsInteger(value: String?) {
@@ -18,7 +19,7 @@ object ErrorCheck {
     }
 
     fun checkValidMovement(move: String) {
-        val option = listOf(MOVE_UP, MOVE_DOWN)
+        val option = listOf(MoveType.MOVE_UP.code, MoveType.MOVE_DOWN.code)
 
         if (!option.contains(move)) {
             makeError(ErrorType.INVALID_OPTION)
