@@ -2,6 +2,7 @@ package bridge.controller
 
 import bridge.*
 import bridge.view.InputView
+import bridge.view.OutputView
 
 class BridgeController {
     private val bridgeNumberGenerator = BridgeRandomNumberGenerator()
@@ -15,8 +16,7 @@ class BridgeController {
         println(bridge)
         println()
 
-        val move = printDirection()
-        println(move)
+        choiceBridge(size)
     }
 
     fun printBridge(num: Int): List<String> {
@@ -37,6 +37,14 @@ class BridgeController {
             println("\n")
             val move = printDirection()
             return move
+        }
+
+    }
+
+    fun choiceBridge(size : Int){
+        for (part in 0 until size){
+            val direction = printDirection()
+            OutputView().printMap(direction , part)
         }
 
     }

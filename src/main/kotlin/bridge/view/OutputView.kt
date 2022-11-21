@@ -9,7 +9,34 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap() {
+    fun printMap(heading: String, count: Int) {
+        printUp(heading, count)
+        printDown(heading, count)
+    }
+
+    fun printUp(heading: String, count: Int) {
+        var and = " | "
+
+        if (count == 0) {
+            println("[ " + heading + " ]")
+        }
+
+        if (count != 0) {
+            println("[ " + heading + (and + heading).repeat(count) + " ]")
+        }
+
+    }
+
+    fun printDown(heading: String, count: Int) {
+        var and = " | "
+
+        if (count == 0) {
+            println("[ " + heading + " ]")
+        }
+
+        if (count != 0) {
+            println("[ " + heading + (and + heading).repeat(count) + " ]")
+        }
 
     }
 
