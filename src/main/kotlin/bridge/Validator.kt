@@ -23,7 +23,15 @@ class Validator {
         return moving
     }
 
+    fun validatorGameCommand(command: String?): String {
+        val gameCommand = command.toString()
+        require(gameCommand == "R" || gameCommand == "Q"){
+            println(ERROR_GAME_COMMAND)
+            InputView().readGameCommand()
+        }
+        return gameCommand
 
+    }
 
     private fun validatorNumeric(input: String?): Boolean {
         return try{
