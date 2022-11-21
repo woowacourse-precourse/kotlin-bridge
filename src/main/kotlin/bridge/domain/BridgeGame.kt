@@ -28,4 +28,6 @@ class BridgeGame(private val bridge: Bridge, private val player: Player) {
     fun retry() {
         player.resetBlocks()
     }
+
+    fun getPlayer() = player
 }
