@@ -18,8 +18,6 @@ class GameController(
 
     fun standByPhase(bridgeMaker: BridgeMaker) {
         outputView.printGameStart()
-        outputView.printBlank()
-        outputView.printBridgeSizeRequest()
         val bridgeSize = inputView.readBridgeSize()
         outputView.printBlank()
         bridgeGame = BridgeGame(bridgeMaker.makeBridge(bridgeSize))

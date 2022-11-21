@@ -30,9 +30,7 @@ class OutputView {
 
     fun printGameStart() {
         println(GAME_START)
-    }
-
-    fun printBridgeSizeRequest() {
+        println()
         println(ENTER_BRIDGE_SIZE)
     }
 
