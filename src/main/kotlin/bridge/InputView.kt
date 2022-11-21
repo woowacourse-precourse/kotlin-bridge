@@ -1,14 +1,33 @@
 package bridge
 
+import camp.nextstep.edu.missionutils.Console
+
+const val ERROR_TAG = "[ERROR]"
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 class InputView {
     /**
-     * 다리의 길이를 입력받는다.
+     * @brief 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return 0
+        while(true) {
+            println("다리의 길이를 입력해주세요.")
+            val size = Console.readLine()
+            runCatching {
+                validateBridgeSize(size)
+            }.onSuccess { return size.toInt() }.onFailure {println(it.message) }
+        }
+    }
+
+    /**
+     * @brief 다리의 길이가 유효한지 확인한다.
+     * @return 유효한 경우, int로 변환한 다리 길이를 반환하고 아닌 경우 Exception을 던진다.
+     */
+    private fun validateBridgeSize(size: String): Int {
+        if (size.toIntOrNull() == null) throw IllegalArgumentException("$ERROR_TAG 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
+        if (size.toInt() < 3 || size.toInt() > 20) throw IllegalArgumentException("$ERROR_TAG 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
+        return size.toInt()
     }
 
     /**
