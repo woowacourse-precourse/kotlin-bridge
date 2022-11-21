@@ -61,6 +61,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `예외 테스트 - 게임 재시도 여부가 R, Q가 아닌 다른 문자로 입력되는 경우`() {
+        assertRandomNumberInRangeTest({
+            runException("3", "D", "Y")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }, 1, 0, 1)
+    }
+
     private fun make_bridge(bridge: List<Int>): List<String> {
         val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(bridge)
         val bridgeMaker = BridgeMaker(numberGenerator)
