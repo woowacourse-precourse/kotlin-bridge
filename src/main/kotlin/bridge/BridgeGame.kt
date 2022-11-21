@@ -1,6 +1,7 @@
 package bridge
 
 import constant.Message
+import constant.Symbol
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -24,10 +25,9 @@ class BridgeGame(val bridge: List<String>) {
         var attempt = 0
         for (i in bridge.indices) {
             val success = calcResult()
+            OutputView().printMap(up, down)
             attempt++
-            if (!success) {
-                break
-            }
+            if (!success) break
         }
     }
 
@@ -40,22 +40,22 @@ class BridgeGame(val bridge: List<String>) {
     }
 
     private fun calcUpResult(moving: String): Boolean {
-        down.add(Message.NOTHING.message)
+        down.add(Symbol.NOTHING.symbol)
         if (bridge[up.size] == moving) {
-            up.add(Message.SUCCESS.message)
+            up.add(Symbol.SUCCESS.symbol)
             return true
         }
-        up.add(Message.FAIL.message)
+        up.add(Symbol.FAIL.symbol)
         return false
     }
 
     private fun calcDownResult(moving: String): Boolean {
-        up.add(Message.NOTHING.message)
+        up.add(Symbol.NOTHING.symbol)
         if (bridge[down.size] == moving) {
-            down.add(Message.SUCCESS.message)
+            down.add(Symbol.SUCCESS.symbol)
             return true
         }
-        down.add(Message.FAIL.message)
+        down.add(Symbol.FAIL.symbol)
         return false
     }
 
