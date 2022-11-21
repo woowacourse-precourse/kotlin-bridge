@@ -35,7 +35,7 @@ class ValidatorControllerTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["u", "d", "a", "", " "])
+    @ValueSource(strings = ["u", "d", "a", "", " ", "R", "Q", "UU", "DD"])
     fun `이동할 칸이 유효하지 않으면 거짓이다`(input: String) {
         assertThat(controller.validateMovement(input)).isFalse
     }
