@@ -17,55 +17,76 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap(column: Int, actual: String, predict: String): List<String> {
-        if(column == 0){
-            val index = 1
-            if(actual == UP) {
-                if(actual == predict){
-                    map[0] = insertAtIndex(map[0], CORRECT, index)
-                    map[1] = insertAtIndex(map[1], "  ", index)
-                }else{
-                    map[0] = insertAtIndex(map[0], "  ", index)
-                    map[1] = insertAtIndex(map[1], INCORRECT, index)
-                }
-            }else {
-                if(actual == predict) {
-                    map[0] = insertAtIndex(map[0], "  ", index)
-                    map[1] = insertAtIndex(map[1], CORRECT, index)
-                }else{
-                    map[0] = insertAtIndex(map[0], INCORRECT, index)
-                    map[1] = insertAtIndex(map[1], "  ", index)
-                }
-            }
-        }else{
-            val index = 4 * column - 1
-            if(actual == UP) {
-                if(actual == predict){
-                    map[0] = insertAtIndex(map[0], PARTITION, index)
-                    map[0] = insertAtIndex(map[0], CORRECT, index + 2)
-                    map[1] = insertAtIndex(map[1], PARTITION, index)
-                    map[1] = insertAtIndex(map[1], "  ", index + 2)
-                }else{
-                    map[0] = insertAtIndex(map[0], PARTITION, index)
-                    map[0] = insertAtIndex(map[0], "  ", index + 2)
-                    map[1] = insertAtIndex(map[1], PARTITION, index)
-                    map[1] = insertAtIndex(map[1], INCORRECT, index + 2)
-                }
-            }else {
-                if(actual == predict) {
-                    map[0] = insertAtIndex(map[0], PARTITION, index)
-                    map[0] = insertAtIndex(map[0], "  ", index + 2)
-                    map[1] = insertAtIndex(map[1], PARTITION, index)
-                    map[1] = insertAtIndex(map[1], CORRECT, index + 2)
-                }else{
-                    map[0] = insertAtIndex(map[0], PARTITION, index)
-                    map[0] = insertAtIndex(map[0], INCORRECT, index + 2)
-                    map[1] = insertAtIndex(map[1], PARTITION, index)
-                    map[1] = insertAtIndex(map[1], "  ", index + 2)
-                }
-            }
+        if (column == 0) {
+            handleFirstColumnCase(column, actual, predict)
+        } else {
+            handlePartitionCase(column, actual, predict)
         }
-
         return map
+    }
+
+    private fun handleFirstColumnCase(column: Int, actual: String, predict: String) {
+        if (actual == UP) {
+            if (actual == predict) printUpCorrectCase(column + 1)
+            else printUpIncorrectCase(column + 1)
+        } else {
+            if (actual == predict) printDownCorrectCase(column + 1)
+            else printDownIncorrectCase(column + 1)
+        }
+    }
+
+    private fun handlePartitionCase(column: Int, actual: String, predict: String) {
+        val index = 4 * column - 1
+        if (actual == UP) {
+            if (actual == predict) handleCorrectCase(UP, index)
+            else handleIncorrectCase(UP, index)
+        } else {
+            if (actual == predict) handleCorrectCase(DOWN, index)
+            else handleIncorrectCase(DOWN, index)
+        }
+    }
+
+    private fun handleCorrectCase(direction: String, index: Int) {
+        printPartition(index)
+        if (direction == UP) {
+            printUpCorrectCase(index + 2)
+        } else {
+            printDownCorrectCase(index + 2)
+        }
+    }
+
+    private fun handleIncorrectCase(direction: String, index: Int) {
+        printPartition(index)
+        if (direction == UP) {
+            printUpIncorrectCase(index + 2)
+        } else {
+            printDownIncorrectCase(index + 2)
+        }
+    }
+
+    private fun printUpCorrectCase(index: Int) {
+        map[0] = insertAtIndex(map[0], CORRECT, index)
+        map[1] = insertAtIndex(map[1], "  ", index)
+    }
+
+    private fun printDownCorrectCase(index: Int) {
+        map[0] = insertAtIndex(map[0], "  ", index)
+        map[1] = insertAtIndex(map[1], CORRECT, index)
+    }
+
+    private fun printUpIncorrectCase(index: Int) {
+        map[0] = insertAtIndex(map[0], INCORRECT, index)
+        map[1] = insertAtIndex(map[1], "  ", index)
+    }
+
+    private fun printDownIncorrectCase(index: Int) {
+        map[0] = insertAtIndex(map[0], "  ", index)
+        map[1] = insertAtIndex(map[1], INCORRECT, index)
+    }
+
+    private fun printPartition(index: Int) {
+        map[0] = insertAtIndex(map[0], PARTITION, index)
+        map[1] = insertAtIndex(map[1], PARTITION, index)
     }
 
     private fun insertAtIndex(original: String, str: String, position: Int): String {
