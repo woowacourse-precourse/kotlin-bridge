@@ -2,7 +2,6 @@ package bridge.domain
 
 import bridge.BridgeRandomNumberGenerator.Companion.RANDOM_LOWER_INCLUSIVE
 import bridge.BridgeRandomNumberGenerator.Companion.RANDOM_UPPER_INCLUSIVE
-import bridge.resources.ERROR_INPUT_COMMAND
 import bridge.resources.ERROR_INPUT_VALID
 
 enum class BridgeGameType(val type: String, val inclusive: Int) {
