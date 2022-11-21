@@ -18,9 +18,9 @@
     - 예외 상황 시 에러 문구를 출력해야 한다. 단, 에러 문구는 "[ERROR]"로 시작해야 한다.
     - [ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.
     ```
-
+    
     + 요구하는 입출력 형식을 확인할 것
-
+    
     6. 추가 요구사항
     ```
     추가 요구 사항
@@ -37,9 +37,9 @@
 2. 예외 처리
     + 잘못된 값을 입력 받을 경우 IllegalArgumentException를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 시키라고 명시되어 있다.
     + 잘못된 값이라 하면 다음과 같은 예외 상황이 있다.
-        + 다리의 길이 입력 시 - 다리 길이가 정수가 아닌 경우 / 3이상 20이하가 아닌 경우가 있다.
-        + 게임 이동 시 - U(위 칸), D(아래 칸) 이외의 값을 입력할 경우
-        + 게임 재시작, 종료 여부 입력 시 - R(재시작), Q(종료) 이외의 값을 입력할 경우
+      + 다리의 길이 입력 시 - 다리 길이가 정수가 아닌 경우 / 3이상 20이하가 아닌 경우가 있다. 
+      + 게임 이동 시 - U(위 칸), D(아래 칸) 이외의 값을 입력할 경우 
+      + 게임 재시작, 종료 여부 입력 시 - R(재시작), Q(종료) 이외의 값을 입력할 경우
     + 이 외에 예외 발생 시 IllegalStateException를 발생시키도록 한다.
 
 3. 클래스
@@ -52,65 +52,65 @@
     + BridgeGame 클래스 : 다리 건너기 게임 진행, 재시도 관련 이벤트 Controller 역할
     + BridgeMaker 클래스 : 생성자로 BridgeNumberGenerator가 있다.
     + BridgeRandomNumberGenerator 클래스 : 라이브러리 bridge.BridgeRandomNumberGenerator의 generate()를 이용해 다리(한 칸) 생성 / 변경 불가
-
+    
 
 3. 함수
     1. BridgeSizeException 클래스
-
-   | 함수명 | 매개변수 | 리턴타입 | 용도 |
-       | --- | --- | --- | --- |
-   | isNotInteger | String inputData | Boolean | 입력값 정수인지 check |
-   | isNotBridgeNumber | String inputData | Boolean | 입력값 3이상 20 이하의 수인지 check |
-
+    
+    | 함수명 | 매개변수 | 리턴타입 | 용도 |
+    | --- | --- | --- | --- |
+    | isNotInteger | String inputData | Boolean | 입력값 정수인지 check |
+    | isNotBridgeNumber | String inputData | Boolean | 입력값 3이상 20 이하의 수인지 check |
+    
     2. BridgeMoveException 클래스
 
-   | 함수명 | 매개변수 | 리턴타입 | 용도 |
-       | --- | --- | --- | --- |
-   | isNotMoveCharacter | String inputData | Boolean | 입력값 'U' 혹은 'D'인지 check |
-
+    | 함수명 | 매개변수 | 리턴타입 | 용도 |
+    | --- | --- | --- | --- |
+    | isNotMoveCharacter | String inputData | Boolean | 입력값 'U' 혹은 'D'인지 check |
+   
     3. GameCommandException 클래스
 
-   | 함수명 | 매개변수 | 리턴타입 | 용도 |
-       | --- | --- | --- | --- |
-   | isNotExitCharacter | String inputData | Boolean | 입력값 'R' 혹은 'Q'인지 check |
-
+    | 함수명 | 매개변수 | 리턴타입 | 용도 |
+    | --- | --- | --- | --- |
+    | isNotExitCharacter | String inputData | Boolean | 입력값 'R' 혹은 'Q'인지 check |
+    
     4. InputView 클래스
 
-   | 함수명 | 매개변수 | 리턴타입 | 용도 |
-       | --- | --- | --- | --- |
-   | inputBridgeSize |  | Int | 다리 길이 입력 받아 예외 처리 후 return |
-   | inputMoveIndex |  | String | 이동할 칸 입력 받아 예외 처리 후 return |
-   | inputExit |  | String | 게임 재시작, 종료 여부 입력 받아 예외 처리 후 return |
+    | 함수명 | 매개변수 | 리턴타입 | 용도 |
+    | --- | --- | --- | --- |
+    | inputBridgeSize |  | Int | 다리 길이 입력 받아 예외 처리 후 return |
+    | inputMoveIndex |  | String | 이동할 칸 입력 받아 예외 처리 후 return |
+    | inputExit |  | String | 게임 재시작, 종료 여부 입력 받아 예외 처리 후 return |
 
     5. OutputView 클래스
 
-   | 함수명 | 매개변수 | 리턴타입 | 용도 |
-       | --- | --- | --- | --- |
-   | printMap |  |  | 터미널에 '맵의 정보' 출력 |
-   | printResult | gameResult: Boolean, tryCount: Int |  | 터미널에 '게임 결과 출력' 출력 |
+    | 함수명 | 매개변수 | 리턴타입 | 용도 |
+    | --- | --- | --- | --- |
+    | printMap |  |  | 터미널에 '맵의 정보' 출력 |
+    | printResult | gameResult: Boolean, tryCount: Int |  | 터미널에 '게임 결과 출력' 출력 |
 
     6. BridgeGame 클래스
 
-   | 함수명 | 매개변수 | 리턴타입 | 용도 |
-       | --- | --- | --- | --- |
-   | move | moveData: Int |  | moveData 값을 읽어 게임 진행 |
-   | retry | gameCommand:  |  | gameCommand 값을 읽어 게임 종료 및 재시작 설정 |
+    | 함수명 | 매개변수 | 리턴타입 | 용도 |
+    | --- | --- | --- | --- |
+    | move | moveData: Int |  | moveData 값을 읽어 게임 진행 |
+    | retry | gameCommand:  |  | gameCommand 값을 읽어 게임 종료 및 재시작 설정 |
 
     7. BridgeMaker 클래스 - 생성자 private val bridgeNumberGenerator: BridgeNumberGenerator
-
-   | 함수명 | 매개변수 | 리턴타입 | 용도 |
-       | --- | --- | --- | --- |
-   | makeBridge | size: Int | List-String | 사이즈만큼 반복해 다리 정보를 담은 List 생성 후 return |
-
+    
+    | 함수명 | 매개변수 | 리턴타입 | 용도 |
+    | --- | --- | --- | --- |
+    | makeBridge | size: Int | List-String | 사이즈만큼 반복해 다리 정보를 담은 List 생성 후 return |
+    
     8. BridgeController 클래스
-
+    
     + InputView와 OutputView, Bridge 클래스들을 이용해 게임 진행
     + init에서 초기 생성 시 다리 길이를 입력 받도록하고, 그 다리 길이만큼 다리를 생성하도록 한다.
-
-   | 함수명 | 매개변수 | 리턴타입 | 용도 |
-       | --- | --- | --- | --- |
-   | startBridgeGame |  |  | 다리 건너기 게임 진행 |
-
+    
+    | 함수명 | 매개변수 | 리턴타입 | 용도 |
+    | --- | --- | --- | --- |
+    | startBridgeGame |  |  | 다리 건너기 게임 진행 |
+    
 ---
 ## 문제 - 다리 건너기
 
