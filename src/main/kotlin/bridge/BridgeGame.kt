@@ -28,9 +28,10 @@ class BridgeGame(val bridge: List<String>) {
             OutputView().printMap(up, down)
             if (!success) {
                 checkRetry()
-                break
+                return Unit
             }
         }
+        end()
     }
 
     private fun calcResult(): Boolean {
@@ -83,7 +84,16 @@ class BridgeGame(val bridge: List<String>) {
     private fun quit() {
         println(Message.FINAL_GAME_RESULT.message)
         OutputView().printMap(up, down)
+
         println("${Message.GAME_SUCCESS_RESULT.message}${Message.FAIL.message}")
+        println("${Message.NUMBER_OF_ATTEMPTS.message}${attempts}")
+    }
+
+    private fun end() {
+        println(Message.FINAL_GAME_RESULT.message)
+        OutputView().printMap(up, down)
+
+        println("${Message.GAME_SUCCESS_RESULT.message}${Message.SUCCESS.message}")
         println("${Message.NUMBER_OF_ATTEMPTS.message}${attempts}")
     }
 }
