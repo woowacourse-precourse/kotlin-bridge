@@ -25,6 +25,11 @@ class BridgeGameController {
         return repeatInputProcess { inputView.readMoving() } as String
     }
 
+    private fun readCommand(): String {
+        outputView.printReadCommandMent()
+        return repeatInputProcess { inputView.readGameCommand() } as String
+    }
+
     private fun repeatInputProcess(inputOperation: () -> Any): Any {
         do {
             try {
