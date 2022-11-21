@@ -31,7 +31,6 @@ class BridgeGame(private var bridge: List<String>) {
         return movable
     }
 
-
     private fun checkMovable(moving: String, step: Int): Boolean {
         if (moving == bridge[step]) {
             return true
@@ -55,7 +54,6 @@ class BridgeGame(private var bridge: List<String>) {
         return Pair(upMapResult, downMapResult)
     }
 
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      *
@@ -71,5 +69,4 @@ class BridgeGame(private var bridge: List<String>) {
     fun getTryCount(): Int {
         return tryCount
     }
-
 }
