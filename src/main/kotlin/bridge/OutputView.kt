@@ -14,7 +14,7 @@ class OutputView {
         }
 
         fun messageInputMove() {
-            println("이동할 칸을 선택해주세요. (위: U, 아래: D")
+            println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
         }
 
         fun messageInputGameCommand() {
