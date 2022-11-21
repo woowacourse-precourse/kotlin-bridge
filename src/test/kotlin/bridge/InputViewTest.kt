@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.exception.BridgeException
+import bridge.presentation.InputView
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions

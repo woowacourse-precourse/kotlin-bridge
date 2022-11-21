@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.presentation.OutputView
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.junit.jupiter.api.Test
 import org.assertj.core.api.Assertions.assertThat
@@ -18,6 +19,5 @@ class OutputViewTest: NsTest() {
         )
     }
     override fun runMain() {
-        TODO("Not yet implemented")
     }
 }

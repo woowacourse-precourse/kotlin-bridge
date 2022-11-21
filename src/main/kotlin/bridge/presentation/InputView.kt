@@ -1,5 +1,6 @@
-package bridge
+package bridge.presentation
 
+import bridge.exception.BridgeException
 import kotlin.system.exitProcess
 
 /**
