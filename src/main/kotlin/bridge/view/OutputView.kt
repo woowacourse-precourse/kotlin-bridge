@@ -12,6 +12,10 @@ object OutputView {
         println("\n${Message.InputBridgeSize}")
     }
 
+    fun printSelectNextFloor() {
+        println("\n${Message.SelectNextFloor}")
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      *
