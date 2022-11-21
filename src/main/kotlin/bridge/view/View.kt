@@ -1,5 +1,6 @@
 package bridge.view
 
+import bridge.data.Bridge
 import bridge.data.GameHistory
 import bridge.data.GameResult
 
@@ -11,15 +12,21 @@ object View {
 
     fun printResult(result: GameResult) = OutputView.printResult(result)
 
-    fun requestBridgeSize(): Int {
-        return repeatIfThrows<IllegalArgumentException, Int>(
-            tryBlock = {
-                OutputView.printInputBridgeSize()
-                InputView.readBridgeSize()
-            },
-            catchBlock = OutputView::printError,
-        )
-    }
+    fun requestBridgeSize(): Int = repeatIfThrows<IllegalArgumentException, Int>(
+        tryBlock = {
+            OutputView.printInputBridgeSize()
+            InputView.readBridgeSize()
+        },
+        catchBlock = OutputView::printError,
+    )
+
+    fun requestNextFloor(): Bridge.Floor = repeatIfThrows<IllegalArgumentException, Bridge.Floor>(
+        tryBlock = {
+            OutputView.printSelectNextFloor()
+            InputView.readMoving()
+        },
+        catchBlock = OutputView::printError,
+    )
 
     private inline fun <reified T : Throwable, R> repeatIfThrows(
         tryBlock: () -> R,
