@@ -16,7 +16,7 @@ class BridgeController {
         move(size, createdBridge)
     }
 
-    fun move(size: Int, createdBridge: List<String>) {
+    private fun move(size: Int, createdBridge: List<String>) {
         while (player.isGameOver) {
             val direction = InputController().getBridgeMoving()
             val result = BridgeGame().move(bridge, direction, createdBridge)
@@ -26,14 +26,14 @@ class BridgeController {
         }
     }
 
-    fun retry(result: String) {
+    private fun retry(result: String) {
         if (result == MOVING_FAILURE) {
             val command = InputController().getBridgeCommand()
             BridgeGame().retry(command, player, bridge)
         }
     }
 
-    fun quit(size: Int) {
+    private fun quit(size: Int) {
         if (bridge.size == size || !player.isGameOver) {
             player.setGameQuit()
             OutputView().printResult(player, bridge, BridgeGame().isSuccess(player))
