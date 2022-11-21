@@ -1,5 +1,7 @@
 package bridge.exception
 
+import bridge.enum.BridgeEnum
+
 
 class BridgeException (private val inp: String?) {
 
@@ -27,7 +29,8 @@ class BridgeException (private val inp: String?) {
      */
     fun toMoving(): String {
         nullCheck()
-        if (inp == "U" || inp == "D") return inp
+        if (inp == BridgeEnum.UP.value
+            || inp == BridgeEnum.DOWN.value) return inp
         throw IllegalArgumentException()
     }
     /**
@@ -36,7 +39,8 @@ class BridgeException (private val inp: String?) {
      */
     fun toGameCommand(): String {
         nullCheck()
-        if (inp == "R" || inp == "Q") return inp
+        if (inp == BridgeEnum.RESET.value
+            || inp == BridgeEnum.QUIT.value) return inp
         throw IllegalArgumentException()
     }
 
