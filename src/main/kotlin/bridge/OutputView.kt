@@ -15,7 +15,7 @@ class OutputView {
     fun printMap(bridgeMap: List<String>, position: Int, isMovable: Boolean) {
         // 지나온 경로 만들어주기 (하나만 만들어주면 반대로 만들면 됨.)
         var upperBridge = makeUpperPastPath(bridgeMap, position, isMovable)
-        val lowerBridge = upperBridge.replace(O, BLANK)
+        val lowerBridge = upperBridge.replace(O, BLANK).replace(X, BLANK)
             .replace(FLAG_DOWN_O, O).replace(FLAG_DOWN_X, X)
         upperBridge = upperBridge.replace(FLAG_DOWN_O, BLANK).replace(FLAG_DOWN_X, BLANK)
 
@@ -38,15 +38,15 @@ class OutputView {
         return upperBridge.toString()
     }
 
-    private fun getLastPath(lastMoving: String, isMovable: Boolean): String {
-        var lastPath = String()
-        when (lastMoving) {
-            UP -> lastPath = if (isMovable) O else X
+    private fun getLastPath(lastPath: String, isMovable: Boolean): String {
+        var lastMoving = String()
+        when (lastPath) {
+            UP -> lastMoving = if (isMovable) O else FLAG_DOWN_X
 
-            DOWN -> lastPath = if (isMovable) FLAG_DOWN_O else FLAG_DOWN_X
+            DOWN -> lastMoving = if (isMovable) FLAG_DOWN_O else X
         }
 
-        return lastPath
+        return lastMoving
     }
 
     /**
