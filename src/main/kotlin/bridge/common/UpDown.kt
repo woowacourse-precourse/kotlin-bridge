@@ -1,4 +1,4 @@
-package bridge.constructor
+package bridge.common
 
 enum class UpDown(val up: String, val down: String) {
     D(" ", "O"),
