@@ -24,9 +24,7 @@ class BridgeGame(private val bridge: Bridge) {
         check(isRunning) { "Game is not running" }
 
         val isCorrect = (bridge[round++] == floor)
-        if (!isCorrect) {
-            wrongCount += 1
-        }
+        if (!isCorrect) wrongCount += 1
 
         lastHistory.add(floor, isCorrect)
 
