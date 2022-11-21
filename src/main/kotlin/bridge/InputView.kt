@@ -44,5 +44,8 @@ class InputView {
         return ""
     }
 
+    private fun checkCorrectGameCommendCode(input: String): Boolean =
+        input == GameState.RESTART.charCode.toString() || input == GameState.QUIT.charCode.toString()
+
     private fun isAlphabet(input: String): Boolean = Pattern.matches("^[a-z|A-Z]+$", input)
 }
