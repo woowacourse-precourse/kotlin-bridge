@@ -16,7 +16,7 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         try {
-            val bridgeSize = Console.readLine().toInt()
+            val bridgeSize = readLine()!!.toInt()
             if (bridgeSize in 3..20)
                 return bridgeSize
         }catch (e: IllegalArgumentException){
@@ -32,7 +32,7 @@ class InputView {
     fun readMoving(): String {
         println(MESSAGE_READ_MOVING)
         try {
-            val move = Console.readLine()
+            val move = readLine()!!
             if (move == "U"|| move == "D" )
                 return move
         }catch (e: IllegalArgumentException){

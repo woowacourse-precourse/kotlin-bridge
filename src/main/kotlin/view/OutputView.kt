@@ -8,6 +8,9 @@ class OutputView {
     private val MESSAGE_START = "다리 건너기 게임을 시작합니다.\n"
     private val MESSAGE_BRIDGE_SIZE = "다리의 길이를 입력해주세요."
 
+    private val MESSAGE_FRONT_BRACKET = "["
+    private val MESSAGE_BACK_BRACKET = "]"
+
     fun printStart():String{
         return MESSAGE_START
     }
@@ -18,7 +21,7 @@ class OutputView {
 
     fun printMoving(): String{
         val move = InputView().readMoving()
-        println("$move\n")
+        println(move)
         return move
     }
 
@@ -27,7 +30,45 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap() {}
+    fun printMap(bridgeToNow: Int, bridge: List<String>, nowMove:String) {
+        val bridgeTopMap = mutableListOf<String>()
+        val bridgeDownMap = mutableListOf<String>()
+        bridgeTopMap.add(MESSAGE_FRONT_BRACKET)
+        bridgeDownMap.add(MESSAGE_FRONT_BRACKET)
+        println("?? $bridgeToNow")
+        for (i in 0 until bridgeToNow){
+            if (bridgeToNow-1 == i && bridge[i] != nowMove){
+                if (bridge[i]=="U") {
+                    bridgeTopMap.add(" ")
+                    bridgeDownMap.add("X")
+                }
+                if (bridge[i]=="D") {
+                    bridgeTopMap.add("X")
+                    bridgeDownMap.add(" ")
+                }
+            }else{
+                if (bridge[i]=="U") {
+                    bridgeTopMap.add("O")
+                    bridgeDownMap.add(" ")
+                }
+                if (bridge[i]=="D") {
+                    bridgeTopMap.add(" ")
+                    bridgeDownMap.add("O")
+                }
+                if (i != bridgeToNow-1) {
+                    bridgeTopMap.add("|")
+                    bridgeDownMap.add("|")
+                }
+            }
+        }
+        bridgeTopMap.add(MESSAGE_BACK_BRACKET)
+        bridgeDownMap.add(MESSAGE_BACK_BRACKET)
+
+        println(bridgeTopMap.joinToString(" "))
+        println("${bridgeDownMap.joinToString(" ")}\n")
+
+    }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

@@ -17,17 +17,18 @@ class BridgeGame {
      */
     fun move(bridgeSize: Int) {
         val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
-        for (i in 0 until bridgeSize){
+        println(bridgeMaker)
+        for (i in 1.. bridgeSize){
             val move = OutputView().printMoving()
-
-            if (bridgeMaker[i] == move){
-                // 갈 수 있음, 현재까지 이동 칸 출력
-
-            }else{
-                // 갈 수 없음
-                retry()
-            }
+            if (!isMoving(i, bridgeMaker, move)) retry()
         }
+    }
+
+    // 현재 입력 값과 다리의 값이 같은지, 들린지
+    private fun isMoving(bridgeToNow: Int, bridge: List<String>, nowMove:String): Boolean{
+        // 현재까지 이동 칸 출력
+        outputView.printMap(bridgeToNow, bridge, nowMove)
+        return bridge[bridgeToNow-1] == nowMove
     }
 
     /**
