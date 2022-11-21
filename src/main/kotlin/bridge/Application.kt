@@ -9,6 +9,13 @@ fun BridgeGameMain(){
     var bridgeNumberGenerator = BridgeRandomNumberGenerator()
     var bridgeMaker = BridgeMaker(bridgeNumberGenerator)
     var bridge = bridgeMaker.makeBridge(size)
+    for(i in 0 until size){
+        var way = "E"
+        while(way == "E") {
+            way = InputView.readMoving()
+        }
+
+    }
 }
 
 fun main() {
