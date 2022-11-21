@@ -13,25 +13,29 @@ class BridgeGame {
         return BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
     }
 
-    fun move(bridgecheck: List<String>): Int {
+    fun startBridge(checkBridge: List<String>): Int {
         val bridgeUpList = mutableListOf<String>()
         val bridgeDownList = mutableListOf<String>()
-        for (bridgeCheckElement in bridgecheck) {
-            Guide().bridgeList(bridgeCheckElement,bridgeUpList,bridgeDownList)
-            msg += retry(bridgecheck, bridgeUpList, bridgeDownList)
+        move(checkBridge, bridgeUpList, bridgeDownList)
+        if (msg < 1) Guide().moveresult()
+        return count
+    }
+
+    fun move(checkBridge: List<String>, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>) {
+        for (bridgeCheckElement in checkBridge) {
+            Guide().bridgeList(bridgeCheckElement, bridgeUpList, bridgeDownList)
+            msg += retry(checkBridge, bridgeUpList, bridgeDownList)
             if (msg >= 1) {
                 count += 1
                 break
             }
         }
-        if (msg < 1) Guide().moveresult()
-        return count
     }
 
     fun retry(bridgecheck: List<String>, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>): Int {
         if (bridgeUpList.contains("X") || bridgeDownList.contains("X")) {
             val restart = Guide().restart()
-            if (restart == "R") move(bridgecheck)
+            if (restart == "R") startBridge(bridgecheck)
             if (restart == "Q") Guide().retryresult()
             retryCount += 1
         }
