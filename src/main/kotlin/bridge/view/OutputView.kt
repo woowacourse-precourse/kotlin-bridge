@@ -2,6 +2,8 @@ package bridge.view
 
 import bridge.constants.Message
 import bridge.data.GameHistory
+import bridge.data.GameResult
+import bridge.common.println
 
 object OutputView {
 
@@ -26,12 +28,14 @@ object OutputView {
         println(buildHistoryOf(history.downstairs))
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun printResult() {}
+    fun printResult(result: GameResult) {
+        val messages = Message.FinishGame
+
+        println("\n${messages[0]}")
+        printMap(result.lastHistory)
+        println("\n${messages[1]}", if (result.isSuccess) Message.Success else Message.Failure)
+        println(messages[2], result.tryCount)
+    }
 
     fun printError(message: String) {
         println("[ERROR] $message")
