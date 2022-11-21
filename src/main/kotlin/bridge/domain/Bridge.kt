@@ -6,12 +6,12 @@ class Bridge(
 
     init {
         require(bridge.size in SizeRange) { "Bridge's size is required in $SizeRange" }
-        require(bridge.all { Element.contains(it) }) { "Invalid bridge's elements" }
+        require(bridge.all { Floor.contains(it) }) { "Invalid bridge's elements" }
     }
 
 
 
-    enum class Element {
+    enum class Floor {
         U, D;
 
         companion object {
