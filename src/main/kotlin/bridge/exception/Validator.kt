@@ -13,4 +13,12 @@ class Validator {
         if ((size < 3) or (size > 20)) throw IllegalArgumentException(ErrorMessage.NOT_IN_RANGE.message)
         return size
     }
+
+    fun checkMoving(input: String): String {
+        if ((input != "U") and (input != "D")) {
+            throw IllegalArgumentException(ErrorMessage.NOT_U_OR_D.message)
+        }
+        return input
+    }
+
 }
