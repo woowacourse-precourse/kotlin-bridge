@@ -1,11 +1,12 @@
 package bridge.domain
 
+import bridge.utils.NO_VAULE
 import bridge.utils.ONE
 import bridge.utils.ZERO
 
 data class Bridge(
-    var up: String = "",
-    var down: String = "",
+    var up: String = NO_VAULE,
+    var down: String = NO_VAULE,
     var size: Int = ZERO
 ) {
     fun setUpBridge(result: String) {
@@ -22,7 +23,7 @@ data class Bridge(
 
     fun resetBridge() {
         size = ZERO
-        up = ""
-        down = ""
+        up = NO_VAULE
+        down = NO_VAULE
     }
 }

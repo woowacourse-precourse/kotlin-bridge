@@ -8,6 +8,7 @@ const val RETRY = "R"
 const val QUIT = "Q"
 const val UP = "U"
 const val DOWN = "D"
+const val NO_VAULE = ""
 
 const val ZERO = 0
 const val ONE = 1
