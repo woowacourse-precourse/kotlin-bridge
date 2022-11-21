@@ -5,7 +5,7 @@ package bridge
  */
 class OutputView {
     init {
-        println("다리 건너기 게임을 시작합니다.")
+        println(GAME_START)
     }
 
     /**
@@ -14,8 +14,8 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap(playerPathMap: Array<String>) {
-        println(playerPathMap[1].formattingMap())
-        println(playerPathMap[0].formattingMap())
+        println(playerPathMap[Direction.UP.directionNumber].formattingMap())
+        println(playerPathMap[Direction.DOWN.directionNumber].formattingMap())
     }
 
     /**
@@ -30,12 +30,17 @@ class OutputView {
         println(THE_NUMBER_OF_TRY.format(numberOfTry))
     }
 
+
+    /**
+     * 경로 출력을 형식에 맞추기 위해서 PARSING 한다.
+     */
     private fun String.formattingMap() =
         this.replace(NOT_INITIALIZED, "")
             .replace(SUCCESSIVE_PARENTHESIS, CONNECT_PARENTHESIS)
 
 
     companion object {
+        const val GAME_START = "다리 건너기 게임을 시작합니다."
         const val GAME_RESULT = "최종 게임 결과"
         const val GAME_RESULT_FLAG = "게임 성공 여부: %s"
         const val THE_NUMBER_OF_TRY = "총 시도한 횟수: %d"

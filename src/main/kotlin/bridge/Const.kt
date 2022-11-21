@@ -9,3 +9,4 @@ const val UNAVAILABLE_PATH = "X"
 
 const val RETRY_INPUT = "R"
 const val QUIT_INPUT = "Q"
+
