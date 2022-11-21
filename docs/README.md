@@ -47,6 +47,9 @@
 ### `OutputView` _클래스_
 - [ ] `printMap` : 현재까지 이동한 다리 상태 출력
 - [ ] `printResult` : 게임의 최종 결과 출력
+- [x] `printGameStart` : 게임 시작 출력
+- [x] `printBridgeLength` : 길이 입력 출력
+- [x] `printSelectMoveToSpace` : 이동할 칸 선택 출력
 
 ### `BridgeGame` _클래스_
 - [ ] `move` : 이동
