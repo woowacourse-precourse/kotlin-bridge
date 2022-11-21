@@ -31,7 +31,7 @@ class BridgeGame(val answerWay: List<String>,var myBridge: Bridge,var status: St
         while(move()){
             if(myBridge.getMyWaySize()>=answerWay.size){ //성공
                 status.success="성공"
-                //결과 출력
+
                 showResult()
                 return
             }

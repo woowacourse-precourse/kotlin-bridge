@@ -1,9 +1,12 @@
 package bridge
 
-class Bridge(private val way: MutableList<String>) {
+class Bridge(
+    private val way: MutableList<String>,
+    private val input:InputView,
+    private val output:OutputView)
+{
 
-    private val input = InputView()
-    private val output = OutputView()
+
 
     fun choiceStep(){
         val choice = input.readMoving()

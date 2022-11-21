@@ -9,6 +9,6 @@ fun main() {
     val bridge=maker.makeBridge(input.readBridgeSize())
     println(bridge)
     println()
-    val gameManager= BridgeGame(bridge,Bridge(mutableListOf<String>()),Status())
+    val gameManager= BridgeGame(bridge,Bridge(mutableListOf<String>(),InputView(),OutputView()),Status())
     gameManager.play()
 }
