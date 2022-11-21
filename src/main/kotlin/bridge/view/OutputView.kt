@@ -58,4 +58,15 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printResult() {}
+    private fun printOneSideMap(map: List<String>) {
+        val size = map.size
+        print(OutputMessage.START_BRIDGE.message)
+        for (i in 0 until size) {
+            print(map[i])
+            if (i != size - 1) {
+                print(OutputMessage.MIDDLE_BRIDGE.message)
+            }
+        }
+        println(OutputMessage.END_BRIDGE.message)
+    }
 }
