@@ -10,6 +10,7 @@ import bridge.utils.Constants.FAIL_SYMBOL
 class BridgeGame {
     val upLane = mutableListOf<String>()
     val downLane = mutableListOf<String>()
+    var isMovingSuccess = true
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
@@ -19,7 +20,10 @@ class BridgeGame {
     fun move(inputMoveLaneSymbol: Char, bridge: Bridge){
         when (bridge.isLaneAvailable(inputMoveLaneSymbol)){
             true -> addWhenLaneAvailable(inputMoveLaneSymbol)
-            false -> addWhenLaneNotAvailable(inputMoveLaneSymbol)
+            false -> {
+                addWhenLaneNotAvailable(inputMoveLaneSymbol)
+                isMovingSuccess = false
+            }
         }
     }
 
