@@ -1,4 +1,5 @@
 package bridge.view
+import bridge.model.GameInfo
 import bridge.utils.Constants
 
 /**
@@ -87,6 +88,6 @@ class OutputView() {
     }
 
     fun printGameTrialCountMessage(){
-        println(Constants.GAME_TRIAL_COUNT_MESSAGE)
+        println(Constants.GAME_TRIAL_COUNT_MESSAGE + GameInfo.GAME_TRIAL_COUNT.gameTrialCount)
     }
 }

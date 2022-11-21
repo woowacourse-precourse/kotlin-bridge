@@ -4,6 +4,7 @@ import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
 import bridge.model.Bridge
 import bridge.model.BridgeGame
+import bridge.model.GameInfo
 import bridge.view.OutputView
 
 class BridgeGameConsole {
@@ -25,6 +26,7 @@ class BridgeGameConsole {
      * 움직일 칸을 입력받고 이동하는 부분 진행
      */
     fun processMovingPart(){
+        GameInfo.GAME_TRIAL_COUNT.gameTrialCount += 1
         do {
             outputView.printGameInputMoveLaneMessage()
             bridgeGame.move(inputView.readMoving(), bridge)
