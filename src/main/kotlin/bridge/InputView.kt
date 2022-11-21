@@ -1,19 +1,27 @@
 package bridge
 
 import camp.nextstep.edu.missionutils.Console
+import java.lang.IllegalArgumentException
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 class InputView {
-    private val validationInput = ValidationInput()
+    private val validation = ValidationInput()
     /**
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        val size = Console.readLine()
+        var size = Console.readLine()
 
-        validationInput.validateSizeValue(size)
+        while (true) {
+            try {
+                validation.validateSizeValue(size)
+                break
+            } catch (e: IllegalArgumentException) {
+                size = Console.readLine()
+            }
+        }
 
         return size.toInt()
     }

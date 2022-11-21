@@ -10,7 +10,6 @@ class ValidationInput {
             java.lang.IllegalArgumentException()
             println(SIZE_VALUE_RANGE_ERROR)
         }
-
     }
 
     fun validateDirectionValue(directionValue: String) {
