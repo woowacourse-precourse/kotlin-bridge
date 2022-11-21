@@ -6,7 +6,7 @@ package bridge
 class BridgeGame {
     val currentMoving = mutableListOf<String>()
     private val judgement = Judgement()
-    var tryCount = 0
+    var tryCount = FIRST_TRY
 
     fun createCorrectBridgeMap(size: Int) {
         judgement.createBridge(size)

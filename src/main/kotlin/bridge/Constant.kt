@@ -8,3 +8,5 @@ const val MOVING_SUCCESS = "O"
 const val MOVING_FAIL = "X"
 
 const val SECOND_INDEX = 1
+
+const val FIRST_TRY = 1
