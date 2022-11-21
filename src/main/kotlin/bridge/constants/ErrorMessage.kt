@@ -10,4 +10,8 @@ enum class ErrorMessage(private val message: String) {
     OutOfBridgeSize("다리 길이는 ${Bridge.SIZE_MIN}부터 ${Bridge.SIZE_MAX} 사이의 숫자여야 합니다."),;
 
     override fun toString(): String = message
+
+    companion object {
+        const val PREFIX = "[ERROR]"
+    }
 }
