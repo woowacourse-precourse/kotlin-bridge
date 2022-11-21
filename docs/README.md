@@ -17,7 +17,7 @@
 ## InputView.kt
 
 - [x] readBridgeSize : 다리의 크기 bridgeSize를 입력 받음
-- [ ] readMoving : 사용자의 moving을 입력 받음
+- [x] readMoving : 사용자의 moving을 입력 받음
 - [ ] readGameCommand : 게임을 시작할지 말지 정할 gameCommand 입력 받음
 
 ## OutputView.kt
