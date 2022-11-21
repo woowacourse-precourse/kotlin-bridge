@@ -10,8 +10,6 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        println(Messages.GameStart)
-        println()
         println(Messages.InputLength)
         val input = Console.readLine().toInt()
         return input
