@@ -17,7 +17,7 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(inputMoveLaneSymbol: Char, bridge: Bridge){
+    fun move(inputMoveLaneSymbol: String, bridge: Bridge){
         when (bridge.isLaneAvailable(inputMoveLaneSymbol)){
             true -> addWhenLaneAvailable(inputMoveLaneSymbol)
             false -> {
@@ -28,38 +28,12 @@ class BridgeGame {
     }
 
     /**
-     * 이동 불가능한 칸일 때 X 를 추가
-     */
-    private fun addWhenLaneNotAvailable(inputMoveLaneSymbol: Char){
-        when (inputMoveLaneSymbol){
-            'U' -> addUpLaneFailSymbol()
-            'D' -> addDownLaneFailSymbol()
-        }
-    }
-
-    /**
-     * 다리 위칸에 X, 아래칸에 공백 추가
-     */
-    private fun addUpLaneFailSymbol(){
-        upLane.add(FAIL_SYMBOL)
-        downLane.add("   ")
-    }
-
-    /**
-     * 다리 아래칸에 X, 위칸에 공백 추가
-     */
-    private fun addDownLaneFailSymbol(){
-        upLane.add("   ")
-        downLane.add(FAIL_SYMBOL)
-    }
-
-    /**
      * 이동 가능한 칸일 때 O 추가
      */
-    private fun addWhenLaneAvailable(inputMoveLaneSymbol: Char){
+    private fun addWhenLaneAvailable(inputMoveLaneSymbol: String){
         when (inputMoveLaneSymbol){
-            'U' -> addUpLaneSuccessSymbol()
-            'D' -> addDownLaneSuccessSymbol()
+            "U" -> addUpLaneSuccessSymbol()
+            "D" -> addDownLaneSuccessSymbol()
         }
     }
 
@@ -80,6 +54,32 @@ class BridgeGame {
     }
 
     /**
+     * 이동 불가능한 칸일 때 X 를 추가
+     */
+    private fun addWhenLaneNotAvailable(inputMoveLaneSymbol: String){
+        when (inputMoveLaneSymbol){
+            "U" -> addUpLaneFailSymbol()
+            "D" -> addDownLaneFailSymbol()
+        }
+    }
+
+    /**
+     * 다리 위칸에 X, 아래칸에 공백 추가
+     */
+    private fun addUpLaneFailSymbol(){
+        upLane.add(FAIL_SYMBOL)
+        downLane.add("   ")
+    }
+
+    /**
+     * 다리 아래칸에 X, 위칸에 공백 추가
+     */
+    private fun addDownLaneFailSymbol(){
+        upLane.add("   ")
+        downLane.add(FAIL_SYMBOL)
+    }
+
+    /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      *
      *
@@ -89,6 +89,9 @@ class BridgeGame {
         laneValueInitialize()
     }
 
+    /**
+     * 변수들을 초기화 해주는 함수
+     */
     fun laneValueInitialize(){
         upLane = mutableListOf()
         downLane = mutableListOf()
