@@ -33,8 +33,7 @@ class GameManager {
     }
 
     private fun printEndGame(isSuccess: Boolean) {
-        outputView.printResult(bridgeGame, isSuccess, position - 1)
-        outputView.printTryNumber(bridgeGame.tryCounter)
+        outputView.printResult(bridgeGame, isSuccess, bridgeGame.tryCounter)
     }
 
     private fun restartGame() {
