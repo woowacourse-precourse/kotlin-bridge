@@ -35,7 +35,7 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `예외 테스트`() {
+    fun `예외 테스트 - 다리의 길이에 문자가 입력되는 경우`() {
         assertSimpleTest {
             runException("a")
             assertThat(output()).contains(ERROR_MESSAGE)
