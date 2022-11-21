@@ -24,15 +24,15 @@ class InputView {
     fun readBridgeSize(): Int {
         println("다리의 길이를 입력해주세요.")
         val bridgeSize = Console.readLine()
-        inputBridgeException(bridgeSize.toInt())
+        inputBridgeException(bridgeSize)
         return bridgeSize.toInt()
     }
 
-    fun inputBridgeException(bridgeLength: Int) {
+    private fun inputBridgeException(bridgeSize: String) {
         when {
-            bridgeLength < 3 -> return throw IllegalArgumentException("[ERROR] 다리의 길이는 3보다 커야합니다.")
-            bridgeLength > 20 -> return throw IllegalArgumentException("[ERROR] 다리의 길이는 20보다 작아야합니다.")
-            chkNum(bridgeLength.toString()) -> return throw IllegalArgumentException("[ERROR] 다리의 길이는 숫자만 입력 가능합니다.")
+            chkNum(bridgeSize) -> throw IllegalArgumentException("[ERROR] 다리의 길이는 숫자만 입력 가능합니다.")
+            bridgeSize.toInt() < 3 -> throw IllegalArgumentException("[ERROR] 다리의 길이는 3보다 커야합니다.")
+            bridgeSize.toInt() > 20 -> throw IllegalArgumentException("[ERROR] 다리의 길이는 20보다 작아야합니다.")
         }
     }
     /**
@@ -45,7 +45,7 @@ class InputView {
         return inputMoving
     }
 
-    fun inputMovingException(inputMoving: String) {
+    private fun inputMovingException(inputMoving: String) {
         when {
             inputMoving != "U" && inputMoving != "D" -> return throw IllegalArgumentException("[ERROR] 이동할 칸은 U와 D만 입력 가능합니다.")
         }
@@ -55,13 +55,13 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q")
+        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
         val inputGameCommand = Console.readLine()
         inputGameCommandException(inputGameCommand)
         return inputGameCommand
     }
 
-    fun inputGameCommandException(inputGameCommand: String) {
+    private fun inputGameCommandException(inputGameCommand: String) {
         when {
             inputGameCommand != "Q" && inputGameCommand != "R" -> return throw IllegalArgumentException("[ERROR] 게임을 다시 시도할지 여부는 Q와 R만 입력 가능합니다.")
         }
