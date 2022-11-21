@@ -1,5 +1,8 @@
 package bridge
 
+import bridge.domain.BridgeGameEngine
+
 fun main() {
-    // TODO: 프로그램 구현
+    val gameEngine = BridgeGameEngine()
+    gameEngine.run()
 }
