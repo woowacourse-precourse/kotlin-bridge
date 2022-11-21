@@ -18,8 +18,8 @@ fun parseToInteger(sentence : String) : Int{
     }
 }
 
-fun bridgeLengthCheck (bridgeLenght : Int){
-    if (bridgeLenght<3 || bridgeLenght>20) {
+fun bridgeLengthCheck (bridgeLength : Int){
+    if (bridgeLength<3 || bridgeLength>20) {
         throw IllegalArgumentException(ErrorMessage.LENGTH.message)
     }
 }
