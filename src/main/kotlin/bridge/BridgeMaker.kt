@@ -1,5 +1,8 @@
 package bridge
 
+import bridge.Constants.Companion.DOWN
+import bridge.Constants.Companion.UP
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -12,9 +15,9 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         var bridgeAnswer = mutableListOf<String>()
         for(i in 0 until size){
             if(BridgeRandomNumberGenerator().generate() == 0){
-                bridgeAnswer.add("D")
+                bridgeAnswer.add(UP)
             }
-            else bridgeAnswer.add("U")
+            else bridgeAnswer.add(DOWN)
         }
 
         return bridgeAnswer
