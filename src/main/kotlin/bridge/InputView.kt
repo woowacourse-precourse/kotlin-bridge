@@ -11,6 +11,12 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         val bridgeSize = Console.readLine()
+
+        if(!bridgeSize.chars().allMatch { Character.isDigit(it) }) {
+            println("[ERROR] 입력한 다리 길이는 정수가 아닙니다.")
+            return 0
+        }
+
         BridgeSizeException(bridgeSize)
 
         return bridgeSize.toInt()
