@@ -14,7 +14,7 @@ class BridgeException (private val inp: String?) {
     /**
      * 다리의 길이가 3~20 사이의 정수인지 확인하는 메서드
      */
-    fun toBridgeSize(): Int {
+    fun toSize(): Int {
         nullCheck()
         val bridgeSize = inp!!.toInt()
         if (bridgeSize !in 3..20) throw IllegalArgumentException()
@@ -25,7 +25,7 @@ class BridgeException (private val inp: String?) {
      * 이동할 칸의 입력값이 제대로 되었는지 확인하는 메서드
      * "U" 또는 "D"여야 함
      */
-    fun toBridgeMoving(): String {
+    fun toMoving(): String {
         nullCheck()
         if (inp == "U" || inp == "D") return inp
         throw IllegalArgumentException()

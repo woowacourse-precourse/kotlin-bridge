@@ -12,9 +12,9 @@ class InputView {
     fun readBridgeSize(): Int {
         try {
             val inp = readLine()
-            return BridgeException(inp).toBridgeSize()
+            return BridgeException(inp).toSize()
         } catch (e: IllegalArgumentException) {
-            println("[ERROR] bridge Size should be integer(3~20)")
+            println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
             exitProcess(0)
         }
     }
@@ -25,9 +25,9 @@ class InputView {
     fun readMoving(): String {
         try {
             val inp = readLine()
-            return BridgeException(inp).toBridgeMoving()
+            return BridgeException(inp).toMoving()
         } catch (e: IllegalArgumentException) {
-            println("[ERROR] bridge can move only 'U' or 'D'")
+            println("[ERROR] 다리 길이는 'U' 또는 'R'을 통해서만 움직일 수 있습니다.")
             exitProcess(0)
         }
     }
