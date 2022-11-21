@@ -1,5 +1,6 @@
 package bridge.controller
 
+import bridge.BridgeGameStatus
 import bridge.BridgeMaker
 import bridge.domain.BridgeGame
 import bridge.model.BridgeDTO
@@ -45,7 +46,18 @@ class BridgeGameController(
         return input.toInt()
     }
 
-    private fun play() {}
+    private fun play() {
+        do {
+            val movement = getMovement()
+
+            val metadata = bridgeGame.move(movement)
+
+            outputView.printMap(metadata)
+            outputView.printStepInterval()
+
+            goToNextStep(metadata.getGameStatus())
+        } while (metadata.getGameStatus() == BridgeGameStatus.CONTINUE)
+    }
 
     private fun getMovement(): String {
         var input: String
@@ -55,6 +67,16 @@ class BridgeGameController(
         } while (!isValid)
 
         return input
+    }
+
+    private fun goToNextStep(gameStatus: BridgeGameStatus) {
+        if (gameStatus == BridgeGameStatus.FAILURE) {
+            stop()
+        }
+
+        if (gameStatus == BridgeGameStatus.SUCCESS) {
+            finish()
+        }
     }
 
     private fun stop() {}
