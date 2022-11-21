@@ -6,6 +6,7 @@ fun main() {
     inputView.readBridgeSize()
 
     inputView.readMoving()
+    inputView.readGameCommand()
 }
 
 

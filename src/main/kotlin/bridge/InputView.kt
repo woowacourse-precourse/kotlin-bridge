@@ -34,31 +34,32 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return Console.readLine().toString()
+        println(READ_GAME_COMMAND_PRINT)
+        val userInput = Console.readLine()
+        if (!gameCommandInputIsValid(userInput)) {
+            throw IllegalArgumentException(READ_GAME_COMMAND_ERROR_MESSAGE)
+        }
+        return userInput
     }
 
 
     private fun bridgeSizeIsValid(userInput: String?): Boolean {
-        if (userInput.isNullOrBlank()) {
-            return false
-        }
-        if (!isNumber(userInput)) {
-            return false
-        }
-        if (userInput.toInt() !in BRIDGE_MIN_SIZE..BRIDGE_MAX_SIZE) {
-            return false
-        }
+        if (userInput.isNullOrBlank()) return false
+        if (!isNumber(userInput)) return false
+        if (userInput.toInt() !in BRIDGE_MIN_SIZE..BRIDGE_MAX_SIZE) return false
         return true
     }
 
 
     private fun movingInputIsValid(userInput: String?): Boolean {
-        if (userInput.isNullOrBlank()) {
-            return false
-        }
-        if (userInput != MOVING_UP && userInput != MOVING_DOWN) {
-            return false
-        }
+        if (userInput.isNullOrBlank()) return false
+        if (userInput != MOVING_UP && userInput != MOVING_DOWN) return false
+        return true
+    }
+
+    private fun gameCommandInputIsValid(userInput: String?): Boolean {
+        if (userInput.isNullOrBlank()) return false
+        if (userInput != RESTART && userInput != QUIT) return false
         return true
     }
 
@@ -83,6 +84,12 @@ class InputView {
         const val READ_MOVING_ERROR_MESSAGE = "[ERROR] 이동할 칸은 U(위 칸) 또는 D(아래 칸) 중 하나여야 합니다."
         const val MOVING_UP = "U"
         const val MOVING_DOWN = "D"
+
+
+        const val READ_GAME_COMMAND_PRINT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+        const val READ_GAME_COMMAND_ERROR_MESSAGE = "[ERROR] 게임 재시작/종료 입력은 R(재시도) 또는 Q(종료) 중 하나여야 합니다."
+        const val RESTART = "R"
+        const val QUIT = "Q"
 
 
     }
