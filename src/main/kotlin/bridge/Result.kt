@@ -5,7 +5,6 @@ class Result {
     var isSuccess: Boolean = false
     var firstRowResult: ArrayList<String> = arrayListOf()
     var secondRowResult: ArrayList<String> = arrayListOf()
-    var tryCount: Int = 0
 
     fun setSuccess() {
 
@@ -30,9 +29,5 @@ class Result {
                 secondRowResult.add("X")
             }
         }
-    }
-
-    fun increaseTryCount() {
-
     }
 }
