@@ -8,6 +8,7 @@ class InputVaildator {
     fun checkNullBridgeSize(userInputNumber:String?){
         userInputNumber ?: println("[Error]")
         if (userInputNumber!!.isEmpty()||userInputNumber.length>2){
+            println("[ERROR] 입력 길이가 초과하거나 부족합니다.")
             throw IllegalArgumentException()
         }
     }
@@ -16,6 +17,7 @@ class InputVaildator {
     fun checkNullBridgeString(userInputNumber:String?){
         userInputNumber ?: println("[Error]")
         if (userInputNumber!!.isEmpty()||userInputNumber.length>1){
+            println("[ERROR] 입력은 한자리의 양식만 가능합니다.")
             throw IllegalArgumentException()
         }
     }
@@ -27,7 +29,7 @@ class InputVaildator {
         for (inputNum in checkOverlap) {
             val matcher: Matcher = pattern.matcher(inputNum.toString())
             if (matcher.find().toString() == "false") {
-                println("[ERROR]")
+                println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 한다.")
                 throw IllegalArgumentException()
             }
         }
@@ -38,7 +40,7 @@ class InputVaildator {
         val pattern: Pattern = Pattern.compile(messageform)
         val matcher: Matcher = pattern.matcher(checkOverlap)
         if (matcher.find().toString() == "false") {
-            println("[ERROR]")
+            println("[ERROR] U,D 를 입력해 주세요.")
             throw IllegalArgumentException()
         }
     }
@@ -48,7 +50,7 @@ class InputVaildator {
         val pattern: Pattern = Pattern.compile(messageform)
         val matcher: Matcher = pattern.matcher(checkOverlap)
         if (matcher.find().toString() == "false") {
-            println("[ERROR]")
+            println("[ERROR] R,Q 를 입력해 주세요.")
             throw IllegalArgumentException()
         }
     }
