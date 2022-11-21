@@ -11,4 +11,30 @@ object View {
 
     fun printResult(result: GameResult) = OutputView.printResult(result)
 
+    private inline fun <reified T : Throwable, R> repeatIfThrows(
+        tryBlock: () -> R,
+        catchBlock: (t: T) -> Unit,
+    ): R {
+        var result: R?
+
+        do {
+            result = getOrNull(tryBlock, catchBlock)
+        } while (result == null)
+
+        return result
+    }
+
+    private inline fun <reified T : Throwable, R> getOrNull(
+        tryBlock: () -> R,
+        catchBlock: (t: T) -> Unit,
+    ): R? = try {
+        tryBlock()
+    } catch (t: Throwable) {
+        if (t !is T) {
+            throw t
+        }
+
+        catchBlock(t)
+        null
+    }
 }
