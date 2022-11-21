@@ -6,7 +6,7 @@ package bridge
 class OutputView {
 
     fun printStartMessage() {
-        println("다리 건너기 게임을 시작합니다.")
+        println(START_GAME_MESSAGE)
     }
 
     /**
@@ -27,13 +27,22 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printResult(result: Result) {
-        println("최종 게임 결과")
+        println(FINAL_RESULT_MESSAGE)
         printMap(result)
-        var successOrFail = "실패"
+        var successOrFail = FAIL
         if (result.getSuccess()) {
-            successOrFail = "성공"
+            successOrFail = SUCCESS
         }
-        println("게임 성공 여부: $successOrFail")
-        println("총 시도한 횟수: ${result.getTryCount()}")
+        println(SUCCESS_RESULT.format(successOrFail))
+        println(TRY_COUNT_RESULT.format(result.getTryCount()))
+    }
+
+    companion object {
+        const val START_GAME_MESSAGE = "다리 건너기 게임을 시작합니다."
+        const val FINAL_RESULT_MESSAGE = "최종 게임 결과"
+        const val FAIL = "실패"
+        const val SUCCESS = "성공"
+        const val SUCCESS_RESULT = "게임 성공 여부: %s"
+        const val TRY_COUNT_RESULT = "총 시도한 횟수: %d"
     }
 }
