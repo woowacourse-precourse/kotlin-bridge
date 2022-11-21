@@ -10,6 +10,9 @@ class BridgeGame {
     private val outputView = OutputView()
     private var playMap = Pair<List<String>, List<String>>(arrayListOf(), arrayListOf())
     private val MESSAGE_RESULT_MAP = "최종 게임 결과"
+    private val MESSAGE_SUCCESS = "성공"
+    private val MESSAGE_FAILLED = "실패"
+    private val MESSAGE_ERROR = "[ERROR]"
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -62,7 +65,7 @@ class BridgeGame {
         }
         if (bridge == "U") return "O"
         if (bridge == "D") return " "
-        throw IllegalArgumentException("$[ERROR] 잘못된 입력 값입니다.")
+        throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
     }
 
     private fun addBridgeDownMap(bridgeToNow: Int, bridge: String, idx: Int, nowMove: String): String {
@@ -72,7 +75,7 @@ class BridgeGame {
         }
         if (bridge == "U") return " "
         if (bridge == "D") return "O"
-        throw IllegalArgumentException("$[ERROR] 잘못된 입력 값입니다.")
+        throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
     }
 
     /**
@@ -83,13 +86,13 @@ class BridgeGame {
         val retry = outputView.printRetry()
         if (retry == "R") return play(bridgeSize,bridgeMaker, numberOfGames+1)
         if(retry == "Q"){
-            outputView.printResult("실패", numberOfGames)
+            outputView.printResult(MESSAGE_FAILLED, numberOfGames)
         }
     }
 
     private fun result(numberOfGames:Int){
         println(MESSAGE_RESULT_MAP)
         outputView.printMap(playMap)
-        outputView.printResult("성공", numberOfGames)
+        outputView.printResult(MESSAGE_SUCCESS, numberOfGames)
     }
 }
