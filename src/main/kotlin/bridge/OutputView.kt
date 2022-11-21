@@ -28,7 +28,7 @@ class OutputView {
         for (i in route.indices) {
             print(judge(route[i], bridge[i], "D") + if (i != route.lastIndex) "| " else "")
         }
-        println("]")
+        println("]\n")
     }
 
     /**
@@ -39,7 +39,6 @@ class OutputView {
     fun printResult(route: List<String>, bridge: List<String>, tryNumber: Int) {
         println("최종 게임 결과")
         printMap(route, bridge)
-        println()
         if (route.size == bridge.size && route[route.lastIndex] == bridge[bridge.lastIndex]) {
             println("게임 성공 여부: 성공")
         } else {
