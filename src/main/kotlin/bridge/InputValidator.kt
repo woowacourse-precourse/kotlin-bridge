@@ -2,38 +2,33 @@ package bridge
 
 class InputValidator {
 
-    fun validateBridgeInput(bridgeSize: String): Error {
-        var error = Error.NO_ERROR
+    fun validateBridgeInput(bridgeSize: String) {
+        validateNumericInput(bridgeSize)
+        validateBridgeSize(bridgeSize.toInt())
+    }
 
-        when {
-            validateNumericInput(bridgeSize) != Error.NO_ERROR -> error = Error.NUMERIC_ERROR
-            validateBridgeSize(bridgeSize.toInt()) != Error.NO_ERROR -> error = Error.BRIDGE_SIZE_ERROR
+    fun validateMoveInput(direction: String)  {
+        require(direction.isUpOrDown()){
+            Error.MOVE_INPUT_ERROR.errorMessage
         }
-        return error
     }
 
-    fun validateMoveInput(direction: String) = if (direction.isUpOrDown()) {
-        Error.NO_ERROR
-    } else {
-        Error.MOVE_INPUT_ERROR
+    fun validateRetryFlag(retryFlag: String){
+        require(retryFlag.isRetryOrQuit()){
+            Error.RETRY_FLAG_ERROR.errorMessage
+        }
     }
 
-    fun validateRetryFlag(retryFlag: String) = if (retryFlag.isRetryOrQuit()) {
-        Error.NO_ERROR
-    } else {
-        Error.MOVE_INPUT_ERROR
+    private fun validateBridgeSize(bridgeSize: Int) {
+        require(bridgeSize.isInRange()){
+            Error.BRIDGE_SIZE_ERROR.errorMessage
+        }
     }
 
-    private fun validateBridgeSize(bridgeSize: Int) = if (bridgeSize.isInRange()) {
-        Error.NO_ERROR
-    } else {
-        Error.BRIDGE_SIZE_ERROR
-    }
-
-    private fun validateNumericInput(input: String) = if (input.isNumeric()) {
-        Error.NO_ERROR
-    } else {
-        Error.NUMERIC_ERROR
+    private fun validateNumericInput(input: String) {
+        require(input.isNumeric()){
+            Error.NUMERIC_ERROR.errorMessage
+        }
     }
 
     private fun String.isRetryOrQuit() = this == "R" || this == "Q"
