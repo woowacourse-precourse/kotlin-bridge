@@ -33,7 +33,7 @@ class InputView {
             OutputView.messageInputGameCommand()
             val gameCommand = Console.readLine()
             ExceptionCheck.checkGameCommand(gameCommand)
-            return ""
+            return gameCommand
         }
     }
 }
