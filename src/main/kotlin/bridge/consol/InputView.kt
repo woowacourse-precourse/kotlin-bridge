@@ -9,17 +9,20 @@ import camp.nextstep.edu.missionutils.Console
  */
 class InputView {
     fun readBridgeSize(): Int {
-        return try {
-            val bridgeSize = Console.readLine().toInt()
+        var bridgeSize = 0
+        try {
+            bridgeSize = Console.readLine().toInt()
             ExceptionHandler.checkSize(bridgeSize)
-            bridgeSize
-        } catch (e: NumberFormatException) {
-            println(ERROR_MESSAGE + NOT_NUMBER_ERROR)
-            readBridgeSize()
+        }catch (e: NumberFormatException) {
+            occursError(NOT_NUMBER_ERROR)
         } catch (e: IllegalArgumentException) {
-            println(ERROR_MESSAGE + e.message)
-            readBridgeSize()
+            occursError(e.message)
         }
+        return bridgeSize
+    }
+    private fun occursError(errorMessage: String?){
+        println(ERROR_MESSAGE + errorMessage)
+        readBridgeSize()
     }
 
     fun readMoving(): String {
