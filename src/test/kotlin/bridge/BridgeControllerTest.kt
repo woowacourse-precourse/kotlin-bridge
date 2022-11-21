@@ -41,6 +41,24 @@ class BridgeControllerTest : NsTest() {
             assertThat(upSideIndex).isLessThan(downSideIndex)
         }, 1, 0, 0)
     }
+
+    @Test
+    fun `게임 재시작 여부 잘못 입력 후 재입력`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "D", "U", "", "r", "1", "R", "U", "D", "D")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O |   |   ]",
+                "[   | O | O ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 2"
+            )
+            val upSideIndex = output().indexOf("[ O |   |   ]")
+            val downSideIndex = output().indexOf("[   | O | O ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 1, 0, 0)
+    }
+
     override fun runMain() {
         BridgeController().start()
     }
