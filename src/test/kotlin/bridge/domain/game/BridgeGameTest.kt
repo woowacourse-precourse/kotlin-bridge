@@ -2,6 +2,7 @@ package bridge.domain.game
 
 import bridge.domain.generator.BridgeRandomNumberGenerator
 import bridge.domain.maker.BridgeMaker
+import bridge.domain.mediator.BridgeGameViewMediator
 import bridge.ui.view.InputView
 import bridge.ui.view.OutputView
 import org.assertj.core.api.Assertions
@@ -15,12 +16,13 @@ class BridgeGameTest {
     fun setUp() {
         val inputView = InputView()
         val outputView = OutputView()
-        val bridgeNumberGenerator = BridgeRandomNumberGenerator()
+        val bridgeGameViewMediator = BridgeGameViewMediator(inputView = inputView, outputView = outputView)
 
+        val bridgeNumberGenerator = BridgeRandomNumberGenerator()
         val bridgeMaker = BridgeMaker(bridgeNumberGenerator = bridgeNumberGenerator)
 
         // Given
-        bridgeGame = BridgeGame(inputView = inputView, outputView = outputView, bridgeMaker = bridgeMaker)
+        bridgeGame = BridgeGame(bridgeGameViewMediator = bridgeGameViewMediator, bridgeMaker = bridgeMaker)
     }
 
     @Test

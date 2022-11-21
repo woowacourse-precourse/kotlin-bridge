@@ -1,6 +1,6 @@
 package bridge.domain.processor
 
-import bridge.domain.moving.MovingInfo
+import bridge.domain.moving.Moving
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -9,9 +9,9 @@ class BridgeCrossingProcessorTest {
     @BeforeEach
     fun setUp() {
         BridgeCrossingProcessor.clearBridgeCrossingInfo()
-        BridgeCrossingProcessor.updateBridgeCrossingInfo(MovingInfo.UP, true)
-        BridgeCrossingProcessor.updateBridgeCrossingInfo(MovingInfo.DOWN, true)
-        BridgeCrossingProcessor.updateBridgeCrossingInfo(MovingInfo.UP, false)
+        BridgeCrossingProcessor.updateBridgeCrossingInfo(Moving.UP, true)
+        BridgeCrossingProcessor.updateBridgeCrossingInfo(Moving.DOWN, true)
+        BridgeCrossingProcessor.updateBridgeCrossingInfo(Moving.UP, false)
     }
 
     @Test

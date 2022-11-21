@@ -28,4 +28,6 @@ class OutputView {
     }
 
     fun printStartMessage() = print(GAME_START_MESSAGE)
+
+    fun printMessage(message: String) = print(message)
 }

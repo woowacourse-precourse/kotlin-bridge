@@ -1,13 +1,13 @@
 package bridge.domain.processor
 
 import bridge.common.*
-import bridge.domain.moving.MovingInfo
+import bridge.domain.moving.Moving
 
 /**
  * 사용자가 다리를 건넌 후 결과를 처리하는 역할을 한다.
  */
 object BridgeCrossingProcessor {
-    private val bridgeCrossingInfo = mutableListOf<Pair<MovingInfo, Boolean>>()
+    private val bridgeCrossingInfo = mutableListOf<Pair<Moving, Boolean>>()
     private val currentMapInfo = mutableListOf<String>()
     private val bridgeIndexInfo = hashMapOf(0 to BRIDGE_NUMBER_UP, 1 to BRIDGE_NUMBER_DOWN)
 
@@ -29,7 +29,7 @@ object BridgeCrossingProcessor {
         currentBridgeMap += MAP_BOUNDARY_START
         bridgeCrossingInfo.forEachIndexed { curRound, (moving, isCrossed) ->
             currentBridgeMap += getCrossingResult(
-                movingInfo = moving,
+                moving = moving,
                 bridgeNumber = bridgeNumber,
                 isCrossed = isCrossed
             )
@@ -38,11 +38,11 @@ object BridgeCrossingProcessor {
         return currentBridgeMap
     }
 
-    private fun getCrossingResult(movingInfo: MovingInfo, bridgeNumber: Int, isCrossed: Boolean): String {
-        return if (movingInfo.bridgeNumber == bridgeNumber) {
+    private fun getCrossingResult(moving: Moving, bridgeNumber: Int, isCrossed: Boolean): String {
+        return if (moving.bridgeNumber == bridgeNumber) {
             if (isCrossed) MAP_CROSSED_SUCCESS_RESULT
             else MAP_CROSSED_FAIL_RESULT
-        } else " "
+        } else MAP_EMPTY_RESULT
     }
 
     fun getFinalGameResult(): String =
@@ -50,9 +50,8 @@ object BridgeCrossingProcessor {
 
     fun isCrossingFail(): Boolean = bridgeCrossingInfo.any { (_, isCrossed) -> !isCrossed }
 
-    fun updateBridgeCrossingInfo(userMovingInfo: MovingInfo, isCrossed: Boolean) =
-        bridgeCrossingInfo.add(userMovingInfo to isCrossed)
+    fun updateBridgeCrossingInfo(userMoving: Moving, isCrossed: Boolean) =
+        bridgeCrossingInfo.add(userMoving to isCrossed)
 
     fun clearBridgeCrossingInfo() = bridgeCrossingInfo.clear()
-
 }

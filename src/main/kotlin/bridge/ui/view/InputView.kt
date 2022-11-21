@@ -1,6 +1,5 @@
 package bridge.ui.view
 
-import bridge.common.*
 import bridge.ui.validator.InputValidator
 import camp.nextstep.edu.missionutils.Console
 
@@ -12,8 +11,6 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        print(INPUT_BRIDGE_SIZE_MESSAGE)
-        // TODO : 검증을 여기서 하는가,, print도,,
         while (true) {
             val bridgeSize = Console.readLine()
 
@@ -29,8 +26,6 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        print(INPUT_MOVING_MESSAGE)
-
         while (true) {
             val moving = Console.readLine()
 
@@ -46,8 +41,6 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        print(INPUT_GAME_COMMAND_MESSAGE)
-
         while (true) {
             val command = Console.readLine()
 

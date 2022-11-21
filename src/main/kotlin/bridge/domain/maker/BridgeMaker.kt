@@ -3,7 +3,7 @@ package bridge.domain.maker
 import bridge.common.BRIDGE_NUMBER_DOWN
 import bridge.common.BRIDGE_NUMBER_UP
 import bridge.domain.generator.BridgeNumberGenerator
-import bridge.domain.moving.MovingInfo
+import bridge.domain.moving.Moving
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -19,8 +19,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         repeat(size) {
             val number = bridgeNumberGenerator.generate()
 
-            if (number == BRIDGE_NUMBER_DOWN) bridge.add(MovingInfo.DOWN.code)
-            if (number == BRIDGE_NUMBER_UP) bridge.add(MovingInfo.UP.code)
+            if (number == BRIDGE_NUMBER_DOWN) bridge.add(Moving.DOWN.code)
+            if (number == BRIDGE_NUMBER_UP) bridge.add(Moving.UP.code)
         }
 
         return bridge
