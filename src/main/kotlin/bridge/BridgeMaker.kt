@@ -9,24 +9,12 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     fun makeBridge(size: Int): List<String> {
-        val bridge: List<String> = List(size) { "" }.map {
-
-            // todo interface 사용 
-            val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
-            val randomNumber = bridgeRandomNumberGenerator.generate()
-            if (randomNumber == RANDOM_LOWER_INCLUSIVE) {
+        return List(size) { "" }.map {
+            if (bridgeNumberGenerator.generate() == BridgeRandomNumberGenerator.RANDOM_LOWER_INCLUSIVE) {
                 "D"
             } else {
                 "U"
             }
         }
-
-        return bridge
     }
-
-    companion object {
-        const val RANDOM_LOWER_INCLUSIVE = 0
-        const val RANDOM_UPPER_INCLUSIVE = 1
-    }
-
 }
