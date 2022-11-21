@@ -1,5 +1,8 @@
 package bridge.View
 
+import bridge.firstLine
+import bridge.secondLine
+import bridge.utils.BridgePrint
 import bridge.utils.Messages
 
 /**
@@ -12,19 +15,15 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap() {
+        for (bridge in firstLine) {
+            print(bridge)
+        }
+        println(BridgePrint._end)
 
-//        시작과 함께 제공되는 괄호
-        print('[')
-
-//        다리 정답 여부에 따라 제공되는 O X
-        print('O')
-
-        print('X')
-
-//      다리 길이에 따라 제공되는 추가, 혹은 마무리 괄호
-        print('|')
-
-        print(']')
+        for (bridge in secondLine) {
+            print(bridge)
+        }
+        println(BridgePrint._end)
 
     }
 
