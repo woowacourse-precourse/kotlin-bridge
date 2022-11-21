@@ -1,7 +1,6 @@
 package bridge.View
 
-import bridge.firstLine
-import bridge.secondLine
+import bridge.*
 import bridge.utils.BridgePrint
 import bridge.utils.Messages
 
@@ -15,15 +14,24 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap() {
-        for (bridge in firstLine) {
-            print(bridge)
+        print(BridgePrint._start)
+        for (number in (0..firstLine.size - 1)) {
+            print(firstLine[number])
+            if (firstLine.size > 1 && number < firstLine.size -1) {
+                print(BridgePrint._wall)
+            }
         }
         println(BridgePrint._end)
 
-        for (bridge in secondLine) {
-            print(bridge)
+        print(BridgePrint._start)
+        for (number in (0..secondLine.size - 1)) {
+            print(secondLine[number])
+            if (firstLine.size > 1 && number < firstLine.size -1) {
+                print(BridgePrint._wall)
+            }
         }
         println(BridgePrint._end)
+        println()
 
     }
 
@@ -33,12 +41,17 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printResult() {
+        println(Messages.GameLastResult)
+        OutputView().printMap()
 //        게임의 성공 실패에 따라서 제공되는 메세지
-        print(Messages.GameSuccess)
-        print(Messages.GameFail)
-
-        print(Messages.GameLastResult)
+        if (isGameClear) {
+            println(Messages.GameSuccess)
+        }
+        if (!isGameClear) {
+            println(Messages.GameFail)
+        }
 //        게임 실행 횟수에 따라 제공되는 메세지
         print(Messages.GameTryTimes)
+        println(gameCount)
     }
 }
