@@ -5,6 +5,25 @@ import java.util.NoSuchElementException
 
 class ExceptionCheck {
 
+    fun checkValidMoveLetterInput(userInput: String): String {
+        when {
+            !isLetter(userInput) -> {
+                println(Error.MOVE_INPUT_TYPE_ERROR.message)
+                throw IllegalArgumentException()
+            }
+            !checkValidLetter(userInput) -> {
+                println(Error.MOVE_INPUT_LETTER_ERROR.message)
+                throw IllegalArgumentException()
+            }
+            !checkValidInputNumber(userInput) -> {
+                println(Error.INPUT_NUMBER_ERROR.message)
+                throw IllegalArgumentException()
+            }
+            else -> {
+                return userInput
+            }
+        }
+    }
 
     private fun isNumber(userInput: String): Boolean {
         for (i in userInput.indices) {
