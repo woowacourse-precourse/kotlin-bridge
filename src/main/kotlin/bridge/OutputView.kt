@@ -61,7 +61,13 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(moves: List<String>, answers: List<String>, attempts: Int) {
+        println("최종 게임 결과")
+        printMap(moves, answers)
+        val crossResult = successOrFailure(moves, answers)
+        println("\n게임 성공 여부: $crossResult")
+        println("총 시도한 횟수: $attempts")
+    }
 
     fun successOrFailure(moves: List<String>, answers: List<String>): String {
         for (attempt in moves.indices) {
