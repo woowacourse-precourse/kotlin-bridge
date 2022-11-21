@@ -1,6 +1,5 @@
-package bridge.domain
+package bridge
 
-import bridge.BridgeRandomNumberGenerator
 import bridge.consol.InputView
 import bridge.consol.Message.QUIT
 import bridge.consol.Message.WRONG
@@ -8,6 +7,8 @@ import bridge.consol.OutputView
 import bridge.data.Bridge
 import bridge.data.GameResult
 import bridge.data.BridgeMap
+import bridge.domain.BridgeGame
+import bridge.domain.BridgeMaker
 
 
 class BridgeGameController {

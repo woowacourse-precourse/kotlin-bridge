@@ -1,12 +1,15 @@
 package bridge.data
 
+import bridge.consol.Message.RIGHT
+import bridge.consol.Message.WRONG
+
 class Bridge(private val bridge: List<String>) {
     var location = 0
-    fun matches(upDown: String): Boolean {
+    fun match(upDown: String): String {
         if (bridge[location] == upDown) {
-            return true
+            return RIGHT
         }
-        return false
+        return WRONG
     }
 
 

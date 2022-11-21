@@ -1,17 +1,25 @@
 package bridge.exceptions
 
+import bridge.consol.Message.DOWN
+import bridge.consol.Message.NOT_INCLUSIVE_RANGE
+import bridge.consol.Message.NOT_QUIT_OR_RETRY
+import bridge.consol.Message.NOT_UP_OR_DOWN
+import bridge.consol.Message.QUIT
+import bridge.consol.Message.RETRY
+import bridge.consol.Message.UP
+
 object ExceptionHandler {
 
     fun checkSize(num: Int) {
-        require(num in 3..20) { "3 ~ 20 사이의 숫자를 입력해 주세요" }
+        require(num in 3..20) { NOT_INCLUSIVE_RANGE }
     }
 
     fun checkUpDown(str: String) {
-        require(str == "U" || str == "D") { "U 또는 D 를 눌러 주세요" }
+        require(str == UP || str == DOWN) { NOT_UP_OR_DOWN }
     }
 
     fun checkCommand(str: String) {
-        require(str == "Q" || str == "R") { "Q 또는 R 를 눌러 주세요" }
+        require(str == QUIT || str == RETRY) { NOT_QUIT_OR_RETRY }
     }
 
 

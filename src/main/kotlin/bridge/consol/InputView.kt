@@ -28,6 +28,7 @@ class InputView {
             ExceptionHandler.checkUpDown(upDown)
             upDown
         } catch (e: IllegalArgumentException) {
+            println(ERROR_MESSAGE + e.message)
             readMoving()
         }
     }

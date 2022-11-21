@@ -20,7 +20,6 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         repeat(size) {
             addUpDown(bridge)
         }
-
         return bridge.toList()
     }
 
