@@ -59,7 +59,7 @@ class InputView {
 
     private fun gameCommandInputIsValid(userInput: String?): Boolean {
         if (userInput.isNullOrBlank()) return false
-        if (userInput != RESTART && userInput != QUIT) return false
+        if (userInput != GameCommand.RESTART.getGameCommand() && userInput != GameCommand.QUIT.getGameCommand()) return false
         return true
     }
 
@@ -85,8 +85,6 @@ class InputView {
 
         const val READ_GAME_COMMAND_PRINT = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
         const val READ_GAME_COMMAND_ERROR_MESSAGE = "[ERROR] 게임 재시작/종료 입력은 R(재시도) 또는 Q(종료) 중 하나여야 합니다."
-        const val RESTART = "R"
-        const val QUIT = "Q"
     }
 
 
