@@ -10,6 +10,7 @@ enum class BridgeGameProgress {
     companion object {
         fun of(bridgeGameResult: BridgeGameInfo): BridgeGameProgress {
             bridgeGameResult.apply {
+                require(stage.isNotEmpty()) { ERROR_INPUT_COMMAND }
                 require(stage.isNoFalseExceptLast()) { ERROR_INPUT_COMMAND }
                 return when {
                     stage.size < bridge.size && stage.last() -> RUNNING

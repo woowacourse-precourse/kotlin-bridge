@@ -55,4 +55,13 @@ class BridgeGameProgressTest {
             BridgeGameProgress.of(bridgeGameInfo)
         }
     }
+
+    @Test
+    fun `stage size가 0이면 에러처리한다`() {
+        val stage = emptyList<Boolean>()
+        val bridgeGameInfo = BridgeGameInfo(bridge, stage, 1)
+        assertThrows<IllegalArgumentException> {
+            BridgeGameProgress.of(bridgeGameInfo)
+        }
+    }
 }
