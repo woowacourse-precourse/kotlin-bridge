@@ -1,7 +1,5 @@
 package bridge
 
-import camp.nextstep.edu.missionutils.test.NsTest
-import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
 class OutputTest {
@@ -9,7 +7,7 @@ class OutputTest {
     fun `경로 출력 테스트1`() {
         val bridge= Bridge(mutableListOf<String>("U","D","D"),InputView(), OutputView())
         val answer= listOf<String>("U","D","U")
-        OutputView().printMap( bridge.makeUpStep(answer),bridge.makeDownStep(answer))
+        OutputView().printMap( bridge.makeTopRow(answer),bridge.makeBotRow(answer))
         println()
 
     }
@@ -17,14 +15,14 @@ class OutputTest {
     fun `경로 출력 테스트2`() {
         val bridge= Bridge(mutableListOf<String>("U"),InputView(),OutputView())
         val answer= listOf<String>("D","U","U")
-        OutputView().printMap( bridge.makeUpStep(answer),bridge.makeDownStep(answer))
+        OutputView().printMap( bridge.makeTopRow(answer),bridge.makeBotRow(answer))
         println()
     }
     @Test
     fun `경로 출력 테스트3`() {
         val bridge= Bridge(mutableListOf<String>("U","D","D"),InputView(),OutputView())
         val answer= listOf<String>("U","D","D")
-        OutputView().printMap( bridge.makeUpStep(answer),bridge.makeDownStep(answer))
+        OutputView().printMap( bridge.makeTopRow(answer),bridge.makeBotRow(answer))
         println()
 
     }
@@ -32,7 +30,7 @@ class OutputTest {
     fun `경로 출력 테스트4`() {
         val bridge= Bridge(mutableListOf<String>("U","U","U"),InputView(),OutputView())
         val answer= listOf<String>("U","U","U","U","D")
-        OutputView().printMap( bridge.makeUpStep(answer),bridge.makeDownStep(answer))
+        OutputView().printMap( bridge.makeTopRow(answer),bridge.makeBotRow(answer))
         println()
     }
 
