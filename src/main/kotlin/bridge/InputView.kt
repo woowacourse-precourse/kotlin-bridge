@@ -32,7 +32,15 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        val userInputNumber = inputUser()
+        try {
+            bridge.util.InputVaildator().checkNullBridgeString(userInputNumber)
+            bridge.util.InputVaildator().checkSelectBridgePatten(userInputNumber)
+        }catch (e:IllegalArgumentException){
+            println("[ERROR]")
+            return readMoving()
+        }
+        return userInputNumber
     }
 
     /**
