@@ -5,7 +5,11 @@ val output = OutputView()
 val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
 
 fun main() {
-    // TODO: 프로그램 구현
+    println("다리 건너기 게임을 시작합니다.")
+    val size = input.readBridgeSize()
+    val bridge = bridgeMaker.makeBridge(size)
+    val game = BridgeGame(bridge)
+    playGames(size, game)
 }
 
 /**
