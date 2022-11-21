@@ -2,90 +2,77 @@ package bridge.domain
 
 import bridge.BridgeRandomNumberGenerator
 import bridge.consol.InputView
+import bridge.consol.Message.QUIT
+import bridge.consol.Message.RETRY
+import bridge.consol.Message.WRONG
 import bridge.consol.OutputView
 import bridge.data.Bridge
 import bridge.data.GameResult
 import bridge.data.BridgeMap
-import bridge.exceptions.ExceptionHandler
 
 
-class BridgeGameController() {
+class BridgeGameController {
     private val outputView = OutputView()
     private val inputView = InputView()
     private val bridgeGame = BridgeGame()
     private val gameResult = GameResult()
     private val map = BridgeMap()
-    private val exceptionHandler = ExceptionHandler()
     fun startGame() {
         outputView.printStartGame()
         val bridge = makeBridge()
         var gameFlag = true
         while (gameFlag) {
             var hit = moveBridge(bridge)
-            gameFlag = askRetryGame(bridge, hit)
-            if (bridge.finish(hit)) {
-                gameResult.succeed()
-                outputView.printResultGuide()
-                outputView.printMap(map.getMap())
-                gameFlag = closeGame()
-            }
+            gameFlag = checkGameResult(bridge, hit)
         }
+        closeGame()
     }
 
-
-    private fun closeGame(): Boolean {
-        outputView.printResult(gameResult.getGameResult())
-        return false
-    }
-
-    private fun askRetryGame(bridge: Bridge, hit: String): Boolean {
-
-        if (hit == "X") {
-            try {
-                outputView.printInputGameCommand()
-                val gameCommand = inputView.readGameCommand()
-                exceptionHandler.checkCommand(gameCommand)
-                if (gameCommand == "Q") {
-                    outputView.printResultGuide()
-                    outputView.printMap(map.getMap())
-                    return closeGame()
-                }
-                if (gameCommand == "R") {
-                    bridgeGame.retry(bridge, map)
-                    gameResult.attempt++
-                    return true
-                }
-            } catch (e: IllegalArgumentException) {
-                println("[ERROR] ${e.message}")
-                askRetryGame(bridge, hit)
-            }
+    private fun checkGameResult(bridge: Bridge, hit: String): Boolean {
+        if (hit == WRONG) {
+            return askRetryGame(bridge)
+        }
+        if (bridge.finish(hit)) {
+            gameResult.succeed()
+            return false
         }
         return true
     }
 
+
+    private fun closeGame() {
+        outputView.printResultGuide()
+        outputView.printMap(map.getMap())
+        outputView.printResult(gameResult.getGameResult())
+    }
+
+    private fun askRetryGame(bridge: Bridge): Boolean {
+        outputView.printInputGameCommand()
+        val gameCommand = inputView.readGameCommand()
+        if (gameCommand == QUIT) {
+            outputView.printResultGuide()
+            outputView.printMap(map.getMap())
+            return false
+        }
+        if (gameCommand == RETRY) {
+            bridgeGame.retry(bridge, map)
+            gameResult.attempt++
+            return true
+        }
+        return throw IllegalStateException()
+    }
+
     private fun makeBridge(): Bridge {
-        return try {
             outputView.printInputLength()
             val bridgeSize = inputView.readBridgeSize()
-            exceptionHandler.checkSize(bridgeSize)
             return Bridge(BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize))
-        } catch (e: IllegalArgumentException) {
-            println("[ERROR] ${e.message}")
-            makeBridge()
-        }
     }
 
     private fun moveBridge(bridge: Bridge): String {
-        return try {
             outputView.printInputMove()
             val upDown = inputView.readMoving()
-            exceptionHandler.checkUpDown(upDown)
             val hit = bridgeGame.move(bridge, upDown, map)
             outputView.printMap(map.getMap())
-            hit
-        } catch (e: IllegalArgumentException) {
-            println("[ERROR] ${e.message}")
-            moveBridge(bridge)
-        }
+            return hit
     }
 }

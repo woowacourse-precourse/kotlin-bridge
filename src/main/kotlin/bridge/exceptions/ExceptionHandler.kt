@@ -1,6 +1,6 @@
 package bridge.exceptions
 
-class ExceptionHandler {
+object ExceptionHandler {
 
     fun checkSize(num: Int) {
         require(num in 3..20) { "3 ~ 20 사이의 숫자를 입력해 주세요" }

@@ -1,6 +1,7 @@
 package bridge.consol
 
-
+const val ERROR_MESSAGE = "[ERROR]"
+const val NOT_NUMBER_ERROR = "숫자 이여야 합니다."
 class OutputView {
     fun printStartGame() {
         println(Message.START_GAME_MESSAGE)

@@ -3,12 +3,6 @@ package bridge.domain
 import bridge.data.Bridge
 import bridge.data.BridgeMap
 
-const val UP = "U"
-const val DOWN = "D"
-const val RIGHT = "O"
-const val WRONG = "X"
-const val BLANK = "   "
-const val PARTITION = "|"
 
 
 /**
