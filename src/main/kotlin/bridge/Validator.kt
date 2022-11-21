@@ -1,47 +1,30 @@
 package bridge
 
 class Validator {
-    fun validateBridgeSize(bridgeSize: String?): Int {
-        try{ validatorNumeric(bridgeSize)
-        }catch (e: IllegalArgumentException){
-            println(ERROR_BRIDGE_SIZE_STRING)
-            return InputView().readBridgeSize() }
-
-        val bridgeLength= bridgeSize!!.toInt()
-        try{ validatorRange(bridgeLength)
-        }catch (e: IllegalArgumentException){
-            println(ERROR_BRIDGE_SIZE)
-            return InputView().readBridgeSize() }
-        return bridgeLength
+    fun validateBridgeSize(bridgeSize: String) {
+        val bridgeLength = validatorNumeric(bridgeSize)
+        validatorRange(bridgeLength)
     }
 
-    fun validatorMove(move: String?): String {
-        val moving = move.toString()
-        try{
-            validatorUpDown(moving)
-        }catch (e: IllegalArgumentException){
-            println(ERROR_MOVING)
-            return InputView().readMoving()
+    fun validatorMove(move: String?): Boolean {
+        if(move == "U" || move == "D"){
+            return true
         }
-        return moving
+        throw IllegalArgumentException(ERROR_MOVING)
     }
 
-    fun validatorGameCommand(command: String?): String {
-        val gameCommand = command.toString()
-        try{
-            validatorResetQuit(gameCommand)
-        }catch (e: IllegalArgumentException){
-            println(ERROR_GAME_COMMAND)
-            return InputView().readGameCommand()
+    fun validatorGameCommand(command: String): Boolean {
+        if(command == "R" || command == "Q"){
+            return true
         }
-        return gameCommand
+        throw IllegalArgumentException(ERROR_GAME_COMMAND)
     }
 
-    private fun validatorNumeric(input: String?): Int {
+    private fun validatorNumeric(input: String): Int {
         try{
-            return input!!.toInt()
-        }catch (e: IllegalArgumentException){
-            throw e
+            return input.toInt()
+        }catch (e: NumberFormatException){
+            throw IllegalArgumentException(ERROR_BRIDGE_SIZE_STRING)
         }
     }
 
@@ -49,20 +32,7 @@ class Validator {
         if(input in 3..20){
             return true
         }
-        throw IllegalArgumentException()
+        throw IllegalArgumentException(ERROR_BRIDGE_SIZE)
     }
 
-    private fun validatorUpDown(input: String): Boolean {
-        if(input == "U" || input == "D"){
-            return true
-        }
-        throw IllegalArgumentException()
-    }
-
-    private fun validatorResetQuit(input: String): Boolean {
-        if(input == "R" || input == "Q"){
-            return true
-        }
-        throw IllegalArgumentException()
-    }
 }
