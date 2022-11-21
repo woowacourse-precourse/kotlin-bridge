@@ -12,7 +12,7 @@ class InputView {
     fun readBridgeSize(): Int {
         println(UI.GET_BRIDGE_SIZE_MESSAGE)
         val number = Console.readLine().toIntOrThrow()
-        checkValidLength(number)
+        ExceptionHandler.checkValidLength(number)
         return number
     }
 
@@ -43,11 +43,6 @@ class InputView {
     private fun String.toIntOrThrow(): Int {
         return requireNotNull(toIntOrNull()) { Message.InputViewEnum.INVALID_MSG }
     }
-
-    private fun checkValidLength(size: Int) {
-        require(size in 3..20) { Message.InputViewEnum.INVALID_MSG }
-    }
-
 
     enum class UI(vararg args: String) {
         START_MESSAGE("다리 건너기 게임을 시작합니다."),
