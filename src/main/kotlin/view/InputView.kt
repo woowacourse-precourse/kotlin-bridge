@@ -9,7 +9,6 @@ import java.lang.IllegalArgumentException
  */
 class InputView {
     val MESSAGE_ERROR = "[ERROR]"
-    val MESSAGE_READ_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
 
     /**
      * 다리의 길이를 입력받는다.
@@ -29,7 +28,6 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        println(MESSAGE_READ_MOVING)
         try {
             val move = Console.readLine()
             if (move == "U"|| move == "D" )

@@ -11,6 +11,7 @@ class OutputView {
     private val MESSAGE_SUCCESS_OR_FAILURE = "게임 성공 여부:"
     private val MESSAGE_TOTAL_TRY = "총 시도한 횟수:"
     private val MESSAGE_RESULT_MAP = "최종 게임 결과"
+    val MESSAGE_READ_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
 
     private val MESSAGE_FRONT_BRACKET = "["
     private val MESSAGE_BACK_BRACKET = "]"
@@ -26,6 +27,7 @@ class OutputView {
     }
 
     fun printMoving(): String{
+        println(MESSAGE_READ_MOVING)
         val move = inputView.readMoving()
         println(move)
         return move
