@@ -16,6 +16,7 @@ class BridgeGame {
         outputView.printStartMessage()
         val bridgeSize = getBridgeSize()
         bridge = Bridge(BridgeMaker(bridgeRandomNumberGenerator).makeBridge(bridgeSize))
+        result = Result()
         startCycle()
         outputView.printResult(result, tryCount)
     }
@@ -43,7 +44,6 @@ class BridgeGame {
     }
 
     fun isFinished(bridgeSize: Int): Boolean {
-        result = Result()
         for (pos in 0 until bridgeSize) {
             if (!move(pos)) return false
         }
@@ -82,6 +82,7 @@ class BridgeGame {
             try {
                 val gameCommand = inputView.readGameCommand()
                 if (gameCommand == "R") {
+                    result.resetResult()
                     return true
                 }
                 return false
