@@ -9,14 +9,17 @@ class BridgeGameEngine {
     fun run() {
         View.printStartGame()
 
+        init()
+        startGame()
+    }
+
+    private fun init() {
         val bridgeSize = View.requestBridgeSize()
 
         game = BridgeGame.Builder()
             .size(bridgeSize)
             .generator(BridgeRandomNumberGenerator())
             .build()
-
-        startGame()
     }
 
     private tailrec fun startGame() {
