@@ -24,4 +24,20 @@ class InputView {
     fun readGameCommand(): String {
         return ""
     }
+
+    private fun isSizeNumeric(inputValue: String): Int {
+        try {
+            return inputValue.toInt()
+        } catch (exception: IllegalArgumentException) {
+            println(Companion.SIZE_NOT_VALID)
+        }
+
+        return 0
+    }
+
+    companion object {
+        const val SIZE_NOT_VALID = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다"
+        const val MOVE_NOT_VALID = "[ERROR] 'U' 또는 'D'를 입력해주세요"
+        const val END_NOT_VALID = "[ERROR] 'R' 또는 'Q'를 입력해주세요"
+    }
 }
