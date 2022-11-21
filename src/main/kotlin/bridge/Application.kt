@@ -18,33 +18,28 @@ fun main() {
     }
 }
 
-fun shortBridge(game: BridgeGame, location: Int): MutableList<String> {
-    val reduceList = mutableListOf<String>()
-    for (idx in 0..location) {
-        reduceList.add(game.bridge[idx])
-    }
-    return reduceList
-}
+
 
 fun gameStart(game: BridgeGame, tryCount: Int) {
     for (location in 0 until game.bridgeLength) {
         val answer = game.move(location, inputMove())
-        if (answer && location < game.bridgeLength - BRIDGE_PADDING) OutputView().printMap(game.bridge, location, true)
-        if (answer && location == game.bridgeLength - BRIDGE_PADDING) {
-            OutputView().printResult(game.bridge, location, true)
-            OutputView().printEnd(true, tryCount)
-        }
+        if (answer && location < game.bridgeLength - BRIDGE_PADDING) OutputView().printMap(shortBridge(game.bridge, location), true)
+        if (answer && location == game.bridgeLength - BRIDGE_PADDING) OutputView().printResult(shortBridge(game.bridge, location), true, tryCount)
         if (!answer) {
             if (game.retry(inputRetry())) gameStart(game, tryCount + NEXT_TRY)
-            else {
-                OutputView().printResult(game.bridge, location, false)
-                OutputView().printEnd(false, tryCount)
-            }
+            else OutputView().printResult(shortBridge(game.bridge, location), false, tryCount)
             break
         }
     }
 }
 
+fun shortBridge(bridge: List<String>, location: Int): MutableList<String> {
+    val reduceList = mutableListOf<String>()
+    for (idx in 0..location) {
+        reduceList.add(bridge[idx])
+    }
+    return reduceList
+}
 fun inputMove() = InputView().readMoving()
 
 fun inputRetry() = InputView().readGameCommand()
