@@ -36,6 +36,11 @@ class BridgeGame {
         }
     }
 
+    fun finishBridge() {
+        upBridge += "]"
+        downBridge += "]"
+    }
+
     fun checkWinLose() {
         if ("X" in upBridge || "X" in downBridge) {
             winFlag = "실패"
