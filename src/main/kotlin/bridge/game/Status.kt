@@ -1,4 +1,4 @@
-package bridge
+package bridge.game
 
 data class Status
     ( var tryCount:Int=1,

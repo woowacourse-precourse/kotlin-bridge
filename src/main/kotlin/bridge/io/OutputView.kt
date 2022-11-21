@@ -1,4 +1,4 @@
-package bridge
+package bridge.io
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -11,7 +11,7 @@ class OutputView {
         printLine(topRow)
         printLine(BotRow)
     }
-    fun printLine(line:List<String>){
+    private fun printLine(line:List<String>){ // 한줄 출력
         println("[ "+line.joinToString(" | ")+" ]")
     }
 

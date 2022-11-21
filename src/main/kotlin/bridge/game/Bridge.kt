@@ -1,4 +1,7 @@
-package bridge
+package bridge.game
+
+import bridge.io.InputView
+import bridge.io.OutputView
 
 class Bridge(
     private val way: MutableList<String>,
@@ -30,12 +33,9 @@ class Bridge(
     fun makeBotRow(answerWay: List<String>): List<String> { // 윗줄 출력 양식 만들기
         val line = mutableListOf<String>()
         for (step in way.indices) {
-            if (way[step] == "D") {
-                line.add(compare(answerWay[step], way[step]))
-            }
-            if (way[step] == "U") {
-                line.add(" ")
-            }
+            if (way[step] == "D") line.add(compare(answerWay[step], way[step]))
+
+            if (way[step] == "U") line.add(" ")
         }
         return line
     }
@@ -73,6 +73,5 @@ class Bridge(
     fun clearBridge() {
         way.clear()
     }
-
 
 }

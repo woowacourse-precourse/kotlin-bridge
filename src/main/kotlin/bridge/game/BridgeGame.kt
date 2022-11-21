@@ -1,4 +1,4 @@
-package bridge
+package bridge.game
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -10,9 +10,6 @@ class BridgeGame(
 ) {
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
-     *
-     *
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun move(): Boolean {
         myBridge.choiceStep()
@@ -21,9 +18,6 @@ class BridgeGame(
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     *
-     *
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     private fun retry() {
         status.tryCount++
@@ -41,10 +35,11 @@ class BridgeGame(
         }
         if (myBridge.sendGameCommand()) return retry() // 재시도 묻기
         status.success = "실패"
-        showResult() //재시도 시 이게 두번 나올것 같은데....
+        showResult()
     }
 
     fun showResult() {
         myBridge.showResult(answerWay, status.success, status.tryCount)
     }
+
 }

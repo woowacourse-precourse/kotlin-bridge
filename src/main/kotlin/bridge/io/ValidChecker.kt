@@ -1,9 +1,9 @@
-package bridge
+package bridge.io
 
 private const val OK =false
 private const val WRONG= true
 
-object ValidChecker {
+class ValidChecker {
 
     fun checkBridgeSize(size:Int){
         if(size in 3..20){
