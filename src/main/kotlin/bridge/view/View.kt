@@ -28,6 +28,14 @@ object View {
         catchBlock = OutputView::printError,
     )
 
+    fun requestRetryGame(): Boolean = repeatIfThrows<IllegalArgumentException, Boolean>(
+        tryBlock = {
+            OutputView.printSelectRetryOrFinishGame()
+            InputView.askRetryGame()
+        },
+        catchBlock = OutputView::printError,
+    )
+
     private inline fun <reified T : Throwable, R> repeatIfThrows(
         tryBlock: () -> R,
         catchBlock: (t: T) -> Unit,
