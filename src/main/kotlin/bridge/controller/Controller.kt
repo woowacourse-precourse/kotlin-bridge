@@ -1,7 +1,7 @@
 package bridge.controller
 
 import bridge.model.BridgeGame
-import bridge.BridgeResult
+import bridge.model.BridgeResult
 import bridge.util.Validator
 import bridge.view.InputView
 import bridge.view.OutputView

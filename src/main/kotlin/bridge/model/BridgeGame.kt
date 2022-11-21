@@ -2,7 +2,6 @@ package bridge.model
 
 import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
-import bridge.BridgeResult
 
 
 /**

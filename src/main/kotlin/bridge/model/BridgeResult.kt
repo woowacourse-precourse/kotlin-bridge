@@ -1,6 +1,8 @@
-package bridge
+package bridge.model
 
-import bridge.model.BridgeDirection
+import bridge.GameResult
+import bridge.Move
+import bridge.Result
 
 class BridgeResult(private val size: Int) {
 

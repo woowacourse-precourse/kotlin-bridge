@@ -1,6 +1,5 @@
 package bridge.model
 
-import bridge.BridgeResult
 import bridge.BridgeSpace
 import bridge.Move
 
