@@ -14,15 +14,15 @@ class BridgeGame(private val bridge: Bridge) {
     private var _currentState = BridgeGameState.ONGOING
     val currentState get() = _currentState
 
-    private val _movingResults = ArrayDeque<MovingResult>()
+    private val _movingResults = mutableListOf<MovingResult>()
     val movingResults get() = _movingResults as List<MovingResult>
 
     fun move(moving: String) {
         requireState(BridgeGameState.ONGOING) { ERROR_GAME_ALREADY_END }
         val direction = Direction.getByCommand(moving)
-        val isSuccess = bridge.canCross(direction, ++currentPosition)
-        setState(isSuccess)
-        _movingResults.addLast(MovingResult(direction, isSuccess))
+        val moveSuccess = bridge.canCross(direction, ++currentPosition)
+        setState(moveSuccess)
+        _movingResults.add(MovingResult(direction, moveSuccess))
     }
 
     fun retry(command: String) {
@@ -55,10 +55,10 @@ class BridgeGame(private val bridge: Bridge) {
         return bridge.isBridgeEnd(currentPosition)
     }
 
-    private fun setState(isSuccess: Boolean) {
+    private fun setState(moveSuccess: Boolean) {
         _currentState = when {
-            isSuccess.not() -> BridgeGameState.FAIL
-            isSuccess && allPassed() -> BridgeGameState.PASS
+            moveSuccess.not() -> BridgeGameState.FAIL
+            moveSuccess && allPassed() -> BridgeGameState.PASS
             else -> currentState
         }
     }
