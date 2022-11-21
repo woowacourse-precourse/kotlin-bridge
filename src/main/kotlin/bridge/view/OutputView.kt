@@ -1,5 +1,7 @@
 package bridge.view
 
+import bridge.domain.BridgeGame
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -57,7 +59,14 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(bridgeGame: BridgeGame, isSuccess: Boolean) {
+        println(OutputMessage.FINAL_RESULT.message)
+        printMap(bridgeGame.getMapResult())
+        if (isSuccess) printGameSuccessMent()
+        if (!isSuccess) printGameFailMent()
+        printTryCount(bridgeGame.getTryCount())
+    }
+
     private fun printOneSideMap(map: List<String>) {
         val size = map.size
         print(OutputMessage.START_BRIDGE.message)
@@ -68,5 +77,20 @@ class OutputView {
             }
         }
         println(OutputMessage.END_BRIDGE.message)
+    }
+
+    private fun printGameSuccessMent() {
+        print(OutputMessage.WHETHER_GAME_SUCCESS.message + OutputMessage.SUCCESS.message)
+        println()
+    }
+
+    private fun printGameFailMent() {
+        print(OutputMessage.WHETHER_GAME_SUCCESS.message + OutputMessage.FAIL.message)
+        println()
+    }
+
+    private fun printTryCount(count: Int) {
+        print(OutputMessage.TRY_COUNT.message + count.toString())
+        println()
     }
 }
