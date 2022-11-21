@@ -13,13 +13,17 @@ object ExceptionHandler {
 
     fun checkValidState(state: Int) {
         try {
-            require(state == 1 || state == 2) { Message.OutputViewEnum.INVALID_STATE }
+            require(state == 1 || state == 0) { Message.OutputViewEnum.INVALID_STATE }
         } catch (e: IllegalArgumentException) {
             print(e)
         }
     }
 
     fun checkValidLength(size: Int) {
-        require(size in 3..20) { Message.InputViewEnum.INVALID_MSG }
+        try {
+            require(size in 3..20) { Message.InputViewEnum.INVALID_MSG }
+        } catch (e: IllegalArgumentException) {
+            print(e)
+        }
     }
 }
