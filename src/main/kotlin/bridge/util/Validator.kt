@@ -4,6 +4,7 @@ object Validator {
     private val BRIDGE_MIN_SIZE = 3
     private val BRIDGE_MAX_SIZE = 20
     private val CAN_MOVE_BRIDGE = "UD"
+    private val GAME_COMMAND = "RQ"
 
     fun checkBridgeSize(size: String) {
         if (size.toIntOrNull() == null) {
@@ -20,6 +21,12 @@ object Validator {
     fun checkBridgeSelect(move: String) {
         if (move !in CAN_MOVE_BRIDGE) {
             throw IllegalArgumentException("[ERROR] U 또는 D를 입력해주세요.")
+        }
+    }
+
+    fun checkCommand(command: String) {
+        if (command !in GAME_COMMAND) {
+            throw IllegalArgumentException("[ERROR] R 또는 Q를 입력해주세요.")
         }
     }
 }

@@ -5,10 +5,13 @@ import bridge.BridgeRandomNumberGenerator
 import bridge.Model.BridgeData.bridgeLocation
 import bridge.Model.BridgeData.bridgeShape
 import bridge.Model.BridgeData.bridgeSize
-import bridge.Model.BridgeData.isOver
+import bridge.Model.BridgeData.isPlay
+import bridge.Model.BridgeData.resetData
 import bridge.Model.BridgeData.roundResult
 import bridge.Model.BridgeGame
 import bridge.Model.BridgeGame.Companion.downResult
+import bridge.Model.BridgeGame.Companion.finalResult
+import bridge.Model.BridgeGame.Companion.tryCount
 import bridge.Model.BridgeGame.Companion.upResult
 import bridge.Model.BridgeResult
 import bridge.Model.Referee
@@ -25,12 +28,17 @@ class BridgeController {
         outputView.printStart()
         getBridgeSize()
         makeBridge()
-        while (!isOver) {
+        processGame()
+    }
+
+    fun processGame() {
+        while (isPlay) {
             checkLastRound()
             bridgeSelect = getBridgeSelect()
             moveBridge()
+            outputView.printMap(upResult, downResult)
         }
-        outputView.printMap(upResult, downResult)
+        getGameCommand()
     }
 
     fun getBridgeSize() {
@@ -42,6 +50,7 @@ class BridgeController {
         var bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
         var bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
         bridgeShape = bridgeMaker.makeBridge(bridgeSize)
+        println(bridgeShape) //삭제
     }
 
     fun getBridgeSelect(): String {
@@ -54,8 +63,8 @@ class BridgeController {
         if (result == BridgeResult.UP_WIN || result == BridgeResult.DOWN_WIN) {
             bridgeGame.move()
         } else {
-            outputView.printGameOver()
-            isOver = true
+            bridgeGame.miss()
+            isPlay = false
         }
         bridgeGame.makeUpDownResult(result)
     }
@@ -70,8 +79,36 @@ class BridgeController {
     fun checkLastRound() {
         var referee = Referee()
         if (referee.judgeLastBridge(bridgeLocation)) {
-            isOver = true
+            printFinalResult()
+            isPlay = false
         }
+    }
+
+    fun getGameCommand() {
+        outputView.printGameOver()
+        var command = inputView.readGameCommand()
+        when (command) {
+            "R" -> {
+                bridgeGame.retry()
+                gameRetry()
+                isPlay = true
+                processGame()
+            }
+            "Q" -> {
+                printFinalResult()
+            }
+        }
+    }
+
+    fun gameRetry() {
+        bridgeGame.retry()
+        resetData()
+    }
+
+    fun printFinalResult() {
+        outputView.printFinalResult()
+        outputView.printMap(upResult, downResult)
+        outputView.printResult(finalResult, tryCount)
     }
 
 }

@@ -9,6 +9,8 @@ class BridgeGame {
     private val MOVE = "O"
     private val MISS = "X"
     private val NOT_CHOICE = " "
+    private val WIN = "성공"
+    private val LOSE = "실패"
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -18,6 +20,11 @@ class BridgeGame {
      */
     fun move() {
         bridgeLocation++
+        finalResult = WIN
+    }
+
+    fun miss() {
+        finalResult = LOSE
     }
 
     fun getResult(result: BridgeResult): Pair<String, String> {
@@ -41,10 +48,16 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {}
+    fun retry() {
+        tryCount++
+        upResult.clear()
+        downResult.clear()
+    }
 
     companion object {
         var upResult = mutableListOf<String>()
         var downResult = mutableListOf<String>()
+        var tryCount = 0
+        var finalResult = ""
     }
 }

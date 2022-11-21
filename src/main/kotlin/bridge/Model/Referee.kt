@@ -38,7 +38,7 @@ class Referee() {
     }
 
     fun judgeLastBridge(nowLocation: Int): Boolean {
-        if (nowLocation == bridgeShape.size - 1) {
+        if (nowLocation == bridgeShape.size) {
             return true
         }
         return false

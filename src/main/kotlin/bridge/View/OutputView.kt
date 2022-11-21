@@ -9,7 +9,10 @@ class OutputView {
     private val GAME_START = "다리 건너기 게임을 시작합니다."
     private val BRIDGE_SIZE = "다리의 길이를 입력해주세요."
     private val BRIDGE_SELECT = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
+    private val FINAL_RESULT = "최종 게임 결과"
     private val GAME_OVER = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+    private val SUCCESS_OR_FAIL = "게임 성공 여부: "
+    private val TOTAL_TRY = "총 시도한 횟수: "
 
     fun printStart() {
         println(GAME_START)
@@ -30,6 +33,10 @@ class OutputView {
         println(GAME_OVER)
     }
 
+    fun printFinalResult() {
+        println()
+        println(FINAL_RESULT)
+    }
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      *
@@ -45,5 +52,9 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(finalResult: String, tryCnt: Int) {
+        println()
+        println("${SUCCESS_OR_FAIL}${finalResult}")
+        println("${TOTAL_TRY}${tryCnt}")
+    }
 }
