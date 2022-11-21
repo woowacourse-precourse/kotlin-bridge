@@ -8,6 +8,8 @@ class BridgeGame(private val bridge: List<String>) {
     var downCase: MutableList<String> = mutableListOf<String>()
     private var index: Int = 0
     private var isSuccess: Boolean = true
+    private var totalCount: Int = 1
+    val outputView: OutputView = OutputView()
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
@@ -52,6 +54,17 @@ class BridgeGame(private val bridge: List<String>) {
         index += 1
     }
 
+    fun printResult() {
+        outputView.printResult(isSuccess, totalCount)
+    }
+
+    fun printMap() {
+        outputView.printMap(upCase, downCase)
+    }
+
+    fun endGame(): Boolean {
+        return isSuccess
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      *
