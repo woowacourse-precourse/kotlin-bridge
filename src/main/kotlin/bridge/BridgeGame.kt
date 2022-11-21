@@ -4,6 +4,24 @@ package bridge
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame {
+
+    fun BridgUp(bridgeCheck: String, bridgeChoose: String): String {
+        var MapUp = " "
+        if (bridgeCheck == "U")
+            if (bridgeChoose == "U") MapUp = " O "
+        if (bridgeCheck == "D")
+            if (bridgeChoose == "U") MapUp = " X "
+        return MapUp
+    }
+
+    fun BridgDown(bridgeCheck: String, bridgeChoose: String): String {
+        var MapDown = " "
+        if (bridgeCheck == "U")
+            if (bridgeChoose == "D") MapDown = " X "
+        if (bridgeCheck == "D")
+            if (bridgeChoose == "D") MapDown = " O "
+        return MapDown
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
