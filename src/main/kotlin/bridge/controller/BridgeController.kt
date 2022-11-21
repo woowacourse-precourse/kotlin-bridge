@@ -7,7 +7,7 @@ import bridge.view.OutputView
 class BridgeController {
     private val bridgeNumberGenerator = BridgeRandomNumberGenerator()
 
-    fun run(){
+    fun run() {
         InputView().startPhrases()
 
         val size = BridgeMaker(bridgeNumberGenerator).printSize().toInt()
@@ -32,7 +32,7 @@ class BridgeController {
             val move = InputView().readMoving()
             CheckException().checkInputDirection(move)
             return move
-        }catch (e : IllegalArgumentException){
+        } catch (e: IllegalArgumentException) {
             println(e)
             println("\n")
             val move = printDirection()
@@ -41,10 +41,13 @@ class BridgeController {
 
     }
 
-    fun choiceBridge(size : Int){
-        for (part in 0 until size){
-            val direction = printDirection()
-            OutputView().printMap(direction , part)
+    fun choiceBridge(size: Int) {
+        val sb = StringBuilder()
+
+        for (part in 0 until size) {
+            var direction = printDirection()
+            OutputView().printMap(direction , part , sb)
+
         }
 
     }
