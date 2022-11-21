@@ -1,5 +1,14 @@
 package bridge
 
 fun main() {
-    // TODO: 프로그램 구현
+    val bridgeGame = BridgeController()
+    while(true) {
+        bridgeGame.startBridgeGame()
+        if(bridgeGame.isFinished()) {
+            if(bridgeGame.isSuccess())
+                break
+            if(!bridgeGame.retryOrExit())
+                break
+        }
+    }
 }
