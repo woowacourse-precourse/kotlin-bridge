@@ -1,77 +1,85 @@
 package bridge
 
 class Processor(
-    val bridgeMaker: BridgeMaker,
-    val bridgeGame: BridgeGame,
-    val inputView: InputView,
-    val outputView: OutputView,
+    private val bridgeGame: BridgeGame,
+    private val inputView: InputView,
+    private val outputView: OutputView,
 ) {
-    var playerPosition = 0
-    var numberOfTry = 1
-    var isSucceeded = false
-    lateinit var bridgeMap: Array<String>
-    lateinit var bridge: List<String>
-
-    fun initBridge() {
-        val bridgeSize = inputView.readBridgeSize()
-
-        bridge = bridgeMaker.makeBridge(bridgeSize)
-        initBridgeMap()
+    private var numberOfTry = 1
+    private lateinit var playerPathMap: Array<String>
+    private val bridgeSize: Int by lazy {
+        inputView.readBridgeSize()
     }
 
-    fun initBridgeMap() {
-        bridgeMap = Array(2) { "[ N ]".repeat(bridge.size).replace("][", "|") }
+    fun processGame() {
+        lateinit var gameStatus: GameStatus
+        initBridge()
+        do {
+            val playerStatus = move()
+            recordPlayerMoving(playerStatus)
+            outputView.printMap(playerPathMap)
+            gameStatus = bridgeGame.checkGameStatus(playerStatus.isPlayerAlive)
+        } while (checkContinuing(gameStatus) == GameStatus.CONTINUING)
+        finish(gameStatus)
     }
 
-    fun move(): Pair<GameStatus, String> {
+    private fun move(): PlayerStatus {
         val playerDirection = inputView.readMoving()
-        val gameStatus = bridgeGame.move(bridge, playerDirection)
+        val playerStatus = bridgeGame.move(playerDirection)
 
-        if (gameStatus == GameStatus.SUCCEEDED) {
-            isSucceeded = true
-        }
-        return Pair(gameStatus, playerDirection)
+        return playerStatus
     }
 
-    fun recordToBridgeMap(gameStatus: GameStatus, playerDirection: String) {
-        val recordSign = if (gameStatus != GameStatus.FAILED) {
-            "O"
-        } else {
-            "X"
+    /**
+     * 이동 경로를 최신화 하기 위한 함수
+     */
+    private fun recordPlayerMoving(playerStatus: PlayerStatus) {
+        var recordSign = AVAILABLE_PATH
+        if (!playerStatus.isPlayerAlive) {
+            recordSign = UNAVAILABLE_PATH
         }
-        bridgeMap[playerDirection.directionToInt()] =
-            bridgeMap[playerDirection.directionToInt()].replaceFirst(" N ", " $recordSign ")
-        bridgeMap[playerDirection.oppositeDirectionToInt()] =
-            bridgeMap[playerDirection.oppositeDirectionToInt()].replaceFirst(" N ", "   ")
+        playerPathMap[playerStatus.playerDirection] =
+            playerPathMap[playerStatus.playerDirection].replaceFirst("N", recordSign)
+        playerPathMap[playerStatus.playerDirection.oppositeDirection()] =
+            playerPathMap[playerStatus.playerDirection.oppositeDirection()].replaceFirst("N", " ")
     }
 
+    private fun checkContinuing(gameStatus: GameStatus): GameStatus {
+        if(gameStatus==GameStatus.FAILED){
+            if(checkRetry()){
+                initForRetry()
+                return GameStatus.CONTINUING
+            }
+        }
+        return gameStatus
+    }
 
-    fun askRetry(): Boolean {
-        val retryInput = inputView.readGameCommand() == "R"
-        initBridgeMap()
-        bridgeGame.retry()
+    private fun initPathMap(bridgeSize: Int) {
+        playerPathMap = Array(2) { NOT_INITIALIZED.repeat(bridgeSize) }
+    }
+
+    private fun initBridge() {
+        bridgeGame.initBridge(bridgeSize)
+        initPathMap(bridgeSize)
+    }
+
+    private fun initForRetry(){
         numberOfTry++
-        return retryInput
+        initPathMap(bridgeSize)
+        bridgeGame.retry()
     }
 
-    fun printMap() {
-        outputView.printMap(bridgeMap[0])
-        outputView.printMap(bridgeMap[1])
+    private fun checkRetry(): Boolean = RETRY_INPUT == inputView.readGameCommand()
+
+    private fun finish(gameStatus: GameStatus) {
+        outputView.printResult(playerPathMap, numberOfTry, gameStatus)
     }
 
-    private fun String.directionToInt() = if (this == "D") {
-        1
+    private fun Int.oppositeDirection() = if (this == Direction.UP.directionNumber) {
+        Direction.DOWN.directionNumber
     } else {
-        0
+        Direction.UP.directionNumber
     }
 
-    private fun String.oppositeDirectionToInt() = if (this == "D") {
-        0
-    } else {
-        1
-    }
 
-    fun finish() {
-        outputView.printResult(bridgeMap, numberOfTry, isSucceeded)
-    }
 }
