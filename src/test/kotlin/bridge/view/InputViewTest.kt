@@ -37,6 +37,20 @@ internal class InputViewTest {
             }
         }
 
+        @Nested
+        inner class `3 이상 20 이하의 숫자를 입력받으면` {
+            private val readValue = "3"
+
+            @Test
+            fun `입력받은 값을 반환한다`() {
+                System.setIn(ByteArrayInputStream(readValue.toByteArray()))
+
+                val bridgeSize = inputView.readBridgeSize()
+
+                assertThat(bridgeSize).isEqualTo(3)
+            }
+        }
+
         override fun runMain() {
             inputView.readBridgeSize()
         }
@@ -89,15 +103,31 @@ internal class InputViewTest {
     @Nested
     inner class `readMoving 메소드는`: NsTest() {
 
+        @TestInstance(TestInstance.Lifecycle.PER_CLASS)
         @Nested
         inner class `U와 D 이외의 값을 입력받으면` {
-            private val readValue = "A"
+            private fun readValues() = listOf("A", "UD")
 
-            @Test
-            fun `예외 메세지와 함께 예외를 던진다`() {
+            @ParameterizedTest
+            @MethodSource("readValues")
+            fun `예외 메세지와 함께 예외를 던진다`(readValue: String) {
                 assertThatThrownBy { runException(readValue) }
                     .isInstanceOf(IllegalArgumentException::class.java)
                     .hasMessageContaining(ERROR_MESSAGE)
+            }
+        }
+
+        @Nested
+        inner class `U와 D 중 하나의 값을 입력받으면`() {
+            private val readValue = "U"
+
+            @Test
+            fun `입력받은 값을 반환한다`() {
+                System.setIn(ByteArrayInputStream(readValue.toByteArray()))
+
+                val moving = inputView.readMoving()
+
+                assertThat(moving).isEqualTo("U")
             }
         }
 
