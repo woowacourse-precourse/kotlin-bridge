@@ -27,6 +27,14 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
+    fun `기능 테스트 with retry`() {
+        assertRandomNumberInRangeTest({
+            run("5", "U", "D", "D", "R", "U", "D", "U", "U", "U")
+            assertThat(output()).contains("[ O |   |   ]\n[   | O | X ]", "최종 게임 결과", "[ O |   | O | O | O ]\n[   | O |   |   |   ]", "게임 성공 여부: 성공", "총 시도한 횟수: 2")
+        }, 1, 0, 1, 1, 1)
+    }
+
+    @Test
     fun `예외 테스트`() {
         assertSimpleTest {
             runException("a")
