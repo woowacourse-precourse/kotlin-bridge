@@ -11,7 +11,7 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         println("다리의 길이를 입력해주세요.")
-        var size:Int
+        val size:Int
         try{
             size =Console.readLine().toInt()
             ValidChecker.checkBridgeSize(size)
@@ -27,10 +27,15 @@ class InputView {
      */
     fun readMoving(): String {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
-        val choice:String= Console.readLine()
-        ValidChecker.checkUorD(choice)
+        val choice:String
+            try{
+            choice= Console.readLine()
+            ValidChecker.checkUorD(choice)
+        } catch (e:IllegalArgumentException){
+            println("[ERROR]")
+            return readMoving()
+        }
         return choice
-
     }
 
     /**
