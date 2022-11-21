@@ -14,10 +14,10 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         // bridgeNumberGenerator as BridgeRandomNumberGenerator
 
         // todo size만큼 반복하는 건 좀 더 간단한 반복문이 있지 않을까?
-        for(i in 0 until size) {
+        for (i in 0 until size) {
             val direction = bridgeNumberGenerator.generate()
             // todo 이거 리팩터 가능할 듯?
-            if(direction == 0)
+            if (direction == 0)
                 bridgeMap.add("D")
             else
                 bridgeMap.add("U")

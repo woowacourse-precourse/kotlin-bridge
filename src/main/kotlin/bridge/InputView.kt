@@ -4,6 +4,7 @@ import Utils.Constants.TYPE_BRIDGE_SIZE
 import Utils.Constants.TYPE_COMMAND
 import Utils.Constants.TYPE_MOVING
 import camp.nextstep.edu.missionutils.Console
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -35,7 +36,7 @@ class InputView {
                 println(e.message)
             }
 
-        } while(isWrong)
+        } while (isWrong)
 
         return input
     }

@@ -10,47 +10,48 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap(bridgeMap: List<String>, position: Int, isMovable: Boolean) {
-        val upperBridge = StringBuilder()
-        val lowerBridge = StringBuilder()
-
-        // todo 하드코딩 없애기 + 반복되는 것 함수로 + 좀 더 간결하게 처리
-        // 정답을 맞춘 지점까지는 안 감. 마지막에 정답(O 또는 X)를 추가해 줄거임
-        for (i in 0 until position) {
-            if (bridgeMap[i] == "U") {
-                upperBridge.append("O | ")
-                lowerBridge.append("  | ")
-            } else if (bridgeMap[i] == "D") {
-                upperBridge.append("  | ")
-                lowerBridge.append("O | ")
-            }
-        }
-
-        // 마지막 결과를 더해주기
-        if (isMovable) {
-            if (bridgeMap[position] == "U") {
-                upperBridge.append("O")
-                lowerBridge.append(" ")
-            } else if (bridgeMap[position] == "D") {
-                upperBridge.append(" ")
-                lowerBridge.append("O")
-            }
-        }
-        // 사용자의 입력값이 움직일 수 없는 곳이라면, X로 더해주기
-        else {
-            // U인데 lowerBridge에 X를 하는 이유는, bridgeMap은 정답지이므로, 반대 값을 사용자가 입력했으므로 upper의 반대값이 lower에 X를 한다.
-            if (bridgeMap[position] == "U") {
-                upperBridge.append(" ")
-                lowerBridge.append("X")
-            } else if (bridgeMap[position] == "D") {
-                upperBridge.append("X")
-                lowerBridge.append(" ")
-            }
-        }
+        // 지나온 경로 만들어주기 (하나만 만들어주면 반대로 만들면 됨.)
+        var upperBridge = makeUpperPastPath(bridgeMap, position, isMovable)
+        val lowerBridge = upperBridge.replace(O, BLANK)
+            .replace(FLAG_DOWN_O, O).replace(FLAG_DOWN_X, X)
+        upperBridge = upperBridge.replace(FLAG_DOWN_O, BLANK).replace(FLAG_DOWN_X, BLANK)
 
         println(MAP_BRACKET.format(upperBridge))
         println(MAP_BRACKET.format(lowerBridge))
         println()
     }
+
+    private fun makeUpperPastPath(bridgeMap: List<String>, position: Int, isMovable: Boolean): String {
+        val upperBridge = StringBuilder()
+        for (i in 0 until position) {
+            if (bridgeMap[i] == UP) {
+                upperBridge.append(O + SECTOR)
+            } else if (bridgeMap[i] == DOWN) {
+                upperBridge.append(FLAG_DOWN_O + SECTOR)
+            }
+        }
+        val lastPath = addLastPath(bridgeMap[position], isMovable)
+        upperBridge.append(lastPath)
+
+        return upperBridge.toString()
+    }
+
+    private fun addLastPath(lastMoving: String, isMovable: Boolean): String {
+        var lastPath = String()
+
+        if (lastMoving == UP && isMovable) {
+            lastPath = O
+        } else if (lastMoving == UP && isMovable.not()) {
+            lastPath = X
+        } else if (lastMoving == DOWN && isMovable) {
+            lastPath = FLAG_DOWN_O
+        } else if (lastMoving == DOWN && isMovable.not()) {
+            lastPath = FLAG_DOWN_X
+        }
+
+        return lastPath
+    }
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -64,9 +65,8 @@ class OutputView {
     }
 
     fun printTryingCount(successOrFail: Boolean, count: Int) {
-        val result =
-            if (successOrFail) "성공"
-            else "실패"
+        val result = if (successOrFail) "성공"
+        else "실패"
 
         println(GAME_SUCCESS_OR_FAIL.format(result))
         println(TOTAL_TRYING_COUNT.format(count))
@@ -100,6 +100,16 @@ class OutputView {
         const val ASK_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
 
         const val MAP_BRACKET = "[ %s ]"
+
+        const val UP = "U"
+        const val DOWN = "D"
+
+        const val O = "O"
+        const val X = "X"
+        const val SECTOR = " | "
+        const val BLANK = " "
+        const val FLAG_DOWN_O = "1"
+        const val FLAG_DOWN_X = "2"
 
     }
 }

@@ -47,11 +47,15 @@ class BridgeGameTest : NsTest() {
 
     // todo 테스트는 잘 작성한 것 같은데, 내 output에 이상이 있는 것 같다..? 잘 모르겠다.
     // -> 한 줄 띄기를 하니까 갑자기 됨.. 근데 아래 테스트는 여전히 안 됨...
+    // -> 출력 순서에 상관없고, 맨 마지막 결과값과 비교하는 것도 아님. 왜 아래 거하고, 첫번째 케이스는 안될까??
     @Test
     fun `이동한 결과에 따른 맵을 출력하는지 확인`() {
         assertRandomNumberInRangeTest ({
             run("5", "U", "U", "D", "U", "D")
             assertThat(output()).contains(
+                "총 시도한 횟수: 1",
+                "[   |   | O ]",
+                "최종 게임 결과",
                 "[ O | O |   | O |   ]",
                 "[   |   | O |   | O ]",
             )
