@@ -47,6 +47,26 @@ internal class BridgeGameTest {
     }
 
     @Test
+    fun `isCompleted_문제푸는도중_false`() {
+        val data = listOf(DOWN, DOWN, UP, UP)
+        val test = listOf(DOWN, DOWN)
+        val bridgeGame = BridgeGame(Bridge(data))
+
+        test.forEach { bridgeGame.move(it) }
+        assertThat(bridgeGame.isCompleted).isEqualTo(false)
+    }
+
+    @Test
+    fun `isCompleted_끝까지다맞췄을때_true`() {
+        val data = listOf(DOWN, DOWN, UP, UP)
+        val test = listOf(DOWN, DOWN, UP, UP)
+        val bridgeGame = BridgeGame(Bridge(data))
+
+        test.forEach { bridgeGame.move(it) }
+        assertThat(bridgeGame.isCompleted).isEqualTo(true)
+    }
+
+    @Test
     fun `move_틀렸는데게임을계속진행_에러`() {
         val data = listOf(UP, DOWN, UP, DOWN)
         val test = listOf(UP, DOWN, DOWN, DOWN)
