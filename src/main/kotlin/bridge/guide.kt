@@ -5,7 +5,7 @@ class guide {
         OutputView().printResult()
     }
     fun retryresult(){
-        OutputView().printResult()
+        OutputView().printResult2()
     }
     fun bridgeList(bridgecheck: String, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>){
         val bridgechoose = guide().BridgeChoose()
