@@ -2,26 +2,37 @@ package bridge
 
 class ValidationInput {
     fun validateSizeValue(sizeValue: String) {
-        if (sizeValue.toIntOrNull() == null)
-            throw IllegalArgumentException(SIZE_VALUE_TYPE_ERROR)
-        if (sizeValue.toInt() !in 3..20)
-            throw java.lang.IllegalArgumentException(SIZE_VALUE_RANGE_ERROR)
+        if (sizeValue.toIntOrNull() == null) {
+            java.lang.IllegalArgumentException()
+            println(SIZE_VALUE_TYPE_ERROR)
+        }
+        if (sizeValue.toInt() !in 3..20) {
+            java.lang.IllegalArgumentException()
+            println(SIZE_VALUE_RANGE_ERROR)
+        }
+
     }
 
     fun validateDirectionValue(directionValue: String) {
         if (directionValue != UP_DIRECTION_VALUE
-            || directionValue != UP_DIRECTION_VALUE.lowercase()
-            || directionValue != DOWN_DIRECTION_VALUE
-            || directionValue != DOWN_DIRECTION_VALUE.lowercase()
-        ) throw java.lang.IllegalArgumentException(DIRECTION_VALUE_ERROR)
+                || directionValue != UP_DIRECTION_VALUE.lowercase()
+                || directionValue != DOWN_DIRECTION_VALUE
+                || directionValue != DOWN_DIRECTION_VALUE.lowercase()
+        ) {
+            java.lang.IllegalArgumentException()
+            println(DIRECTION_VALUE_ERROR)
+        }
     }
 
     fun validateRetryValue(retryValue: String) {
         if (retryValue != RETRY_GAME_VALUE
-            || retryValue != RETRY_GAME_VALUE.lowercase()
-            || retryValue != QUIT_GAME_VALUE
-            || retryValue != QUIT_GAME_VALUE.lowercase()
-        ) throw java.lang.IllegalArgumentException(RETRY_VALUE_ERROR)
+                || retryValue != RETRY_GAME_VALUE.lowercase()
+                || retryValue != QUIT_GAME_VALUE
+                || retryValue != QUIT_GAME_VALUE.lowercase()
+        ) {
+            java.lang.IllegalArgumentException()
+            println(RETRY_VALUE_ERROR)
+        }
     }
 
     fun getMoveUpValue() = UP_DIRECTION_VALUE
@@ -31,7 +42,7 @@ class ValidationInput {
     fun getRetryGameValue() = RETRY_GAME_VALUE
 
     fun getQuitGameValue() = QUIT_GAME_VALUE
-    
+
     companion object {
         const val UP_DIRECTION_VALUE = "U"
         const val DOWN_DIRECTION_VALUE = "D"
