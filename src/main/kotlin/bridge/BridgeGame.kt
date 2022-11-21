@@ -10,6 +10,7 @@ class BridgeGame {
     private val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
     private lateinit var result: Result
     private lateinit var bridge: Bridge
+    private var tryCount = 0
 
     fun start() {
         outputView.printStartMessage()
@@ -29,6 +30,7 @@ class BridgeGame {
     }
 
     fun startCycle() {
+        tryCount++
         if (isFinished(bridge.getBridgeSize())) {
             outputView.printResult()
         } else {
