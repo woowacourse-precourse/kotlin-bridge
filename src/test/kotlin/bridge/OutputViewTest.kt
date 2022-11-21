@@ -12,10 +12,13 @@ class OutputViewTest : NsTest() {
             val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 0, 0))
             val bridgeMaker = BridgeMaker(numberGenerator)
             val bridge: List<String> = bridgeMaker.makeBridge(3)
+            val bridgeGame = BridgeGame()
+            bridgeGame.move("U")
+            bridgeGame.move("D")
+            bridgeGame.move("D")
 
             val outputView = OutputView()
-            val moves = listOf("U", "D", "D")
-            outputView.printMap(bridge, moves)
+            outputView.printMap(bridgeGame.getState(bridge))
 
             assertThat(output()).contains(
                     "[ O |   |   ]",
@@ -30,10 +33,13 @@ class OutputViewTest : NsTest() {
             val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 1, 1))
             val bridgeMaker = BridgeMaker(numberGenerator)
             val bridge: List<String> = bridgeMaker.makeBridge(3)
+            val bridgeGame = BridgeGame()
+            bridgeGame.move("U")
+            bridgeGame.move("U")
+            bridgeGame.move("D")
 
             val outputView = OutputView()
-            val moves = listOf("U", "U", "D")
-            outputView.printMap(bridge, moves)
+            outputView.printMap(bridgeGame.getState(bridge))
 
             assertThat(output()).contains(
                     "[ O | O |   ]",
@@ -48,10 +54,15 @@ class OutputViewTest : NsTest() {
             val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 0, 1, 1, 0))
             val bridgeMaker = BridgeMaker(numberGenerator)
             val bridge: List<String> = bridgeMaker.makeBridge(5)
+            val bridgeGame = BridgeGame()
+            bridgeGame.move("U")
+            bridgeGame.move("D")
+            bridgeGame.move("U")
+            bridgeGame.move("U")
+            bridgeGame.move("D")
 
             val outputView = OutputView()
-            val moves = listOf("U", "D", "U", "U", "D")
-            outputView.printMap(bridge, moves)
+            outputView.printMap(bridgeGame.getState(bridge))
 
             assertThat(output()).contains(
                     "[ O |   | O | O |   ]",
