@@ -2,13 +2,15 @@ package util
 
 class InputException {
 
-    fun checkInputLength(input: String?) {
+    fun checkBridgeLength(input: String?) {
         when {
             checkNullException(input) -> printException(NULL_ERROR)
             checkTypeException(input!!) -> printException(TYPE_ERROR)
             checkRangeException(input.toInt()) -> printException(RANGE_ERROR)
         }
     }
+    
+    
 
     private fun checkNullException(input: String?): Boolean = input.isNullOrEmpty()
 
