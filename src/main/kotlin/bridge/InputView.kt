@@ -9,46 +9,50 @@ class InputView(private val inputValidator: InputValidator) {
     /**
      * 다리의 길이를 입력받는다.
      */
+    //onFailure 처리
     fun readBridgeSize(): Int {
-        var bridgeSize = ""
-        do {
-            val isValidate = runCatching {
-                println(ASK_BRIDGE_SIZE)
-                bridgeSize = Console.readLine()
+        println(ASK_BRIDGE_SIZE)
+        while (true) {
+            val bridgeSize = Console.readLine()
+            try{
                 inputValidator.validateBridgeInput(bridgeSize)
+                return bridgeSize.toInt()
+            }catch (e:java.lang.IllegalArgumentException){
+                println(e.message)
             }
-        } while (isValidate.isFailure)
-        return bridgeSize.toInt()
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        var direction = ""
-        do {
-            val isValidate = runCatching {
-                println(ASK_MOVE)
-                direction = Console.readLine()
+        println(ASK_MOVE)
+        while (true) {
+            val direction = Console.readLine()
+            try{
                 inputValidator.validateMoveInput(direction)
+                return direction
+            }catch (e:java.lang.IllegalArgumentException){
+                println(e.message)
             }
-        } while (isValidate.isFailure)
-        return direction
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        var retryInput = ""
-        do {
-            val isValidate = runCatching {
-                println(ASK_RETRY)
-                retryInput = Console.readLine()
+        println(ASK_RETRY)
+        while (true) {
+            val retryInput = Console.readLine()
+            try{
                 inputValidator.validateRetryFlag(retryInput)
+                return retryInput
+            }catch (e: java.lang.IllegalArgumentException){
+                println(e.message)
             }
-        } while (isValidate.isFailure)
-        return retryInput
+        }
     }
 
     companion object {
