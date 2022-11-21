@@ -8,7 +8,7 @@ class BridgeMakerTest {
 
     @Test
     fun `다리생성 함수 테스트`() {
-        val bridgeMaker = BridgeMaker(StubBridgeNumberGenerator())
+        val bridgeMaker = BridgeMaker(StubBridgeNumberGenerator(mutableListOf(0, 1, 1, 1, 0, 1)))
         assertThat(bridgeMaker.makeBridge(6)).isEqualTo(listOf("D", "U", "U", "U", "D", "U"))
     }
 }
