@@ -3,9 +3,8 @@ package bridge
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame {
+class BridgeGame(private val bridge: List<String>) {
     private val userMoveDirections = mutableListOf<String>()
-
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -27,4 +26,6 @@ class BridgeGame {
     fun retry(userGameCommand: String): Boolean {
         return userGameCommand != GameCommand.QUIT.getGameCommand()
     }
+
+    fun getBridge() = bridge
 }
