@@ -20,16 +20,20 @@ class BridgeResult(private val size: Int) {
 
     fun moveUp(mark: String) {
         addUpBridge(mark)
-        downBridge.add(BLANK_SPACE)
+        addDownBridge(BLANK_SPACE)
     }
 
     fun moveDown(mark: String) {
         addUpBridge(BLANK_SPACE)
-        downBridge.add(mark)
+        addDownBridge(mark)
     }
 
     fun addUpBridge(mark: String) {
         upBridge.add(mark)
+    }
+
+    fun addDownBridge(mark: String) {
+        downBridge.add(mark)
     }
 
 
