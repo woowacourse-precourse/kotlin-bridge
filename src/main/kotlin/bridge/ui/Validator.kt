@@ -1,9 +1,9 @@
 package bridge.ui
 
-import bridge.utils.UP
 import bridge.utils.DOWN
-import bridge.utils.RESTART
 import bridge.utils.QUIT
+import bridge.utils.RESTART
+import bridge.utils.UP
 
 class Validator {
     fun handleMixedCharCase(input: String) {
