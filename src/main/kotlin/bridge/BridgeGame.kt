@@ -4,19 +4,57 @@ package bridge
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame {
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     *
-     *
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun move() {}
+    var upResult: MutableList<String> = mutableListOf()
+    var downResult: MutableList<String> = mutableListOf()
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     *
-     *
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun retry() {}
+    enum class CommendKey(val letter: String) {
+        UP("U"),
+        DOWN("D"),
+        RESTART("R"),
+        Quit("Q")
+    }
+
+    enum class BridgeSquare(val mark: String) {
+        CORRECT(" O "),
+        INCORRECT(" X "),
+        SPACE("   ")
+    }
+
+    fun move(direction: String, square: String): Boolean {
+        if (square == direction) {
+            markCorrectAnswer(direction)
+            return true
+        }
+        markIncorrectAnswer(direction)
+        return false
+    }
+
+    fun markCorrectAnswer(direction: String) {
+        if (direction == CommendKey.UP.letter) {
+            upResult.add(BridgeSquare.CORRECT.mark)
+            downResult.add(BridgeSquare.SPACE.mark)
+        }
+        if (direction == CommendKey.DOWN.letter) {
+            upResult.add(BridgeSquare.SPACE.mark)
+            downResult.add(BridgeSquare.CORRECT.mark)
+        }
+    }
+
+    fun markIncorrectAnswer(direction: String) {
+        if (direction == CommendKey.UP.letter) {
+            upResult.add(BridgeSquare.INCORRECT.mark)
+            downResult.add(BridgeSquare.SPACE.mark)
+        }
+        if (direction == CommendKey.DOWN.letter) {
+            upResult.add(BridgeSquare.SPACE.mark)
+            downResult.add(BridgeSquare.INCORRECT.mark)
+        }
+    }
+
+    fun retry(restartOrNot: String): Boolean {
+        if (restartOrNot == CommendKey.RESTART.letter) {
+            return true
+        }
+        return false
+    }
 }
