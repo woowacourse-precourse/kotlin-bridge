@@ -38,6 +38,7 @@ class OutputView {
 
         println("[ ${bridgeState[0].joinToString(" | ")} ]")
         println("[ ${bridgeState[1].joinToString(" | ")} ]")
+        println()
     }
 
     /**
