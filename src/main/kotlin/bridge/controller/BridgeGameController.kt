@@ -82,7 +82,13 @@ class BridgeGameController(
     private fun stop() {}
 
     private fun getGameCommand(): String {
-        return ""
+        var input: String
+        do {
+            input = inputView.askGameCommand()
+            val isValid = validatorController.validateGameCommand(input)
+        } while (!isValid)
+
+        return input
     }
 
     private fun restart() {}
