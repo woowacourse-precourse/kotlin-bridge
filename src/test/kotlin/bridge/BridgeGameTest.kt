@@ -45,4 +45,32 @@ class BridgeGameTest {
 
         assertThat(result).isEqualTo(true)
     }
+
+    @Test
+    fun `재시작 테스트1`() {
+        val bridgeGame = BridgeGame()
+        val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 1, 1))
+        val bridgeMaker = BridgeMaker(numberGenerator)
+        val bridge: List<String> = bridgeMaker.makeBridge(3)
+        bridgeGame.move("U")
+        bridgeGame.move("D")
+        bridgeGame.move("U")
+        val result = bridgeGame.retry("R")
+
+        assertThat(result).isEqualTo(true)
+    }
+
+    @Test
+    fun `재시작 테스트2`() {
+        val bridgeGame = BridgeGame()
+        val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 1, 1))
+        val bridgeMaker = BridgeMaker(numberGenerator)
+        val bridge: List<String> = bridgeMaker.makeBridge(3)
+        bridgeGame.move("U")
+        bridgeGame.move("D")
+        bridgeGame.move("U")
+        val result = bridgeGame.retry("Q")
+
+        assertThat(result).isEqualTo(false)
+    }
 }
