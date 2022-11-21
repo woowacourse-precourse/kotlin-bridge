@@ -12,11 +12,11 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         val bridge = mutableListOf<String>()
 
         for (i in 0 until size) {
-            val ud = bridgeNumberGenerator.generate()
-            if (ud==1) {bridge.add("U")}
-            if (ud==0) {bridge.add("D")}
+            when (bridgeNumberGenerator.generate()) {
+                0 -> bridge.add("D")
+                1 -> bridge.add("U")
+            }
         }
-
         return bridge.toList()
     }
 }

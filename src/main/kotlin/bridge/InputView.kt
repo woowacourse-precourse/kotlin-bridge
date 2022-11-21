@@ -10,20 +10,13 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        println("다리 건너기 게임을 시작합니다.")
-        println("\n다리의 길이를 입력해주세요.")
+        println("다리 건너기 게임을 시작합니다.\n\n다리의 길이를 입력해주세요.")
 
         val sizeString = readLine()
-        if (!checkNumber(sizeString)) {
-            println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
-            throw NoSuchElementException()
-        }
+        numberError(sizeString)
 
         val sizeNumber: Int = sizeString.toInt()
-        if (sizeNumber !in 3..20) {
-            println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
-            throw NoSuchElementException()
-        }
+        rangeError(sizeNumber)
 
         return sizeNumber
     }
@@ -46,15 +39,26 @@ class InputView {
     }
 
     private fun checkNumber(string: String): Boolean {
-        var temp: Char
-        var result = true
-
         for (i in string.indices) {
-            temp = string.elementAt(i)
+            val temp = string.elementAt(i)
             if (temp.code < 48 || temp.code > 57) {
-                result = false
+                return false
             }
         }
-        return result
+        return true
+    }
+
+    private fun numberError(sizeString: String) {
+        if (!checkNumber(sizeString)) {
+            println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
+            throw NoSuchElementException()
+        }
+    }
+
+    private fun rangeError(size: Int) {
+        if (size !in 3..20) {
+            println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
+            throw NoSuchElementException()
+        }
     }
 }
