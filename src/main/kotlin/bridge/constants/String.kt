@@ -11,5 +11,8 @@ class String {
         const val STRING_PRINT_SUCCESS = "성공"
         const val STRING_PRINT_FAIL = "실패"
         const val STRING_PRINT_TRY_NUMBER = "총 시도한 횟수: "
+        const val STRING_BRIDGE_START = "[ "
+        const val STRING_BRIDGE_DIVIDER = " | "
+        const val STRING_BRIDGE_END = " ]"
     }
 }

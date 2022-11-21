@@ -1,5 +1,9 @@
 package bridge.views
 
+import bridge.constants.Constant.Companion.START_INDEX
+import bridge.constants.String.Companion.STRING_BRIDGE_DIVIDER
+import bridge.constants.String.Companion.STRING_BRIDGE_END
+import bridge.constants.String.Companion.STRING_BRIDGE_START
 import bridge.constants.String.Companion.STRING_INPUT_LENGTH
 import bridge.constants.String.Companion.STRING_INPUT_MOVING
 import bridge.constants.String.Companion.STRING_INPUT_RETRY
@@ -14,7 +18,35 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap() {}
+    fun printMap(process: MutableList<MutableList<String>>) {
+        printUpLine(process[0])
+        printDownLine(process[1])
+    }
+
+    fun printUpLine(process: MutableList<String>) {
+        var upLine = STRING_BRIDGE_START
+        for (index in START_INDEX until process.size) {
+            upLine += process[index] + addDivider(index, process.size)
+        }
+        upLine += STRING_BRIDGE_END
+        println(upLine)
+    }
+
+    fun printDownLine(process: MutableList<String>) {
+        var downLine = STRING_BRIDGE_START
+        for (index in START_INDEX until process.size) {
+            downLine += process[index] + addDivider(index, process.size)
+        }
+        downLine += STRING_BRIDGE_END
+        println(downLine)
+    }
+
+    fun addDivider(index: Int, size: Int): String {
+        if (index < size - 1) {
+            return STRING_BRIDGE_DIVIDER
+        }
+        return ""
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
