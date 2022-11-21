@@ -1,6 +1,5 @@
 package domain
 
-import view.InputView
 import view.OutputView
 
 /**
@@ -11,16 +10,25 @@ class BridgeGame {
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
-     *
-     *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun move(bridgeSize: Int) {
         val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
         println(bridgeMaker)
+        play(bridgeSize, bridgeMaker, 1)
+    }
+
+    fun play(bridgeSize: Int, bridgeMaker: List<String>, numberOfGames:Int){
         for (i in 1.. bridgeSize){
             val move = OutputView().printMoving()
-            if (!isMoving(i, bridgeMaker, move)) retry()
+            if (!isMoving(i, bridgeMaker, move)) {
+                val retry = retry()
+                if (retry == "R") play(bridgeSize,bridgeMaker, numberOfGames+1)
+                else{
+
+                    break
+                }
+            }
         }
     }
 
@@ -33,9 +41,9 @@ class BridgeGame {
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     *
-     *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {}
+    private fun retry(): String {
+        return outputView.printRetry()
+    }
 }

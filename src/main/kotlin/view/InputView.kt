@@ -46,6 +46,14 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        try {
+            val retry = readLine()!!
+            if (retry == "R"|| retry == "Q" )
+                return retry
+        }catch (e: IllegalArgumentException){
+            println("$MESSAGE_ERROR $e")
+            throw IllegalArgumentException("$MESSAGE_ERROR $e")
+        }
+        throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
     }
 }
