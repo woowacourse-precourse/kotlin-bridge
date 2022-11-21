@@ -3,7 +3,6 @@ package bridge.domain
 import bridge.BridgeRandomNumberGenerator
 import bridge.consol.InputView
 import bridge.consol.Message.QUIT
-import bridge.consol.Message.RETRY
 import bridge.consol.Message.WRONG
 import bridge.consol.OutputView
 import bridge.data.Bridge
@@ -28,6 +27,20 @@ class BridgeGameController {
         closeGame()
     }
 
+    private fun makeBridge(): Bridge {
+        outputView.printInputLength()
+        val bridgeSize = inputView.readBridgeSize()
+        return Bridge(BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize))
+    }
+
+    private fun moveBridge(bridge: Bridge): String {
+        outputView.printInputMove()
+        val upDown = inputView.readMoving()
+        val hit = bridgeGame.move(bridge, upDown, map)
+        outputView.printMap(map.getMap())
+        return hit
+    }
+
     private fun checkGameResult(bridge: Bridge, hit: String): Boolean {
         if (hit == WRONG) {
             return askRetryGame(bridge)
@@ -39,40 +52,26 @@ class BridgeGameController {
         return true
     }
 
+    private fun askRetryGame(bridge: Bridge): Boolean {
+        outputView.printInputGameCommand()
+        val gameCommand = inputView.readGameCommand()
+        return checkGameCommand(gameCommand, bridge)
+    }
+
+    private fun checkGameCommand(command: String, bridge: Bridge): Boolean {
+        if (command == QUIT) {
+            outputView.printResultGuide()
+            outputView.printMap(map.getMap())
+            return false
+        }
+        bridgeGame.retry(bridge, map)
+        gameResult.attempt++
+        return true
+    }
 
     private fun closeGame() {
         outputView.printResultGuide()
         outputView.printMap(map.getMap())
         outputView.printResult(gameResult.getGameResult())
-    }
-
-    private fun askRetryGame(bridge: Bridge): Boolean {
-        outputView.printInputGameCommand()
-        val gameCommand = inputView.readGameCommand()
-        if (gameCommand == QUIT) {
-            outputView.printResultGuide()
-            outputView.printMap(map.getMap())
-            return false
-        }
-        if (gameCommand == RETRY) {
-            bridgeGame.retry(bridge, map)
-            gameResult.attempt++
-            return true
-        }
-        return throw IllegalStateException()
-    }
-
-    private fun makeBridge(): Bridge {
-            outputView.printInputLength()
-            val bridgeSize = inputView.readBridgeSize()
-            return Bridge(BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize))
-    }
-
-    private fun moveBridge(bridge: Bridge): String {
-            outputView.printInputMove()
-            val upDown = inputView.readMoving()
-            val hit = bridgeGame.move(bridge, upDown, map)
-            outputView.printMap(map.getMap())
-            return hit
     }
 }
