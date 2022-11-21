@@ -1,6 +1,11 @@
 package bridge
 
 fun main() {
-    // TODO: 프로그램 구현
-
+    try {
+        val game = BridgeGame()
+        game.gameStart()
+    }
+    catch(error:Exception){
+        println(error.message)
+    }
 }
