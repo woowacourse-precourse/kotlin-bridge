@@ -17,6 +17,6 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
             else bridgeAnswer.add("U")
         }
 
-        return listOf()
+        return bridgeAnswer
     }
 }
