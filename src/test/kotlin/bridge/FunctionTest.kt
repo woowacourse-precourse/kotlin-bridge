@@ -16,4 +16,11 @@ class FunctionTest {
             ExceptionCheck.checkBridgeSize("1")
         }
     }
+
+    @Test
+    fun `readGameCommand()`() {
+        assertThrows<IllegalArgumentException> {
+            ExceptionCheck.checkGameCommand("a")
+        }
+    }
 }

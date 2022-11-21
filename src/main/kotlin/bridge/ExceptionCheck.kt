@@ -9,5 +9,8 @@ object ExceptionCheck {
         require(bridgeSize.all{it.isDigit()}){"[ERROR] : 숫자만 입력해야 합니다."}
         require(bridgeSize.toInt() in 3..20){"[ERROR] : 3부터 20까지의 숫자를 입력해야 합니다."}
     }
+    fun checkGameCommand(gameCommand : String) {
+        require(gameCommand == "R" || gameCommand == "Q"){"[ERROR] 'R' 또는 'Q'를 입력해주세요" }
+    }
 
 }
