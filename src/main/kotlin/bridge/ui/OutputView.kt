@@ -26,22 +26,22 @@ class OutputView {
     }
 
     private fun handleFirstColumnCase(column: Int, actual: String, predict: String) {
-        if (actual == UP) {
-            if (actual == predict) printUpCorrectCase(column + 1)
+        if (predict == UP) {
+            if (predict == actual) printUpCorrectCase(column + 1)
             else printUpIncorrectCase(column + 1)
         } else {
-            if (actual == predict) printDownCorrectCase(column + 1)
+            if (predict == actual) printDownCorrectCase(column + 1)
             else printDownIncorrectCase(column + 1)
         }
     }
 
     private fun handlePartitionCase(column: Int, actual: String, predict: String) {
         val index = 4 * column - 1
-        if (actual == UP) {
-            if (actual == predict) handleCorrectCase(UP, index)
+        if (predict == UP) {
+            if (predict == actual) handleCorrectCase(UP, index)
             else handleIncorrectCase(UP, index)
         } else {
-            if (actual == predict) handleCorrectCase(DOWN, index)
+            if (predict == actual) handleCorrectCase(DOWN, index)
             else handleIncorrectCase(DOWN, index)
         }
     }
