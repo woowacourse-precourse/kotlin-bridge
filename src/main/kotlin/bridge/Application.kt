@@ -7,9 +7,9 @@ fun printBridgeMap(i : Int,bridge:List<String>):Int{
     while (way == "E") way = inputView.readMoving()
     val bridgeGame = BridgeGame()
     if (bridgeGame.move(i, bridge, way)) {
-        outputView.printMap(true, bridge, i)
+        outputView.printMap(bridge, i)
     } else {
-        outputView.printMap(false, bridge, i)
+        outputView.printMapFalse(bridge, i)
         var again = inputView.readGameCommand()
         if (again == "R") return 1
         else return 0
@@ -20,7 +20,7 @@ fun printBridgeMap(i : Int,bridge:List<String>):Int{
 fun BridgeGameing(size : Int,bridge : List<String>) : Int {
     for (i in 0 until size) {
         var printBridgeMapReturn = printBridgeMap(i,bridge)
-        return printBridgeMapReturn
+       if(printBridgeMapReturn == 0|| printBridgeMapReturn == 1) return printBridgeMapReturn
     }
     return 2
 }
@@ -39,8 +39,8 @@ fun BridgeGameMain() {
         count++
         finish = BridgeGameing(size, bridge)
     }
-    if (finish == 0) outputView.printResult(false,bridge,size-1,count)
-    else outputView.printResult(true,bridge,size-1,count)
+    if (finish == 0) outputView.printResultFail(bridge,size-1,count)
+    else outputView.printResult(bridge,size-1,count)
 }
 
 
