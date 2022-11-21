@@ -20,7 +20,7 @@ class BridgeGameInfoTest {
     fun `진행 상황에 맞춰서 다리 상태를 잘 반환한다`() {
         val stage = listOf(true, true, false)
         val bridgeGameInfo = BridgeGameInfo(bridge, stage, 1)
-        Assertions.assertThat(bridgeGameInfo.getUpBridge()).isEqualTo(listOf("O", " ", " "))
-        Assertions.assertThat(bridgeGameInfo.getDownBridge()).isEqualTo(listOf(" ", "O", "X"))
+        Assertions.assertThat(bridgeGameInfo.getBridge(BridgeGameType.UP)).isEqualTo(listOf("O", " ", " "))
+        Assertions.assertThat(bridgeGameInfo.getBridge(BridgeGameType.DOWN)).isEqualTo(listOf(" ", "O", "X"))
     }
 }

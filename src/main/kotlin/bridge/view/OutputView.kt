@@ -1,6 +1,7 @@
 package bridge.view
 
 import bridge.domain.BridgeGameInfo
+import bridge.domain.BridgeGameType
 import bridge.resources.OUTPUT_BRIDGE_MAP
 import bridge.resources.OUTPUT_FAILURE
 import bridge.resources.OUTPUT_RESULT_COUNT_OF_TRY
@@ -18,8 +19,8 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap(bridgeGameInfo: BridgeGameInfo) {
-        println(OUTPUT_BRIDGE_MAP.format(bridgeGameInfo.getUpBridge().joinToString(" | ")))
-        println(OUTPUT_BRIDGE_MAP.format(bridgeGameInfo.getDownBridge().joinToString(" | ")))
+        println(OUTPUT_BRIDGE_MAP.format(bridgeGameInfo.getBridge(BridgeGameType.UP).joinToString(" | ")))
+        println(OUTPUT_BRIDGE_MAP.format(bridgeGameInfo.getBridge(BridgeGameType.DOWN).joinToString(" | ")))
     }
 
     /**

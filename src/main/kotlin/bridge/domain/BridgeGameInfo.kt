@@ -5,18 +5,10 @@ data class BridgeGameInfo(
     var stage: List<Boolean> = mutableListOf(),
     var countOfTry: Int = 0
 ) {
-    fun getUpBridge() = stage
+    fun getBridge(bridgeGameType: BridgeGameType) = stage
         .mapIndexed { i, status ->
-            when {
-                bridge[i].type == "U" -> if (status) "O" else "X"
-                else -> " "
-            }
-        }
-
-    fun getDownBridge() = stage
-        .mapIndexed { i, status ->
-            when {
-                bridge[i].type == "D" -> if (status) "O" else "X"
+            when (bridge[i].type) {
+                bridgeGameType.type -> if (status) "O" else "X"
                 else -> " "
             }
         }
