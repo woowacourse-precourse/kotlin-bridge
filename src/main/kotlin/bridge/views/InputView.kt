@@ -60,7 +60,7 @@ class InputView {
 
     fun checkGameRetry(command: String) {
         val valid = listOf<String>("R", "r", "Q", "q")
-        if(!valid.contains(command)) {
+        if (!valid.contains(command)) {
             throw IllegalArgumentException(EXCEPTION_INVALID_RETRY)
         }
     }
