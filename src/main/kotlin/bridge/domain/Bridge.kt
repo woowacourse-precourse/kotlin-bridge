@@ -9,15 +9,19 @@ class Bridge(
         require(bridge.all { Floor.contains(it) }) { "Invalid bridge's elements" }
     }
 
-
-
-    enum class Floor {
-        U, D;
+    enum class Floor(val command: String) {
+        UP("U"), DOWN("D");
 
         companion object {
-            private val names = values().map { it.name }.toSet()
+            private val values = values()
 
-            fun contains(name: String): Boolean = names.contains(name)
+            operator fun get(value: String): Floor? {
+                return values.find { it.command == value || it.name == value }
+            }
+
+            operator fun contains(value: String): Boolean {
+                return values.any { it.command == value || it.name == value }
+            }
         }
     }
 
