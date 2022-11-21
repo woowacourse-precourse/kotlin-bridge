@@ -15,4 +15,13 @@ class ExceptionCheck {
         return false
     }
 
+    private fun isLetter(userInput: String): Boolean {
+        for (i in userInput.indices) {
+            if (userInput[i].isLetter()) {
+                return true
+            }
+        }
+        return false
+    }
+
 }
