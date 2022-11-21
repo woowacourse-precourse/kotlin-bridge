@@ -3,6 +3,9 @@ package bridge
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
+const val DOWN_BRIDGE = 0
+const val UP_BRIDGE = 1
+
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     /**
      * @param size 다리의 길이

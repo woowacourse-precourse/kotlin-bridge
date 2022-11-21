@@ -11,7 +11,7 @@
 
 ## BridgeMaker.kt
 
-- [ ] 0과 1에 해당하는 상수 추가
+- [x] 0과 1에 해당하는 상수 추가
 - [ ] makeBridge 메서드에서 BridgeNumberGenerator의 generate 메서드를 사용해서 bridge 리스트를 생성해서 반환
 
 ## InputView.kt
