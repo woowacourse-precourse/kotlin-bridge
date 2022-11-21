@@ -48,9 +48,8 @@ class InputView {
         return readValue
     }
 
-    private fun validateReadMoving(readValue: String) {
+    private fun validateReadMoving(readValue: String) =
         require(readValue == "U" || readValue == "D") { "[ERROR] U(위) 또는 D(아래)를 입력바랍니다." }
-    }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
