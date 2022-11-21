@@ -1,5 +1,6 @@
 package bridge.utils
 
+import bridge.resources.ERROR_INPUT_ALLOWED_KEYS
 import bridge.resources.ERROR_INPUT_NUMBER
 import bridge.resources.ERROR_INPUT_NUMBER_IN_RANGE
 
@@ -16,10 +17,9 @@ fun String.toIntInRangeOrError(min: Int, max: Int): Int {
 }
 
 fun String.toInListOrError(
-    list: List<String>,
-    errorMessage: String
+    list: List<String>
 ): String {
-    require(this in list) { errorMessage }
+    require(this in list) { ERROR_INPUT_ALLOWED_KEYS }
     return this
 }
 

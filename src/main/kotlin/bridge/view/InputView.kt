@@ -4,7 +4,6 @@ import bridge.domain.BridgeGameCommand
 import bridge.domain.BridgeGameType
 import bridge.resources.BRIDGE_MAX_LENGTH
 import bridge.resources.BRIDGE_MIN_LENGTH
-import bridge.resources.ERROR_INPUT_ALLOWED_KEYS
 import bridge.resources.INPUT_BRIDGE_SIZE
 import bridge.resources.INPUT_GAME_COMMAND
 import bridge.resources.INPUT_MOVING
@@ -33,7 +32,7 @@ class InputView {
     fun readMoving(): String {
         return infinityRead {
             println(INPUT_MOVING)
-            Console.readLine().toInListOrError(BridgeGameType.getTypeList(), ERROR_INPUT_ALLOWED_KEYS)
+            Console.readLine().toInListOrError(BridgeGameType.getTypeList())
         }
     }
 
@@ -43,7 +42,7 @@ class InputView {
     fun readGameCommand(): String {
         return infinityRead {
             println(INPUT_GAME_COMMAND)
-            Console.readLine().toInListOrError(BridgeGameCommand.getCommandList(), ERROR_INPUT_ALLOWED_KEYS)
+            Console.readLine().toInListOrError(BridgeGameCommand.getCommandList())
         }
     }
 }
