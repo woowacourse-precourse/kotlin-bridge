@@ -5,9 +5,8 @@ package bridge
  */
 class OutputView(
     private val bridge: List<String>,
-    private val moveDirections: List<String>,
-    private val moveCount: Int
 ) {
+    private var moveDirections = listOf<String>()
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      *
@@ -30,6 +29,10 @@ class OutputView(
     fun printResult() {
         println(FINAL_GAME_RESULT)
         printMap()
+    }
+
+    fun setMoveDirections(userMoveDirections: List<String>) {
+        moveDirections = userMoveDirections
     }
 
 
@@ -108,7 +111,6 @@ class OutputView(
     private fun printMovingNotPossible() {
         print(MOVING_NOT_POSSIBLE)
     }
-
 
 
     companion object {

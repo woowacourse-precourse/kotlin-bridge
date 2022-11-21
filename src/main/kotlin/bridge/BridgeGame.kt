@@ -26,6 +26,5 @@ class BridgeGame {
      */
     fun retry(userGameCommand: String): Boolean {
         return userGameCommand != GameCommand.QUIT.getGameCommand()
-
     }
 }
