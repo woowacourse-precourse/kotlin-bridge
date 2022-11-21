@@ -12,7 +12,7 @@ class BridgeGameTest {
     )
 
     @Test
-    fun `게임 시작 테스트`(){
+    fun `게임 시작 테스트`() {
         bridgeGame.start(10)
         val field = getPrivateField("bridge")
         field.trySetAccessible()
@@ -26,19 +26,17 @@ class BridgeGameTest {
         val field = getPrivateField("bridge")
         field.trySetAccessible()
         val bridge = field.get(bridgeGame) as List<*>
+        move(bridge)
+    }
+
+    private fun move(bridge: List<*>) {
         bridge.forEachIndexed { index, any ->
             if (any == MOVING_DIRECT_UP) {
-                assertThat(
-                    bridgeGame.move(
-                        index, MOVING_DIRECT_UP
-                    )
-                ).isEqualTo(true)
+                assertThat(bridgeGame.move(index, MOVING_DIRECT_UP))
+                    .isEqualTo(Pair('O', MOVING_DIRECT_UP))
             } else {
-                assertThat(
-                    bridgeGame.move(
-                        index, MOVING_DIRECT_UP
-                    )
-                ).isEqualTo(false)
+                assertThat(bridgeGame.move(index, MOVING_DIRECT_UP))
+                    .isEqualTo(Pair('X', MOVING_DIRECT_UP))
             }
         }
     }
