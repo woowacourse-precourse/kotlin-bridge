@@ -13,5 +13,11 @@ class CheckTrue {
         return way
     }
 
+    fun checkAgain(again : String) : String{
+        if(again != "R" && again != "Q") throw IllegalArgumentException()
+        return again
+    }
+
+
 
 }
