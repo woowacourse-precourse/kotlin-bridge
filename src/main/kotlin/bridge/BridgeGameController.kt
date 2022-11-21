@@ -2,6 +2,7 @@ package bridge
 
 import ui.InputView
 import ui.OutputView
+import values.Inform
 import values.Request
 
 /**
@@ -19,8 +20,7 @@ class BridgeGameController {
     }
 
     private fun setGame() {
-        println("다리 건너기 게임을 시작합니다.")
-        println()
+        println(Inform.GAME_START.message + "\n")
         println(Request.BRIDGE_SIZE.message)
         bridgeGame.setBridgeSize(inputView.readBridgeSize())
         println()
