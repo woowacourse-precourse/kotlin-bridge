@@ -1,29 +1,33 @@
 package bridge.validator
 
+import bridge.InputView
+
 object OutputValidator {
 
-    fun validatePrintMap(bridge: List<String>, round: Int, direction: String): String {
-
-        return validateUpSideMap(bridge, round, direction) + "\n" + validateDownSideMap(bridge, round, direction)
+    fun validatePrintMap(upSideList: MutableList<String>, downSideList: MutableList<String>, round: Int): String {
+        val moving = InputView().readMoving()
+        upSideList.add(validateUpSideMap(upSideList, round, moving))
+        downSideList.add(validateDownSideMap(downSideList, round, moving))
+        println(upSideList.toString().replace(", ", "|"))
+        println(upSideList.toString().replace(", ", "|"))
+        return moving
     }
 
     // TODO: 리팩토링
-    private fun validateUpSideMap(bridge: List<String>, round: Int, direction: String): String {
-        val truncatedUpList: MutableList<String> = mutableListOf()
-        if (bridge[round] == "U" && direction == "U") truncatedUpList.add(" O ")
-        if (bridge[round] == "U" && direction == "D") truncatedUpList.add("   ")
-        if (bridge[round] == "D" && direction == "U") truncatedUpList.add(" X ")
-        if (bridge[round] == "D" && direction == "D") truncatedUpList.add("   ")
-        return truncatedUpList.toString().replace(", ", "|")
+    fun validateUpSideMap(upSideList: List<String>, round: Int, direction: String): String {
+        if (upSideList[round] == "U" && direction == "U") return " O "
+        if (upSideList[round] == "U" && direction == "D") return "   "
+        if (upSideList[round] == "D" && direction == "U") return " X "
+        if (upSideList[round] == "D" && direction == "D") return "   "
+        return ""
     }
 
-    private fun validateDownSideMap(bridge: List<String>, round: Int, direction: String): String {
-        val truncatedDownList: MutableList<String> = mutableListOf()
-        if (bridge[round] == "U" && direction == "U") truncatedDownList.add("   ")
-        if (bridge[round] == "U" && direction == "D") truncatedDownList.add(" X ")
-        if (bridge[round] == "D" && direction == "U") truncatedDownList.add("   ")
-        if (bridge[round] == "D" && direction == "D") truncatedDownList.add(" O ")
-        return truncatedDownList.toString().replace(", ", "|")
+    fun validateDownSideMap(downSideList: List<String>, round: Int, direction: String, ): String {
+        if (downSideList[round] == "U" && direction == "U") return "   "
+        if (downSideList[round] == "U" && direction == "D") return " X "
+        if (downSideList[round] == "D" && direction == "U") return "   "
+        if (downSideList[round] == "D" && direction == "D") return " O "
+        return ""
     }
 
     fun validatePrintResult(whether: Boolean, trialCount: Int): String {
