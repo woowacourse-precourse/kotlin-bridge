@@ -3,8 +3,15 @@ package bridge
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame {
+class BridgeGame(
+    private val bridgeMaker: BridgeMaker,
+) {
     private var playerPosition = 0
+    private lateinit var bridge: List<String>
+
+    fun initBridge(bridgeSize: Int) {
+        bridge = bridgeMaker.makeBridge(bridgeSize)
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -12,17 +19,20 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(bridge: List<String>, playerDirection: String): GameStatus {
-        var gameStatus = when (playerDirection) {
-            bridge[playerPosition++] -> GameStatus.CONTINUING
-            else -> GameStatus.FAILED
+    fun move(playerDirection: String): PlayerStatus {
+        val isPlayerAlive = when (playerDirection) {
+            bridge[playerPosition++] -> true
+            else -> false
         }
-        if (playerPosition == bridge.size && gameStatus == GameStatus.CONTINUING) {
-            gameStatus = GameStatus.SUCCEEDED
-        }
-        return gameStatus
+
+        return PlayerStatus(playerDirection.directionToNumber(), isPlayerAlive)
     }
 
+    fun checkGameStatus(isPlayerAlive: Boolean) = when {
+        !isPlayerAlive -> GameStatus.FAILED
+        playerPosition == bridge.size -> GameStatus.SUCCEEDED
+        else -> GameStatus.CONTINUING
+    }
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -34,6 +44,10 @@ class BridgeGame {
         playerPosition = 0
     }
 
-    private fun String.decideRetryOrQuit() = this == "R"
+    private fun String.directionToNumber() = if (this == Direction.DOWN.direction) {
+        Direction.DOWN.directionNumber
+    } else {
+        Direction.UP.directionNumber
+    }
 
 }
