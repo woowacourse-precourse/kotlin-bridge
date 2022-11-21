@@ -30,7 +30,7 @@ class ExceptionCheck {
                 println(Error.MOVE_INPUT_TYPE_ERROR.message)
                 throw IllegalArgumentException()
             }
-            !checkValidLetter(userInput) -> {
+            !checkValidMoveLetter(userInput) -> {
                 println(Error.MOVE_INPUT_LETTER_ERROR.message)
                 throw IllegalArgumentException()
             }
@@ -71,9 +71,18 @@ class ExceptionCheck {
         return false
     }
 
-    private fun checkValidLetter(userInput: String): Boolean {
+    private fun checkValidMoveLetter(userInput: String): Boolean {
         for (i in userInput.indices) {
             if (userInput[i] == 'U' || userInput[i] == 'D') {
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun checkValidRetryLetter(userInput: String): Boolean {
+        for (i in userInput.indices) {
+            if (userInput[i] == 'R' || userInput[i] == 'Q') {
                 return true
             }
         }
