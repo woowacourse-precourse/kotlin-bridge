@@ -2,7 +2,7 @@ package bridge
 
 import bridge.domain.BridgeMaker
 import bridge.domain.BridgeRandomNumberGenerator
-import bridge.domain.Checker
+import bridge.domain.BridgeChecker
 import bridge.ui.InputView
 import bridge.utils.GAME_START_MSG
 import bridge.utils.SIZE_INPUT_MSG
@@ -17,6 +17,6 @@ fun main() {
     val bridge = bridgeMaker.makeBridge(bridgeSize)
     println(bridge)
 
-    val checker = Checker(bridge)
-    checker.judgeUserInput()
+    val checker = BridgeChecker(bridge)
+    checker.compare()
 }
