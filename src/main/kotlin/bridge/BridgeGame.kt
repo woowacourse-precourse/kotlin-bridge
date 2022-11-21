@@ -1,6 +1,7 @@
 package bridge
 
 import bridge.model.Bridge
+import bridge.model.BridgeMap
 import bridge.model.BridgeResult
 
 /**
@@ -9,24 +10,33 @@ import bridge.model.BridgeResult
 class BridgeGame {
 
     private val bridgeMaker: BridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
+    private val bridgeMap: BridgeMap = BridgeMap()
+    private lateinit var bridgeResult: BridgeResult
+    private lateinit var bridge: Bridge
     private var totalCount: Int = 0
     private var position: Int = 0
-    private lateinit var bridge: Bridge
 
-    fun setBridge(bridge: Bridge) {
-        this.bridge = bridge
+    fun initGame(size: Int) {
+        bridge = generateRandomBridge(size)
     }
 
-    fun generateRandomBridge(size: Int): Bridge {
-        return Bridge(bridgeMaker.makeBridge(size))
-    }
+    private fun generateRandomBridge(size: Int) = Bridge(bridgeMaker.makeBridge(size))
 
-    fun calResult(): Int {
+    fun getTotalCount(): Int {
         return totalCount
     }
 
     private fun resetPosition() {
         position = 0
+        bridgeMap.clear()
+    }
+
+    fun result() = bridgeResult
+
+    fun getBridgeMap() = bridgeMap.toString()
+
+    fun updateMap(direction: String) {
+        bridgeMap.update(bridgeResult, direction)
     }
 
     /**
@@ -34,10 +44,10 @@ class BridgeGame {
      * @param direction 위(U), 아래(D) 건너는 위치
      * @return enum class인 BridgeResult를 반환한다.
      */
-    fun move(direction: String): BridgeResult {
+    fun move(direction: String) {
         require(direction == "U" || direction == "D")
         totalCount++
-        return bridge.move(position++, direction)
+        bridgeResult = bridge.move(position++, direction)
     }
 
     /**
@@ -53,5 +63,10 @@ class BridgeGame {
         }
         return false
     }
+
+    fun finish() {
+        bridgeResult = BridgeResult.FINISH
+    }
+
 
 }
