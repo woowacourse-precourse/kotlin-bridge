@@ -4,8 +4,8 @@ package bridge
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame() {
-    private val tryCount: Int = 1   // 총 시도 횟수
-    private val moves: MutableList<String> = mutableListOf()    // 이동 방법
+    private var tryCount: Int = 1   // 총 시도 횟수
+    private var moves: MutableList<String> = mutableListOf()    // 이동 방법
 
     /**
      * 사용자가 칸을 이동할 때 사용
@@ -78,8 +78,22 @@ class BridgeGame() {
 
     fun isFail(bridge: List<String>): Boolean = (compareBridgeWithMoves(bridge)).contains(0)
 
+    fun isSuccess(bridge: List<String>):Boolean = !(compareBridgeWithMoves(bridge)).contains(0)
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      */
-    fun retry() {}
+    fun retry(restartCommand: String): Boolean {
+        when (restartCommand) {
+            "R" -> {
+                tryCount += 1
+                moves = mutableListOf()
+                return true
+            }
+            "Q" -> {
+                return false
+            }
+        }
+        return false
+    }
 }
