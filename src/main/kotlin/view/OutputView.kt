@@ -13,7 +13,7 @@ class OutputView {
     private val MESSAGE_SUCCESS_OR_FAILURE = "게임 성공 여부:"
     private val MESSAGE_TOTAL_TRY = "총 시도한 횟수:"
     private val MESSAGE_READ_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
-
+    private val MESSAGE_FRONT_BRACKET = "["
     private val MESSAGE_BACK_BRACKET = "]"
 
     private val inputView = InputView()
@@ -45,8 +45,8 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap(bridgeMap: Pair<List<String>, List<String>>) {
-        println("${bridgeMap.first.joinToString(" ")} $MESSAGE_BACK_BRACKET")
-        println("${bridgeMap.second.joinToString(" ")} $MESSAGE_BACK_BRACKET\n")
+        println("$MESSAGE_FRONT_BRACKET ${bridgeMap.first.joinToString(" ")} $MESSAGE_BACK_BRACKET")
+        println("$MESSAGE_FRONT_BRACKET ${bridgeMap.second.joinToString(" ")} $MESSAGE_BACK_BRACKET\n")
     }
 
 

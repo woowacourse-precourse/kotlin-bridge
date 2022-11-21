@@ -9,7 +9,6 @@ import java.lang.IllegalArgumentException
 class BridgeGame {
     private val outputView = OutputView()
     private var playMap = Pair<List<String>, List<String>>(arrayListOf(), arrayListOf())
-    private val MESSAGE_FRONT_BRACKET = "["
     private val MESSAGE_RESULT_MAP = "최종 게임 결과"
 
     /**
@@ -43,8 +42,8 @@ class BridgeGame {
     }
 
     private fun makeBridgeMap(bridgeToNow: Int, bridge: List<String>, nowMove: String): Pair<List<String>, List<String>> {
-        val bridgeTopMap = mutableListOf<String>(MESSAGE_FRONT_BRACKET)
-        val bridgeDownMap = mutableListOf<String>(MESSAGE_FRONT_BRACKET)
+        val bridgeTopMap = mutableListOf<String>()
+        val bridgeDownMap = mutableListOf<String>()
         for (i in 0 until bridgeToNow) {
             bridgeTopMap.add(addBridgeTopMap(bridgeToNow, bridge[i], i, nowMove))
             bridgeDownMap.add(addBridgeDownMap(bridgeToNow, bridge[i], i, nowMove))
