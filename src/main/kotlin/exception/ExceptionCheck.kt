@@ -5,6 +5,7 @@ import java.util.NoSuchElementException
 
 class ExceptionCheck {
 
+
     private fun isNumber(userInput: String): Boolean {
         for (i in userInput.indices) {
             if (userInput[i].isDigit()) {
@@ -41,4 +42,10 @@ class ExceptionCheck {
         return false
     }
 
+    private fun checkValidInputNumber(userInput: String): Boolean {
+        if(userInput.length == 1){
+            return true
+        }
+        return false
+    }
 }
