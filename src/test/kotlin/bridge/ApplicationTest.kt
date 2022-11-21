@@ -55,4 +55,17 @@ class ApplicationTest : NsTest() {
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
     }
+
+    //이하 제작 테스트
+
+    @Test
+
+    fun `맵 출력 테스트`(){
+        assertSimpleTest{
+            val test = BridgeCalculate.upLine(listOf("U","D","D"),listOf(true,false))
+            assertThat(test).isEqualTo("[ O | X ]")
+        }
+    }
+
+
 }
