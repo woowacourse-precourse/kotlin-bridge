@@ -9,11 +9,17 @@ fun main() {
         val gameIsSuccess = processBridgeGame(inputView, bridge)
         if (gameIsSuccess) {
 
+        } else {
+            val userGameCommand = inputView.readGameCommand()
+            if (userGameCommand == GameCommand.QUIT.getGameCommand()) {
+                printGameIsSuccess()
+                printGamePlayCount()
+            } else {
+
+
+            }
         }
     }
-
-
-
 }
 
 
@@ -47,3 +53,10 @@ fun printStartBridgeGame() {
     println(BrideGameConstValue.GAME_START_MESSAGE)
 }
 
+fun printGameIsSuccess() {
+    println(BrideGameConstValue.GAME_IS_SUCCESS)
+}
+
+fun printGamePlayCount() {
+    println(BrideGameConstValue.GAME_PLAY_COUNT)
+}
