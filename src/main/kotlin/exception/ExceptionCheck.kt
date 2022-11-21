@@ -44,6 +44,26 @@ class ExceptionCheck {
         }
     }
 
+    fun checkValidRetryLetterInput(userInput: String): String {
+        when {
+            !isLetter(userInput) -> {
+                println(Error.RETRY_INPUT_TYPE_ERROR.message)
+                throw IllegalArgumentException()
+            }
+            !checkValidRetryLetter(userInput) -> {
+                println(Error.RETRY_INPUT_LETTER_ERROR.message)
+                throw IllegalArgumentException()
+            }
+            !checkValidInputNumber(userInput) -> {
+                println(Error.INPUT_NUMBER_ERROR.message)
+                throw IllegalArgumentException()
+            }
+            else -> {
+                return userInput
+            }
+        }
+    }
+
     private fun isNumber(userInput: String): Boolean {
         for (i in userInput.indices) {
             if (userInput[i].isDigit()) {
