@@ -9,7 +9,7 @@ import java.lang.IllegalArgumentException
 class BridgeGame {
     private val outputView = OutputView()
     private var playMap = Pair<List<String>, List<String>>(arrayListOf(), arrayListOf())
-
+    private val MESSAGE_FRONT_BRACKET = "["
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
@@ -42,8 +42,8 @@ class BridgeGame {
     }
 
     private fun makeBridgeMap(bridgeToNow: Int, bridge: List<String>, nowMove: String): Pair<List<String>, List<String>> {
-        val bridgeTopMap = mutableListOf<String>("[")
-        val bridgeDownMap = mutableListOf<String>("[")
+        val bridgeTopMap = mutableListOf<String>(MESSAGE_FRONT_BRACKET)
+        val bridgeDownMap = mutableListOf<String>(MESSAGE_FRONT_BRACKET)
         for (i in 0 until bridgeToNow) {
             bridgeTopMap.add(addBridgeTopMap(bridgeToNow, bridge[i], i, nowMove))
             bridgeDownMap.add(addBridgeDownMap(bridgeToNow, bridge[i], i, nowMove))
