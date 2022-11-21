@@ -1,6 +1,7 @@
 package domain
 
 import view.OutputView
+import java.lang.IllegalArgumentException
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -35,8 +36,43 @@ class BridgeGame {
     // 현재 입력 값과 다리의 값이 같은지, 들린지
     private fun isMoving(bridgeToNow: Int, bridge: List<String>, nowMove:String): Boolean{
         // 현재까지 이동 칸 출력
-        playMap = outputView.printMap(bridgeToNow, bridge, nowMove)
+        playMap = makeBridgeMap(bridgeToNow, bridge, nowMove)
+        outputView.printMap(playMap)
         return bridge[bridgeToNow-1] == nowMove
+    }
+
+    private fun makeBridgeMap(bridgeToNow: Int, bridge: List<String>, nowMove: String): Pair<List<String>, List<String>> {
+        val bridgeTopMap = mutableListOf<String>("[")
+        val bridgeDownMap = mutableListOf<String>("[")
+        for (i in 0 until bridgeToNow) {
+            bridgeTopMap.add(addBridgeTopMap(bridgeToNow, bridge[i], i, nowMove))
+            bridgeDownMap.add(addBridgeDownMap(bridgeToNow, bridge[i], i, nowMove))
+            if (i != bridgeToNow-1) {
+                bridgeTopMap.add("|")
+                bridgeDownMap.add("|")
+            }
+        }
+        return Pair(bridgeTopMap, bridgeDownMap)
+    }
+
+    private fun addBridgeTopMap(bridgeToNow: Int, bridge: String, idx: Int, nowMove: String): String {
+        if (bridgeToNow - 1 == idx && bridge != nowMove) {
+            if (bridge == "U") return " "
+            if (bridge == "D") return "X"
+        }
+        if (bridge == "U") return "O"
+        if (bridge == "D") return " "
+        throw IllegalArgumentException("$[ERROR] 잘못된 입력 값입니다.")
+    }
+
+    private fun addBridgeDownMap(bridgeToNow: Int, bridge: String, idx: Int, nowMove: String): String {
+        if (bridgeToNow - 1 == idx && bridge != nowMove) {
+            if (bridge == "U") return "X"
+            if (bridge == "D") return " "
+        }
+        if (bridge == "U") return " "
+        if (bridge == "D") return "O"
+        throw IllegalArgumentException("$[ERROR] 잘못된 입력 값입니다.")
     }
 
     /**
