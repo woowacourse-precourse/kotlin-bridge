@@ -16,16 +16,10 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `기능 테스트`() {
+    fun `기능 테스트 without retry`() {
         assertRandomNumberInRangeTest({
             run("3", "U", "D", "U")
-            assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 1"
-            )
+            assertThat(output()).contains("최종 게임 결과", "[ O |   | O ]", "[   | O |   ]", "게임 성공 여부: 성공", "총 시도한 횟수: 1")
             val upSideIndex = output().indexOf("[ O |   | O ]")
             val downSideIndex = output().indexOf("[   | O |   ]")
             assertThat(upSideIndex).isLessThan(downSideIndex)
