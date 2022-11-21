@@ -13,9 +13,16 @@ class BridgeGameTest: NsTest() {
         val lastBridge = bridgeGame.up.last()
         Assertions.assertThat(lastBridge).isEqualTo(" X ")
     }
+    @Test
+    fun `게임의 진행 여부 판단`() {
+        val bridgeGame = BridgeGame(listOf("U", "D", "D", "U", "U"))
+        bridgeGame.move("U")
         bridgeGame.move("D")
-        val isMovable = bridgeGame.move("U")
-        Assertions.assertThat(isMovable).isEqualTo(false)
+        bridgeGame.move("D")
+        bridgeGame.move("U")
+        bridgeGame.move("U")
+        val isContinue = bridgeGame.isGameContinue()
+        Assertions.assertThat(isContinue).isEqualTo("SUCCESS")
     }
 
     override fun runMain() {
