@@ -20,14 +20,12 @@ object InputView {
         return bridgeSize
     }
 
-    fun readMoving(): String {
-        val bridgeType = readLine()
+    fun readMoving(): Bridge.Floor {
+        val command = readLine()
 
-        require(Bridge.Floor.contains(bridgeType)) {
+        return requireNotNull(Bridge.Floor[command]) {
             ErrorMessage.InvalidBridgeElement
         }
-
-        return bridgeType
     }
 
     fun askRetryGame(): Boolean {
