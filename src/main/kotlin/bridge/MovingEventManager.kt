@@ -10,5 +10,5 @@ class MovingEventManager {
 
     fun unsubscribe(listener: MovingEventListener) = listeners.remove(listener)
 
-    fun notify(event: GameState) = listeners.forEach { it.notify(event) }
+    fun notify(gameState: GameState) = listeners.forEach { it.notify(gameState) }
 }

@@ -4,5 +4,5 @@ import bridge.model.GameState
 
 interface MovingEventListener {
 
-    fun notify(event: GameState)
+    fun notify(gameState: GameState)
 }

@@ -17,6 +17,7 @@ fun main() {
     val bridge = bridgeMaker.makeBridge(bridgeSize)
     bridgeGame.start(bridge)
     val moving = inputView.askMovingToUser()
+    bridgeGame.move(moving)
 }
 
 private fun config() {

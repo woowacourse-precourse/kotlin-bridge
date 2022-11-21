@@ -21,7 +21,7 @@ class OutputView : MovingEventListener {
      */
     fun printResult() {}
 
-    override fun notify(event: GameState) {
+    override fun notify(gameState: GameState) {
 
     }
 }

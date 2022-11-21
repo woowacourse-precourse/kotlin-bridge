@@ -5,7 +5,7 @@ import bridge.MovingEventManager
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame(private val MovingEventManager: MovingEventManager) {
+class BridgeGame(private val movingEventManager: MovingEventManager) {
     private lateinit var bridge: List<String>
     private var userRoute: String = ""
     private var running: Boolean = false
@@ -29,8 +29,17 @@ class BridgeGame(private val MovingEventManager: MovingEventManager) {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move() {}
+    fun move(moving: String) {
+        check(running) { "게임이 실행되었을 때만 움직일 수 있습니다." }
+        userRoute += moving
+        movingEventManager.notify(GameState(bridge, userRoute))
+        if (userRoute.last().toString() != bridge[userRoute.length - 1]) {
+            running = false
+        }
+        if (userRoute.length == bridge.size) running = false
+    }
 
+    fun running(): Boolean = running
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      *
