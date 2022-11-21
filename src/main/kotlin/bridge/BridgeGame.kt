@@ -13,8 +13,8 @@ class BridgeGame(private val bridge : List<String>) {
     fun move(index:Int,userInput:String): String {
         val bridgeInfo = bridge[index]
         if(bridgeInfo==userInput)
-            return "Correct"
-        return "Wrong"
+            return MoveResult.CORRECT.message
+        return MoveResult.WRONG.message
     }
 
     /**
@@ -25,5 +25,12 @@ class BridgeGame(private val bridge : List<String>) {
      */
     fun retry(tryCount: Int):Int{
         return tryCount+1
+    }
+
+    enum class MoveResult(
+        val message:String
+    ){
+        CORRECT("Correct"),
+        WRONG("Wrong")
     }
 }

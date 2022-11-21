@@ -11,7 +11,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      */
     fun makeBridge(size: Int): List<String> {
         val bridge = mutableListOf<String>()
-        for (i in 1..size){
+        for (i in Constant.START.params..size){
             val num = bridgeNumberGenerator.generate()
             if (num==Location.Down.locationInt)
                 bridge.add(Location.Down.locationString)
@@ -26,5 +26,10 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     ) {
         Up(1,"U"),
         Down(0,"D")
+    }
+    enum class Constant(
+            val params:Int
+    ){
+        START(1)
     }
 }

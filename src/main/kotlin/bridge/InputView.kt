@@ -7,7 +7,7 @@ import camp.nextstep.edu.missionutils.Console
 class InputView {
     /**
      * 다리의 길이를 입력받는다.
-     * @return 다리의 길이 반환. 예외일 경우 -1 반환
+     * @return 다리의 길이 반환. 예외일 경우 다시 받는 과정
      */
     fun readBridgeSize(): Int {
         println(Message.INPUT_BRIDGE_SIZE.message)
