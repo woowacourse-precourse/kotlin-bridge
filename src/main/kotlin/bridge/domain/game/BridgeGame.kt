@@ -110,7 +110,12 @@ class BridgeGame(
      * 게임이 끝났을 때 실행되는 메서드
      */
     override fun end() {
-        val gameSuccessResult = if (BridgeCrossingProcessor.isCrossingFail()) FAIL_MESSAGE else SUCCESS_MESSAGE
-        outputView.printResult(BridgeCrossingProcessor.getCurrentMap(), gameSuccessResult, numberOfTry)
+        val gameSuccessResult = BridgeCrossingProcessor.getFinalGameResult()
+
+        outputView.printResult(
+            mapInfo = BridgeCrossingProcessor.getCurrentMap(),
+            gameSuccessResult = gameSuccessResult,
+            numberOfTry = numberOfTry
+        )
     }
 }

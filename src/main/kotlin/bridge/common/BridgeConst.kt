@@ -26,8 +26,8 @@ const val INPUT_GAME_COMMAND_MESSAGE = "\n게임을 다시 시도할지 여부�
 const val FINAL_GAME_RESULT_MESSAGE = "\n최종 게임 결과\n"
 const val GAME_SUCCESSFUL_FORMAT = "\n게임 성공 여부: %s\n"
 const val GAME_TRY_NUMBER_FORMAT = "총 시도한 횟수: %d\n"
-const val SUCCESS_MESSAGE = "성공"
-const val FAIL_MESSAGE = "실패"
+const val FINAL_SUCCESS_RESULT = "성공"
+const val FINAL_FAIL_RESULT = "실패"
 
 const val ERROR_MESSAGE_FORMAT = "[ERROR] %s\n"
 const val ERROR_BRIDGE_SIZE_MESSAGE = "다리 길이는 3부터 20 사이의 숫자여야 합니다."

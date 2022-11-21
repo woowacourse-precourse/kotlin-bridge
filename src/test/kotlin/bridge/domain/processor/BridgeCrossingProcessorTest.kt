@@ -38,4 +38,16 @@ class BridgeCrossingProcessorTest {
         Assertions.assertThat(upSideIndex).isEqualTo(0)
         Assertions.assertThat(downSideIndex).isEqualTo(1)
     }
+
+    @Test
+    fun `게임 최종 결과를 잘 반환하는 지 테스트`() {
+        Assertions.assertThat(
+            BridgeCrossingProcessor.getFinalGameResult()
+        ).isEqualTo(FINAL_FAIL_RESULT)
+    }
+
+    companion object {
+        private const val FINAL_SUCCESS_RESULT = "성공"
+        private const val FINAL_FAIL_RESULT = "실패"
+    }
 }

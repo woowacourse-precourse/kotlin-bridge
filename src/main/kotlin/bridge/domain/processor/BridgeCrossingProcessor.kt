@@ -46,6 +46,9 @@ object BridgeCrossingProcessor {
         } else " "
     }
 
+    fun getFinalGameResult(): String =
+        if (isCrossingFail()) FINAL_FAIL_RESULT else FINAL_SUCCESS_RESULT
+
     fun isCrossingFail(): Boolean = bridgeCrossingInfo.any { (_, isCrossed) -> !isCrossed }
 
     fun updateBridgeCrossingInfo(userMovingInfo: MovingInfo, isCrossed: Boolean) =

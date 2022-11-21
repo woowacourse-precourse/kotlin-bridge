@@ -1,6 +1,5 @@
-package bridge.domain.processor.game
+package bridge.domain.game
 
-import bridge.domain.game.BridgeGame
 import bridge.domain.generator.BridgeRandomNumberGenerator
 import bridge.domain.maker.BridgeMaker
 import bridge.ui.view.InputView
@@ -11,6 +10,7 @@ import org.junit.jupiter.api.Test
 
 class BridgeGameTest {
     private lateinit var bridgeGame: BridgeGame
+
     @BeforeEach
     fun setUp() {
         val inputView = InputView()
