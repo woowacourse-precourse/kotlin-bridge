@@ -11,7 +11,7 @@ class OutputView {
      */
     fun printMap(mapInfo: List<String>) {
         mapInfo.forEach { map ->
-            print(map)
+            println(map)
         }
     }
 

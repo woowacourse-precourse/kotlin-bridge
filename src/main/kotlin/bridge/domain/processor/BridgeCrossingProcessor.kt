@@ -4,7 +4,7 @@ import bridge.common.*
 import bridge.domain.moving.MovingInfo
 
 /**
- * 유저가 다리를 건널 때 결과를 처리하는 클래스
+ * 사용자가 다리를 건넌 후 결과를 처리하는 역할을 한다.
  */
 object BridgeCrossingProcessor {
     private val bridgeCrossingInfo = mutableListOf<Pair<MovingInfo, Boolean>>()
@@ -15,21 +15,28 @@ object BridgeCrossingProcessor {
         currentMapInfo.clear()
 
         repeat(BRIDGE_ROW_SIZE) { bridgeIndex ->
-            currentMapInfo.add(createCurrentMap(bridgeIndexInfo[bridgeIndex]!!))
+            currentMapInfo.add(createCurrentBridgeMap(bridgeIndexInfo[bridgeIndex]!!))
         }
         return currentMapInfo
     }
 
-    private fun createCurrentMap(bridgeNumber: Int): String {
-        var currentMap = ""
+    /**
+     * @param bridgeNumber 다리의 번호, 위쪽 다리는 1, 아래쪽 다리는 0으로 표현
+     */
+    private fun createCurrentBridgeMap(bridgeNumber: Int): String {
+        var currentBridgeMap = ""
         val round = bridgeCrossingInfo.size - 1
 
-        currentMap += "[ "
+        currentBridgeMap += "[ "
         bridgeCrossingInfo.forEachIndexed { curRound, (moving, isCrossed) ->
-            currentMap += getCrossingResult(movingInfo = moving, bridgeNumber = bridgeNumber, isCrossed = isCrossed)
-            currentMap += if (curRound == round) " ]\n" else " | "
+            currentBridgeMap += getCrossingResult(
+                movingInfo = moving,
+                bridgeNumber = bridgeNumber,
+                isCrossed = isCrossed
+            )
+            currentBridgeMap += if (curRound == round) " ]" else " | "
         }
-        return currentMap
+        return currentBridgeMap
     }
 
     private fun getCrossingResult(movingInfo: MovingInfo, bridgeNumber: Int, isCrossed: Boolean): String {

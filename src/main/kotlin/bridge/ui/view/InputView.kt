@@ -12,7 +12,6 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        // TODO : 검증 및 print를 inputView에서 해야 하는지 생각
         print(INPUT_BRIDGE_SIZE_MESSAGE)
 
         while (true) {

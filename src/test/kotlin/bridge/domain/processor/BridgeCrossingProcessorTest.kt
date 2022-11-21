@@ -6,16 +6,16 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class BridgeCrossingProcessorTest {
-
     @BeforeEach
-    fun init() {
+    fun setUp() {
+        BridgeCrossingProcessor.clearBridgeCrossingInfo()
         BridgeCrossingProcessor.updateBridgeCrossingInfo(MovingInfo.UP, true)
         BridgeCrossingProcessor.updateBridgeCrossingInfo(MovingInfo.DOWN, true)
         BridgeCrossingProcessor.updateBridgeCrossingInfo(MovingInfo.UP, false)
     }
 
     @Test
-    fun `건너기에 실패한 다리가 있는지 확인`() {
+    fun `다리 건너기에 실패했는지 확인`() {
         Assertions.assertThat(
             BridgeCrossingProcessor.isCrossingFail()
         ).isEqualTo(true)
@@ -38,5 +38,4 @@ class BridgeCrossingProcessorTest {
         Assertions.assertThat(upSideIndex).isEqualTo(0)
         Assertions.assertThat(downSideIndex).isEqualTo(1)
     }
-
 }
