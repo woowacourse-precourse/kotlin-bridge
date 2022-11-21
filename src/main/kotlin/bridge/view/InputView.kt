@@ -1,5 +1,6 @@
 package bridge.view
 
+import bridge.domain.BridgeGameCommand
 import bridge.domain.BridgeGameType
 import bridge.resources.ERROR_INPUT_ALLOWED_KEYS
 import bridge.resources.INPUT_BRIDGE_SIZE
@@ -34,10 +35,6 @@ class InputView {
      */
     fun readGameCommand(): String {
         println(INPUT_GAME_COMMAND)
-        return Console.readLine().isInListOrError(GAME_COMMAND_KEYS, ERROR_INPUT_ALLOWED_KEYS)
-    }
-
-    companion object {
-        private val GAME_COMMAND_KEYS = listOf("R", "Q")
+        return Console.readLine().isInListOrError(BridgeGameCommand.getCommandList(), ERROR_INPUT_ALLOWED_KEYS)
     }
 }

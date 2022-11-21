@@ -11,5 +11,9 @@ enum class BridgeGameCommand(val command: String) {
         fun of(command: String): BridgeGameCommand {
             return values().find { it.command == command } ?: throw IllegalArgumentException(ERROR_INPUT_COMMAND)
         }
+
+        fun getCommandList(): List<String> {
+            return BridgeGameCommand.values().map { it.command }
+        }
     }
 }
