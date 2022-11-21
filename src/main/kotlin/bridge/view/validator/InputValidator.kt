@@ -1,4 +1,4 @@
-package bridge.validator
+package bridge.view.validator
 
 import bridge.util.*
 

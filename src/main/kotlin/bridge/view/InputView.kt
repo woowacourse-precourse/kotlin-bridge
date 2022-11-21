@@ -1,9 +1,9 @@
-package bridge
+package bridge.view
 
 import bridge.util.INPUT_BRIDGE_SIZE_MESSAGE
 import bridge.util.SELECT_GAME_COMMAND_MESSAGE
 import bridge.util.SELECT_MOVE_INPUT_MESSAGE
-import bridge.validator.InputValidator
+import bridge.view.validator.InputValidator
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.

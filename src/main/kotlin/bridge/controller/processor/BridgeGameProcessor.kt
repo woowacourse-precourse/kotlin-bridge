@@ -1,4 +1,4 @@
-package bridge.app.processor
+package bridge.controller.processor
 
 import bridge.util.*
 
@@ -9,9 +9,8 @@ object BridgeGameProcessor {
     * 현재 위치 정보 맵 키, value 지정하여 비교
     * */
     private val bridgePassInfo = mutableListOf<Pair<Moving, Boolean>>()
+    private val bridgeLocationInfo = hashMapOf(DOWN_INT_NUMBER_ZERO to 0, UP_INT_NUMBER_ONE to 1)
     private val currentMapPrint = mutableListOf<String>()
-    private val bridgeLocationInfo =
-        hashMapOf(DOWN_INT_NUMBER_ZERO to 0, UP_INT_NUMBER_ONE to 1)
 
     /*
     * deleteBridgePassInfo: 지나간 정보를 비움
@@ -50,7 +49,7 @@ object BridgeGameProcessor {
         mapPrint += "[ "
         bridgePassInfo.forEachIndexed { index, (moving, hasPassed) ->
             mapPrint += updatePassed(moving, bridgeNumber, hasPassed)
-            mapPrint += if (index == round) " ]\n" else  " | "
+            mapPrint += if (index == round) " ]\n" else " | "
         }
         return mapPrint
     }
@@ -63,10 +62,7 @@ object BridgeGameProcessor {
 
     fun updateMapList(): List<String> {
         currentMapPrint.clear()
-
-        repeat(2) { twoBridge ->
-            currentMapPrint.add(createMapPrint(bridgeLocationInfo[twoBridge]!!))
-        }
+        repeat(2) { twoBridge -> currentMapPrint.add(createMapPrint(bridgeLocationInfo[twoBridge]!!)) }
         return currentMapPrint
     }
 }

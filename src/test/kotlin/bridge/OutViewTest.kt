@@ -1,6 +1,6 @@
 package bridge
 
-import bridge.validator.OutputValidator
+import bridge.view.validator.OutputValidator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -49,8 +49,5 @@ class OutViewTest {
 
     @Test
     fun `첫번째 라운드 오답일 때 최종 게임 결과 출력 테스트`() {
-        assertThat("최종 게임 결과" + "\n" + "[   ]" + "\n" + "[ X ]" + "\n" + "게임 성공 여부: 실패" + "\n" + "총 시도한 횟수: 1"
-        ).isEqualTo(OutputValidator.validatePrintResult(false, 1))
-
     }
 }

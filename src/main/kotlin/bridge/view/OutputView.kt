@@ -1,4 +1,4 @@
-package bridge
+package bridge.view
 
 import bridge.util.FINAL_GAME_RESULT_MESSAGE
 

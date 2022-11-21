@@ -1,4 +1,4 @@
-package bridge.app
+package bridge.controller
 
 interface App {
     fun start()

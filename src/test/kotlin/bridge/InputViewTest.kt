@@ -1,8 +1,8 @@
 package bridge
 
-import bridge.validator.InputValidator.validateInValidBridgeSize
-import bridge.validator.InputValidator.validateInvalidGameCommand
-import bridge.validator.InputValidator.validateInvalidMoveInput
+import bridge.view.validator.InputValidator.validateInValidBridgeSize
+import bridge.view.validator.InputValidator.validateInvalidGameCommand
+import bridge.view.validator.InputValidator.validateInvalidMoveInput
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
