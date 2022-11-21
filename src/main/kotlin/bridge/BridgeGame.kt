@@ -8,14 +8,16 @@ class BridgeGame {
     private val inputView = InputView()
     private val outputView = OutputView()
     private val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
-    private lateinit var result: Result
-    private lateinit var bridge: Bridge
+    private val result: Result = Result()
+    private var bridge: Bridge
 
-    fun start() {
+    init {
         outputView.printStartMessage()
         val bridgeSize = getBridgeSize()
         bridge = Bridge(BridgeMaker(bridgeRandomNumberGenerator).makeBridge(bridgeSize))
-        result = Result()
+    }
+
+    fun start() {
         startCycle()
         outputView.printResult(result, result.tryCount)
     }
