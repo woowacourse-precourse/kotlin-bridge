@@ -28,7 +28,8 @@ class OutputView(
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printResult() {
-
+        println(FINAL_GAME_RESULT)
+        printMap()
     }
 
 
@@ -50,17 +51,6 @@ class OutputView(
 
 
     private fun printBridgeOneLine(bridgeDirection: String, userDirection: String, count: Int) {
-        if (count == ZERO_VALUE) {
-            printBridgeHead(bridgeDirection, userDirection)
-            if (moveDirections.size == ONE_VALUE) printBridgeEnd()
-        } else {
-            printBridgeMiddle(bridgeDirection, userDirection)
-            if (moveDirections.size - ONE_VALUE == count) printBridgeEnd()
-        }
-    }
-
-
-    private fun printBottomBridge(bridgeDirection: String, userDirection: String, count: Int) {
         if (count == ZERO_VALUE) {
             printBridgeHead(bridgeDirection, userDirection)
             if (moveDirections.size == ONE_VALUE) printBridgeEnd()
@@ -120,6 +110,7 @@ class OutputView(
     }
 
 
+
     companion object {
         const val BRIDGE_START = "["
         const val BRIDGE_END = "]"
@@ -129,5 +120,6 @@ class OutputView(
         const val MOVING_NOT_POSSIBLE = "X"
         const val ZERO_VALUE = 0
         const val ONE_VALUE = 1
+        const val FINAL_GAME_RESULT = "최종 게임 결과"
     }
 }
