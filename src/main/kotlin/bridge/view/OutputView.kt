@@ -23,6 +23,11 @@ private const val TOTAL_TRY_COUNT = "총 시도한 횟수: "
 private const val WRONG_GAME_STATE = "[ERROR] 잘못된 상태가 넘어왔습니다."
 
 class OutputView {
+
+    fun printBlank() {
+        println()
+    }
+
     fun printGameStart() {
         println(GAME_START)
     }
@@ -43,6 +48,7 @@ class OutputView {
     fun printMap(upperBlocks: List<String>, downerBlocks: List<String>) {
         printBlocks(upperBlocks)
         printBlocks(downerBlocks)
+        println()
     }
 
     private fun printBlocks(blocks: List<String>) {
@@ -50,6 +56,7 @@ class OutputView {
     }
 
     fun printRetryRequest() {
+        println()
         println(ENTER_RETRY_END)
     }
 
