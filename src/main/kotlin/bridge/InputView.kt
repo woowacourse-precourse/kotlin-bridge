@@ -52,9 +52,24 @@ class InputView {
     }
 
     /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     * @brief 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        while(true) {
+            println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+            val gameCommand = Console.readLine()
+            runCatching{
+                validateGameCommand(gameCommand)
+            }.onSuccess{return gameCommand}.onFailure{println(it.message)}
+        }
+    }
+
+    /**
+     * @brief 게임 종료 여부에 대한 입력이 유효한지 확인한다.
+     * @return 입력이 유효한 경우, 사용자의 입력을 반환하고 아닌 경우 Exception을 던진다.
+     */
+    private fun validateGameCommand(gameCommand: String): String {
+        if(gameCommand != "R" && gameCommand != "Q") throw IllegalArgumentException("$ERROR_TAG 종료 여부는 R 혹은 Q로 표현되어야 합니다.")
+        return gameCommand
     }
 }
