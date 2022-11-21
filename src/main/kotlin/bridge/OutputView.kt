@@ -8,7 +8,6 @@ import java.lang.StringBuilder
 class OutputView {
 
     fun printMap(userChoice : MutableList<String>, check : Boolean) : MutableList<String>{
-
         var printMap = mutableListOf<String>()
         printMap.add(plusMap(userChoice, check, "U"))
         printMap.add(plusMap(userChoice, check, "D"))
