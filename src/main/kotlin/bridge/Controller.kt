@@ -10,6 +10,7 @@ class Controller {
     fun run() {
         gameStartStep()
         val bridgeLength = inputBridgeLengthStep()
+        chooseSpaceToMoveStep(bridgeLength)
     }
 
     private fun gameStartStep() {
@@ -19,7 +20,14 @@ class Controller {
     private fun inputBridgeLengthStep(): Int {
         outputView.printInputBridgeLength()
         val bridgeLength = inputView.readBridgeSize()
+        println()
         inputCheck.checkBridgeLength(bridgeLength)
         return bridgeLength.toInt()
     }
+
+    private fun chooseSpaceToMoveStep(length: Int) {
+        outputView.printChooseSpaceToMove()
+        inputView.readMoving()
+    }
+
 }
