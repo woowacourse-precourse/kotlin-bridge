@@ -17,7 +17,9 @@ class Player(
 
     private fun playGame(bridgeSize: Int) {
         for (turn in 0 until bridgeSize) {
-            if (!bridgeGame.move(turn, gameView.readMoving())) break
+            val (moveResult, moveDirect) = bridgeGame.move(turn, gameView.readMoving())
+            gameView.writeMap(turn, moveResult, moveDirect)
+            if (moveResult == 'X') break
         }
         if (gameView.readGameCommand() == GAME_COMMAND_RESTART) reStart()
         else finish()

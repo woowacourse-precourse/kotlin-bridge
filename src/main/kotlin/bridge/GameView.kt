@@ -9,7 +9,7 @@ import bridge.BridgeGame.Companion.MOVING_DIRECT_UP
 
 class GameView(
     private val inputView: InputView,
-    private val outputView: OutputView
+    private val outputView: OutputView,
 ) {
     init {
         outputView.printGameStart()
@@ -28,6 +28,14 @@ class GameView(
     fun readGameCommand(): Char {
         outputView.printInputNotice(InputType.GAME_COMMAND)
         return inputView.readGameCommand()
+    }
+
+    fun writeMap(turn: Int, moveResult: Char, moveDirect: String) {
+        outputView.printMap(turn, moveResult, moveDirect)
+    }
+
+    fun writeResult() {
+        //        outputView.printResult(turn, result)
     }
 
     companion object {

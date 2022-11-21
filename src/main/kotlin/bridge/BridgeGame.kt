@@ -18,8 +18,9 @@ class BridgeGame(
     fun move(
         turn: Int,
         moveDirect: String,
-    ): Boolean {
-        return bridge[turn] == moveDirect
+    ): Pair<Char, String> {
+        val moveResult = if (bridge[turn] == moveDirect) 'O' else 'X'
+        return Pair(moveResult, moveDirect)
     }
 
     /**
