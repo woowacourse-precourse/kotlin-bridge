@@ -14,6 +14,17 @@ class Validator {
         return bridgeLength
     }
 
+    fun validatorMove(move: String?): String {
+        val moving = move.toString()
+        require(moving == "U" || moving == "D"){
+            println(ERROR_MOVING)
+            InputView().readMoving()
+        }
+        return moving
+    }
+
+
+
     private fun validatorNumeric(input: String?): Boolean {
         return try{
             input!!.toInt()
