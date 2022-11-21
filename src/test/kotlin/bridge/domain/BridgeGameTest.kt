@@ -9,29 +9,41 @@ import org.junit.jupiter.api.assertThrows
 internal class BridgeGameTest {
 
     @Test
-    fun `move_올바른값1_정상`() {
-        val data = listOf(UP, UP, DOWN, DOWN)
-        val test = listOf(UP, UP, UP)
-        val bridge = Bridge(data)
-        val bridgeGame = BridgeGame(bridge)
+    fun `isRunning_맨처음_true`() {
+        val data = listOf(UP, DOWN, UP, DOWN)
+        val bridgeGame = BridgeGame(Bridge(data))
 
-        val result = test.map {
-            bridgeGame.move(it)
-        }
-        assertThat(result).containsExactly(true, true, false)
+        assertThat(bridgeGame.isRunning).isEqualTo(true)
     }
 
     @Test
-    fun `move_올바른값2_정상`() {
-        val data = listOf(UP, DOWN, UP, DOWN)
-        val test = listOf(UP, DOWN, UP, DOWN)
-        val bridge = Bridge(data)
-        val bridgeGame = BridgeGame(bridge)
+    fun `isRunning_안틀리고진행중_true`() {
+        val data = listOf(UP, UP, DOWN, DOWN)
+        val test = listOf(UP, UP)
+        val bridgeGame = BridgeGame(Bridge(data))
 
-        val result = test.map {
-            bridgeGame.move(it)
-        }
-        assertThat(result).containsExactly(true, true, true, true)
+        test.forEach { bridgeGame.move(it) }
+        assertThat(bridgeGame.isRunning).isEqualTo(true)
+    }
+
+    @Test
+    fun `isRunning_진행도중틀렸을때_false`() {
+        val data = listOf(UP, DOWN, UP, DOWN)
+        val test = listOf(UP, DOWN, DOWN)
+        val bridgeGame = BridgeGame(Bridge(data))
+
+        test.forEach { bridgeGame.move(it) }
+        assertThat(bridgeGame.isRunning).isEqualTo(false)
+    }
+
+    @Test
+    fun `isRunning_끝까지다맞췄을때_false`() {
+        val data = listOf(DOWN, DOWN, UP, UP)
+        val test = listOf(DOWN, DOWN, UP, UP)
+        val bridgeGame = BridgeGame(Bridge(data))
+
+        test.forEach { bridgeGame.move(it) }
+        assertThat(bridgeGame.isRunning).isEqualTo(false)
     }
 
     @Test
