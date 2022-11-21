@@ -33,7 +33,7 @@ class InputView {
             moveChoice = cs.readLine()
             validFlag = needToAskMoveAgain(moveChoice)
         }
-        return ""
+        return moveChoice
     }
 
     /**
