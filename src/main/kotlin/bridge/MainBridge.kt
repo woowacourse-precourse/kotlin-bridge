@@ -12,6 +12,11 @@ class MainBridge {
     init {
         bridgeGame = bridgeSetUp()
     }
+
+    /**
+     * 게임 시작을 위한 다리 개수 입력받기
+     * BridgeMaker 클래스를 통해 다리 생성하기
+     */
     private fun bridgeSetUp(): BridgeGame {
         output.printStartGame()
         val bridgeSize = input.readBridgeSize()
@@ -19,6 +24,11 @@ class MainBridge {
             .makeBridge(bridgeSize)
         return BridgeGame(bridge)
     }
+
+    /**
+     * 게임 상태가 실패(FAIL)일 경우, 다시 게임을 할지 입력받기
+     * 게임을 계속 진행(FAIL-RETRY, CONTINUE)할 경우엔 -1 반환
+     */
     private fun gameStatus(status: String): Int {
         if (status == "SUCCESS") return 1
         if (status == "FAIL") {
@@ -29,6 +39,11 @@ class MainBridge {
         }
         return -1
     }
+
+    /**
+     * 게임이 성공/실패(QUIT)가 돼서 종료될때까지 반복해서 게임 시행
+     * 이동할 칸을 입력받고 현재 이동한 다리 출력하는 메서드
+     */
     fun bridgeGameRepeat() {
         var status = -1
         while (status < 0) {

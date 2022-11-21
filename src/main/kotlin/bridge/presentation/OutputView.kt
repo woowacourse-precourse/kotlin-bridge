@@ -41,9 +41,9 @@ class OutputView {
         successCode: String
     ) {
         if (successCode == "성공") totalCount += 1
-        println("최종 게임 결과")
+        println("\n최종 게임 결과")
         printMap(bridgeGame)
-        println("게임 성공 여부: $successCode")
+        println("\n게임 성공 여부: $successCode")
         println("총 시도한 횟수: $totalCount")
     }
 }
