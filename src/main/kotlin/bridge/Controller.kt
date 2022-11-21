@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.view.InputView
+
 class Controller {
 
     private lateinit var bridgeGame: BridgeGame
