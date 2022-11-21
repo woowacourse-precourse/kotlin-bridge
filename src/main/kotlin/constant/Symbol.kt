@@ -7,5 +7,11 @@ enum class Symbol(val symbol: String) {
 
     START_BRIDGE("[ "),
     SEPARATOR(" | "),
-    END_BRIDGE(" ]")
+    END_BRIDGE(" ]"),
+
+    UP("U"),
+    DOWN("D"),
+
+    RETRY("R"),
+    QUIT("Q")
 }

@@ -38,6 +38,13 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        var input: String?
+        do {
+            println(Message.GAME_COMMAND_INPUT.message)
+            input = readLine()
+            val retry = CommandChecker(input).checkAll()
+            if (retry) println()
+        } while (retry)
+        return input ?: ""
     }
 }
