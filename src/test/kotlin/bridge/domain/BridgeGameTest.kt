@@ -42,4 +42,18 @@ class BridgeGameTest {
         assertThat(finalMetadataDTO.getMovementStatuses()).isEqualTo(movementStatuses)
         assertThat(finalMetadataDTO.getTrialCount()).isEqualTo(1)
     }
+
+    @Test
+    fun `게임 재시작 후 성공`() {
+        val firstTrialMovements = listOf("U", "U")
+
+        firstTrialMovements.map { movement -> bridgeGame.move(movement) }
+        bridgeGame.retry()
+        val metadataDTOs = bridge.map { movement -> bridgeGame.move(movement) }
+        val finalMetadataDTO = metadataDTOs.last()
+
+        assertThat(finalMetadataDTO.getGameStatus()).isEqualTo(BridgeGameStatus.SUCCESS)
+        assertThat(finalMetadataDTO.getMovementStatuses()).isEqualTo(movementStatuses)
+        assertThat(finalMetadataDTO.getTrialCount()).isEqualTo(2)
+    }
 }
