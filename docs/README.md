@@ -17,18 +17,18 @@ Kotlin 1.6.20
 ✅ Get the game command (readGameCommand) \
 ✅ Validate the game command (validateGameCommand) \
 
-### ⬜️ OutputView Class
-⬜️ Print the state of bridge (printMap) \
-⬜️ Print the final result of game (printResult)
+### ✅️ OutputView Class
+️✅️ Print the state of bridge (printMap) \
+✅️ Print the final result of game (printResult)
 
-### ⬜️ BridgeMaker Class
-⬜️ Make random bridge according to the size (makeBridge)
+### 🚧️️ BridgeMaker Class
+✅ Make random bridge according to the size (makeBridge)
 ⬜️ Test code for BridgeMaker Class
 
-### ⬜️ BridgeGame Class
-⬜️ Deal with move situation (move) \
-⬜️ Deal with retry situation (retry) \
-⬜️ Make game board into string (gameToString)
+### 🚧️ BridgeGame Class
+✅ Deal with move situation (move) \
+✅ Deal with retry situation (retry) \
+✅ Make game board into string (gameToString)
 ⬜️ Test code for BridgeGame Class
 
 ### ⬜️ Application
