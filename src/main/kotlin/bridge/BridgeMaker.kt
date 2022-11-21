@@ -21,7 +21,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     }
 
     private fun parseToBridgeDirect(num: Int): String = when (num) {
-        RANDOM_LOWER_INCLUSIVE -> MOVING_DIRECT_UP
-        else -> MOVING_DIRECT_DOWN
+        RANDOM_LOWER_INCLUSIVE -> MOVING_DIRECT_DOWN
+        else -> MOVING_DIRECT_UP
     }
 }
