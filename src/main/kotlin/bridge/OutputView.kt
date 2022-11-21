@@ -26,16 +26,15 @@ class OutputView {
     fun printSuccessResult(){
 
         println("게임 성공 여부: 성공")
-        println("최종 게임 결과")
 
     }
 
     fun printFailResult() {
         println("게임 성공 여부: 실패")
-        println("최종 게임 결과")
-
     }
-
+    fun printLastGame(){
+        println("최종 게임 결과")
+    }
     fun printGameEnd(){
         print( "총 시도한 횟수: "+BridgeGame().startBridge(BridgeGame().guideSet()))
     }
