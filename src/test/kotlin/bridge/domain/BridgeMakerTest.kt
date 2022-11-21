@@ -21,6 +21,6 @@ class BridgeMakerTest {
         val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
         assertThat(
             bridge.filterNot { it == UP || it == DOWN }.isEmpty()
-        ).isEqualTo(true)
+        ).isTrue()
     }
 }
