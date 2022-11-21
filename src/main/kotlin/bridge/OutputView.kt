@@ -74,12 +74,10 @@ class OutputView {
     private fun fillMap(moveResult: Char, moveDirect: String) {
         val message = " %c "
         upMap.append(
-            message.format(
-                if (moveDirect == MOVING_DIRECT_UP) moveResult else ' ')
+            message.format(if (moveDirect == MOVING_DIRECT_UP) moveResult else ' ')
         )
         downMap.append(
-            message.format(
-                if (moveDirect == MOVING_DIRECT_DOWN) moveResult else ' ')
+            message.format(if (moveDirect == MOVING_DIRECT_DOWN) moveResult else ' ')
         )
         upMap.append("]")
         downMap.append("]")
