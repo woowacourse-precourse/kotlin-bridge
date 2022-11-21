@@ -9,17 +9,15 @@ fun main() {
     while (true) {
         val bridgeGame = BridgeGame(bridge)
         isGameSuccess = processBridgeGame(inputView, outputView, bridgeGame)
-        if (!decideGameContinue(isGameSuccess, inputView, bridgeGame)) {
-            break
-        } else {
-            gamePlayCount += 1
-        }
+        if (!decideGameContinue(isGameSuccess, inputView, bridgeGame)) break
+        else gamePlayCount += 1
     }
-    outputView.printResult(isGameSuccess)
-    printGameResult(isGameSuccess, gamePlayCount)
+    printGameResult(isGameSuccess, gamePlayCount, outputView)
 }
 
-fun printGameResult(isGameSuccess: Boolean, gamePlayCount: Int) {
+
+fun printGameResult(isGameSuccess: Boolean, gamePlayCount: Int, outputView: OutputView) {
+    outputView.printResult(isGameSuccess)
     printGameIsSuccess(isGameSuccess)
     printGamePlayCount(gamePlayCount)
 }
@@ -32,7 +30,6 @@ fun decideGameContinue(isGameSuccess: Boolean, inputView: InputView, bridgeGame:
         val userGameCommand = inputView.readGameCommand()
         return bridgeGame.retry(userGameCommand)
     }
-
 }
 
 
@@ -52,8 +49,7 @@ fun settingBridgeGame(inputView: InputView): List<String> {
     printStartBridgeGame()
     val bridgeSize = inputView.readBridgeSize()
     val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
-    val bridge = bridgeMaker.makeBridge(bridgeSize)
-    return bridge
+    return bridgeMaker.makeBridge(bridgeSize)
 }
 
 
