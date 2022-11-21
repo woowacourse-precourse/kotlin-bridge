@@ -14,6 +14,7 @@ class OutputView {
         printUpDecide(bridge, input)
         println()
         printDownDecide(bridge, input)
+        println()
     }
 
     private fun printDownDecide(bridge: List<String>, input: List<String>) {
