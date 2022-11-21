@@ -26,7 +26,8 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 물어본다.
      */
     fun askGameCommand(): String {
-        return ""
+        println(GAME_COMMAND_INSTRUCTION)
+        return readInput()
     }
 
     private fun readInput(): String {
@@ -36,5 +37,6 @@ class InputView {
     companion object {
         const val BRIDGE_SIZE_INSTRUCTION = "다리의 길이를 입력해주세요."
         const val MOVEMENT_INSTRUCTION = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
+        const val GAME_COMMAND_INSTRUCTION = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
     }
 }
