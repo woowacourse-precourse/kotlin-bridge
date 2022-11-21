@@ -7,5 +7,7 @@ class BridgeGameManager(
     private val inputView: InputView,
     private val outputView: OutputView
 ) {
-
+    fun startGame() {
+        outputView.printStart()
+    }
 }
