@@ -5,7 +5,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
 
 class BridgeMakerTest {
     @ParameterizedTest
@@ -20,7 +19,7 @@ class BridgeMakerTest {
 
     companion object {
         @JvmStatic
-        private fun providerBridgeNumbers() = Stream.of(
+        private fun providerBridgeNumbers() = listOf(
             Arguments.of(listOf("U", "D", "U"), 3), Arguments.of(listOf("U", "D", "U", "D", "U"), 5)
         )
     }
