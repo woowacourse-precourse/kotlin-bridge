@@ -3,6 +3,9 @@ package bridge.domain
 import bridge.view.InputView
 import bridge.view.OutputView
 
+private enum class Command(val message: String) {
+    RETRY("R")
+}
 
 class BridgeGameController {
 
@@ -39,5 +42,14 @@ class BridgeGameController {
             }
         } while (true)
     }
+
+    private fun manageCommand(command: String) {
+        if (command == Command.RETRY.message) {
+            bridgeGame.retry()
+            return
+        }
+        outputView.printResult(bridgeGame, false)
+    }
+
 
 }
