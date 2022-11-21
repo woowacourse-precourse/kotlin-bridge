@@ -9,18 +9,7 @@ const val FINAL_MAP_MSG = "\n최종 게임 결과"
 const val FINAL_RESULT_MSG = "\n게임 성공 여부: "
 const val FINAL_TRY_NUM_MSG = "총 시도한 횟수: "
 
-const val MIN_SIZE = 3
-const val MAX_SIZE = 20
-
 const val UP = "U"
 const val DOWN = "D"
-
-const val CORRECT = " O"
-const val INCORRECT = " X"
-const val PARTITION = " |"
-
 const val RESTART = "R"
 const val QUIT = "Q"
-
-const val SUCCESS = "성공"
-const val FAIL = "실패"
