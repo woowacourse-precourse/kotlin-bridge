@@ -9,12 +9,12 @@ class GameController {
     private val outputView = OutputView()
 
     init {
-        bridgeGame.tryCount++
         println("다리 건너기 게임을 시작합니다.")
+        makeBridge(inputBridgeSize())
+        bridgeGame.tryCount++
     }
 
     fun gameStart() {
-        makeBridge(inputBridgeSize())
         repeatMoving()
         if (checkRetryGame()) {
             bridgeGame.retry()
