@@ -14,47 +14,42 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        var size: String
-        do {
-            size = Console.readLine()
-            var stop = false
-            try {
-                stop = validator.isNumber(size) && validator.validateBridgeSize(size)
-            } catch (e: IllegalArgumentException) { OutputView().printMessage(ENTER_AGAIN) }
-        } while (!stop)
-
-        return size.toInt()
+        while (true) {
+            val size = Console.readLine()
+            if (catchException { validator.validateBridgeSize(size) })
+                return size.toInt()
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        var move: String
-        do {
-            move = Console.readLine()
-            var stop = false
-            try {
-                stop = validator.validateUpAndDown(move)
-            } catch (e: IllegalArgumentException) { OutputView().printMessage(ENTER_AGAIN) }
-        } while (!stop)
-
-        return move
+        while (true) {
+            val move = Console.readLine()
+            if (catchException { validator.validateUpAndDown(move) })
+                return move
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        var command: String
-        do {
-            command = Console.readLine()
-            var stop = false
-            try {
-                stop = validator.validateRetryAndQuit(command)
-            } catch (e: IllegalArgumentException) { OutputView().printMessage(ENTER_AGAIN) }
-        } while (!stop)
+        while (true) {
+            val command = Console.readLine().toString()
+            if (catchException { validator.validateRetryAndQuit(command) })
+                return command
+        }
+    }
 
-        return command
+    private fun catchException(validate: () -> Unit): Boolean {
+        try {
+            validate()
+            return true
+        } catch (e: IllegalArgumentException) {
+            OutputView().printMessage(ENTER_AGAIN)
+        }
+        return false
     }
 }
