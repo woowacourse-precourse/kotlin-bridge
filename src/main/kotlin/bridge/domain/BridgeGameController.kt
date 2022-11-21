@@ -13,6 +13,18 @@ class BridgeGameController {
     private val inputView = InputView()
     private val outputView = OutputView()
 
+    fun play(bridge: List<String>) {
+        bridgeGame = BridgeGame(bridge)
+        do {
+            if (playOneGame(bridge.size)) {
+                outputView.printResult(bridgeGame, true)
+                return
+            }
+            val command = readCommand()
+            manageCommand(command)
+        } while (command == Command.RETRY.message)
+    }
+
     private fun playOneGame(bridgeSize: Int): Boolean {
         for (step in 0 until bridgeSize) {
             val moving = readMoving()
