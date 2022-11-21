@@ -2,6 +2,8 @@ package bridge
 
 fun main() {
     printStartGame()
+    val inputView = InputView()
+    inputView.readBridgeSize()
 }
 
 
