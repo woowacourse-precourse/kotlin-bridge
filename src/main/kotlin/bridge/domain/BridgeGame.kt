@@ -6,9 +6,12 @@ import java.lang.IllegalArgumentException
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame(private val bridgeNumberGenerator: BridgeNumberGenerator, private val size: Int) {
+class BridgeGame(
+    private val bridgeNumberGenerator: BridgeNumberGenerator,
+    private val size: Int,
+    private val player: Player
+) {
     private var playerTryCount = 1
-    private val player = Player()
     private var bridge: List<String>
 
     init {

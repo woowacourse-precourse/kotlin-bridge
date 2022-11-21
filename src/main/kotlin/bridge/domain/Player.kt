@@ -2,6 +2,9 @@ package bridge.domain
 
 class Player {
 
+    private var record = mutableListOf<String>()
+    private var position = -1
+
     fun go(move: String) {
         record.add(move)
         position++
@@ -18,10 +21,5 @@ class Player {
     fun initialize() {
         position = -1
         record.clear()
-    }
-
-    companion object {
-        private var record = mutableListOf<String>()
-        private var position = -1
     }
 }

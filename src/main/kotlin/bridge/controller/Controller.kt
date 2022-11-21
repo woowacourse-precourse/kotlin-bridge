@@ -1,6 +1,7 @@
 package bridge.controller
 
 import bridge.domain.BridgeGame
+import bridge.domain.Player
 import bridge.util.BridgeNumberGenerator
 import bridge.view.InputView
 import bridge.view.OutputView
@@ -11,7 +12,8 @@ class Controller {
 
     fun run(bridgeNumberGenerator: BridgeNumberGenerator) {
         inputView.readStartGame()
-        val bridgeGame = BridgeGame(bridgeNumberGenerator, inputView.readBridgeSize())
+        val player = Player()
+        val bridgeGame = BridgeGame(bridgeNumberGenerator, inputView.readBridgeSize(), player)
         do {
             playGame(bridgeGame)
             if (bridgeGame.isDone()) break
@@ -22,7 +24,6 @@ class Controller {
     private fun playGame(bridgeGame: BridgeGame) {
         do {
             bridgeGame.move(inputView.readMoving())
-            println(bridgeGame.getBridge())
             outputView.printMap(bridgeGame)
             if (bridgeGame.isDone()) break
         } while (bridgeGame.isFail().not())
