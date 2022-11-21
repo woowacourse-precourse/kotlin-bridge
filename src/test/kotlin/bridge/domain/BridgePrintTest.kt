@@ -1,6 +1,6 @@
 package bridge.domain
 
-import bridge.shortBridge
+import bridge.BridgeGame
 import bridge.view.OutputView
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
@@ -20,7 +20,8 @@ class BridgePrintTest {
     fun `3번째 라인까지 출력`() {
         val location = 2
         val bridge = listOf<String>("U", "D", "D", "D")
-        val newBridge = shortBridge(bridge, location)
+        val game = BridgeGame(bridge, bridge.size)
+        val newBridge = game.move(location)
         val answer = true
 
         Assertions.assertThat(
@@ -32,7 +33,8 @@ class BridgePrintTest {
     fun `도중에 틀릴 경우`() {
         val location = 1
         val bridge = listOf<String>("U", "D", "D")
-        val newBridge = shortBridge(bridge, location)
+        val game = BridgeGame(bridge, bridge.size)
+        val newBridge = game.move(location)
         val answer = false
 
         Assertions.assertThat(
