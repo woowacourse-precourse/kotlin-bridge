@@ -1,5 +1,7 @@
 package bridge
 
+import values.Moving
+
 /**
  * 다리 건너기 게임의 상태를 관리하는 클래스
  */
@@ -22,11 +24,11 @@ class BridgeGame {
     }
 
     private fun updateGameProgress(moving: String) {
-        if (moving == MOVING_UP) {
+        if (moving == Moving.UP.message) {
             gameProgress[0].add(if (isCorrect(moving)) "O" else "X")
             gameProgress[1].add(" ")
         }
-        else if (moving == MOVING_DOWN) {
+        else if (moving == Moving.DOWN.message) {
             gameProgress[0].add(" ")
             gameProgress[1].add(if (isCorrect(moving)) "O" else "X")
         }
@@ -52,9 +54,4 @@ class BridgeGame {
     fun isCorrect(moving: String): Boolean { return bridge[moveCount] == moving }
 
     fun isSuccess(): Boolean { return !(gameProgress.any{ it.contains("X") }) }
-
-    companion object {
-        const val MOVING_DOWN = "D"
-        const val MOVING_UP = "U"
-    }
 }

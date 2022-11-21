@@ -1,5 +1,7 @@
 package bridge
 
+import values.Moving
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -11,9 +13,9 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         return List(size) { "" }.map {
             if (bridgeNumberGenerator.generate() == BridgeRandomNumberGenerator.RANDOM_LOWER_INCLUSIVE) {
-                "D"
+                Moving.DOWN.message
             } else {
-                "U"
+                Moving.UP.message
             }
         }
     }
