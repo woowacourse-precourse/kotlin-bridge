@@ -4,6 +4,7 @@ package bridge
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 class OutputView {
+    var totalCount = 0
     /**
      * 게임 시작 문구 및 다리 길이 입력 요구 문구 출력하기
      */
@@ -28,11 +29,19 @@ class OutputView {
     fun printGameCommand() {
         println()
         println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        totalCount += 1
     }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(
+        bridgeGame: BridgeGame,
+        successCode: String
+    ) {
+        if (successCode == "성공") totalCount += 1
+        println("최종 게임 결과")
+        printMap(bridgeGame)
+        println("게임 성공 여부: $successCode")
+        println("총 시도한 횟수: $totalCount")
+    }
 }
