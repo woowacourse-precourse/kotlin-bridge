@@ -4,6 +4,25 @@ import util.Error
 import java.util.NoSuchElementException
 
 class ExceptionCheck {
+    fun checkValidBridgeLengthInput(userInput: String): String {
+        when {
+            !isNumber(userInput) -> {
+                println(Error.BRIDGE_LENGTH_INPUT_TYPE_ERROR.message)
+                throw IllegalArgumentException()
+            }
+            !checkValidNumberRange(userInput) -> {
+                println(Error.BRIDGE_LENGTH_INPUT_RANGE_ERROR.message)
+                throw IllegalArgumentException()
+            }
+            !checkValidInputNumber(userInput) -> {
+                println(Error.INPUT_NUMBER_ERROR.message)
+                throw IllegalArgumentException()
+            }
+            else -> {
+                return userInput
+            }
+        }
+    }
 
     fun checkValidMoveLetterInput(userInput: String): String {
         when {
