@@ -7,6 +7,8 @@ import view.OutputView
  */
 class BridgeGame {
     private val outputView = OutputView()
+    private var playMap = Pair<List<String>, List<String>>(arrayListOf(), arrayListOf())
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -30,13 +32,14 @@ class BridgeGame {
                 }
             }
         }
+        outputView.printResultMap(playMap)
         outputView.printResult("성공", numberOfGames)
     }
 
     // 현재 입력 값과 다리의 값이 같은지, 들린지
     private fun isMoving(bridgeToNow: Int, bridge: List<String>, nowMove:String): Boolean{
         // 현재까지 이동 칸 출력
-        outputView.printMap(bridgeToNow, bridge, nowMove)
+        playMap = outputView.printMap(bridgeToNow, bridge, nowMove)
         return bridge[bridgeToNow-1] == nowMove
     }
 
