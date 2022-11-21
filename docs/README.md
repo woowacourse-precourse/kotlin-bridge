@@ -9,13 +9,13 @@ Kotlin 1.6.20
 
 ---
 ## MileStones and Progress
-### ⬜️ InputView Class
-⬜️ Get the length of the bridge (readBridgeSize) \
-⬜️ Validate the length of the bridge (validateBridgeSize) \
-⬜️ Get the move of user (readMoving) \
-⬜️ Validate the move of user (validateMoving) \
-⬜️ Get the game command (readGameCommand) \
-⬜️ Validate the game command (validateGameCommand) \
+### 🚧️ InputView Class
+️✅ Get the length of the bridge (readBridgeSize) \
+✅ Validate the length of the bridge (validateBridgeSize) \
+✅ Get the move of user (readMoving) \
+✅ Validate the move of user (validateMoving) \
+✅ Get the game command (readGameCommand) \
+✅ Validate the game command (validateGameCommand) \
 ⬜️ Test code for InputView Class
 
 ### ⬜️ OutputView Class
