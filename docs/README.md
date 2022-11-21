@@ -90,5 +90,11 @@ ex) 정답이
 - [x] BridgeGame에서 Input/OutputView 제거
 - [x] 단위 로직 테스트 만들기? 1개만 만들어서 애매?
 
+## 순서도
+![img.png](img.png)
+
+
+
+
 
 
