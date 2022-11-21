@@ -1,6 +1,6 @@
 package bridge.controller
 
-import bridge.BridgeGame
+import bridge.model.BridgeGame
 import bridge.BridgeResult
 import bridge.util.Validator
 import bridge.view.InputView
