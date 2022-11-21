@@ -3,11 +3,13 @@ package bridge.controller
 import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
 import bridge.domain.BridgeGame
+import bridge.domain.BridgeGameCommand
+import bridge.domain.BridgeGameCommand.NONE
+import bridge.domain.BridgeGameCommand.RETRY
 import bridge.domain.BridgeGameInfo
-import bridge.domain.BridgeGameStatus
-import bridge.domain.BridgeGameStatus.FAILURE
-import bridge.domain.BridgeGameStatus.RETRY
-import bridge.domain.BridgeGameStatus.RUNNING
+import bridge.domain.BridgeGameProgress
+import bridge.domain.BridgeGameProgress.FAILURE
+import bridge.domain.BridgeGameProgress.RUNNING
 import bridge.view.InputView
 import bridge.view.OutputView
 
@@ -16,7 +18,8 @@ class BridgeGameController {
     private val output by lazy { OutputView() }
     private val input by lazy { InputView() }
 
-    private var status = RUNNING
+    private var progress = RUNNING
+    private var command = NONE
     private val info = BridgeGameInfo(
         BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(input.readBridgeSize()),
         emptyList(),
@@ -24,9 +27,10 @@ class BridgeGameController {
     )
 
     fun run() {
-        while (status == RUNNING) {
+        while (progress == RUNNING) {
             play()
-            handleStatus()
+            handleProgress()
+            handleCommand()
         }
         output.printResult(info)
     }
@@ -36,14 +40,17 @@ class BridgeGameController {
         output.printMap(info)
     }
 
-    private fun handleStatus() {
-        status = BridgeGameStatus.of(info)
-        if (status == FAILURE) {
-            status = BridgeGameStatus.of(input.readGameCommand())
+    private fun handleProgress() {
+        progress = BridgeGameProgress.of(info)
+        if (progress == FAILURE) {
+            command = BridgeGameCommand.of(input.readGameCommand())
         }
-        if (status == RETRY) {
+    }
+    private fun handleCommand() {
+        if (command == RETRY) {
             game.retry(info)
-            status = RUNNING
+            command = NONE
+            progress = RUNNING
         }
     }
 }

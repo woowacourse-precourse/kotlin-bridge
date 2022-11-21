@@ -2,19 +2,13 @@ package bridge.domain
 
 import bridge.resources.ERROR_INPUT_COMMAND
 
-enum class BridgeGameStatus(val command: String?) {
-    SUCCESS(null),
-    FAILURE(null),
-    RUNNING(null),
-    RETRY("R"),
-    QUIT("Q");
+enum class BridgeGameProgress {
+    SUCCESS,
+    FAILURE,
+    RUNNING;
 
     companion object {
-        fun of(command: String): BridgeGameStatus {
-            return values().find { it.command == command } ?: throw IllegalArgumentException(ERROR_INPUT_COMMAND)
-        }
-
-        fun of(bridgeGameResult: BridgeGameInfo): BridgeGameStatus {
+        fun of(bridgeGameResult: BridgeGameInfo): BridgeGameProgress {
             bridgeGameResult.apply {
                 require(stage.isNoFalseExceptLast()) { ERROR_INPUT_COMMAND }
                 return when {
