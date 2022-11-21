@@ -58,6 +58,44 @@ internal class BridgeGameTest {
         }
     }
 
+    @Test
+    fun `retry_올바른실행_정상`() {
+        val data = listOf(UP, DOWN, UP, DOWN)
+        val test = listOf(UP, DOWN, DOWN)
+        val bridge = Bridge(data)
+        val bridgeGame = BridgeGame(bridge)
+
+        for (floor in test) bridgeGame.move(floor)
+        bridgeGame.retry()
+        assertThat(bridgeGame.isRunning).isEqualTo(true)
+    }
+
+    @Test
+    fun `retry_게임진행중에재시도_에러`() {
+        val data = listOf(UP, DOWN, UP, DOWN)
+        val test = listOf(UP, DOWN)
+        val bridge = Bridge(data)
+        val bridgeGame = BridgeGame(bridge)
+
+        assertThrows<IllegalStateException> {
+            for (floor in test) bridgeGame.move(floor)
+            bridgeGame.retry()
+        }
+    }
+
+    @Test
+    fun `retry_게임종료후재시도_에러`() {
+        val data = listOf(UP, DOWN, UP, DOWN)
+        val test = listOf(UP, DOWN, UP, DOWN)
+        val bridge = Bridge(data)
+        val bridgeGame = BridgeGame(bridge)
+
+        assertThrows<IllegalStateException> {
+            for (floor in test) bridgeGame.move(floor)
+            bridgeGame.retry()
+        }
+    }
+
     companion object {
         private val UP = Bridge.Floor.UP
         private val DOWN = Bridge.Floor.DOWN
