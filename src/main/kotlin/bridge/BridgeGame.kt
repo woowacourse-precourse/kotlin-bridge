@@ -17,14 +17,17 @@ class BridgeGame {
     var presentPosition = INITIALIZE_TO_ZERO
     var gameTryCount = INITIALIZE_TO_ONE
 
-    fun move(userChoice: String, bridge: Bridge): GameResult {
-        if (bridge.matchUserChoice(userChoice, presentPosition)) {
-            userMovingResult.add(Pair(userChoice, true))
+    fun move(moving: String, bridge: Bridge): GameResult {
+        if (bridge.matchUserChoice(moving, presentPosition)) {
+            userMovingResult.add(Pair(moving, true))
+            if(bridge.steps.size == presentPosition) return GameResult.SUCCESS
             presentPosition++
-            return GameResult.SUCCESS
         }
-        userMovingResult.add(Pair(userChoice, false))
-        return GameResult.FAILURE
+        if (bridge.matchUserChoice(moving, presentPosition)) {
+            userMovingResult.add(Pair(moving, false))
+            return GameResult.FAILURE
+        }
+        return GameResult.CONTINUE
     }
 
     fun getMap(movingMatchResults: List<Pair<String, Boolean>>): String {
@@ -57,9 +60,9 @@ class BridgeGame {
         return UN_CHOSEN_BRIDGE
     }
 
-    fun getGameResult(gameResult: GameResult):String{
-        if(gameResult == GameResult.SUCCESS) return GAME_SUCCESS_MESSAGE
-        if(gameResult == GameResult.FAILURE) return GAME_FAILURE_MESSAGE
+    fun getGameResult(gameResult: GameResult): String {
+        if (gameResult == GameResult.SUCCESS) return GAME_SUCCESS_MESSAGE
+        if (gameResult == GameResult.FAILURE) return GAME_FAILURE_MESSAGE
         return ERROR
     }
 
@@ -77,6 +80,7 @@ class BridgeGame {
 
     enum class GameResult {
         SUCCESS,
+        CONTINUE,
         FAILURE
     }
 
