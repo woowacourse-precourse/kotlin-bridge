@@ -25,16 +25,18 @@ class BridgeGameController(
     }
 
     private fun setUp() {
-        val bridgeSize = getBridgeSize()
-
-        val bridge = bridgeMaker.makeBridge(bridgeSize)
-
-        val bridgeDTO = BridgeDTO(bridge)
+        val bridgeDTO = makeBridge()
         bridgeGame.setBridge(bridgeDTO)
 
         outputView.printStepInterval()
 
         play()
+    }
+
+    private fun makeBridge(): BridgeDTO {
+        val bridgeSize = getBridgeSize()
+        val bridge = bridgeMaker.makeBridge(bridgeSize)
+        return BridgeDTO(bridge)
     }
 
     private fun getBridgeSize(): Int {
@@ -49,15 +51,18 @@ class BridgeGameController(
 
     private fun play() {
         do {
-            val movement = getMovement()
-
-            val metadata = bridgeGame.move(movement)
-
+            val metadata = move()
             outputView.printMap(metadata)
+
             outputView.printStepInterval()
 
             goToNextStep(metadata)
         } while (metadata.getGameStatus() == BridgeGameStatus.CONTINUE)
+    }
+
+    private fun move(): BridgeGameMetadataDTO {
+        val movement = getMovement()
+        return bridgeGame.move(movement)
     }
 
     private fun getMovement(): String {
@@ -72,7 +77,6 @@ class BridgeGameController(
 
     private fun goToNextStep(metadata: BridgeGameMetadataDTO) {
         val gameStatus = metadata.getGameStatus()
-
         if (gameStatus == BridgeGameStatus.FAILURE) {
             stop(metadata)
         }
@@ -84,7 +88,6 @@ class BridgeGameController(
 
     private fun stop(metadata: BridgeGameMetadataDTO) {
         val command = getGameCommand()
-
         if (command == "R") {
             restart()
             return

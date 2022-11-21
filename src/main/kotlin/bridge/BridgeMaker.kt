@@ -12,12 +12,15 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         val bridge = mutableListOf<String>()
         for (i in 0 until size) {
             val number = bridgeNumberGenerator.generate()
-            if (number == 0) {
-                bridge.add("D")
-                continue
-            }
-            bridge.add("U")
+            bridge.add(convertNumberToRow(number))
         }
         return bridge
+    }
+
+    private fun convertNumberToRow(number: Int): String {
+        if (number == 0) {
+            return "D"
+        }
+        return "U"
     }
 }

@@ -6,8 +6,8 @@ import bridge.view.InputView
 import bridge.view.OutputView
 
 fun main() {
-    val generator = BridgeRandomNumberGenerator()
     val bridgeGame = BridgeGame()
+    val generator = BridgeRandomNumberGenerator()
     val bridgeMaker = BridgeMaker(generator)
     val inputView = InputView()
     val outputView = OutputView()

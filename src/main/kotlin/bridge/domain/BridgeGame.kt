@@ -44,7 +44,6 @@ class BridgeGame {
     fun retry() {
         movementCount = 0
         movementStatuses.clear()
-
         trialCount++
     }
 
@@ -78,7 +77,6 @@ class BridgeGame {
         if (movementCount == bridge.size) {
             return BridgeGameStatus.SUCCESS
         }
-
         return BridgeGameStatus.CONTINUE
     }
 }
