@@ -7,6 +7,9 @@ class Player {
     private val inputView = InputView()
     private val outputView = OutputView()
     private val bridgeState = BridgeState()
+    private var isSuccess = FAIL
+    private var command = RETRY
+    private var count = 0
 
     companion object{
         const val SUCCESS = "성공"
@@ -16,16 +19,11 @@ class Player {
     }
     fun playGame(){
         val size = inputView.readBridgeSize()
-        val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
-        val bridge = BridgeMaker(bridgeRandomNumberGenerator).makeBridge(size)
-        val isSuccess = crossBridge(bridge)
-        outputView.printSuccess(isSuccess)
+        val bridge = Bridge(size)
+        crossBridge(bridge)
     }
 
-    private fun crossBridge(bridge:List<String>):String{
-        var count = 0
-        var isSuccess = FAIL
-        var command = RETRY
+    private fun crossBridge(bridge: Bridge){
         while(command && isSuccess == FAIL){
             count++
             if(bridgeState.compare(bridge)){
@@ -34,7 +32,6 @@ class Player {
             }
             if(!BridgeGame().retry(inputView.readGameCommand())) command = QUIT
         }
-        outputView.printCount(count)
-        return isSuccess
+        outputView.printStats(count,isSuccess)
     }
 }
