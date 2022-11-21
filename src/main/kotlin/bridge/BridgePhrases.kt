@@ -6,6 +6,7 @@ object BridgePhrases {
     const val INPUT_IS_NOT_ALPHABET_ERROR = "[ERROR] 입력하신 내용이 알파벳이 아닙니다."
     const val MOVING_CODE_INCORRECT_ERROR = "[ERROR] 입력하신 문자가 올바른 코드인 U,D가 아닙니다."
     const val GAME_COMMEND_CODE_INCORRECT_ERROR = "[ERROR] 입력하신 문자가 올바른 코드인 R,Q가 아닙니다."
+    const val INCORRECT_BRIDGE_TYPE_NUMBER_CODE = "[ERROR] 입력된 BridgeType의 NumberCode가 올바르지 않습니다."
 
     const val GAME_START_PHRASE = "다리 건너기 게임을 시작합니다."
     const val BRIDGE_SIZE_PHRASE = "다리의 길이를 입력해주세요."
