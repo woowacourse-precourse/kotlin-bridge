@@ -9,8 +9,8 @@ class OutputView {
     fun printMap(result: Result) {
         val firstRowResult = result.getFirstRowResult()
         val secondRowResult = result.getSecondRowResult()
-        println(firstRowResult.joinToString(prefix = "[ ", separator = " | ", postfix = " ]"))
-        println(secondRowResult.joinToString(prefix = "[ ", separator = " | ", postfix = " ]"))
+        println(firstRowResult.joinToString(prefix = PREFIX, separator = SEPARATOR, postfix = POSTFIX))
+        println(secondRowResult.joinToString(prefix = PREFIX, separator = SEPARATOR, postfix = POSTFIX))
     }
 
     fun printResult(result: Result) {
@@ -31,5 +31,8 @@ class OutputView {
         const val SUCCESS = "성공"
         const val SUCCESS_RESULT = "게임 성공 여부: %s"
         const val TRY_COUNT_RESULT = "총 시도한 횟수: %d"
+        const val PREFIX = "[ "
+        const val SEPARATOR = " | "
+        const val POSTFIX = " ]"
     }
 }
