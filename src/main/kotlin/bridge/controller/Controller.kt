@@ -1,5 +1,8 @@
-package bridge
+package bridge.controller
 
+import bridge.BridgeGame
+import bridge.BridgeResult
+import bridge.Validator
 import bridge.view.InputView
 import bridge.view.OutputView
 
