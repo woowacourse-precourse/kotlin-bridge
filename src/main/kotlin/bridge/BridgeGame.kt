@@ -17,13 +17,11 @@ class BridgeGame {
 
     fun move(bridgeAns: String, userMovingInput: String) {
         if (bridgeAns == "U" && userMovingInput == "U") {
-            upBridge += " O "
-            upBridge += "|"
+            upBridge += " O |"
             tryNumber += 1
         }
         else if (bridgeAns == "D" &&userMovingInput == "D") {
-            downBridge += " O "
-            downBridge += "|"
+            downBridge += " O |"
             tryNumber += 1
         }
         else if (bridgeAns == "U" && userMovingInput == "D"){
