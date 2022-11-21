@@ -6,6 +6,7 @@ class BridgeMoveException(inputData: String) {
     }
 
     private fun isNotMoveCharacter(inputData: String) {
-        TODO("기능구현")
+        if(!(inputData == "U" || inputData == "D"))
+            throw IllegalArgumentException("[ERROR] 입력한 값은 'U' 또는 'D'가 아닙니다.")
     }
 }
