@@ -15,12 +15,16 @@ class Bridge(
         companion object {
             private val values = values()
 
-            operator fun get(value: String): Floor? {
-                return values.find { it.command == value || it.name == value }
+            operator fun get(ordinal: Int): Floor {
+                return values[ordinal]
             }
 
             operator fun contains(value: String): Boolean {
                 return values.any { it.command == value || it.name == value }
+            }
+
+            fun getOrNull(value: String): Floor? {
+                return values.find { it.command == value || it.name == value }
             }
         }
     }

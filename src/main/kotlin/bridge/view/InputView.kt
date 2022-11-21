@@ -23,7 +23,7 @@ object InputView {
     fun readMoving(): Bridge.Floor {
         val command = readLine()
 
-        return requireNotNull(Bridge.Floor[command]) {
+        return requireNotNull(Bridge.Floor.getOrNull(command)) {
             ErrorMessage.InvalidBridgeElement
         }
     }
