@@ -67,18 +67,18 @@
     - [X] 시도횟수 증가
 
 ### 4. main
-  - [ ] 게임시작 문구 `OutputView.printGameStart()`
-  - [ ] 다리 길이를 입력 받는다. `InputView.readBridgeSize()`
-  - [ ] 다리를 생성한다. `val bridge = BridgeGame(bridgeMaker, size)`
-  - [ ] 반복문 `play(bridge) : round, isSuccess`
-    - [ ] 다리를 이동한다. `var curBridge = BridgeGame.move(InputView.readMoving())`
-    - [ ] 현재 다리를 출력한다. `OutputView.printMap(curBridge)`
-    - [ ] 플레이어가 다리를 건넘에 실패 했는지 확인한다. `BridgeGame.isFailed(curBridge)`
-        - [ ] 실패 했다면 게임 재시작 여부를 입력 받는다. `InputView.readRestart()`
-    - [ ] 플레이어가 다리를 건넘에 성공 했는지 확인한다. `BridgeGame.isFinished(curBridge)`
-        - [ ] 성공 했다면 게임을 종료한다. `break`
-  - [ ] 게임 결과 출력 `OutputView.printGameResult()`
-    - [ ] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
+  - [x] 게임시작 문구 `OutputView.printGameStart()`
+  - [x] 다리 길이를 입력 받는다. `InputView.readBridgeSize()`
+  - [x] 다리를 생성한다. `val bridge = BridgeGame(bridgeMaker, size)`
+  - [x] 반복문 `play(bridge) : round, isFinished`
+    - [x] 다리를 이동한다. `BridgeGame.move(InputView.readMoving(), count)`
+    - [x] 현재 다리를 출력한다. `OutputView.printMap(curBridge)`
+    - [x] 플레이어가 다리를 건넘에 실패 했는지 확인한다. `BridgeGame.isFailed(curBridge)`
+        - [x] 실패 했다면 게임 재시작 여부를 입력 받는다. `InputView.readGameCommand()`
+    - [x] 플레이어가 다리를 건넘에 성공 했는지 확인한다. `BridgeGame.isFinished(curBridge)`
+        - [x] 성공 했다면 게임을 종료한다. `break`
+  - [x] 게임 결과 출력 `OutputView.printGameResult()`
+    - [x] 게임 결과의 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수를 나타낸다.
 
 
 
