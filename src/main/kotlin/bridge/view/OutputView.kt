@@ -24,4 +24,8 @@ class OutputView : MovingEventListener {
     override fun notify(gameState: GameState) {
 
     }
+
+    private fun createMap(bridge: List<String>, userRoute: String): List<String> {
+        return listOf()
+    }
 }

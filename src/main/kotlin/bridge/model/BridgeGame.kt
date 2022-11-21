@@ -7,14 +7,14 @@ import bridge.MovingEventManager
  */
 class BridgeGame(private val movingEventManager: MovingEventManager) {
     private lateinit var bridge: List<String>
-    private var userRoute: String = ""
+    private var userRoute = mutableListOf<String>()
     private var running: Boolean = false
 
     fun start(bridge: List<String>) {
         require(!started()) { "[ERROR] 게임은 한 번만 시작할 수 있습니다." }
         validateBridge(bridge)
         this.bridge = bridge
-        userRoute = ""
+        userRoute.clear()
         running = true
     }
 
@@ -33,10 +33,10 @@ class BridgeGame(private val movingEventManager: MovingEventManager) {
         check(running) { "게임이 실행되었을 때만 움직일 수 있습니다." }
         userRoute += moving
         movingEventManager.notify(GameState(bridge, userRoute))
-        if (userRoute.last().toString() != bridge[userRoute.length - 1]) {
+        if (userRoute.last().toString() != bridge[userRoute.size - 1]) {
             running = false
         }
-        if (userRoute.length == bridge.size) running = false
+        if (userRoute.size == bridge.size) running = false
     }
 
     fun running(): Boolean = running
