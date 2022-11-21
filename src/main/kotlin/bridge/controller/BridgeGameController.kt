@@ -13,29 +13,44 @@ class BridgeGameController(
     fun play() {
         try {
             InputSentence.START.print()
-            val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
-            val bridge = Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()))
-            val bridgeGame = BridgeGame(bridge, Player())
-            var inProgress = true
-            while (inProgress) {
-                val moveResult = bridgeGame.move(inputView.readMoving())
-                outputView.printMap(moveResult)
-                if(!moveResult.last().getIsMovable()){
-                    when(inputView.readGameCommand()) {
-                        GameCommand.RESTART -> {
-                            bridgeGame.retry()
-                        }
-                        GameCommand.QUIT ->
-                            inProgress = false
-                    }
-                }
-                if(bridgeGame.isCompleted())
-                    inProgress = false
-            }
+            val bridgeGame = makeBridgeGame()
+            startBridgeGame(bridgeGame)
             outputView.printResult(bridgeGame.getPlayer())
         } catch (exception: IllegalArgumentException) {
             println(exception.message)
         }
+    }
+
+    private fun startBridgeGame(bridgeGame: BridgeGame) {
+        var inProgress = true
+        while (inProgress) {
+            val moveResult = bridgeGame.move(inputView.readMoving())
+            outputView.printMap(moveResult)
+            if (checkFail(moveResult)) {
+                inProgress = conductByGameCommand(bridgeGame, inputView.readGameCommand())
+            }
+            inProgress = !bridgeGame.isCompleted()
+        }
+    }
+
+    private fun checkFail(moveResult: List<PlayerBlock>) =
+        !moveResult.last().getIsMovable()
+
+    private fun conductByGameCommand(bridgeGame: BridgeGame, gameCommand: GameCommand): Boolean =
+        when (gameCommand) {
+            GameCommand.RESTART -> {
+                bridgeGame.retry()
+                true
+            }
+            GameCommand.QUIT ->
+                false
+        }
+
+
+    private fun makeBridgeGame(): BridgeGame {
+        val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
+        val bridge = Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()))
+        return BridgeGame(bridge, Player())
     }
 
 
