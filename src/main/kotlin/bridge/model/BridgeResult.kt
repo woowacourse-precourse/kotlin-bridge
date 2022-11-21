@@ -1,6 +1,5 @@
 package bridge.model
 
-import bridge.Move
 import bridge.Result
 
 class BridgeResult(private val size: Int) {

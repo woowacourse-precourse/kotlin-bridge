@@ -1,7 +1,5 @@
 package bridge.model
 
-import bridge.Move
-
 class Bridge {
 
     private val bridge : List<BridgeSpace>

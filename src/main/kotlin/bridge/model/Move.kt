@@ -1,4 +1,4 @@
-package bridge
+package bridge.model
 
 enum class Move(private val mark : String) {
     POSSIBLE("O") , IMPOSSIBLE("X");

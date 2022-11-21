@@ -1,7 +1,5 @@
 package bridge.model
 
-import bridge.Move
-
 class BridgeSpace(
     private val direction: BridgeDirection,
     private val position: Int
