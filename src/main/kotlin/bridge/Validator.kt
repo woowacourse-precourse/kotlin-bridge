@@ -3,12 +3,12 @@ package bridge
 class Validator {
     fun validateBridgeSize(bridgeSize: String?): Int {
         require(validatorNumeric(bridgeSize)){
-            println(BRIDGE_SIZE_STRING_ERROR)
+            println(ERROR_BRIDGE_SIZE_STRING)
             InputView().readBridgeSize()
         }
         val bridgeLength= bridgeSize!!.toInt()
         require(bridgeLength in 3..20){
-            println(BRIDGE_SIZE_ERROR)
+            println(ERROR_BRIDGE_SIZE)
             InputView().readBridgeSize()
         }
         return bridgeLength
