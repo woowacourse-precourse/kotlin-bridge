@@ -1,5 +1,6 @@
-package bridge
+package bridge.domain
 
+import bridge.BridgeGame
 import bridge.ui.InputView
 import bridge.ui.OutputView
 
@@ -10,27 +11,28 @@ class Player {
     private var command = RETRY
     private var count = 0
 
-    companion object{
+    companion object {
         const val SUCCESS = "성공"
         const val FAIL = "실패"
         const val RETRY = true
         const val QUIT = false
     }
-    fun playGame(){
+
+    fun playGame() {
         val size = inputView.readBridgeSize()
         val bridge = Bridge(size)
         crossBridge(bridge)
     }
 
-    private fun crossBridge(bridge: Bridge){
-        while(command && isSuccess == FAIL){
+    private fun crossBridge(bridge: Bridge) {
+        while (command && isSuccess == FAIL) {
             count++
-            if(BridgeState().compare(bridge)){
+            if (BridgeState().compare(bridge)) {
                 isSuccess = SUCCESS
                 break
             }
-            if(!BridgeGame().retry(inputView.readGameCommand())) command = QUIT
+            if (!BridgeGame().retry(inputView.readGameCommand())) command = QUIT
         }
-        outputView.printStats(count,isSuccess)
+        outputView.printStats(count, isSuccess)
     }
 }

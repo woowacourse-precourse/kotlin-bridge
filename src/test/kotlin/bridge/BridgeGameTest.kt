@@ -6,15 +6,16 @@ import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class BridgeGameTest : NsTest(){
+class BridgeGameTest : NsTest() {
     private val bridgeGame = BridgeGame()
+
     @Test
     fun `플레이어 칸 이동 테스트`() {
-        val playerMoves = mutableListOf(listOf("O"," "))
+        val playerMoves = mutableListOf(listOf("O", " "))
         val upOrDown = Games.DOWN.game
         val alive = true
-        val result = bridgeGame.move(playerMoves,upOrDown,alive)
-        assertThat(result).isEqualTo(mutableListOf(listOf("O"," "),listOf(" ","O")))
+        val result = bridgeGame.move(playerMoves, upOrDown, alive)
+        assertThat(result).isEqualTo(mutableListOf(listOf("O", " "), listOf(" ", "O")))
     }
 
     @Test
@@ -27,6 +28,7 @@ class BridgeGameTest : NsTest(){
     override fun runMain() {
         main()
     }
+
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
     }

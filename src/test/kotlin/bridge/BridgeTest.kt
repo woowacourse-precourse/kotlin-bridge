@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.domain.Bridge
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -11,7 +12,7 @@ class BridgeTest {
         assertThat(result).isEqualTo(BRIDGE_SIZE_EX)
     }
 
-    companion object{
+    companion object {
         private const val BRIDGE_SIZE_EX = 4
     }
 }

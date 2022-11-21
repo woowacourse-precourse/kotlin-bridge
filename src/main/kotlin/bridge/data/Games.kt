@@ -1,8 +1,8 @@
 package bridge.data
 
 enum class Games(
-    val game:String
-){
+        val game: String
+) {
     UP("U"),
     DOWN("D"),
     RETRY("R"),
