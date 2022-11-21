@@ -80,6 +80,7 @@ class OutputView {
         return Pair(bridgeTopMap, bridgeDownMap)
     }
 
+    // 최종 결과 맵 출력
     fun printResultMap(bridgeMap: Pair<List<String>,List<String>>){
         println(MESSAGE_RESULT_MAP)
         println(bridgeMap.first.joinToString(" "))

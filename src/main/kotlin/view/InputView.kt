@@ -16,7 +16,7 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         try {
-            val bridgeSize = readLine()!!.toInt()
+            val bridgeSize = Console.readLine().toInt()
             if (bridgeSize in 3..20)
                 return bridgeSize
         }catch (e: IllegalArgumentException){
@@ -32,7 +32,7 @@ class InputView {
     fun readMoving(): String {
         println(MESSAGE_READ_MOVING)
         try {
-            val move = readLine()!!
+            val move = Console.readLine()
             if (move == "U"|| move == "D" )
                 return move
         }catch (e: IllegalArgumentException){
@@ -47,7 +47,7 @@ class InputView {
      */
     fun readGameCommand(): String {
         try {
-            val retry = readLine()!!
+            val retry = Console.readLine()
             if (retry == "R"|| retry == "Q" )
                 return retry
         }catch (e: IllegalArgumentException){

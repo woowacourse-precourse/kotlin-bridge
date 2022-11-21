@@ -3,7 +3,9 @@ package bridge
 import domain.BridgeGame
 import view.InputView
 import view.OutputView
+import java.lang.IllegalArgumentException
 
+private var bridgeSize:Int ?= null
 fun main() {
 
     val outputView = OutputView()
@@ -14,12 +16,21 @@ fun main() {
 
     // 다리 길이 입력
     println(outputView.printBridgeSize())
-    val bridgeSize = inputView.readBridgeSize()
+    try{
+        bridgeSize = inputView.readBridgeSize()
+    }catch (e: IllegalArgumentException){
+        println("[ERROR] $e")
+    }
+
     println("$bridgeSize\n")
 
     // 이동 칸 입력
     val bridgeGame = BridgeGame()
-    bridgeGame.move(bridgeSize)
+    try {
+        bridgeSize?.let { bridgeGame.move(it) }
+    }catch (e: IllegalArgumentException){
+        println("[ERROR] $e")
+    }
 
 
 }
