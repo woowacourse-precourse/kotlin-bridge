@@ -2,11 +2,22 @@ package util
 
 class InputException {
 
-    fun checkInputLength(input: String) {
-        try {
-            val length = input.toInt()
+    fun checkInputLength(input: String?) {
+        when {
+
+            checkTypeException(input!!) -> printException(TYPE_ERROR)
+            checkRangeException(input.toInt()) -> printException(RANGE_ERROR)
+        }
+    }
+
+    private fun checkRangeException(input: Int): Boolean = !(3..20).contains(input)
+
+    private fun checkTypeException(input: String): Boolean {
+        return try {
+            input.toInt()
+            false
         } catch (e: Exception) {
-            printException(TYPE_ERROR)
+            true
         }
     }
 
