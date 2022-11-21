@@ -4,17 +4,19 @@ fun main() {
     var gamePlayCount = 1
     val inputView = InputView()
     val bridge = settingBridgeGame(inputView)
-    var gameIsSuccess: Boolean
+    var isGameSuccess: Boolean
+    val outputView = OutputView(bridge)
     while (true) {
-        val bridgeGame = BridgeGame()
-        gameIsSuccess = processBridgeGame(inputView, bridge, bridgeGame)
-        if (!decideGameContinue(gameIsSuccess, inputView, bridgeGame)){
+        val bridgeGame = BridgeGame(bridge)
+        isGameSuccess = processBridgeGame(inputView, outputView, bridgeGame)
+        if (!decideGameContinue(isGameSuccess, inputView, bridgeGame)) {
             break
-        } else{
+        } else {
             gamePlayCount += 1
         }
     }
-    printGameResult(gameIsSuccess, gamePlayCount)
+    outputView.printResult(isGameSuccess)
+    printGameResult(isGameSuccess, gamePlayCount)
 }
 
 fun printGameResult(isGameSuccess: Boolean, gamePlayCount: Int) {
@@ -23,8 +25,8 @@ fun printGameResult(isGameSuccess: Boolean, gamePlayCount: Int) {
 }
 
 
-fun decideGameContinue(gameIsSuccess: Boolean, inputView: InputView, bridgeGame: BridgeGame): Boolean {
-    return if (gameIsSuccess) {
+fun decideGameContinue(isGameSuccess: Boolean, inputView: InputView, bridgeGame: BridgeGame): Boolean {
+    return if (isGameSuccess) {
         false
     } else {
         val userGameCommand = inputView.readGameCommand()
@@ -34,15 +36,13 @@ fun decideGameContinue(gameIsSuccess: Boolean, inputView: InputView, bridgeGame:
 }
 
 
-fun processBridgeGame(inputView: InputView, bridge: List<String>, bridgeGame: BridgeGame): Boolean {
+fun processBridgeGame(inputView: InputView, outputView: OutputView, bridgeGame: BridgeGame): Boolean {
     var moveCount = 0
-    while (moveCount < bridge.size) {
+    while (moveCount < bridgeGame.getBridge().size) {
         val userMoveDirection = inputView.readMoving()
-        val outputView = OutputView(bridge, bridgeGame.move(userMoveDirection), moveCount)
+        outputView.setMoveDirections(bridgeGame.move(userMoveDirection))
         outputView.printMap()
-        if (userMoveDirection != bridge[moveCount]) {
-            return false
-        }
+        if (userMoveDirection != bridgeGame.getBridge()[moveCount]) return false
         moveCount += 1
     }
     return true
@@ -53,7 +53,6 @@ fun settingBridgeGame(inputView: InputView): List<String> {
     val bridgeSize = inputView.readBridgeSize()
     val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
     val bridge = bridgeMaker.makeBridge(bridgeSize)
-    println(bridge)
     return bridge
 }
 
@@ -71,5 +70,5 @@ fun printGameIsSuccess(isGameSuccess: Boolean) {
 }
 
 fun printGamePlayCount(gamePlayCount: Int) {
-    println(BrideGameConstValue.GAME_PLAY_COUNT + gamePlayCount)
+    print(BrideGameConstValue.GAME_PLAY_COUNT + gamePlayCount)
 }
