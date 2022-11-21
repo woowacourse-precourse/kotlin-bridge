@@ -17,7 +17,15 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return 0
+        val userInputNumber =inputUser()
+        try {
+            bridge.util.InputVaildator().checkNullBridgeSize(userInputNumber)
+            bridge.util.InputVaildator().checkNullBridgeSize(userInputNumber)
+        }catch (e:java.lang.IllegalArgumentException) {
+            println("[ERROR]")
+            return readBridgeSize()
+        }
+        return userInputNumber.toInt()
     }
 
     /**
