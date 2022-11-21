@@ -25,12 +25,12 @@ class BridgeGame {
 
     private fun updateGameProgress(moving: String) {
         if (moving == Moving.UP.message) {
-            gameProgress[0].add(if (isCorrect(moving)) "O" else "X")
-            gameProgress[1].add(" ")
+            gameProgress[Moving.UP.index].add(if (isCorrect(moving)) "O" else "X")
+            gameProgress[Moving.DOWN.index].add(" ")
         }
         else if (moving == Moving.DOWN.message) {
-            gameProgress[0].add(" ")
-            gameProgress[1].add(if (isCorrect(moving)) "O" else "X")
+            gameProgress[Moving.UP.index].add(" ")
+            gameProgress[Moving.DOWN.index].add(if (isCorrect(moving)) "O" else "X")
         }
     }
 
