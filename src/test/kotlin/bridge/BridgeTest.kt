@@ -11,10 +11,12 @@ class BridgeTest {
 
         val bridge = listOf<String>("U","U","P")
         val userDirection = "U"
-        val result =  BridgeGame().move(userDirection, bridge, 0)
-        val resultMap = mutableMapOf<String, String>()
-        resultMap["U"] = "O"
+        val result =  BridgeGame().move(userDirection, bridge)
+        val resultMap = mutableMapOf<String, List<String>>()
+        resultMap["U"] = listOf("O")
+        resultMap["D"] = listOf(" ")
         assertThat(result).isEqualTo(resultMap)
+
     }
 
 }
