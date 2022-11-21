@@ -6,7 +6,7 @@ package bridge
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         val bridge = mutableListOf<String>()
-        for (i in 1..size) {
+        for (i in 1 until size+1) {
             val generatedNumber = bridgeNumberGenerator.generate()
             bridge.add(if (generatedNumber == 0) "D" else "U")
         }

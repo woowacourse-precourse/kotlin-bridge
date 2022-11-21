@@ -6,9 +6,10 @@ import bridge.enum.BridgeEnum
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame(private val bridge: List<String>) {
-    val up = mutableListOf<String>()
-    val down = mutableListOf<String>()
-    var index = 0
+
+    private val up = mutableListOf<String>()
+    private val down = mutableListOf<String>()
+    private var index = 0
 
     private val movable = BridgeEnum.MOVABLE.value
     private val unselected = BridgeEnum.UNSELECTED.value

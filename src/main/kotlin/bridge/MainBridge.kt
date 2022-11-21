@@ -5,6 +5,7 @@ import bridge.presentation.InputView
 import bridge.presentation.OutputView
 
 class MainBridge {
+
     private val input = InputView()
     private val output = OutputView()
     private val bridgeGame: BridgeGame

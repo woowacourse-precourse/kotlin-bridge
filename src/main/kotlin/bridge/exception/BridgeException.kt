@@ -19,7 +19,7 @@ class BridgeException (private val inp: String?) {
     fun toSize(): Int {
         nullCheck()
         val bridgeSize = inp!!.toInt()
-        if (bridgeSize !in 3..20) throw IllegalArgumentException()
+        if (bridgeSize !in 3 until 21) throw IllegalArgumentException()
         return bridgeSize
     }
 

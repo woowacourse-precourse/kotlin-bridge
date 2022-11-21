@@ -6,7 +6,8 @@ import bridge.BridgeGame
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 class OutputView {
-    var totalCount = 0
+
+    private var totalCount = 0
     /**
      * 게임 시작 문구 및 다리 길이 입력 요구 문구 출력하기
      */
