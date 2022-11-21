@@ -90,6 +90,10 @@ class BridgeController {
     fun getGameCommand() {
         outputView.printGameOver()
         var command = inputView.readGameCommand()
+        runCommand(command)
+    }
+
+    fun runCommand(command: String) {
         when (command) {
             RETRY -> {
                 retryGame()
