@@ -14,6 +14,7 @@ class BridgeGame {
     var downBridge = "["
     var tryNumber = 0
     var winFlag = "성공"
+    var finishFlag = false
 
     fun move(bridgeAns: String, userMovingInput: String) {
         if (bridgeAns == "U" && userMovingInput == "U") {
@@ -37,6 +38,13 @@ class BridgeGame {
     fun finishBridge() {
         upBridge += "]"
         downBridge += "]"
+    }
+
+    fun checkFinishGame(bridgeSize: Int) {
+        val checkUsedBridge = upBridge.count{ it == 'O' } + downBridge.count{ it == 'O' }
+        if (bridgeSize == checkUsedBridge || 'X' in upBridge || 'X' in downBridge) {
+            finishFlag = true
+        }
     }
 
     fun checkWinLose() {
