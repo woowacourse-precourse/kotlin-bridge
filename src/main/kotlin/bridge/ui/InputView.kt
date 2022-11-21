@@ -3,6 +3,7 @@ import camp.nextstep.edu.missionutils.Console
 import bridge.data.ErrorMessage.ERROR_NUM_NOT_IN_RANGE
 import bridge.inputRangeException
 import bridge.inputTypeException
+import bridge.inputUpDownException
 
 class InputView {
     fun readBridgeSize(): Int {
@@ -19,9 +20,16 @@ class InputView {
     }
 
     fun readMoving(): String {
-        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
-        val moving = Console.readLine()
-        return moving
+        while(true){
+            println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+            try {
+                val moving = Console.readLine()
+                moving.inputUpDownException()
+                return moving
+            }catch(e:IllegalArgumentException){
+                println(e.message)
+            }
+        }
     }
 
     fun readGameCommand(): String {
