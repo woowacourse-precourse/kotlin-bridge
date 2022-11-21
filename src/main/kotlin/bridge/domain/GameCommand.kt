@@ -8,9 +8,9 @@ enum class GameCommand(private val hotKey: String) {
 
     fun isMatch(hotKey: String) = this.hotKey == hotKey
 
-    companion object{
+    companion object {
         fun getGameCommand(hotKey: String): GameCommand {
-            return when{
+            return when {
                 RESTART.isMatch(hotKey) -> RESTART
                 QUIT.isMatch(hotKey) -> QUIT
                 else -> throw IllegalArgumentException(ErrorSentence.RESTART.sentence())

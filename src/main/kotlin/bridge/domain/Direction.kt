@@ -11,9 +11,9 @@ enum class Direction(private val hotKey: String, private val number: Int) {
     fun hotKey() = hotKey
     fun number() = number
 
-    companion object{
+    companion object {
         fun getDirection(hotKey: String): Direction {
-            return when{
+            return when {
                 UP.isMatch(hotKey) -> UP
                 DOWN.isMatch(hotKey) -> DOWN
                 else -> throw IllegalArgumentException(ErrorSentence.MOVE.sentence())
@@ -21,7 +21,7 @@ enum class Direction(private val hotKey: String, private val number: Int) {
         }
 
         fun getDirection(number: Int): Direction {
-            return when{
+            return when {
                 UP.isMatch(number) -> UP
                 DOWN.isMatch(number) -> DOWN
                 else -> throw IllegalArgumentException(ErrorSentence.MOVE_NUMBER.sentence())

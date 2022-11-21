@@ -20,7 +20,7 @@ class OutputView {
         appendMark(up, down, MapMark.OPEN)
         blocks.forEachIndexed { index, playerBlock ->
             appendBlock(playerBlock, up, down)
-            if(index < blocks.size - 1)
+            if (index < blocks.size - 1)
                 appendMark(up, down, MapMark.BOUNDARY)
         }
         appendMark(up, down, MapMark.CLOSE)
@@ -57,7 +57,7 @@ class OutputView {
     fun printResult(player: Player) {
         OutputSentence.RESULT.print()
         val playerBlocks = player.getPlayerBlocks()
-        val checkSuccess = if(player.isSuccess()) SUCCESS else FAIL
+        val checkSuccess = if (player.isSuccess()) SUCCESS else FAIL
         printMap(playerBlocks)
         println("\n${OutputSentence.CHECK_SUCCESS.sentence()}$checkSuccess")
         println("${OutputSentence.TOTAL_TRIAL.sentence()}${player.getTries()}")

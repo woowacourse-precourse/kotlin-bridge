@@ -8,7 +8,7 @@ class PlayerBlock(
     fun getIsMovable() = isMovable
 
     override fun toString(): String {
-        return if(isMovable) SUCCESS_BLOCK else FAIL_BLOCK
+        return if (isMovable) SUCCESS_BLOCK else FAIL_BLOCK
     }
 
     companion object {

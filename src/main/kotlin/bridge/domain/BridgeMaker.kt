@@ -14,7 +14,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         validateBridgeLength(size)
         val result = mutableListOf<String>()
-        for(i in 0 until size) {
+        for (i in 0 until size) {
             val direction = Direction.getDirection(bridgeNumberGenerator.generate())
             result.add(direction.hotKey())
         }
@@ -22,7 +22,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     }
 
     private fun validateBridgeLength(size: Int) {
-        if(size !in BRIDGE_LENGTH_MIN..BRIDGE_LENGTH_MAX)
+        if (size !in BRIDGE_LENGTH_MIN..BRIDGE_LENGTH_MAX)
             throw IllegalArgumentException(ErrorSentence.BRIDGE_LENGTH.sentence())
     }
 
