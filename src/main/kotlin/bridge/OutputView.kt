@@ -4,9 +4,12 @@ package bridge
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 class OutputView {
+
     companion object {
+        var finalMapUp = ""
+        var finalMapDown = ""
         fun printGameStart() {
-            println("다리 건너기 게임을 시작합니다.")
+            println("다리 건너기 게임을 시작합니다.\n")
         }
 
         fun messageInputBridgeSize() {
@@ -14,7 +17,7 @@ class OutputView {
         }
 
         fun messageInputMove() {
-            println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+            println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)")
         }
 
         fun messageInputGameCommand() {
@@ -72,6 +75,8 @@ class OutputView {
             }
             println(mapUp.joinToString(" "))
             println(mapDown.joinToString(" "))
+            finalMapUp = mapUp.joinToString(" ")
+            finalMapDown = mapDown.joinToString(" ")
         }
         /**
          * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -79,7 +84,11 @@ class OutputView {
          * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
          */
         fun printResult(count :Int,success:Int) {
-            var result = ""
+            println("\n최종 게임 결과")
+            println(finalMapUp)
+            println(finalMapDown)
+            println()
+            var result: String
             if (success == 1)
                 result ="성공"
             else

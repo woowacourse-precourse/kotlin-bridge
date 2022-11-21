@@ -14,7 +14,6 @@ class BridgeGame {
         var inputList = emptyList<String>().toMutableList()
         val numberGenerator: BridgeNumberGenerator = BridgeRandomNumberGenerator()
         bridgeList = BridgeMaker(numberGenerator).makeBridge(size)
-        println(bridgeList)
         var index = 0
         while (index < size && move(inputList, bridgeList, index)) {
             OutputView.printMap(inputList,bridgeList, index)
@@ -24,7 +23,7 @@ class BridgeGame {
             OutputView.printMap(inputList,bridgeList, index)
             if (InputView.readGameCommand() == "R") {
                 count++
-                inputList = retry(bridgeList, size) as MutableList<String>
+                inputList = retry(bridgeList, size)
             }
         }
         if (inputList == bridgeList)
@@ -56,7 +55,6 @@ class BridgeGame {
         var inputList = emptyList<String>().toMutableList()
         var index = 0;
         while (index < size && move(inputList, bridgeList, index)) {
-            println(index)
             OutputView.printMap(inputList,bridgeList, index)
             index++
         }
