@@ -20,7 +20,6 @@ class InputView {
             if (bridgeSize in 3..20)
                 return bridgeSize
         }catch (e: IllegalArgumentException){
-            println("$MESSAGE_ERROR $e")
             throw IllegalArgumentException("$MESSAGE_ERROR $e")
         }
         throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
@@ -36,7 +35,6 @@ class InputView {
             if (move == "U"|| move == "D" )
                 return move
         }catch (e: IllegalArgumentException){
-            println("$MESSAGE_ERROR $e")
             throw IllegalArgumentException("$MESSAGE_ERROR $e")
         }
         throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
@@ -51,7 +49,6 @@ class InputView {
             if (retry == "R"|| retry == "Q" )
                 return retry
         }catch (e: IllegalArgumentException){
-            println("$MESSAGE_ERROR $e")
             throw IllegalArgumentException("$MESSAGE_ERROR $e")
         }
         throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
