@@ -1,8 +1,8 @@
 package bridge
 
+import bridge.model.Bridge
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.provider.ValueSource
 
 class BridgeTest {
 

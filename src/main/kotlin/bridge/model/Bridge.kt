@@ -1,4 +1,9 @@
-package bridge
+package bridge.model
+
+import bridge.BridgeDirection
+import bridge.BridgeResult
+import bridge.BridgeSpace
+import bridge.Move
 
 class Bridge {
 
@@ -9,7 +14,7 @@ class Bridge {
     }
 
     fun mapBridge(bridge: List<String>) : List<BridgeSpace> =
-        bridge.mapIndexed { index, s ->  BridgeSpace(BridgeDirection.valueOf(s), index)}
+        bridge.mapIndexed { index, s ->  BridgeSpace(BridgeDirection.valueOf(s), index) }
 
     fun move(bridge: List<String>) : BridgeResult {
         val userBridge = Bridge(bridge)
