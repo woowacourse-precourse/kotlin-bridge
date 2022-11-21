@@ -13,8 +13,9 @@ class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(): Int {
-        val userInput = camp.nextstep.edu.missionutils.Console.readLine()
+    fun readBridgeSize(): String = camp.nextstep.edu.missionutils.Console.readLine()
+
+    fun getValidateBridgeSize(userInput: String): Int {
         require(isInputTypeNumber(userInput)) { BRIDGE_SIZE_INPUT_TYPE_ERROR }
         val processedUserInput = convertToInt(userInput)
         require(checkInValidRange(processedUserInput)) { BRIDGE_SIZE_INPUT_NOT_IN_CORRECT_RANGE_ERROR }
