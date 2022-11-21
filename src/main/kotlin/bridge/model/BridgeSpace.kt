@@ -1,6 +1,6 @@
-package bridge
+package bridge.model
 
-import bridge.model.BridgeDirection
+import bridge.Move
 
 class BridgeSpace(
     private val direction: BridgeDirection,

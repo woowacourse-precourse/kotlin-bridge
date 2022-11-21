@@ -1,6 +1,7 @@
 package bridge
 
 import bridge.model.BridgeDirection
+import bridge.model.BridgeSpace
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
