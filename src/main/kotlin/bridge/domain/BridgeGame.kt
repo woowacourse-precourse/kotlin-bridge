@@ -18,25 +18,19 @@ class BridgeGame(private val bridge: Bridge) {
         get() = histories.peek()
 
     val result: GameResult
-        get() {
-            check(!isRunning) { "Game is still running" }
-
-            return GameResult(wrongCount == 0, histories.size, lastHistory)
-        }
+        get() = getGameResult()
 
     private var round = 0
     private var wrongCount = 0
     private val histories: Deque<GameHistory> = ArrayDeque(listOf(GameHistory()))
 
-    fun move(floor: Bridge.Floor): Boolean {
+    fun move(floor: Bridge.Floor) {
         check(isRunning) { "Game is not running" }
 
         val isCorrect = (bridge[round++] == floor)
         if (!isCorrect) wrongCount += 1
 
         lastHistory.add(floor, isCorrect)
-
-        return isCorrect
     }
 
     fun retry() {
@@ -45,6 +39,12 @@ class BridgeGame(private val bridge: Bridge) {
         round = 0
         wrongCount = 0
         histories.push(GameHistory())
+    }
+
+    private fun getGameResult(): GameResult {
+        check(!isRunning) { "Game is still running" }
+
+        return GameResult(wrongCount == 0, histories.size, lastHistory)
     }
 
     class Builder {

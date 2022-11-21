@@ -4,41 +4,37 @@ import bridge.view.View
 
 class BridgeGameEngine {
 
-    private lateinit var game: BridgeGame
-
     fun run() {
         View.printStartGame()
 
-        init()
-        startGame()
+        val game = createGame()
+        startGame(game)
+
+        View.printResult(game.result)
     }
 
-    private fun init() {
+    private fun createGame(): BridgeGame {
         val bridgeSize = View.requestBridgeSize()
 
-        game = BridgeGame.Builder()
+        return BridgeGame.Builder()
             .size(bridgeSize)
             .generator(BridgeRandomNumberGenerator())
             .build()
     }
 
-    private tailrec fun startGame() {
-        progressByRound()
+    private tailrec fun startGame(game: BridgeGame) {
+        progressByRound(game)
 
         if (!game.isCompleted && View.requestRetryGame()) {
             game.retry()
-            startGame()
-        } else {
-            View.printResult(game.result)
+            startGame(game)
         }
     }
 
-    private fun progressByRound() {
+    private fun progressByRound(game: BridgeGame) {
         do {
-            if (!game.move(View.requestNextFloor())) {
-                View.printMap(game.lastHistory)
-                return
-            }
+            game.move(View.requestNextFloor())
+
             View.printMap(game.lastHistory)
 
         } while (game.isRunning)
