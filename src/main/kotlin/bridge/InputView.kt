@@ -11,6 +11,7 @@ class InputView {
     tailrec fun readBridgeSize(): Int {
         println(BRIDGE_SIZE_MESSAGE)
         val bridgeSize = Console.readLine()
+        println("")
         return if (runCatching{validateBridgeSize(bridgeSize)}.onFailure { println(ERROR_BRIDGE_SIZE_MESSAGE) }.isSuccess) bridgeSize.toInt()
         else readBridgeSize()
     }
