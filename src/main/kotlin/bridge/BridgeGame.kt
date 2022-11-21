@@ -13,28 +13,35 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    var idx = 0
 
-    fun move(userDirection: String, createdBridge: List<String>, index: Int) : MutableMap<String, String> {
+    fun move(userDirection: String, createdBridge: List<String>) : MutableMap<String, List<String>>{
 
-        val selectedBridge = mutableMapOf<String, String>()
+        val selectedBridge = mutableMapOf<String, List<String>>()
 
-        if (userDirection == createdBridge[index]) {
+        val upResultList = mutableListOf<String>()
+        val downResultList = mutableListOf<String>()
+
+        if (userDirection == createdBridge[idx]) {
             if (userDirection == UP) {
-                selectedBridge[UP] = "O"
-                selectedBridge[DOWN] = " "
+                upResultList.add("O")
+                downResultList.add(" ")
             } else {
-                selectedBridge[UP] = " "
-                selectedBridge[DOWN] = "O"
+                upResultList.add(" ")
+                downResultList.add("O")
             }
+            idx += 1
         } else {
             if (userDirection == UP) {
-                selectedBridge[UP] = "X"
-                selectedBridge[DOWN] = " "
+                upResultList.add("X")
+                downResultList.add(" ")
             } else {
-                selectedBridge[UP] = " "
-                selectedBridge[DOWN] = "X"
+                upResultList.add(" ")
+                downResultList.add("X")
             }
         }
+        selectedBridge[UP] = upResultList
+        selectedBridge[DOWN] = downResultList
         return selectedBridge
     }
 
