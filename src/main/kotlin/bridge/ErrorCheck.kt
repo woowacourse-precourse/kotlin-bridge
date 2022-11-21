@@ -4,7 +4,7 @@ enum class ErrorMessage(val message: String){
     NOTHING("[ERROR] 아무것도 입력하지 않았습니다."),
     FORMATION("[ERROR] 올바르지 않은 형식입니다."),
     LENGTH("[ERROR] 올바르지 않은 길이입니다."),
-
+    GENERATION("[ERROR] 생성 과정에서 오류가 발생했습니다.")
 }
 
 
