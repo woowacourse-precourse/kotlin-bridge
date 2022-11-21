@@ -15,4 +15,8 @@ class Bridge (size : Int = 0) {
         }
         return true
     }
+
+    fun getBridge() : MutableList<String>{
+        return bridge
+    }
 }
