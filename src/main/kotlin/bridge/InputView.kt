@@ -10,11 +10,11 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         print("다리의 길이를 입력하세요")
-        var a = Console.readLine().toString();
-        var CheckTrue = CheckTrue()
+        val size = Console.readLine().toString();
+        val checkTrue = CheckTrue()
 
         try {
-            var lengthToInt =CheckTrue.checkBridgeLength(a);
+            val lengthToInt =checkTrue.checkBridgeLength(size);
             return lengthToInt
         }catch(e:IllegalArgumentException){
            print("[ERROR] 잘못 입력하셨습니다.")
@@ -26,7 +26,15 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        var way = Console.readLine()
+        val checkTrue = CheckTrue()
+        try {
+             way =checkTrue.checkMove(way);
+            return way
+        }catch(e:IllegalArgumentException){
+            print("[ERROR] 잘못 입력하셨습니다.")
+            return "E"
+        }
     }
 
     /**
