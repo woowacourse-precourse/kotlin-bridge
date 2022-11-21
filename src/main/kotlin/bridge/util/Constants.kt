@@ -15,8 +15,7 @@ const val ERROR_INVALID_COMMAND_MESSAGE = "[ERROR] R(재시작)과 Q(종료) 중
 
 // Expression
 const val UP_INT_NUMBER_ONE = 1
-const val UP_STRING_NUMBER_ONE = "1"
-const val DOWN_STRING_NUMBER_ZERO = "0"
+const val DOWN_INT_NUMBER_ZERO = 0
 const val UP_DIRECTION = "U"
 const val DOWN_DIRECTION = "D"
 const val QUIT_COMMAND = "Q"
