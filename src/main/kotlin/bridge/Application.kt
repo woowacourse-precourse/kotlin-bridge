@@ -1,5 +1,13 @@
 package bridge
 
+import bridge.controller.BridgeGameController
+import bridge.domain.Direction
+import bridge.domain.Player
+import bridge.domain.PlayerBlock
+import bridge.view.InputView
+import bridge.view.OutputView
+
 fun main() {
-    // TODO: 프로그램 구현
+    val bridgeGameController = BridgeGameController(InputView(), OutputView())
+    bridgeGameController.play()
 }
