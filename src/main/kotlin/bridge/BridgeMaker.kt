@@ -15,9 +15,9 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         var bridgeAnswer = mutableListOf<String>()
         for(i in 0 until size){
             if(BridgeRandomNumberGenerator().generate() == 0){
-                bridgeAnswer.add(UP)
+                bridgeAnswer.add(DOWN)
             }
-            else bridgeAnswer.add(DOWN)
+            else bridgeAnswer.add(UP)
         }
 
         return bridgeAnswer
