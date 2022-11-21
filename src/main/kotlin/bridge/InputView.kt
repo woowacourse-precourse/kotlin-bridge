@@ -19,8 +19,8 @@ class InputView {
     fun readBridgeSize(): Int {
         val userInputNumber =inputUser()
         try {
-            bridge.util.InputVaildator().checkNullBridgeSize(userInputNumber)
-            bridge.util.InputVaildator().checkBridgeSizePatten(userInputNumber)
+            bridge.util.InputValidator().checkNullBridgeSize(userInputNumber)
+            bridge.util.InputValidator().checkBridgeSizePatten(userInputNumber)
         }catch (e:java.lang.IllegalArgumentException) {
             println("[ERROR]")
             return readBridgeSize()
@@ -34,8 +34,8 @@ class InputView {
     fun readMoving(): String {
         val userInputMoving = inputUser()
         try {
-            bridge.util.InputVaildator().checkNullBridgeString(userInputMoving)
-            bridge.util.InputVaildator().checkSelectBridgePatten(userInputMoving)
+            bridge.util.InputValidator().checkNullBridgeString(userInputMoving)
+            bridge.util.InputValidator().checkSelectBridgePatten(userInputMoving)
         }catch (e:IllegalArgumentException){
             println("[ERROR]")
             return readMoving()
@@ -49,8 +49,8 @@ class InputView {
     fun readGameCommand(): String {
         val userInputRetry = inputUser()
         try {
-            bridge.util.InputVaildator().checkNullBridgeString(userInputRetry)
-            bridge.util.InputVaildator().checkRetryPatten(userInputRetry)
+            bridge.util.InputValidator().checkNullBridgeString(userInputRetry)
+            bridge.util.InputValidator().checkRetryPatten(userInputRetry)
         }catch (e:IllegalArgumentException){
             println("[ERROR]")
             return readGameCommand()
