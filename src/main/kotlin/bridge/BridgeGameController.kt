@@ -4,6 +4,7 @@ import ui.InputView
 import ui.OutputView
 import values.Inform
 import values.Request
+import values.Retry
 
 /**
  * 다리 건너기 게임의 진행을 관리하는 클래스
@@ -43,7 +44,7 @@ class BridgeGameController {
         if (bridgeGame.getBridgeSize() <= bridgeGame.getMoveCount()) return false
         if (!bridgeGame.isSuccess()) {
             println(Request.COMMAND.message)
-            return if (inputView.readGameCommand() == "R") {
+            return if (inputView.readGameCommand() == Retry.TRY.message) {
                 bridgeGame.retry()
                 true
             } else false

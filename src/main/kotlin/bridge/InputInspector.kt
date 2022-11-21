@@ -1,5 +1,8 @@
 package bridge
 
+import values.Moving
+import values.Retry
+
 class InputInspector {
 
     fun checkBridgeSize(input: String): Boolean {
@@ -14,7 +17,7 @@ class InputInspector {
     }
 
     fun checkMoving(input: String): Boolean {
-        if (input == "U" || input == "D") {
+        if (input == Moving.UP.message || input == Moving.DOWN.message) {
             return true
         } else {
             throw IllegalArgumentException()
@@ -22,7 +25,7 @@ class InputInspector {
     }
 
     fun checkGameCommand(input: String): Boolean {
-        if (input == "R" || input == "Q") {
+        if (input == Retry.TRY.message || input == Retry.NOT.message) {
             return true
         } else {
             throw IllegalArgumentException()
