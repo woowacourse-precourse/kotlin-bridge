@@ -15,28 +15,23 @@ class BridgeGameController() {
     private val bridgeGame = BridgeGame()
     private val gameResult = GameResult()
     private val map = BridgeMap()
-    val exceptionHandler = ExceptionHandler()
+    private val exceptionHandler = ExceptionHandler()
     fun startGame() {
-        try {
-
-
-            outputView.printStartGame()
-            val bridge = makeBridge()
-            var gameFlag = true
-            while (gameFlag) {
-                var hit = moveBridge(bridge)
-                gameFlag = askRetryGame(bridge, hit)
-                if (bridge.finish(hit)) {
-                    gameResult.succeed()
-                    outputView.printResultGuide()
-                    outputView.printMap(map.getMap())
-                    gameFlag = closeGame()
-                }
+        outputView.printStartGame()
+        val bridge = makeBridge()
+        var gameFlag = true
+        while (gameFlag) {
+            var hit = moveBridge(bridge)
+            gameFlag = askRetryGame(bridge, hit)
+            if (bridge.finish(hit)) {
+                gameResult.succeed()
+                outputView.printResultGuide()
+                outputView.printMap(map.getMap())
+                gameFlag = closeGame()
             }
-        } catch (e: IllegalArgumentException) {
-
         }
     }
+
 
     private fun closeGame(): Boolean {
         outputView.printResult(gameResult.getGameResult())

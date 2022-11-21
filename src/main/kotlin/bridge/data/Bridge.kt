@@ -1,9 +1,9 @@
 package bridge.data
 
 class Bridge(private val bridge: List<String>) {
-    var currentLocation = 0
+    var location = 0
     fun matches(upDown: String): Boolean {
-        if (bridge[currentLocation] == upDown) {
+        if (bridge[location] == upDown) {
             return true
         }
         return false
@@ -11,11 +11,11 @@ class Bridge(private val bridge: List<String>) {
 
 
     fun clear() {
-        currentLocation = 0
+        location = 0
     }
 
     fun finish(hit: String): Boolean {
-        if (currentLocation == bridge.size) {
+        if (location == bridge.size) {
             if (hit == "O")
                 return true
         }
@@ -23,7 +23,7 @@ class Bridge(private val bridge: List<String>) {
     }
 
     fun moveCurrentLocation() {
-        currentLocation++
+        location++
     }
 
 
