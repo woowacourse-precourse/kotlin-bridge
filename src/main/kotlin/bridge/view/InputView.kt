@@ -31,7 +31,9 @@ class InputView {
     }
 
     private fun readInput(): String {
-        return Console.readLine()
+        val input = Console.readLine()
+        println(input)
+        return input
     }
 
     companion object {
