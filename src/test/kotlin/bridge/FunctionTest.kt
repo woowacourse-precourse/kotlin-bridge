@@ -4,9 +4,16 @@ import org.junit.jupiter.api.assertThrows
 
 class FunctionTest {
     @Test
-    fun `로또 번호의 개수가 6개가 넘어가면 예외가 발생한다`() {
+    fun `방향 입력값 체크`() {
         assertThrows<IllegalArgumentException> {
             ExceptionCheck.checkDirection("a")
+        }
+    }
+
+    @Test
+    fun `readBridgeSize()`() {
+        assertThrows<IllegalArgumentException> {
+            ExceptionCheck.checkBridgeSize("1")
         }
     }
 }
