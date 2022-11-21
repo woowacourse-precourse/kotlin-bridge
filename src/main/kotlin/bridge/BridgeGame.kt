@@ -19,6 +19,9 @@ class BridgeGame {
     fun getRetryCount() = retryCount
 
     fun move(step: String) {
+        if (!(step == "U" || step == "D"))
+            throw IllegalArgumentException("다리를 건널 때는 U나 D만 입력받을수 있습니다.")
+
         val status = bridge.getCurrentStepStatus(step, userStep.size)
 
         userStep.add(Pair(step, status))
