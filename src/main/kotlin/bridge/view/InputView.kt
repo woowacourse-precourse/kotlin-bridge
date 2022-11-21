@@ -28,7 +28,10 @@ class InputView {
     fun readGameCommand(): String {
         println(INPUT_RESTART)
 
-        return readLine().trim()
+        val restart = readLine().trim()
+        ErrorCheck.checkValidCommand(restart)
+
+        return restart
     }
 
     companion object {

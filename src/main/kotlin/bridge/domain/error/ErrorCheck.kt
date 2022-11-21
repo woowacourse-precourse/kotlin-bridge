@@ -25,4 +25,12 @@ object ErrorCheck {
             makeError(ErrorType.INVALID_OPTION)
         }
     }
+
+    fun checkValidCommand(restart: String) {
+        val option = listOf(GAME_RESTART, GAME_END)
+
+        if (!option.contains(restart)) {
+            makeError(ErrorType.INVALID_OPTION)
+        }
+    }
 }

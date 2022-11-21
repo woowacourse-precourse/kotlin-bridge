@@ -28,4 +28,11 @@ class ErrorCheckTest {
             ErrorCheck.checkValidMovement("u")
         }
     }
+
+    @Test
+    fun `잘못된 재시작 옵션을 입력한 경우 오류 발생`() {
+        assertThrows<IllegalArgumentException> {
+            ErrorCheck.checkValidCommand("r")
+        }
+    }
 }
