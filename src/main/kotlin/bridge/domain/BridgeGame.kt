@@ -30,4 +30,6 @@ class BridgeGame(private val bridge: Bridge, private val player: Player) {
     }
 
     fun getPlayer() = player
+
+    fun isCompleted() = bridge.size() == player.getPlayerBlocks().size && player.isSuccess()
 }
