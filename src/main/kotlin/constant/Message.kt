@@ -10,5 +10,11 @@ enum class Message(val message: String) {
     BASIC_ERROR("[ERROR] "),
     BRIDGE_SIZE_ERROR("다리 길이는 3부터 20 사이의 숫자여야 합니다."),
     MOVING_ERROR("이동할 칸은 U 또는 D여야 합니다."),
-    COMMAND_ERROR("R 또는 Q를 입력하여야 합니다.")
+    COMMAND_ERROR("R 또는 Q를 입력하여야 합니다."),
+
+    FINAL_GAME_RESULT("최종 게임 결과"),
+    GAME_SUCCESS_RESULT("게임 성공 여부: "),
+    SUCCESS("성공"),
+    FAIL("실패"),
+    NUMBER_OF_ATTEMPTS("총 시도한 횟수: ")
 }
