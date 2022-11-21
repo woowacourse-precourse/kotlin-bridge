@@ -2,6 +2,8 @@ package bridge
 
 import bridge.BridgeGameRule.BRIDGE_MAXIMUM_LENGTH
 import bridge.BridgeGameRule.BRIDGE_MINIMUM_LENGTH
+import bridge.BridgePhrases.BRIDGE_SIZE_INPUT_NOT_IN_CORRECT_RANGE_ERROR
+import bridge.BridgePhrases.BRIDGE_SIZE_INPUT_TYPE_ERROR
 import java.util.regex.Pattern
 
 /**
@@ -12,7 +14,11 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return 0
+        val userInput = camp.nextstep.edu.missionutils.Console.readLine()
+        require(isInputTypeNumber(userInput)) { BRIDGE_SIZE_INPUT_TYPE_ERROR }
+        val processedUserInput = convertToInt(userInput)
+        require(checkInValidRange(processedUserInput)) { BRIDGE_SIZE_INPUT_NOT_IN_CORRECT_RANGE_ERROR }
+        return processedUserInput
     }
 
     private fun isInputTypeNumber(input: String): Boolean = Pattern.matches("^[-]?[0-9]+$", input)
