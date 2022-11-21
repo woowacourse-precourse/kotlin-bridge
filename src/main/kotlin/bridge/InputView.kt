@@ -10,13 +10,13 @@ class InputView {
     fun readBridgeSize(): String = camp.nextstep.edu.missionutils.Console.readLine()
 
     fun getValidateBridgeSize(userInput: String): Int {
-        require(isInputTypeNumber(userInput)) { BRIDGE_SIZE_INPUT_TYPE_ERROR }
+        require(isNumber(userInput)) { BRIDGE_SIZE_INPUT_TYPE_ERROR }
         val processedUserInput = convertToInt(userInput)
         require(checkInValidRange(processedUserInput)) { BRIDGE_SIZE_INPUT_NOT_IN_CORRECT_RANGE_ERROR }
         return processedUserInput
     }
 
-    private fun isInputTypeNumber(input: String): Boolean = Pattern.matches("^[-]?[0-9]+$", input)
+    private fun isNumber(input: String): Boolean = Pattern.matches("^[-]?[0-9]+$", input)
 
     private fun checkInValidRange(input: Int): Boolean = input in BRIDGE_MINIMUM_LENGTH..BRIDGE_MAXIMUM_LENGTH
 
