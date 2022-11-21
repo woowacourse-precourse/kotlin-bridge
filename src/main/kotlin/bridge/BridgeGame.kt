@@ -21,7 +21,7 @@ class BridgeGame {
 
             for (move in upDown) { control = OutputView().printMap(bridge, userRoute, move) }
             if (wrongAnswer(bridge, upDown) == "break") break
-            if (userRoute == bridge) { correctAnswer(bridge, upDown) }
+            if (userRoute == bridge) { finalStage(bridge, upDown) }
         }
     }
 
@@ -37,21 +37,23 @@ class BridgeGame {
         times++
     }
 
+    fun finalStage(bridge: List<String>, upDown: List<String>){
+        println("최종 게임 결과")
+        for (move in upDown){
+            OutputView().printResult(bridge, userRoute, move)
+        }
+        OutputView().printGameSituation(control, times)
+    }
+
     fun wrongAnswer(bridge: List<String>, upDown : List<String>) : String{
         if (control == 1){
             var gameControl = InputView().readGameCommand()
             if (gameControl == "Q"){
-                OutputView().printResult(bridge, userRoute, upDown)
-                OutputView().printGameSituation(control, times)
+                finalStage(bridge, upDown)
                 return "break"
             }
             if (gameControl == "R") { retry() }
         }
         return ""
-    }
-
-    fun correctAnswer(bridge: List<String>, upDown: List<String>){
-        OutputView().printResult(bridge, userRoute, upDown)
-        OutputView().printGameSituation(control, times)
     }
 }
