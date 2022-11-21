@@ -10,7 +10,7 @@ class Bridge(
     }
 
     enum class Floor(val command: String) {
-        UP("U"), DOWN("D");
+        DOWN("D"), UP("U");
 
         companion object {
             private val values = values()
