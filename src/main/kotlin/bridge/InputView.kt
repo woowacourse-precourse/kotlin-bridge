@@ -38,7 +38,7 @@ class InputView {
     private fun checkCorrectMovingCode(input: String): Boolean =
         input == BridgeType.UP.charCode.toString() || input == BridgeType.DOWN.charCode.toString()
 
-    fun readGameCommand(): String = getValidateGameCommend(readMoving())
+    fun readGameCommand(): String = getValidateGameCommend(readLine())
 
     fun getValidateGameCommend(userInput: String): String {
         require(isAlphabet(userInput)) { INPUT_IS_NOT_ALPHABET_ERROR }
