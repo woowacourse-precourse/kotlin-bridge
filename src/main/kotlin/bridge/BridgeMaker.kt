@@ -12,6 +12,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         val bridge = mutableListOf<String>()
         for (i in 0 until size) {
             val number = bridgeNumberGenerator.generate()
+            ExceptionHandler.checkValidState(number)
             bridge.add(if (number == 1) "U" else "D")
         }
         return bridge
