@@ -13,24 +13,18 @@ class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    val userMovingResults = mutableListOf<Pair<String, Boolean>>()
-    var userMovingLocation = ""
-    var userPresentPosition = INITIALIZE_TO_ZERO
-    var gameTryCount = INITIALIZE_TO_ONE
-
-    fun move(moving: String){
-        userMovingLocation = moving
-        userPresentPosition++
+    fun move(moving: String,user: User){
+        user.moving = moving
     }
 
-    fun getGameResult(bridge:Bridge):GameResult{
-        if(bridge.isMatchMoving(userMovingLocation,userPresentPosition)) {
-            userMovingResults.add(Pair(userMovingLocation,true))
-            if(userPresentPosition == bridge.length()-1) return GameResult.SUCCESS
-            userPresentPosition ++
+    fun getGameResult(bridge:Bridge,user: User):GameResult{
+        if(bridge.isMatchMoving(user.moving,user.presentPosition)) {
+            user.movingResults.add(Pair(user.moving,true))
+            if(user.presentPosition == bridge.length()-1) return GameResult.SUCCESS
+            user.presentPosition ++
             return GameResult.CONTINUE
         }
-        userMovingResults.add(Pair(userMovingLocation,false))
+        user.movingResults.add(Pair(user.moving,false))
         return GameResult.FAILURE
     }
 
@@ -70,16 +64,10 @@ class BridgeGame {
         return ERROR
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     *
-     *
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun retry() {
-        userPresentPosition = INITIALIZE_TO_ZERO
-        userMovingResults.clear()
-        gameTryCount++
+    fun retry(user: User) {
+        user.presentPosition = INITIALIZE_TO_ZERO
+        user.movingResults.clear()
+        user.tryCount++
     }
 
     enum class GameResult {
@@ -97,7 +85,6 @@ class BridgeGame {
         const val UN_CHOSEN_BRIDGE = "   "
         const val DIVIDING_LINE = "|"
         const val INITIALIZE_TO_ZERO = 0
-        const val INITIALIZE_TO_ONE = 1
         const val GAME_SUCCESS_MESSAGE = "성공"
         const val GAME_FAILURE_MESSAGE = "실패"
     }
