@@ -22,11 +22,11 @@ class BridgeGame {
     }
 
     fun move(checkBridge: List<String>, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>) {
-        for (i in 0.. checkBridge.size-1) {
+        for (Index in 0.. checkBridge.size-1) {
             val bridgeChoose = Guide().selectBridgeGuide()
-            bridgeUpList.add(BridgeGame().bridgUp(checkBridge[i], bridgeChoose))
-            bridgeDownList.add(BridgeGame().bridgDown(checkBridge[i], bridgeChoose))
-            Guide().success(i,checkBridge)
+            bridgeUpList.add(BridgeGame().bridgUp(checkBridge[Index], bridgeChoose))
+            bridgeDownList.add(BridgeGame().bridgDown(checkBridge[Index], bridgeChoose))
+            Guide().success(Index,checkBridge)
             Guide().bridgeList(bridgeUpList, bridgeDownList)
             msg += retry(checkBridge, bridgeUpList, bridgeDownList)
             if (msg >= 1) {
