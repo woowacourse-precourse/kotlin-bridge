@@ -13,7 +13,8 @@ class InputView {
         println(READ_BRIDGE_SIZE_PRINT)
         val userInput = Console.readLine()
         if (!bridgeSizeIsValid(userInput)) {
-            throw IllegalArgumentException(READ_BRIDGE_SIZE_ERROR_MESSAGE)
+            println(IllegalArgumentException(READ_BRIDGE_SIZE_ERROR_MESSAGE))
+            readBridgeSize()
         }
         return userInput.toInt()
     }
@@ -26,7 +27,8 @@ class InputView {
         println(READ_MOVING_PRINT)
         val userInput = Console.readLine()
         if (!movingInputIsValid(userInput)) {
-            throw IllegalArgumentException(READ_MOVING_ERROR_MESSAGE)
+            println(IllegalArgumentException(READ_MOVING_ERROR_MESSAGE))
+            readMoving()
         }
         return userInput
     }
@@ -39,7 +41,8 @@ class InputView {
         println(READ_GAME_COMMAND_PRINT)
         val userInput = Console.readLine()
         if (!gameCommandInputIsValid(userInput)) {
-            throw IllegalArgumentException(READ_GAME_COMMAND_ERROR_MESSAGE)
+            println(IllegalArgumentException(READ_GAME_COMMAND_ERROR_MESSAGE))
+            readGameCommand()
         }
         return userInput
     }
