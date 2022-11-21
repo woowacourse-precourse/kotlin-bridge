@@ -6,13 +6,7 @@ import bridge.BridgePhrases.BRIDGE_SIZE_INPUT_NOT_IN_CORRECT_RANGE_ERROR
 import bridge.BridgePhrases.BRIDGE_SIZE_INPUT_TYPE_ERROR
 import java.util.regex.Pattern
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 class InputView {
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     fun readBridgeSize(): String = camp.nextstep.edu.missionutils.Console.readLine()
 
     fun getValidateBridgeSize(userInput: String): Int {
