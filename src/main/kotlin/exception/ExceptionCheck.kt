@@ -24,4 +24,13 @@ class ExceptionCheck {
         return false
     }
 
+    private fun checkValidNumberRange(userInput: String): Boolean {
+        for (i in userInput.indices) {
+            if (userInput[i].code in 3..20) {
+                return true
+            }
+        }
+        return false
+    }
+
 }
