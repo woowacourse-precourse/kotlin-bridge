@@ -24,4 +24,12 @@ class InputTest {
             Validator.checkBridgeSelect(input)
         }
     }
+
+    @ValueSource(strings = [" ", "A", "  R", "1"])
+    @ParameterizedTest
+    fun `게임 재시도와 종료에 대한 입력이 R 또는 Q가 아니면 예외가 발생한다`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            Validator.checkCommand(input)
+        }
+    }
 }
