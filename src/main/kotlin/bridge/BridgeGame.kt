@@ -5,8 +5,43 @@ package bridge
  */
 class BridgeGame {
 
+    var count: Int = 1
+    var msg = 0
+    var retryCount = 0
+    fun GuideSet(): List<String> {
+        val size = guide().Guide()
+        val bridgecheck = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
+        return bridgecheck
+    }
+
+    fun move(bridgecheck: List<String>): Int {
+        val bridgeUpList = mutableListOf<String>()
+        val bridgeDownList = mutableListOf<String>()
+        for (i in 0..bridgecheck.size - 1) {
+            guide().bridgeList(bridgecheck[i],bridgeUpList,bridgeDownList)
+            msg += retry(bridgecheck, bridgeUpList, bridgeDownList)
+            if (msg >= 1) {
+                count += 1
+                break
+            }
+        }
+        if (msg < 1) guide().moveresult()
+        return count
+    }
+
+    fun retry(bridgecheck: List<String>, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>): Int {
+        if (bridgeUpList.contains("X") || bridgeDownList.contains("X")) {
+            val restart = guide().restart()
+            if (restart == "R") move(bridgecheck)
+            if (restart == "Q") guide().retryresult()
+            retryCount += 1
+        }
+        return retryCount
+    }
+
+
     fun BridgUp(bridgeCheck: String, bridgeChoose: String): String {
-        var MapUp = " "
+        var MapUp = "   "
         if (bridgeCheck == "U")
             if (bridgeChoose == "U") MapUp = " O "
         if (bridgeCheck == "D")
@@ -15,7 +50,7 @@ class BridgeGame {
     }
 
     fun BridgDown(bridgeCheck: String, bridgeChoose: String): String {
-        var MapDown = " "
+        var MapDown = "   "
         if (bridgeCheck == "U")
             if (bridgeChoose == "D") MapDown = " X "
         if (bridgeCheck == "D")
