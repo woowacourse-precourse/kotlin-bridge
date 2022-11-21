@@ -4,8 +4,10 @@ fun main() {
     val bridgeSize = InputView().readBridgeSize()
     val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
 
-    val state = playing(bridge)
-    print(state)
+    do {
+        var finish = playing(bridge)
+        if (!finish) { finish = BridgeGame().retry(InputView().readGameCommand()) }
+    } while (!finish)
 }
 
 fun playing(bridge: List<String>): Boolean {
