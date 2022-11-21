@@ -58,6 +58,13 @@ class InputView {
 
         return 0
     }
+    private fun needToAskMoveAgain(moveChoice: String): Boolean {
+        if (moveChoice == "U" || moveChoice == "D") {
+            return false
+        }
+        println(MOVE_NOT_VALID)
+        return true
+    }
 
     companion object {
         const val SIZE_NOT_VALID = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다"
