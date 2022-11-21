@@ -26,18 +26,23 @@ class InputView {
 
     private fun getCorrectValue(type: String): String {
         var input = ""
-        var isWrong = true
+        var isWrong: Boolean
+
         do {
             input = Console.readLine()
-            try {
-                rule.checkValue(input, type)
-                isWrong = false
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-            }
-
+            isWrong = catchException(input, type)
         } while (isWrong)
 
         return input
+    }
+    private fun catchException(input: String, type: String): Boolean {
+        val isWrong = try {
+            rule.checkValue(input, type)
+            false
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            true
+        }
+        return isWrong
     }
 }

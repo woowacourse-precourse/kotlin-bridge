@@ -6,10 +6,9 @@ import Utils.Constants.RETRY
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame {
-    // TODO 필드가 너무 많아질 것 같은데 리팩터 할 때 잘 나누기
     private val output = OutputView()
     private val input = InputView()
-    private lateinit var bridgeMap: List<String> // todo 타입은 다시 생각
+    private lateinit var bridgeMap: List<String>
     private var bridgeSize = 0
     private var tryingCount = 1
     private var position = 0 // user의 현재 위치
@@ -30,15 +29,12 @@ class BridgeGame {
     fun move(): Boolean {
         output.printInputMoving()
         val moving = input.readMoving()
-
         val isMovable = calculateIsMovable(moving, position)
-        // todo 어려울 것 같긴한데 인자 수 줄여보기
-        output.printMap(bridgeMap, position, isMovable)
 
+        output.printMap(bridgeMap, position, isMovable)
         position++
         return isMovable
     }
-
     private fun calculateIsMovable(moving: String, position: Int): Boolean {
         return bridgeMap[position] == moving
     }
@@ -62,7 +58,6 @@ class BridgeGame {
     }
 
     fun gameOver(isSuccess: Boolean) {
-        // 최종 게임 결과를 알려준다.
         output.printResult()
         output.printMap(bridgeMap, position - 1, isSuccess)
         output.printTryingCount(isSuccess, tryingCount)

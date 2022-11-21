@@ -19,7 +19,6 @@ class Rule {
             TYPE_MOVING -> checkMoving(input)
             TYPE_COMMAND -> checkCommand(input)
         }
-
     }
 
     private fun checkBridgeSize(input: String) {
@@ -30,11 +29,13 @@ class Rule {
     }
 
     private fun checkMoving(moving: String) {
-        if (moving != UP && moving != DOWN) throw IllegalArgumentException(ERROR_NOT_INPUT_U_OR_D)
+        if (moving != UP && moving != DOWN)
+            throw IllegalArgumentException(ERROR_NOT_INPUT_U_OR_D)
     }
 
     private fun checkCommand(command: String) {
-        if (command != RETRY && command != QUIT) throw IllegalArgumentException(ERROR_NOT_INPUT_R_OR_Q)
+        if (command != RETRY && command != QUIT)
+            throw IllegalArgumentException(ERROR_NOT_INPUT_R_OR_Q)
     }
 
     companion object {

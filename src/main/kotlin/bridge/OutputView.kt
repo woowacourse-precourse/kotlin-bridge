@@ -41,11 +41,9 @@ class OutputView {
     private fun getLastPath(lastMoving: String, isMovable: Boolean): String {
         var lastPath = String()
         when (lastMoving) {
-            UP -> lastPath =
-                if (isMovable) O else X
+            UP -> lastPath = if (isMovable) O else X
 
-            DOWN -> lastPath =
-                if (isMovable) FLAG_DOWN_O else FLAG_DOWN_X
+            DOWN -> lastPath = if (isMovable) FLAG_DOWN_O else FLAG_DOWN_X
         }
 
         return lastPath
