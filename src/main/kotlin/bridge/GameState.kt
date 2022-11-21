@@ -1,6 +1,6 @@
 package bridge
 
-enum class GameState(val charCode: Char) {
-    RESTART('R'),
-    QUIT('Q')
+enum class GameState(val StringCode: String) {
+    RESTART("R"),
+    QUIT("Q")
 }

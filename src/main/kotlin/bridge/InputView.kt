@@ -36,7 +36,7 @@ class InputView {
     }
 
     private fun checkCorrectMovingCode(input: String): Boolean =
-        input == BridgeType.UP.charCode.toString() || input == BridgeType.DOWN.charCode.toString()
+        input == BridgeType.UP.stringCode || input == BridgeType.DOWN.stringCode
 
     fun readGameCommand(): String = getValidateGameCommend(readLine())
 
@@ -48,7 +48,7 @@ class InputView {
     }
 
     private fun checkCorrectGameCommendCode(input: String): Boolean =
-        input == GameState.RESTART.charCode.toString() || input == GameState.QUIT.charCode.toString()
+        input == GameState.RESTART.StringCode || input == GameState.QUIT.StringCode
 
     private fun isAlphabet(input: String): Boolean = Pattern.matches("^[a-z|A-Z]+$", input)
 }
