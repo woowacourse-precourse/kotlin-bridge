@@ -11,7 +11,7 @@ class BridgeController {
 
     fun run() {
         makeBridge()
-        startGame()
+        startMove()
     }
 
     private fun makeBridge() {
@@ -22,42 +22,42 @@ class BridgeController {
         bridgeGame = BridgeGame(bridges)
     }
 
-    private fun startGame() {
-        move()
+    private fun startMove() {
+        moveNext()
         if (bridgeGame.isEnd()) {
-            end(Enum.RESULT.SUCCESS.korean)
+            printEndMove(Enum.RESULT.SUCCESS.korean)
             return
         }
-        if (fail())
+        if (isFail())
             return
-        startGame()
+        startMove()
     }
 
-    private fun move() {
+    private fun moveNext() {
         outputView.printInputMove()
         bridgeGame.move(inputView.readMoving())
         outputView.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
     }
 
-    private fun end(result: String) {
+    private fun printEndMove(result: String) {
         outputView.printEndGame()
         outputView.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
         outputView.printResult(bridgeGame.getTryCount(), result)
     }
 
-    private fun fail(): Boolean {
+    private fun isFail(): Boolean {
         if (bridgeGame.isFail(Enum.RESULT.FAILURE.emoji)) {
             outputView.printRestart()
-            return restart()
+            return isRestart()
         }
         return false
     }
 
-    private fun restart(): Boolean {
+    private fun isRestart(): Boolean {
         when (inputView.readGameCommand()) {
             Enum.OPTION.RESTART.command -> bridgeGame.retry()
             Enum.OPTION.QUIT.command -> {
-                end(Enum.RESULT.FAILURE.korean)
+                printEndMove(Enum.RESULT.FAILURE.korean)
                 return true
             }
         }
