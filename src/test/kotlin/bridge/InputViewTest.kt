@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.assertj.core.api.Assertions.assertThat
+
 
 class InputViewTest {
     val inputView = InputView()
@@ -31,8 +33,47 @@ class InputViewTest {
         }
     }
 
-    @Test
-    fun readMoving() {
+    @Nested
+    inner class TestReadMoving {
+        @Test
+        fun `소문자 정상 처리되는지 테스트(u)`() {
+            assertThat(inputView.getValidateMovingCode("u")).isEqualTo("U")
+        }
+
+        @Test
+        fun `소문자 정상 처리되는지 테스트(d)`() {
+            assertThat(inputView.getValidateMovingCode("d")).isEqualTo("D")
+        }
+
+        @Test
+        fun `대문자 정상 처리되는지 테스트(u)`() {
+            assertThat(inputView.getValidateMovingCode("U")).isEqualTo("U")
+        }
+
+        @Test
+        fun `대문자 정상 처리되는지 테스트(d)`() {
+            assertThat(inputView.getValidateMovingCode("D")).isEqualTo("D")
+        }
+
+        @Test
+        fun `u,d 이외의 알파벳 입력(소문자)`() {
+            assertThrows<IllegalArgumentException> { inputView.getValidateMovingCode("a") }
+        }
+
+        @Test
+        fun `u,d 이외의 알파벳 입력(대문자)`() {
+            assertThrows<IllegalArgumentException> { inputView.getValidateMovingCode("B") }
+        }
+
+        @Test
+        fun `한글 입력`() {
+            assertThrows<IllegalArgumentException> { inputView.getValidateMovingCode("ㄱ") }
+        }
+
+        @Test
+        fun `특수문자 입력`() {
+            assertThrows<IllegalArgumentException> { inputView.getValidateMovingCode("!") }
+        }
     }
 
     @Test
