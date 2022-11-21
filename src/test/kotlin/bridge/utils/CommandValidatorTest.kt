@@ -22,7 +22,7 @@ class CommandValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["r", "q", "a", "", " ", "U", "D", "RR", "QQ"])
+    @ValueSource(strings = ["r", "q", "a", "", " ", "U", "D", "RR", "QQ", "R ", " R", "Q ", " Q"])
     fun `R 또는 Q 가 아니면 예외가 발생한다`(input: String) {
         val exception = assertThrows<IllegalArgumentException> { validator.validate(input) }
         assertThat(exception.message).isEqualTo(CommandValidator.ERROR_MESSAGE)

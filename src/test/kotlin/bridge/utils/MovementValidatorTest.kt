@@ -23,7 +23,7 @@ class MovementValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["u", "d", "a", "", " ", "R", "Q", "UU", "DD"])
+    @ValueSource(strings = ["u", "d", "a", "", " ", "R", "Q", "UU", "DD", "U ", " U", "D ", " D"])
     fun `U 또는 D 가 아니면 예외가 발생한다`(input: String) {
         val exception = assertThrows<IllegalArgumentException> { validator.validate(input) }
         assertThat(exception.message).isEqualTo(MovementValidator.ERROR_MESSAGE)
