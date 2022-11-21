@@ -2,12 +2,15 @@ package bridge.view
 
 import bridge.domain.BridgeGameCommand
 import bridge.domain.BridgeGameType
+import bridge.resources.BRIDGE_MAX_LENGTH
+import bridge.resources.BRIDGE_MIN_LENGTH
 import bridge.resources.ERROR_INPUT_ALLOWED_KEYS
 import bridge.resources.INPUT_BRIDGE_SIZE
 import bridge.resources.INPUT_GAME_COMMAND
 import bridge.resources.INPUT_MOVING
-import bridge.utils.isInListOrError
-import bridge.utils.toIntOrError
+import bridge.utils.infinityRead
+import bridge.utils.toInListOrError
+import bridge.utils.toIntInRangeOrError
 import camp.nextstep.edu.missionutils.Console
 
 /**
@@ -18,23 +21,29 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        println(INPUT_BRIDGE_SIZE)
-        return Console.readLine().toIntOrError()
+        return infinityRead {
+            println(INPUT_BRIDGE_SIZE)
+            Console.readLine().toIntInRangeOrError(BRIDGE_MIN_LENGTH, BRIDGE_MAX_LENGTH)
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        println(INPUT_MOVING)
-        return Console.readLine().isInListOrError(BridgeGameType.getTypeList(), ERROR_INPUT_ALLOWED_KEYS)
+        return infinityRead {
+            println(INPUT_MOVING)
+            Console.readLine().toInListOrError(BridgeGameType.getTypeList(), ERROR_INPUT_ALLOWED_KEYS)
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        println(INPUT_GAME_COMMAND)
-        return Console.readLine().isInListOrError(BridgeGameCommand.getCommandList(), ERROR_INPUT_ALLOWED_KEYS)
+        return infinityRead {
+            println(INPUT_GAME_COMMAND)
+            Console.readLine().toInListOrError(BridgeGameCommand.getCommandList(), ERROR_INPUT_ALLOWED_KEYS)
+        }
     }
 }

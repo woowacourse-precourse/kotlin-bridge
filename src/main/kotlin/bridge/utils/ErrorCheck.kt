@@ -7,10 +7,29 @@ fun String.toIntOrError(): Int {
     return this.toInt()
 }
 
-fun String.isInListOrError(
+fun String.toIntInRangeOrError(min: Int, max: Int): Int {
+    this.toIntOrError().let {
+        if (it !in min..max) {
+            throw IllegalArgumentException(ERROR_INPUT_NUMBER)
+        }
+        return it
+    }
+}
+
+fun String.toInListOrError(
     list: List<String>,
     errorMessage: String
 ): String {
     require(this in list) { errorMessage }
     return this
+}
+
+inline fun <T> infinityRead(call: () -> T): T {
+    while (true) {
+        try {
+            return call()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+        }
+    }
 }
