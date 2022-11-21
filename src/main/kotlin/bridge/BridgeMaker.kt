@@ -17,9 +17,9 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         return bridge.toList()
     }
 
-    private fun Int.numberToDirection() = if (this == 0) {
-        "U"
+    private fun Int.numberToDirection() = if (this == Direction.UP.directionNumber) {
+        Direction.UP.direction
     } else {
-        "D"
+        Direction.DOWN.direction
     }
 }
