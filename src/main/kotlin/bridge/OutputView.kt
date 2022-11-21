@@ -9,42 +9,56 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap(bridge: List<String>, result: String, step: Int){
+    fun printMapFirst(bridge: List<String>, direction: String, step: Int){
+        if ( bridge[step] == "U") {
+            if (direction == "U") print("[ O ]")
+            else print("[ X ]")
+        } else { print("[   ]")}
+
+        if ( bridge[step] == "D") {
+            if (direction == "D") print("\n[ O ]")
+            else print("\n[ X ]")
+        } else print("\n[   ]")
+    }
+
+    fun printMap(bridge: List<String>, direction: String, step: Int){
         for ( i in 0..step-1 ) {
             if ( i == 0 ) print("[")
             if ( bridge[i] == "U" ) print(" O ")
             else print("   ")
             print("|")
         }
-        printMapLast(bridge, result, step)
+        printMapLast(bridge, direction, step)
     }
-    fun printMapLast(bridge: List<String>, result: String, step: Int): Boolean {
+    fun printMapLast(bridge: List<String>, direction: String, step: Int): Boolean {
         if ( bridge[step] == "U") {
-            if (result == "U") print(" O ]")
+            if (direction == "U") print(" O ]")
             else print(" X ]")
         } else {
             print("   ]")
-            printMapBottom(bridge, result, step)
+            printMapBottom(bridge, direction, step)
         }
-        return if ( bridge[step] == result ) true else false
+        return if ( bridge[step] == direction ) true else false
     }
-    fun printMapBottom(bridge: List<String>, result: String, step: Int) {
+    fun printMapBottom(bridge: List<String>, direction: String, step: Int) {
         for ( i in 0..step-1 ){
             if ( i == 0 ) print("\n[")
             if ( bridge[i] == "D" ) print(" O ")
             else print("   ")
             print("|")
         }
-        printMapBottomLast(bridge, result, step)
+        printMapBottomLast(bridge, direction, step)
     }
 
-    fun printMapBottomLast(bridge: List<String>, result: String, step: Int): Boolean {
+    fun printMapBottomLast(bridge: List<String>, direction: String, step: Int): Boolean {
         if ( bridge[step] == "D") {
-            if (result == "D") print(" O ]")
+            if (direction == "D") print(" O ]")
             else print(" X ]")
         } else print("   ]")
-        return if ( bridge[step] == result ) true else false
+        return if ( bridge[step] == direction ) true else false
     }
+
+
 
 
     /**
