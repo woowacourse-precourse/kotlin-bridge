@@ -33,4 +33,8 @@ class OutputView {
         println("총 시도한 횟수: $attempts")
 
     }
+
+    fun printErr(errMessage: String){
+        println(errMessage)
+    }
 }
