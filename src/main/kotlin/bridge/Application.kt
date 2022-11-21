@@ -17,7 +17,7 @@ fun main() {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
         val space = bridge.selectToMove()
 
-        bridge.printMovingList(space, bridgeList)
+        outputView.printMovingList(space, bridgeList)
 
         if (BridgeGame.successConditions(bridgeList)) {
             numberOfAttempts += 1

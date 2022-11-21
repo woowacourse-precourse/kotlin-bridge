@@ -6,8 +6,6 @@ import exception.MovingSpace
 
 class Bridge {
     private val inputView = InputView()
-    private val outputView = OutputView()
-    private val bridgeGame = BridgeGame()
     private val numberGenerator = BridgeRandomNumberGenerator()
     private val bridgeMaker = BridgeMaker(numberGenerator)
 
@@ -33,13 +31,5 @@ class Bridge {
         gameOver.verify()
 
         return gameOver.getInput()
-    }
-
-    fun printMovingList(space: String, bridgeList: List<String>) {
-        val movingList = bridgeGame.move(space, bridgeList)
-        val upList = movingList.filter { it.key == "U" }.values.flatten()
-        val downList = movingList.filter { it.key == "D" }.values.flatten()
-
-        outputView.printMap(upList, downList)
     }
 }

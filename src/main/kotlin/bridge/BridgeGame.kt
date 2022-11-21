@@ -39,6 +39,10 @@ class BridgeGame {
         downMap.clear()
     }
 
+    fun separateList(movingList: Map<String, List<String>>, position: String): List<String> {
+        return movingList.filter { it.key == position }.values.flatten()
+    }
+
     private fun checkSpace(space: String, ox: String) {
         if (space == UP) {
             addToList(ox, BLANK)

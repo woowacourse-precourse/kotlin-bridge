@@ -9,6 +9,8 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    private val bridgeGame = BridgeGame()
+
     fun printMap(up: List<String>, down: List<String>) {
         printAnswer(up)
         printAnswer(down)
@@ -25,6 +27,14 @@ class OutputView {
         printMap(up, down)
         println("게임 성공 여부: $successOrFailure")
         print("총 시도한 횟수: $numberOfAttempts")
+    }
+
+    fun printMovingList(space: String, bridgeList: List<String>) {
+        val movingList = bridgeGame.move(space, bridgeList)
+        val upList = bridgeGame.separateList(movingList, BridgeGame.UP)
+        val downList = bridgeGame.separateList(movingList, BridgeGame.DOWN)
+
+        printMap(upList, downList)
     }
 
     private fun printAnswer(position: List<String>) {
