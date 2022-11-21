@@ -4,6 +4,15 @@ package bridge
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 class InputView {
+
+    fun inputUser(): String {
+        val userInputNumber = camp.nextstep.edu.missionutils.Console.readLine()
+        userInputNumber ?: println("[Error]")
+        if (userInputNumber!!.isEmpty()){
+            throw IllegalArgumentException()
+        }
+        return userInputNumber
+    }
     /**
      * 다리의 길이를 입력받는다.
      */
