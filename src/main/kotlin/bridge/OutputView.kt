@@ -11,6 +11,17 @@ class OutputView {
      */
     fun printMap() {}
 
+    private fun upMove(moves: List<String>, answers: List<String>) {
+        var upMove = ""
+        for (stepIndex in moves.indices) {
+            upMove += getUpOX(moves[stepIndex], answers[stepIndex])
+            if (stepIndex != 0 && stepIndex != moves.lastIndex) {
+                upMove += "|"
+            }
+        }
+        println("[$upMove]")
+    }
+
     private fun getUpOX(moveValue: String, answerValue: String): String {
         if (moveValue === "U" && answerValue === "U") {
             return " O "
