@@ -77,6 +77,19 @@ class ApplicationTest : NsTest() {
         assert(game.move(0, "D"))
     }
 
+    @Test
+    fun `gameToString 함수 테스트` () {
+        val bridgeNumbers = listOf(0,1,0,1,0,1,1,1,0,0)
+        val bridge = make_bridge(bridgeNumbers)
+        val game = BridgeGame(bridge)
+        for(i in bridgeNumbers.indices) {
+            if(bridgeNumbers[i] == 1) game.move(i, "U")
+            else game.move(i, "D")
+        }
+        assert(game.gameToString() == "[   | O |   | O |   | O | O | O |   |   ]\n[ O |   | O |   | O |   |   |   | O | O ]")
+    }
+
+
     private fun make_bridge(bridge: List<Int>): List<String> {
         val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(bridge)
         val bridgeMaker = BridgeMaker(numberGenerator)
