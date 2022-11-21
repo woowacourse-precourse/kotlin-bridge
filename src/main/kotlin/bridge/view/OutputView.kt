@@ -9,7 +9,7 @@ import bridge.constants.ErrorMessage
 object OutputView {
 
     fun printStartGame() {
-        println("\n${Message.StartGame}")
+        println(Message.StartGame)
     }
 
     fun printInputBridgeSize() {
