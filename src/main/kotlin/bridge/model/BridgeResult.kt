@@ -1,6 +1,5 @@
 package bridge.model
 
-import bridge.GameResult
 import bridge.Move
 import bridge.Result
 
