@@ -18,15 +18,19 @@
 7. 다시 3번으로
 8. 성공 또는 5번에서 Q 입력 시 최종 게임 결과 출력
 
+## main
+- makeGame : BridgeGame 생성 및 리턴
+- selectDirection : 이동할 칸 입력 받고 맞게 갔는지 리턴
+- isRetry : 재시도 여부 입력 받고 재시도 시 true, 아니면 false 리턴
 ## InputView
-- readBridgeSize : 다리 길이 입력 메서드
-- readMoving : 이동할 칸 입력 메서드
-- readGameCommand : 게임 재시도 여부 입력 메서드
+- readBridgeSize : 다리 길이 입력 메서드, 다리 길이 리턴
+- readMoving : 이동할 칸 입력 메서드, 이동할 칸 리턴
+- readGameCommand : 게임 재시도 여부 입력 메서드, 재시도 여부 리턴
 ## OutputView
 - printMap : 다리 상태 출력 메서드
 - printResult : 게임 최종 결과 출력 메서드
 ## BridgeMaker
-- makeBridge : 다리 생성 메서드
+- makeBridge : 다리 생성 메서드, 생성한 다리 리턴
 ## BridgeGame
-- move : 사용자가 칸을 이동할 때 사용하는 메서드
-- retry : 사용자가 게임을 다시 시도할 때 사용하는 메서드
+- move : 사용자가 칸을 이동할 때 사용하는 메서드, 맞게 갔는지 리턴
+- retry : 사용자가 게임을 다시 시도할 때 사용하는 메서드, 경로 초기화, 시도 횟수 +1
