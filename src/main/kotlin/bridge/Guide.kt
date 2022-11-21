@@ -16,13 +16,17 @@ class Guide {
         OutputView().printFailResult()
     }
     fun bridgeList( bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>){
-        if (bridgeUpList.contains(" X ") || bridgeDownList.contains(" X ")) OutputView().printLastGame()
+
         OutputView().printMap(bridgeUpList.joinToString("|"))
         OutputView().printMap(bridgeDownList.joinToString("|"))
     }
 
-    fun success(i: Int,checkBridge: List<String>){
-        if(i==checkBridge.size-1) OutputView().printLastGame()
+    fun success(index: Int, checkBridge: List<String>){
+        if(index==checkBridge.size-1) OutputView().printLastGame()
+
+    }
+    fun fail(){
+         OutputView().printLastGame()
     }
     fun selectBridgeGuide(): String {
         OutputView().printBridgeChoose()
