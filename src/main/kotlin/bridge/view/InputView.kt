@@ -49,7 +49,7 @@ class InputView {
     }
 
     private fun validateReadMoving(readValue: String) {
-        require(readValue in "UD") { "[ERROR] U(위) 또는 D(아래)를 입력바랍니다." }
+        require(readValue == "U" || readValue == "D") { "[ERROR] U(위) 또는 D(아래)를 입력바랍니다." }
     }
 
     /**
