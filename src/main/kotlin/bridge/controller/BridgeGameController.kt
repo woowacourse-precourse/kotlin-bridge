@@ -99,7 +99,11 @@ class BridgeGameController(
         return input
     }
 
-    private fun restart() {}
+    private fun restart() {
+        bridgeGame.retry()
+
+        play()
+    }
 
     private fun finish() {}
 }
