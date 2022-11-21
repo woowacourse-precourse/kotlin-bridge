@@ -9,6 +9,7 @@ import bridge.GameView.Companion.ERROR_MESSAGE_PREFIX
 import bridge.GameView.Companion.ERROR_MESSAGE_UNKNOWN
 import bridge.GameView.Companion.FAILURE
 import bridge.GameView.Companion.MESSAGE_GAME_COUNT
+import bridge.GameView.Companion.MESSAGE_GAME_END
 import bridge.GameView.Companion.MESSAGE_GAME_RESULT
 import bridge.GameView.Companion.MESSAGE_GAME_START
 import bridge.GameView.Companion.SUCCESS
@@ -38,6 +39,11 @@ class OutputView {
         else
             fixMap()
         fillMap(moveResult, moveDirect)
+        println("${upMap}\n$downMap")
+    }
+
+    fun printResultMap(){
+        println(MESSAGE_GAME_END)
         println("${upMap}\n$downMap")
     }
 
