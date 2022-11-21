@@ -1,6 +1,5 @@
 package bridge
 
-import bridge.model.Bridge
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
