@@ -34,7 +34,15 @@ class OutputTest {
         val answer= listOf<String>("U","U","U","U","D")
         OutputView().printMap( bridge.makeUpStep(answer),bridge.makeDownStep(answer))
         println()
-
     }
+
+    @Test
+    fun `성공 시 결과 출력 테스트`(){
+        val bridge= Bridge(mutableListOf<String>("U","D","D"))
+        val answer= mutableListOf<String>("U","D","D")
+        val game=BridgeGame(answer,Bridge(answer),Status(1,"성공"))
+        game.showResult()
+    }
+
 
 }
