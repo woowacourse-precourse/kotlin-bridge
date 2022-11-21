@@ -21,6 +21,16 @@ class OutputView {
         print("[")
         input.forEachIndexed { idx, value ->
             checkDownDecide(idx, value, bridge)
+            if (idx != input.size - 1) print(" | ")
+        }
+        print("]")
+    }
+
+    private fun printUpDecide(bridge: List<String>, input: List<String>) {
+        print("[")
+        input.forEachIndexed { idx, value ->
+            checkUpDecide(idx, value, bridge)
+            if (idx != input.size - 1) print(" | ")
         }
         print("]")
     }
@@ -31,14 +41,6 @@ class OutputView {
             value == "U" -> return " "
         }
         return "X"
-    }
-
-    private fun printUpDecide(bridge: List<String>, input: List<String>) {
-        print("[")
-        input.forEachIndexed { idx, value ->
-            checkUpDecide(idx, value, bridge)
-        }
-        print("]")
     }
 
     private fun checkUpDecide(idx: Int, value: String, bridge: List<String>): String {
