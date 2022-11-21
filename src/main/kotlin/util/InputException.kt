@@ -4,11 +4,13 @@ class InputException {
 
     fun checkInputLength(input: String?) {
         when {
-
+            checkNullException(input) -> printException(NULL_ERROR)
             checkTypeException(input!!) -> printException(TYPE_ERROR)
             checkRangeException(input.toInt()) -> printException(RANGE_ERROR)
         }
     }
+
+    private fun checkNullException(input: String?): Boolean = input.isNullOrEmpty()
 
     private fun checkRangeException(input: Int): Boolean = !(3..20).contains(input)
 
@@ -26,6 +28,7 @@ class InputException {
     }
 
     companion object {
+        const val NULL_ERROR = "입력 값이 없습니다."
         const val RANGE_ERROR = "3~20의 범위가 아닙니다."
         const val TYPE_ERROR = "올바른 형식이 아닙니다."
     }
