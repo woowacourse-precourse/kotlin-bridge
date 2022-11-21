@@ -1,6 +1,6 @@
 package bridge.domain
 
-import bridge.resources.ERROR_INPUT_COMMAND
+import bridge.resources.ERROR_INPUT_VALID
 
 enum class BridgeGameCommand(val command: String) {
     RETRY("R"),
@@ -9,7 +9,7 @@ enum class BridgeGameCommand(val command: String) {
 
     companion object {
         fun of(command: String): BridgeGameCommand {
-            return values().find { it.command == command } ?: throw IllegalArgumentException(ERROR_INPUT_COMMAND)
+            return values().find { it.command == command } ?: throw IllegalArgumentException(ERROR_INPUT_VALID)
         }
 
         fun getCommandList(): List<String> {

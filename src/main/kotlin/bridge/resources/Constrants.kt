@@ -19,6 +19,7 @@ const val ERROR_INPUT_NUMBER = ERROR_MESSAGE_PREFIX + "숫자를 입력해주세
 const val ERROR_INPUT_ALLOWED_KEYS = ERROR_MESSAGE_PREFIX + "올바른 키를 입력해주세요."
 const val ERROR_INPUT_NUMBER_IN_RANGE = ERROR_MESSAGE_PREFIX + "범위 내에 값을 입력해주세요."
 const val ERROR_INPUT_COMMAND = ERROR_MESSAGE_PREFIX + "올바른 명령어를 입력해주세요."
+const val ERROR_INPUT_VALID = ERROR_MESSAGE_PREFIX + "유효한 인자를 전달해주세요."
 const val ERROR_ALREADY_ARRIVED = ERROR_MESSAGE_PREFIX + "이미 모든 칸을 이동했습니다."
 
 // FOR BRIDGE GAME LOGIC

@@ -1,6 +1,6 @@
 package bridge.domain
 
-import bridge.resources.ERROR_INPUT_COMMAND
+import bridge.resources.ERROR_INPUT_VALID
 
 enum class BridgeGameProgress {
     SUCCESS,
@@ -10,13 +10,13 @@ enum class BridgeGameProgress {
     companion object {
         fun of(bridgeGameResult: BridgeGameInfo): BridgeGameProgress {
             bridgeGameResult.apply {
-                require(stage.isNotEmpty()) { ERROR_INPUT_COMMAND }
-                require(stage.isNoFalseExceptLast()) { ERROR_INPUT_COMMAND }
+                require(stage.isNotEmpty()) { ERROR_INPUT_VALID }
+                require(stage.isNoFalseExceptLast()) { ERROR_INPUT_VALID }
                 return when {
                     stage.size < bridge.size && stage.last() -> RUNNING
                     stage.size == bridge.size && stage.last() -> SUCCESS
                     stage.size <= bridge.size && stage.last().not() -> FAILURE
-                    else -> throw IllegalArgumentException(ERROR_INPUT_COMMAND)
+                    else -> throw IllegalArgumentException(ERROR_INPUT_VALID)
                 }
             }
         }
