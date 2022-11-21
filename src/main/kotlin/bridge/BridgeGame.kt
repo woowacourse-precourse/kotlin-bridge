@@ -22,4 +22,24 @@ class BridgeGame(private val bridge: List<String>) {
     fun retry() {
         moves.clear()
     }
+
+    fun gameToString(): String {
+        return gameToStringLine(true) + "\n" + gameToStringLine(false);
+    }
+
+    private fun gameToStringLine(isUpper: Boolean): String {
+        var result = "[ "
+        val direction = if(isUpper) "U" else "D"
+        for(i in moves.indices) {
+            result += moveToString(i, direction)
+            result += if(i != moves.size-1) " | " else " ]"
+        }
+        return result
+    }
+
+    private fun moveToString(index: Int, direction: String): String {
+        if(moves[index] != direction) return " "
+        else if(moves[index] == direction && bridge[index] == moves[index]) return "O"
+        else return "X"
+    }
 }
