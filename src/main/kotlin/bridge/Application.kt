@@ -24,3 +24,13 @@ fun gameEnd(bridgeGame: BridgeGame) {
     bridgeGame.printMap()
     bridgeGame.printResult()
 }
+
+fun gameRestart(bridgeGame: BridgeGame, bridgeSize: Int) {
+    when(InputView().readGameCommand()) {
+        "R" -> {
+            bridgeGame.retry()
+            gameStart(bridgeGame, bridgeSize)
+        }
+        "Q" -> gameEnd(bridgeGame)
+    }
+}
