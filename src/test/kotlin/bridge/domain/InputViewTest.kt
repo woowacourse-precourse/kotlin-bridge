@@ -13,7 +13,7 @@ class InputViewTest : NsTest() {
 
 
     @ParameterizedTest(name = "다리 길이 입력 테스트: {0}")
-    @CsvSource(DIGIT_EXCEPTION, RANGE_EXCEPTION)
+    @CsvSource(LETTER_EXCEPTION, RANGE_EXCEPTION)
     fun `다리 길이 입력 테스트`(bridgeSize: String) {
         assertSimpleTest {
             runException(bridgeSize)
@@ -22,7 +22,7 @@ class InputViewTest : NsTest() {
     }
 
     @ParameterizedTest(name = "이동 입력 테스트: {0}")
-    @CsvSource(MOVE_DIGIT_EXCEPTION, MOVE_LETTER_EXCEPTION)
+    @CsvSource(DIGIT_EXCEPTION, LETTER_EXCEPTION)
     fun `이동 입력 테스트`(moving: String) {
         assertSimpleTest {
             runException(moving)
@@ -30,23 +30,27 @@ class InputViewTest : NsTest() {
         }
     }
 
-    @Test
-    fun retryReadGameCommand() {
+    @ParameterizedTest(name = "재시작 종료 입력 테스트: {0}")
+    @CsvSource(DIGIT_EXCEPTION, LETTER_EXCEPTION)
+    fun `재시작 종료 입력 테스트`(gameCommand: String) {
+        assertSimpleTest {
+            runException(gameCommand)
+            Assertions.assertThat(output()).contains(PREFIX)
+        }
     }
 
     override fun runMain() {
         // 다리 길이 입력 테스트: inputView.retryReadBridgeSize()
-        // 이동 입력 테스트:
-        inputView.retryReadMoving()
+        // 이동 입력 테스트: inputView.retryReadMoving()
+        // 재시작 종료 입력 테스트
+        inputView.retryReadGameCommand()
     }
 
     companion object {
         private const val PREFIX = "[ERROR]"
 
-        private const val DIGIT_EXCEPTION = "a"
+        private const val LETTER_EXCEPTION = "a"
         private const val RANGE_EXCEPTION = "21"
-
-        private const val MOVE_DIGIT_EXCEPTION = "3"
-        private const val MOVE_LETTER_EXCEPTION = "F"
+        private const val DIGIT_EXCEPTION = "1"
     }
 }
