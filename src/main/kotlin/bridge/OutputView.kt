@@ -11,6 +11,26 @@ class OutputView {
      */
     fun printMap() {}
 
+    private fun getUpOX(moveValue: String, answerValue: String): String {
+        if (moveValue === "U" && answerValue === "U") {
+            return " O "
+        }
+        if (moveValue == "U" && answerValue == "D") {
+            return " X "
+        }
+        return "   "
+    }
+
+    private fun getDownOX(moveValue: String, answerValue: String): String {
+        if (moveValue === "D" && answerValue === "D") {
+            return " O "
+        }
+        if (moveValue == "D" && answerValue == "U") {
+            return " X "
+        }
+        return "   "
+    }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      *
