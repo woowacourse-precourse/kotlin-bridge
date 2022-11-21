@@ -11,7 +11,7 @@ object BridgeGameProcessor {
     private val bridgePassInfo = mutableListOf<Pair<Moving, Boolean>>()
     private val currentMapPrint = mutableListOf<String>()
     private val bridgeLocationInfo =
-        hashMapOf(DOWN_INT_NUMBER_ZERO to DOWN_DIRECTION, UP_INT_NUMBER_ONE to UP_DIRECTION)
+        hashMapOf(DOWN_INT_NUMBER_ZERO to 0, UP_INT_NUMBER_ONE to 1)
 
     /*
     * deleteBridgePassInfo: 지나간 정보를 비움
@@ -53,5 +53,20 @@ object BridgeGameProcessor {
             mapPrint += if (index == round) " ]\n" else  " | "
         }
         return mapPrint
+    }
+
+
+    /*
+     2번 반복 -> 위, 아래 다리 비교하여 리스트로 출력
+    *
+    * */
+
+    fun updateMapList(): List<String> {
+        currentMapPrint.clear()
+
+        repeat(2) { twoBridge ->
+            currentMapPrint.add(createMapPrint(bridgeLocationInfo[twoBridge]!!))
+        }
+        return currentMapPrint
     }
 }
