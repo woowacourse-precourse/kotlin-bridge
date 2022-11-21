@@ -21,6 +21,7 @@ fun gameStart(bridgeGame: BridgeGame, bridgeSize: Int) {
         bridgeGame.printMap()
         count += 1
     }
+    gameRestart(bridgeGame, bridgeSize)
 }
 
 fun gameEnd(bridgeGame: BridgeGame) {
