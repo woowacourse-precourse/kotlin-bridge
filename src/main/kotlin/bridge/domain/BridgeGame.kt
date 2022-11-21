@@ -13,10 +13,18 @@ class BridgeGame(
     }
 
     fun move(bridge: List<String>): List<String> {
-        val movement = mutableListOf<String>()
-        movement.add(gameManager.getMovement())
+        val path = mutableListOf<String>()
 
-        return movement
+        for (i in bridge.indices) {
+            val movement = gameManager.getMovement()
+            path.add(movement)
+
+            gameManager.printMap(path, bridge)
+
+            if(movement != bridge[i]) { break }
+        }
+
+        return path
     }
 
     /**

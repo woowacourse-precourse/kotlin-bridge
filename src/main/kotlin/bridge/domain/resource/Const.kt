@@ -1,5 +1,9 @@
 package bridge.domain.resource
 
+const val MOVE_SUCCESS = "O"
+const val MOVE_FAIL = "X"
+const val NOT_MOVE = " "
+
 const val MOVE_UP = "U"
 const val MOVE_DOWN = "D"
 
