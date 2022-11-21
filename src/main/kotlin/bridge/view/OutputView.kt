@@ -6,6 +6,8 @@ import bridge.util.Constant.OPEN_PARENTHESIS
 import bridge.util.Constant.CLOSE_PARENTHESIS
 import bridge.util.Constant.BOUNDARY
 import bridge.util.Constant.EMPTY
+import bridge.util.Constant.GAME_FAIL
+import bridge.util.Constant.GAME_SUCCESS
 import bridge.util.Constant.LOAD_GO
 import bridge.util.Constant.LOAD_STOP
 import kotlin.text.StringBuilder
@@ -75,16 +77,12 @@ class OutputView {
     }
 
     fun printResult(bridgeGame: BridgeGame) {
-
         println(
             String.format(
                 "\n최종 게임 결과\n%s\n%s\n\n게임 성공 여부: %s\n총 시도한 횟수: %d",
-                upBuilder.toString(),
-                downBuilder.toString(),
-                when (bridgeGame.isDone()) {
-                    true -> "성공"
-                    false -> "실패"
-                },
+                upBuilder,
+                downBuilder,
+                if (bridgeGame.isDone()) GAME_SUCCESS else GAME_FAIL,
                 bridgeGame.getTryCount()
             )
         )
