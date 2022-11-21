@@ -1,7 +1,5 @@
 package bridge
 
-import camp.nextstep.edu.missionutils.Console
-
 class Controller {
     private val inputView = InputView()
     private val outputView = OutputView()
@@ -27,7 +25,8 @@ class Controller {
 
     private fun chooseSpaceToMoveStep(length: Int) {
         outputView.printChooseSpaceToMove()
-        inputView.readMoving()
+        val moveSpace = inputView.readMoving()
+        inputCheck.checkChooseSpace(moveSpace)
     }
 
 }
