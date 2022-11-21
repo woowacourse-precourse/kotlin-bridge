@@ -57,6 +57,12 @@ class BridgeGame {
         return UN_CHOSEN_BRIDGE
     }
 
+    fun getGameResult(gameResult: GameResult):String{
+        if(gameResult == GameResult.SUCCESS) return GAME_SUCCESS_MESSAGE
+        if(gameResult == GameResult.FAILURE) return GAME_FAILURE_MESSAGE
+        return ERROR
+    }
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      *
@@ -75,6 +81,7 @@ class BridgeGame {
     }
 
     companion object {
+        const val ERROR = "[ERROR]"
         const val START_BRIDGE = "["
         const val END_BRIDGE = "]"
         const val CROSSABLE_BRIDGE = " O "
@@ -83,5 +90,7 @@ class BridgeGame {
         const val DIVIDING_LINE = "|"
         const val INITIALIZE_TO_ZERO = 0
         const val INITIALIZE_TO_ONE = 1
+        const val GAME_SUCCESS_MESSAGE = "성공"
+        const val GAME_FAILURE_MESSAGE = "실패"
     }
 }
