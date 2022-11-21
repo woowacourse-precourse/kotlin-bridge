@@ -38,23 +38,27 @@ class BridgeGame {
     // 현재 입력 값과 다리의 값이 같은지, 들린지
     private fun isMoving(bridgeToNow: Int, bridge: List<String>, nowMove:String): Boolean{
         // 현재까지 이동 칸 출력
-        playMap = makeBridgeMap(bridgeToNow, bridge, nowMove)
+        playMap = Pair(makeTopBridgeMap(bridgeToNow, bridge, nowMove), makeDownBridgeMap(bridgeToNow, bridge, nowMove) )
         outputView.printMap(playMap)
         return bridge[bridgeToNow-1] == nowMove
     }
 
-    private fun makeBridgeMap(bridgeToNow: Int, bridge: List<String>, nowMove: String): Pair<List<String>, List<String>> {
+    private fun makeTopBridgeMap(bridgeToNow: Int, bridge: List<String>, nowMove: String): List<String> {
         val bridgeTopMap = mutableListOf<String>()
-        val bridgeDownMap = mutableListOf<String>()
         for (i in 0 until bridgeToNow) {
             bridgeTopMap.add(addBridgeTopMap(bridgeToNow, bridge[i], i, nowMove))
-            bridgeDownMap.add(addBridgeDownMap(bridgeToNow, bridge[i], i, nowMove))
-            if (i != bridgeToNow-1) {
-                bridgeTopMap.add("|")
-                bridgeDownMap.add("|")
-            }
+            if (i != bridgeToNow-1)  bridgeTopMap.add("|")
         }
-        return Pair(bridgeTopMap, bridgeDownMap)
+        return bridgeTopMap
+    }
+
+    private fun makeDownBridgeMap(bridgeToNow: Int, bridge: List<String>, nowMove: String): List<String> {
+        val bridgeDownMap = mutableListOf<String>()
+        for (i in 0 until bridgeToNow) {
+            bridgeDownMap.add(addBridgeDownMap(bridgeToNow, bridge[i], i, nowMove))
+            if (i != bridgeToNow-1)  bridgeDownMap.add("|")
+        }
+        return bridgeDownMap
     }
 
     private fun addBridgeTopMap(bridgeToNow: Int, bridge: String, idx: Int, nowMove: String): String {
