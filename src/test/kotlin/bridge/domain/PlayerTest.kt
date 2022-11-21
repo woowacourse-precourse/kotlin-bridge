@@ -10,11 +10,11 @@ import org.junit.jupiter.params.provider.CsvSource
 
 internal class PlayerTest {
 
+    private lateinit var numberGenerator: BridgeNumberGenerator
+
     @BeforeEach
     fun setUp() {
-        val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 0, 0))
-        val bridgeMaker = BridgeMaker(numberGenerator)
-        bridge = bridgeMaker.makeBridge(3)
+        numberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 0, 0))
     }
 
     @ParameterizedTest
@@ -22,12 +22,8 @@ internal class PlayerTest {
     @DisplayName("이동할 명령어대로 이동하고, 기록을 잘하는 지 확인 및 다리 칸이랑 비교")
     fun `플레이어가_지나간_칸과_다리_비교_확인`(move: String, index: Int, flag: Boolean) {
         val player = Player()
+        val bridgeGame = BridgeGame(numberGenerator, 3, player)
         player.go(move)
-        println(player.getState())
-        Assertions.assertThat(bridge[index] == player.getState()[index]).isEqualTo(flag)
-    }
-
-    companion object {
-        private lateinit var bridge: List<String>
+        Assertions.assertThat(bridgeGame.getBridge()[index] == player.getState()[index]).isEqualTo(flag)
     }
 }
