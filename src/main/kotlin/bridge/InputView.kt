@@ -31,10 +31,24 @@ class InputView {
     }
 
     /**
-     * 사용자가 이동할 칸을 입력받는다.
+     * @brief 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        while(true) {
+            println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+            val moving = Console.readLine()
+            runCatching{
+                validateMoving(moving)
+            }.onSuccess{return moving}.onFailure{println(it.message)}
+        }
+    }
+    /**
+     * @brief 이동할 칸에 대한 입력이 유효한지 확인한다.
+     * @return 입력이 유효한 경우, 사용자의 입력을 반환하고 아닌 경우 Exception을 던진다.
+     */
+    private fun validateMoving(moving: String): String {
+        if(moving != "U" && moving != "D") throw IllegalArgumentException("$ERROR_TAG 이동할 칸은 U 혹은 D로 표현되어야 합니다.")
+        return moving
     }
 
     /**
