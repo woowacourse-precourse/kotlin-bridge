@@ -20,6 +20,15 @@ class BridgeGame(private val bridge: List<String>) {
             down.add(if (isMovable) " O " else "   ")
         }
     }
+
+    /**
+     * 게임의 진행상황을 결정하는 메서드 (실패/성공/진행)
+     */
+    fun isGameContinue(): String {
+        if (up.last() == " X " || down.last() == " X ") return "FAIL"
+        if (index == bridge.size) return "SUCCESS"
+        return "CONTINUE"
+    }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      */

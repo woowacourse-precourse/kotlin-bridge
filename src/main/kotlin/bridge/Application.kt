@@ -10,5 +10,6 @@ fun main() {
         val bridgeMoving = InputView().readMoving()
         bridgeGame.move(bridgeMoving)
         OutputView().printMap(bridgeGame)
+        print(bridgeGame.isGameContinue())
     }
 }
