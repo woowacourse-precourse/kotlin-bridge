@@ -53,9 +53,9 @@ class InputView {
         return try {
             with(Console.readLine().toInt()) {
                 if (this in BRIDGE_LENGTH_LOWER_INCLUSIVE..BRIDGE_LENGTH_UPPER_INCLUSIVE) this
-                else throw NumberFormatException()
+                else throw IllegalArgumentException()
             }
-        } catch (e: Exception) {
+        } catch (e: IllegalArgumentException) {
             printErrorMessage(BridgeSizeInvalidException())
             0
         }
@@ -67,7 +67,7 @@ class InputView {
                 if (this.length == 1 && (this == MOVING_DIRECT_UP || this == MOVING_DIRECT_DOWN)) this
                 else throw IllegalArgumentException()
             }
-        } catch (e: Exception) {
+        } catch (e: IllegalArgumentException) {
             printErrorMessage(MovingInvalidException())
             ""
         }
@@ -79,7 +79,7 @@ class InputView {
                 if (this.length == 1 && (this[0] == GAME_COMMAND_RESTART || this[0] == GAME_COMMAND_QUIT)) this[0]
                 else throw IllegalArgumentException()
             }
-        } catch (e: Exception) {
+        } catch (e: IllegalArgumentException) {
             printErrorMessage(GameCommandInvalidException())
             ' '
         }
