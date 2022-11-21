@@ -4,14 +4,15 @@
 - [x] 플레이어가 게임 재시도 - retry()
 ### BridgeMaker
 - [x] 다리의 길이를 입력 받아서 다리를 생성 - makeBridge()
+### Bridge
+- [x] 다리를 건널 수 있는지 확인 - crossable()
+- [x] 다리 크기 - getSize()
 ### BridgeState
 - [x] 다리와 플레이어 입력을 비교 - BridgeState#compare()
 - [x] 플레이어 이동을 리스트에 추가하고 반환- BridgeState#insertMove()
 ### Player
 - [x] 게임 플레이 - playGame()
 - [X] 다리 건너기 - crossBridge()
-### PlayerLife
-- [x] 플레이어가 살아는지 확인 - isAlive()
 # UI 로직 작성
 ### InputView
 - [x] 다리의 길이를 입력 받음 - readBridgeSize()
