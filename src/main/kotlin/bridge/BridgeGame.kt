@@ -17,7 +17,7 @@ class BridgeGame() {
     fun move(bridge: List<String>, gameCount: Int) {
         for (count: Int in BridgeParameter.StartValue.value until bridge.size) {
             record.add(BridgeCalculate.bridgeMoving(bridge, count))
-            BridgeCalculate.bridgeMapPrint(bridge, record)
+            BridgeGameManager.bridgeMapPrint(bridge, record)
             if (!record.last()) {
                 retry(bridge, record, gameCount)
                 return
@@ -44,7 +44,7 @@ class BridgeGame() {
 
     private fun gameResult(bridge: List<String>, record: List<Boolean>, gameCount: Int) {
         OutputView.printGameEndMessage()
-        BridgeCalculate.bridgeMapPrint(bridge, record)
+        BridgeGameManager.bridgeMapPrint(bridge, record)
         OutputView.printResult(record, gameCount)
         check(false)
     }

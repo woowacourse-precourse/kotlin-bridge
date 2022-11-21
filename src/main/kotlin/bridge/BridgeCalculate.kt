@@ -11,13 +11,8 @@ object BridgeCalculate {
         return bridge[count] == InputView.readMoving()
     }
 
-    fun bridgeMapPrint(bridge: List<String>, record: List<Boolean>) {
-        OutputView.printMap(upLine(bridge, record))
-        OutputView.printMap(downLine(bridge, record))
 
-    }
-
-    private fun upLine(bridge: List<String>, successRecord: List<Boolean>): String {
+    fun upLine(bridge: List<String>, successRecord: List<Boolean>): String {
         var upLineMap = BridgeMessage.MapStart.word
         for (count: Int in BridgeParameter.StartValue.value until successRecord.size) {
             upLineMap += when {
@@ -29,7 +24,7 @@ object BridgeCalculate {
         return mapEnd(upLineMap)
     }
 
-    private fun downLine(bridge: List<String>, successRecord: List<Boolean>): String {
+    fun downLine(bridge: List<String>, successRecord: List<Boolean>): String {
         var downLineMap = BridgeMessage.MapStart.word
         for (count: Int in BridgeParameter.StartValue.value until successRecord.size) {
             downLineMap += when {

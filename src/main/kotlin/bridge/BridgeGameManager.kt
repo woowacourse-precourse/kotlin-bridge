@@ -19,4 +19,10 @@ object BridgeGameManager {
             game.move(bridge,count)
         }
     }
+
+    fun bridgeMapPrint(bridge: List<String>, record: List<Boolean>){
+        OutputView.printMap(BridgeCalculate.upLine(bridge, record))
+        OutputView.printMap(BridgeCalculate.downLine(bridge, record))
+
+    }
 }
