@@ -15,7 +15,7 @@ class OutputView {
     }
 
     fun printResult1(message : String, cnt : Int) {
-        println("게임 성공 여부: "+message) // 나중에 봐꿔줘야함
+        println("게임 성공 여부: "+message)
         println("총 시도한 횟수: "+cnt)
     }
 
