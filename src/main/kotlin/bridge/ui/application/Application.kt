@@ -10,7 +10,6 @@ fun main() {
     val inputView = InputView()
     val outputView = OutputView()
     val bridgeNumberGenerator = BridgeRandomNumberGenerator()
-
     val bridgeMaker = BridgeMaker(bridgeNumberGenerator = bridgeNumberGenerator)
 
     val bridgeGame = BridgeGame(inputView = inputView, outputView = outputView, bridgeMaker = bridgeMaker)

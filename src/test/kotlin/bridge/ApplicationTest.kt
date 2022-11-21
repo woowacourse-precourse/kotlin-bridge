@@ -54,7 +54,6 @@ class ApplicationTest : NsTest() {
             return numbers.removeAt(0)
         }
     }
-
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
     }

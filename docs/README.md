@@ -1,4 +1,4 @@
-# 기능 목록 🚀
+# Function Specification 🚀
 
 ### 게임 시작
 - [x] 게임 시작 문구를 출력한다.
@@ -21,4 +21,19 @@
 
 ### 예외 상황
 - [x] 잘못된 입력값에 대해 `IllegalArgumentException`를 발생시키고, "[ERROR]"로 시작하는 에러 메시지를 출력 후 그 부분부터 입력을 다시 받는다.
-- [ ] Exception이 아닌 IllegalArgumentException, IllegalStateException 등과 같은 명확한 유형을 처리한다.
+
+---
+# Implementation 🎲
+
+---
+# Test 🔧
+
+---
+# Convention ❄️
+- [코틀린 코딩 컨벤션](https://kotlinlang.org/docs/coding-conventions.html#properties)
+- [코틀린 스타일 가이드](https://developer.android.com/kotlin/style-guide?hl=ko)
+- [자바 스타일 가이드](https://google.github.io/styleguide/javaguide.html)
+- [클린 코드 체크 리스트 ](https://github.com/woowacourse/woowacourse-docs/blob/main/cleancode/pr_checklist.md)
+- [커밋 메세지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)
+
+- InteliJ kotlin formatting을 활용하여 프로그래밍 하였습니다.
