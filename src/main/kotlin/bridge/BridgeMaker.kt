@@ -16,10 +16,11 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         for (i in 0 until size) {
             var randNum = bridgeNumberGenerator.generate()
             when (randNum) {
-                0 -> bridgeShape.add(UP_SIDE)
-                1 -> bridgeShape.add(DOWN_SIDE)
+                1 -> bridgeShape.add(UP_SIDE)
+                0 -> bridgeShape.add(DOWN_SIDE)
             }
         }
+        println(bridgeShape)
         return bridgeShape.toList()
     }
 }
