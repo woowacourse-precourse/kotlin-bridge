@@ -13,21 +13,25 @@ class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    val userMovingResult = mutableListOf<Pair<String, Boolean>>()
-    var presentPosition = INITIALIZE_TO_ZERO
+    val userMovingResults = mutableListOf<Pair<String, Boolean>>()
+    var userMovingLocation = ""
+    var userPresentPosition = INITIALIZE_TO_ZERO
     var gameTryCount = INITIALIZE_TO_ONE
 
-    fun move(moving: String, bridge: Bridge): GameResult {
-        if (bridge.matchUserChoice(moving, presentPosition)) {
-            userMovingResult.add(Pair(moving, true))
-            if(bridge.steps.size == presentPosition) return GameResult.SUCCESS
-            presentPosition++
+    fun move(moving: String){
+        userMovingLocation = moving
+        userPresentPosition++
+    }
+
+    fun getGameResult(bridge:Bridge):GameResult{
+        if(bridge.isMatchMoving(userMovingLocation,userPresentPosition)) {
+            userMovingResults.add(Pair(userMovingLocation,true))
+            if(userPresentPosition == bridge.length()-1) return GameResult.SUCCESS
+            userPresentPosition ++
+            return GameResult.CONTINUE
         }
-        if (bridge.matchUserChoice(moving, presentPosition)) {
-            userMovingResult.add(Pair(moving, false))
-            return GameResult.FAILURE
-        }
-        return GameResult.CONTINUE
+        userMovingResults.add(Pair(userMovingLocation,false))
+        return GameResult.FAILURE
     }
 
     fun getMap(movingMatchResults: List<Pair<String, Boolean>>): String {
@@ -60,7 +64,7 @@ class BridgeGame {
         return UN_CHOSEN_BRIDGE
     }
 
-    fun getGameResult(gameResult: GameResult): String {
+    fun getGameResultMessage(gameResult: GameResult): String {
         if (gameResult == GameResult.SUCCESS) return GAME_SUCCESS_MESSAGE
         if (gameResult == GameResult.FAILURE) return GAME_FAILURE_MESSAGE
         return ERROR
@@ -73,8 +77,8 @@ class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun retry() {
-        presentPosition = INITIALIZE_TO_ZERO
-        userMovingResult.clear()
+        userPresentPosition = INITIALIZE_TO_ZERO
+        userMovingResults.clear()
         gameTryCount++
     }
 
