@@ -13,7 +13,6 @@ class BridgeMakerTest: NsTest() {
         Assertions.assertThat(bridge).containsExactly("U", "D", "D", "U", "U")
     }
     override fun runMain() {
-        TODO("Not yet implemented")
     }
     class TestNumberGenerator(numbers: List<Int>) : BridgeNumberGenerator {
         private val numbers: MutableList<Int> = numbers.toMutableList()
