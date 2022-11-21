@@ -27,7 +27,7 @@ class BridgeGame {
 
     fun start() {
         startCycle()
-        outputView.printResult(result, result.tryCount)
+        outputView.printResult(result)
     }
 
     fun startCycle() {
@@ -46,7 +46,7 @@ class BridgeGame {
         for (pos in 0 until bridgeSize) {
             val playerMove = inputView.readMoving()
             val isCrossable = move(pos, playerMove)
-            outputView.printMap(result.firstRowResult, result.secondRowResult)
+            outputView.printMap(result)
             if (!isCrossable) return false
         }
         result.setSuccess()
