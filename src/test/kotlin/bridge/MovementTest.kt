@@ -7,32 +7,8 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class MovementTest {
     @ParameterizedTest
-    @ValueSource(strings = ["1", "100", "2"])
-    fun `이동 방향이 숫자인 경우 예외 테스트`(direction: String) {
-        assertThrows<IllegalArgumentException> {
-            Movement(direction)
-        }
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = ["u", "d"])
-    fun `이동 방향이 소문자인 경우 예외 테스트`(direction: String) {
-        assertThrows<IllegalArgumentException> {
-            Movement(direction)
-        }
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = ["UU", "DD"])
-    fun `이동 방향은 1글자가 아닌 경우 예외 테스트`(direction: String) {
-        assertThrows<IllegalArgumentException> {
-            Movement(direction)
-        }
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = ["R", "L"])
-    fun `이동 방향은 U 또는 D가 아닌 경우 예외 테스트`(direction: String) {
+    @ValueSource(strings = ["1", "100", "2", "u", "d", "UU", "DD", "R", "L"])
+    fun `이동 방향 예외 테스트`(direction: String) {
         assertThrows<IllegalArgumentException> {
             Movement(direction)
         }
