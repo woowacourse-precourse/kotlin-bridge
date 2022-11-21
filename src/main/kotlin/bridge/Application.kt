@@ -10,6 +10,7 @@ fun main() {
     try {
         val bridgeLength = InputView().readBridgeSize()
         val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
+        println(bridge)
         val tryCount = START_TRY
         val game = BridgeGame(bridge, bridgeLength)
         gameStart(game, tryCount)
@@ -24,11 +25,12 @@ fun gameStart(game: BridgeGame, tryCount: Int) {
         val nowBridge = shortBridge(game.bridge, location)
         if (answer && location < game.length - BRIDGE_PADDING) output().printMap(nowBridge, true)
         if (answer && location == game.length - BRIDGE_PADDING) output().printResult(nowBridge, true, tryCount)
-        if (!answer && game.retry(inputRetry())) gameStart(game, tryCount + NEXT_TRY)
-        if (!answer) {
-            output().printResult(nowBridge, false, tryCount)
+        if (!answer) output().printMap(nowBridge, false)
+        if (!answer && game.retry(inputRetry())) {
+            gameStart(game, tryCount + NEXT_TRY)
             break
         }
+        if (!answer) output().printResult(nowBridge, false, tryCount)
     }
 }
 
