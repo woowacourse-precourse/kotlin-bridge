@@ -16,4 +16,21 @@ class PlayerTest {
         assertThat(player.getPlayerBlocks()).isEmpty()
         assertThat(player.getTries()).isEqualTo(2)
     }
+
+    @Test
+    fun `isSuccess 메서드를 사용해 사용자가 최종적으로 게임을 성공했는지 확인`() {
+        val players = listOf(
+            Player(mutableListOf(
+            PlayerBlock(Direction.DOWN, true),
+            PlayerBlock(Direction.UP, true),
+            PlayerBlock(Direction.DOWN, false)), 1),
+            Player(mutableListOf(
+                PlayerBlock(Direction.DOWN, true),
+                PlayerBlock(Direction.UP, true),
+                PlayerBlock(Direction.UP, true)), 1)
+        )
+
+        val result = players.map { it.isSuccess() }
+        assertThat(result).containsExactly(false, true)
+    }
 }
