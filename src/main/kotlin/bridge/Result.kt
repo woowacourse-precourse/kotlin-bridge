@@ -28,23 +28,16 @@ class Result {
 
     fun addResult(playerMove: String, isCrossable: Boolean) {
         when (playerMove to isCrossable) {
-            "U" to true -> {
-                firstRowResult.add("O")
-                secondRowResult.add(" ")
-            }
-            "U" to false -> {
-                firstRowResult.add("X")
-                secondRowResult.add(" ")
-            }
-            "D" to true -> {
-                firstRowResult.add(" ")
-                secondRowResult.add("O")
-            }
-            "D" to false -> {
-                firstRowResult.add(" ")
-                secondRowResult.add("X")
-            }
+            "U" to true -> addResultEachRow(first = "O", second = " ")
+            "U" to false -> addResultEachRow(first = "X", second = " ")
+            "D" to true -> addResultEachRow(first = " ", second = "O")
+            "D" to false -> addResultEachRow(first = " ", second = "X")
         }
+    }
+
+    private fun addResultEachRow(first: String, second: String) {
+        firstRowResult.add(first)
+        secondRowResult.add(second)
     }
 
     fun resetResult() {
