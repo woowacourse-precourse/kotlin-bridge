@@ -9,15 +9,14 @@ class InputView(private val inputValidator: InputValidator) {
     /**
      * 다리의 길이를 입력받는다.
      */
-    //onFailure 처리
     fun readBridgeSize(): Int {
         println(ASK_BRIDGE_SIZE)
         while (true) {
             val bridgeSize = Console.readLine()
-            try{
+            try {
                 inputValidator.validateBridgeInput(bridgeSize)
                 return bridgeSize.toInt()
-            }catch (e:java.lang.IllegalArgumentException){
+            } catch (e: java.lang.IllegalArgumentException) {
                 println(e.message)
             }
         }
@@ -30,10 +29,10 @@ class InputView(private val inputValidator: InputValidator) {
         println(ASK_MOVE)
         while (true) {
             val direction = Console.readLine()
-            try{
+            try {
                 inputValidator.validateMoveInput(direction)
                 return direction
-            }catch (e:java.lang.IllegalArgumentException){
+            } catch (e: java.lang.IllegalArgumentException) {
                 println(e.message)
             }
         }
@@ -46,10 +45,10 @@ class InputView(private val inputValidator: InputValidator) {
         println(ASK_RETRY)
         while (true) {
             val retryInput = Console.readLine()
-            try{
+            try {
                 inputValidator.validateRetryFlag(retryInput)
                 return retryInput
-            }catch (e: java.lang.IllegalArgumentException){
+            } catch (e: java.lang.IllegalArgumentException) {
                 println(e.message)
             }
         }
