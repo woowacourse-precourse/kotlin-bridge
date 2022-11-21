@@ -5,12 +5,11 @@ import exception.GameOver
 import exception.MovingSpace
 
 class Bridge {
-    private val inputView = InputView()
     private val numberGenerator = BridgeRandomNumberGenerator()
     private val bridgeMaker = BridgeMaker(numberGenerator)
 
     fun make(): List<String> {
-        val bridgeSize = BridgeSize(inputView)
+        val bridgeSize = BridgeSize()
 
         bridgeSize.verify()
 
@@ -18,7 +17,7 @@ class Bridge {
     }
 
     fun selectToMove(): String {
-        val movingSpace = MovingSpace(inputView)
+        val movingSpace = MovingSpace()
 
         movingSpace.verify()
 
@@ -26,7 +25,7 @@ class Bridge {
     }
 
     fun selectRetryOrQuit(): String {
-        val gameOver = GameOver(inputView)
+        val gameOver = GameOver()
 
         gameOver.verify()
 
