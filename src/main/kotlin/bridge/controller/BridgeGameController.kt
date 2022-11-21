@@ -79,7 +79,15 @@ class BridgeGameController(
         }
     }
 
-    private fun stop() {}
+    private fun stop() {
+        val command = getGameCommand()
+
+        if (command == "R") {
+            restart()
+            return
+        }
+        finish()
+    }
 
     private fun getGameCommand(): String {
         var input: String
