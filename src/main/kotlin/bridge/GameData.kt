@@ -1,14 +1,15 @@
 package bridge
 
-enum class GameStatus(val gameMsg:String) {
+enum class GameStatus(val gameMsg: String) {
     CONTINUING(""), SUCCEEDED("성공"), FAILED("실패")
 }
 
 data class PlayerStatus(
     val playerDirection: Int,
-    val isPlayerAlive: Boolean
+    val isPlayerAlive: Boolean,
 )
 
-enum class Direction(val direction: String, val directionNumber:Int){
-     UP("U", 0),
+enum class Direction(val direction: String, val directionNumber: Int) {
+    UP("U", 1),
+    DOWN("D", 0)
 }
