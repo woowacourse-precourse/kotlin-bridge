@@ -18,18 +18,19 @@ class BridgeGame {
         play(bridgeSize, bridgeMaker, 1)
     }
 
-    fun play(bridgeSize: Int, bridgeMaker: List<String>, numberOfGames:Int){
+    private fun play(bridgeSize: Int, bridgeMaker: List<String>, numberOfGames:Int){
         for (i in 1.. bridgeSize){
             val move = OutputView().printMoving()
             if (!isMoving(i, bridgeMaker, move)) {
                 val retry = retry()
-                if (retry == "R") play(bridgeSize,bridgeMaker, numberOfGames+1)
-                else{
-
+                if (retry == "R") return play(bridgeSize,bridgeMaker, numberOfGames+1)
+                if(retry == "Q"){
+                    outputView.printResult("실패", numberOfGames)
                     break
                 }
             }
         }
+        outputView.printResult("성공", numberOfGames)
     }
 
     // 현재 입력 값과 다리의 값이 같은지, 들린지
