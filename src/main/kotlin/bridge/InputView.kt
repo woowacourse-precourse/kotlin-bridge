@@ -17,7 +17,9 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        println(BRIDGE_MOVING_MESSAGE)
+        val move = readLine()
+        return validator.validatorMove(move)
     }
 
     /**
