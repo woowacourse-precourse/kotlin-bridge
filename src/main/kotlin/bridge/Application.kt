@@ -47,6 +47,6 @@ fun BridgeGameMain() {
 }
 
 fun main() {
-    print("다리건너기 게임을 시작합니다.")
-
+    println("다리건너기 게임을 시작합니다.")
+    BridgeGameMain()
 }
