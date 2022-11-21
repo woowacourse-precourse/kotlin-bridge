@@ -18,7 +18,10 @@ class InputView {
     fun readMoving(): String {
         println(INPUT_MOVEMENT)
 
-        return readLine().trim()
+        val movement = readLine().trim()
+        ErrorCheck.checkValidMovement(movement)
+
+        return movement
     }
 
     fun readGameCommand(): String {

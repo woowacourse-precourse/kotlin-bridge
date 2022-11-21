@@ -21,4 +21,11 @@ class ErrorCheckTest {
             ErrorCheck.checkInRange(input)
         }
     }
+
+    @Test
+    fun `잘못된 이동 칸을 입력한 경우 오류 발생`() {
+        assertThrows<IllegalArgumentException> {
+            ErrorCheck.checkValidMovement("u")
+        }
+    }
 }

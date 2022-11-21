@@ -16,4 +16,12 @@ object ErrorCheck {
             makeError(ErrorType.OUT_OF_RANGE)
         }
     }
+
+    fun checkValidMovement(move: String) {
+        val option = listOf(MOVE_UP, MOVE_DOWN)
+
+        if (!option.contains(move)) {
+            makeError(ErrorType.INVALID_OPTION)
+        }
+    }
 }
