@@ -26,23 +26,22 @@ object BridgeCrossingProcessor {
     private fun createCurrentBridgeMap(bridgeNumber: Int): String {
         var currentBridgeMap = ""
         val round = bridgeCrossingInfo.size - 1
-
-        currentBridgeMap += "[ "
+        currentBridgeMap += MAP_BOUNDARY_START
         bridgeCrossingInfo.forEachIndexed { curRound, (moving, isCrossed) ->
             currentBridgeMap += getCrossingResult(
                 movingInfo = moving,
                 bridgeNumber = bridgeNumber,
                 isCrossed = isCrossed
             )
-            currentBridgeMap += if (curRound == round) " ]" else " | "
+            currentBridgeMap += if (curRound == round) MAP_BOUNDARY_END else MAP_SEPARATOR
         }
         return currentBridgeMap
     }
 
     private fun getCrossingResult(movingInfo: MovingInfo, bridgeNumber: Int, isCrossed: Boolean): String {
         return if (movingInfo.bridgeNumber == bridgeNumber) {
-            if (isCrossed) CROSSED_SUCCESS_RESULT
-            else CROSSED_FAIL_RESULT
+            if (isCrossed) MAP_CROSSED_SUCCESS_RESULT
+            else MAP_CROSSED_FAIL_RESULT
         } else " "
     }
 
@@ -55,4 +54,5 @@ object BridgeCrossingProcessor {
         bridgeCrossingInfo.add(userMovingInfo to isCrossed)
 
     fun clearBridgeCrossingInfo() = bridgeCrossingInfo.clear()
+
 }

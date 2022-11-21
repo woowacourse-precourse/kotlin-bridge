@@ -5,6 +5,7 @@ import bridge.domain.game.service.GameService
 import bridge.domain.maker.BridgeMaker
 import bridge.domain.moving.MovingInfo
 import bridge.domain.processor.BridgeCrossingProcessor
+import bridge.ui.validator.InputValidator
 import bridge.ui.view.InputView
 import bridge.ui.view.OutputView
 
@@ -74,16 +75,17 @@ class BridgeGame(
         val moving = inputView.readMoving()
         checkMoving(moving = moving)
 
-        outputView.printMap(BridgeCrossingProcessor.getCurrentMap())
+        outputView.printMap(mapInfo = BridgeCrossingProcessor.getCurrentMap())
 
         round++
     }
 
     private fun checkMoving(moving: String) {
+        // TODO: if else 줄 고민,,
         val userMovingInfo = if (moving == MOVING_UP_CODE) MovingInfo.UP else MovingInfo.DOWN
         val isCrossed = (moving == bridge[round])
 
-        BridgeCrossingProcessor.updateBridgeCrossingInfo(userMovingInfo, isCrossed)
+        BridgeCrossingProcessor.updateBridgeCrossingInfo(userMovingInfo = userMovingInfo, isCrossed = isCrossed)
     }
 
     private fun checkGameCommand(command: String) {

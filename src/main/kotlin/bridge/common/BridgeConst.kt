@@ -14,10 +14,6 @@ const val MOVING_DOWN_CODE = "D"
 const val GAME_RESTART_CODE = "R"
 const val GAME_QUIT_CODE = "Q"
 
-
-const val CROSSED_SUCCESS_RESULT = "O"
-const val CROSSED_FAIL_RESULT = "X"
-
 const val GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다.\n"
 const val INPUT_BRIDGE_SIZE_MESSAGE = "\n다리의 길이를 입력해주세요.\n"
 const val INPUT_MOVING_MESSAGE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)\n"
@@ -33,3 +29,10 @@ const val ERROR_MESSAGE_FORMAT = "[ERROR] %s\n"
 const val ERROR_BRIDGE_SIZE_MESSAGE = "다리 길이는 3부터 20 사이의 숫자여야 합니다."
 const val ERROR_MOVING_MESSAGE = "위 칸은 U, 아래 칸은 D 문자만 입력 가능합니다."
 const val ERROR_GAME_COMMAND_MESSAGE = "게임 재시작은 R, 종료는 Q 문자만 입력 가능합니다."
+
+const val MAP_CROSSED_SUCCESS_RESULT = "O"
+const val MAP_CROSSED_FAIL_RESULT = "X"
+const val MAP_EMPTY_RESULT = " "
+const val MAP_BOUNDARY_START = "[ "
+const val MAP_BOUNDARY_END = " ]"
+const val MAP_SEPARATOR = " | "

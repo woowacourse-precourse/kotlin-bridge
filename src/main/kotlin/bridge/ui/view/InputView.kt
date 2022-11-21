@@ -13,7 +13,7 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         print(INPUT_BRIDGE_SIZE_MESSAGE)
-
+        // TODO : 검증을 여기서 하는가,, print도,,
         while (true) {
             val bridgeSize = Console.readLine()
 
