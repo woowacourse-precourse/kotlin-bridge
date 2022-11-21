@@ -1,4 +1,4 @@
-package bridge.domain
+package bridge.data
 
 class Bridge(
     private val bridge: List<String>

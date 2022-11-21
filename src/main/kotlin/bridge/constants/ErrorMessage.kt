@@ -1,6 +1,6 @@
 package bridge.constants
 
-import bridge.domain.Bridge
+import bridge.data.Bridge
 
 enum class ErrorMessage(private val message: String) {
 
