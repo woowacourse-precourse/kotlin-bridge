@@ -21,4 +21,15 @@ class BridgeGameManager(
             }
         }
     }
+
+    fun getMovement(): String {
+        while (true) {
+            try {
+                return inputView.readMoving()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+                continue
+            }
+        }
+    }
 }
