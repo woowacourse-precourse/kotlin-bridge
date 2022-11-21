@@ -1,5 +1,8 @@
 package bridge.util
 
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
 class InputVaildator {
 
     fun checkNullBridgeSize(userInputNumber:String?){
@@ -17,4 +20,16 @@ class InputVaildator {
         }
     }
 
+    fun checkInputBridgePatten(checkOverlap: String) {
+        val messageform = "^[0-9]*$"
+        val pattern: Pattern = Pattern.compile(messageform)
+        if (checkOverlap.toInt()<3||checkOverlap.toInt()>20) throw java.lang.IllegalArgumentException()
+        for (inputNum in checkOverlap) {
+            val matcher: Matcher = pattern.matcher(inputNum.toString())
+            if (matcher.find().toString() == "false") {
+                println("[ERROR]")
+                throw IllegalArgumentException()
+            }
+        }
+    }
 }
