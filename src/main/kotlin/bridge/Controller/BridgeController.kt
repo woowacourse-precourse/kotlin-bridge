@@ -62,22 +62,19 @@ class BridgeController {
     }
 
     fun moveBridge() {
-        val result = compareBridge()
+        val result = bridgeGame.compareState(bridgeSelect)
         if (result == BridgeResult.UP_WIN || result == BridgeResult.DOWN_WIN) {
             bridgeGame.move()
         } else {
             bridgeGame.miss()
             isPlay = false
         }
-        bridgeGame.makeUpDownResult(result)
-        outputView.printMap(upResult, downResult)
+        printRoundResult(result)
     }
 
-    fun compareBridge(): BridgeResult {
-        var referee = Referee()
-        var result = referee.judgeMove(bridgeSelect)
-        roundResult.add(result)
-        return result
+    fun printRoundResult(result: BridgeResult) {
+        bridgeGame.makeUpDownResult(result)
+        outputView.printMap(upResult, downResult)
     }
 
     fun checkLastRound(): Boolean {
@@ -95,7 +92,6 @@ class BridgeController {
         when (command) {
             "R" -> {
                 retryGame()
-                isPlay = true
                 processGame()
             }
 
@@ -108,6 +104,7 @@ class BridgeController {
     fun retryGame() {
         bridgeGame.retry()
         resetData()
+        isPlay = true
     }
 
     fun printFinalResult() {

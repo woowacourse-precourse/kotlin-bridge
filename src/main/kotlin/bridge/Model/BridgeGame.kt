@@ -24,6 +24,13 @@ class BridgeGame {
         finalResult = LOSE
     }
 
+    fun compareState(select: String): BridgeResult {
+        var referee = Referee()
+        var result = referee.judgeMove(select)
+        BridgeData.roundResult.add(result)
+        return result
+    }
+
     fun makeUpDownResult(roundResult: BridgeResult) {
         var up = roundResult.upState
         var down = roundResult.downState
