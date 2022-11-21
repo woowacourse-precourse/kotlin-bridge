@@ -1,5 +1,6 @@
 package bridge
 
+import util.Messages
 import java.lang.StringBuilder
 
 /**
@@ -19,12 +20,12 @@ class OutputView {
 
     fun printResult(result : MutableList<String>, flag : Boolean, cnt : Int) {
         println()
-        println("최종 게임 결과")
+        println(Messages.RESULT)
         println(result[0])
         println(result[1])
         println()
-        println("게임 성공 여부: " + checkSuccess(flag))
-        println("총 시도한 횟수: $cnt")
+        println(Messages.CLEAR + checkSuccess(flag))
+        println(Messages.TRY_COUNT + "$cnt")
     }
 
     private fun plusMap(userChoice: MutableList<String>, check: Boolean, command : String) : String{
@@ -51,8 +52,8 @@ class OutputView {
 
     private fun checkSuccess(flag: Boolean) : String{
         if(flag){
-            return "성공"
+            return Messages.SUCCESS
         }
-        return "실패"
+        return Messages.FAIL
     }
 }
