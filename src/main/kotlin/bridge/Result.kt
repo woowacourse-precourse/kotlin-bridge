@@ -30,4 +30,11 @@ class Result {
             }
         }
     }
+
+    fun resetResult() {
+        firstRowResult.clear()
+        firstRowResult = arrayListOf()
+        secondRowResult.clear()
+        secondRowResult = arrayListOf()
+    }
 }
