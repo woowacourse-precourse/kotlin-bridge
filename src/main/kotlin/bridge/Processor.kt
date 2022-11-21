@@ -8,22 +8,18 @@ class Processor(
 ) {
     var playerPosition = 0
     var numberOfTry = 1
-    var isSucceeded=false
+    var isSucceeded = false
     lateinit var bridgeMap: Array<String>
     lateinit var bridge: List<String>
 
     fun initBridge() {
-        do{
-            val isInitialized = runCatching {
-                val bridgeSize = inputView.readBridgeSize()
+        val bridgeSize = inputView.readBridgeSize()
 
-                bridge = bridgeMaker.makeBridge(bridgeSize)
-                initBridgeMap()
-            }
-        }while(isInitialized.isFailure)
+        bridge = bridgeMaker.makeBridge(bridgeSize)
+        initBridgeMap()
     }
 
-    fun initBridgeMap(){
+    fun initBridgeMap() {
         bridgeMap = Array(2) { "[ N ]".repeat(bridge.size).replace("][", "|") }
     }
 
@@ -31,14 +27,14 @@ class Processor(
         val playerDirection = inputView.readMoving()
         val gameStatus = bridgeGame.move(bridge, playerDirection)
 
-        if(gameStatus==GameStatus.SUCCEEDED){
-            isSucceeded=true
+        if (gameStatus == GameStatus.SUCCEEDED) {
+            isSucceeded = true
         }
         return Pair(gameStatus, playerDirection)
     }
 
     fun recordToBridgeMap(gameStatus: GameStatus, playerDirection: String) {
-        val recordSign = if (gameStatus!=GameStatus.FAILED) {
+        val recordSign = if (gameStatus != GameStatus.FAILED) {
             "O"
         } else {
             "X"
