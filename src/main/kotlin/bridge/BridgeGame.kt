@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.app.App
 import bridge.util.QUIT_COMMAND
 import bridge.util.RESTART_COMMAND
 import bridge.validator.BridgeGameValidator
@@ -7,25 +8,45 @@ import bridge.validator.BridgeGameValidator
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame {
+class BridgeGame(
+    private val bridgeMaker: BridgeMaker,
+    private val outputView: OutputView,
+    private val inputView: InputView,
+): App {
+    private lateinit var bridge: List<String>
+    private var round = 0
+    private var trialCount = 1
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     * 일치했을 때 (true) - 다음 라운드 반환
-     * 틀렸을 때 (false) - 현재 라운드 반환
-     *
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+    fun bridgeSetUp() {
+        println("다리 건너기 게임을 시작합니다.")
+        val bridgeSize = inputView.readBridgeSize()
+        val bridge = bridgeMaker.makeBridge(size = bridgeSize)
+    }
+
+    override fun start() {
+        bridgeSetUp()
+    }
+
+    override fun process() {
+        do {
+
+        } while (round < bridge.size)
+    }
+
+    override fun quit() {
+        TODO("Not yet implemented")
+    }
+
+    override fun retry() {
+        TODO("Not yet implemented")
+    }
+
+
     fun move(isMatched: Boolean): Int {
         return BridgeGameValidator.validateMoveOutput(isMatched)
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     *
-     *
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+
 
     fun retry(gameCommand: String): Boolean {
         if (gameCommand == QUIT_COMMAND) {
