@@ -1,6 +1,7 @@
 package bridge
 
 import bridge.view.InputView
+import bridge.view.OutputView
 
 class Controller {
 
