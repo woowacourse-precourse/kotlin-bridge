@@ -16,11 +16,11 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         return bridge
     }
 
-    private fun getRandomMoving() : String{
+    private fun getRandomMoving(): String {
         return convertNumberToMoving(bridgeNumberGenerator.generate())
     }
 
-    private fun convertNumberToMoving(number : Int): String {
+    private fun convertNumberToMoving(number: Int): String {
         if (number == 0) {
             return COMMAND_DOWN_MOVING
         } else if (number == 1) {
