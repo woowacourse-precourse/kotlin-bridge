@@ -6,7 +6,7 @@ package bridge
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         var bridge = listOf<String>()
-        for (eachStage in 0 until size) bridge.plus(BridgeType.convertNumberCodeToStringCode(bridgeNumberGenerator.generate()))
+        for (eachStage in 0 until size) bridge += BridgeType.convertNumberCodeToStringCode(bridgeNumberGenerator.generate())
         return bridge
     }
 }
