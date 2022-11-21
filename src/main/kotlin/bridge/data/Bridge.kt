@@ -2,9 +2,13 @@ package bridge.data
 
 class Bridge(private val elements: List<Floor>) {
 
+    val size: Int get() = elements.size
+
     init {
         require(elements.size in SizeRange) { "Bridge's size is required in $SizeRange" }
     }
+
+    operator fun get(index: Int): Floor = elements[index]
 
     enum class Floor(val command: String) {
         DOWN("D"), UP("U");
