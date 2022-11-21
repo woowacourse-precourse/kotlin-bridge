@@ -6,10 +6,9 @@ import view.OutputView
 import java.lang.IllegalArgumentException
 
 private var bridgeSize:Int ?= null
+private val outputView = OutputView()
+private val inputView = InputView()
 fun main() {
-
-    val outputView = OutputView()
-    val inputView = InputView()
 
     // 게임 시작 메시지 출력
     println(outputView.printStart())
@@ -31,6 +30,5 @@ fun main() {
     }catch (e: IllegalArgumentException){
         println("[ERROR] $e")
     }
-
 
 }
