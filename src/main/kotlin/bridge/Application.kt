@@ -1,10 +1,10 @@
 package bridge
 
 fun main() {
-    startGame()
+    printStartGame()
 }
 
 
-fun startGame() {
+fun printStartGame() {
     println(BrideGameConstValue.GAME_START_MESSAGE)
 }
