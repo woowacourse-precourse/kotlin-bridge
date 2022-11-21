@@ -7,11 +7,11 @@ object BridgeGameManager {
         val maker = BridgeMaker(BridgeRandomNumberGenerator())
         OutputView.getBridgeSize()
         val bridge = maker.makeBridge(InputView.readBridgeSize())
-        moving(bridge)
+        startPlaying(bridge)
 
     }
 
-    private fun moving(bridge: List<String>) {
+    private fun startPlaying(bridge: List<String>) {
         var count = BridgeParameter.StartValue.value
         while (true){
             count++
