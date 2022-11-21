@@ -64,6 +64,14 @@ class Bridge(private val way: MutableList<String>) {
         return way.size
     }
 
+    fun retry():Boolean{
+        return input.readGameCommand()
+    }
+
+    fun clearBridge(){
+        way.clear()
+    }
+
 
 
 

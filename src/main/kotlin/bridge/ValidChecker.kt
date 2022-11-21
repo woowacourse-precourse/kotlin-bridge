@@ -16,4 +16,11 @@ object ValidChecker {
             throw IllegalArgumentException()
         }
     }
+
+    fun checkRorQ(coin:String):Boolean{
+        if(coin=="R") return true
+        if(coin=="Q") return false
+
+        throw IllegalArgumentException()
+    }
 }

@@ -33,6 +33,7 @@ class ApplicationTest : NsTest() {
         }, 1, 0, 1)
     }
 
+
     @Test
     fun `예외 테스트`() {
         assertSimpleTest {
