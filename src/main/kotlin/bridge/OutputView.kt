@@ -7,7 +7,11 @@ import bridge.GameView.Companion.ERROR_MESSAGE_INPUT_GAME_COMMAND
 import bridge.GameView.Companion.ERROR_MESSAGE_INPUT_MOVING
 import bridge.GameView.Companion.ERROR_MESSAGE_PREFIX
 import bridge.GameView.Companion.ERROR_MESSAGE_UNKNOWN
+import bridge.GameView.Companion.FAILURE
+import bridge.GameView.Companion.MESSAGE_GAME_COUNT
+import bridge.GameView.Companion.MESSAGE_GAME_RESULT
 import bridge.GameView.Companion.MESSAGE_GAME_START
+import bridge.GameView.Companion.SUCCESS
 import bridge.exception.BridgeSizeInvalidException
 import bridge.exception.GameCommandInvalidException
 import bridge.exception.MovingInvalidException
@@ -42,7 +46,16 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(playCount: Int, gameResult: Boolean) {
+        println(
+            MESSAGE_GAME_RESULT.format(
+                if (gameResult) SUCCESS else FAILURE
+            )
+        )
+        println(
+            MESSAGE_GAME_COUNT.format(playCount)
+        )
+    }
 
     fun printGameStart() {
         println(MESSAGE_GAME_START)
