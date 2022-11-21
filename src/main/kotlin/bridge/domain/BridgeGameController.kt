@@ -62,6 +62,4 @@ class BridgeGameController {
         }
         outputView.printResult(bridgeGame, false)
     }
-
-
 }
