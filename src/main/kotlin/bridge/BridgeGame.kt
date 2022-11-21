@@ -17,7 +17,7 @@ class BridgeGame {
         val bridgeUpList = mutableListOf<String>()
         val bridgeDownList = mutableListOf<String>()
         move(checkBridge, bridgeUpList, bridgeDownList)
-        if (msg < 1) Guide().moveresult()
+        if (msg < 1) Guide().successGuideMsg()
         return count
     }
 
@@ -31,17 +31,6 @@ class BridgeGame {
             }
         }
     }
-
-    fun retry(bridgecheck: List<String>, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>): Int {
-        if (bridgeUpList.contains("X") || bridgeDownList.contains("X")) {
-            val restart = Guide().restart()
-            if (restart == "R") startBridge(bridgecheck)
-            if (restart == "Q") Guide().retryresult()
-            retryCount += 1
-        }
-        return retryCount
-    }
-
 
     fun bridgUp(bridgeCheck: String, bridgeChoose: String): String {
         var mapUp = "   "
@@ -60,6 +49,17 @@ class BridgeGame {
             if (bridgeChoose == "D") mapDown = " O "
         return mapDown
     }
+
+    fun retry(bridgecheck: List<String>, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>): Int {
+        if (bridgeUpList.contains("X") || bridgeDownList.contains("X")) {
+            val restart = Guide().restart()
+            if (restart == "R") startBridge(bridgecheck)
+            if (restart == "Q") Guide().failGuideMsg()
+            retryCount += 1
+        }
+        return retryCount
+    }
+
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *

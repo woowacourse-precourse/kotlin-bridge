@@ -1,13 +1,6 @@
 package bridge
 
 class Guide {
-    fun moveresult(){
-        OutputView().printResult()
-    }
-    fun retryresult(){
-        OutputView().printResult2()
-    }
-
     fun guideInfo(): Int {
         OutputView().printGuide()
         return InputView().readBridgeSize()
@@ -16,14 +9,20 @@ class Guide {
         OutputView().printRestartMsg()
         return InputView().readGameCommand()
     }
-    fun bridgeList(bridgecheck: String, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>){
-        val bridgechoose = Guide().bridgeChoose()
-        bridgeUpList.add(BridgeGame().bridgUp(bridgecheck, bridgechoose))
-        bridgeDownList.add(BridgeGame().bridgDown(bridgecheck, bridgechoose))
+    fun successGuideMsg(){
+        OutputView().printSuccessResult()
+    }
+    fun failGuideMsg(){
+        OutputView().printFailResult()
+    }
+    fun bridgeList(bridgeCheck: String, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>){
+        val bridgeChoose = Guide().selectBridgeGuide()
+        bridgeUpList.add(BridgeGame().bridgUp(bridgeCheck, bridgeChoose))
+        bridgeDownList.add(BridgeGame().bridgDown(bridgeCheck, bridgeChoose))
         OutputView().printMap(bridgeUpList.joinToString("|"))
         OutputView().printMap(bridgeDownList.joinToString("|"))
     }
-    fun bridgeChoose(): String {
+    fun selectBridgeGuide(): String {
         OutputView().printBridgeChoose()
         val chooseBridge= InputView().readMoving()
         println(chooseBridge)

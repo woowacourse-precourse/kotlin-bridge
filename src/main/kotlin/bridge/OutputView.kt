@@ -23,14 +23,14 @@ class OutputView {
     fun printRestartMsg(){
         println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
     }
-    fun printResult(){
+    fun printSuccessResult(){
 
         println("게임 성공 여부: 성공")
         println("최종 게임 결과")
 
     }
 
-    fun printResult2() {
+    fun printFailResult() {
         println("게임 성공 여부: 실패")
         println("최종 게임 결과")
 
