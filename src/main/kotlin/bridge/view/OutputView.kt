@@ -12,38 +12,41 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap(bridge: List<String>, answer: Boolean) {
-        printSign(bridge, UP)
-        printUpAnswer(answer, bridge.last())
-        println(END_BRACKET)
-
+        // 윗 줄 출력
+        printSign(bridge, UP)                       // 다리 틀 출력
+        printUpAnswer(answer, bridge.last())        // 마지막 부분의 정답 유무 출력
+        println(END_BRACKET)                        // "]"
+        // 아랫 줄 출력
         printSign(bridge, DOWN)
         printDownAnswer(answer, bridge.last())
         println(END_BRACKET)
     }
 
     private fun printSign(bridge: List<String>, line: String) {
-        val maxLocation = bridge.size - SHIFT
-        print(START_BRACKET)
+        val maxLocation = bridge.size - SHIFT       // size - 2
+        print(START_BRACKET)                            // "["
         for (idx in START_LOCATION..maxLocation) {
-            if (bridge[idx] == line) print(ANSWER)
-            else print(SPACING)
-            print(SEPARATOR)
+            if (bridge[idx] == line) print(ANSWER)      // "O"
+            else print(SPACING)                         // " "
+            print(SEPARATOR)                            // " | "
         }
     }
 
+    // 윗줄 정답 체크
     private fun printUpAnswer(answer: Boolean, locationAnswer: String) {
-        if (answer && locationAnswer == UP) print(ANSWER)
-        if (!answer && locationAnswer == DOWN) print(NOT_ANSWER)
+        if (answer && locationAnswer == UP) print(ANSWER)           // 윗줄이 정답이면 O
+        if (!answer && locationAnswer != UP) print(NOT_ANSWER)      // 정답이 아니면 X
 
-        if (answer && locationAnswer == DOWN) print(SPACING)
-        if (!answer && locationAnswer == UP) print(SPACING)
+        if (answer && locationAnswer != UP) print(SPACING)          // 공백 출력
+        if (!answer && locationAnswer == UP) print(SPACING)         // 공백 출력
     }
 
+    // 아랫줄 정답 체크
     private fun printDownAnswer(answer: Boolean, locationAnswer: String) {
         if (answer && locationAnswer == DOWN) print(ANSWER)
-        if (!answer && locationAnswer == UP) print(NOT_ANSWER)
+        if (!answer && locationAnswer != DOWN) print(NOT_ANSWER)
 
-        if (answer && locationAnswer == UP) print(SPACING)
+        if (answer && locationAnswer != DOWN) print(SPACING)
         if (!answer && locationAnswer == DOWN) print(SPACING)
     }
 
@@ -54,10 +57,10 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printResult(bridge: List<String>, answer: Boolean, retry: Int) {
-        println(END_GAME)
+        println(GAME_END)
         printMap(bridge, answer)
         if (answer) println(GAME_RESULT_WIN)
-        if (!answer) println(GAME_RESULT_LOSE)
+        else println(GAME_RESULT_LOSE)
         println(GAME_TRY_COUNT.format(retry))
     }
 }

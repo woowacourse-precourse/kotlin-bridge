@@ -8,9 +8,8 @@ import java.lang.IllegalArgumentException
 fun main() {
     println(INPUT_BRIDGE_GAME_START)
     try {
-        val bridgeLength = InputView().readBridgeSize()
+        val bridgeLength = inputLength()
         val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
-        println(bridge)
         val tryCount = START_TRY
         val game = BridgeGame(bridge, bridgeLength)
         gameStart(game, tryCount)
@@ -45,3 +44,5 @@ fun output() = OutputView()
 fun inputMove() = InputView().readMoving()
 
 fun inputRetry() = InputView().readGameCommand()
+
+fun inputLength() = InputView().readBridgeSize()
