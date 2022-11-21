@@ -11,5 +11,6 @@ enum class Message(val message: String) {
     MOVING_ERROR("이동할 칸은 U 또는 D여야 합니다."),
 
     SUCCESS("O"),
-    FAIL("X")
+    FAIL("X"),
+    NOTHING(" ")
 }

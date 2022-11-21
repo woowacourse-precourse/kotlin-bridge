@@ -7,7 +7,8 @@ import constant.Message
  */
 class BridgeGame(val bridge: List<String>) {
 
-    private val records = mutableListOf<Pair<String, String>>()
+    private val up = mutableListOf<String>()
+    private val down = mutableListOf<String>()
 
     init {
         move()
@@ -32,11 +33,29 @@ class BridgeGame(val bridge: List<String>) {
 
     private fun calcResult(): Boolean {
         val moving = InputView().readMoving()
-        if (bridge[records.size] == moving) {
-            records.add(Pair(moving, Message.SUCCESS.message))
+        if (moving == "U") {
+            return calcUpResult(moving)
+        }
+        return calcDownResult(moving)
+    }
+
+    private fun calcUpResult(moving: String): Boolean {
+        down.add(Message.NOTHING.message)
+        if (bridge[up.size] == moving) {
+            up.add(Message.SUCCESS.message)
             return true
         }
-        records.add(Pair(moving, Message.FAIL.message))
+        up.add(Message.FAIL.message)
+        return false
+    }
+
+    private fun calcDownResult(moving: String): Boolean {
+        up.add(Message.NOTHING.message)
+        if (bridge[down.size] == moving) {
+            down.add(Message.SUCCESS.message)
+            return true
+        }
+        down.add(Message.FAIL.message)
         return false
     }
 
