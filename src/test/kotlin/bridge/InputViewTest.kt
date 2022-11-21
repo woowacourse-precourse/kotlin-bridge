@@ -1,11 +1,10 @@
 package bridge
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import org.assertj.core.api.Assertions.assertThat
-
 
 class InputViewTest {
     val inputView = InputView()
@@ -77,7 +76,7 @@ class InputViewTest {
     }
 
     @Nested
-    inner class TestReadGameCommand{
+    inner class TestReadGameCommand {
         @Test
         fun `소문자 정상 처리되는지 테스트(r)`() {
             assertThat(inputView.getValidateGameCommend("r")).isEqualTo("R")
