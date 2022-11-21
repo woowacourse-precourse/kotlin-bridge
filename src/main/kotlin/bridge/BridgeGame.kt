@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.InputView.Companion.RETRY_COMMAND
+
 class BridgeGame {
 
     private val inputView = InputView()
@@ -30,7 +32,7 @@ class BridgeGame {
 
     fun startCycle() {
         result.increaseTryCount()
-        if (isFinished(bridge.getBridgeSize())) {
+        if (repeatMoving(bridge.getBridgeSize())) {
             return
         } else {
             if (retry()) {
@@ -40,21 +42,22 @@ class BridgeGame {
         }
     }
 
-    fun isFinished(bridgeSize: Int): Boolean {
+    fun repeatMoving(bridgeSize: Int): Boolean {
         for (pos in 0 until bridgeSize) {
-            if (!move(pos)) return false
+            val playerMove = inputView.readMoving()
+            val isCrossable = move(pos, playerMove)
+            outputView.printMap(result.firstRowResult, result.secondRowResult)
+            if (!isCrossable) return false
         }
         result.setSuccess()
         return true
     }
 
-    fun move(position: Int): Boolean {
+    fun move(position: Int, playerMove: String): Boolean {
         while (true) {
             try {
-                val playerMove = inputView.readMoving()
                 val isCrossable = bridge.isCrossable(position, playerMove)
                 result.addResult(playerMove, isCrossable)
-                outputView.printMap(result.firstRowResult, result.secondRowResult)
                 return isCrossable
             } catch (e: IllegalArgumentException) {
                 println(e.message)
@@ -66,7 +69,7 @@ class BridgeGame {
         while (true) {
             try {
                 val gameCommand = inputView.readGameCommand()
-                if (gameCommand == "R") {
+                if (gameCommand == RETRY_COMMAND) {
                     result.resetResult()
                     return true
                 }
