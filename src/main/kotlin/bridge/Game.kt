@@ -25,9 +25,15 @@ class Game {
                 continue
             }
             lastBridge = outputView.printMap(bridgeGame.userBridge, false)
+            if(inputView.readGameCommand() == "R"){
+                bridgeGame.retry()
+                idx = 0
+                continue
+            }
 
             flag = false
             break
         }
+        outputView.printResult(lastBridge, flag, bridgeGame.getCount())
     }
 }
