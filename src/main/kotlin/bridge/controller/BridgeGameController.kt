@@ -46,6 +46,7 @@ class BridgeGameController {
             command = BridgeGameCommand.of(input.readGameCommand())
         }
     }
+
     private fun handleCommand() {
         if (command == RETRY) {
             game.retry(info)
