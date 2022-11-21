@@ -20,12 +20,12 @@ class BridgeResult(private val size: Int) {
 
     fun moveUp(mark: String) {
         upBridge.add(mark)
-        downBridge.add(" ")
+        downBridge.add(BLANK_SPACE)
     }
 
     fun moveDown(mark: String) {
         downBridge.add(mark)
-        upBridge.add(" ")
+        upBridge.add(BLANK_SPACE)
     }
 
     fun upBridgeResult(): String {
@@ -46,5 +46,6 @@ class BridgeResult(private val size: Int) {
         const val BRIDGE_PREFIX = "[ "
         const val BRIDGE_SEPARATOR = " | "
         const val BRIDGE_POSTFIX = " ]"
+        const val BLANK_SPACE = " "
     }
 }
