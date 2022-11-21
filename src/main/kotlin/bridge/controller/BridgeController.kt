@@ -22,9 +22,7 @@ class BridgeController {
             val result = BridgeGame().move(bridge, direction, createdBridge)
             OutputView().printMap(bridge)
             retry(result)
-            if (bridge.size == size || !player.isGameOver) {
-                quit()
-            }
+            quit(size)
         }
     }
 
@@ -35,9 +33,11 @@ class BridgeController {
         }
     }
 
-    fun quit() {
-        player.setGameQuit()
-        OutputView().printResult(player, bridge, BridgeGame().isSuccess(player))
+    fun quit(size: Int) {
+        if (bridge.size == size || !player.isGameOver) {
+            player.setGameQuit()
+            OutputView().printResult(player, bridge, BridgeGame().isSuccess(player))
+        }
     }
 
     companion object {
