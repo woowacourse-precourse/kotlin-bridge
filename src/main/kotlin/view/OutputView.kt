@@ -20,8 +20,9 @@ class OutputView {
     private fun printDownDecide(bridge: List<String>, input: List<String>) {
         print("[")
         input.forEachIndexed { idx, value ->
-            checkDownDecide(idx, value, bridge)
-            if (idx != input.size - 1) print(" | ")
+            val decide = checkDownDecide(idx, value, bridge)
+            print(" $decide ")
+            if (idx != input.size - 1) print("|")
         }
         print("]")
     }
@@ -29,8 +30,9 @@ class OutputView {
     private fun printUpDecide(bridge: List<String>, input: List<String>) {
         print("[")
         input.forEachIndexed { idx, value ->
-            checkUpDecide(idx, value, bridge)
-            if (idx != input.size - 1) print(" | ")
+            val decide = checkUpDecide(idx, value, bridge)
+            print(" $decide ")
+            if (idx != input.size - 1) print("|")
         }
         print("]")
     }
@@ -38,17 +40,17 @@ class OutputView {
     private fun checkDownDecide(idx: Int, value: String, bridge: List<String>): String {
         when {
             value == "D" && value == bridge[idx] -> return "O"
-            value == "U" -> return " "
+            value == "D" && value != bridge[idx] -> return "X"
         }
-        return "X"
+        return " "
     }
 
     private fun checkUpDecide(idx: Int, value: String, bridge: List<String>): String {
         when {
             value == "U" && value == bridge[idx] -> return "O"
-            value == "D" -> return " "
+            value == "U" && value != bridge[idx] -> return "X"
         }
-        return "X"
+        return " "
     }
 
     /**
