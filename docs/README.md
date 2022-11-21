@@ -2,7 +2,7 @@
 
 ## Application.kt
 
-- [ ] 게임 진행 play 메서드 추가
+- [x] 게임 진행 play 메서드 추가
 
 ## BridgeGame.kt
 
