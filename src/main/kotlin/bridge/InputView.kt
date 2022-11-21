@@ -11,12 +11,15 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         println("다리의 길이를 입력해주세요.")
-        val size = try{
-            Console.readLine().toInt()
-        } catch (e:Exception){
-            throw IllegalArgumentException()
+        var size:Int
+        try{
+            size =Console.readLine().toInt()
+            ValidChecker.checkBridgeSize(size)
+        } catch (e:IllegalArgumentException){
+            println("[ERROR]")
+            return readBridgeSize()
         }
-        return size
+    return size
     }
 
     /**

@@ -5,11 +5,11 @@ private const val WRONG= true
 
 object ValidChecker {
 
-    fun checkBridgeSize(size:Int):Boolean{
+    fun checkBridgeSize(size:Int){
         if(size in 3..20){
-            return OK
+            return
         }
-        return WRONG
+        throw IllegalArgumentException()
     }
     fun checkUorD(choice:String){
         if(choice!="U" && choice!="D"){
