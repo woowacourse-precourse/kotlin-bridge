@@ -22,6 +22,17 @@ class OutputView {
         println("[$upMove]")
     }
 
+    private fun downMove(moves: List<String>, answers: List<String>) {
+        var downMove = ""
+        for (stepIndex in moves.indices) {
+            downMove += getUpOX(moves[stepIndex], answers[stepIndex])
+            if (stepIndex != 0 && stepIndex != moves.lastIndex) {
+                downMove += "|"
+            }
+        }
+        println("[$downMove]")
+    }
+
     private fun getUpOX(moveValue: String, answerValue: String): String {
         if (moveValue === "U" && answerValue === "U") {
             return " O "
