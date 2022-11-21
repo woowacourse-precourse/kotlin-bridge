@@ -14,6 +14,7 @@ class InputView {
             |다리의 길이를 입력해주세요.""".trimMargin())
         val bridgeLength = Console.readLine()
         val checkedLength = parseToInteger(bridgeLength)
+        bridgeLengthCheck(checkedLength)
         println()
         return checkedLength
     }

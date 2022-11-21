@@ -3,7 +3,8 @@ package bridge
 enum class ErrorMessage(val message: String){
     NOTHING("[ERROR] 아무것도 입력하지 않았습니다."),
     FORMATION("[ERROR] 올바르지 않은 형식입니다."),
-    LENGTH("[ERROR] 올바르지 않은 길이입니다.")
+    LENGTH("[ERROR] 올바르지 않은 길이입니다."),
+
 }
 
 
@@ -17,9 +18,15 @@ fun parseToInteger(sentence : String) : Int{
     }
 }
 
+fun bridgeLengthCheck (bridgeLenght : Int){
+    if (bridgeLenght<3 || bridgeLenght>20) {
+        throw IllegalArgumentException(ErrorMessage.LENGTH.message)
+    }
+}
+
 fun movingCheck(move : String) : String {
     if (move == "") throw IllegalArgumentException(ErrorMessage.NOTHING.message)
-    if (move.length != 1) throw IllegalArgumentException(ErrorMessage.LENGTH.message)
+    if (move.length != 1) throw IllegalArgumentException(ErrorMessage.FORMATION.message)
     return when(move){
         "U" -> move
         "D" -> move
