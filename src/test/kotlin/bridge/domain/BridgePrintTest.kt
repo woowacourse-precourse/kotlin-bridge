@@ -11,9 +11,7 @@ class BridgePrintTest {
         val bridge = listOf<String>("U", "D", "D", "D", "U")
         val answer = true
 
-        Assertions.assertThat(
-            OutputView().printMap(bridge, answer)
-        )
+        OutputView().printMap(bridge, answer)
     }
 
     @Test
@@ -24,9 +22,7 @@ class BridgePrintTest {
         val newBridge = game.move(location)
         val answer = true
 
-        Assertions.assertThat(
-            OutputView().printMap(newBridge, answer)
-        )
+        OutputView().printMap(newBridge, answer)
     }
 
     @Test
@@ -37,9 +33,7 @@ class BridgePrintTest {
         val newBridge = game.move(location)
         val answer = false
 
-        Assertions.assertThat(
-            OutputView().printMap(newBridge, answer)
-        )
+        OutputView().printMap(newBridge, answer)
     }
 
     @Test
@@ -48,20 +42,14 @@ class BridgePrintTest {
         val bridge = listOf<String>("U", "D", "D")
         val answer = false
 
-        Assertions.assertThat(
-            OutputView().printResult(bridge, answer, tryCount)
-        )
+        OutputView().printResult(bridge, answer, tryCount)
     }
 
     @Test
     fun `게임 성공 여부 출력`() {
         val bridge = listOf<String>("U", "D", "D")
 
-        Assertions.assertThat(
-            OutputView().printResult(bridge, true, 3)
-        )
-        Assertions.assertThat(
-            OutputView().printResult(bridge, false, 4)
-        )
+        OutputView().printResult(bridge, true, 3)
+        OutputView().printResult(bridge, false, 4)
     }
 }

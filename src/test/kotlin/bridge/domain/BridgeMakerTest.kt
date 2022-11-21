@@ -12,9 +12,7 @@ class BridgeMakerTest {
     fun `정상 길이`() {
         val size = 10
         val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
-        assertThat(
-            bridge.size == size
-        )
+        assertThat(bridge.size).isEqualTo(size)
     }
 
     @Test
@@ -23,6 +21,6 @@ class BridgeMakerTest {
         val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
         assertThat(
             bridge.filterNot { it == UP || it == DOWN }.isEmpty()
-        )
+        ).isEqualTo(true)
     }
 }
