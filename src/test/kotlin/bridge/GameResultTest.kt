@@ -29,7 +29,6 @@ class GameResultTest {
     @Test
     fun `게임 성공을 확인하는 테스트`() {
         gameResult.setGameResult(Move.POSSIBLE)
-        gameResult.setGameResult(Move.IMPOSSIBLE)
         gameResult.setGameResult(Move.POSSIBLE)
         gameResult.setGameResult(Move.POSSIBLE)
         val result = Result.SUCCESS
