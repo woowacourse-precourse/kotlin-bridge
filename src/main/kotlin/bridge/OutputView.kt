@@ -25,12 +25,52 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap() {}
+    fun printMap(playerBridge: List<Pair<String, String>>) {
+        var upLane = setPrintUpLane(playerBridge)
+        upLane = upLane.replaceFirst(".$".toRegex(), "")
+        upLane += "]"
+
+        var downLane = setPrintDownLane(playerBridge)
+        downLane = downLane.replaceFirst(".$".toRegex(), "")
+        downLane += "]"
+
+        println(upLane)
+        println(downLane)
+    }
+
+    private fun setPrintUpLane(playerBridge: List<Pair<String, String>>): String {
+        var printUpLane = "["
+        for(i in playerBridge.indices) {
+            if(playerBridge[i].first == "U") {
+                printUpLane += " ${playerBridge[i].second} |"
+                continue
+            }
+            printUpLane += "   |"
+        }
+        return printUpLane
+    }
+
+    private fun setPrintDownLane(playerBridge: List<Pair<String, String>>): String {
+        var printUpLane = "["
+        for(i in playerBridge.indices) {
+            if(playerBridge[i].first == "D") {
+                printUpLane += " ${playerBridge[i].second} |"
+                continue
+            }
+            printUpLane += "   |"
+        }
+        return printUpLane
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(gameResult: Boolean, tryCount: Int) {}
+    fun printResult(gameResult: Boolean, tryCount: Int, playerBridge: List<Pair<String, String>>) {
+        println("최종 게임 결과")
+        printMap(playerBridge)
+        println("게임 성공 여부: ${if(gameResult)"성공" else "실패"}")
+        println("총 시도한 횟수: $tryCount")
+    }
 }
