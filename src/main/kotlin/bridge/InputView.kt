@@ -7,10 +7,11 @@ class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
+    private val validator =  Validator()
     fun readBridgeSize(): Int {
         println(BRIDGE_SIZE_MESSAGE)
         val bridgeSize = readLine()
-        return Validator().validateBridgeSize(bridgeSize)
+        return validator.validateBridgeSize(bridgeSize)
     }
 
     /**
