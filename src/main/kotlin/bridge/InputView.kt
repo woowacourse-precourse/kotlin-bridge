@@ -43,8 +43,14 @@ class InputView {
      */
     fun readGameCommand(): Boolean {
         println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
-        val coin= Console.readLine()
-
-        return ValidChecker.checkRorQ(coin)
+        val retry:Boolean
+        try{
+            val coin= Console.readLine()
+            retry=ValidChecker.checkRorQ(coin)
+        } catch (e:IllegalArgumentException){
+            println("[ERROR]")
+            return readGameCommand()
+        }
+        return retry
     }
 }
