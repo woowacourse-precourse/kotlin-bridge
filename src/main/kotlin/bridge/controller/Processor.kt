@@ -22,6 +22,9 @@ class Processor(
         inputView.readBridgeSize()
     }
 
+    /**
+     *  게임을 시작하고 끝나는 과정 전체를 합친 메서드
+     */
     fun processGame() {
         lateinit var gameStatus: GameStatus
         initBridge()
@@ -42,7 +45,7 @@ class Processor(
     }
 
     /**
-     * 이동 경로를 최신화 하기 위한 함수
+     * 이동 경로를 기록 하기 위한 함수
      */
     private fun recordPlayerMoving(playerStatus: PlayerStatus) {
         var recordSign = AVAILABLE_PATH
@@ -74,6 +77,10 @@ class Processor(
         initPathMap(bridgeSize)
     }
 
+
+    /**
+     * 재시도를 하게 되면 초기화 해야하는 것들을 초기화하는 메서드
+     */
     private fun initForRetry() {
         numberOfTry++
         initPathMap(bridgeSize)

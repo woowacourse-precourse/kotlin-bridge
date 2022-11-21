@@ -36,7 +36,7 @@ class OutputView {
 
 
     /**
-     * 경로 출력을 형식에 맞추기 위해서 PARSING 한다.
+     * 내가 커스텀한 경로의 형태를 출력 형식에 맞추기 위해서 FORMATTING 한다.
      */
     private fun String.formattingMap() =
         this.replace(NOT_INITIALIZED, "")

@@ -32,6 +32,9 @@ class BridgeGame(
         return PlayerStatus(playerDirection.directionToNumber(), isPlayerAlive)
     }
 
+    /**
+     * 한 번의 이동이 끝나고 게임이 계속되는지 성공했는지 실패했는지를 확인하는 메서드
+     */
     fun checkGameStatus(isPlayerAlive: Boolean) = when {
         !isPlayerAlive -> GameStatus.FAILED
         playerPosition == bridge.size -> GameStatus.SUCCEEDED
