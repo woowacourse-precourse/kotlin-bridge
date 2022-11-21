@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.util.Validator
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest

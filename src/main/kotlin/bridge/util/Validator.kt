@@ -1,4 +1,4 @@
-package bridge
+package bridge.util
 
 class Validator {
 
