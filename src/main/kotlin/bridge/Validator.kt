@@ -1,7 +1,5 @@
 package bridge
 
-import kotlin.IllegalArgumentException as IllegalArgumentException1
-
 class Validator {
     fun validateBridgeSize(bridgeSize: String?): Int {
         try{ validatorNumeric(bridgeSize)
