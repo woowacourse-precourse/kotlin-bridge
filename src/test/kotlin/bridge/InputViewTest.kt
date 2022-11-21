@@ -19,6 +19,19 @@ class InputViewTest: NsTest() {
             Assertions.assertThat(output()).contains("[ERROR]")
         }
     }
+    @Test
+    fun `다리 이동 입력칸 테스트`() {
+        val bridgeMoving = BridgeException("U").toBridgeMoving()
+        Assertions.assertThat(bridgeMoving).isEqualTo("U")
+    }
+    @Test
+    fun `다리 이동 입력칸 예외 테스트`() {
+        InputView().readMoving()
+        assertSimpleTest {
+            run{ "21" }
+            Assertions.assertThat(output()).contains("[ERROR]")
+        }
+    }
 
     override fun runMain() {
         TODO("Not yet implemented")
