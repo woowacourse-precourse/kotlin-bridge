@@ -11,8 +11,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         val bridge = mutableListOf<String>()
         for (i in 0 until size) {
-            if (bridgeNumberGenerator.generate() == 0) bridge.add("D")
-            else bridge.add("U")
+            if (bridgeNumberGenerator.generate() == Moving.DOWN.getMovNumber()) bridge.add(Moving.DOWN.getMovDirection())
+            else bridge.add(Moving.UP.getMovDirection())
         }
         return bridge.toList()
     }
