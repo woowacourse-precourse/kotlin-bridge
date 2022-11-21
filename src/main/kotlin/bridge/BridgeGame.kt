@@ -9,7 +9,7 @@ class BridgeGame(private val bridge: List<String>) {
     private var index: Int = 0
     private var isSuccess: Boolean = true
     private var totalCount: Int = 1
-    val outputView: OutputView = OutputView()
+    private val outputView: OutputView = OutputView()
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
@@ -25,6 +25,7 @@ class BridgeGame(private val bridge: List<String>) {
             downCase.add(" ")
         }
     }
+
     fun isDownCase(isDown: Boolean) {
         if(isDown) {
             upCase.add(" ")
@@ -34,24 +35,33 @@ class BridgeGame(private val bridge: List<String>) {
             downCase.add("X")
         }
     }
+
     fun move(readMoving: String) {
         when (bridge[index]) {
-            "U" -> if(readMoving == "U") {
-                isUpCase(true)
-                isSuccess = true
-            } else if(readMoving == "D") {
-                isDownCase(false)
-                isSuccess = false
-            }
-            "D" -> if(readMoving == "D") {
-                isDownCase(true)
-                isSuccess = true
-            } else if(readMoving == "U") {
-                isUpCase(false)
-                isSuccess = false
-            }
+            "U" -> upMove(readMoving)
+            "D" -> downMove(readMoving)
         }
         index += 1
+    }
+
+    private fun upMove(readMoving: String) {
+        if(readMoving == "U") {
+            isUpCase(true)
+            isSuccess = true
+        } else if(readMoving == "D") {
+            isDownCase(false)
+            isSuccess = false
+        }
+    }
+
+    private fun downMove(readMoving: String) {
+        if(readMoving == "D") {
+            isDownCase(true)
+            isSuccess = true
+        } else if(readMoving == "U") {
+            isUpCase(false)
+            isSuccess = false
+        }
     }
 
     fun printResult() {
