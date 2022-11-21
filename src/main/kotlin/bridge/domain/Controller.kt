@@ -1,4 +1,4 @@
-package bridge
+package bridge.domain
 
 import bridge.view.InputView
 import bridge.view.OutputView
@@ -11,6 +11,7 @@ class Controller {
 
     fun run() {
         val user = User()
+        outPutView.printGameStart()
         bridgeGameStart(getBridge(), user)
     }
 
