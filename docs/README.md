@@ -39,10 +39,9 @@
 ---
 ## ▶ 기능 목록
 ### `InputView` _클래스_
-- [ ] `readBridgeSize` : 다리 길이 입력
-- [ ] `readMovig` : 사용자가 이동할 칸 입력
-- [ ] `readGameCommand` : 게임 재시작 여부 입력
-
+- [x] `readBridgeSize` : 다리 길이 입력
+- [x] `readMovig` : 사용자가 이동할 칸 입력
+- [x] `readGameCommand` : 게임 재시작 여부 입력
 
 ### `OutputView` _클래스_
 - [ ] `printMap` : 현재까지 이동한 다리 상태 출력
