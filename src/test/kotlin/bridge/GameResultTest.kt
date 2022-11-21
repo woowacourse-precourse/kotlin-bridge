@@ -2,6 +2,7 @@ package bridge
 
 import bridge.model.GameResult
 import bridge.model.Move
+import bridge.model.Result
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

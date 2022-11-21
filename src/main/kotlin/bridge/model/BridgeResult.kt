@@ -1,7 +1,5 @@
 package bridge.model
 
-import bridge.Result
-
 class BridgeResult(private val size: Int) {
 
     private val upBridge = mutableListOf<String>()

@@ -1,7 +1,5 @@
 package bridge.model
 
-import bridge.Result
-
 class GameResult {
 
     private var success : Int = 0
