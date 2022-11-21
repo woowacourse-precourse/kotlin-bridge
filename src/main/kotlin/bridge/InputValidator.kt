@@ -31,12 +31,17 @@ class InputValidator {
         }
     }
 
-    private fun String.isRetryOrQuit() = this == "R" || this == "Q"
+    private fun String.isRetryOrQuit() = this == RETRY_INPUT || this == QUIT_INPUT
 
-    private fun String.isUpOrDown() = this == "U" || this == "D"
+    private fun String.isUpOrDown() = this == Direction.UP.direction || this == Direction.DOWN.direction
 
-    private fun Int.isInRange() = this in 3..20
+    private fun Int.isInRange() = this in MINIMUM_BRIDGE_SIZE..MAXIMUM_BRIDGE_SIZE
 
     private fun String.isNumeric() =
         this.chars().allMatch { eachChar -> Character.isDigit(eachChar) }
+
+    companion object{
+        const val MINIMUM_BRIDGE_SIZE=3
+        const val MAXIMUM_BRIDGE_SIZE=20
+    }
 }
