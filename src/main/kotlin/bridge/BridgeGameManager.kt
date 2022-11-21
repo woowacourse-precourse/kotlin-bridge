@@ -25,4 +25,22 @@ object BridgeGameManager {
         OutputView.printMap(BridgeCalculate.downLine(bridge, record))
 
     }
+
+    fun doNotRetry():Boolean{
+        return InputView.readGameCommand()
+    }
+
+    fun gameResult(bridge: List<String>, record: List<Boolean>, gameCount: Int) {
+        OutputView.printGameEndMessage()
+        bridgeMapPrint(bridge, record)
+        OutputView.printResult(record, gameCount)
+        check(false)
+    }
+
+    fun areYouRetry(){
+        OutputView.areYouRetry()
+    }
+
+
+
 }
