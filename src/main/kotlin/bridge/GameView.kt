@@ -35,6 +35,7 @@ class GameView(
     }
 
     fun writeResult(playCount: Int, gameResult: Boolean) {
+        outputView.printResultMap()
         outputView.printResult(playCount, gameResult)
     }
 
@@ -49,6 +50,7 @@ class GameView(
         const val MESSAGE_GAME_START = "다리 건너기 게임을 시작합니다."
         const val MESSAGE_GAME_RESULT = "게임 성공 여부: %s"
         const val MESSAGE_GAME_COUNT = "총 시도한 횟수: %d"
+        const val MESSAGE_GAME_END = "최종 게임 결과"
 
         const val FAILURE = "실패"
         const val SUCCESS = "성공"
