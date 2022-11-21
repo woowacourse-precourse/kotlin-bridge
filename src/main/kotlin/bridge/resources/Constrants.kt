@@ -24,3 +24,6 @@ const val ERROR_ALREADY_ARRIVED = ERROR_MESSAGE_PREFIX + "이미 모든 칸을 �
 // FOR BRIDGE GAME LOGIC
 const val BRIDGE_MIN_LENGTH = 3
 const val BRIDGE_MAX_LENGTH = 20
+const val PLATE_TRUE = "O"
+const val PLATE_FALSE = "X"
+const val PLATE_BLANK = " "
