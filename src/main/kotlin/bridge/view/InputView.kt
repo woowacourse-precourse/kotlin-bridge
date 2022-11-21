@@ -21,7 +21,7 @@ class InputView {
                 require(bridgeLength.toInt() in MIN_LENGTH..MAX_LENGTH)
                 return bridgeLength.toInt()
             } catch (e: IllegalArgumentException) {
-                println(ErrorMessage.ERROR_LENGTH)
+                Print.showErrorMessage(ErrorMessage.ERROR_LENGTH)
             }
         }
     }
@@ -37,7 +37,7 @@ class InputView {
                 require(moveStair == BridgeMaker.UP_STAIR || moveStair == BridgeMaker.DOWN_STAIR)
                 return moveStair
             } catch (e: IllegalArgumentException) {
-                println(ErrorMessage.ERROR_INPUT)
+                Print.showErrorMessage(ErrorMessage.ERROR_INPUT)
             }
         }
     }
@@ -53,7 +53,7 @@ class InputView {
                 require(command == BridgeGame.RESTART_COMMAND || command == BridgeGame.EXIT_COMMAND)
                 return command
             } catch (e: IllegalArgumentException) {
-                println(ErrorMessage.ERROR_COMMAND)
+                Print.showErrorMessage(ErrorMessage.ERROR_COMMAND)
             }
         }
     }
