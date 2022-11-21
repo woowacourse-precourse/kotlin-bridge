@@ -41,6 +41,23 @@ class ApplicationTest : NsTest() {
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
+    @Test
+    fun `예외 테스트 - 다리의 길이가 범위를 벗어나는 경우`() {
+        assertSimpleTest {
+            runException("2")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+        assertSimpleTest {
+            runException("21")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    private fun make_bridge(bridge: List<Int>): List<String> {
+        val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(bridge)
+        val bridgeMaker = BridgeMaker(numberGenerator)
+        return bridgeMaker.makeBridge(bridge.size)
+    }
 
     override fun runMain() {
         main()
