@@ -9,9 +9,9 @@ import bridge.BridgeRandomNumberGenerator
  */
 class BridgeGame(private val size : Int) {
 
-    private var bridgeMaker : BridgeMaker
-    private var bridgeMap: List<String>
-    private var comBridge : Bridge
+    private val bridgeMaker : BridgeMaker
+    private val bridgeMap: List<String>
+    private val comBridge : Bridge
     private var userInputBridge = mutableListOf<String>()
     private var gameCount : Int = 1
 
