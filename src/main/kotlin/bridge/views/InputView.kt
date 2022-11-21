@@ -1,5 +1,7 @@
 package bridge.views
 
+import bridge.constants.Constant.Companion.MAX_BRIDGE_LENGTH
+import bridge.constants.Constant.Companion.MIN_BRIDGE_LENGTH
 import bridge.constants.Exception.Companion.EXCEPTION_INVALID_MOVING
 import bridge.constants.Exception.Companion.EXCEPTION_INVALID_RANGE_NUMBER
 import bridge.constants.Exception.Companion.EXCEPTION_INVALID_RETRY
@@ -27,7 +29,7 @@ class InputView {
         if (!length.all { Character.isDigit(it) }) {
             throw IllegalArgumentException(EXCEPTION_IS_NOT_NUMBER)
         }
-        if (length.toInt() < 3 || length.toInt() > 20) {
+        if (length.toInt() < MIN_BRIDGE_LENGTH || length.toInt() > MAX_BRIDGE_LENGTH) {
             throw IllegalArgumentException(EXCEPTION_INVALID_RANGE_NUMBER)
         }
     }
