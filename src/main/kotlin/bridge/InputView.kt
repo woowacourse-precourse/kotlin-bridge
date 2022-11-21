@@ -8,9 +8,9 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        val bridgeSize = Console.readLine().toIntOrNull() ?: throw IllegalArgumentException("숫자를 입력해주세요")
+        val bridgeSize = Console.readLine().toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 숫자를 입력 하셔야합니다.")
         if(bridgeSize < 3 || bridgeSize > 20){
-            throw IllegalArgumentException("3 이상 20이하로 입력해주세요.")
+            throw IllegalArgumentException("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
         }
         return bridgeSize
     }
@@ -21,7 +21,7 @@ class InputView {
     fun readMoving(): String {
         val moving = Console.readLine()
         if(moving != "U" && moving != "D"){
-            throw IllegalArgumentException("위 칸 : U, 아래 칸 : D 입력해주세요.")
+            throw IllegalArgumentException("[ERROR] 위 칸 : U, 아래 칸 : D 입력 하셔야합니다.")
         }
         return moving
     }
@@ -32,7 +32,7 @@ class InputView {
     fun readGameCommand(): String {
         val gameCommand = Console.readLine()
         if(gameCommand != "R" && gameCommand != "Q"){
-            throw IllegalArgumentException("재시도: R, 종료: Q 입력해주세요.")
+            throw IllegalArgumentException("[ERROR] 재시도: R, 종료: Q 입력 하셔야합니다.")
         }
         return gameCommand
     }
