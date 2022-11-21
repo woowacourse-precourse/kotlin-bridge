@@ -1,6 +1,7 @@
 package bridge
 
 import camp.nextstep.edu.missionutils.Console.readLine
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -13,10 +14,16 @@ class InputView {
         println("\n다리의 길이를 입력해주세요.")
 
         val sizeString = readLine()
-        require(checkNumber(sizeString)) {"[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."}
+        if (!checkNumber(sizeString)) {
+            println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
+            throw NoSuchElementException()
+        }
 
         val sizeNumber: Int = sizeString.toInt()
-        require(sizeNumber in 3..20) {"[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."}
+        if (sizeNumber !in 3..20) {
+            println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
+            throw NoSuchElementException()
+        }
 
         return sizeNumber
     }
@@ -39,13 +46,12 @@ class InputView {
         var temp: Char
         var result = true
 
-        for (i in 0 until string.length) {
+        for (i in string.indices) {
             temp = string.elementAt(i)
             if (temp.code < 48 || temp.code > 57) {
                 result = false
             }
         }
-
         return result
     }
 }
