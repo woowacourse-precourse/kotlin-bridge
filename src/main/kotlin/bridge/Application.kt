@@ -6,5 +6,5 @@ fun main() {
 
 }
 fun gamestart(){
-    print( "총 시도한 횟수: "+BridgeGame().move(BridgeGame().GuideSet()))
+    print( "총 시도한 횟수: "+BridgeGame().move(BridgeGame().guideSet()))
 }

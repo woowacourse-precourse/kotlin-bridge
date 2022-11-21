@@ -5,7 +5,7 @@ package bridge
  */
 class InputView {
 
-    fun inputUser(): String {
+    private fun inputUser(): String {
         val userInputNumber = camp.nextstep.edu.missionutils.Console.readLine()
         userInputNumber ?: println("[Error]")
         if (userInputNumber!!.isEmpty()){
