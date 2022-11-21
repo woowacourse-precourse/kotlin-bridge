@@ -22,8 +22,12 @@ class BridgeGame {
     }
 
     fun move(checkBridge: List<String>, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>) {
-        for (bridgeCheckElement in checkBridge) {
-            Guide().bridgeList(bridgeCheckElement, bridgeUpList, bridgeDownList)
+        for (i in 0.. checkBridge.size-1) {
+            val bridgeChoose = Guide().selectBridgeGuide()
+            bridgeUpList.add(BridgeGame().bridgUp(checkBridge[i], bridgeChoose))
+            bridgeDownList.add(BridgeGame().bridgDown(checkBridge[i], bridgeChoose))
+            Guide().success(i,checkBridge)
+            Guide().bridgeList(bridgeUpList, bridgeDownList)
             msg += retry(checkBridge, bridgeUpList, bridgeDownList)
             if (msg >= 1) {
                 count += 1
@@ -51,7 +55,7 @@ class BridgeGame {
     }
 
     fun retry(bridgecheck: List<String>, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>): Int {
-        if (bridgeUpList.contains("X") || bridgeDownList.contains("X")) {
+        if (bridgeUpList.contains(" X ") || bridgeDownList.contains(" X ")) {
             val restart = Guide().restart()
             if (restart == "R") startBridge(bridgecheck)
             if (restart == "Q") Guide().failGuideMsg()

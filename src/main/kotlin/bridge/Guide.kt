@@ -15,12 +15,14 @@ class Guide {
     fun failGuideMsg(){
         OutputView().printFailResult()
     }
-    fun bridgeList(bridgeCheck: String, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>){
-        val bridgeChoose = Guide().selectBridgeGuide()
-        bridgeUpList.add(BridgeGame().bridgUp(bridgeCheck, bridgeChoose))
-        bridgeDownList.add(BridgeGame().bridgDown(bridgeCheck, bridgeChoose))
+    fun bridgeList( bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>){
+        if (bridgeUpList.contains(" X ") || bridgeDownList.contains(" X ")) OutputView().printLastGame()
         OutputView().printMap(bridgeUpList.joinToString("|"))
         OutputView().printMap(bridgeDownList.joinToString("|"))
+    }
+
+    fun success(i: Int,checkBridge: List<String>){
+        if(i==checkBridge.size-1) OutputView().printLastGame()
     }
     fun selectBridgeGuide(): String {
         OutputView().printBridgeChoose()
