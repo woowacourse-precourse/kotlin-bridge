@@ -15,7 +15,7 @@ class OutputView {
         var upMove = ""
         for (stepIndex in moves.indices) {
             upMove += getUpOX(moves[stepIndex], answers[stepIndex])
-            if (stepIndex != 0 && stepIndex != moves.lastIndex) {
+            if (stepIndex != moves.lastIndex) {
                 upMove += "|"
             }
         }
@@ -25,8 +25,8 @@ class OutputView {
     private fun downMove(moves: List<String>, answers: List<String>) {
         var downMove = ""
         for (stepIndex in moves.indices) {
-            downMove += getUpOX(moves[stepIndex], answers[stepIndex])
-            if (stepIndex != 0 && stepIndex != moves.lastIndex) {
+            downMove += getDownOX(moves[stepIndex], answers[stepIndex])
+            if (stepIndex != moves.lastIndex) {
                 downMove += "|"
             }
         }
