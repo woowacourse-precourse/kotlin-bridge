@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.Bridge.Companion.MAX_BRIDGE_LENGTH
+import bridge.Bridge.Companion.MIN_BRIDGE_LENGTH
 import camp.nextstep.edu.missionutils.Console
 
 /**
@@ -15,7 +17,7 @@ class InputView {
         if (input.toIntOrNull() == null) {
             throw IllegalArgumentException("[ERROR] 숫자가 아닙니다.")
         }
-        if (input.toInt() !in 3..20) {
+        if (input.toInt() !in MIN_BRIDGE_LENGTH..MAX_BRIDGE_LENGTH) {
             throw IllegalArgumentException("[ERROR] 3이상 20이하가 아닙니다.")
         }
         return input.toInt()
