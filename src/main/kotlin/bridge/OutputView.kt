@@ -36,8 +36,8 @@ class OutputView {
             bridgeState[idx xor 1].add("   ")
         }
 
-        println("[ ${bridgeState[0].joinToString(" | ")} ]")
-        println("[ ${bridgeState[1].joinToString(" | ")} ]")
+        println("[${bridgeState[0].joinToString("|")}]")
+        println("[${bridgeState[1].joinToString("|")}]")
         println()
     }
 
