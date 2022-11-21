@@ -1,9 +1,11 @@
-package bridge
+package bridge.computer
 
 import bridge.View.InputView
 import bridge.View.OutputView
-import bridge.computer.BridgeMaker
-import bridge.computer.BridgeRandomNumberGenerator
+import bridge.bridge
+import bridge.gameCount
+import bridge.isGameClear
+import bridge.location
 import bridge.utils.BridgePrint
 
 

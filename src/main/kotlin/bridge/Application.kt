@@ -1,9 +1,7 @@
 package bridge
 
-import bridge.View.InputView
 import bridge.View.OutputView
-import bridge.computer.BridgeMaker
-import bridge.computer.BridgeRandomNumberGenerator
+import bridge.computer.BridgeGame
 import bridge.computer.ErrorMessage
 import bridge.utils.Messages
 

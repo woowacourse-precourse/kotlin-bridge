@@ -1,6 +1,8 @@
 package bridge.View
 
 import bridge.*
+import bridge.computer.firstLine
+import bridge.computer.secondLine
 import bridge.utils.BridgePrint
 import bridge.utils.Messages
 
