@@ -11,26 +11,26 @@ class InputValidator {
         validateBridgeSize(bridgeSize.toInt())
     }
 
-    fun validateMoveInput(direction: String)  {
-        require(direction.isUpOrDown()){
+    fun validateMoveInput(direction: String) {
+        require(direction.isUpOrDown()) {
             Error.MOVE_INPUT_ERROR.errorMessage
         }
     }
 
-    fun validateRetryFlag(retryFlag: String){
-        require(retryFlag.isRetryOrQuit()){
+    fun validateRetryFlag(retryFlag: String) {
+        require(retryFlag.isRetryOrQuit()) {
             Error.RETRY_FLAG_ERROR.errorMessage
         }
     }
 
     private fun validateBridgeSize(bridgeSize: Int) {
-        require(bridgeSize.isInRange()){
+        require(bridgeSize.isInRange()) {
             Error.BRIDGE_SIZE_ERROR.errorMessage
         }
     }
 
     private fun validateNumericInput(input: String) {
-        require(input.isNumeric()){
+        require(input.isNumeric()) {
             Error.NUMERIC_ERROR.errorMessage
         }
     }
@@ -44,8 +44,8 @@ class InputValidator {
     private fun String.isNumeric() =
         this.chars().allMatch { eachChar -> Character.isDigit(eachChar) }
 
-    companion object{
-        const val MINIMUM_BRIDGE_SIZE=3
-        const val MAXIMUM_BRIDGE_SIZE=20
+    companion object {
+        const val MINIMUM_BRIDGE_SIZE = 3
+        const val MAXIMUM_BRIDGE_SIZE = 20
     }
 }

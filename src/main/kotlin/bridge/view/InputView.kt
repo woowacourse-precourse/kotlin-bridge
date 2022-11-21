@@ -14,6 +14,7 @@ class InputView(private val inputValidator: InputValidator) {
         println(ASK_BRIDGE_SIZE)
         while (true) {
             val bridgeSize = Console.readLine()
+
             try {
                 inputValidator.validateBridgeInput(bridgeSize)
                 return bridgeSize.toInt()
@@ -30,6 +31,7 @@ class InputView(private val inputValidator: InputValidator) {
         println(ASK_MOVE)
         while (true) {
             val direction = Console.readLine()
+
             try {
                 inputValidator.validateMoveInput(direction)
                 return direction
@@ -46,6 +48,7 @@ class InputView(private val inputValidator: InputValidator) {
         println(ASK_RETRY)
         while (true) {
             val retryInput = Console.readLine()
+
             try {
                 inputValidator.validateRetryFlag(retryInput)
                 return retryInput

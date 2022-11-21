@@ -56,8 +56,8 @@ class Processor(
     }
 
     private fun checkContinuing(gameStatus: GameStatus): GameStatus {
-        if(gameStatus==GameStatus.FAILED){
-            if(checkRetry()){
+        if (gameStatus == GameStatus.FAILED) {
+            if (checkRetry()) {
                 initForRetry()
                 return GameStatus.CONTINUING
             }
@@ -74,7 +74,7 @@ class Processor(
         initPathMap(bridgeSize)
     }
 
-    private fun initForRetry(){
+    private fun initForRetry() {
         numberOfTry++
         initPathMap(bridgeSize)
         bridgeGame.retry()
