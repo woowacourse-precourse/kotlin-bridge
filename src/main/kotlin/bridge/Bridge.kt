@@ -5,7 +5,7 @@ class Bridge(
 ) {
 
     init {
-        assert(bridgeInfo.size in MIN_BRIDGE_LENGTH..MAX_BRIDGE_LENGTH)
+        require(bridgeInfo.size in MIN_BRIDGE_LENGTH..MAX_BRIDGE_LENGTH)
     }
 
     fun isCrossable(position: Int, userMove: String): Boolean {
