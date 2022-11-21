@@ -11,7 +11,7 @@ class BridgeController {
 
     fun run() {
         makeBridge()
-        startMove()
+        startGame()
     }
 
     private fun makeBridge() {
@@ -22,15 +22,14 @@ class BridgeController {
         bridgeGame = BridgeGame(bridges)
     }
 
-    private fun startMove() {
+    private fun startGame() {
         moveNext()
         if (bridgeGame.isEnd()) {
-            printEndMove(Enum.RESULT.SUCCESS.korean)
+            endGame(Enum.RESULT.SUCCESS.korean)
             return
         }
-        if (isFail())
-            return
-        startMove()
+
+        checkFail()
     }
 
     private fun moveNext() {
@@ -39,28 +38,34 @@ class BridgeController {
         outputView.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
     }
 
-    private fun printEndMove(result: String) {
+    private fun endGame(result: String) {
         outputView.printEndGame()
         outputView.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
         outputView.printResult(bridgeGame.getTryCount(), result)
     }
 
-    private fun isFail(): Boolean {
+    private fun checkFail() {
         if (bridgeGame.isFail(Enum.RESULT.FAILURE.emoji)) {
             outputView.printRestart()
-            return isRestart()
+            isRestart()
+        } else {
+            startGame()
         }
-        return false
     }
 
-    private fun isRestart(): Boolean {
+    private fun isRestart() {
         when (inputView.readGameCommand()) {
-            Enum.OPTION.RESTART.command -> bridgeGame.retry()
-            Enum.OPTION.QUIT.command -> {
-                printEndMove(Enum.RESULT.FAILURE.korean)
-                return true
+            QUIT -> {
+                bridgeGame.retry()
+                startGame()
             }
+
+            RESTART -> endGame(Enum.RESULT.FAILURE.korean)
         }
-        return false
+    }
+
+    companion object {
+        const val RESTART = "R"
+        const val QUIT = "Q"
     }
 }
