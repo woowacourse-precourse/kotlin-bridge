@@ -16,10 +16,17 @@ class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun move(bridgeSize: Int) {
+        val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
         for (i in 0 until bridgeSize){
-            val move = outputView.printMoving()
-            val brideState = BridgeRandomNumberGenerator().generate()
+            val move = OutputView().printMoving()
 
+            if (bridgeMaker[i] == move){
+                // 갈 수 있음, 현재까지 이동 칸 출력
+
+            }else{
+                // 갈 수 없음
+                retry()
+            }
         }
     }
 

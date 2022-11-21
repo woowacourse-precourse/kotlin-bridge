@@ -1,6 +1,7 @@
 package view
 
 import camp.nextstep.edu.missionutils.Console
+import domain.BridgeMaker
 import java.lang.IllegalArgumentException
 
 /**
