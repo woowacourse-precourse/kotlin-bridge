@@ -13,8 +13,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 
         for (i in 0 until size) {
             val ud = bridgeNumberGenerator.generate()
-            if (ud==1) {bridge.add("D")}
-            if (ud==0) {bridge.add("U")}
+            if (ud==1) {bridge.add("U")}
+            if (ud==0) {bridge.add("D")}
         }
 
         return bridge.toList()
