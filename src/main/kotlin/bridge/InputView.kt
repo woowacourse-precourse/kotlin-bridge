@@ -28,6 +28,9 @@ class InputView {
      */
     fun readMoving(): String = readLine()
 
+    private fun checkCorrectMovingCode(input: String): Boolean =
+        input == BridgeType.UP.charCode.toString() || input == BridgeType.DOWN.charCode.toString()
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
