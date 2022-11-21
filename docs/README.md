@@ -27,7 +27,8 @@ Kotlin 1.6.20
 
 ### ⬜️ BridgeGame Class
 ⬜️ Deal with move situation (move) \
-⬜️ Deal with retry situation (retry)
+⬜️ Deal with retry situation (retry) \
+⬜️ Make game board into string (gameToString)
 
 ### ⬜️ Application Class
 ⬜️ Implement Main function
