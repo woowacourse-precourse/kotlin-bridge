@@ -17,11 +17,10 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap(column: Int, actual: String, predict: String): List<String> {
-        if (column == 0) {
+        if (column == 0)
             handleFirstColumnCase(column, actual, predict)
-        } else {
+        else
             handlePartitionCase(column, actual, predict)
-        }
         return map
     }
 
@@ -105,5 +104,11 @@ class OutputView {
         println(map[1])
         println(FINAL_RESULT_MSG + result)
         println(FINAL_TRY_NUM_MSG + tryNumber)
+    }
+
+    companion object {
+        const val CORRECT = " O"
+        const val INCORRECT = " X"
+        const val PARTITION = " |"
     }
 }

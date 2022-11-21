@@ -2,48 +2,48 @@ package bridge.domain
 
 import bridge.ui.InputView
 import bridge.ui.OutputView
-import bridge.utils.*
+import bridge.utils.GAME_CMD_INPUT_MSG
+import bridge.utils.MOVE_INPUT_MSG
+import bridge.utils.RESTART
 
 class BridgeChecker(private val bridge: List<String>) {
     private val bridgeGame = BridgeGame()
+    private val outputView = OutputView()
     private var map = listOf<String>()
     private var resultFlag = ""
 
     fun checkBridge() {
-        val outputView = OutputView()
-
         for ((index, actual) in bridge.withIndex()) {
-            val predict = askDirection()
-            map = outputView.printMap(index, actual, predict)
-            println(map[0])
-            println(map[1])
-
-            // 이동할 수 없으면 for문 탈줄
-            if(!checkMovable(actual, predict)) {
-                resultFlag = FAIL
-                break
-            }
+            val predict = startGuessing(index, actual)
+            if (!checkMovable(actual, predict)) break
         }
+        if (resultFlag == FAIL) askRestartOrQuit()
+        else outputView.printResult(map, SUCCESS, bridgeGame.getTryNumber())
+    }
 
-        if(resultFlag == FAIL){
-            askRetry() // 재귀 호출 가능성 있음.
-        }else {
-            outputView.printResult(map, SUCCESS, bridgeGame.getTryNumber())
-        }
+    private fun startGuessing(index: Int, actual: String): String {
+        val predict = askDirection()
+        map = outputView.printMap(index, actual, predict)
+        println(map[0])
+        println(map[1])
+        return predict
     }
 
     private fun checkMovable(actual: String, predict: String): Boolean {
-        return bridgeGame.move(actual, predict)
+        if(!bridgeGame.move(actual, predict)){
+            resultFlag = FAIL
+            return false
+        }
+        return true
     }
 
-    private fun askRetry() {
-        val outputView = OutputView()
-        if(askGameCommand() == RESTART){
+    private fun askRestartOrQuit() {
+        if (askGameCommand() == RESTART) {
             resultFlag = ""
-            outputView.initMap()
-            bridgeGame.retry() // 시도 횟수만 증가시키기
-            checkBridge() // 동일한 다리로 다시 시도!!!
-        }else {
+            outputView.initMap() // 맵 초기화
+            bridgeGame.retry() // 시도 횟수 증가
+            checkBridge() // 동일한 다리로 재시도
+        } else {
             outputView.printResult(map, FAIL, bridgeGame.getTryNumber())
         }
     }
@@ -56,5 +56,10 @@ class BridgeChecker(private val bridge: List<String>) {
     private fun askGameCommand(): String {
         println(GAME_CMD_INPUT_MSG)
         return InputView().readGameCommand()
+    }
+
+    companion object {
+        const val SUCCESS = "성공"
+        const val FAIL = "실패"
     }
 }
