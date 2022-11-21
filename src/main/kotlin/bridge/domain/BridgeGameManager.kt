@@ -10,4 +10,15 @@ class BridgeGameManager(
     fun startGame() {
         outputView.printStart()
     }
+
+    fun getBridgeSize(): Int {
+        while (true) {
+            try {
+                return inputView.readBridgeSize()
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+                continue
+            }
+        }
+    }
 }
