@@ -30,8 +30,11 @@ class OutputView {
             }
             bridgePrintU.add("]")
             bridgePrintD.add("]")
-            println(bridgePrintU)
-            println(bridgePrintD)
+            var bridgeUS = bridgePrintU.joinToString("")
+            var bridgeDS = bridgePrintD.joinToString("")
+
+            println(bridgeUS)
+            println(bridgeDS)
         }else{
             for(i in 0 until number-1){
                 if(bridge[i] == "U"){
