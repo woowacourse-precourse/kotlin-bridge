@@ -14,7 +14,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         var bridgeAnswer = mutableListOf<String>()
         for(i in 0 until size){
-            if(BridgeRandomNumberGenerator().generate() == 0){
+            if(BridgeRandomNumberGenerator().generate() == BridgeRandomNumberGenerator.RANDOM_LOWER_INCLUSIVE){
                 bridgeAnswer.add(DOWN)
             }
             else bridgeAnswer.add(UP)
