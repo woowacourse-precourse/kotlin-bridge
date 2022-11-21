@@ -1,4 +1,15 @@
-package bridge
+package bridge.controller
+
+import bridge.AVAILABLE_PATH
+import bridge.NOT_INITIALIZED
+import bridge.RETRY_INPUT
+import bridge.UNAVAILABLE_PATH
+import bridge.model.BridgeGame
+import bridge.model.data.Direction
+import bridge.model.data.GameStatus
+import bridge.model.data.PlayerStatus
+import bridge.view.InputView
+import bridge.view.OutputView
 
 class Processor(
     private val bridgeGame: BridgeGame,

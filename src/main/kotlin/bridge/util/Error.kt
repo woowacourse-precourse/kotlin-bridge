@@ -1,4 +1,4 @@
-package bridge
+package bridge.util
 
 enum class Error(val errorMessage: String) {
     NO_ERROR(""),

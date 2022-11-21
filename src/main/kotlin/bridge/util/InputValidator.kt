@@ -1,4 +1,7 @@
-package bridge
+package bridge.util
+
+import bridge.QUIT_INPUT
+import bridge.RETRY_INPUT
 
 class InputValidator {
 
