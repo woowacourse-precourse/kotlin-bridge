@@ -1,5 +1,8 @@
 package bridge
 
+import java.util.*
+import kotlin.collections.ArrayList
+
 class Result {
 
     private var isSuccess: Boolean = false
@@ -7,12 +10,12 @@ class Result {
     private var secondRowResult: ArrayList<String> = arrayListOf()
     private var tryCount = 0
 
-    fun getFirstRowResult(): ArrayList<String> {
-        return firstRowResult
+    fun getFirstRowResult(): MutableList<String> {
+        return Collections.unmodifiableList(firstRowResult)
     }
 
-    fun getSecondRowResult(): ArrayList<String> {
-        return secondRowResult
+    fun getSecondRowResult(): MutableList<String> {
+        return Collections.unmodifiableList(secondRowResult)
     }
 
     fun getSuccess(): Boolean {
