@@ -1,25 +1,32 @@
 package bridge
 
 fun main() {
-    printStartBridgeGame()
     var gamePlayCount = 1
     val inputView = InputView()
     val bridge = settingBridgeGame(inputView)
+    var gameIsSuccess: Boolean
     while (true) {
-        val gameIsSuccess = processBridgeGame(inputView, bridge)
-        if (gameIsSuccess) {
-
-        } else {
-            val userGameCommand = inputView.readGameCommand()
-            if (userGameCommand == GameCommand.QUIT.getGameCommand()) {
-                printGameIsSuccess()
-                printGamePlayCount()
-            } else {
-
-
-            }
-        }
+        gameIsSuccess = processBridgeGame(inputView, bridge)
+        if (!decideGameContinue(gameIsSuccess, inputView)) break
+        else gamePlayCount += 1
     }
+    printGameResult(gameIsSuccess, gamePlayCount)
+}
+
+fun printGameResult(isGameSuccess: Boolean, gamePlayCount: Int) {
+    printGameIsSuccess(isGameSuccess)
+    printGamePlayCount(gamePlayCount)
+}
+
+
+fun decideGameContinue(gameIsSuccess: Boolean, inputView: InputView): Boolean {
+    return if (gameIsSuccess) {
+        false
+    } else {
+        val userGameCommand = inputView.readGameCommand()
+        userGameCommand != GameCommand.QUIT.getGameCommand()
+    }
+
 }
 
 
@@ -53,10 +60,14 @@ fun printStartBridgeGame() {
     println(BrideGameConstValue.GAME_START_MESSAGE)
 }
 
-fun printGameIsSuccess() {
-    println(BrideGameConstValue.GAME_IS_SUCCESS)
+fun printGameIsSuccess(isGameSuccess: Boolean) {
+    if (isGameSuccess) {
+        println(BrideGameConstValue.GAME_IS_SUCCESS + GameSuccess.SUCCESS.getGameSuccess())
+    } else {
+        println(BrideGameConstValue.GAME_IS_SUCCESS + GameSuccess.FAIL.getGameSuccess())
+    }
 }
 
-fun printGamePlayCount() {
-    println(BrideGameConstValue.GAME_PLAY_COUNT)
+fun printGamePlayCount(gamePlayCount: Int) {
+    println(BrideGameConstValue.GAME_PLAY_COUNT + gamePlayCount)
 }
