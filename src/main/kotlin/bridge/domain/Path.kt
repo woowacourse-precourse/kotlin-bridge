@@ -1,5 +1,6 @@
 package bridge.domain
 
+import bridge.util.ErrorMessage.ERROR_NOT_VALID_COMMAND
 import java.lang.IllegalArgumentException
 
 enum class Path(private val pathNumber: Int, private val path: String) {
@@ -14,7 +15,7 @@ enum class Path(private val pathNumber: Int, private val path: String) {
             return when (moveNumber) {
                 UP.pathNumber -> UP.path
                 DOWN.pathNumber -> DOWN.path
-                else -> throw IllegalArgumentException("[ERROR] 유요한 값이 없습니다.")
+                else -> throw IllegalArgumentException(ERROR_NOT_VALID_COMMAND)
             }
         }
     }

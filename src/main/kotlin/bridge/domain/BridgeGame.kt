@@ -1,11 +1,11 @@
 package bridge.domain
 
 import bridge.util.BridgeNumberGenerator
+import bridge.util.Constant.GAME_QUIT
+import bridge.util.Constant.GAME_RETRY
+import bridge.util.ErrorMessage.ERROR_NOT_VALID_COMMAND
 import java.lang.IllegalArgumentException
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 class BridgeGame(
     private val bridgeNumberGenerator: BridgeNumberGenerator,
     private val size: Int,
@@ -41,13 +41,13 @@ class BridgeGame(
 
     fun retry(type: String): Boolean {
         return when (type) {
-            "Q" -> return false
-            "R" -> {
+            GAME_QUIT -> return false
+            GAME_RETRY -> {
                 initGame()
                 return true
             }
 
-            else -> throw IllegalArgumentException("유효하지 않은 값이 존재합니다.")
+            else -> throw IllegalArgumentException(ERROR_NOT_VALID_COMMAND)
         }
     }
 

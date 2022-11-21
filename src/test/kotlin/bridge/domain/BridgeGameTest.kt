@@ -51,10 +51,9 @@ internal class BridgeGameTest {
         val tryCount = 2
 
         assertAll(
-            {Assertions.assertThat(tryCount).isEqualTo(bridgeGame.getTryCount())},
-            {Assertions.assertThat(player.getState().isEmpty())}
+            { Assertions.assertThat(tryCount).isEqualTo(bridgeGame.getTryCount()) },
+            { Assertions.assertThat(player.getState().isEmpty()) }
         )
-
     }
 
     @ParameterizedTest
