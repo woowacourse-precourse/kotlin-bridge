@@ -15,7 +15,8 @@ Kotlin 1.6.20
 ⬜️ Get the move of user (readMoving) \
 ⬜️ Validate the move of user (validateMoving) \
 ⬜️ Get the game command (readGameCommand) \
-⬜️ Validate the game command (validateGameCommand)
+⬜️ Validate the game command (validateGameCommand) \
+⬜️ Test code for InputView Class
 
 ### ⬜️ OutputView Class
 ⬜️ Print the state of bridge (printMap) \
