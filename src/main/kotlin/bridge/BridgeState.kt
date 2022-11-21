@@ -7,22 +7,19 @@ class BridgeState {
     private val bridgeGame = BridgeGame()
     private val inputView = InputView()
     private val outputView = OutputView()
-    private val playerLife = PlayerLife()
-
-    fun compare(bridge:List<String>):Boolean{
-        var playerMoves = mutableListOf<List<String>>()
-        for(index in bridge.indices){
+    private var playerMoves = mutableListOf<List<String>>()
+    fun compare(bridge:Bridge):Boolean{
+        for(index in 0 until bridge.getSize()){
             val upOrDown = inputView.readMoving()
-            val alive = playerLife.isAlive(bridge[index],upOrDown)
-            insertMove(playerMoves,upOrDown,alive)
+            val alive = bridge.crossable(index,upOrDown)
+            insertMove(upOrDown,alive)
             if(!alive) return false
         }
         outputView.printResult(playerMoves)
         return true
     }
 
-    private fun insertMove(playerMoves:MutableList<List<String>>,upOrDown:String,alive:Boolean){
-        var playerMoves = playerMoves
+    private fun insertMove(upOrDown:String,alive:Boolean){
         playerMoves = bridgeGame.move(playerMoves,upOrDown,alive)
         outputView.printMap(playerMoves)
     }
