@@ -3,6 +3,6 @@ package bridge.domain.resource
 enum class MoveType (
     val code: String
 ) {
-    MOVE_UP("U"),
-    MOVE_DOWN("D")
+    UP(MOVE_UP),
+    DOWN(MOVE_DOWN);
 }

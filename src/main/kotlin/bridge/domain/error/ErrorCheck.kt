@@ -1,6 +1,6 @@
-package bridge.domain
+package bridge.domain.error
 
-import bridge.domain.ErrorType.Companion.makeError
+import bridge.domain.error.ErrorType.Companion.makeError
 import bridge.domain.resource.*
 
 object ErrorCheck {
@@ -19,7 +19,7 @@ object ErrorCheck {
     }
 
     fun checkValidMovement(move: String) {
-        val option = listOf(MoveType.MOVE_UP.code, MoveType.MOVE_DOWN.code)
+        val option = listOf(MOVE_UP, MOVE_DOWN)
 
         if (!option.contains(move)) {
             makeError(ErrorType.INVALID_OPTION)

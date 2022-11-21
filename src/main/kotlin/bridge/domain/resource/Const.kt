@@ -1,5 +1,8 @@
 package bridge.domain.resource
 
+const val MOVE_UP = "U"
+const val MOVE_DOWN = "D"
+
 const val GAME_RESTART = "R"
 const val GAME_END = "Q"
 
