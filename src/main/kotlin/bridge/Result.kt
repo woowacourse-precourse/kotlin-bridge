@@ -7,7 +7,7 @@ class Result {
     var secondRowResult: ArrayList<String> = arrayListOf()
 
     fun setSuccess() {
-
+        isSuccess = true
     }
 
     fun addResult(playerMove: String, isCrossable: Boolean) {

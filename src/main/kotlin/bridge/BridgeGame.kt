@@ -46,6 +46,7 @@ class BridgeGame {
         for (pos in 0 until bridgeSize) {
             if (!move(pos)) return false
         }
+        result.setSuccess()
         return true
     }
 
