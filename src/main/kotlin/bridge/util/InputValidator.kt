@@ -2,6 +2,7 @@ package bridge.util
 
 import bridge.QUIT_INPUT
 import bridge.RETRY_INPUT
+import bridge.model.data.Direction
 
 class InputValidator {
 
