@@ -25,37 +25,13 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap(bridge: List<String>, userStep: List<Boolean>) {
-        val printValue = determineMap(bridge, userStep)
-
+    fun printMap(printValue: MutableList<MutableList<String>>) {
         for (line in 1 downTo 0) {
             print(MapPrint.START.symbol)
             printMapInner(printValue, line)
             println(MapPrint.END.symbol)
         }
         println()
-    }
-
-    private fun determineMap(bridge: List<String>, userStep: List<Boolean>): MutableList<MutableList<String>> {
-        val printValue = mutableListOf<MutableList<String>>()
-        val converter = mapOf("U" to 1, "D" to 0)
-
-        for (index in userStep.indices) {
-            val direction = converter[bridge[index]]!!
-            val result = determineOX(userStep[index], direction)
-            printValue.add(result)
-        }
-        return printValue
-    }
-
-    private fun determineOX(userAnswer: Boolean, direction: Int): MutableList<String> {
-        val result = mutableListOf(" ", " ")
-        if (userAnswer) {
-            result[direction] = MapPrint.CORRECT_ANSWER.symbol
-            return result
-        }
-        result[1 - direction] = MapPrint.WRONG_ANSWER.symbol
-        return result
     }
 
     private fun printMapInner(printValue: MutableList<MutableList<String>>, line: Int) {
@@ -71,9 +47,9 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(bridge: List<String>, userStep: List<Boolean>, count: Int) {
+    fun printResult(printValue: MutableList<MutableList<String>>, userStep: List<Boolean>, count: Int) {
         printMessage(RESULT_MESSAGE)
-        printMap(bridge, userStep)
+        printMap(printValue)
         val converter = mapOf(true to SUCCESS, false to FAIL)
         println(RESULT_SUCCESS_OR_FAIL + converter[userStep.last()])
         println(RESULT_TRY_COUNT + count)

@@ -1,5 +1,8 @@
 package bridge
 
+import bridge.constants.CORRECT_ANSWER
+import bridge.constants.WRONG_ANSWER
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -14,6 +17,27 @@ class BridgeGame {
         if (bridge == moveDirection)
             return true
         return false
+    }
+
+    fun determineMap(bridge: List<String>, userStep: List<Boolean>): MutableList<MutableList<String>> {
+        val printValue = mutableListOf<MutableList<String>>()
+        val converter = mapOf("U" to 1, "D" to 0)
+        for (index in userStep.indices) {
+            val direction = converter[bridge[index]]!!
+            val result = determineOX(userStep[index], direction)
+            printValue.add(result)
+        }
+        return printValue
+    }
+
+    private fun determineOX(userAnswer: Boolean, direction: Int): MutableList<String> {
+        val result = mutableListOf(" ", " ")
+        if (userAnswer) {
+            result[direction] = CORRECT_ANSWER
+            return result
+        }
+        result[1 - direction] = WRONG_ANSWER
+        return result
     }
 
     /**

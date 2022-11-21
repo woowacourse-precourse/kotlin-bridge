@@ -13,13 +13,14 @@ enum class MapPrint(val symbol: String) {
     START("[ "),
     END(" ]"),
     SEPARATOR(" | "),
-    CORRECT_ANSWER("O"),
-    WRONG_ANSWER("X")
 }
 
 enum class BridgeSize(val size: Int) {
     START(3), END(20)
 }
+
+const val CORRECT_ANSWER = "O"
+const val WRONG_ANSWER = "X"
 
 const val SUCCESS = "성공"
 const val FAIL = "실패"

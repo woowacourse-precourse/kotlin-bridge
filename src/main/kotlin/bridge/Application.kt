@@ -6,11 +6,11 @@ fun main() {
     OutputView().printMessage(START_MESSAGE, BRIDGE_SIZE_MESSAGE)
     val size = InputView().readBridgeSize()
     val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
-
     val userStep = mutableListOf<Boolean>()
     val count = game(bridge, userStep)
 
-    OutputView().printResult(bridge, userStep, count)
+    val printValue = BridgeGame().determineMap(bridge, userStep)
+    OutputView().printResult(printValue, userStep, count)
 }
 
 fun game(bridge: List<String>, userStep: MutableList<Boolean>): Int {
@@ -26,14 +26,18 @@ fun game(bridge: List<String>, userStep: MutableList<Boolean>): Int {
 fun move(bridge: List<String>, userStep: MutableList<Boolean>): Boolean {
     for (index in bridge) {
         OutputView().printMessage(MOVE_MESSAGE)
-        val moveDirection = InputView().readMoving()
-        val successOrFail = BridgeGame().move(index, moveDirection)
-        userStep.add(successOrFail)
-        OutputView().printMap(bridge, userStep)
-        if (!successOrFail)
+        val answer = checkAnswer(index, userStep, bridge)
+        if (!answer)
             return fail()
     }
     return false
+}
+
+fun checkAnswer(index: String, userStep: MutableList<Boolean>, bridge: List<String>): Boolean {
+    val successOrFail = BridgeGame().move(index, InputView().readMoving())
+    userStep.add(successOrFail)
+    OutputView().printMap(BridgeGame().determineMap(bridge, userStep))
+    return successOrFail
 }
 
 fun fail(): Boolean {
