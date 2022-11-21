@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.util.BridgeMoving
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -11,18 +13,48 @@ class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
-    val userMovingResult = mutableListOf<Pair<String,Boolean>>()
+    val userMovingResult = mutableListOf<Pair<String, Boolean>>()
     var presentPosition = INITIALIZE_TO_ZERO
-    var gameTryCount = INITIALIZE_TO_ZERO
+    var gameTryCount = INITIALIZE_TO_ONE
 
-    fun move(userChoice:String, bridge: Bridge): GameResult {
-        if(bridge.matchUserChoice(userChoice,presentPosition)) {
-            userMovingResult.add(Pair(userChoice,true))
+    fun move(userChoice: String, bridge: Bridge): GameResult {
+        if (bridge.matchUserChoice(userChoice, presentPosition)) {
+            userMovingResult.add(Pair(userChoice, true))
             presentPosition++
             return GameResult.SUCCESS
         }
-        userMovingResult.add(Pair(userChoice,false))
+        userMovingResult.add(Pair(userChoice, false))
         return GameResult.FAILURE
+    }
+
+    fun getMap(movingMatchResults: List<Pair<String, Boolean>>): String {
+        return getUpperMap(movingMatchResults) + "\n" + getLowerMap(movingMatchResults)
+    }
+
+    fun getUpperMap(movingMatchResults: List<Pair<String, Boolean>>): String {
+        var result = START_BRIDGE
+        movingMatchResults.forEachIndexed { index, movingMatchResult ->
+            result = result.plus(getStepResult(movingMatchResult, BridgeMoving.UP.character))
+            if (index != movingMatchResults.size - 1) result = result.plus(DIVIDING_LINE)
+        }
+        return result.plus(END_BRIDGE)
+    }
+
+    fun getLowerMap(movingMatchResults: List<Pair<String, Boolean>>): String {
+        var result = START_BRIDGE
+        movingMatchResults.forEachIndexed { index, movingMatchResult ->
+            result = result.plus(getStepResult(movingMatchResult, BridgeMoving.DOWN.character))
+            if (index != movingMatchResults.size - 1) result = result.plus("|")
+        }
+        return result.plus(END_BRIDGE)
+    }
+
+    fun getStepResult(movingMatchResult: Pair<String, Boolean>, bridgeLocation: String): String {
+        val moving = movingMatchResult.first
+        val isCrossable = movingMatchResult.second
+        if (moving == bridgeLocation && isCrossable) return (CROSSABLE_BRIDGE)
+        if (moving == bridgeLocation && !isCrossable) return (NON_CROSSABLE_BRIDGE)
+        return UN_CHOSEN_BRIDGE
     }
 
     /**
@@ -34,15 +66,22 @@ class BridgeGame {
     fun retry() {
         presentPosition = INITIALIZE_TO_ZERO
         userMovingResult.clear()
-        gameTryCount ++
+        gameTryCount++
     }
 
-    enum class GameResult{
+    enum class GameResult {
         SUCCESS,
         FAILURE
     }
 
     companion object {
+        const val START_BRIDGE = "["
+        const val END_BRIDGE = "]"
+        const val CROSSABLE_BRIDGE = " O "
+        const val NON_CROSSABLE_BRIDGE = " X "
+        const val UN_CHOSEN_BRIDGE = "   "
+        const val DIVIDING_LINE = "|"
         const val INITIALIZE_TO_ZERO = 0
+        const val INITIALIZE_TO_ONE = 1
     }
 }
