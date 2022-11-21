@@ -4,6 +4,7 @@ import bridge.BridgeGameStatus
 import bridge.BridgeMaker
 import bridge.domain.BridgeGame
 import bridge.model.BridgeDTO
+import bridge.model.BridgeGameMetadataDTO
 import bridge.view.InputView
 import bridge.view.OutputView
 
@@ -55,7 +56,7 @@ class BridgeGameController(
             outputView.printMap(metadata)
             outputView.printStepInterval()
 
-            goToNextStep(metadata.getGameStatus())
+            goToNextStep(metadata)
         } while (metadata.getGameStatus() == BridgeGameStatus.CONTINUE)
     }
 
@@ -69,24 +70,26 @@ class BridgeGameController(
         return input
     }
 
-    private fun goToNextStep(gameStatus: BridgeGameStatus) {
+    private fun goToNextStep(metadata: BridgeGameMetadataDTO) {
+        val gameStatus = metadata.getGameStatus()
+
         if (gameStatus == BridgeGameStatus.FAILURE) {
-            stop()
+            stop(metadata)
         }
 
         if (gameStatus == BridgeGameStatus.SUCCESS) {
-            finish()
+            finish(metadata)
         }
     }
 
-    private fun stop() {
+    private fun stop(metadata: BridgeGameMetadataDTO) {
         val command = getGameCommand()
 
         if (command == "R") {
             restart()
             return
         }
-        finish()
+        finish(metadata)
     }
 
     private fun getGameCommand(): String {
@@ -105,5 +108,7 @@ class BridgeGameController(
         play()
     }
 
-    private fun finish() {}
+    private fun finish(metadata: BridgeGameMetadataDTO) {
+        outputView.printResult(metadata)
+    }
 }
