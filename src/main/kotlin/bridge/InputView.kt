@@ -20,7 +20,7 @@ class InputView {
         val userInputNumber =inputUser()
         try {
             bridge.util.InputVaildator().checkNullBridgeSize(userInputNumber)
-            bridge.util.InputVaildator().checkNullBridgeSize(userInputNumber)
+            bridge.util.InputVaildator().checkBridgeSizePatten(userInputNumber)
         }catch (e:java.lang.IllegalArgumentException) {
             println("[ERROR]")
             return readBridgeSize()
