@@ -32,4 +32,15 @@ class InputVaildator {
             }
         }
     }
+
+    fun checkSelectBridgePatten(checkOverlap: String) {
+        val messageform = "^[U,D]*$"
+        val pattern: Pattern = Pattern.compile(messageform)
+        val matcher: Matcher = pattern.matcher(checkOverlap)
+        if (matcher.find().toString() == "false") {
+            println("[ERROR]")
+            throw IllegalArgumentException()
+        }
+
+    }
 }
