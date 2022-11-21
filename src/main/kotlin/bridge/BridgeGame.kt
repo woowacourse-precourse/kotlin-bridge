@@ -43,13 +43,9 @@ class BridgeGame(private val bridges: List<String>) {
 
     private fun checkSide(side: String, result: String) {
         when (side) {
-            Enum.SIDE.DOWN.command -> {
-                addDownSide(result)
-            }
+            Enum.SIDE.DOWN.command -> addDownSide(result)
 
-            Enum.SIDE.UP.command -> {
-                addUpSide(result)
-            }
+            Enum.SIDE.UP.command -> addUpSide(result)
         }
     }
 
