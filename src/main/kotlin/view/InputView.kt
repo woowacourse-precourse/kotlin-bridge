@@ -51,4 +51,5 @@ class InputView {
         }
         throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
     }
+
 }

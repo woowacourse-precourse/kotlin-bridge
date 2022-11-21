@@ -87,7 +87,6 @@ class BridgeGame {
         }
     }
 
-
     private fun result(numberOfGames:Int){
         println(MESSAGE_RESULT_MAP)
         outputView.printMap(playMap)

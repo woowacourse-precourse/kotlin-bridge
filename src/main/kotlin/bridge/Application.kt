@@ -8,6 +8,7 @@ import java.lang.IllegalArgumentException
 private var bridgeSize:Int ?= null
 private val outputView = OutputView()
 private val inputView = InputView()
+private val MESSAGE_ERROR = "[ERROR]"
 
 fun main() {
     // 게임 시작 메시지 출력
@@ -24,7 +25,7 @@ private fun bridgeSize(){
     try{
         bridgeSize = inputView.readBridgeSize()
     }catch (e: IllegalArgumentException){
-        println("[ERROR] $e")
+        println("$MESSAGE_ERROR $e")
     }
 }
 
@@ -33,6 +34,6 @@ private fun bridgeGame(){
     try {
         bridgeSize?.let { bridgeGame.move(it) }
     }catch (e: IllegalArgumentException){
-        println("[ERROR] $e")
+        println("$MESSAGE_ERROR $e")
     }
 }
