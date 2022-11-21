@@ -24,5 +24,9 @@ enum class BridgeMessage(val word: String) {
     InputNumberError("[ERROR] 숫자를 입력해주십시오."),
     SizeError("[ERROR] 적합한 사이즈가 아닙니다."),
     InputMovingError("[ERROR] U나 D 이외의 값이 들어왔습니다."),
-    InputRetryError("[ERROR] R이나 Q 이외의 값이 들어왔습니다.")
+    InputRetryError("[ERROR] R이나 Q 이외의 값이 들어왔습니다."),
+    WALK_AND_PASS(" O |"),
+    DO_NOT_WALK("   |"),
+    WALK_AND_FAIL(" X |"),
+    QUIT("Q")
 }

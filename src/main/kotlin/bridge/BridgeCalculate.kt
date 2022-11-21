@@ -1,8 +1,5 @@
 package bridge
 
-const val WALK_AND_PASS = " O |"
-const val DO_NOT_WALK = "   |"
-const val WALK_AND_FAIL = " X |"
 
 object BridgeCalculate {
 
@@ -16,9 +13,9 @@ object BridgeCalculate {
         var upLineMap = BridgeMessage.MapStart.word
         for (count: Int in BridgeParameter.StartValue.value until successRecord.size) {
             upLineMap += when {
-                bridge[count] == BridgeMessage.Up.word && successRecord[count] -> WALK_AND_PASS
-                (bridge[count] == BridgeMessage.Up.word && !successRecord[count]) || (bridge[count] == BridgeMessage.Down.word && successRecord[count]) -> DO_NOT_WALK
-                else -> WALK_AND_FAIL
+                bridge[count] == BridgeMessage.Up.word && successRecord[count] -> BridgeMessage.WALK_AND_PASS.word
+                (bridge[count] == BridgeMessage.Up.word && !successRecord[count]) || (bridge[count] == BridgeMessage.Down.word && successRecord[count]) -> BridgeMessage.DO_NOT_WALK.word
+                else -> BridgeMessage.WALK_AND_FAIL.word
             }
         }
         return mapEnd(upLineMap)
@@ -28,9 +25,9 @@ object BridgeCalculate {
         var downLineMap = BridgeMessage.MapStart.word
         for (count: Int in BridgeParameter.StartValue.value until successRecord.size) {
             downLineMap += when {
-                bridge[count] == BridgeMessage.Down.word && successRecord[count] -> WALK_AND_PASS
-                (bridge[count] == BridgeMessage.Down.word && !successRecord[count]) || (bridge[count] == BridgeMessage.Up.word && successRecord[count]) -> DO_NOT_WALK
-                else -> WALK_AND_FAIL
+                bridge[count] == BridgeMessage.Down.word && successRecord[count] -> BridgeMessage.WALK_AND_PASS.word
+                (bridge[count] == BridgeMessage.Down.word && !successRecord[count]) || (bridge[count] == BridgeMessage.Up.word && successRecord[count]) -> BridgeMessage.DO_NOT_WALK.word
+                else -> BridgeMessage.WALK_AND_FAIL.word
             }
         }
         return mapEnd(downLineMap)

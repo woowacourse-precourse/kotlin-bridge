@@ -3,8 +3,6 @@ package bridge
 import camp.nextstep.edu.missionutils.Console
 
 
-const val QUIT = "Q"
-
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -29,7 +27,7 @@ class InputView {
         fun readGameCommand(): Boolean {
             val userInput = Console.readLine()
             BridgeException.isitRorQ(userInput)
-            return userInput == QUIT
+            return userInput == BridgeMessage.QUIT.word
         }
     }
     /**
