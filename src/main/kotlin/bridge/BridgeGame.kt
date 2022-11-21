@@ -28,6 +28,10 @@ class BridgeGame {
         return movingList.filter { it.key == position }.values.flatten()
     }
 
+    fun transformedList(position: List<String>): String {
+        return position.joinToString(" | ", "[ ", " ]")
+    }
+
     private fun checkSpace(space: String, ox: String) {
         if (space == UP) {
             addToList(ox, BLANK)

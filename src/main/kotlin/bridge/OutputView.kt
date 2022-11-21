@@ -18,13 +18,9 @@ class OutputView {
         print("총 시도한 횟수: $numberOfAttempts")
     }
 
-    fun transformedList(position: List<String>): String {
-        return position.joinToString(" | ", "[ ", " ]")
-    }
-
     private fun printMap(up: List<String>, down: List<String>) {
-        println(transformedList(up))
-        println(transformedList(down))
+        println(bridgeGame.transformedList(up))
+        println(bridgeGame.transformedList(down))
         println()
     }
 }
