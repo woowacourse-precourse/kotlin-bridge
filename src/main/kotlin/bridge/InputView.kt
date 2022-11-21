@@ -4,10 +4,11 @@ import bridge.BridgeGameRule.BRIDGE_MAXIMUM_LENGTH
 import bridge.BridgeGameRule.BRIDGE_MINIMUM_LENGTH
 import bridge.BridgePhrases.BRIDGE_SIZE_INPUT_NOT_IN_CORRECT_RANGE_ERROR
 import bridge.BridgePhrases.BRIDGE_SIZE_INPUT_TYPE_ERROR
+import camp.nextstep.edu.missionutils.Console.*
 import java.util.regex.Pattern
 
 class InputView {
-    fun readBridgeSize(): String = camp.nextstep.edu.missionutils.Console.readLine()
+    fun readBridgeSize(): String = readLine()
 
     fun getValidateBridgeSize(userInput: String): Int {
         require(isNumber(userInput)) { BRIDGE_SIZE_INPUT_TYPE_ERROR }
@@ -25,9 +26,7 @@ class InputView {
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
-    fun readMoving(): String {
-        return ""
-    }
+    fun readMoving(): String = readLine()
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
@@ -35,4 +34,6 @@ class InputView {
     fun readGameCommand(): String {
         return ""
     }
+
+    private fun isAlphabet(input: String): Boolean = Pattern.matches("^[a-z|A-Z]+$", input)
 }
