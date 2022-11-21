@@ -55,7 +55,11 @@
 - [ ] `retry` : 재시작
 
 ### `BridgeMarker` _클래스_
-- [ ] `makeBridge` : 입력받은 길이에 해당하는 다리모양
+- [x] `makeBridge` : 입력받은 길이에 해당하는 다리모양
+
+### `Bridge` _클래스_
+- [x] `addUserBrdige` : 움직일 칸을 입력받아 사용자 다리에 추가
+- [ ] `bridgeComparison` : 사용자 다리와 컴퓨터 다리 비교
 ---
 ## ▶ 프로그래밍 요구 사항
 - [ ] `ApplicationTest`의 모든 테스트 성공
