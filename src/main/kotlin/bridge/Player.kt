@@ -23,7 +23,7 @@ class Player(
             gameSuccess = moveResult == 'O'
             if (moveResult == 'X') break
         }
-        if (gameView.readGameCommand() == GAME_COMMAND_RESTART) reStart()
+        if (!gameSuccess && gameView.readGameCommand() == GAME_COMMAND_RESTART) reStart()
         else finish(bridgeGame.getPlayCount(), gameSuccess)
     }
 
