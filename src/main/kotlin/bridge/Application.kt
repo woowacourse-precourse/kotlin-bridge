@@ -1,36 +1,49 @@
 package bridge
 
 fun main() {
-    printStartGame()
+    printStartBridgeGame()
+    var gamePlayCount = 1
     val inputView = InputView()
+    val bridge = settingBridgeGame(inputView)
+    while (true) {
+        val gameIsSuccess = processBridgeGame(inputView, bridge)
+        if (gameIsSuccess) {
+
+        }
+    }
+
+
+
+}
+
+
+fun processBridgeGame(inputView: InputView, bridge: List<String>): Boolean {
+    var moveCount = 0
+    val userMoveDirections = mutableListOf<String>()
+    while (moveCount < bridge.size) {
+        val userMoveDirection = inputView.readMoving()
+        userMoveDirections.add(userMoveDirection)
+        val outputView = OutputView(bridge, userMoveDirections, moveCount)
+        outputView.printMap()
+        if (userMoveDirection != bridge[moveCount]) {
+            return false
+        }
+        moveCount += 1
+    }
+    return true
+}
+
+fun settingBridgeGame(inputView: InputView): List<String> {
+    printStartBridgeGame()
     val bridgeSize = inputView.readBridgeSize()
     val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
     val bridge = bridgeMaker.makeBridge(bridgeSize)
     println(bridge)
-
-
-    var moveCount = 0
-    val userMoveDirections = mutableListOf<String>()
-
-    while (moveCount < bridgeSize) {
-        val userMoveDirection = inputView.readMoving()
-        userMoveDirections.add(userMoveDirection)
-
-        val outputView = OutputView(bridge, userMoveDirections, moveCount)
-        outputView.printMap()
-
-        moveCount += 1
-
-    }
-//    inputView.readMoving()
-//    val outputView = OutputView(bridge)
-
-    //inputView.readMoving()
-    //inputView.readGameCommand()
-
+    return bridge
 }
 
 
-fun printStartGame() {
+fun printStartBridgeGame() {
     println(BrideGameConstValue.GAME_START_MESSAGE)
 }
+
