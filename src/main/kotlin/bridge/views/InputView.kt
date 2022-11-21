@@ -1,5 +1,6 @@
 package bridge.views
 
+import bridge.constants.Exception.Companion.EXCEPTION_INVALID_MOVING
 import bridge.constants.Exception.Companion.EXCEPTION_INVALID_RANGE_NUMBER
 import bridge.constants.Exception.Companion.EXCEPTION_IS_NOT_NUMBER
 import camp.nextstep.edu.missionutils.Console
@@ -34,7 +35,17 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        outputView.printInputMoving()
+        val moving = Console.readLine()
+        checkMoving(moving)
+        return moving.uppercase()
+    }
+
+    fun checkMoving(moving: String) {
+        val valid = listOf<String>("U", "u", "D", "d")
+        if (!valid.contains(moving)) {
+            throw IllegalArgumentException(EXCEPTION_INVALID_MOVING)
+        }
     }
 
     /**
