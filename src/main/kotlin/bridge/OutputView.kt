@@ -34,20 +34,20 @@ class OutputView {
     }
 
     private fun getUpOX(moveValue: String, answerValue: String): String {
-        if (moveValue === "U" && answerValue === "U") {
-            return " O "
-        }
-        if (moveValue == "U" && answerValue == "D") {
+        if (moveValue == "U") {
+            if (moveValue == answerValue) {
+                return " O "
+            }
             return " X "
         }
         return "   "
     }
 
     private fun getDownOX(moveValue: String, answerValue: String): String {
-        if (moveValue === "D" && answerValue === "D") {
-            return " O "
-        }
-        if (moveValue == "D" && answerValue == "U") {
+        if (moveValue == "D") {
+            if (answerValue == "D") {
+                return " O "
+            }
             return " X "
         }
         return "   "
