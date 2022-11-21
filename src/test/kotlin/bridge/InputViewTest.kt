@@ -76,7 +76,46 @@ class InputViewTest {
         }
     }
 
-    @Test
-    fun readGameCommand() {
+    @Nested
+    inner class TestReadGameCommand{
+        @Test
+        fun `소문자 정상 처리되는지 테스트(r)`() {
+            assertThat(inputView.getValidateGameCommend("r")).isEqualTo("R")
+        }
+
+        @Test
+        fun `소문자 정상 처리되는지 테스트(q)`() {
+            assertThat(inputView.getValidateGameCommend("q")).isEqualTo("Q")
+        }
+
+        @Test
+        fun `대문자 정상 처리되는지 테스트(R)`() {
+            assertThat(inputView.getValidateGameCommend("R")).isEqualTo("R")
+        }
+
+        @Test
+        fun `대문자 정상 처리되는지 테스트(Q)`() {
+            assertThat(inputView.getValidateGameCommend("Q")).isEqualTo("Q")
+        }
+
+        @Test
+        fun `r,q 이외의 알파벳 입력(소문자)`() {
+            assertThrows<IllegalArgumentException> { inputView.getValidateGameCommend("a") }
+        }
+
+        @Test
+        fun `r,q 이외의 알파벳 입력(대문자)`() {
+            assertThrows<IllegalArgumentException> { inputView.getValidateGameCommend("B") }
+        }
+
+        @Test
+        fun `한글 입력`() {
+            assertThrows<IllegalArgumentException> { inputView.getValidateGameCommend("ㄱ") }
+        }
+
+        @Test
+        fun `특수문자 입력`() {
+            assertThrows<IllegalArgumentException> { inputView.getValidateGameCommend("!") }
+        }
     }
 }
