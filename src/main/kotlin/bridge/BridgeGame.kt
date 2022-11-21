@@ -50,4 +50,8 @@ class BridgeGame {
         bridge = Bridge(bridgeSteps)
     }
 
+    fun makeBridge(bridge: Bridge) {
+        this.bridge = bridge
+    }
+
 }
