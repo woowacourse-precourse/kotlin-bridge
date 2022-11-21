@@ -29,14 +29,15 @@ class OutputView {
         println()
         println(GAME_OVER)
     }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap(upResult: List<String>, downResult: List<String>) {
-        println(upResult.joinToString (separator = " | ", prefix = "[ ", postfix = " ]"))
-        println(downResult.joinToString (separator = " | ", prefix = "[ ", postfix = " ]"))
+        println(upResult.joinToString(separator = " | ", prefix = "[ ", postfix = " ]"))
+        println(downResult.joinToString(separator = " | ", prefix = "[ ", postfix = " ]"))
     }
 
     /**
