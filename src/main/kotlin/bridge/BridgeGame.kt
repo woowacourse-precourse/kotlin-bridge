@@ -7,7 +7,7 @@ class BridgeGame {
 
     private var count: Int = 1
     private var msg = 0
-    private var retryCount = 0
+    private var setBase = 0
     fun guideSet(): List<String> {
         val size = Guide().guideInfo()
         return BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
@@ -29,10 +29,7 @@ class BridgeGame {
             Guide().success(Index,checkBridge)
             Guide().bridgeList(bridgeUpList, bridgeDownList)
             msg += retry(checkBridge, bridgeUpList, bridgeDownList)
-            if (msg >= 1) {
-                count += 1
-                break
-            }
+            if (msg >= 1) break
         }
     }
 
@@ -57,13 +54,25 @@ class BridgeGame {
     fun retry(bridgecheck: List<String>, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>): Int {
         if (bridgeUpList.contains(" X ") || bridgeDownList.contains(" X ")) {
             val restart = Guide().restart()
-            if (restart == "R") startBridge(bridgecheck)
-            if (restart == "Q") Guide().failGuideMsg()
-            retryCount += 1
+            retryRestart(restart,bridgecheck)
+            retryQuit(restart,bridgeUpList,bridgeDownList)
+            setBase += 1
         }
-        return retryCount
+        return setBase
     }
-
+    fun retryRestart(restart:String,bridgeCheck: List<String>){
+        if (restart == "R") {
+            startBridge(bridgeCheck)
+            count += 1
+        }
+    }
+    fun retryQuit(restart:String, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>){
+        if (restart == "Q") {
+            Guide().fail()
+            Guide().bridgeList(bridgeUpList, bridgeDownList)
+            Guide().failGuideMsg()
+        }
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
