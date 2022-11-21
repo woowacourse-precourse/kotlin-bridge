@@ -19,14 +19,19 @@ class BridgeResult(private val size: Int) {
     fun getMovePossible(): Move = movePossible
 
     fun moveUp(mark: String) {
-        upBridge.add(mark)
+        addUpBridge(mark)
         downBridge.add(BLANK_SPACE)
     }
 
     fun moveDown(mark: String) {
+        addUpBridge(BLANK_SPACE)
         downBridge.add(mark)
-        upBridge.add(BLANK_SPACE)
     }
+
+    fun addUpBridge(mark: String) {
+        upBridge.add(mark)
+    }
+
 
     fun upBridgeResult(): String {
         return upBridge.joinToString(
