@@ -5,10 +5,14 @@ import camp.nextstep.edu.missionutils.Console.readLine
 
 class InputView {
 
-    fun readBridgeSize(): String {
+    fun readBridgeSize(): Int {
         println(INPUT_BRIDGE_LENGTH)
 
-        return readLine().trim()
+        val size = readLine().trim()
+        ErrorCheck.checkIsInteger(size)
+        ErrorCheck.checkInRange(size.toInt())
+
+        return size.toInt()
     }
 
     fun readMoving(): String {
