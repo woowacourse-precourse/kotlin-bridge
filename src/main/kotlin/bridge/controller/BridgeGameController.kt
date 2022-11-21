@@ -48,7 +48,13 @@ class BridgeGameController(
     private fun play() {}
 
     private fun getMovement(): String {
-        return ""
+        var input: String
+        do {
+            input = inputView.askMovement()
+            val isValid = validatorController.validateMovement(input)
+        } while (!isValid)
+
+        return input
     }
 
     private fun stop() {}
