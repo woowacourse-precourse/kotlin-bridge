@@ -12,25 +12,39 @@ class OutViewTest {
 
     companion object {
         @JvmStatic
-        fun bridge() = listOf(
-            Arguments.of("[ O ]", "[   ]", listOf("U", "D", "D"), 0, "U"),
-            Arguments.of("[   ]", "[ X ]", listOf("U", "D", "D"), 0, "D"),
-            Arguments.of("[ O |   ]", "[   | O ]", listOf("U", "D", "D"), 1, "D"),
-            Arguments.of("[ O |   ]", "[   | X ]", listOf("U", "D", "D"), 1, "U"),
+        fun upBridge() = listOf(
+            Arguments.of(" O ", listOf("U", "D", "D"), 0, "U"),
+            Arguments.of("   ", listOf("U", "D", "D"), 0, "D"),
+        )
+
+        @JvmStatic
+        fun downBridge() = listOf(
+            Arguments.of("   ", listOf("U", "D", "D"), 0, "U"),
+            Arguments.of(" X ", listOf("U", "D", "D"), 0, "D"),
         )
 
     }
 
     @ParameterizedTest
-    @MethodSource("bridge")
-    fun `첫번째 라운드 올바른 출력 테스트`(
+    @MethodSource("upBridge")
+    fun `위쪽 리스트 올바른 출력 테스트`(
         upPrint: String,
-        downPrint: String,
-        bridge: List<String>,
+        upBridge: List<String>,
         round: Int,
         direction: String,
     ) {
-        assertThat(upPrint + "\n" + downPrint).isEqualTo(OutputValidator.validatePrintMap(bridge, round, direction))
+        assertThat(upPrint).isEqualTo(OutputValidator.validateUpSideMap(upBridge, round, direction))
+    }
+
+    @ParameterizedTest
+    @MethodSource("downBridge")
+    fun `아래쪽 리스트 올바른 출력 테스트`(
+        downPrint: String,
+        downBridge: List<String>,
+        round: Int,
+        direction: String,
+    ) {
+        assertThat(downPrint).isEqualTo(OutputValidator.validateDownSideMap(downBridge, round, direction))
     }
 
     @Test
