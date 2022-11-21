@@ -1,7 +1,9 @@
 package bridge
 
+import bridge.View.InputView
 import bridge.computer.BridgeMaker
 import bridge.computer.BridgeRandomNumberGenerator
+import bridge.computer.ErrorCheck
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
@@ -20,4 +22,20 @@ class LottoTest {
             BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(1)
         }
     }
+
+    @Test
+    fun `무브 값 입력 시 잘못된 문자를 넣으면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            ErrorCheck().MoveKeyWordisDiffer("Z")
+        }
+    }
+
+    @Test
+    fun `재시작 값 입력 시 잘못된 문자를 넣으면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            ErrorCheck().ReTrykeyWordld("Z")
+        }
+    }
+
+
 }
