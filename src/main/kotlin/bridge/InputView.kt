@@ -36,7 +36,7 @@ class InputView {
         return restart
     }
 
-    fun startGame(){
+    fun startGame() {
         println(UI.START_MESSAGE)
     }
 

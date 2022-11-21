@@ -12,9 +12,9 @@ object ExceptionHandler {
     }
 
     fun checkValidState(state: Int) {
-        try{
+        try {
             require(state == 1 || state == 2) { Message.OutputViewEnum.INVALID_STATE }
-        }catch (e: IllegalArgumentException){
+        } catch (e: IllegalArgumentException) {
             print(e)
         }
     }

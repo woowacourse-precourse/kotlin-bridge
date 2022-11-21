@@ -3,7 +3,7 @@ package bridge
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-class BridgeMakerTest{
+class BridgeMakerTest {
     @Test
     fun `다리 생성 테스트`() {
         val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 0, 0))

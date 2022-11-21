@@ -12,6 +12,7 @@ object Message {
 
     enum class OutputViewEnum(private val msg: String) {
         INVALID_STATE("0 또는 1이 아닙니다.");
+
         override fun toString(): String = msg.applyPrefix()
     }
 }
