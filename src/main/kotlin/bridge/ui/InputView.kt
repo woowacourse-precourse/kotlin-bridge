@@ -36,9 +36,9 @@ class InputView {
         while(true) {
             println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
             try{
-            val gameCommand = Console.readLine()
-            gameCommand.inputRetryQuitException()
-            return gameCommand
+                val gameCommand = Console.readLine()
+                gameCommand.inputRetryQuitException()
+                return gameCommand
             }catch(e:IllegalArgumentException){
                 println(e.message)
             }
