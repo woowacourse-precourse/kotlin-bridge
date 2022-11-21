@@ -61,10 +61,10 @@ class BridgeGame {
         return position == bridgeSize
     }
 
-    fun gameOver(successOrFail: Boolean) {
+    fun gameOver(isSuccess: Boolean) {
         // 최종 게임 결과를 알려준다.
         output.printResult()
-        output.printMap(bridgeMap, position - 1, successOrFail)
-        output.printTryingCount(successOrFail, tryingCount)
+        output.printMap(bridgeMap, position - 1, isSuccess)
+        output.printTryingCount(isSuccess, tryingCount)
     }
 }

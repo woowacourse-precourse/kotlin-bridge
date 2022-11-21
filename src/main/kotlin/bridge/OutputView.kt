@@ -1,5 +1,8 @@
 package bridge
 
+import Utils.Constants.DOWN
+import Utils.Constants.UP
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -24,49 +27,41 @@ class OutputView {
     private fun makeUpperPastPath(bridgeMap: List<String>, position: Int, isMovable: Boolean): String {
         val upperBridge = StringBuilder()
         for (i in 0 until position) {
-            if (bridgeMap[i] == UP) {
-                upperBridge.append(O + SECTOR)
-            } else if (bridgeMap[i] == DOWN) {
-                upperBridge.append(FLAG_DOWN_O + SECTOR)
-            }
+            if (bridgeMap[i] == UP) upperBridge.append(O)
+            else if (bridgeMap[i] == DOWN) upperBridge.append(FLAG_DOWN_O)
+
+            upperBridge.append(SECTOR)
         }
-        val lastPath = addLastPath(bridgeMap[position], isMovable)
+        val lastPath = getLastPath(bridgeMap[position], isMovable)
         upperBridge.append(lastPath)
 
         return upperBridge.toString()
     }
 
-    private fun addLastPath(lastMoving: String, isMovable: Boolean): String {
+    private fun getLastPath(lastMoving: String, isMovable: Boolean): String {
         var lastPath = String()
+        when (lastMoving) {
+            UP -> lastPath =
+                if (isMovable) O else X
 
-        if (lastMoving == UP && isMovable) {
-            lastPath = O
-        } else if (lastMoving == UP && isMovable.not()) {
-            lastPath = X
-        } else if (lastMoving == DOWN && isMovable) {
-            lastPath = FLAG_DOWN_O
-        } else if (lastMoving == DOWN && isMovable.not()) {
-            lastPath = FLAG_DOWN_X
+            DOWN -> lastPath =
+                if (isMovable) FLAG_DOWN_O else FLAG_DOWN_X
         }
 
         return lastPath
     }
-
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-
-    // 인자 줄여보기, successOrFail 인자를 boolean으로 바꿔서 처리
     fun printResult() {
         println(GAME_OVER_RESULT)
     }
 
-    fun printTryingCount(successOrFail: Boolean, count: Int) {
-        val result = if (successOrFail) "성공"
-        else "실패"
+    fun printTryingCount(isSuccess: Boolean, count: Int) {
+        val result = if (isSuccess) SUCCESS else FAIL
 
         println(GAME_SUCCESS_OR_FAIL.format(result))
         println(TOTAL_TRYING_COUNT.format(count))
@@ -101,9 +96,6 @@ class OutputView {
 
         const val MAP_BRACKET = "[ %s ]"
 
-        const val UP = "U"
-        const val DOWN = "D"
-
         const val O = "O"
         const val X = "X"
         const val SECTOR = " | "
@@ -111,5 +103,7 @@ class OutputView {
         const val FLAG_DOWN_O = "1"
         const val FLAG_DOWN_X = "2"
 
+        const val SUCCESS = "성공"
+        const val FAIL = "실패"
     }
 }
