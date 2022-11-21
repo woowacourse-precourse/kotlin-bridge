@@ -33,7 +33,13 @@ class BridgeGame(private val bridge: Bridge) {
         return isCorrect
     }
 
-    fun retry() {}
+    fun retry() {
+        check(!isRunning && !isCompleted) { "Game is already running or completed" }
+
+        round = 0
+        wrongCount = 0
+        histories.push(GameHistory())
+    }
 
     class Builder {
 
