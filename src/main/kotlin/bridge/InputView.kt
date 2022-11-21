@@ -5,11 +5,13 @@ import constant.Message
 class InputView {
     fun readBridgeSize(): Int {
         var input: String?
+        var numberOfRetry = 0
         do {
             println(Message.BRIDGE_SIZE_INPUT.message)
             input = readLine()
             val retry = BridgeSizeChecker(input).checkAll()
-            println()
+            numberOfRetry++
+            if (numberOfRetry > 4) return 0
         } while (retry)
         return input?.toInt() ?: 0
     }
