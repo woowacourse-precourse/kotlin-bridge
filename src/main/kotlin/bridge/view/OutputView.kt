@@ -1,5 +1,6 @@
 package bridge.view
 
+import bridge.BridgeGameStatus
 import bridge.MovementStatus
 import bridge.model.BridgeGameMetadataDTO
 
@@ -45,7 +46,15 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(metadata: BridgeGameMetadataDTO) {}
+    fun printResult(metadata: BridgeGameMetadataDTO) {
+        println(GAME_RESULT_ANNOUNCEMENT)
+        printMap(metadata)
+
+        println()
+
+        printGameStatus(metadata.getGameStatus())
+        printTrialCount(metadata.getTrialCount())
+    }
 
     private fun addBridge(movementStatuses: List<MovementStatus>) {
         for ((index, movementStatus) in movementStatuses.withIndex()) {
@@ -67,12 +76,23 @@ class OutputView {
         upperBridge += "$NOT_SELECTED"
     }
 
+    private fun printGameStatus(gameStatus: BridgeGameStatus) {
+        println("$GAME_STATUS_ANNOUNCEMENT ${gameStatus.message}")
+    }
+
+    private fun printTrialCount(trialCount: Int) {
+        println("$GAME_TRIAL_COUNT_ANNOUNCEMENT $trialCount")
+    }
+
     companion object {
         const val START_OF_BRIDGE = "[ "
         const val START_OF_ERROR_MESSAGE = "[ERROR]"
         const val BRIDGE_SEPARATION = " | "
         const val END_OF_BRIDGE = " ]"
         const val GAME_START_ANNOUNCEMENT = "다리 건너기 게임을 시작합니다."
+        const val GAME_RESULT_ANNOUNCEMENT = "최종 게임 결과"
+        const val GAME_STATUS_ANNOUNCEMENT = "게임 성공 여부:"
+        const val GAME_TRIAL_COUNT_ANNOUNCEMENT = "총 시도한 횟수:"
         const val NOT_SELECTED = " "
     }
 }
