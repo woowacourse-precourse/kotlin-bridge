@@ -3,20 +3,20 @@ package bridge.util
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
-class InputVaildator {
+class InputValidator {
 
-    fun checkNullBridgeSize(userInputNumber:String?){
+    fun checkNullBridgeSize(userInputNumber: String?) {
         userInputNumber ?: println("[Error]")
-        if (userInputNumber!!.isEmpty()||userInputNumber.length>2){
+        if (userInputNumber!!.isEmpty() || userInputNumber.length > 2) {
             println("[ERROR] 입력 길이가 초과하거나 부족합니다.")
             throw IllegalArgumentException()
         }
     }
 
     //영어 문구 입력 널 값 길이 확인 기능
-    fun checkNullBridgeString(userInputNumber:String?){
+    fun checkNullBridgeString(userInputNumber: String?) {
         userInputNumber ?: println("[Error]")
-        if (userInputNumber!!.isEmpty()||userInputNumber.length>1){
+        if (userInputNumber!!.isEmpty() || userInputNumber.length > 1) {
             println("[ERROR] 입력은 한자리의 양식만 가능합니다.")
             throw IllegalArgumentException()
         }
@@ -25,7 +25,7 @@ class InputVaildator {
     fun checkBridgeSizePatten(checkOverlap: String) {
         val messageform = "^[0-9]*$"
         val pattern: Pattern = Pattern.compile(messageform)
-        if (checkOverlap.toInt()<3||checkOverlap.toInt()>20) throw java.lang.IllegalArgumentException()
+        if (checkOverlap.toInt() < 3 || checkOverlap.toInt() > 20) throw java.lang.IllegalArgumentException()
         for (inputNum in checkOverlap) {
             val matcher: Matcher = pattern.matcher(inputNum.toString())
             if (matcher.find().toString() == "false") {
