@@ -27,10 +27,10 @@
 
 ## InputErrorCheck.kt
 
-- [ ] readBridgeSize : 숫자가 아닌 경우 예외처리 메서드 추가
-- [ ] readBridgeSize : 3 이상 20 이하가 아닌 숫자를 입력하는 경우 예외처리 메서드 추가
-- [ ] readMoving : U 또는 D가 아닌 경우 예외처리 메서드 추가
-- [ ] readGameCommand : R 또는 Q가 아닌 경우 예외처리 메서드 추가
+- [x] readBridgeSize : 숫자가 아닌 경우 예외처리 메서드 추가
+- [x] readBridgeSize : 3 이상 20 이하가 아닌 숫자를 입력하는 경우 예외처리 메서드 추가
+- [x] readMoving : U 또는 D가 아닌 경우 예외처리 메서드 추가
+- [x] readGameCommand : R 또는 Q가 아닌 경우 예외처리 메서드 추가
 
 
 # 🚨 추가된 프로그래밍 요구 사항
