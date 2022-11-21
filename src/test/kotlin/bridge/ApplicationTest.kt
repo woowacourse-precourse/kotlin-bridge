@@ -69,6 +69,14 @@ class ApplicationTest : NsTest() {
         }, 1, 0, 1)
     }
 
+    @Test
+    fun `move 함수 테스트` () {
+        val bridge = make_bridge(listOf(0,0,0))
+        val game = BridgeGame(bridge)
+        assert(!game.move(0, "U"))
+        assert(game.move(0, "D"))
+    }
+
     private fun make_bridge(bridge: List<Int>): List<String> {
         val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(bridge)
         val bridgeMaker = BridgeMaker(numberGenerator)
