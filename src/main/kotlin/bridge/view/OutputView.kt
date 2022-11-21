@@ -1,7 +1,4 @@
 package bridge.view
-import bridge.model.Bridge
-import bridge.utils.Constants.SUCCESS_SYMBOL
-import bridge.utils.Constants.FAIL_SYMBOL
 import bridge.utils.Constants
 
 /**
@@ -18,6 +15,9 @@ class OutputView() {
         printDownLane(downLane)
     }
 
+    /**
+     * 윗 다리칸을 형식에 맞춰 출력해주는 함수
+     */
     fun printUpLane(upLane: List<String>){
         var upLaneShape = ""
         for (index in upLane.indices){
@@ -28,6 +28,9 @@ class OutputView() {
         println(listOf(upLaneShape))
     }
 
+    /**
+     * 아래 다리칸을 형식에 맞춰 출력해주는 함수
+     */
     fun printDownLane(downLane: List<String>){
         var downLaneShape = ""
         for (index in downLane.indices){
@@ -43,7 +46,13 @@ class OutputView() {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(upLane: List<String>, downLane: List<String>, isSuccess: Boolean) {
+        printGameFinishMessage()
+        printUpLane(upLane)
+        printDownLane(downLane)
+        printGameSuccessOrFailMessage(isSuccess)
+        printGameTrialCountMessage()
+    }
 
     fun printGameStartMessage(){
         println(Constants.GAME_START_MESSAGE)
@@ -57,8 +66,8 @@ class OutputView() {
         println(Constants.GAME_INPUT_MOVE_LANE_MESSAGE)
     }
 
-    fun printGameInputRetrialMessage(){
-        println(Constants.GAME_INPUT_RETRIAL_MESSAGE)
+    fun printGameInputGameCommandMessage(){
+        println(Constants.GAME_INPUT_GAME_COMMAND_MESSAGE)
     }
 
     fun printGameInitializeProcess(){
@@ -66,7 +75,18 @@ class OutputView() {
         printGameInputBridgeSizeMessage()
     }
 
-    fun printGameMovingProcess(){
-        printGameInputMoveLaneMessage()
+    fun printGameFinishMessage(){
+        println(Constants.GAME_FINISH_MESSAGE)
+    }
+
+    fun printGameSuccessOrFailMessage(isSuccess: Boolean){
+        var message = "실패"
+        if (isSuccess)
+            message = "성공"
+        println(Constants.GAME_SUCCESS_OR_FAIL_MESSAGE + message)
+    }
+
+    fun printGameTrialCountMessage(){
+        println(Constants.GAME_TRIAL_COUNT_MESSAGE)
     }
 }
