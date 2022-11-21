@@ -71,9 +71,9 @@ class BridgeGame(private val bridges: List<String>) {
 
     fun isEnd() = bridgeIndex == bridges.size
 
-    fun getUpSide() = upSide
+    fun getUpSide() = upSide.joinToString(" | ", "[ ", " ]")
 
-    fun getDownSide() = downSide
+    fun getDownSide() = downSide.joinToString(" | ", "[ ", " ]\n")
 
     fun getTryCount() = tryCount
 
