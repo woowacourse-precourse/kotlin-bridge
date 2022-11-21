@@ -33,4 +33,6 @@ Kotlin 1.6.20
 
 ### ⬜️ Application
 ⬜️ Implement Main function \
+⬜️ Add function for playing one game \
+⬜️ Add function for playing multiple games \
 ⬜️ Test code for Application
