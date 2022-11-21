@@ -18,20 +18,16 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      * 다리 칸을 만드는 함수
      */
     private fun makeBridgeLane(size: Int): List<String>{
-        var bridgeLane = ""
+        val bridgeLane = mutableListOf<String>()
         for (index in 0 until size){
             when (bridgeNumberGenerator.generate()) {
-                1 -> bridgeLane += "U"
-
-                0 -> bridgeLane += "D"
+                1 -> bridgeLane.add("U")
+                0 -> bridgeLane.add("D")
             }
         }
-        return listOf(bridgeLane)
+        return bridgeLane
     }
+}
 
-}
-fun main(){
-    println(BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(3))
-}
 
 
