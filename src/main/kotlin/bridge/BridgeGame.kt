@@ -3,9 +3,6 @@ package bridge
 import constant.Message
 import constant.Symbol
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 class BridgeGame(val bridge: List<String>) {
 
     private val up = mutableListOf<String>()
@@ -16,12 +13,6 @@ class BridgeGame(val bridge: List<String>) {
         move()
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     *
-     *
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     private fun move() {
         for (i in bridge.indices) {
             val success = calcResult()
@@ -62,12 +53,6 @@ class BridgeGame(val bridge: List<String>) {
         return false
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     *
-     *
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
     private fun checkRetry() {
         val retry = InputView().readGameCommand()
         if (retry == Symbol.RETRY.symbol) retry()
@@ -82,18 +67,12 @@ class BridgeGame(val bridge: List<String>) {
     }
 
     private fun quit() {
-        println(Message.FINAL_GAME_RESULT.message)
-        OutputView().printMap(up, down)
-
-        println("${Message.GAME_SUCCESS_RESULT.message}${Message.FAIL.message}")
-        println("${Message.NUMBER_OF_ATTEMPTS.message}${attempts}")
+        OutputView().printResult(up, down)
+        OutputView().printSuccessResult(Message.FAIL.message, attempts)
     }
 
     private fun end() {
-        println(Message.FINAL_GAME_RESULT.message)
-        OutputView().printMap(up, down)
-
-        println("${Message.GAME_SUCCESS_RESULT.message}${Message.SUCCESS.message}")
-        println("${Message.NUMBER_OF_ATTEMPTS.message}${attempts}")
+        OutputView().printResult(up, down)
+        OutputView().printSuccessResult(Message.SUCCESS.message, attempts)
     }
 }

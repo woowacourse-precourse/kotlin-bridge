@@ -2,13 +2,7 @@ package bridge
 
 import constant.Message
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
 class InputView {
-    /**
-     * 다리의 길이를 입력받는다.
-     */
     fun readBridgeSize(): Int {
         var input: String?
         do {
@@ -20,9 +14,6 @@ class InputView {
         return input?.toInt() ?: 0
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     fun readMoving(): String {
         var input: String?
         do {
@@ -34,9 +25,6 @@ class InputView {
         return input ?: ""
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     fun readGameCommand(): String {
         var input: String?
         do {

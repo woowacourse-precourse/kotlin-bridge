@@ -3,18 +3,11 @@ package bridge
 import constant.Message
 import constant.Symbol
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 class OutputView {
     fun printStart() {
         println(Message.GAME_START.message)
     }
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+
     fun printMap(up: List<String>, down: List<String>) {
         printUp(up)
         printDown(down)
@@ -41,10 +34,13 @@ class OutputView {
         println()
     }
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun printResult() {}
+    fun printResult(up: List<String>, down: List<String>) {
+        println(Message.FINAL_GAME_RESULT.message)
+        OutputView().printMap(up, down)
+    }
+
+    fun printSuccessResult(successResult: String, attempts: Int) {
+        println("${Message.GAME_SUCCESS_RESULT.message}${successResult}")
+        println("${Message.NUMBER_OF_ATTEMPTS.message}${attempts}")
+    }
 }
