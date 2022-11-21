@@ -30,5 +30,14 @@ class BridgeException (private val inp: String?) {
         if (inp == "U" || inp == "D") return inp
         throw IllegalArgumentException()
     }
+    /**
+     * 사용자가 재시도 여부를 제대로 입력했는디 확인하는 메서드
+     * "R" 또는 "Q"여야 함
+     */
+    fun toGameCommand(): String {
+        nullCheck()
+        if (inp == "R" || inp == "Q") return inp
+        throw IllegalArgumentException()
+    }
 
 }

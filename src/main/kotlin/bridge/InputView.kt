@@ -36,6 +36,12 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        try {
+            val inp = readLine()
+            return BridgeException(inp).toGameCommand()
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] 재시작을 위해선 'R' 또는 'Q'를 입력받아야합니다.")
+            exitProcess(0)
+        }
     }
 }
