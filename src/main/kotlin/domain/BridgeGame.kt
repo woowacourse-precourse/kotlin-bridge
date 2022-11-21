@@ -20,7 +20,6 @@ class BridgeGame {
      */
     fun move(bridgeSize: Int) {
         val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
-        println(bridgeMaker)
         play(bridgeSize, bridgeMaker, 1)
     }
 
@@ -29,7 +28,7 @@ class BridgeGame {
             val move = OutputView().printMoving()
             if (!isMoving(i, bridgeMaker, move)) {
                 retry(bridgeSize,bridgeMaker, numberOfGames)
-                break
+                return
             }
         }
         result(numberOfGames)
