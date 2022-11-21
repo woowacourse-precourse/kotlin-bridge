@@ -5,10 +5,11 @@ package bridge
  */
 class BridgeGame {
     var count = 1;
+    var size = 0;
+    var success = 0;
     fun gameStart() {
         OutputView.printGameStart()
-        var size = InputView.readBridgeSize()
-        var success = 0;
+        size = InputView.readBridgeSize()
         var bridgeList: List<String>;
         var inputList = emptyList<String>().toMutableList()
         val numberGenerator: BridgeNumberGenerator = BridgeRandomNumberGenerator()
@@ -16,12 +17,11 @@ class BridgeGame {
         println(bridgeList)
         var index = 0
         while (index < size && move(inputList, bridgeList, index)) {
-            println(index)
-            OutputView.printMap(inputList, index)
+            OutputView.printMap(inputList,bridgeList, index)
             index++
         }
         if (inputList != bridgeList) {
-            OutputView.printMap(inputList, index)
+            OutputView.printMap(inputList,bridgeList, index)
             if (InputView.readGameCommand() == "R") {
                 count++
                 inputList = retry(bridgeList, size) as MutableList<String>
@@ -40,10 +40,9 @@ class BridgeGame {
      */
     fun move(inputList: MutableList<String>, bridgeList: List<String>, index: Int): Boolean {
         var tmp = InputView.readMoving()
-        if (tmp == bridgeList[index]) {
-            inputList.add(tmp)
+        inputList.add(tmp)
+        if (tmp == bridgeList[index])
             return true
-        }
         return false
     }
 
@@ -58,11 +57,11 @@ class BridgeGame {
         var index = 0;
         while (index < size && move(inputList, bridgeList, index)) {
             println(index)
-            OutputView.printMap(inputList, index)
+            OutputView.printMap(inputList,bridgeList, index)
             index++
         }
         if (inputList != bridgeList) {
-            OutputView.printMap(inputList, index)
+            OutputView.printMap(inputList,bridgeList, index)
             if (InputView.readGameCommand() == "R") {
                 count++
                 inputList = retry(bridgeList, size)

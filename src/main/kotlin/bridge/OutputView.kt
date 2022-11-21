@@ -30,15 +30,49 @@ class OutputView {
          *
          * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
          */
-        fun printMap(inputList : MutableList<String>,index : Int) {
-            for (i in 0.. index)
-                print("[ " + "O"+" ]")
-            println()
-            for(i in 0..index)
-                print("[ " + "O"+ " ]")
-            println()
-        }
+        fun printMap(inputList : MutableList<String>,bridgeList: List<String>, index : Int) {
+            var mapUp = emptyList<String>().toMutableList()
+            var mapDown = emptyList<String>().toMutableList()
+            mapUp.add("[")
+            mapDown.add("[")
+            for (i in 0..index) {
+                if(mapUp.last() == "]") {
+                    mapUp.removeLast()
+                    mapUp.add("|")
+                }
+                if(mapDown.last() == "]") {
+                    mapDown.removeLast()
+                    mapDown.add("|")
+                }
 
+                if (inputList[i] == "U" && bridgeList[i] == "U") {
+                    mapUp.add("O")
+                    mapUp.add("]")
+                    mapDown.add(" ")
+                    mapDown.add("]")
+                }
+                if (inputList[i] == "U" && bridgeList[i] == "D") {
+                    mapUp.add("X")
+                    mapUp.add("]")
+                    mapDown.add(" ")
+                    mapDown.add("]")
+                }
+                if (inputList[i] == "D" && bridgeList[i] == "D") {
+                    mapUp.add(" ")
+                    mapUp.add("]")
+                    mapDown.add("O")
+                    mapDown.add("]")
+                }
+                if (inputList[i] == "D" && bridgeList[i] == "U") {
+                    mapUp.add(" ")
+                    mapUp.add("]")
+                    mapDown.add("X")
+                    mapDown.add("]")
+                }
+            }
+            println(mapUp.joinToString(" "))
+            println(mapDown.joinToString(" "))
+        }
         /**
          * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
          *
