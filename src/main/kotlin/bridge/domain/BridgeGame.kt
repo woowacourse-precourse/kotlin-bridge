@@ -2,6 +2,7 @@ package bridge.domain
 
 import bridge.data.Bridge
 import bridge.data.GameHistory
+import bridge.data.GameResult
 import java.util.*
 import java.util.ArrayDeque
 
@@ -15,6 +16,13 @@ class BridgeGame(private val bridge: Bridge) {
 
     val lastHistory: GameHistory
         get() = histories.peek()
+
+    val result: GameResult
+        get() {
+            check(!isRunning) { "Game is still running" }
+
+            return GameResult(wrongCount == 0, histories.size, lastHistory)
+        }
 
     private var round = 0
     private var wrongCount = 0
