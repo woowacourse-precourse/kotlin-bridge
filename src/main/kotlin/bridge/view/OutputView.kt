@@ -4,6 +4,7 @@ import bridge.constants.Message
 import bridge.data.GameHistory
 import bridge.data.GameResult
 import bridge.common.println
+import bridge.constants.ErrorMessage
 
 object OutputView {
 
@@ -37,8 +38,8 @@ object OutputView {
         println(messages[2], result.tryCount)
     }
 
-    fun printError(message: String) {
-        println("[ERROR] $message")
+    fun printError(t: Throwable) {
+        println("${ErrorMessage.PREFIX} ${t.message}")
     }
 
     private fun buildHistoryOf(data: List<Char>): String {

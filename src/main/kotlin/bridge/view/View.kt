@@ -11,6 +11,16 @@ object View {
 
     fun printResult(result: GameResult) = OutputView.printResult(result)
 
+    fun requestBridgeSize(): Int {
+        return repeatIfThrows<IllegalArgumentException, Int>(
+            tryBlock = {
+                OutputView.printInputBridgeSize()
+                InputView.readBridgeSize()
+            },
+            catchBlock = OutputView::printError,
+        )
+    }
+
     private inline fun <reified T : Throwable, R> repeatIfThrows(
         tryBlock: () -> R,
         catchBlock: (t: T) -> Unit,
