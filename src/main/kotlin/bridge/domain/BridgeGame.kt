@@ -5,6 +5,8 @@ package bridge.domain
  */
 
 private enum class Bridge(val message: String) {
+    UP_MOVING("U"),
+    DOWN_MOVING("D"),
     RIGHT_ANSWER("O"),
     WRONG_ANSWER("X"),
     NOT_SELECT(" ")
@@ -21,8 +23,13 @@ class BridgeGame(private var bridge: List<String>) {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
+    fun move(moving: String, step: Int): Boolean {
+        val movable = checkMovable(moving, step)
+        if (moving == Bridge.UP_MOVING.message) moveUpMap(movable)
+        if (moving == Bridge.DOWN_MOVING.message) moveDownMap(movable)
+        return movable
+    }
 
-    fun move() {}
 
     private fun checkMovable(moving: String, step: Int): Boolean {
         if (moving == bridge[step]) {
