@@ -1,0 +1,50 @@
+package bridge.view
+
+import bridge.model.GameState
+
+class GameMap(gameState: GameState) {
+
+    private val lines = mutableMapOf<String, Line>()
+
+    init {
+        val mapSize = gameState.userRoute.size
+        lines[UP] = Line(mapSize)
+        lines[DOWN] = Line(mapSize)
+        (0 until gameState.userRoute.size).forEach {
+            if (gameState.bridge[it] == gameState.userRoute[it])
+                lines[gameState.userRoute[it]]!!.mark(it, MATCHED)
+            else
+                lines[gameState.userRoute[it]]!!.mark(it, NOT_MATCHED)
+        }
+    }
+
+    class Line(size: Int) {
+        private val elements: MutableList<String>
+
+        init {
+            elements = (1..size).map { EMPTY }.toMutableList()
+        }
+
+        fun mark(point: Int, mark: String) {
+            elements[point] = mark
+        }
+
+        override fun toString(): String = LEFT + elements.joinToString(SPLIT) + RIGHT
+
+        companion object {
+            private const val LEFT = "[ "
+            private const val RIGHT = " ]"
+            private const val SPLIT = " | "
+            private const val EMPTY = " "
+        }
+    }
+
+    override fun toString(): String = lines[UP].toString() + "\n" + lines[DOWN].toString()
+
+    companion object {
+        private const val UP = "U"
+        private const val DOWN = "D"
+        private const val MATCHED = "O"
+        private const val NOT_MATCHED = "X"
+    }
+}
