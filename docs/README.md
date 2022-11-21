@@ -34,7 +34,7 @@
   - [x] 이동한 칸을 건널 수 있다면 O, 없다면 X로 표시 OutputView#printMap 
 - [x] 다리를 끝까지 건너면 최종 결과 출력 후 게임 종료 OutputView#printResult 
 - [x] 다리를 건너다 실패하면 재시작/종료 중에 선택 
-  - [ ] 재시작: 처음에 만든 다리 재사용 BridgeGame#retry 
+  - [x] 재시작: 처음에 만든 다리 재사용 BridgeGame#retry 
   - [x] 종료: 총 시도한 횟수는 첫 시도를 포함해 게임을 종료할 때까지 시도한 횟수 
 
 ## UI 로직

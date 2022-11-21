@@ -18,5 +18,5 @@ fun main() {
     println(bridge)
 
     val checker = BridgeChecker(bridge)
-    checker.compare()
+    checker.checkBridge()
 }
