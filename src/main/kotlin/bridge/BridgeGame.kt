@@ -1,5 +1,8 @@
 package bridge
 
+import bridge.Constants.Companion.DOWN
+import bridge.Constants.Companion.UP
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -10,8 +13,29 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move() {
 
+    fun move(userDirection: String, createdBridge: List<String>, index: Int) : MutableMap<String, String> {
+
+        val selectedBridge = mutableMapOf<String, String>()
+
+        if (userDirection == createdBridge[index]) {
+            if (userDirection == UP) {
+                selectedBridge[UP] = "O"
+                selectedBridge[DOWN] = " "
+            } else {
+                selectedBridge[UP] = " "
+                selectedBridge[DOWN] = "O"
+            }
+        } else {
+            if (userDirection == UP) {
+                selectedBridge[UP] = "X"
+                selectedBridge[DOWN] = " "
+            } else {
+                selectedBridge[UP] = " "
+                selectedBridge[DOWN] = "X"
+            }
+        }
+        return selectedBridge
     }
 
     /**

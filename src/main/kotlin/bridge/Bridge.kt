@@ -1,0 +1,7 @@
+package bridge
+
+class Bridge {
+
+
+
+}
