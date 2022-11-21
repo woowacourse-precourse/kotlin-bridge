@@ -1,8 +1,9 @@
 package bridge
 
 import org.junit.jupiter.api.Test
-
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.Assertions.*
+import java.lang.IllegalArgumentException
 
 internal class BridgeGameTest {
 
@@ -27,5 +28,22 @@ internal class BridgeGameTest {
         val nowBridge2 = mutableListOf<String>("U", "U")
         val bridge2 = listOf<String>("U", "D", "U")
         assertEquals(false, BridgeGame().isRight(bridge2, nowBridge2))
+    }
+
+    @Test
+    fun `기능테스트(retry)`() {
+        val command = "R"
+        assertEquals(false, BridgeGame().retry(command))
+
+        val command1 = "Q"
+        assertEquals(true, BridgeGame().retry(command1))
+    }
+
+    @Test
+    fun `예외테스트(retry)`() {
+        val command = "U"
+        assertThrows<IllegalArgumentException> {
+            BridgeGame().retry(command)
+        }
     }
 }
