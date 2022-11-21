@@ -9,15 +9,6 @@ import bridge.validator.BridgeGameValidator
  */
 class BridgeGame {
 
-    /*진행 메소드
-    *
-    * */
-    fun start() {
-        val bridgeSize = InputView().readBridgeSize()
-        val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
-        progress(bridge)
-    }
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * 일치했을 때 (true) - 다음 라운드 반환
@@ -29,25 +20,6 @@ class BridgeGame {
         return BridgeGameValidator.validateMoveOutput(isMatched)
     }
 
-    // TODO: 12줄 ?
-    /*
-    * 전체적인 게임 진행 과정
-    * */
-    fun progress(bridge: List<String>): Boolean {
-        var isProgressing = true
-        while (isProgressing) {
-            val moving = InputView().readMoving()
-            val map = OutputView().printMap(bridge, 0, moving)
-            println(map)
-            val isEndedGame = (bridge[0] == "U" && moving == "D") || (bridge[0] == "D" && moving == "U")
-            if (isEndedGame) {
-                isProgressing = retry(map, 0, isEndedGame)
-            }
-        }
-        return true
-    }
-
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      *
@@ -56,11 +28,6 @@ class BridgeGame {
      */
 
     fun retry(map: String, round: Int, isEndedGame: Boolean): Boolean {
-        val gameCommand = InputView().readGameCommand()
-        if (gameCommand == QUIT_COMMAND) {
-            OutputView().printResult(map, round, isEndedGame)
-        }
-        if (gameCommand == RESTART_COMMAND) return true
-        return false
+        return BridgeGameValidator.validateRetry(map, round, isEndedGame)
     }
 }
