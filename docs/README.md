@@ -34,7 +34,7 @@
 # 테스트 목록 작성
 ### BridgeGameTest
 - [x] 플레이어 칸 이동 테스트
-- [ ] 재시도 확인 테스트
+- [x] 재시도 확인 테스트
 ### BridgeTest
 - [ ] 다리 개수 생성 테스트
 ### InputViewTest
