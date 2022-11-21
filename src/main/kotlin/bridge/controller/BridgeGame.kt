@@ -20,6 +20,7 @@ class BridgeGame {
     fun startGame(){
         output.printStartMessage()
         goalBridge = BridgeMaker(generator).makeBridge(input.readBridgeSize())
+        playGame()
     }
 
     private fun playGame(){
@@ -27,6 +28,7 @@ class BridgeGame {
         board = bridgeBoard.board
 
         while(gameStatus) {
+
             move(input.readMoving())
             output.printMap(board)
 
