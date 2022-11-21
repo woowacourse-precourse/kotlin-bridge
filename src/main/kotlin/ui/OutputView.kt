@@ -26,9 +26,7 @@ class OutputView {
         println("최종 게임 결과")
         printMap(bridgeGame.getGameProgress())
 
-        if(bridgeGame.isSuccess()) {
-            println("게임 성공 여부: 성공")
-        } else println("게임 성공 여부: 실패")
+        println("게임 성공 여부: ${if (bridgeGame.isSuccess()) "성공" else "실패"}")
         println("총 시도한 횟수: ${bridgeGame.getTryCount()}")
     }
 }

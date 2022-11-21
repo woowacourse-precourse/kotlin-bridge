@@ -13,24 +13,12 @@ class BridgeGameController {
     private val bridgeGame: BridgeGame = BridgeGame()
 
     fun runGame() {
-        setGameInfoInit()
-
-        while (bridgeGame.getMoveCount() < bridgeGame.getBridgeSize()) {
-            println(Request.MOVING.message)
-            bridgeGame.move(inputView.readMoving())
-            outputView.printMap(bridgeGame.getGameProgress())
-
-            if(!bridgeGame.isSuccess()) {
-                println(Request.COMMAND.message)
-                if(inputView.readGameCommand() == "R") bridgeGame.retry()
-                else break
-            }
-        }
-
-        outputView.printResult(bridgeGame)
+        setGame()
+        startGame()
+        endGame()
     }
 
-    private fun setGameInfoInit() {
+    private fun setGame() {
         println("다리 건너기 게임을 시작합니다.")
         println()
         println(Request.BRIDGE_SIZE.message)
@@ -39,6 +27,34 @@ class BridgeGameController {
 
         val bridgeRandomGenerator = BridgeRandomNumberGenerator()
         bridgeGame.setBridge(BridgeMaker(bridgeRandomGenerator).makeBridge(bridgeGame.getBridgeSize()))
+    }
+
+    private fun startGame() {
+        while (isContinue()) {
+            proceedTurn()
+        }
+    }
+
+    private fun endGame() {
+        outputView.printResult(bridgeGame)
+    }
+
+    private fun isContinue(): Boolean {
+        if (bridgeGame.getBridgeSize() <= bridgeGame.getMoveCount()) return false
+        if (!bridgeGame.isSuccess()) {
+            println(Request.COMMAND.message)
+            return if (inputView.readGameCommand() == "R") {
+                bridgeGame.retry()
+                true
+            } else false
+        }
+        return true
+    }
+
+    private fun proceedTurn() {
+        println(Request.MOVING.message)
+        bridgeGame.move(inputView.readMoving())
+        outputView.printMap(bridgeGame.getGameProgress())
     }
 
 }

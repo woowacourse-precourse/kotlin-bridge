@@ -7,7 +7,6 @@ import camp.nextstep.edu.missionutils.Console
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 class InputView {
-
     private val inspector: InputInspector = InputInspector()
 
     fun readBridgeSize(): Int {
@@ -23,11 +22,9 @@ class InputView {
     }
 
     fun readMoving(): String {
-        var input: String = ""
-
         while (true) {
             try {
-                input = Console.readLine()
+                val input = Console.readLine()
                 if (inspector.checkMoving(input)) return input
             } catch (e: IllegalArgumentException) {
                 println("$ERROR_MESSAGE $MOVING_ONLY_U_OR_D")
@@ -37,11 +34,9 @@ class InputView {
     }
 
     fun readGameCommand(): String {
-        var input: String = ""
-
         while (true) {
             try {
-                input = Console.readLine()
+                val input = Console.readLine()
                 if (inspector.checkGameCommand(input)) return input
             } catch (e: IllegalArgumentException)  {
                 println("$ERROR_MESSAGE $COMMAND_ONLY_R_OR_Q")

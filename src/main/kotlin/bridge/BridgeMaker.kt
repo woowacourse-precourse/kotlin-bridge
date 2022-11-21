@@ -10,6 +10,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      */
     fun makeBridge(size: Int): List<String> {
         val bridge: List<String> = List(size) { "" }.map {
+
+            // todo interface 사용 
             val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
             val randomNumber = bridgeRandomNumberGenerator.generate()
             if (randomNumber == RANDOM_LOWER_INCLUSIVE) {
