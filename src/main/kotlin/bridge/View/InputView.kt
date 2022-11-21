@@ -1,4 +1,5 @@
 package bridge.View
+import bridge.computer.ErrorCheck
 import bridge.utils.Messages
 import camp.nextstep.edu.missionutils.Console
 
@@ -11,8 +12,10 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         println(Messages.InputLength)
-        val input = Console.readLine().toInt()
-        return input
+        var input = Console.readLine()
+        ErrorCheck().MoveKeyWordisNotNumber(input)
+        ErrorCheck().BridgeSize(input.toInt())
+        return input.toInt()
     }
 
     /**
@@ -20,7 +23,8 @@ class InputView {
      */
     fun readMoving(): String {
         println(Messages.InputUpAndDown)
-        val input = Console.readLine()
+        var input = Console.readLine()
+        ErrorCheck().MoveKeyWordisDiffer(input)
         return input
     }
 
@@ -30,6 +34,7 @@ class InputView {
     fun readGameCommand(): String {
         println(Messages.GameRestart)
         val input = Console.readLine()
+        ErrorCheck().ReTrykeyWordld(input)
         return input
     }
 }

@@ -4,6 +4,7 @@ import bridge.View.InputView
 import bridge.View.OutputView
 import bridge.computer.BridgeMaker
 import bridge.computer.BridgeRandomNumberGenerator
+import bridge.computer.ErrorMessage
 import bridge.utils.Messages
 
     public var bridge = mutableListOf<String>()
@@ -13,12 +14,11 @@ import bridge.utils.Messages
 
 fun main() {
 //     TODO: 프로그램 구현
+    try {
+
     println(Messages.GameStart)
 
-    val size = InputView().readBridgeSize()
-    bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size).toMutableList()
-
-
+    BridgeGame().initState()
     BridgeGame().start()
 
     while (!isGameClear) {
@@ -28,4 +28,7 @@ fun main() {
     }
 
     BridgeGame().end()
+    } catch (_: IllegalArgumentException) {
+        println(ErrorMessage.OCCUR.messages)
+    }
 }

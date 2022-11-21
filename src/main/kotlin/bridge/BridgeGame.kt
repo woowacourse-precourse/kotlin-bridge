@@ -2,13 +2,21 @@ package bridge
 
 import bridge.View.InputView
 import bridge.View.OutputView
+import bridge.computer.BridgeMaker
+import bridge.computer.BridgeRandomNumberGenerator
 import bridge.utils.BridgePrint
 
 
 public var firstLine = mutableListOf<String>()
 public var secondLine = mutableListOf<String>()
+public var size = 0
 
 class BridgeGame {
+
+    fun initState(){
+        size = InputView().readBridgeSize()
+        bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size).toMutableList()
+    }
 
     fun start() {
         firstLine = mutableListOf<String>()
