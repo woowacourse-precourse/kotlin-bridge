@@ -27,16 +27,8 @@ class BridgeGame(
         return player.doNotGo(bridge)
     }
 
-    fun playerRecord(): List<String> {
-        return player.getState()
-    }
-
-    fun getBridge(): List<String> {
-        return bridge
-    }
-
     fun isDone(): Boolean {
-        return player.getState() == bridge
+        return player.getRecord() == bridge
     }
 
     fun retry(type: String): Boolean {
@@ -58,5 +50,13 @@ class BridgeGame(
 
     fun getTryCount(): Int {
         return playerTryCount
+    }
+
+    fun getBridge(): List<String> {
+        return bridge
+    }
+
+    fun playerRecord(): List<String> {
+        return player.getRecord()
     }
 }

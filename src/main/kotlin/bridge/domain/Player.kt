@@ -14,12 +14,12 @@ class Player {
         return bridge[position] != record.last()
     }
 
-    fun getState(): MutableList<String> {
-        return record
-    }
-
     fun initialize() {
         position = -1
         record.clear()
+    }
+
+    fun getRecord(): MutableList<String> {
+        return record
     }
 }

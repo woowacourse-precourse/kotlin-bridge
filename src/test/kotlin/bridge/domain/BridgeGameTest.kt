@@ -29,7 +29,7 @@ internal class BridgeGameTest {
         val bridgeGame = BridgeGame(numberGenerator, 3, player)
         bridgeGame.move(input)
 
-        Assertions.assertThat(player.getState()).isEqualTo(result)
+        Assertions.assertThat(player.getRecord()).isEqualTo(result)
     }
 
     @Test
@@ -52,7 +52,7 @@ internal class BridgeGameTest {
 
         assertAll(
             { Assertions.assertThat(tryCount).isEqualTo(bridgeGame.getTryCount()) },
-            { Assertions.assertThat(player.getState().isEmpty()) }
+            { Assertions.assertThat(player.getRecord().isEmpty()) }
         )
     }
 

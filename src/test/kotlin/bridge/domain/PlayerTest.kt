@@ -24,6 +24,6 @@ internal class PlayerTest {
         val player = Player()
         val bridgeGame = BridgeGame(numberGenerator, 3, player)
         player.go(move)
-        Assertions.assertThat(bridgeGame.getBridge()[index] == player.getState()[index]).isEqualTo(flag)
+        Assertions.assertThat(bridgeGame.getBridge()[index] == player.getRecord()[index]).isEqualTo(flag)
     }
 }
