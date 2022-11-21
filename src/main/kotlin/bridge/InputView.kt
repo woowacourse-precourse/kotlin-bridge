@@ -10,7 +10,16 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return 0
+        var validFlag = true
+        var size = 0
+
+        while (validFlag) {
+            size = getBridgeSize()
+            if (size in 3..20) {
+                validFlag = false
+            }
+        }
+        return size
     }
 
     /**
