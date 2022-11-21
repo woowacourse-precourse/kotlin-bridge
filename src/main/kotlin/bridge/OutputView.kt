@@ -98,5 +98,10 @@ class OutputView(private val bridge : List<String>) {
         UP("U"),
         DOWN("D")
     }
+    enum class Message(
+        val message: String
+    ){
+        GAMESTART("다리 건너기 게임을 시작합니다.")
+    }
 
 }
