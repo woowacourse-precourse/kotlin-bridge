@@ -11,10 +11,8 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap(bridgeMap: Array<MutableList<String>>) {
-        bridgeMap.forEach {
-            Print.showBridgeMap(it.joinToString(" | ", "[ ", " ]"))
-        }
+    fun printMap(bridge: Array<MutableList<String>>) {
+        printBridge(bridge)
     }
 
     /**
@@ -24,6 +22,10 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printResult(bridge: Array<MutableList<String>>) {
+        printBridge(bridge)
+    }
+
+    private fun printBridge(bridge: Array<MutableList<String>>) {
         bridge.forEach {
             Print.showBridgeMap(it.joinToString(" | ", "[ ", " ]"))
         }
