@@ -19,9 +19,9 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     private fun makeOneColumn(): String {
         val bridgeNumberGenerator = bridgeNumberGenerator.generate()
         if (bridgeNumberGenerator == RANDOM_LOWER_INCLUSIVE)  {
-            return "$ONE_COLUMN_UP$RANDOM_LOWER_INCLUSIVE,$ONE_COLUMN_DOWN${RANDOM_UPPER_INCLUSIVE}"
+            return ONE_COLUMN_DOWN
         }
-        return "$ONE_COLUMN_UP$RANDOM_UPPER_INCLUSIVE,$ONE_COLUMN_DOWN${RANDOM_LOWER_INCLUSIVE}"
+        return ONE_COLUMN_UP
     }
 
     companion object {
