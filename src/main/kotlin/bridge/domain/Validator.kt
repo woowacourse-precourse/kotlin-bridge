@@ -16,7 +16,7 @@ object Validator {
     }
 
     fun isValidMoving(input: String): String {
-        if (!(input == "U" || input == "D")) {
+        if (!(input == Command.UP.value() || input == Command.DOWN.value())) {
             throw IllegalArgumentException(ERROR_NOT_VALID_COMMAND)
         }
 
@@ -24,7 +24,7 @@ object Validator {
     }
 
     fun isValidRetryCommand(input: String): String {
-        if (!(input == "R" || input == "Q")) {
+        if (!(input == Command.RETRY.value() || input == Command.QUIT.value())) {
             throw IllegalArgumentException(ERROR_NOT_VALID_COMMAND)
         }
 

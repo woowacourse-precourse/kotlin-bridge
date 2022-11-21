@@ -3,18 +3,21 @@ package bridge.domain
 import bridge.util.ErrorMessage.ERROR_NOT_VALID_COMMAND
 import java.lang.IllegalArgumentException
 
-enum class Path(private val pathNumber: Int, private val path: String) {
-    UP(1, "U"),
-    DOWN(0, "D");
+enum class Command(private val command: String) {
+    UP("U"),
+    DOWN("D"),
+    QUIT("Q"),
+    RETRY("R");
 
-    fun getPath(): String {
-        return path
+    fun value(): String {
+        return command
     }
+
     companion object {
         fun valueOf(moveNumber: Int): String {
             return when (moveNumber) {
-                UP.pathNumber -> UP.path
-                DOWN.pathNumber -> DOWN.path
+                1 -> UP.command
+                0 -> DOWN.command
                 else -> throw IllegalArgumentException(ERROR_NOT_VALID_COMMAND)
             }
         }

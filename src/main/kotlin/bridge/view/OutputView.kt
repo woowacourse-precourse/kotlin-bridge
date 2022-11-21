@@ -1,7 +1,7 @@
 package bridge.view
 
 import bridge.domain.BridgeGame
-import bridge.domain.Path
+import bridge.domain.Command
 import bridge.util.Constant.OPEN_PARENTHESIS
 import bridge.util.Constant.CLOSE_PARENTHESIS
 import bridge.util.Constant.BOUNDARY
@@ -52,11 +52,11 @@ class OutputView {
 
     private fun printPlayerPosition(move: String, type: String) {
         when (move) {
-            Path.UP.getPath() -> {
+            Command.UP.value() -> {
                 upBuilder.append(" $type ")
                 downBuilder.append(EMPTY)
             }
-            Path.DOWN.getPath() -> {
+            Command.DOWN.value() -> {
                 upBuilder.append(EMPTY)
                 downBuilder.append(" $type ")
             }

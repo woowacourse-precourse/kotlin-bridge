@@ -1,8 +1,6 @@
 package bridge.domain
 
 import bridge.util.BridgeNumberGenerator
-import bridge.util.Constant.GAME_QUIT
-import bridge.util.Constant.GAME_RETRY
 import bridge.util.ErrorMessage.ERROR_NOT_VALID_COMMAND
 import java.lang.IllegalArgumentException
 
@@ -33,8 +31,8 @@ class BridgeGame(
 
     fun retry(type: String): Boolean {
         return when (type) {
-            GAME_QUIT -> return false
-            GAME_RETRY -> {
+            Command.QUIT.value() -> return false
+            Command.RETRY.value() -> {
                 initGame()
                 return true
             }
