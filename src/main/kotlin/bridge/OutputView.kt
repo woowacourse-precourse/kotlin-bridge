@@ -15,7 +15,7 @@ class OutputView {
         bridgePrintU.add("[")
         bridgePrintD.add("[")
         if(correct){
-            for(i in 0 until number){
+            for(i in 0 .. number){
                 if(bridge[i] == "U"){
                     bridgePrintU.add(" O ")
                     bridgePrintD.add("   ")
@@ -23,7 +23,7 @@ class OutputView {
                     bridgePrintU.add("   ")
                     bridgePrintD.add(" O ")
                 }
-                if(i != number-1) {
+                if(i != number) {
                     bridgePrintD.add("|")
                     bridgePrintU.add("|")
                 }
@@ -36,7 +36,7 @@ class OutputView {
             println(bridgeUS)
             println(bridgeDS)
         }else{
-            for(i in 0 until number-1){
+            for(i in 0 .. (number-1)){
                 if(bridge[i] == "U"){
                     bridgePrintU.add(" O ")
                     bridgePrintD.add("   ")
@@ -56,8 +56,12 @@ class OutputView {
             }
             bridgePrintU.add("]")
             bridgePrintD.add("]")
-            println(bridgePrintU)
-            println(bridgePrintD)
+
+            var bridgeUS = bridgePrintU.joinToString("")
+            var bridgeDS = bridgePrintD.joinToString("")
+
+            println(bridgeUS)
+            println(bridgeDS)
         }
     }
 
