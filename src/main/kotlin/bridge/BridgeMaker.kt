@@ -1,5 +1,8 @@
 package bridge
 
+import bridge.util.Constant.DOWN_SIDE
+import bridge.util.Constant.UP_SIDE
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -13,8 +16,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         for (i in 0 until size) {
             var randNum = bridgeNumberGenerator.generate()
             when (randNum) {
-                0 -> bridgeShape.add("D")
-                1 -> bridgeShape.add("U")
+                0 -> bridgeShape.add(UP_SIDE)
+                1 -> bridgeShape.add(DOWN_SIDE)
             }
         }
         return bridgeShape.toList()

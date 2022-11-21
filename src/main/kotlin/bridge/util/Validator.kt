@@ -1,32 +1,37 @@
 package bridge.util
 
+import bridge.util.Constant.BRIDGE_MAX_SIZE
+import bridge.util.Constant.BRIDGE_MIN_SIZE
+import bridge.util.Constant.CAN_MOVE_BRIDGE
+import bridge.util.Constant.ERROR_COMMAND
+import bridge.util.Constant.ERROR_NUMBER
+import bridge.util.Constant.ERROR_RANGE
+import bridge.util.Constant.ERROR_SELECT_BRIDGE
+import bridge.util.Constant.GAME_COMMAND
+
 object Validator {
-    private val BRIDGE_MIN_SIZE = 3
-    private val BRIDGE_MAX_SIZE = 20
-    private val CAN_MOVE_BRIDGE = "UD"
-    private val GAME_COMMAND = "RQ"
 
     fun checkBridgeSize(size: String) {
         if (size.toIntOrNull() == null) {
-            throw IllegalArgumentException("[ERROR] 숫자 형태로 입력해주세요.")
+            throw IllegalArgumentException(ERROR_NUMBER)
         }
 
         var bridgeSize = size.toInt()
 
         if (bridgeSize !in BRIDGE_MIN_SIZE..BRIDGE_MAX_SIZE) {
-            throw IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해주세요.")
+            throw IllegalArgumentException(ERROR_RANGE)
         }
     }
 
     fun checkBridgeSelect(move: String) {
         if (move !in CAN_MOVE_BRIDGE) {
-            throw IllegalArgumentException("[ERROR] U 또는 D를 입력해주세요.")
+            throw IllegalArgumentException(ERROR_SELECT_BRIDGE)
         }
     }
 
     fun checkCommand(command: String) {
         if (command !in GAME_COMMAND) {
-            throw IllegalArgumentException("[ERROR] R 또는 Q를 입력해주세요.")
+            throw IllegalArgumentException(ERROR_COMMAND)
         }
     }
 }

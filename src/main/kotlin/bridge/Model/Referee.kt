@@ -3,7 +3,7 @@ package bridge.Model
 import bridge.Model.BridgeData.bridgeLocation
 import bridge.Model.BridgeData.bridgeShape
 import bridge.Model.BridgeData.getShape
-
+import bridge.util.Constant.DOWN_SIDE
 
 
 class Referee() {
@@ -16,14 +16,14 @@ class Referee() {
     }
 
     fun judgeWinResult(selectBridge: String): BridgeResult {
-        if (selectBridge == "D") {
+        if (selectBridge == DOWN_SIDE) {
             return BridgeResult.DOWN_WIN
         }
         return BridgeResult.UP_WIN
     }
 
     fun judgeLoseResult(selectBridge: String): BridgeResult {
-        if (selectBridge == "D") {
+        if (selectBridge == DOWN_SIDE) {
             return BridgeResult.DOWN_LOSE
         }
         return BridgeResult.UP_LOSE

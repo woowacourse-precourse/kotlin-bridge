@@ -42,12 +42,12 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        while(true) {
+        while (true) {
             try {
                 var command = Console.readLine()
                 Validator.checkCommand(command)
                 return command
-            } catch(e: IllegalArgumentException) {
+            } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }

@@ -7,7 +7,6 @@ import bridge.Model.BridgeData.bridgeShape
 import bridge.Model.BridgeData.bridgeSize
 import bridge.Model.BridgeData.isPlay
 import bridge.Model.BridgeData.resetData
-import bridge.Model.BridgeData.roundResult
 import bridge.Model.BridgeGame
 import bridge.Model.BridgeGame.Companion.downResult
 import bridge.Model.BridgeGame.Companion.finalResult
@@ -17,6 +16,9 @@ import bridge.Model.BridgeResult
 import bridge.Model.Referee
 import bridge.View.InputView
 import bridge.View.OutputView
+import bridge.util.Constant.LOSE
+import bridge.util.Constant.QUIT
+import bridge.util.Constant.RETRY
 
 class BridgeController {
     private var inputView = InputView()
@@ -39,7 +41,7 @@ class BridgeController {
             bridgeSelect = getBridgeSelect()
             moveBridge()
         }
-        if (finalResult == "실패") {
+        if (finalResult == LOSE) {
             getGameCommand()
         }
     }
@@ -53,7 +55,6 @@ class BridgeController {
         var bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
         var bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
         bridgeShape = bridgeMaker.makeBridge(bridgeSize)
-        println(bridgeShape) //삭제
     }
 
     fun getBridgeSelect(): String {
@@ -90,12 +91,12 @@ class BridgeController {
         outputView.printGameOver()
         var command = inputView.readGameCommand()
         when (command) {
-            "R" -> {
+            RETRY -> {
                 retryGame()
                 processGame()
             }
 
-            "Q" -> {
+            QUIT -> {
                 printFinalResult()
             }
         }
