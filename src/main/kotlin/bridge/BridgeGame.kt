@@ -30,6 +30,10 @@ class BridgeGame {
 
     fun retry() {
         currentMoving.clear()
+        addTryCount()
+    }
+
+    private fun addTryCount() {
         tryCount++
     }
 }
