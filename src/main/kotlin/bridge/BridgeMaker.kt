@@ -1,5 +1,7 @@
 package bridge
-
+import bridge.model.Bridge
+import bridge.utils.Constants.UP_SYMBOL
+import bridge.utils.Constants.DOWN_SYMBOL
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -9,40 +11,27 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
     fun makeBridge(size: Int): List<String> {
-        return listOf(makeBridgeUpperShape(size), makeBridgeLowerShape(size))
+        return makeBridgeLane(size)
     }
 
     /**
-     * 위쪽의 다리 형태를 만드는 함수
+     * 다리 칸을 만드는 함수
      */
-    fun makeBridgeUpperShape(size: Int): String{
-        var bridgeUpperShape = ""
+    private fun makeBridgeLane(size: Int): List<String>{
+        var bridgeLane = ""
         for (index in 0 until size){
             when (bridgeNumberGenerator.generate()) {
-                1 -> bridgeUpperShape += " U "
-                0 -> bridgeUpperShape += "   "
+                1 -> bridgeLane += "U"
+
+                0 -> bridgeLane += "D"
             }
-            if (index != size-1)
-                bridgeUpperShape += "|"
         }
-        return bridgeUpperShape
+        return listOf(bridgeLane)
     }
 
-    /**
-     * 아래쪽의 다리 형태를 만드는 함수
-     */
-    fun makeBridgeLowerShape(size: Int): String{
-        var bridgeLowerShape = ""
-        for (index in 0 until size){
-            when (bridgeNumberGenerator.generate()) {
-                1 -> bridgeLowerShape += " D "
-                0 -> bridgeLowerShape += "   "
-            }
-            if (index != size-1)
-                bridgeLowerShape += "|"
-        }
-        return bridgeLowerShape
-    }
+}
+fun main(){
+    println(BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(3))
 }
 
 
