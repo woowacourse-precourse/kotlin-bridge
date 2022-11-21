@@ -2,6 +2,7 @@ package bridge
 
 import ui.InputView
 import ui.OutputView
+import values.Request
 
 /**
  * 다리 건너기 게임의 진행을 관리하는 클래스
@@ -15,12 +16,12 @@ class BridgeGameController {
         setGameInfoInit()
 
         while (bridgeGame.getMoveCount() < bridgeGame.getBridgeSize()) {
-            println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+            println(Request.MOVING.message)
             bridgeGame.move(inputView.readMoving())
             outputView.printMap(bridgeGame.getGameProgress())
 
             if(!bridgeGame.isSuccess()) {
-                println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+                println(Request.COMMAND.message)
                 if(inputView.readGameCommand() == "R") bridgeGame.retry()
                 else break
             }
@@ -32,7 +33,7 @@ class BridgeGameController {
     private fun setGameInfoInit() {
         println("다리 건너기 게임을 시작합니다.")
         println()
-        println("다리의 길이를 입력해주세요.")
+        println(Request.BRIDGE_SIZE.message)
         bridgeGame.setBridgeSize(inputView.readBridgeSize())
         println()
 
