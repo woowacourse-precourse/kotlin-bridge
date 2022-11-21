@@ -7,9 +7,18 @@ class BridgeGame(private val bridge: List<String>) {
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      */
+    var up = mutableListOf<String>()
+    var down = mutableListOf<String>()
     var index = 0
-    fun move(moving: String): Boolean {
-        return moving == bridge[index++]
+    fun move(moving: String) {
+        val isMovable = (moving == bridge[index])
+        if (bridge[index++] == "U") {
+            up.add(if (isMovable) " O " else "   ")
+            down.add(if (isMovable) "   " else " X ")
+        } else {
+            up.add(if (isMovable) "   " else " X ")
+            down.add(if (isMovable) " O " else "   ")
+        }
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드

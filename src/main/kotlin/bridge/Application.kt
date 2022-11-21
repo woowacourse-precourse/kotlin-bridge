@@ -8,6 +8,7 @@ fun main() {
     while (true) {
         OutputView().printGetMoving()
         val bridgeMoving = InputView().readMoving()
-        val isMovable = bridgeGame.move(bridgeMoving)
+        bridgeGame.move(bridgeMoving)
+        OutputView().printMap(bridgeGame)
     }
 }
