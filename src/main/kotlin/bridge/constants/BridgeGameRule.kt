@@ -1,4 +1,4 @@
-package bridge
+package bridge.constants
 
 object BridgeGameRule {
     const val BRIDGE_MINIMUM_LENGTH = 3

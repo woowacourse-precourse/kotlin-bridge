@@ -1,4 +1,4 @@
-package bridge
+package bridge.constants
 
 object BridgePhrases {
     const val BRIDGE_SIZE_INPUT_TYPE_ERROR = "[ERROR] 입력하신 다리 사이즈가 숫자타입이 아닙니다."

@@ -1,9 +1,9 @@
-package bridge
+package bridge.view
 
-import bridge.BridgePhrases.BRIDGE_SIZE_PHRASE
-import bridge.BridgePhrases.GAME_START_PHRASE
-import bridge.BridgePhrases.MOVING_BRIDGE_SELECT_PHRASE
-import bridge.BridgePhrases.RESTART_OR_QUIT_SELECT_PHRASE
+import bridge.constants.BridgePhrases.BRIDGE_SIZE_PHRASE
+import bridge.constants.BridgePhrases.GAME_START_PHRASE
+import bridge.constants.BridgePhrases.MOVING_BRIDGE_SELECT_PHRASE
+import bridge.constants.BridgePhrases.RESTART_OR_QUIT_SELECT_PHRASE
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.

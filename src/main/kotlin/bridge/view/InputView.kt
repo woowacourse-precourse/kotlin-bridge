@@ -1,12 +1,14 @@
-package bridge
+package bridge.view
 
-import bridge.BridgeGameRule.BRIDGE_MAXIMUM_LENGTH
-import bridge.BridgeGameRule.BRIDGE_MINIMUM_LENGTH
-import bridge.BridgePhrases.BRIDGE_SIZE_INPUT_NOT_IN_CORRECT_RANGE_ERROR
-import bridge.BridgePhrases.BRIDGE_SIZE_INPUT_TYPE_ERROR
-import bridge.BridgePhrases.GAME_COMMEND_CODE_INCORRECT_ERROR
-import bridge.BridgePhrases.INPUT_IS_NOT_ALPHABET_ERROR
-import bridge.BridgePhrases.MOVING_CODE_INCORRECT_ERROR
+import bridge.constants.BridgeGameRule.BRIDGE_MAXIMUM_LENGTH
+import bridge.constants.BridgeGameRule.BRIDGE_MINIMUM_LENGTH
+import bridge.constants.BridgePhrases.BRIDGE_SIZE_INPUT_NOT_IN_CORRECT_RANGE_ERROR
+import bridge.constants.BridgePhrases.BRIDGE_SIZE_INPUT_TYPE_ERROR
+import bridge.constants.BridgePhrases.GAME_COMMEND_CODE_INCORRECT_ERROR
+import bridge.constants.BridgePhrases.INPUT_IS_NOT_ALPHABET_ERROR
+import bridge.constants.BridgePhrases.MOVING_CODE_INCORRECT_ERROR
+import bridge.BridgeType
+import bridge.GameState
 import camp.nextstep.edu.missionutils.Console.*
 import java.util.regex.Pattern
 
