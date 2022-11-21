@@ -15,19 +15,27 @@ class GameView(
         outputView.printGameStart()
     }
 
-    fun readBridgeSize() {
+    fun readBridgeSize(): Int {
         outputView.printInputNotice(InputType.BRIDGE_SIZE)
-        inputView.readBridgeSize()
+        return inputView.readBridgeSize()
     }
 
-    fun readMoving() {
+    fun readMoving(): String {
         outputView.printInputNotice(InputType.MOVING)
-        inputView.readMoving()
+        return inputView.readMoving()
     }
 
-    fun readGameCommand() {
+    fun readGameCommand(): Char {
         outputView.printInputNotice(InputType.GAME_COMMAND)
-        inputView.readGameCommand()
+        return inputView.readGameCommand()
+    }
+
+    fun writeMap(turn: Int, moveResult: Char, moveDirect: String) {
+        outputView.printMap(turn, moveResult, moveDirect)
+    }
+
+    fun writeResult(playCount: Int, gameResult: Boolean) {
+        outputView.printResult(playCount, gameResult)
     }
 
     companion object {
@@ -39,6 +47,11 @@ class GameView(
         const val ERROR_MESSAGE_UNKNOWN = "알 수 없는 에러"
 
         const val MESSAGE_GAME_START = "다리 건너기 게임을 시작합니다."
+        const val MESSAGE_GAME_RESULT = "게임 성공 여부: %s"
+        const val MESSAGE_GAME_COUNT = "총 시도한 횟수: %d"
+
+        const val FAILURE = "실패"
+        const val SUCCESS = "성공"
     }
 }
 
