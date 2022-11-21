@@ -3,8 +3,8 @@ package bridge
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame {
-    private val tryCount: Int = 0   // 총 시도 횟수
+class BridgeGame() {
+    private val tryCount: Int = 1   // 총 시도 횟수
     private val moves: MutableList<String> = mutableListOf()    // 이동 방법
 
     /**
@@ -76,11 +76,10 @@ class BridgeGame {
         return String(result)
     }
 
+    fun isFail(bridge: List<String>): Boolean = (compareBridgeWithMoves(bridge)).contains(0)
+
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     *
-     *
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun retry() {}
 }
