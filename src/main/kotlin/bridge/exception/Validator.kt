@@ -21,4 +21,10 @@ class Validator {
         return input
     }
 
+    fun checkGameCommand(input: String): String {
+        if ((input != "R") and (input != "Q")) {
+            throw IllegalArgumentException(ErrorMessage.NOT_R_OR_Q.message)
+        }
+        return input
+    }
 }

@@ -14,7 +14,6 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-//        println(InputMessage.READ_BRIDGE_SIZE.message)
         val input = Console.readLine()
         println()
         return validator.checkBridgeSize(input)
@@ -32,6 +31,7 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        val input = Console.readLine()
+        return validator.checkGameCommand(input)
     }
 }
