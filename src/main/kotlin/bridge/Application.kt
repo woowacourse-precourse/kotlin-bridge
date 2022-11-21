@@ -23,9 +23,8 @@ fun gameStart(game: BridgeGame, tryCount: Int) {
     for (location in START_LOCATION until game.length) {
         val answer = game.move(location, inputMove())
         val nowBridge = shortBridge(game.bridge, location)
-        if (answer && location < game.length - BRIDGE_PADDING) output().printMap(nowBridge, true)
+        output().printMap(nowBridge, answer)
         if (answer && location == game.length - BRIDGE_PADDING) output().printResult(nowBridge, true, tryCount)
-        if (!answer) output().printMap(nowBridge, false)
         if (!answer && game.retry(inputRetry())) {
             gameStart(game, tryCount + NEXT_TRY)
             break
