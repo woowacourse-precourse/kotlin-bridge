@@ -1,34 +1,50 @@
 package bridge
 
 class GameManager {
-    val inputView = InputView()
-    val outputView = OutputView()
-    val bridgeGame = BridgeGame()
-    var bridge = listOf<String>()
-    var bridgeSize = 0
+    private val inputView = InputView()
+    private val outputView = OutputView()
+    private var bridgeGame: BridgeGame
+    private var bridge = listOf<String>()
+    private var bridgeSize: Int
+    private var position = 0
 
     init {
-        println("다리 건너기 게임을 시작합니다.")
-        // 다리 길이 읽기
+        printStartMessage()
         bridgeSize = inputView.readBridgeSize()
-        // 길이 읽은 거로 랜덤 다리 만들기
+        bridgeGame = BridgeGame(bridgeSize)
         bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
     }
 
+
     fun play() {
-        var position = 0
-        var remains = bridge
-        var upperBridge = mutableListOf<String>()
-        var lowerBridge = mutableListOf<String>()
-
-        while (true) {
-            // 다리 건너기 시작
-            val step = inputView.readMoving()// 입력 받기
-            val moving = bridgeGame.move(step, bridge[position], position) // 움직이기
-
-            remains = remains.drop(1)
+        while (bridgeGame.isSuccess && position < bridgeSize) {
+            val move = inputView.readMoving()
+            bridgeGame.move(bridge, move, position)
+            outputView.printMap(bridgeGame)
+            if (!bridgeGame.isSuccess) {
+                val retryCommand = inputView.readGameCommand()
+                if (retryCommand == "R") {
+                    restartGame()
+                }
+            }
             position++
-            if (remains.isEmpty()) break
         }
+        printEndGame(bridgeGame.isSuccess)
+    }
+
+    private fun printEndGame(isSuccess: Boolean) {
+        outputView.printResult(bridgeGame, isSuccess, position - 1)
+        outputView.printTryNumber(bridgeGame.tryCounter)
+    }
+
+    private fun restartGame() {
+        bridgeGame.retry()
+        position = -1
+    }
+
+    private fun printStartMessage() = println(START_MESSAGE)
+
+    companion object {
+        const val START_MESSAGE = "다리 건너기 게임을 시작합니다."
     }
 }
