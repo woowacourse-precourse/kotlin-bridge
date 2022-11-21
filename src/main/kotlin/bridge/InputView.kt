@@ -40,7 +40,14 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        var validFlag = true
+        var gameCommand = ""
+        while (validFlag) {
+            println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+            gameCommand = cs.readLine()
+            validFlag = needToAskMoveAgain(gameCommand)
+        }
+        return gameCommand
     }
 
     private fun getBridgeSize(): Int {
