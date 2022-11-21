@@ -1,5 +1,12 @@
 package bridge
 
+import java.lang.IllegalArgumentException
+
 fun main() {
-    // TODO: 프로그램 구현
+    try {
+        val controller = Controller()
+        controller.run()
+    } catch (e: IllegalArgumentException) {
+        print(e.message)
+    }
 }
