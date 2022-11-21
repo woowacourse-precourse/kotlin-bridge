@@ -39,4 +39,16 @@ class ValidatorControllerTest {
     fun `이동할 칸이 유효하지 않으면 거짓이다`(input: String) {
         assertThat(controller.validateMovement(input)).isFalse
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["R", "Q"])
+    fun `명령어가 유효하면 참이다`(input: String) {
+        assertThat(controller.validateGameCommand(input)).isTrue
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["r", "q", "a", "", " ", "U", "D", "RR", "QQ"])
+    fun `명령어가 유효하지 않으면 거짓이다`(input: String) {
+        assertThat(controller.validateGameCommand(input)).isFalse
+    }
 }
