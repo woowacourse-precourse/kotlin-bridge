@@ -11,15 +11,18 @@ Kotlin 1.6.20
 ## MileStones and Progress
 ### ⬜️ InputView Class
 ⬜️ Get the length of the bridge (readBridgeSize) \
+⬜️ Validate the length of the bridge (validateBridgeSize) \
 ⬜️ Get the move of user (readMoving) \
-⬜️ Get the game command (readGameCommand)
+⬜️ Validate the move of user (validateMoving) \
+⬜️ Get the game command (readGameCommand) \
+⬜️ Validate the game command (validateGameCommand)
 
 ### ⬜️ OutputView Class
 ⬜️ Print the state of bridge (printMap) \
 ⬜️ Print the final result of game (printResult)
 
 ### ⬜️ BridgeMaker Class
-⬜️ Make Bridge according to the movement (makeBridge)
+⬜️ Make random bridge according to the size (makeBridge)
 
 ### ⬜️ BridgeGame Class
 ⬜️ Deal with move situation (move) \
