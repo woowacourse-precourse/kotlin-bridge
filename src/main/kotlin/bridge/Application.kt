@@ -29,9 +29,7 @@ fun BridgeGameMain() {
     val inputView = InputView()
     val outputView = OutputView()
     var size = -1
-    while (size == -1) {
-        size = inputView.readBridgeSize()
-    }
+    while (size == -1) size = inputView.readBridgeSize()
     var bridgeNumberGenerator = BridgeRandomNumberGenerator()
     var bridgeMaker = BridgeMaker(bridgeNumberGenerator)
     var bridge = bridgeMaker.makeBridge(size)
@@ -41,11 +39,8 @@ fun BridgeGameMain() {
         count++
         finish = BridgeGameing(size, bridge)
     }
-    if (finish == 0) {
-        outputView.printResult(false,bridge,size-1,count)
-    }else{
-        outputView.printResult(true,bridge,size-1,count)
-    }
+    if (finish == 0) outputView.printResult(false,bridge,size-1,count)
+    else outputView.printResult(true,bridge,size-1,count)
 }
 
 
