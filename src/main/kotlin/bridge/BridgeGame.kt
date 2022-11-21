@@ -35,7 +35,8 @@ class BridgeGame {
         if (repeatMoving(bridge.getBridgeSize())) {
             return
         } else {
-            if (retry()) {
+            val gameCommand = getGameCommand()
+            if (retry(gameCommand)) {
                 startCycle()
             }
             return
@@ -44,7 +45,7 @@ class BridgeGame {
 
     fun repeatMoving(bridgeSize: Int): Boolean {
         for (pos in 0 until bridgeSize) {
-            val playerMove = inputView.readMoving()
+            val playerMove = getPlayerMove()
             val isCrossable = move(pos, playerMove)
             outputView.printMap(result)
             if (!isCrossable) return false
@@ -53,30 +54,37 @@ class BridgeGame {
         return true
     }
 
-    fun move(position: Int, playerMove: String): Boolean {
+    private fun getPlayerMove(): String {
         while (true) {
             try {
-                val isCrossable = bridge.isCrossable(position, playerMove)
-                result.addResult(playerMove, isCrossable)
-                return isCrossable
+                return inputView.readMoving()
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
     }
 
-    fun retry(): Boolean {
+    fun move(position: Int, playerMove: String): Boolean {
+        val isCrossable = bridge.isCrossable(position, playerMove)
+        result.addResult(playerMove, isCrossable)
+        return isCrossable
+    }
+
+    private fun getGameCommand(): String {
         while (true) {
             try {
-                val gameCommand = inputView.readGameCommand()
-                if (gameCommand == RETRY_COMMAND) {
-                    result.resetResult()
-                    return true
-                }
-                return false
+                return inputView.readGameCommand()
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
+    }
+
+    fun retry(gameCommand: String): Boolean {
+        if (gameCommand == RETRY_COMMAND) {
+            result.resetResult()
+            return true
+        }
+        return false
     }
 }
