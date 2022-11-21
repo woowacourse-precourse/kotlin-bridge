@@ -53,6 +53,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `예외 테스트 - 위 아래가 U, D가 아닌 문자로 입력되는 경우`() {
+        assertSimpleTest {
+            runException("4", "R")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
     private fun make_bridge(bridge: List<Int>): List<String> {
         val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(bridge)
         val bridgeMaker = BridgeMaker(numberGenerator)
