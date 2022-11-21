@@ -1,12 +1,9 @@
 package bridge.data
 
-class Bridge(
-    private val bridge: List<String>
-) {
+class Bridge(private val elements: List<Floor>) {
 
     init {
-        require(bridge.size in SizeRange) { "Bridge's size is required in $SizeRange" }
-        require(bridge.all { Floor.contains(it) }) { "Invalid bridge's elements" }
+        require(elements.size in SizeRange) { "Bridge's size is required in $SizeRange" }
     }
 
     enum class Floor(val command: String) {
@@ -15,16 +12,20 @@ class Bridge(
         companion object {
             private val values = values()
 
-            operator fun get(ordinal: Int): Floor {
-                return values[ordinal]
-            }
-
             operator fun contains(value: String): Boolean {
                 return values.any { it.command == value || it.name == value }
             }
 
+            operator fun get(value: String): Floor {
+                return values.find { it.command == value || it.name == value }!!
+            }
+
             fun getOrNull(value: String): Floor? {
                 return values.find { it.command == value || it.name == value }
+            }
+
+            fun indexOf(ordinal: Int): Floor {
+                return values[ordinal]
             }
         }
     }
@@ -34,5 +35,11 @@ class Bridge(
         const val SIZE_MAX = 20
 
         val SizeRange = SIZE_MIN..SIZE_MAX
+
+        fun newInstance(floors: List<String>): Bridge {
+            require(floors.all { it in Floor })
+
+            return Bridge(floors.map { Floor[it] })
+        }
     }
 }
