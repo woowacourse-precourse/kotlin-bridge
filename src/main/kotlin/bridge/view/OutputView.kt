@@ -39,20 +39,25 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printResult(bridgeGameResult: BridgeGame) {
-        println("\n최종 게임 결과")
+        println(GAME_RESULT_MESSAGE)
         printMap(bridgeGameResult)
-        println("\n게임 성공 여부: " + isClearGame(bridgeGameResult.isClear()))
-        println("총 시도한 횟수: " + bridgeGameResult.getTryNumber())
+        println(GAME_SUCCESS_OR_NOT_MESSAGE + isClearGame(bridgeGameResult.isClear()))
+        println(TOTAL_TRY_NUMBER_MESSAGE + bridgeGameResult.getTryNumber())
     }
 
     private fun isClearGame(isClear: Boolean): String {
         if (isClear) {
-            return "성공"
+            return SUCCESS
         }
-        return "실패"
+        return FAIL
     }
 
     companion object {
+        const val SUCCESS = "성공"
+        const val FAIL = "실패"
         const val SEPARATOR = " | "
+        const val GAME_RESULT_MESSAGE = "\n최종 게임 결과"
+        const val GAME_SUCCESS_OR_NOT_MESSAGE = "\n게임 성공 여부: "
+        const val TOTAL_TRY_NUMBER_MESSAGE = "총 시도한 횟수: "
     }
 }
