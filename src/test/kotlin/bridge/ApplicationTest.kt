@@ -89,6 +89,16 @@ class ApplicationTest : NsTest() {
         assert(game.gameToString() == "[   | O |   | O |   | O | O | O |   |   ]\n[ O |   | O |   | O |   |   |   | O | O ]")
     }
 
+    @Test
+    fun `retry 함수 테스트` () {
+        val bridge = make_bridge(listOf(1,1,0))
+        val game = BridgeGame(bridge)
+        game.move(0, "U")
+        game.move(1, "D")
+        game.retry()
+        game.move(0, "U")
+        assert(game.gameToString() == "[ O ]\n[   ]")
+    }
 
     private fun make_bridge(bridge: List<Int>): List<String> {
         val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(bridge)
