@@ -58,7 +58,7 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult() = println(FINAL_RESULT)
 
     fun printStartGame() = println(START_GAME)
 
@@ -68,9 +68,11 @@ class OutputView {
 
     fun printRetryGame() = println(RETRY_GAME)
 
-    fun printFinalResult() = println(FINAL_RESULT)
-
-    fun printGameSuccess(isSuccess: String) = println("$isSuccess $SUCCESS_GAME_CHECK")
+    fun printGameSuccess(isSuccess: Boolean) {
+        var result = "실패"
+        if (isSuccess) result = "성공"
+        println("$SUCCESS_GAME_CHECK $result")
+    }
 
     fun printTryCount(count: Int) = println("$TRY_COUNT $count")
 
