@@ -28,18 +28,6 @@ class InputView {
         return Console.readLine()
     }
 
-    fun inputValidCommand(): String {
-        val command = readGameCommand()
-        require(command == "R" || command == "Q") { READ_COMMAND_ERROR_MESSAGE }
-        return command
-    }
-
-    fun inputValidMove(): String {
-        val move = readMoving()
-        require(move == "U" || move == "D") { READ_MOVE_ERROR_MESSAGE }
-        return move
-    }
-
     fun inputValidBridgeSize(): Int {
         var bridgeSize = 0
         try {
@@ -49,5 +37,17 @@ class InputView {
             print(READ_BRIDGE_SIZE_ERROR_MESSAGE)
         }
         return bridgeSize
+    }
+
+    fun inputValidMove(): String {
+        val move = readMoving()
+        require(move == "U" || move == "D") { READ_MOVE_ERROR_MESSAGE }
+        return move
+    }
+
+    fun inputValidCommand(): String {
+        val command = readGameCommand()
+        require(command == "R" || command == "Q") { READ_COMMAND_ERROR_MESSAGE }
+        return command
     }
 }
