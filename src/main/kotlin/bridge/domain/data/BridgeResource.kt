@@ -26,3 +26,10 @@ enum class BridgeOutputText(val text: String) {
     CHOOSE_ROWS("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
     BRIDGE_SIZE("다리의 길이를 입력해주세요.")
 }
+
+enum class BridgeErrorText(val text: String) {
+    ONLY_NUMBER("[ERROR] 숫자를 입력해주세요."),
+    ONLY_RANGE("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."),
+    ONLY_U_OR_D("[ERROR] U 또는 D중 하나의 문자만 입력해주세요."),
+    ONLY_R_OR_Q("[ERROR] R 또는 Q중 하나의 문자만 입력해주세요.")
+}
