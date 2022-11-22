@@ -4,7 +4,7 @@ import bridge.common.*
 import bridge.domain.moving.Moving
 
 /**
- * 사용자가 다리를 건넌 후 결과를 계산하는 역할을 한다.
+ * 사용자가 다리를 건넌 후 결과를 계산하는 클래스
  */
 object BridgeCrossingCalculator {
     private val bridgeCrossingHistory = mutableListOf<Pair<Moving, Boolean>>()

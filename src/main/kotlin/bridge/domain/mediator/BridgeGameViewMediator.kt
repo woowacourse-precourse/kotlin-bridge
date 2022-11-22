@@ -7,6 +7,9 @@ import bridge.domain.mediator.type.InputType
 import bridge.ui.view.InputView
 import bridge.ui.view.OutputView
 
+/**
+ * 게임과 게임에 사용되는 뷰들을 연결하는 클래스
+ */
 class BridgeGameViewMediator(
     private val inputView: InputView,
     private val outputView: OutputView,

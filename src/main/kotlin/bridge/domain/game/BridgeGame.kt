@@ -79,13 +79,6 @@ class BridgeGame(
         }
     }
 
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     */
-    override fun move() {
-        position++
-    }
-
     private fun checkGameCommand(command: String) {
         when (command) {
             GAME_RESTART_CODE -> retry()
@@ -95,6 +88,14 @@ class BridgeGame(
             }
         }
     }
+
+    /**
+     * 사용자가 칸을 이동할 때 사용하는 메서드
+     */
+    override fun move() {
+        position++
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
