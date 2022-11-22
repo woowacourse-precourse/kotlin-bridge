@@ -12,4 +12,18 @@ class BridgeTest {
         val bridge: List<String> = bridgeMaker.makeBridge(5)
         Assertions.assertThat(bridge).containsExactly("U", "U", "U", "U", "D")
     }
+
+    @Test
+    fun `플레이어의 입력과 다리 정보가 맞으면 O를 리턴한다`() {
+        val player = "D"
+        val bridge = "D"
+        Assertions.assertThat(BridgeGame().move(player, bridge)).isEqualTo("O")
+    }
+
+    @Test
+    fun `플레이어의 입력과 다리 정보가 다르면 X를 리턴한다`() {
+        val player = "D"
+        val bridge = "U"
+        Assertions.assertThat(BridgeGame().move(player, bridge)).isEqualTo("X")
+    }
 }
