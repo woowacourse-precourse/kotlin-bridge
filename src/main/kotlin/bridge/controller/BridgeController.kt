@@ -8,7 +8,6 @@ import bridge.view.OutputView
 
 class BridgeController {
 
-
     fun run() {
         InputView().startPhrases()
         val size = PrintException().printSize().toInt()
@@ -35,19 +34,19 @@ class BridgeController {
         }
     }
 
-
-    fun restartGame(bridgeGame: BridgeGame) :Boolean?{
-        val restart = PrintException().printRestart()
+    fun restartGame(bridgeGame: BridgeGame): Boolean? {
+        val regame = PrintException().printRestart()
         println()
-        if(restart == "R"){
+        if (regame == "R") {
             bridgeGame.retry()
             return true
         }
-        if (restart == "Q"){
+        if (regame == "Q") {
             return false
         }
         return null
     }
+
 
 
 

@@ -15,7 +15,11 @@ enum class Strings(val phrases: String) {
     GAME_SUCCESS_OR_NOT("게임 성공 여부: "),
     FAIL("실패"),
     SUCCESS("성공"),
-    GAME_TRY_COUNT("총 시도한 횟수: ")
+    GAME_TRY_COUNT("총 시도한 횟수: "),
+
+    AND(" | "),
+    OPEN("[ "),
+    CLOSE(" ]")
 
 
 }

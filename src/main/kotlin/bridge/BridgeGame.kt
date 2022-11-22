@@ -44,11 +44,11 @@ class BridgeGame(val answerBridge: List<String>) {
         return upBridge.contains("X") || downBridge.contains("X")
     }
 
-    fun choiceAll() : Boolean{
+    fun choiceAll(): Boolean {
         return inputBridge.size == answerBridge.size
     }
 
-    fun choiceSame() : Boolean{
+    fun choiceSame(): Boolean {
         return inputBridge == answerBridge
     }
 
@@ -65,6 +65,5 @@ class BridgeGame(val answerBridge: List<String>) {
         inputBridge.clear()
         count++
     }
-
 
 }

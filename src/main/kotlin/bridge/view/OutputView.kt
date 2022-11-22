@@ -18,9 +18,9 @@ class OutputView {
      */
     fun printMap(bridge : BridgeGame) {
         val sbUp = StringBuilder()
-        sbUp.append("[ ").append(bridge.upBridge.joinToString(" | ")).append(" ]")
+        sbUp.append(Strings.OPEN.phrases).append(bridge.upBridge.joinToString(Strings.AND.phrases)).append(Strings.CLOSE.phrases)
         val sbDown = StringBuilder()
-        sbDown.append("[ ").append(bridge.downBridge.joinToString(" | ")).append(" ]")
+        sbDown.append(Strings.OPEN.phrases).append(bridge.downBridge.joinToString(Strings.AND.phrases)).append(Strings.CLOSE.phrases)
 
         println(sbUp)
         println(sbDown)
@@ -37,14 +37,14 @@ class OutputView {
         println(Strings.GAME_RESULT.phrases)
         printMap(bridge)
 
-        print(Strings.GAME_SUCCESS_OR_NOT.phrases)
+        print("\n"+Strings.GAME_SUCCESS_OR_NOT.phrases)
         if (bridge.choiceAll() && bridge.choiceSame()){ println(Strings.SUCCESS.phrases) }
         if (!bridge.choiceAll() || !bridge.choiceSame()){ println(Strings.FAIL.phrases) }
 
-        println("\n" + Strings.GAME_TRY_COUNT.phrases + bridge.count)
-
+        println(Strings.GAME_TRY_COUNT.phrases + bridge.count)
 
     }
+
 
 
 }
