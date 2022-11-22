@@ -6,8 +6,8 @@ package bridge
 // InputView, OutputView 를 사용하지 않는다.
 
 class BridgeGame(private val bridgeLength: Int) {
-    private val upBridge = MutableList<String>(bridgeLength) { " " }
-    private val downBridge = MutableList<String>(bridgeLength) { " " }
+    private val upBridge = MutableList<String>(bridgeLength) { Bridge.EMPTY.message }
+    private val downBridge = MutableList<String>(bridgeLength) { Bridge.EMPTY.message }
     private var countRetry = 1
     private var progressStatus = true
 
@@ -21,14 +21,14 @@ class BridgeGame(private val bridgeLength: Int) {
         when (bridge[index] == move) {
             true -> {
                 when (move) {
-                    "U" -> upBridge[index] = "O"
-                    "D" -> downBridge[index] = "O"
+                    Bridge.UP.message -> upBridge[index] = Bridge.CAN_CROSS.message
+                    Bridge.DOWN.message -> downBridge[index] = Bridge.CAN_CROSS.message
                 }
             }
             false -> {
                 when (move) {
-                    "U" -> upBridge[index] = "X"
-                    "D" -> downBridge[index] = "X"
+                    Bridge.UP.message -> upBridge[index] = Bridge.CAN_NOT_CROSS.message
+                    Bridge.DOWN.message -> downBridge[index] = Bridge.CAN_NOT_CROSS.message
                 }
                 progressStatus = false
             }
@@ -52,8 +52,8 @@ class BridgeGame(private val bridgeLength: Int) {
     fun retry() {
         countRetry++
         for (i in 0 until bridgeLength) {
-            upBridge[i] = " "
-            downBridge[i] = " "
+            upBridge[i] = Bridge.EMPTY.message
+            downBridge[i] = Bridge.EMPTY.message
         }
         progressStatus = true
     }

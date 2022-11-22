@@ -6,6 +6,9 @@ package bridge
 enum class Bridge(val message: String) {
     UP("U"),
     DOWN("D"),
+    CAN_CROSS("O"),
+    CAN_NOT_CROSS("X"),
+    EMPTY(" "),
 }
 
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
