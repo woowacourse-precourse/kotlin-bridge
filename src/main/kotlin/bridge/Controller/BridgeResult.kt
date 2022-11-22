@@ -38,12 +38,8 @@ class BridgeResult {
 
     private fun manageSelectedRetry(selectedBridge: MutableMap<String, List<String>>) : String{
         when (manageRetryDecision()) {
-            RETRY -> {
-                return getRetryGame()
-            }
-            QUIT -> {
-                return quitGame(selectedBridge)
-            }
+            RETRY -> return getRetryGame()
+            QUIT -> return quitGame(selectedBridge)
         }
         return playerBridge.getRetryAnswer()
     }
