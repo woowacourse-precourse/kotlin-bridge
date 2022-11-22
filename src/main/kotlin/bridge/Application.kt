@@ -10,21 +10,23 @@ fun main() {
 }
 
 fun gameStart(bridgeGame: BridgeGame, bridgeSize: Int) {
+    val outputView: OutputView = OutputView()
     var count = 0
     while (bridgeGame.endGame()) {
         if(bridgeSize == count) return gameEnd(bridgeGame)
         val readMoving: String = InputView().readMoving()
         bridgeGame.move(readMoving)
-        bridgeGame.printMap()
+        outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge())
         count += 1
     }
     gameRestart(bridgeGame, bridgeSize)
 }
 
 fun gameEnd(bridgeGame: BridgeGame) {
+    val outputView: OutputView = OutputView()
     println(ConstantMessage.BRIDGE_GAME_RESULT)
-    bridgeGame.printMap()
-    bridgeGame.printResult()
+    outputView.printMap(bridgeGame.getUpBridge(), bridgeGame.getDownBridge())
+    outputView.printResult(bridgeGame.getSuccessResult(), bridgeGame.getTotalCount())
 }
 
 fun gameRestart(bridgeGame: BridgeGame, bridgeSize: Int) {

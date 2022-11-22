@@ -5,8 +5,7 @@ class BridgeGame(private val bridge: List<String>) {
     var downCase: MutableList<String> = mutableListOf<String>()
     private var index: Int = 0
     private var isSuccess: Boolean = true
-    var totalCount: Int = 1
-    private val outputView: OutputView = OutputView()
+    private var totalCount: Int = 1
 
     private fun isUpCase(isUp: Boolean) {
         if(isUp) {
@@ -56,14 +55,6 @@ class BridgeGame(private val bridge: List<String>) {
         }
     }
 
-    fun printResult() {
-        outputView.printResult(isSuccess, totalCount)
-    }
-
-    fun printMap() {
-        outputView.printMap(upCase, downCase)
-    }
-
     fun endGame(): Boolean {
         return isSuccess
     }
@@ -75,4 +66,12 @@ class BridgeGame(private val bridge: List<String>) {
         index = 0
         isSuccess = true
     }
+
+    fun getTotalCount(): Int = this.totalCount
+
+    fun getSuccessResult(): Boolean = this.isSuccess
+
+    fun getDownBridge(): MutableList<String> = this.downCase
+
+    fun getUpBridge(): MutableList<String> = this.upCase
 }

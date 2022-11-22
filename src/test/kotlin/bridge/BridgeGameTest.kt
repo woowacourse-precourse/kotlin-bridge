@@ -54,7 +54,7 @@ class BridgeGameTest {
         bridgeGame.move("U")
         bridgeGame.retry()
 
-        assertThat(bridgeGame.totalCount).isEqualTo(2)
+        assertThat(bridgeGame.getTotalCount()).isEqualTo(2)
     }
 }
 
