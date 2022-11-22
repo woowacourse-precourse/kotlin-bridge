@@ -16,10 +16,15 @@ object Message {
         override fun toString(): String = msg.applyPrefix()
     }
 
-    enum class BridgeGameEnum(private val msg: String){
+    enum class BridgeGameEnum(private val msg: String) {
         SUCCESS("게임 성공 여부: 성공\n총 시도한 횟수: %d"),
         FAIL("게임 성공 여부: 실패\n총 시도한 횟수: %d");
 
         override fun toString(): String = msg
+    }
+
+    enum class ControllerEnum(val state: Boolean) {
+        RUNNING(true),
+        STOP(false)
     }
 }
