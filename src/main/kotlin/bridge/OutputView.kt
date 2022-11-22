@@ -1,20 +1,25 @@
 package bridge
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
-class OutputView {
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun printMap() {}
+import bridge.constant.*
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun printResult() {}
+
+class OutputView {
+
+
+    fun printMap(bridgeGame: BridgeGame) {
+        val roadUntilNow = bridgeGame.getRoadUntilNow().getRoadMap()
+        val upperSide = roadUntilNow[0].joinToString(" | ", "[ ", " ]")
+        val lowerSide = roadUntilNow[1].joinToString(" | ", "[ ", " ]")
+
+        println(upperSide + "\n" + lowerSide + "\n")
+    }
+
+
+    fun printResult(bridge: Bridge, bridgeGame: BridgeGame) {
+        println(GAME_RESULT)
+        printMap(bridgeGame)
+        val successOrFail = if (!bridge.checkGameEnd(bridgeGame.getPlayerLocation())) GAME_FAIL else GAME_SUCCESS
+        println(SUCCESS_RESULT_MSG + successOrFail)
+        println(ATTEMPTS_NUM_RESULT_MSG + bridgeGame.getPlayerTryCount())
+    }
 }

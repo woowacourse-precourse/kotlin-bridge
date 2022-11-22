@@ -1,22 +1,43 @@
 package bridge
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 class BridgeGame {
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     *
-     *
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun move() {}
+    private var playerLocation = -1
+    private var playerTryCount = 1
+    private val roadUntilNow = RoadMap()
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     *
-     *
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun retry() {}
+
+    fun move(playerInput: String, bridge: Bridge): Boolean {
+        val nextMv = bridge.checkNextMove(playerInput, playerLocation)
+
+        if (nextMv) roadUntilNow.addSuccessRoad(playerInput)
+        else roadUntilNow.addFailRoad(playerInput)
+
+        playerLocation++
+
+        return nextMv
+    }
+
+    fun retry() {
+        resetPlayer()
+        playerTryCount++
+    }
+
+    fun getPlayerTryCount(): Int {
+        return playerTryCount
+    }
+
+    fun getRoadUntilNow(): RoadMap {
+        return roadUntilNow
+    }
+
+    fun getPlayerLocation(): Int {
+        return playerLocation
+    }
+
+    private fun resetPlayer() {
+        roadUntilNow.resetRoadMap()
+        playerLocation = -1
+    }
+
+
 }
