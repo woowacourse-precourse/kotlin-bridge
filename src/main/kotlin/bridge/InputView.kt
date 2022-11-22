@@ -18,6 +18,7 @@ class InputView {
         }
         catch (e: IllegalArgumentException) {
             println("$ERROR_MESSAGE 정수를 입력하세요.")
+            exitProcess(1)
         }
         return res!!
     }
@@ -33,15 +34,15 @@ class InputView {
      */
     fun readMoving(): String {
         printMovingMessage()
-        var res : String? = ""
+        var res : String = readLine()!!
         try {
-            res = readLine()
             updownCheck(res)
         }
         catch (e: IllegalArgumentException) {
             println("$ERROR_MESSAGE U 또는 D를 입력하세요.")
+            exitProcess(1)
         }
-        return res!!
+        return res
     }
 
     fun printMovingMessage() {
@@ -49,7 +50,8 @@ class InputView {
     }
 
     fun updownCheck(inputStr : String?) {
-        if (inputStr !="U" || inputStr != "D") throw IllegalArgumentException()
+        if (inputStr !is String) throw IllegalArgumentException()
+        else if ( !inputStr.equals("U")  || !inputStr.equals("D")) throw IllegalArgumentException()
     }
 
     /**
@@ -64,6 +66,7 @@ class InputView {
         }
         catch (e: IllegalArgumentException) {
             println("$ERROR_MESSAGE R 또는 Q를 입력하세요.")
+            exitProcess(1)
         }
         return res!!
     }
@@ -72,8 +75,8 @@ class InputView {
         println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
     }
     fun retryCheck(inputStr : String?) {
-        if (inputStr =="R")
-        else if (inputStr == "Q")
+        if (inputStr.equals("R"))
+        else if (inputStr.equals("Q"))
             exitProcess(0)
         else throw IllegalArgumentException()
     }

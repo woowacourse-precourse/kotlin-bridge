@@ -16,14 +16,11 @@ class BridgeGame {
     var downstr: String = "[ "
     var flag = 0
     var gamecnt : Int = 0
-    fun move(bridgeObj : BridgeMaker) {
-
+    fun move(bridgeObj : BridgeMaker, ch: String) {
+        userInList.plus(ch)
         val bridge = bridgeObj.bridge
-        while (flag != 0 || (userInList.size == bridge.size)){
-            userInList += InputView().readMoving()
-            for (i in userInList.indices){ flag = updownString(i, bridge) }
-            OutputView().printMap(this)
-        }
+        for (i in userInList.indices){ flag = updownString(i, bridge) }
+
     }
 
     fun updownString(i : Int, bList: List<String>): Int{
@@ -47,8 +44,7 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {
-        val ch = InputView().readGameCommand()
+    fun retry(ch : String) {
         if (ch == "R") {
             gamecnt +=1
         }else{

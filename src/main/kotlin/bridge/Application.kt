@@ -5,6 +5,9 @@ fun main() {
     val gen = BridgeRandomNumberGenerator()
     val newBridge = BridgeMaker(gen)
     newBridge.makeBridge(InputView().readBridgeSize())
-    BridgeGame().move(newBridge)
+    val newBridgeGame = BridgeGame()
+
+    newBridgeGame.move(newBridge, InputView().readMoving())
+    newBridgeGame.retry(InputView().readGameCommand())
 
 }

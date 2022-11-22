@@ -14,7 +14,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         var res = listOf<String>()
         var binbridge = makeBinaryBridgeList(size)
-        binbridge.forEach { res.plus(binToString(it)) }
+        binbridge.forEach { res+=binToString(it) }
         this.bridge = res
         return res
     }
@@ -28,7 +28,10 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 
     fun makeBinaryBridgeList(size: Int) : List<Int>{
         var res = listOf<Int>()
-        for(i in 0 until size) { res.plus(bridgeNumberGenerator.generate()) }
+        for(i in 0 until size) {
+            var tmp = bridgeNumberGenerator.generate()
+            res+=tmp
+        }
         return res
     }
 }
