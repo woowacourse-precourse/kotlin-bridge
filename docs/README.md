@@ -21,7 +21,8 @@
 ### OutputView
 - [x] 현재까지 이동한 다리의 상태를 출력 - printMap()
 - [x] 게임의 최종 결과 출력 - printResult()
-- [x] 게임의 성공 여부와 시도 횟수 출력 -printStats()
+- [x] 게임의 성공 여부와 시도 횟수 출력 - printStats()
+- [x] 게임 시작을 출력 - printGameStart()
 ### Exception
 - [x] 공백이나 문자 입력
 - [x] 3 ~ 20 숫자가 아닌 입력
@@ -32,6 +33,10 @@
 - [X] Games : 플레이어가 입력한 U, D, R, Q 를 상수로 저장
 
 # 테스트 목록 작성
+### GameControllerTest
+- [ ] 다리 길이 5 기능 테스트
+- [ ] 다리 길이 3 재시도 성공 테스트
+- [ ] 다리 길이 3 실패 후 종료 테스트
 ### BridgeGameTest
 - [x] 플레이어 칸 이동 테스트
 - [x] 재시도 확인 테스트
