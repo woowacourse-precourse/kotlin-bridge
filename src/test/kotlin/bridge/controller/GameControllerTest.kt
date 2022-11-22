@@ -4,12 +4,13 @@ import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-class GameControllerTest :NsTest(){
+class GameControllerTest : NsTest() {
     private val gameController = GameController()
+
     @Test
     fun `다리 길이 5 기능 테스트`() {
         camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest({
-            run("5", "U", "D", "U", "U","D")
+            run("5", "U", "D", "U", "U", "D")
             Assertions.assertThat(output()).contains(
                     "최종 게임 결과",
                     "[ O |   | O | O |   ]",
@@ -20,13 +21,13 @@ class GameControllerTest :NsTest(){
             val upSideIndex = output().indexOf("[ O |   | O | O |   ]")
             val downSideIndex = output().indexOf("[   | O |   |   | O ]")
             Assertions.assertThat(upSideIndex).isLessThan(downSideIndex)
-        }, 1, 0, 1,1,0)
+        }, 1, 0, 1, 1, 0)
     }
 
     @Test
     fun `다리 길이 3 재시도 테스트`() {
         camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest({
-            run("3", "D", "R", "U", "D","U")
+            run("3", "D", "R", "U", "D", "U")
             Assertions.assertThat(output()).contains(
                     "[ X ]",
                     "[   ]",

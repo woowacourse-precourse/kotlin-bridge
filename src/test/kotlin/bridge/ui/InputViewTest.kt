@@ -34,16 +34,16 @@ class InputViewTest : NsTest() {
     @ParameterizedTest
     fun `U나 D가 아닌 입력 예외 테스트`(input: String) {
         camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest {
-            runException("3",input)
+            runException("3", input)
             assertThat(output()).contains(ERROR_NOT_UP_DOWN)
         }
     }
 
-    @ValueSource(strings = [" ","U","RR","Q1","-1"])
+    @ValueSource(strings = [" ", "U", "RR", "Q1", "-1"])
     @ParameterizedTest
-    fun `R이나 Q가 아닌 입력 예외 테스트`(input:String) {
+    fun `R이나 Q가 아닌 입력 예외 테스트`(input: String) {
         camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest({
-            runException("3", "U", "D", "D",input)
+            runException("3", "U", "D", "D", input)
             assertThat(output()).contains(ERROR_NOT_RETRY_QUIT)
             val upSideIndex = output().indexOf("[ O |   |   ]")
             val downSideIndex = output().indexOf("[   | O | X ]")

@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-class BridgeStateTest:NsTest(){
+class BridgeStateTest : NsTest() {
     private val bridgeState = BridgeState()
 
     @Test
@@ -38,11 +38,12 @@ class BridgeStateTest:NsTest(){
             )
         }
     }
+
     override fun runMain() {
         bridgeState.compare(testBridge)
     }
 
     companion object {
-        val testBridge = Bridge(listOf("U","D","D","U"))
+        val testBridge = Bridge(listOf("U", "D", "D", "U"))
     }
 }

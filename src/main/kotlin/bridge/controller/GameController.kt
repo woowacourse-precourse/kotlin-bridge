@@ -42,6 +42,6 @@ class GameController {
             }
             if (!BridgeGame().retry(inputView.readGameCommand())) command = QUIT
         }
-        bridgeState.endGame(count,isSuccess)
+        bridgeState.endGame(count, isSuccess)
     }
 }

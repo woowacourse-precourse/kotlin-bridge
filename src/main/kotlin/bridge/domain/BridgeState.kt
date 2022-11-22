@@ -24,7 +24,7 @@ class BridgeState {
         outputView.printMap(playerMoves)
     }
 
-    fun endGame(count:Int,isSuccess:String){
+    fun endGame(count: Int, isSuccess: String) {
         outputView.printResult(playerMoves)
         outputView.printStats(count, isSuccess)
     }
