@@ -71,7 +71,7 @@ class BridgeGame {
         }
         if (bridge == "U") return "O"
         if (bridge == "D") return " "
-        throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
+        return ""
     }
 
     private fun addBridgeDownMap(bridgeToNow: Int, bridge: String, idx: Int, nowMove: String): String {
@@ -81,7 +81,7 @@ class BridgeGame {
         }
         if (bridge == "U") return " "
         if (bridge == "D") return "O"
-        throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
+        return ""
     }
 
     /**
