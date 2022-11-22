@@ -26,6 +26,16 @@ class BridgeGameTest {
     }
 
     @Test
+    fun `사용자가 다리를 건넌 뒤 포지션이 증가하는지 테스트`() {
+        // When
+        bridgeGame.move()
+        bridgeGame.move()
+
+        //Then
+        Assertions.assertThat(bridgeGame).extracting("position").isEqualTo(2)
+    }
+
+    @Test
     fun `게임 재시도 한 뒤 시도 횟수 증가하는지 테스트`() {
         // When
         bridgeGame.retry()
