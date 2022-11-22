@@ -63,13 +63,13 @@
 ---
 ## ▶ 프로그래밍 요구 사항
 - [x] `ApplicationTest`의 모든 테스트 성공
-- [ ] indent depth를 3이 넘지 않도록 구현
+- [x] indent depth를 3이 넘지 않도록 구현
 - [x] 함수가 한 가지 일
-- [ ] 기능 테스트
+- [x] 기능 테스트
 - [x] else를 지양
 #### 추가된 요구 사항
-- [ ] 함수 최대 길이 10라인
-- [ ] 메서드의 파라미터 최대 3개
-- [ ] 각 클래스 요구사항 참고 구현
-    - [ ] `InputView` 클래스에서만 `readLine()` 메서드를 이용하여 입력
-    - [ ] `BridgeGame` 클래스에서 `InputView`, `OutputView` 사용금지
+- [x] 함수 최대 길이 10라인
+- [x] 메서드의 파라미터 최대 3개
+- [x] 각 클래스 요구사항 참고 구현
+    - [x] `InputView` 클래스에서만 `readLine()` 메서드를 이용하여 입력
+    - [x] `BridgeGame` 클래스에서 `InputView`, `OutputView` 사용금지
