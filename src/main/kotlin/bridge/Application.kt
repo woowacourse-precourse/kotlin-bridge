@@ -1,8 +1,8 @@
 package bridge
 
-import bridge.controller.BridgeGame
+import bridge.controller.Controller
 
 fun main() {
-    val game = BridgeGame()
-    game.startGame()
+    val controller = Controller()
+    controller.run()
 }
