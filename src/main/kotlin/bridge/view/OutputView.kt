@@ -1,4 +1,6 @@
-package bridge
+package bridge.view
+
+import bridge.*
 
 
 /**
@@ -21,10 +23,11 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printResult(result: MutableList<List<String>>, outcome: String, count:Int) {
+        println()
         println(GAME_RESULT)
         printFirstUpDown(result, UP)
         printFirstUpDown(result, DOWN)
-        println(GAME_OUTCOME+ outcome)
+        println(GAME_OUTCOME + outcome)
         println(GAME_ATTEMPT_COUNT + count)
     }
 

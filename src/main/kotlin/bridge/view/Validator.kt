@@ -1,4 +1,6 @@
-package bridge
+package bridge.view
+
+import bridge.*
 
 class Validator {
     fun validateBridgeSize(bridgeSize: String) {
