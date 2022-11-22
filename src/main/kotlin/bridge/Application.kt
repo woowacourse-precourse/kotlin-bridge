@@ -1,5 +1,11 @@
 package bridge
 
+import bridge.controller.BridgeGameController
+
 fun main() {
-    // TODO: 프로그램 구현
+    val bridgeGameController = BridgeGameController()
+    try {
+        bridgeGameController.play()
+    } catch (e: IllegalArgumentException) {
+    }
 }
