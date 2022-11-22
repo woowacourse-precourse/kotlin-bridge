@@ -11,8 +11,8 @@ class BridgeGame(private val bridge: List<String>) {
     }
 
     fun getState(): Pair<String, String> {
-        val upperState = makeUpperState(bridge)
-        val lowerState = makeLowerState(bridge)
+        val upperState = makeUpperState()
+        val lowerState = makeLowerState()
         return Pair(modifySuffix(upperState), modifySuffix(lowerState))
     }
 
@@ -28,8 +28,7 @@ class BridgeGame(private val bridge: List<String>) {
     fun isFail(): Boolean = (compareBridgeWithMoves()).contains(0)
 
     fun isSuccess(): Boolean =
-            !(compareBridgeWithMoves()).contains(0)
-                    && bridge.size == moves.size
+            !(compareBridgeWithMoves()).contains(0) && bridge.size == moves.size
 
     fun getResult(): String {
         val state = getState()
@@ -50,7 +49,7 @@ class BridgeGame(private val bridge: List<String>) {
         return match
     }
 
-    private fun makeUpperState(bridge: List<String>): String {
+    private fun makeUpperState(): String {
         var upperState = "["
         val match = compareBridgeWithMoves()
         for (i in match.indices) {
@@ -62,7 +61,7 @@ class BridgeGame(private val bridge: List<String>) {
         return upperState
     }
 
-    private fun makeLowerState(bridge: List<String>): String {
+    private fun makeLowerState(): String {
         var lowerState = "["
         val match = compareBridgeWithMoves()
         for (i in match.indices) {
