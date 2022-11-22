@@ -1,4 +1,4 @@
-package bridge
+package view
 
 class OutputView {
 
