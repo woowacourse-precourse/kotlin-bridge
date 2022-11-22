@@ -17,6 +17,10 @@ fun main() {
         if (!bridgeGame.move(moveDirection, bridge))
             gameOver = bridgeGame.retry(checkInput.checkRetry(showInputView.readGameCommand()))
 
+        if (bridge.size == bridgeGame.userBridge.size) {
+            gameOver = false
+            bridgeGame.gameSuccess = true
+        }
     }
     OutputView().printResult(bridgeGame.userBridge, bridge)
     OutputView().printSuccess(bridgeGame.gameSuccess)
