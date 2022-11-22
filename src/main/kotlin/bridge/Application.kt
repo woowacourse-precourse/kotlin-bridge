@@ -10,6 +10,9 @@ fun main() {
             game.start()
             do{
                 game.move()
+                if(game.checkClear()){
+                    break
+                }
             }
             while (game.retry())
             game.end()

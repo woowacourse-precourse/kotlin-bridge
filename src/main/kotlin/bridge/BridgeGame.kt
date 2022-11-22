@@ -15,7 +15,7 @@ class BridgeGame {
         bridge.initBridge()
     }
 
-    fun move(){
+    fun move() {
         while (!bridge.getGameIsEnd()){
             bridge.checkPlayerCanMove()
         }
@@ -23,6 +23,10 @@ class BridgeGame {
 
     fun retry() : Boolean {
         return bridge.checkRestart()
+    }
+
+    fun checkClear() : Boolean {
+        return bridge.getIsGameClear()
     }
 
     fun end(){

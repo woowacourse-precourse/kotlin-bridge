@@ -80,6 +80,15 @@ class BridgeView(val bridgeMaker : BridgeMaker, val inputView : InputView, val o
         return isEnd
     }
 
+    fun getIsGameClear() : Boolean {
+        var clear = false
+        when(result){
+            "성공" -> clear = true
+            "실패" -> clear = false
+        }
+        return clear
+    }
+
     fun checkRestart() : Boolean{
         initialize()
         var restart = true
