@@ -1,7 +1,7 @@
 package bridge.view
 
-import bridge.domain.BridgeMaker
-import bridge.domain.BridgeNumberGenerator
+import bridge.BridgeMaker
+import bridge.BridgeNumberGenerator
 import bridge.main
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach

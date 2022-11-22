@@ -1,7 +1,7 @@
 package bridge.view
 
 import bridge.domain.Bridge
-import bridge.domain.BridgeMaker
+import bridge.BridgeMaker
 
 class OutputView {
     private lateinit var answerBridge: List<String>

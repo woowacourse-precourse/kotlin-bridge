@@ -1,4 +1,4 @@
-package bridge.domain
+package bridge
 
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
