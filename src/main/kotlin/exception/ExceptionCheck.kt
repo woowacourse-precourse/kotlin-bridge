@@ -4,7 +4,7 @@ import util.Error
 import java.util.NoSuchElementException
 
 class ExceptionCheck {
-    fun checkValidBridgeLengthInput(userInput: String): String {
+    fun checkValidBridgeLengthInput(userInput: String): Int {
         when {
             !isNumber(userInput) -> {
                 println(Error.BRIDGE_LENGTH_INPUT_TYPE_ERROR.message)
@@ -19,7 +19,7 @@ class ExceptionCheck {
                 throw IllegalArgumentException()
             }
             else -> {
-                return userInput
+                return userInput.toInt()
             }
         }
     }
