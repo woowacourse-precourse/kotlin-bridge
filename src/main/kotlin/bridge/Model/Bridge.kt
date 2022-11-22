@@ -1,5 +1,6 @@
 package bridge.Model
 
+import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
 import bridge.InputException
 import bridge.View.InputView

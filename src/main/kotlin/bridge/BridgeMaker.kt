@@ -1,7 +1,5 @@
-package bridge.Model
+package bridge
 
-import bridge.BridgeNumberGenerator
-import bridge.BridgeRandomNumberGenerator
 import bridge.Model.Constants.Companion.DOWN
 import bridge.Model.Constants.Companion.UP
 
