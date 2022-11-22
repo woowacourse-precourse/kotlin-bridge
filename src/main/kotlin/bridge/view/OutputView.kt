@@ -2,6 +2,7 @@ package bridge.view
 
 import bridge.domain.BridgeGame
 import bridge.util.*
+import java.lang.StringBuilder
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -13,9 +14,19 @@ class OutputView {
      */
     fun printMap(bridgeGame: BridgeGame) {
         bridgeGame.userMove.forEach { result ->
-            println(result.joinToString(SEPARATOR, PREFIX, POSTFIX))
+            println(convertResult(result))
         }
         println()
+    }
+
+    private fun convertResult(list: MutableList<String>): String {
+        val result = StringBuilder(PREFIX)
+        for ((index, element) in list.withIndex()) {
+            if (index > 0) result.append(SEPARATOR)
+            result.append(element)
+        }
+        result.append(POSTFIX)
+        return result.toString()
     }
 
     /**
@@ -30,3 +41,4 @@ class OutputView {
         println(GAME_COUNT + bridgeGame.gameCount)
     }
 }
+
