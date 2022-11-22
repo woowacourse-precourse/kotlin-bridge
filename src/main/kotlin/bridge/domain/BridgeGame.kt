@@ -20,6 +20,19 @@ class BridgeGame {
         return true
     }
 
+
+    fun getUpperBridge(): String {
+        return upperBridge.joinToString(prefix = "[ ", separator = " | ", postfix = " ]")
+    }
+
+    fun getLowerBridge(): String {
+        return lowerBridge.joinToString(prefix = "[ ", separator = " | ", postfix = " ]\n")
+    }
+
+    fun makeBridge(size: Int): List<String> {
+        return bridgeMaker.makeBridge(size)
+    }
+
     private fun verify(bridge: List<String>, upAndDown: String, level: Int): Boolean {
         return bridge[level] == upAndDown
     }
