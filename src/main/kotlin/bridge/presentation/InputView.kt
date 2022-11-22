@@ -20,7 +20,8 @@ class InputView {
         } catch (e: IllegalArgumentException) {
             println(SIZE_ERROR)
             println(RETRY_MESSAGE)
-            return readBridgeSize()
+            //return readBridgeSize()
+            exitProcess(0)
         }
     }
 
@@ -34,7 +35,8 @@ class InputView {
         } catch (e: IllegalArgumentException) {
             println(MOVING_ERROR)
             println(RETRY_MESSAGE)
-            return readMoving()
+            //return readMoving()
+            exitProcess(0)
         }
     }
 
@@ -48,7 +50,8 @@ class InputView {
         } catch (e: IllegalArgumentException) {
             println(COMMAND_ERROR)
             println(RETRY_MESSAGE)
-            return readGameCommand()
+            //return readGameCommand()
+            exitProcess(0)
         }
     }
 
