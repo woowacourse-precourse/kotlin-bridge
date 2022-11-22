@@ -1,20 +1,46 @@
 package bridge
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
-class OutputView {
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun printMap() {}
+import bridge.constants.Constants.DOWN_BRIDGE
+import bridge.constants.Constants.UP_BRIDGE
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
+class OutputView(private val bridge: List<String>) {
+    private val up = StringBuilder()
+    private val down = StringBuilder()
+
+    fun printMap(moving: List<String>) {
+        makeMap("[ ", "[ ")
+        for (position in moving.indices) {
+            if (moving[position] == bridge[position]) isCorrect(moving, position, true)
+            else {
+                isCorrect(moving, position, false)
+                makeMap(" ]", " ]")
+                break
+            }
+            if (position != moving.size - 1) makeMap(" | ", " | ")
+            else makeMap(" ]", " ]")
+        }
+        print("$up\n$down\n\n")
+    }
+
+    private fun makeMap(upString: String, downString: String) {
+        up.append(upString)
+        down.append(downString)
+    }
+
+    private fun isCorrect(moving: List<String>, position: Int, correct: Boolean) {
+        val str = if (correct) "O" else "X"
+        if (moving[position] == bridge[position]) {
+            when (bridge[position]) {
+                UP_BRIDGE -> makeMap(str, " ")
+                DOWN_BRIDGE -> makeMap(" ", str)
+            }
+        } else {
+            when (bridge[position]) {
+                UP_BRIDGE -> makeMap(" ", str)
+                DOWN_BRIDGE -> makeMap(str, " ")
+            }
+        }
+    }
+
     fun printResult() {}
 }
