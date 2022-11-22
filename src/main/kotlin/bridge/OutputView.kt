@@ -30,24 +30,32 @@ class OutputView {
 
     private fun plusMap(userChoice: MutableList<String>, check: Boolean, command : String) : String{
         var sb = StringBuilder()
-        sb.append("[")
-        for(i in 0 until userChoice.size - 1){
-            if(userChoice[i] == command){
+        sb.append("[") // 시작
+        middleStep(userChoice, command, sb) // 게임 진행 중 중간부분 -> | 로 구분되는 부분
+        if(userChoice[userChoice.size - 1] == command){ // 마지막 단계
+            return lastStep(check, sb)
+        }
+        sb.append("   ]") // 마지막
+        return sb.toString()
+    }
+
+    private fun lastStep(check: Boolean, sb: StringBuilder): String {
+        if (check) {
+            sb.append(" O ]")
+            return sb.toString()
+        }
+        sb.append(" X ]")
+        return sb.toString()
+    }
+
+    private fun middleStep(userChoice: MutableList<String>, command: String, sb: StringBuilder) {
+        for (i in 0 until userChoice.size - 1) {
+            if (userChoice[i] == command) {
                 sb.append(" O |")
                 continue
             }
             sb.append("   |")
         }
-        if(userChoice[userChoice.size - 1] == command){
-            if(check){
-                sb.append(" O ]")
-                return sb.toString()
-            }
-            sb.append(" X ]")
-            return sb.toString()
-        }
-        sb.append("   ]")
-        return sb.toString()
     }
 
     private fun checkSuccess(flag: Boolean) : String{
