@@ -23,6 +23,11 @@ class InputView {
     }
 
     fun readGameCommand(): String {
-        return ""
+        while (true) {
+            val command = Console.readLine()
+            kotlin.runCatching { InputChecker().checkUserCommand(command) }
+                .onSuccess { return command }
+                .onFailure { OutputView().printErrorMessage(it.message) }
+        }
     }
 }
