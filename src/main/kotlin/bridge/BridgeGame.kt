@@ -23,7 +23,7 @@ class BridgeGame {
     }
 
     private fun checkSuccessorFail(input: String):Boolean{
-        return input == bridge[inputCount+1]
+        return input == bridge[inputCount]
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드

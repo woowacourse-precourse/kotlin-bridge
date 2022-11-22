@@ -39,12 +39,16 @@ class GameSimulator {
             if (bridgeGame.move(inputView.readMoving())) {
                 outputView.printMap(bridgeGame.getUserInput(), bridgeGame.getBridge())
             } else {
-                if(bridgeGame.retry(inputView.readGameCommand())){
-                    initForRestart()
-                }
-                else{
-                    gameFinishFlag= true
-                }
+                restartStep()
+            }
+        }
+
+        private fun restartStep(){
+            if(bridgeGame.retry(inputView.readGameCommand())){
+                initForRestart()
+            }
+            else{
+                gameFinishFlag= true
             }
         }
 
