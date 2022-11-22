@@ -40,6 +40,30 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `아무것도 안쓰는 경우`() {
+        assertSimpleTest {
+            runException(null)
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `3 이상 20 이하의 숫자가 아닌 경우`() {
+        assertSimpleTest {
+            runException("21")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `이동할 칸 입력이 U나 D가 아닌 경우`() {
+        assertSimpleTest {
+            runException("3", "t")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
     override fun runMain() {
         main()
     }
