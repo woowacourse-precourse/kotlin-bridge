@@ -8,16 +8,12 @@ import java.lang.IllegalArgumentException
 class ValidateMoving(
     private val views: Views = Views()
 ) {
-    operator fun invoke() {
+    operator fun invoke(inputValue: String) {
         do {
-            try {
-                views.inputView.readMoving().apply {
-                    require(isUpOrDown())
-                    movingCommands.add(this)
-                    views.outputView.printMap()
-                }
-            } catch (exception: IllegalArgumentException) {
-                views.outputView.printError(InputError.MovingInputError(UP_OR_DOWN_EXCEPTION))
+            inputValue.apply {
+                require(isUpOrDown())
+                movingCommands.add(this)
+                views.outputView.printMap()
             }
         } while (movingCommands.size == 0)
     }

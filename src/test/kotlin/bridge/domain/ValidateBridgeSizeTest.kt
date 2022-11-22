@@ -25,6 +25,4 @@ class ValidateBridgeSizeTest: NsTest() {
     companion object {
         const val ERROR_MESSAGE = "[ERROR]"
     }
-
-
 }

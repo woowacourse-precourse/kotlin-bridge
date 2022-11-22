@@ -15,3 +15,4 @@
 - [X] `main` 함수 구현
 - [X] `data`, `doamin`, `ui`별 패키지 구조화 및 클래스 이동
 - [X] `ValidateBridgeSize`에 대한 테스트 코드 구현
+- [X] `ValidateMoving`에 대한 테스트 코드 구현
