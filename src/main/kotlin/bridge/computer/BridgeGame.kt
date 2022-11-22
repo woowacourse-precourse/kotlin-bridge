@@ -1,11 +1,8 @@
 package bridge.computer
 
+import bridge.*
 import bridge.View.InputView
 import bridge.View.OutputView
-import bridge.bridge
-import bridge.gameCount
-import bridge.isGameClear
-import bridge.location
 import bridge.utils.BridgePrint
 
 
@@ -15,7 +12,7 @@ public var size = 0
 
 class BridgeGame {
 
-    fun initState(){
+    fun initState() {
         size = InputView().readBridgeSize()
         bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size).toMutableList()
     }
@@ -70,7 +67,7 @@ class BridgeGame {
             gameCount += 1
             BridgeGame().start()
         }
-        if (answer == "Q"){
+        if (answer == "Q") {
             BridgeGame().end()
         }
     }
@@ -87,7 +84,7 @@ class BridgeGame {
     }
 
     fun isLast(): Boolean {
-        if (firstLine.size == bridge.size ) {
+        if (firstLine.size == bridge.size) {
             return true
         }
         return false

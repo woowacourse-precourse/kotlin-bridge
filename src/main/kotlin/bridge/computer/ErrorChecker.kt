@@ -2,7 +2,7 @@ package bridge.computer
 
 import bridge.utils.Constants
 
-enum class ErrorMessage(val messages: String) {
+enum class ErrorMessage(val messages: String)  {
     OCCUR("[ERROR] ERROR_MESSAGE"),
     NUMBER_TYPE("[ERROR] 숫자가 아닙니다."),
     RANGE("[ERROR] 숫자범위가 초과되었습니다."),

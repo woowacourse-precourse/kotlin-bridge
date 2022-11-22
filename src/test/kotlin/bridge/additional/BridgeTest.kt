@@ -1,8 +1,7 @@
 package bridge.additional
 
-import bridge.View.InputView
 import bridge.computer.BridgeMaker
-import bridge.computer.BridgeRandomNumberGenerator
+import bridge.BridgeRandomNumberGenerator
 import bridge.computer.ErrorCheck
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

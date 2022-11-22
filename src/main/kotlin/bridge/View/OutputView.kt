@@ -19,7 +19,7 @@ class OutputView {
         print(BridgePrint._start)
         for (number in (0..firstLine.size - 1)) {
             print(firstLine[number])
-            if (firstLine.size > 1 && number < firstLine.size -1) {
+            if (firstLine.size > 1 && number < firstLine.size - 1) {
                 print(BridgePrint._wall)
             }
         }
@@ -28,7 +28,7 @@ class OutputView {
         print(BridgePrint._start)
         for (number in (0..secondLine.size - 1)) {
             print(secondLine[number])
-            if (firstLine.size > 1 && number < firstLine.size -1) {
+            if (firstLine.size > 1 && number < firstLine.size - 1) {
                 print(BridgePrint._wall)
             }
         }

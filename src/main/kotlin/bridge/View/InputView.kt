@@ -1,4 +1,5 @@
 package bridge.View
+
 import bridge.computer.ErrorCheck
 import bridge.utils.Messages
 import camp.nextstep.edu.missionutils.Console
