@@ -14,23 +14,34 @@ class BridgeGame {
         var inputList = emptyList<String>().toMutableList()
         val numberGenerator: BridgeNumberGenerator = BridgeRandomNumberGenerator()
         bridgeList = BridgeMaker(numberGenerator).makeBridge(size)
-        var index = 0
-        while (index < size && move(inputList, bridgeList, index)) {
-            OutputView.printMap(inputList,bridgeList, index)
-            index++
-        }
-        if (inputList != bridgeList) {
-            OutputView.printMap(inputList,bridgeList, index)
-            if (InputView.readGameCommand() == "R") {
-                count++
-                inputList = retry(bridgeList, size)
-            }
-        }
-        if (inputList == bridgeList)
-            success = 1
+        var index = gameMove(inputList,bridgeList,0)
+        inputList = checkResult(inputList,bridgeList,index)
+        checkSuccess(inputList,bridgeList)
         OutputView.printResult(count, success)
     }
-
+    fun checkSuccess(inputList: MutableList<String>, bridgeList: List<String>){
+        if(inputList == bridgeList)
+            success = 1
+    }
+    fun gameMove(inputList: MutableList<String>, bridgeList: List<String>, index: Int) : Int{
+        var i = index
+        while (i < size && move(inputList, bridgeList, i)) {
+            OutputView.printMap(inputList,bridgeList, i)
+            i++
+        }
+        return i
+    }
+    fun checkResult(inputList: MutableList<String>,bridgeList: List<String>,index: Int) : MutableList<String>{
+        var tmpList = inputList
+        if (tmpList != bridgeList) {
+            OutputView.printMap(tmpList,bridgeList, index)
+            if (InputView.readGameCommand() == "R") {
+                count++
+                tmpList = retry(bridgeList, size)
+            }
+        }
+        return tmpList
+    }
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      *
@@ -53,18 +64,8 @@ class BridgeGame {
      */
     fun retry(bridgeList: List<String>, size: Int): MutableList<String> {
         var inputList = emptyList<String>().toMutableList()
-        var index = 0;
-        while (index < size && move(inputList, bridgeList, index)) {
-            OutputView.printMap(inputList,bridgeList, index)
-            index++
-        }
-        if (inputList != bridgeList) {
-            OutputView.printMap(inputList,bridgeList, index)
-            if (InputView.readGameCommand() == "R") {
-                count++
-                inputList = retry(bridgeList, size)
-            }
-        }
+        var index = gameMove(inputList,bridgeList,0)
+        inputList = checkResult(inputList,bridgeList,index)
         return inputList
     }
 }
