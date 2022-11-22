@@ -1,4 +1,4 @@
-package bridge.domain
+package bridge
 
 import bridge.data.ONE
 import bridge.data.ZERO
