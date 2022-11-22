@@ -36,14 +36,11 @@ class OutputView {
     private fun printSecondMap(case:String, count : Int, size:Int){
         if(count != size && count != 0)
             print("|")
-        if(case == "A")
-            print("   ")
-        else if(case == "B")
-            print(" O ")
-        else if(case == "C")
-            print("   ")
-        else if(case == "D")
-            print(" X ")
+        when(case){
+            "A","C"-> print("   ")
+            "B" -> print(" O ")
+            "D" -> print(" X ")
+        }
     }
 
     /**
