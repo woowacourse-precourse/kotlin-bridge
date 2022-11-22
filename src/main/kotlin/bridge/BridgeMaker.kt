@@ -2,7 +2,6 @@ package bridge
 
 import bridge.common.BRIDGE_NUMBER_DOWN
 import bridge.common.BRIDGE_NUMBER_UP
-import bridge.BridgeNumberGenerator
 import bridge.domain.moving.Moving
 
 /**

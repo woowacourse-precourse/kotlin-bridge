@@ -1,8 +1,6 @@
-package bridge.ui.application
+package bridge
 
 import bridge.domain.game.BridgeGame
-import bridge.BridgeRandomNumberGenerator
-import bridge.BridgeMaker
 import bridge.domain.mediator.BridgeGameViewMediator
 import bridge.ui.view.InputView
 import bridge.ui.view.OutputView
