@@ -8,7 +8,7 @@ class BridgeGame {
         if (space == bridge[index]) {
             checkSpace(space, "O")
             index += 1
-        } else if ((space != bridge[index])) {
+        } else {
             checkSpace(space, "X")
         }
         return upMap + downMap
@@ -35,7 +35,7 @@ class BridgeGame {
     private fun checkSpace(space: String, ox: String) {
         if (space == UP) {
             addToList(ox, BLANK)
-        } else if (space == DOWN) {
+        } else {
             addToList(BLANK, ox)
         }
     }
