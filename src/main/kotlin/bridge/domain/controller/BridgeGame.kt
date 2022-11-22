@@ -20,7 +20,6 @@ class BridgeGame(
 
     fun generateBridge() {
         bridgeMaker.makeBridge(bridgeSize)
-//        println(bridgeMaker.makeBridge(InputDataSource.bridgeSize))
     }
 
     /**

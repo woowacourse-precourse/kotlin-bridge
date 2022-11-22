@@ -17,3 +17,4 @@
 - [X] `ValidateBridgeSize`에 대한 테스트 코드 구현
 - [X] `ValidateMoving`에 대한 테스트 코드 구현
 - [X] `ValidateGameCommand`에 대한 테스트 코드 구현
+- [X] `BridgeGame`에 대한 테스트 코드 구현
