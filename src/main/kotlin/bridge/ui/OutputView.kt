@@ -16,6 +16,8 @@ class OutputView {
     private fun getUpRowsResult(bridgeIndex: Int, bridgeRows: String, userInputRow: String) =
         "${getLineOrBlank(bridgeIndex)}${BridgeGame().move(bridgeRows, userInputRow).first}"
 
+    private fun getDownRowsResult(bridgeIndex: Int, bridgeRows: String, userInputRow: String) =
+        "${getLineOrBlank(bridgeIndex)}${BridgeGame().move(bridgeRows, userInputRow).second}"
 
     private fun getLineOrBlank(bridgeIndex: Int): String {
         if (bridgeIndex > 0) return " | "
