@@ -43,7 +43,6 @@ fun restartgame (playround: Int, size: Int, gamemap: List<String>) : String{
 }
 
 fun main() {
-    // TODO: 맵 재활용 // 입력 업다운이랑 맵비교 // 성공실패//게임종료가 한번에 안됨
     val input = InputView()
     val playround = 1
     OutputView().startgame()
