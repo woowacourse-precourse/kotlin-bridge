@@ -1,17 +1,5 @@
 package view
 
-import util.BridgeMessage.FAIL
-import util.BridgeMessage.FAIL_ENGLISH
-import util.BridgeMessage.FINAL_GAME_RESULT
-import util.BridgeMessage.GAME_START_NOTIFICATION
-import util.BridgeMessage.IS_SUCCESS
-import util.BridgeMessage.LEFT_SQUARE_BRACKETS
-import util.BridgeMessage.REST
-import util.BridgeMessage.RIGHT_SQUARE_BRACKETS
-import util.BridgeMessage.SEPARATOR
-import util.BridgeMessage.SUCCESS
-import util.BridgeMessage.TOTAL_ATTEMPT
-
 class OutputView {
 
     fun printGameStartNotification() {
@@ -36,10 +24,27 @@ class OutputView {
     private fun printGameResult(ox: List<MutableList<String>>) {
         for (i in 0..1) {
             print("$LEFT_SQUARE_BRACKETS ")
-            print(ox[i].toString().replace(REST, SEPARATOR).removePrefix(LEFT_SQUARE_BRACKETS).removeSuffix(RIGHT_SQUARE_BRACKETS))
+            print(
+                ox[i].toString().replace(REST, SEPARATOR).removePrefix(LEFT_SQUARE_BRACKETS)
+                    .removeSuffix(RIGHT_SQUARE_BRACKETS)
+            )
             print(" $RIGHT_SQUARE_BRACKETS")
             println()
         }
         println()
+    }
+
+    companion object {
+        const val GAME_START_NOTIFICATION = "다리 건너기 게임을 시작합니다.\n"
+        const val SUCCESS = "성공"
+        const val FAIL = "실패"
+        const val FAIL_ENGLISH = "FAIL"
+        const val FINAL_GAME_RESULT = "최종 게임 결과"
+        const val IS_SUCCESS = "게임 성공 여부:"
+        const val TOTAL_ATTEMPT = "총 시도한 횟수:"
+        const val LEFT_SQUARE_BRACKETS = "["
+        const val RIGHT_SQUARE_BRACKETS = "]"
+        const val REST = ","
+        const val SEPARATOR = " |"
     }
 }
