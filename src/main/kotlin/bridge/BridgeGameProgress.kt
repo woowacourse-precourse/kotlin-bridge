@@ -13,15 +13,8 @@ class BridgeGameProgress {
     }
 
     private fun bridgeGameStart(bridge: List<String>): MutableList<List<String>> {
-        val result:MutableList<List<String>> = mutableListOf()
-        for(step in bridge){
-            val moving = InputView().readMoving()
-            if(!BridgeGame().move(step, moving, result)){
-                OutputView().printMap(result)
-                break
-            }
-            OutputView().printMap(result)
-        }
+        val result: MutableList<List<String>> = mutableListOf()
+        selectUpDown(bridge, result)
         return result
     }
 
@@ -33,6 +26,18 @@ class BridgeGameProgress {
         if(gameCommand == RETRY){
             BridgeGame().retry(bridge)
             return
+        }
+    }
+
+    private fun selectUpDown(bridge: List<String>, result: MutableList<List<String>>) {
+        for (step in bridge) {
+            OutputView().printSelectMove()
+            val moving = InputView().readMoving()
+            if (!BridgeGame().move(step, moving, result)) {
+                OutputView().printMap(result)
+                break
+            }
+            OutputView().printMap(result)
         }
     }
 }
