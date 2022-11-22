@@ -18,3 +18,14 @@
 - 사용자가 위, 아래를 선택할 때도 대문자 U, D인지 판단한다.
 - 재시도와 종료 여부를 선택할 때 대문자 R, Q인지 판단한다.
 - 이동할 칸을 선택 후 다리를 보여줄 때 대괄호 [ ]로 감싸고 단계가 진행되면 |로 구분한다.
+
+## 🎯 다리 출력 구현 방법
+- printMap.add(plusMap(userChoice, check, "U")) // 윗줄 
+- printMap.add(plusMap(userChoice, check, "D")) // 아랫줄
+- 위와 같이 윗줄과 아랫줄을 구분해 출력했습니다.
+
+## 📮 고찰
+### 테스트케이스
+- 다리 길이 입력에 대한 경계값에 해당하는 값을 테스트했다.
+- isLessThan(value)는 value보다 작은지 검증한다는 뜻이라고 한다.
+- 처음엔 이해하기 힘들었으나 RANDOM_UPPER_INCLUSIVE = 1이고 RANDOM_LOWER_INCLUSIVE = 0이기 때문에 가능한 것이라고 이해했다.
