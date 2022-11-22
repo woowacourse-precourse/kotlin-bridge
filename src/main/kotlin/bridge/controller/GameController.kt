@@ -30,7 +30,7 @@ class GameController {
             bridgeGame.move(direction)
             OutputView.printMap(bridgeGame.progressMatrix.progress, bridgeGame.position)
             completeOrFail(isSuccess)
-            bridgeGame.position++
+            bridgeGame.increasePosition()
         }
     }
 

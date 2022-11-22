@@ -29,6 +29,10 @@ class BridgeGame {
         return isCorrect
     }
 
+    fun increasePosition() {
+        position++
+    }
+
     fun move(direction: String) {
         if (isCorrect) {
             progressMatrix.saveMatrix(direction, O, position)
