@@ -24,7 +24,7 @@ class BridgeGameTest {
     @ParameterizedTest
     @DisplayName("종료 커맨드가 잘 작동하는지 테스트한다.")
     @ValueSource(strings = ["Q"])
-    fun workRetryQCommand(restartCommand: String) {
+    fun workRetryQuitCommand(restartCommand: String) {
         var restartGame = true
         if (restartCommand == "Q") {
             restartGame = false
@@ -35,7 +35,7 @@ class BridgeGameTest {
     @ParameterizedTest
     @DisplayName("재시작 커맨드가 잘 작동하는지 테스트한다.")
     @ValueSource(strings = ["R"])
-    fun workRetryRCommand(restartCommand: String) {
+    fun workRetryRetryCommand(restartCommand: String) {
         var restartGame = false
         if (restartCommand == "R") {
             restartGame = true
