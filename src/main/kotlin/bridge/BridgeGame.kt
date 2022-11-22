@@ -3,6 +3,7 @@ package bridge
 import bridge.model.Bridge
 import bridge.model.BridgeStatus
 import bridge.model.BridgeResult
+import bridge.utils.ERR_RETRY_SYMBOL
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -57,13 +58,19 @@ class BridgeGame {
      * @return 재시도를 하는지에 대한 유무
      */
     fun retry(userChoice: String): Boolean {
-        require(userChoice == "R" || userChoice == "Q")
-        if (userChoice == "R") {
+        require(userChoice == RETRY_SYMBOL || userChoice == QUIT_SYMBOL) {
+            ERR_RETRY_SYMBOL
+        }
+        if (userChoice == RETRY_SYMBOL) {
             resetPosition()
             return true
         }
         return false
     }
 
+    companion object {
+        private const val RETRY_SYMBOL = "R"
+        private const val QUIT_SYMBOL = "Q"
+    }
 
 }

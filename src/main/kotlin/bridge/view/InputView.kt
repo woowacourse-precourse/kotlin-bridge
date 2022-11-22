@@ -1,9 +1,6 @@
 package bridge.view
 
-import bridge.utils.BRIDGE_GAME_START
-import bridge.utils.CHOOSE_BRIDGE_DIRECTION
-import bridge.utils.CHOOSE_BRIDGE_LENGTH
-import bridge.utils.CHOOSE_RETRY
+import bridge.utils.*
 import camp.nextstep.edu.missionutils.Console
 import java.lang.IllegalArgumentException
 
@@ -21,7 +18,7 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         println(CHOOSE_BRIDGE_LENGTH)
-        return Console.readLine().toIntOrNull() ?: throw IllegalArgumentException("")
+        return Console.readLine().toIntOrNull() ?: throw IllegalArgumentException(ERR_BRIDGE_LENGTH)
     }
 
     /**

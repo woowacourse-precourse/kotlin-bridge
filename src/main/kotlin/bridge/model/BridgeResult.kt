@@ -2,7 +2,7 @@ package bridge.model
 
 class BridgeResult {
     private val bridgeMap: BridgeMap = BridgeMap()
-    private var totalCount: Int = 1
+    private var totalCount: Int = GAME_START_NUMBER
 
     fun restart() {
         bridgeMap.clear()
@@ -15,6 +15,10 @@ class BridgeResult {
 
     fun update(result: BridgeStatus) {
         bridgeMap.update(result)
+    }
+
+    companion object {
+        const val GAME_START_NUMBER = 1
     }
 
 }

@@ -1,5 +1,7 @@
 package bridge.model
 
+import bridge.model.Bridge.Companion.BRIDGE_UPPER_SYMBOL
+
 class BridgeMap {
 
     private val upperMap: MutableList<String> = mutableListOf()
@@ -47,29 +49,32 @@ class BridgeMap {
     }
 
     private fun addFail(direction: String) {
-        if (direction == "U") {
-            upperMap.add("X")
-            lowerMap.add(" ")
+        if (direction == BRIDGE_UPPER_SYMBOL) {
+            upperMap.add(BRIDGE_FAIL)
+            lowerMap.add(BRIDGE_BLANK)
             return
         }
-        upperMap.add(" ")
-        lowerMap.add("X")
+        upperMap.add(BRIDGE_BLANK)
+        lowerMap.add(BRIDGE_FAIL)
     }
 
     private fun addSuccess(direction: String) {
-        if (direction == "U") {
-            upperMap.add("O")
-            lowerMap.add(" ")
+        if (direction == BRIDGE_UPPER_SYMBOL) {
+            upperMap.add(BRIDGE_CORRECT)
+            lowerMap.add(BRIDGE_BLANK)
             return
         }
-        upperMap.add(" ")
-        lowerMap.add("O")
+        upperMap.add(BRIDGE_BLANK)
+        lowerMap.add(BRIDGE_CORRECT)
     }
 
     companion object {
         private const val BRIDGE_START = "[ "
         private const val BRIDGE_MIDDLE = " | "
         private const val BRIDGE_END = " ]"
+        private const val BRIDGE_CORRECT = "O"
+        private const val BRIDGE_FAIL = "X"
+        private const val BRIDGE_BLANK = " "
     }
 
 }
