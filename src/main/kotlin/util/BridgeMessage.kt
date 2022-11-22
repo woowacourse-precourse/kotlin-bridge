@@ -20,7 +20,4 @@ object BridgeMessage {
     const val TOTAL_ATTEMPT = "총 시도한 횟수:"
     const val LEFT_SQUARE_BRACKETS = "["
     const val RIGHT_SQUARE_BRACKETS = "]"
-
-    // BridgeGameController
-    const val X = "X"
 }
