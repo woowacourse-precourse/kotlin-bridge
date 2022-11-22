@@ -19,6 +19,14 @@ class OutputView {
         println("총 시도한 횟수: " + bridgeGame.playCount)
     }
 
+    fun printStart() = println(GAME_START_MESSAGE + "\n\n" + REQUEST_INPUT_MESSAGE)
+    fun printRestart() = println("\n" + REQUEST_RESTART_MESSAGE)
+    fun printUpOrDown() = println("\n" + UP_OR_DOWN_MESSAGE)
+    fun printSizeInputError() = println(ERROR + WRONG_SIZE_INPUT_MESSAGE)
+    fun printSizeRangeError() = println(ERROR + WRONG_SIZE_RANGE_MESSAGE)
+    fun printMovingInputError() = println(ERROR + WRONG_MOVING_INPUT_MESSAGE)
+    fun printCommandInputError() = println(ERROR + WRONG_COMMAND_INPUT_MESSAGE)
+
     companion object {
         private const val GAME_START_MESSAGE = "다리 건너기 게임을 시작합니다."
         private const val REQUEST_INPUT_MESSAGE = "다리의 길이를 입력해주세요."
@@ -29,13 +37,5 @@ class OutputView {
         private const val WRONG_SIZE_RANGE_MESSAGE = "다리의 길이는 3과 20 사이의 숫자만 가능합니다."
         private const val WRONG_MOVING_INPUT_MESSAGE = "움직이는 명령어는 U:위, D:아래 만 입력 가능합니다."
         private const val WRONG_COMMAND_INPUT_MESSAGE = "게임 재시작 명령어는 R:재시작, Q:게임종료 만 입력 가능합니다."
-
-        fun printStart() = println(GAME_START_MESSAGE + "\n\n" + REQUEST_INPUT_MESSAGE)
-        fun printRestart() = println("\n" + REQUEST_RESTART_MESSAGE)
-        fun printUpOrDown() = println("\n" + UP_OR_DOWN_MESSAGE)
-        fun printSizeInputError() = println(ERROR + WRONG_SIZE_INPUT_MESSAGE)
-        fun printSizeRangeError() = println(ERROR + WRONG_SIZE_RANGE_MESSAGE)
-        fun printMovingInputError() = println(ERROR + WRONG_MOVING_INPUT_MESSAGE)
-        fun printCommandInputError() = println(ERROR + WRONG_COMMAND_INPUT_MESSAGE)
     }
 }

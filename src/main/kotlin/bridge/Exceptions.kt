@@ -1,28 +1,29 @@
 package bridge
 
 class Exceptions {
+    private val outputView = OutputView()
     fun validateBridgeSize(x: String) {
         val size = x.toIntOrNull()
         require (size != null) {
-            OutputView.printSizeInputError()
+            outputView.printSizeInputError()
             throw IllegalArgumentException()
         }
         require (size in (SIZE_RANGE_START..SIZE_RANGE_END)) {
-            OutputView.printSizeRangeError()
+            OutputView().printSizeRangeError()
             throw IllegalArgumentException()
         }
     }
 
     fun validateMoving(x: String) {
         require(x in listOf("U", "D")) {
-            OutputView.printMovingInputError()
+            outputView.printMovingInputError()
             throw IllegalArgumentException()
         }
     }
 
     fun validateCommand(x: String?) {
         require(x in listOf("R", "Q")) {
-            OutputView.printCommandInputError()
+            outputView.printCommandInputError()
             throw IllegalArgumentException()
         }
     }

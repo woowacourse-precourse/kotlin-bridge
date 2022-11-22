@@ -12,18 +12,18 @@ fun start() {
     val bridge = generateBridge()
     val bridgeGame =  BridgeGame(bridge)
     print(bridge)
-    playGame(bridge, bridgeGame)
+    playGame(bridgeGame)
     OutputView().printResult(bridgeGame)
 }
 
 fun generateBridge(): List<String> {
-    OutputView.printStart()
+    OutputView().printStart()
     val bridgeSize = InputView().readBridgeSize()
     val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
     return bridgeMaker.makeBridge(bridgeSize)
 }
 
-fun playGame(bridge: List<String>, bridgeGame: BridgeGame) {
+fun playGame(bridgeGame: BridgeGame) {
     var isOnGame = true
     while (isOnGame) {
         playerMove(bridgeGame)
@@ -37,7 +37,7 @@ fun playGame(bridge: List<String>, bridgeGame: BridgeGame) {
 }
 
 fun playerOnGame(bridgeGame: BridgeGame): Boolean {
-    OutputView.printRestart()
+    OutputView().printRestart()
     val input = InputView().readGameCommand()
     if (input == "R") {
         bridgeGame.retry()
@@ -50,7 +50,7 @@ fun playerOnGame(bridgeGame: BridgeGame): Boolean {
 }
 
 fun playerMove(bridgeGame: BridgeGame) {
-    OutputView.printUpOrDown()
+    OutputView().printUpOrDown()
     val moving = InputView().readMoving()
     bridgeGame.move(moving)
     OutputView().printMap(bridgeGame)
