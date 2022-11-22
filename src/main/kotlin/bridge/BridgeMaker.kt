@@ -20,7 +20,6 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
                 0 -> bridgeShape.add(DOWN_SIDE)
             }
         }
-        println(bridgeShape)
         return bridgeShape.toList()
     }
 }
