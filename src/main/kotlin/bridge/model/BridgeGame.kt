@@ -6,15 +6,15 @@ import bridge.QuitEventManager
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame(private val _movingEventManager: MovingEventManager, private val _quitEventManager: QuitEventManager) {
-    private lateinit var _bridge: List<String>
-    private var _userHistory = mutableListOf<String>()
-    private var _attempts: Int = 1
+class BridgeGame(private val movingEventManager: MovingEventManager, private val quitEventManager: QuitEventManager) {
+    private lateinit var bridge: List<String>
+    private var userHistory = mutableListOf<String>()
+    private var attempts: Int = 1
 
     fun start(bridge: List<String>) {
         require(!started()) { "게임은 한 번만 시작할 수 있습니다." }
         validateBridge(bridge)
-        this._bridge = bridge
+        this.bridge = bridge
     }
 
     private fun validateBridge(bridge: List<String>) =
@@ -28,8 +28,8 @@ class BridgeGame(private val _movingEventManager: MovingEventManager, private va
      */
     fun move(moving: String) {
         check(running()) { "게임이 실행되었을 때만 움직일 수 있습니다." }
-        _userHistory += moving
-        _movingEventManager.notify(GameMapStatus(_bridge, _userHistory))
+        userHistory += moving
+        movingEventManager.notify(GameMapStatus(bridge, userHistory))
     }
 
     /**
@@ -40,16 +40,16 @@ class BridgeGame(private val _movingEventManager: MovingEventManager, private va
      */
     fun retry() {
         check(stopped()) { "게임이 중지 상태일 때만 재시작할 수 있습니다." }
-        _userHistory.clear()
-        _attempts++
+        userHistory.clear()
+        attempts++
     }
 
     fun quit() {
         check(started()) { "게임이 시작된 상태여야 종료할 수 있습니다." }
-        _quitEventManager.notify(GameMapStatus(_bridge, _userHistory), GameResult(succeeded(), _attempts))
+        quitEventManager.notify(GameMapStatus(bridge, userHistory), GameResult(succeeded(), attempts))
     }
 
-    private fun started(): Boolean = ::_bridge.isInitialized
+    private fun started(): Boolean = ::bridge.isInitialized
 
     private fun running(): Boolean = started() && !succeeded() && !failed()
 
@@ -57,11 +57,11 @@ class BridgeGame(private val _movingEventManager: MovingEventManager, private va
 
     fun failed(): Boolean {
         check(started()) { "게임이 시작되어야 실패했는지 판단할 수 있습니다." }
-        return _userHistory.isNotEmpty() && _userHistory.last() != _bridge[_userHistory.size - 1]
+        return userHistory.isNotEmpty() && userHistory.last() != bridge[userHistory.size - 1]
     }
 
     fun succeeded(): Boolean {
         check(started()) { "게임이 시작되어야 성공했는지 판단할 수 있습니다." }
-        return _bridge.size == _userHistory.size && (_bridge.indices).all { _bridge[it] == _userHistory[it] }
+        return bridge.size == userHistory.size && (bridge.indices).all { bridge[it] == userHistory[it] }
     }
 }
