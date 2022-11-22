@@ -12,6 +12,7 @@ import bridge.OutputView
 class BridgeGame {
 
     val userBridge = mutableListOf<String>()
+    var gameSuccess = false
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -32,12 +33,14 @@ class BridgeGame {
             if (!i.second)
                 return false
         }
-        if (userBridge.size == bridge.size)
+        if (userBridge.size == bridge.size) {
+            gameSuccess = true
             return false
+        }
         return true
     }
 
-    fun compareBridge(bridge: List<String>): List<Pair<String, Boolean>> {
+    private fun compareBridge(bridge: List<String>): List<Pair<String, Boolean>> {
         val compareBridgeResult = mutableListOf<Pair<String, Boolean>>()
         for (userIndex in 0 until userBridge.size) {
             if (bridge[userIndex] == userBridge[userIndex])

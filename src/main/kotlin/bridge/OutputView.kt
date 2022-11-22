@@ -38,6 +38,15 @@ class OutputView {
         return "   "
     }
 
+    fun printSuccess(gameSuccess: Boolean) {
+        if (gameSuccess)
+            println(GAME_SUCCESS_MESSAGE + "성공")
+        else
+            println(GAME_SUCCESS_MESSAGE + "실패")
+    }
+
+
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
