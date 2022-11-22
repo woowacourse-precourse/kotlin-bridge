@@ -6,8 +6,8 @@ package bridge
 class OutputView {
 
     companion object {
-        var finalMapUp = ""
-        var finalMapDown = ""
+        var mapUp  = mutableListOf("[")
+        var mapDown  = mutableListOf("[")
         fun printGameStart() {
             println("다리 건너기 게임을 시작합니다.\n")
         }
@@ -34,49 +34,45 @@ class OutputView {
          * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
          */
         fun printMap(inputList : MutableList<String>,bridgeList: List<String>, index : Int) {
-            var mapUp = emptyList<String>().toMutableList()
-            var mapDown = emptyList<String>().toMutableList()
-            mapUp.add("[")
-            mapDown.add("[")
+            mapUp  = mutableListOf("[")
+            mapDown  = mutableListOf("[")
             for (i in 0..index) {
-                if(mapUp.last() == "]") {
-                    mapUp.removeLast()
-                    mapUp.add("|")
-                }
-                if(mapDown.last() == "]") {
-                    mapDown.removeLast()
-                    mapDown.add("|")
-                }
-
-                if (inputList[i] == "U" && bridgeList[i] == "U") {
-                    mapUp.add("O")
-                    mapUp.add("]")
-                    mapDown.add(" ")
-                    mapDown.add("]")
-                }
-                if (inputList[i] == "U" && bridgeList[i] == "D") {
-                    mapUp.add("X")
-                    mapUp.add("]")
-                    mapDown.add(" ")
-                    mapDown.add("]")
-                }
-                if (inputList[i] == "D" && bridgeList[i] == "D") {
-                    mapUp.add(" ")
-                    mapUp.add("]")
-                    mapDown.add("O")
-                    mapDown.add("]")
-                }
-                if (inputList[i] == "D" && bridgeList[i] == "U") {
-                    mapUp.add(" ")
-                    mapUp.add("]")
-                    mapDown.add("X")
-                    mapDown.add("]")
-                }
+                checkLast(mapUp,mapDown)
+                checkUp(inputList,bridgeList,i)
+                checkDown(inputList,bridgeList,i)
             }
             println(mapUp.joinToString(" "))
             println(mapDown.joinToString(" "))
-            finalMapUp = mapUp.joinToString(" ")
-            finalMapDown = mapDown.joinToString(" ")
+        }
+        fun checkLast(mapUp:MutableList<String> ,mapDown : MutableList<String>) {
+            if (mapUp.last() == "]") {
+                mapUp.removeLast()
+                mapUp.add("|")
+            }
+            if (mapDown.last() == "]") {
+                mapDown.removeLast()
+                mapDown.add("|")
+            }
+        }
+        fun checkUp(inputList: MutableList<String>, bridgeList: List<String>, i : Int){
+            if (inputList[i] == "U" && bridgeList[i] == "U") {
+                mapUp.addAll(listOf("O","]"))
+                mapDown.addAll(listOf(" ","]"))
+            }
+            if (inputList[i] == "U" && bridgeList[i] == "D") {
+                mapUp.addAll(listOf("X","]"))
+                mapDown.addAll(listOf(" ","]"))
+            }
+        }
+        fun checkDown(inputList: MutableList<String>, bridgeList: List<String>, i : Int){
+            if (inputList[i] == "D" && bridgeList[i] == "D") {
+                mapUp.addAll(listOf(" ", "]"))
+                mapDown.addAll(listOf("O", "]"))
+            }
+            if (inputList[i] == "D" && bridgeList[i] == "U") {
+                mapUp.addAll(listOf(" ", "]"))
+                mapDown.addAll(listOf("X", "]"))
+            }
         }
         /**
          * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -85,14 +81,12 @@ class OutputView {
          */
         fun printResult(count :Int,success:Int) {
             println("\n최종 게임 결과")
-            println(finalMapUp)
-            println(finalMapDown)
+            println(mapUp.joinToString(" "))
+            println(mapDown.joinToString(" "))
             println()
-            var result: String
+            var result = "실패"
             if (success == 1)
-                result ="성공"
-            else
-                result ="실패"
+                result = "성공"
             println("게임 성공 여부: $result")
             println("총 시도한 횟수: $count")
         }
