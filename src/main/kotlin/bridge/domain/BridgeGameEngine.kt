@@ -1,5 +1,6 @@
 package bridge.domain
 
+import bridge.BridgeRandomNumberGenerator
 import bridge.view.View
 
 class BridgeGameEngine {

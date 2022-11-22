@@ -1,7 +1,7 @@
 package bridge._assist
 
 import bridge.domain.BridgeMaker
-import bridge.domain.BridgeNumberGenerator
+import bridge.BridgeNumberGenerator
 
 internal class TestNumberGenerator2(numbers: List<Int>) : BridgeNumberGenerator {
     private val numbers: MutableList<Int> = numbers.toMutableList()
