@@ -1,5 +1,7 @@
 package bridge.ui
 
+import bridge.domain.data.BridgeKeyword
+import bridge.domain.data.BridgeOutputText
 import bridge.domain.data.MovingResultData
 import bridge.domain.usecase.BridgeGame
 import camp.nextstep.edu.missionutils.Console
@@ -52,7 +54,7 @@ class OutputView {
     }
 
     private fun isNotPassableInRows(upRowsResult: String, downRowsResult: String): Boolean {
-        return upRowsResult.contains("X") || downRowsResult.contains("X")
+        return upRowsResult.contains(BridgeKeyword.FAIL.keyword) || downRowsResult.contains(BridgeKeyword.FAIL.keyword)
     }
 
     private fun bridgeGameRetry(upRowsResult: String, downRowsResult: String): MovingResultData {
@@ -65,11 +67,11 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printResult(upRowsResult: String, downRowsResult: String, gameCount: Int) {
-        println("최종 게임 결과")
+        println(BridgeOutputText.FINAL_RESULT.text)
         println("[ $upRowsResult ]")
         println("[ $downRowsResult ]\n")
-        if (isNotPassableInRows(upRowsResult, downRowsResult)) println("게임 성공 여부: 실패")
-        return println("게임 성공 여부: 성공")
-        println("총 시도한 횟수: $gameCount")
+        if (isNotPassableInRows(upRowsResult, downRowsResult)) println(BridgeOutputText.FAIL_TEXT.text)
+        else println(BridgeOutputText.SUCCESS_TEXT.text)
+        println("${BridgeOutputText.TOTAL_CHALLENGE.text}$gameCount")
     }
 }

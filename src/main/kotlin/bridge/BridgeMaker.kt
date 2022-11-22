@@ -1,5 +1,8 @@
 package bridge
 
+import bridge.domain.data.BridgeKeyword
+import bridge.domain.data.BridgeNumber
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -10,7 +13,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      */
     fun makeBridge(size: Int): List<String> {
         val bridge = mutableListOf<String>()
-        for (i in 1..size) {
+        for (i in BridgeNumber.ONE.number ..size) {
             bridge.add(makeOneColumn())
         }
         return bridge
@@ -18,16 +21,9 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 
     private fun makeOneColumn(): String {
         val bridgeNumberGenerator = bridgeNumberGenerator.generate()
-        if (bridgeNumberGenerator == RANDOM_LOWER_INCLUSIVE)  {
-            return ONE_COLUMN_DOWN
+        if (bridgeNumberGenerator == BridgeNumber.ZERO.number)  {
+            return BridgeKeyword.DOWN.keyword
         }
-        return ONE_COLUMN_UP
-    }
-
-    companion object {
-        const val RANDOM_LOWER_INCLUSIVE = 0
-        const val RANDOM_UPPER_INCLUSIVE = 1
-        const val ONE_COLUMN_UP = "U"
-        const val ONE_COLUMN_DOWN = "D"
+        return BridgeKeyword.UP.keyword
     }
 }
