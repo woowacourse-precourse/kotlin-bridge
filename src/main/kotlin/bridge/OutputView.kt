@@ -25,14 +25,11 @@ class OutputView {
     private fun printFirstMap(case:String, count : Int, size:Int){
         if(count != size && count != 0)
             print("|")
-        if(case == "A")
-            print(" O ")
-        else if(case == "B")
-            print("   ")
-        else if(case == "C")
-            print(" X ")
-        else if(case == "D")
-            print("   ")
+        when(case){
+            "A" -> print(" O ")
+            "B","D" -> print("   ")
+            "C" -> print(" X ")
+        }
     }
 
     // 아래쪽 줄 출력
