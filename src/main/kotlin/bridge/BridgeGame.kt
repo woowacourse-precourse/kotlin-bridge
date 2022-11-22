@@ -26,6 +26,14 @@ class BridgeGame(private val bridgeLength: Int) {
     private fun createBridgeLine() {
         bridgeLine = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
     }
+    fun initStartGame() {
+        oxBridge = mutableListOf(
+            mutableListOf(),
+            mutableListOf()
+        )
+        correctDirection = 0
+        totalAttempts++
+    }
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
