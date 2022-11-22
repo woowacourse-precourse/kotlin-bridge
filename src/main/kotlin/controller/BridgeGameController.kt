@@ -1,4 +1,8 @@
-package bridge
+package controller
+
+import bridge.BridgeGame
+import view.InputView
+import view.OutputView
 
 class BridgeGameController {
     private lateinit var bridgeGame: BridgeGame
