@@ -24,9 +24,7 @@ class BridgeChecker(private val bridge: List<String>) {
             map = outputView.printMap(index, actual, predict)
             println(map[0])
             println(map[1])
-            if (!bridgeGame.move(actual, predict)) {
-                return false
-            }
+            if (!bridgeGame.move(actual, predict)) return false
         }
         return true
     }
