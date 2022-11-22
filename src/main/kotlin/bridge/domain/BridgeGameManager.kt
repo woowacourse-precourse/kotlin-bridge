@@ -2,6 +2,8 @@ package bridge.domain
 
 import bridge.view.InputView
 import bridge.view.OutputView
+import bridge.view.OutputView.Companion.RESULT_FAIL
+import bridge.view.OutputView.Companion.RESULT_SUCCESS
 
 class BridgeGameManager(
     private val inputView: InputView,
@@ -9,6 +11,14 @@ class BridgeGameManager(
 ) {
     fun startGame() {
         outputView.printStart()
+    }
+
+    fun endGame(map: List<List<String>>, isGameSuccess: Boolean, numOfTry: Int) {
+        val result = when {
+            isGameSuccess -> RESULT_SUCCESS
+            else -> RESULT_FAIL
+        }
+        outputView.printResult(map, result, numOfTry)
     }
 
     fun getBridgeSize(): Int {

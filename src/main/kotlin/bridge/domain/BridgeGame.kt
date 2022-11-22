@@ -10,6 +10,8 @@ class BridgeGame(
 ) {
     lateinit var bridge: List<String>
     lateinit var path: MutableList<String>
+    var gameResult = true
+    var numberOfTry = 0
 
     fun runGame() {
         gameManager.startGame()
@@ -17,6 +19,7 @@ class BridgeGame(
         bridge = bridgeMaker.makeBridge(bridgeSize)
 
         crossBridge()
+        gameManager.endGame(getMap(), gameResult, numberOfTry)
     }
 
     fun crossBridge() {
@@ -31,7 +34,7 @@ class BridgeGame(
 
     fun move(currentIndex: Int): Boolean {
         if (currentIndex == bridge.size) {
-            return false // TODO: 다리 건너기 성공
+            return false
         }
 
         val movement = gameManager.getMovement()
@@ -55,7 +58,7 @@ class BridgeGame(
 
         when (command) {
             GAME_RESTART -> crossBridge()
-            //    GAME_END -> // TODO: 다리 건너기 실패
+            GAME_END -> gameResult = false
         }
     }
 
