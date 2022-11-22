@@ -27,7 +27,5 @@ class OutputView {
         print(GAME_TRY_NUMBER_FORMAT.format(numberOfTry))
     }
 
-    fun printStartMessage() = print(GAME_START_MESSAGE)
-
     fun printMessage(message: String) = print(message)
 }

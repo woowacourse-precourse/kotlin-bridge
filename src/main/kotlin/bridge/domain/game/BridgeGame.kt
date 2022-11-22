@@ -6,6 +6,7 @@ import bridge.domain.maker.BridgeMaker
 import bridge.domain.mediator.BridgeGameViewMediator
 import bridge.domain.moving.Moving
 import bridge.domain.calculator.BridgeCrossingCalculator
+import bridge.domain.mediator.type.InputType
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -24,11 +25,11 @@ class BridgeGame(
     }
 
     private fun initGame() {
-        val bridgeSize = bridgeGameViewMediator.readBridgeSize()
+        val bridgeSize = bridgeGameViewMediator.read(inputType = InputType.SIZE).toInt()
 
         bridge = bridgeMaker.makeBridge(size = bridgeSize)
 
-        bridgeGameViewMediator.printStartMessage()
+        bridgeGameViewMediator.write(message = GAME_START_MESSAGE)
     }
 
     private fun crossBridge() {
@@ -47,7 +48,7 @@ class BridgeGame(
      */
     private fun checkCrossingFail() {
         if (BridgeCrossingCalculator.isCrossingFail()) {
-            val command = bridgeGameViewMediator.readGameCommand()
+            val command = bridgeGameViewMediator.read(inputType = InputType.COMMAND)
             checkGameCommand(command = command)
         }
     }
@@ -69,10 +70,10 @@ class BridgeGame(
      * 사용자가 칸을 이동할 때 사용하는 메서드
      */
     private fun move() {
-        val moving = bridgeGameViewMediator.readMoving()
+        val moving = bridgeGameViewMediator.read(inputType = InputType.MOVING)
         checkMoving(moving = moving)
 
-        bridgeGameViewMediator.printMap(gameMap = BridgeCrossingCalculator.getCurrentMap())
+        bridgeGameViewMediator.write(mapInfo = BridgeCrossingCalculator.getCurrentMap())
 
         round++
     }
@@ -110,7 +111,7 @@ class BridgeGame(
     override fun end() {
         val gameSuccessResult = BridgeCrossingCalculator.calculateFinalGameResult()
 
-        bridgeGameViewMediator.printResult(
+        bridgeGameViewMediator.write(
             mapInfo = BridgeCrossingCalculator.getCurrentMap(),
             gameSuccessResult = gameSuccessResult,
             numberOfTry = numberOfTry

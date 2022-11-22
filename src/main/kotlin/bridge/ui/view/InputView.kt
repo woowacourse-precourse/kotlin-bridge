@@ -10,14 +10,14 @@ class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(): Int {
+    fun readBridgeSize(): String {
         while (true) {
             val bridgeSize = Console.readLine()
 
             kotlin.runCatching {
                 InputValidator.validateBridgeSize(bridgeSize = bridgeSize)
             }
-                .onSuccess { return bridgeSize.toInt() }
+                .onSuccess { return bridgeSize }
                 .onFailure { println(it.message) }
         }
     }
