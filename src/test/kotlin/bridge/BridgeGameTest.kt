@@ -1,0 +1,23 @@
+package bridge
+
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
+
+class BridgeGameTest {
+
+    @ParameterizedTest
+    @DisplayName("OX 다리에 0과, X가 포함되어 잘 만들어지는지 테스트한다.")
+    @ValueSource(strings = ["D"])
+    fun makeOXBridge(move: String) {
+        val oxBridge = mutableListOf<MutableList<String>>(mutableListOf(), mutableListOf())
+        for (index in 0 until 3) {
+            if (move == "D") {
+                oxBridge[0].add(" ")
+                oxBridge[1].add("O")
+            }
+        }
+        assertThat(oxBridge[1]).isEqualTo(mutableListOf("O", "O", "O"))
+    }
+}
