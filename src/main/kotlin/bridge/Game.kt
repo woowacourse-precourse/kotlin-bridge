@@ -5,7 +5,7 @@ class Game {
     private val inputView = InputView()
     private val outputView = OutputView()
     private var bridgeGame = BridgeGame()
-    private var success = false
+    private var success = true
     private var trycount = 1
 
     fun outputStartMessage() {
@@ -52,8 +52,6 @@ class Game {
 
     private fun checkBridgeDirection(index: Int) {
         try {
-            println(index)
-            println(bridge)
             outputView.inputDirection()
             inputDirection(index)
         } catch (e: IllegalArgumentException) {
@@ -84,9 +82,7 @@ class Game {
 
     private fun checkRestartOrQuit(): Boolean {
         try {
-            if (inputRestartOrQuit()) {
-                backToBeginning()
-            }
+            if (inputRestartOrQuit()) backToBeginning()
         } catch (e: IllegalArgumentException) {
             outputView.printError(e.message.toString())
             return false
