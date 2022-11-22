@@ -28,6 +28,7 @@ class Processor(
     fun processGame() {
         lateinit var gameStatus: GameStatus
         initBridge()
+
         do {
             val playerStatus = move()
             recordPlayerMoving(playerStatus)
