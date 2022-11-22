@@ -51,7 +51,7 @@ fun playerOnGame(bridgeGame: BridgeGame): Boolean {
 
 fun playerMove(bridgeGame: BridgeGame) {
     OutputView().printUpOrDown()
-    val moving = InputView().readMoving()
-    bridgeGame.move(moving)
+    val moveState = InputView().readMoving()
+    bridgeGame.move(moveState)
     OutputView().printMap(bridgeGame)
 }

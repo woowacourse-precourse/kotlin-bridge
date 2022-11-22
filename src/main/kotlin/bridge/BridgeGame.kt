@@ -6,35 +6,24 @@ class BridgeGame(private val bridge: List<String>) {
     var resultDownBridge = mutableListOf<String>()
     var playCount = 1
 
-    fun move(moving: String) {
-        playerBridge.add(moving)
-        if (bridge[playerBridge.size - 1] == moving) {
-            updateRightBridge(moving)
+    fun move(moveState: String) {
+        playerBridge.add(moveState)
+        if (bridge[playerBridge.size - 1] == moveState) {
+            updateBridge(moveState, RIGHT)
         }
-        if (bridge[playerBridge.size - 1] != moving) {
-            updateWrongBridge(moving)
-        }
-    }
-
-    private fun updateRightBridge(moving: String) {
-        if (moving == "U") {
-            resultUpBridge.add("O")
-            resultDownBridge.add(" ")
-        }
-        if (moving == "D") {
-            resultUpBridge.add(" ")
-            resultDownBridge.add("O")
+        if (bridge[playerBridge.size - 1] != moveState) {
+            updateBridge(moveState, WRONG)
         }
     }
 
-    private fun updateWrongBridge(moving: String) {
-        if (moving == "U") {
-            resultUpBridge.add("X")
+    private fun updateBridge(moveState: String, state: String) {
+        if (moveState == UP) {
+            resultUpBridge.add(state)
             resultDownBridge.add(" ")
         }
-        if (moving == "D") {
+        if (moveState == DOWN) {
             resultUpBridge.add(" ")
-            resultDownBridge.add("X")
+            resultDownBridge.add(state)
         }
     }
 
@@ -50,4 +39,11 @@ class BridgeGame(private val bridge: List<String>) {
     }
 
     fun over(): Boolean = bridge.size == playerBridge.size
+
+    companion object {
+        private const val UP = "U"
+        private const val DOWN = "D"
+        private const val RIGHT = "O"
+        private const val WRONG = "X"
+    }
 }
