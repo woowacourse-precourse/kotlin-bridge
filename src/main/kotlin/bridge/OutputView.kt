@@ -1,20 +1,64 @@
 package bridge
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
-class OutputView {
-    /**
-     * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun printMap() {}
+import bridge.constants.Constants.BLANK_MARK
+import bridge.constants.Constants.BRIDGE_END
+import bridge.constants.Constants.BRIDGE_MIDDLE
+import bridge.constants.Constants.BRIDGE_START
+import bridge.constants.Constants.CORRECT_MARK
+import bridge.constants.Constants.DOWN_BRIDGE_STRING
+import bridge.constants.Constants.INCORRECT_MARK
+import bridge.constants.Constants.UP_BRIDGE_STRING
+import bridge.constants.PrintMessage.RESULT_COUNT
+import bridge.constants.PrintMessage.RESULT_FAILURE
+import bridge.constants.PrintMessage.RESULT_IS_SUCCESS
+import bridge.constants.PrintMessage.RESULT_SUCCESS
+import bridge.constants.PrintMessage.RESULT_TITLE
 
-    /**
-     * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
-     *
-     * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun printResult() {}
+class OutputView(private val bridge: List<String>) {
+    private val up = StringBuilder(BRIDGE_START)
+    private val down = StringBuilder(BRIDGE_START)
+
+    fun printMap(moving: List<String>) {
+        for (position in moving.indices) {
+            markAnswer(moving, position, moving[position] == bridge[position])
+            if (moving[position] != bridge[position]) break
+            if (position != moving.size - 1) addStringToMap(BRIDGE_MIDDLE, BRIDGE_MIDDLE)
+        }
+        printStringBuilder()
+    }
+
+    private fun addStringToMap(upString: String, downString: String) {
+        up.append(upString)
+        down.append(downString)
+    }
+
+    private fun markAnswer(moving: List<String>, position: Int, isCorrect: Boolean) {
+        val mark = if (isCorrect) CORRECT_MARK else INCORRECT_MARK
+        if (moving[position] == bridge[position]) {
+            if (bridge[position] == UP_BRIDGE_STRING) addStringToMap(mark, BLANK_MARK)
+            if (bridge[position] == DOWN_BRIDGE_STRING) addStringToMap(BLANK_MARK, mark)
+        } else {
+            if (bridge[position] == UP_BRIDGE_STRING) addStringToMap(BLANK_MARK, mark)
+            if (bridge[position] == DOWN_BRIDGE_STRING) addStringToMap(mark, BLANK_MARK)
+        }
+    }
+
+    private fun printStringBuilder() {
+        addStringToMap(BRIDGE_END, BRIDGE_END)
+        println("$up\n$down\n")
+        up.clear()
+        down.clear()
+        addStringToMap(BRIDGE_START, BRIDGE_START)
+    }
+
+    fun printResult(choice: List<String>, isSuccess: Boolean, count: Int) {
+        val result = when (isSuccess) {
+            true -> RESULT_SUCCESS
+            false -> RESULT_FAILURE
+        }
+        println(RESULT_TITLE)
+        printMap(choice)
+        println("$RESULT_IS_SUCCESS$result")
+        println("$RESULT_COUNT$count")
+    }
 }

@@ -1,27 +1,32 @@
 package bridge
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+import bridge.constants.PrintMessage.READ_BRIDGE_SIZE
+import bridge.constants.PrintMessage.READ_GAME_COMMAND
+import bridge.constants.PrintMessage.READ_MOVING
+import camp.nextstep.edu.missionutils.Console
+
 class InputView {
-    /**
-     * 다리의 길이를 입력받는다.
-     */
+    private val inputErrorCheck = InputErrorCheck()
+
     fun readBridgeSize(): Int {
-        return 0
+        println(READ_BRIDGE_SIZE)
+        val bridgeSize = Console.readLine()
+        inputErrorCheck.checkValidBridgeSize(bridgeSize)
+        println()
+        return bridgeSize.toInt()
     }
 
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
     fun readMoving(): String {
-        return ""
+        println(READ_MOVING)
+        val moving = Console.readLine()
+        inputErrorCheck.throwMovingException(moving)
+        return moving
     }
 
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
     fun readGameCommand(): String {
-        return ""
+        println(READ_GAME_COMMAND)
+        val gameCommand = Console.readLine()
+        inputErrorCheck.throwGameCommandException(gameCommand)
+        return gameCommand
     }
 }
