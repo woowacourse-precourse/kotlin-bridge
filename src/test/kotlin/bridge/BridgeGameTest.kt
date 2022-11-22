@@ -33,7 +33,7 @@ class BridgeGameTest {
                 result = BridgeGame.BridgeMoveResult.MOVE_FAILED
                 break
             }
-            result=curResult
+            result = curResult
         }
 
         val expected = BridgeGame.BridgeMoveResult.MOVE_END
