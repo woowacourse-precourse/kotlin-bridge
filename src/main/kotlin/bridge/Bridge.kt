@@ -2,39 +2,40 @@ package bridge
 
 import bridge.constant.*
 
-class Bridge(private val bridge:List<String>){
-    private var playerLocation=-1
-    private val roadUntilNow= RoadMap()
-    private var failFlag=false
+class Bridge(private val bridge: List<String>) {
+    private var playerLocation = -1
+    private val roadUntilNow = RoadMap()
+    private var failFlag = false
 
-    fun movePlayer(playerInput: String){
-        if(bridge[playerLocation+1]==playerInput) {
+    fun movePlayer(playerInput: String) {
+        if (bridge[playerLocation + 1] == playerInput) {
             roadUntilNow.addSuccessRoad(playerInput)
-        }else{
+        } else {
             roadUntilNow.addFailRoad(playerInput)
-            failFlag=true
+            failFlag = true
         }
 
         playerLocation++
     }
 
-    fun checkGameEnd() :Int{
-        return if(playerLocation==(bridge.size-1) && !failFlag) END
-        else if(failFlag) WRONG
+    fun checkGameEnd(): Int {
+        return if (playerLocation == (bridge.size - 1) && !failFlag) END
+        else if (failFlag) WRONG
         else CORRECT
     }
 
     fun getRoadUntilNow(): RoadMap {
         return roadUntilNow
     }
-    fun getFailFlag():Boolean{
+
+    fun getFailFlag(): Boolean {
         return failFlag
     }
 
-    fun resetPlayer(){
+    fun resetPlayer() {
         roadUntilNow.resetRoadMap()
-        playerLocation=-1
-        failFlag=false
+        playerLocation = -1
+        failFlag = false
     }
 
 
