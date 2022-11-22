@@ -7,14 +7,14 @@ class Validator {
     }
 
     fun validatorMove(move: String?): Boolean {
-        if(move == "U" || move == "D"){
+        if(move == UP || move == DOWN){
             return true
         }
         throw IllegalArgumentException(ERROR_MOVING)
     }
 
     fun validatorGameCommand(command: String): Boolean {
-        if(command == "R" || command == "Q"){
+        if(command == RETRY || command == QUIT){
             return true
         }
         throw IllegalArgumentException(ERROR_GAME_COMMAND)
@@ -29,7 +29,7 @@ class Validator {
     }
 
     private fun validatorRange(input: Int): Boolean {
-        if(input in 3..20){
+        if(input in MIN_BRIDGE_SIZE..MAX_BRIDGE_SIZE){
             return true
         }
         throw IllegalArgumentException(ERROR_BRIDGE_SIZE)
