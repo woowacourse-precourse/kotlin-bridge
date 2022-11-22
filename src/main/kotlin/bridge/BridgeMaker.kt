@@ -1,6 +1,4 @@
-package bridge.domain
-
-import bridge.BridgeNumberGenerator
+package bridge
 
 enum class UpDown(val number: Int, val space: String) {
     UP(1, "U"),

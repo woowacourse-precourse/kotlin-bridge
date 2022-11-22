@@ -8,7 +8,6 @@ import bridge.data.Bridge
 import bridge.data.GameResult
 import bridge.data.BridgeMap
 import bridge.domain.BridgeGame
-import bridge.domain.BridgeMaker
 
 
 class BridgeGameController {
