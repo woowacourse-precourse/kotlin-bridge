@@ -33,8 +33,8 @@ class GameMap(gameMapStatus: GameMapStatus) {
             squares = (1..size).map { EMPTY }.toMutableList()
         }
 
-        fun mark(point: Int, mark: String) {
-            squares[point] = mark
+        fun mark(index: Int, mark: String) {
+            squares[index] = mark
         }
 
         override fun toString(): String = LEFT + squares.joinToString(SPLIT) + RIGHT + "\n"
