@@ -1,6 +1,8 @@
 package bridge
 
 import bridge.Constants.Companion.DOWN
+import bridge.Constants.Companion.QUIT
+import bridge.Constants.Companion.RETRY
 import bridge.Constants.Companion.UP
 import java.lang.IllegalArgumentException
 import java.lang.NumberFormatException
@@ -24,7 +26,7 @@ class InputException {
     }
 
     fun checkRetryCommandInput(input : String){
-        require(input.contains("R") || input.contains("Q")) { ERROR_HEADER + ERROR_RETRY_COMMAND_INPUT }
+        require(input.contains(RETRY) || input.contains(QUIT)) { ERROR_HEADER + ERROR_RETRY_COMMAND_INPUT }
     }
 
     companion object{
