@@ -1,7 +1,7 @@
 package bridge.View
 
-import bridge.Constants.Companion.DOWN
-import bridge.Constants.Companion.UP
+import bridge.Model.Constants.Companion.DOWN
+import bridge.Model.Constants.Companion.UP
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
