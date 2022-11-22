@@ -8,9 +8,9 @@ class ExceptionCheck {
         when {
             !isNumber(userInput) -> {
                 println(Error.BRIDGE_LENGTH_INPUT_TYPE_ERROR.message)
-                throw IllegalArgumentException()
+                throw NoSuchElementException()
             }
-            !checkValidNumberRange(userInput) -> {
+            checkValidNumberRange(userInput) -> {
                 println(Error.BRIDGE_LENGTH_INPUT_RANGE_ERROR.message)
                 throw IllegalArgumentException()
             }
