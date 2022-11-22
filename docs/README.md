@@ -13,3 +13,4 @@
 - 메인 함수 작성
 - 다리게임 플레이 회수를 알려주는 메소드 구현 BridgePlay.kt playCount() 구현
 - 예외테스트 추가 구현 test/ApplicationTest
+- 리팩토링(if문을 when 문으로 변경) OutputView.kt printFirstMap() printSecondMap()
