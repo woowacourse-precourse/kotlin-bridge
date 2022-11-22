@@ -20,7 +20,7 @@ class InputView {
             val direction = Console.readLine()
             InputExceptions.validateInputMove(direction)
             return direction
-        } catch (error: Exception) {
+        } catch (error: IllegalArgumentException) {
             println(error.message)
             readMoving()
         }
@@ -31,7 +31,7 @@ class InputView {
             val command = Console.readLine()
             InputExceptions.validateInputRestart(command)
             return command
-        } catch (error: Exception) {
+        } catch (error: IllegalArgumentException) {
             println(error.message)
             readGameCommand()
         }
