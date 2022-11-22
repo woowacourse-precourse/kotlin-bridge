@@ -10,35 +10,44 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        val bridgeSize = Console.readLine()
-
-        if(!bridgeSize.chars().allMatch { Character.isDigit(it) }) {
-            println("[ERROR] 입력한 다리 길이는 정수가 아닙니다.")
-            return 0
+        while(true) {
+            try {
+                val bridgeSize = Console.readLine()
+                BridgeSizeException(bridgeSize)
+                return bridgeSize.toInt()
+            }catch (e: IllegalArgumentException) {
+                println("${e.message} 다시 입력해주세요.")
+            }
         }
-
-        BridgeSizeException(bridgeSize)
-
-        return bridgeSize.toInt()
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        val moveCommand = Console.readLine()
-        BridgeMoveException(moveCommand)
-
-        return moveCommand
+        while(true) {
+            try {
+                val moveCommand = Console.readLine()
+                BridgeMoveException(moveCommand)
+                return moveCommand
+            }catch (e: IllegalArgumentException) {
+                println("${e.message} 다시 입력해주세요.")
+            }
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        val gameCommand = Console.readLine()
-        GameCommandException(gameCommand)
-
-        return gameCommand
+        while(true) {
+            try {
+                val gameCommand = Console.readLine()
+                GameCommandException(gameCommand)
+                return gameCommand
+            }catch (e: IllegalArgumentException) {
+                println("${e.message} 다시 입력해주세요.")
+            }
+        }
     }
 }
