@@ -27,8 +27,8 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(): Boolean {
-        return bridgeUtils.executeTurn()
+    fun move() {
+        bridgeUtils.executeTurn()
     }
 
     /**
@@ -38,9 +38,14 @@ class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun retry() {
+        var isFinished = false
+
         if(!bridgeUtils.restart()) {
-            bridgeUtils.finish(cnt)
+            isFinished = bridgeUtils.finish(cnt)
         }
-        run()
+
+        if(!isFinished) {
+            run()
+        }
     }
 }

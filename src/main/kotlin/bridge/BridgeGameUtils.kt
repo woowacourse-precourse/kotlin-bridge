@@ -22,23 +22,24 @@ class BridgeGameUtils {
             cnt++
             root.add(inputView.readMoving())
             outputView.printMap(bridge, root)
-            state = isEqual()
+            state = isFinished()
         }
         return cnt == bridge.size
     }
 
-    private fun isEqual(): Boolean {
-        return bridge.subList(0, root.size - 1) == root
+    private fun isFinished(): Boolean {
+        return bridge.subList(0, root.size) == root && bridge.size != root.size
     }
 
-    fun finish(cnt: Int) {
-        outputView.printResult(bridge, root, cnt)
+    fun finish(cnt: Int): Boolean {
+        return outputView.printResult(bridge, root, cnt)
     }
 
     fun restart(): Boolean {
         if(bridge == root) {
             return false
         }
+        root.clear()
         return inputView.readGameCommand() == "R"
     }
 }
