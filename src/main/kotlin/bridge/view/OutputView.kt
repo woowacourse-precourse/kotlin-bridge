@@ -22,10 +22,10 @@ class OutputView : MovingEventListener, QuitEventListener {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     private fun printResult(map: GameMap, result: GameResult) {
-        println("최종 게임 결과")
+        println(FINAL_GAME_RESULT_SUBJECT)
         printMap(map)
-        println("게임 성공 여부: " + if (result.success) "성공" else "실패")
-        println("총 시도한 횟수: " + result.attempts)
+        println(GAME_SUCCESS_FIELD + if (result.success) SUCCESS else FAILED)
+        println(ATTEMPTS_FIELD + result.attempts)
     }
 
     override fun update(gameMapStatus: GameMapStatus) {
@@ -35,5 +35,13 @@ class OutputView : MovingEventListener, QuitEventListener {
 
     override fun update(gameMapStatus: GameMapStatus, gameResult: GameResult) {
         printResult(GameMap(gameMapStatus), gameResult)
+    }
+
+    companion object {
+        private const val FINAL_GAME_RESULT_SUBJECT = "최종 게임 결과"
+        private const val GAME_SUCCESS_FIELD = "게임 성공 여부: "
+        private const val ATTEMPTS_FIELD = "총 시도한 횟수: "
+        private const val SUCCESS = "성공"
+        private const val FAILED = "실패"
     }
 }
