@@ -16,8 +16,7 @@ class BridgeGame(val bridge: List<String>) {
 
     fun move(direction: String): Boolean {
         route.add(direction)
-
-    //    println("route : ${route[route.lastIndex]} ${route.lastIndex}")
+        //    println("route : ${route[route.lastIndex]} ${route.lastIndex}")
         return route[route.lastIndex] == bridge[route.lastIndex]
     }
 
@@ -29,6 +28,13 @@ class BridgeGame(val bridge: List<String>) {
      */
     fun retry() {
         route.clear()
+        OutputView().able1.clear()
+        OutputView().able2.clear()
+
         tryNum++   // 재시도 횟수
+    }
+
+    fun quit(): Boolean {
+        return bridge.size == route.size
     }
 }
