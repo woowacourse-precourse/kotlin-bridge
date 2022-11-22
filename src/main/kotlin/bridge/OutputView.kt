@@ -90,4 +90,8 @@ class OutputView {
         }
         return true
     }
+
+    fun printOpeningMessage(){
+        println("다리 게임을 시작합니다")
+    }
 }
