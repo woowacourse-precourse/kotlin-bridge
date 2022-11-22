@@ -1,7 +1,7 @@
 package bridge
 
 import bridge.model.GameResult
-import bridge.model.GameState
+import bridge.model.GameMapState
 
 class QuitEventManager {
 
@@ -11,5 +11,5 @@ class QuitEventManager {
 
     fun unsubscribe(listener: QuitEventListener) = listeners.remove(listener)
 
-    fun notify(gameState: GameState, gameResult: GameResult) = listeners.forEach { it.notify(gameState, gameResult) }
+    fun notify(gameMapState: GameMapState, gameResult: GameResult) = listeners.forEach { it.notify(gameMapState, gameResult) }
 }

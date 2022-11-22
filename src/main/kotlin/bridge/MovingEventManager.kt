@@ -1,6 +1,6 @@
 package bridge
 
-import bridge.model.GameState
+import bridge.model.GameMapState
 
 class MovingEventManager {
 
@@ -10,5 +10,5 @@ class MovingEventManager {
 
     fun unsubscribe(listener: MovingEventListener) = listeners.remove(listener)
 
-    fun notify(gameState: GameState) = listeners.forEach { it.notify(gameState) }
+    fun notify(gameMapState: GameMapState) = listeners.forEach { it.notify(gameMapState) }
 }

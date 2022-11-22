@@ -3,7 +3,7 @@ package bridge.view
 import bridge.MovingEventListener
 import bridge.QuitEventListener
 import bridge.model.GameResult
-import bridge.model.GameState
+import bridge.model.GameMapState
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -28,12 +28,12 @@ class OutputView : MovingEventListener, QuitEventListener {
         println("총 시도한 횟수: " + result.attempts)
     }
 
-    override fun notify(gameState: GameState) {
-        val map = GameMap(gameState)
+    override fun notify(gameMapState: GameMapState) {
+        val map = GameMap(gameMapState)
         printMap(map)
     }
 
-    override fun notify(gameState: GameState, gameResult: GameResult) {
-        printResult(GameMap(gameState), gameResult)
+    override fun notify(gameMapState: GameMapState, gameResult: GameResult) {
+        printResult(GameMap(gameMapState), gameResult)
     }
 }

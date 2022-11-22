@@ -1,8 +1,8 @@
 package bridge
 
-import bridge.model.GameState
+import bridge.model.GameMapState
 
 interface MovingEventListener {
 
-    fun notify(gameState: GameState)
+    fun notify(gameMapState: GameMapState)
 }

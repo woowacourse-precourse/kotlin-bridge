@@ -1,20 +1,20 @@
 package bridge.view
 
-import bridge.model.GameState
+import bridge.model.GameMapState
 
-class GameMap(gameState: GameState) {
+class GameMap(gameMapState: GameMapState) {
 
     private val lines = mutableMapOf<String, Line>()
 
     init {
-        val mapSize = gameState.userRoute.size
+        val mapSize = gameMapState.userRoute.size
         lines[UP] = Line(mapSize)
         lines[DOWN] = Line(mapSize)
-        (0 until gameState.userRoute.size).forEach {
-            if (gameState.bridge[it] == gameState.userRoute[it])
-                lines[gameState.userRoute[it]]!!.mark(it, MATCHED)
+        (0 until gameMapState.userRoute.size).forEach {
+            if (gameMapState.bridge[it] == gameMapState.userRoute[it])
+                lines[gameMapState.userRoute[it]]!!.mark(it, MATCHED)
             else
-                lines[gameState.userRoute[it]]!!.mark(it, NOT_MATCHED)
+                lines[gameMapState.userRoute[it]]!!.mark(it, NOT_MATCHED)
         }
     }
 

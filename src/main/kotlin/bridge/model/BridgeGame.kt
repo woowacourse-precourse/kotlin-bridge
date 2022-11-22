@@ -35,7 +35,7 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
     fun move(moving: String) {
         check(running) { "게임이 실행되었을 때만 움직일 수 있습니다." }
         userRoute += moving
-        movingEventManager.notify(GameState(bridge, userRoute))
+        movingEventManager.notify(GameMapState(bridge, userRoute))
         if (moveFailed())
             running = false
         if (successed()) quit()
@@ -51,7 +51,7 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
     }
 
     fun quit() {
-        quitEventManager.notify(GameState(bridge, userRoute), GameResult(successed(), attempts))
+        quitEventManager.notify(GameMapState(bridge, userRoute), GameResult(successed(), attempts))
         running = false
     }
 
