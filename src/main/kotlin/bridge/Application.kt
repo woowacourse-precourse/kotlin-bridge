@@ -6,6 +6,6 @@ fun main() {
     var bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
     var bridge = bridgeMaker.makeBridge(bridgeLength)
 
-    var GameController = GameController()
-    GameController.moveStart(bridge)
+    var bridgeGame = BridgeGame(mutableListOf(),1,0)
+    bridgeGame.move(bridge)
 }
