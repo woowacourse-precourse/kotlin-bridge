@@ -12,7 +12,7 @@ class BridgeState {
     private var _bridgeLength = 0
     val bridgeLength get() = _bridgeLength
 
-    private var _retryCount = 0
+    private var _retryCount = 1
 
     private val userState = mutableListOf<String>()
 
