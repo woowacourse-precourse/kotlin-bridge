@@ -22,7 +22,7 @@ class BridgeGamePlay {
     private fun playGame(){
         do{
             var moveCommand = InputView().readMoving()
-            if(BridgeGame().move() == false)
+            if(!BridgeGame().move(bridge, location, moveCommand))
                 checkRetry()
             location ++
         }while(location < bridge.size)
