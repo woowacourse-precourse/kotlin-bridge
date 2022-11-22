@@ -6,13 +6,13 @@ class BridgeGame {
 
     fun move(moving: String, user: User) {
         user.moving = moving
+        user.presentPosition++
     }
 
     fun getGameResult(bridge: Bridge, user: User): GameResult {
         if (bridge.isMatchMoving(user.moving, user.presentPosition)) {
             user.movingResults.add(Pair(user.moving, true))
             if (user.presentPosition == bridge.length() - 1) return GameResult.SUCCESS
-            user.presentPosition++
             return GameResult.CONTINUE
         }
         user.movingResults.add(Pair(user.moving, false))
