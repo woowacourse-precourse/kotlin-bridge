@@ -1,5 +1,7 @@
 package bridge
 
+import service.Controller
+
 fun main() {
-    // TODO: 프로그램 구현
+    Controller().play()
 }
