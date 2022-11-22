@@ -1,7 +1,9 @@
-package bridge.model
+package bridge
 
-import bridge.BridgeNumberGenerator
-import bridge.util.*
+import bridge.util.DOWN_DIRECTION
+import bridge.util.DOWN_INT_NUMBER_ZERO
+import bridge.util.UP_DIRECTION
+import bridge.util.UP_INT_NUMBER_ONE
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.

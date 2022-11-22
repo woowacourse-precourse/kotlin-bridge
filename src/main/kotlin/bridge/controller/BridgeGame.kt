@@ -1,7 +1,7 @@
 package bridge.controller
 
 import bridge.controller.processor.BridgeGameProcessor
-import bridge.model.BridgeMaker
+import bridge.BridgeMaker
 import bridge.util.*
 import bridge.view.InputView
 import bridge.view.OutputView
