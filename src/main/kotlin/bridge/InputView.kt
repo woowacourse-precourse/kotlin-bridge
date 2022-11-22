@@ -16,7 +16,6 @@ class InputView {
         if(!user.matches(validNum)){
             throw IllegalArgumentException(Error.WRONG_LENGTH)
         }
-
         return user.toInt()
     }
 

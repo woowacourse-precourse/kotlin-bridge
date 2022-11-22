@@ -46,7 +46,6 @@ class Game {
         val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
         val bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
         val bridge = bridgeMaker.makeBridge(size)
-        // println(bridge.toString())
 
         val bridgeGame = BridgeGame(bridge as MutableList<String>)
         return Triple(inputView, size, bridgeGame)
