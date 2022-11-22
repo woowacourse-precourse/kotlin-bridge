@@ -18,7 +18,7 @@ class PlayerTest {
     }
 
     @Test
-    fun `isSuccess 메서드를 사용해 사용자가 최종적으로 게임을 성공했는지 확인`() {
+    fun `isCompleted 메서드를 사용해 사용자가 최종적으로 게임을 성공했는지 확인`() {
         val players = listOf(
             Player(mutableListOf(
             PlayerBlock(Direction.DOWN, true),
@@ -30,7 +30,7 @@ class PlayerTest {
                 PlayerBlock(Direction.UP, true)), 1)
         )
 
-        val result = players.map { it.isSuccess() }
+        val result = players.map { it.isCompleted(3) }
         assertThat(result).containsExactly(false, true)
     }
 }

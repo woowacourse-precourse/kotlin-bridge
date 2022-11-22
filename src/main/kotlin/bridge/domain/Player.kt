@@ -13,8 +13,11 @@ class Player(
 
     fun nextIndex() = blocks.size
 
-    fun isSuccess() = blocks.last().getIsMovable()
+    fun canContinue() = blocks.last().getIsMovable()
+
+    fun isCompleted(bridgeSize: Int) = blocks.size == bridgeSize && canContinue()
 
     fun getTries() = tries
+
     fun getPlayerBlocks(): List<PlayerBlock> = blocks
 }

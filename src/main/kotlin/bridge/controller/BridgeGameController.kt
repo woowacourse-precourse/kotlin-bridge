@@ -26,15 +26,12 @@ class BridgeGameController(
         while (inProgress) {
             val moveResult = bridgeGame.move(inputView.readMoving())
             outputView.printMap(moveResult)
-            if (checkFail(moveResult)) {
+            if (!bridgeGame.canContinue()) {
                 inProgress = conductByGameCommand(bridgeGame, inputView.readGameCommand())
             }
             inProgress = !bridgeGame.isCompleted()
         }
     }
-
-    private fun checkFail(moveResult: List<PlayerBlock>) =
-        !moveResult.last().getIsMovable()
 
     private fun conductByGameCommand(bridgeGame: BridgeGame, gameCommand: GameCommand): Boolean =
         when (gameCommand) {

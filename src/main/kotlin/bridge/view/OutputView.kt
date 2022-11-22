@@ -25,7 +25,7 @@ class OutputView {
     fun printResult(player: Player) {
         OutputSentence.RESULT.print()
         val playerBlocks = player.getPlayerBlocks()
-        val checkSuccess = if (player.isSuccess()) SUCCESS else FAIL
+        val checkSuccess = if (player.canContinue()) SUCCESS else FAIL
         printMap(playerBlocks)
         println("\n${OutputSentence.CHECK_SUCCESS.sentence()}$checkSuccess")
         println("${OutputSentence.TOTAL_TRIAL.sentence()}${player.getTries()}")
