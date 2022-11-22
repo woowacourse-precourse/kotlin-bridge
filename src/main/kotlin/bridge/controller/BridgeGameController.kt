@@ -19,18 +19,22 @@ class BridgeGameController {
     var downLine = mutableListOf<String>()
     var flag = Flag.PLAYING
     var index = 0
+    var tryCount = 0
 
     fun play() {
         do {
+            tryCount++
             playBridgeGame()
         } while (flag == Flag.FAIL && queryGameRetry())
-        outputView.printResult()
+        outputView.printResult(tryCount, process, flag)
     }
 
     fun playBridgeGame() {
         val bridge = init()
         do {
             continueBridgeGame(index, bridge)
+            process.add(upLine)
+            process.add(downLine)
             flag = changeGameFlag(index, bridge)
             index++
         } while (flag == Flag.PLAYING)
