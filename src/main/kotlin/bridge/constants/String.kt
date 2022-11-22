@@ -16,15 +16,11 @@ class String {
         const val STRING_BRIDGE_DIVIDER = " | "
         const val STRING_BRIDGE_END = " ]"
         const val STRING_UP = "U"
-        const val STRING_UP_LOWER = "u"
         const val STRING_DOWN = "D"
-        const val STRING_DOWN_LOWER = "d"
         const val STRING_CORRECT = "O"
         const val STRING_WRONG = "X"
         const val STRING_BLANK = " "
         const val STRING_RETRY = "R"
-        const val STRING_RETRY_LOWER = "r"
         const val STRING_QUIT = "Q"
-        const val STRING_QUIT_LOWER = "q"
     }
 }

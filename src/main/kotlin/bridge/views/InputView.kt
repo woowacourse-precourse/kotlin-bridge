@@ -7,13 +7,9 @@ import bridge.constants.Exception.Companion.EXCEPTION_INVALID_RANGE_NUMBER
 import bridge.constants.Exception.Companion.EXCEPTION_INVALID_RETRY
 import bridge.constants.Exception.Companion.EXCEPTION_IS_NOT_NUMBER
 import bridge.constants.String.Companion.STRING_DOWN
-import bridge.constants.String.Companion.STRING_DOWN_LOWER
 import bridge.constants.String.Companion.STRING_QUIT
-import bridge.constants.String.Companion.STRING_QUIT_LOWER
 import bridge.constants.String.Companion.STRING_RETRY
-import bridge.constants.String.Companion.STRING_RETRY_LOWER
 import bridge.constants.String.Companion.STRING_UP
-import bridge.constants.String.Companion.STRING_UP_LOWER
 import camp.nextstep.edu.missionutils.Console
 import java.lang.IllegalArgumentException
 
@@ -42,11 +38,11 @@ class InputView {
         outputView.printInputMoving()
         val moving = Console.readLine()
         checkMoving(moving)
-        return moving.uppercase()
+        return moving
     }
 
     fun checkMoving(moving: String) {
-        val valid = listOf<String>(STRING_UP, STRING_UP_LOWER, STRING_DOWN, STRING_DOWN_LOWER)
+        val valid = listOf<String>(STRING_UP, STRING_DOWN)
         if (!valid.contains(moving)) {
             outputView.printException(EXCEPTION_INVALID_MOVING)
             throw IllegalArgumentException(EXCEPTION_INVALID_MOVING)
@@ -56,11 +52,12 @@ class InputView {
     fun readGameRetry(): String {
         outputView.printInputRetry()
         val command = Console.readLine()
-        return command.uppercase()
+        checkGameRetry(command)
+        return command
     }
 
     fun checkGameRetry(command: String) {
-        val valid = listOf<String>(STRING_RETRY, STRING_RETRY_LOWER, STRING_QUIT, STRING_QUIT_LOWER)
+        val valid = listOf<String>(STRING_RETRY, STRING_QUIT)
         if (!valid.contains(command)) {
             outputView.printException(EXCEPTION_INVALID_RETRY)
             throw IllegalArgumentException(EXCEPTION_INVALID_RETRY)
