@@ -7,8 +7,8 @@ import camp.nextstep.edu.missionutils.Console.readLine
 
 object InputView {
 
-    private const val RETRY = "R"
-    private const val QUIT = "Q"
+    const val RETRY = "R"
+    const val QUIT = "Q"
 
     fun readBridgeSize(): Int {
         val bridgeSize = readLine().toIntOrThrow()
@@ -24,7 +24,7 @@ object InputView {
         val command = readLine()
 
         return requireNotNull(Bridge.Floor.getOrNull(command)) {
-            ErrorMessage.InvalidBridgeElement
+            ErrorMessage.InvalidBridgeMoving
         }
     }
 
@@ -32,7 +32,7 @@ object InputView {
         val command = readLine()
 
         require(command == RETRY || command == QUIT) {
-            ErrorMessage.InvalidGameCommand
+            ErrorMessage.InvalidGameRetryCommand
         }
 
         return command == RETRY
