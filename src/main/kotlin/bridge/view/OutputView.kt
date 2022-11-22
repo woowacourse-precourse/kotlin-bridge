@@ -16,7 +16,7 @@ class OutputView {
 
     fun printMap(bridgeGame: BridgeGame) {
         printClear()
-        makeMap(bridgeGame.playerRecord(), bridgeGame.getBridge())
+        makeMap(bridgeGame)
         println(upBuilder)
         println(downBuilder)
     }
@@ -26,21 +26,15 @@ class OutputView {
         downBuilder.setLength(0)
     }
 
-    private fun makeMap(record: List<String>, bridge: List<String>) {
+    private fun makeMap(bridgeGame: BridgeGame) {
         surroundMap(OPEN_PARENTHESIS)
+        val record = bridgeGame.playerRecord()
         record.forEachIndexed() { index, move ->
-            val type = compareWith(bridge[index], move)
+            val type = bridgeGame.compareWith(index, move)
             printPlayerPosition(move, type)
             printBridgeInMap(index, record.size)
         }
         surroundMap(CLOSE_PARENTHESIS)
-    }
-
-    private fun compareWith(bridgeState: String, move: String): String {
-        return when (bridgeState) {
-            move -> LOAD_GO
-            else -> LOAD_STOP
-        }
     }
 
     private fun printBridgeInMap(index: Int, size: Int) {

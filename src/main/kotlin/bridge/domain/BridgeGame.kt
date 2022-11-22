@@ -2,6 +2,8 @@ package bridge.domain
 
 import bridge.BridgeMaker
 import bridge.BridgeNumberGenerator
+import bridge.util.Constant.LOAD_GO
+import bridge.util.Constant.LOAD_STOP
 import bridge.util.ErrorMessage.ERROR_NOT_VALID_COMMAND
 import java.lang.IllegalArgumentException
 
@@ -45,6 +47,13 @@ class BridgeGame(
     private fun initGame() {
         player.initialize()
         playerTryCount++
+    }
+
+    fun compareWith(index: Int, move: String): String {
+        return when (bridge[index]) {
+            move -> LOAD_GO
+            else -> LOAD_STOP
+        }
     }
 
     fun getTryCount(): Int {
