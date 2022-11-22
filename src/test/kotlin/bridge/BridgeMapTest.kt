@@ -3,6 +3,7 @@ package bridge
 import bridge.model.Bridge
 import bridge.model.BridgeMap
 import bridge.model.BridgeResult
+import bridge.model.BridgeStatus
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
@@ -22,21 +23,12 @@ class BridgeMapTest {
         bridgeMap = BridgeMap()
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = ["X", "1", "!"])
-    @DisplayName("브릿지맵에 U, D가 아닌 다른값이 들어가면 예외가 발생한다.")
-    fun constructorExceptionTest(direction: String) {
-        assertThrows<IllegalArgumentException> {
-            bridgeMap.update(BridgeResult.SUCCESS, direction)
-        }
-    }
-
     @Test
     @DisplayName("브릿지맵 (U, D) 업데이트가 정상 작동하는지 테스트한다.")
     fun updateTest() {
         assertSimpleTest {
-            bridgeMap.update(BridgeResult.SUCCESS, "U")
-            bridgeMap.update(BridgeResult.FAIL, "D")
+            bridgeMap.update(BridgeStatus.SUCCESS("U"))
+            bridgeMap.update(BridgeStatus.FAIL("D"))
             assertThat(bridgeMap.toString()).contains(
                 "[ O |   ]",
                 "[   | X ]",
@@ -48,9 +40,9 @@ class BridgeMapTest {
     @DisplayName("브릿지맵 (U, U, D) 업데이트가 정상 작동하는지 테스트한다.")
     fun updateTest2() {
         assertSimpleTest {
-            bridgeMap.update(BridgeResult.SUCCESS, "U")
-            bridgeMap.update(BridgeResult.SUCCESS, "U")
-            bridgeMap.update(BridgeResult.FINISH, "D")
+            bridgeMap.update(BridgeStatus.SUCCESS("U"))
+            bridgeMap.update(BridgeStatus.SUCCESS("U"))
+            bridgeMap.update(BridgeStatus.FINISH("D"))
             assertThat(bridgeMap.toString()).contains(
                 "[ O | O |   ]",
                 "[   |   | O ]",
