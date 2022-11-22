@@ -12,4 +12,10 @@ class BridgePlay {
         }
         return false
     }
+
+    fun playResult(bridge: MutableList<String>):String{
+        if(bridge.contains("C") || bridge.contains("D"))
+            return "실패"
+        return "성공"
+    }
 }
