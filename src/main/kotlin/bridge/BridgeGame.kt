@@ -11,10 +11,8 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(direction: String): String {
+    fun move(direction: String) {
         movingRecord.add(direction)
-
-        return direction
     }
 
     /**
@@ -23,7 +21,9 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun retry() {}
+    fun retry() {
+        movingRecord.clear()
+    }
 
     fun getMovingRecord() = movingRecord.toList()
 }

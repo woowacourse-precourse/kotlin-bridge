@@ -3,22 +3,19 @@ package bridge
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
-class OutputView {
-    private val input = InputView()
+class OutputView(private val bridge: List<String>) {
     private val validationInput = ValidationInput()
-    private val randomNumberGenerator = BridgeRandomNumberGenerator()
-    private val bridgeMaker = BridgeMaker(randomNumberGenerator)
-    private val bridge = bridgeMaker.makeBridge(input.readBridgeSize())
+    private var wrongStatus = 0
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap(movingRecord: List<String>) {
-        val bridgePicture = makeBridgePicture(movingRecord)
+        val map = getMap(movingRecord)
 
-        printOneSideBridge(bridgePicture[0])   // upsideBridge
-        printOneSideBridge(bridgePicture[1])   // downsideBridge
+        printOneSideBridge(map[0])   // upsideBridge
+        printOneSideBridge(map[1])   // downsideBridge
     }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -32,7 +29,7 @@ class OutputView {
         println("")
     }
 
-    private fun makeBridgePicture (movingRecord: List<String>): List<List<String>> {
+    private fun makeBridgePicture (movingRecord: List<String>): List<MutableList<String>> {
         val upsideBridge = mutableListOf<String>()
         val downsideBridge = mutableListOf<String>()
 
@@ -40,7 +37,22 @@ class OutputView {
         addBridgeMiddle(upsideBridge, downsideBridge, movingRecord)
         addBridgeEnd(upsideBridge, downsideBridge)
 
-        return listOf(upsideBridge.toList(), downsideBridge.toList())
+        return listOf(upsideBridge, downsideBridge)
+    }
+
+
+    private fun getMap(movingRecord: List<String>): List<MutableList<String>> {
+        val map = makeBridgePicture(movingRecord)
+
+        if (movingRecord.isEmpty()) {
+            clearBridgePicture(map)
+            wrongStatus = 0
+        }
+        return map
+    }
+
+    private fun clearBridgePicture(bridgePicture: List<MutableList<String>>) {
+        for (i in bridgePicture.indices) bridgePicture[i].clear()
     }
 
     private fun addBridgeBeginning (
@@ -65,7 +77,10 @@ class OutputView {
         for (i in 1..round) {
             if (movingRecord[i - 1] == bridge[i - 1])
                 addBridgeCorrectBlock(movingRecord[i - 1], upsideBridge, downsideBridge)
-            else addBridgeWrongBlock(movingRecord[i - 1], upsideBridge, downsideBridge)
+            else {
+                addBridgeWrongBlock(movingRecord[i - 1], upsideBridge, downsideBridge)
+                wrongStatus = 1
+            }
             addBridgeBoundary(upsideBridge, round, i)
             addBridgeBoundary(downsideBridge, round, i)
         }
@@ -85,14 +100,12 @@ class OutputView {
             downsideBridge: MutableList<String>
     ) {
         when (movingDirection) {
-            validationInput.getMoveUpValue(),
-            validationInput.getMoveUpValue().lowercase() ->
+            validationInput.getUpDirectionValue() ->
             {
                 upsideBridge.add(RIGHT_ANSWER)
                 downsideBridge.add(NO_INPUT)
             }
-            validationInput.getMoveDownValue(),
-            validationInput.getMoveDownValue().lowercase() ->
+            validationInput.getDownDirectionValue() ->
             {
                 upsideBridge.add(NO_INPUT)
                 downsideBridge .add(RIGHT_ANSWER)
@@ -106,28 +119,30 @@ class OutputView {
             downsideBridge: MutableList<String>
     ) {
         when (movingDirection) {
-            validationInput.getMoveUpValue(),
-            validationInput.getMoveUpValue().lowercase() ->
+            validationInput.getUpDirectionValue() ->
             {
                 upsideBridge.add(WRONG_ANSWER)
                 downsideBridge.add(NO_INPUT)
             }
 
-            validationInput.getMoveDownValue(),
-            validationInput.getMoveDownValue().lowercase() ->
+            validationInput.getDownDirectionValue() ->
             {
                 upsideBridge.add(NO_INPUT)
-                downsideBridge .add(WRONG_ANSWER)
+                downsideBridge.add(WRONG_ANSWER)
             }
         }
     }
+
+    fun getWrongStatus() = wrongStatus
+
+    fun getBridge() = bridge
 
     companion object {
         const val BRIDGE_BEGINNING = "["
         const val BRIDGE_END = "]"
         const val BRIDGE_BOUNDARY = "|"
         const val NO_INPUT = "   "
-        const val RIGHT_ANSWER = " o "
-        const val WRONG_ANSWER = " x "
+        const val RIGHT_ANSWER = " O "
+        const val WRONG_ANSWER = " X "
     }
 }
