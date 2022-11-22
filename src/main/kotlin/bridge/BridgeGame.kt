@@ -46,6 +46,20 @@ class BridgeGame(private val bridgeLength: Int) {
         return true
     }
 
+    fun getRestart() = restartGame
+
+    fun setRestart(restart: Boolean) {
+        restartGame = restart
+    }
+
+    fun getShowResult() = showResult
+
+    fun getOXBridge() = oxBridge
+
+    fun getTotalAttempts() = totalAttempts
+
+    fun getCorrectDirection() = correctDirection
+
     fun initStartGame() {
         oxBridge = mutableListOf(
             mutableListOf(),
