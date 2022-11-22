@@ -23,4 +23,9 @@ class BridgeBoard {
         }
     }
 
+    fun clearBoard(){
+        this.board[0].clear()
+        this.board[1].clear()
+    }
+
 }
