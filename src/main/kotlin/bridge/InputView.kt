@@ -44,7 +44,7 @@ class InputView {
         try {
             Exception().commandFormatException(gameControl)
         } catch (e : IllegalArgumentException){
-            readGameCommand()
+            return readGameCommand()
         }
         return gameControl
     }

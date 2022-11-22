@@ -18,8 +18,7 @@ class BridgeGame {
         while (userRoute != bridge){
             var userMove = InputView().readMoving()
             userRoute.add(userMove)
-
-            for (move in upDown) { control = OutputView().printMap(bridge, userRoute, move) }
+            for (move in upDown) { printMap(bridge, move) }
             if (wrongAnswer(bridge, upDown) == "break") break
             if (userRoute == bridge) { finalStage(bridge, upDown) }
         }
@@ -35,6 +34,15 @@ class BridgeGame {
         userRoute.removeAt(userRoute.size-1)
         control = 0
         times++
+    }
+
+    fun printMap(bridge: List<String>, move : String){
+        if (control == 1){
+            OutputView().printMap(bridge, userRoute, move)
+        }
+        if (control != 1) {
+            control = OutputView().printMap(bridge, userRoute, move)
+        }
     }
 
     fun finalStage(bridge: List<String>, upDown: List<String>){
