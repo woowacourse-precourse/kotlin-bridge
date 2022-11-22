@@ -1,6 +1,6 @@
 package bridge
 
-import bridge.domain.Controller
+import bridge.controller.Controller
 import java.lang.IllegalArgumentException
 
 fun main() {
