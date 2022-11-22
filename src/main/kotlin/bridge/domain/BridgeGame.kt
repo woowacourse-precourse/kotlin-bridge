@@ -1,5 +1,6 @@
 package bridge.domain
 
+import bridge.BridgeMaker
 import bridge.util.BridgeNumberGenerator
 import bridge.util.ErrorMessage.ERROR_NOT_VALID_COMMAND
 import java.lang.IllegalArgumentException
