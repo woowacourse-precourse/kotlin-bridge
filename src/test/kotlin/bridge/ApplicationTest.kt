@@ -64,6 +64,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `R,Q 대신 다른 문자를 입력 받은 경우`() {
+        assertRandomNumberInRangeTest({
+            runException("3", "U", "D", "U","a")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }, 1, 0, 0)
+    }
+
     override fun runMain() {
         main()
     }
