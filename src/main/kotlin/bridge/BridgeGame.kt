@@ -12,6 +12,7 @@ class BridgeGame(bridgeMaker: BridgeMaker, size:Int) {
      */
     val moveBlock = mutableListOf<String>()
     var trycnt=1
+    val makeBridge = bridgeMaker.makeBridge(size)
     fun move(selectBlock: String) {
         moveBlock.add(selectBlock)
     }
@@ -26,4 +27,12 @@ class BridgeGame(bridgeMaker: BridgeMaker, size:Int) {
         moveBlock.clear()
         trycnt++
     }
+
+    fun isEnd(): Boolean{
+        if(moveBlock.isEmpty()) return false
+        if(moveBlock.size==makeBridge.size) return true
+        if(isSuccess()) return false
+        return true
+    }
+    fun isSuccess(): Boolean=moveBlock==makeBridge.subList(0,moveBlock.size)
 }
