@@ -6,12 +6,12 @@ import org.junit.jupiter.api.Test
 class BridgeTest {
     @Test
     fun `다리 개수 생성 테스트`() {
-        val bridge = Bridge(BRIDGE_SIZE_EX)
+        val bridge = Bridge(blocks)
         val result = bridge.getSize()
-        assertThat(result).isEqualTo(BRIDGE_SIZE_EX)
+        assertThat(result).isEqualTo(blocks.size)
     }
 
     companion object {
-        private const val BRIDGE_SIZE_EX = 4
+        val blocks = listOf("U","D","D","U")
     }
 }

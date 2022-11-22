@@ -1,6 +1,8 @@
 package bridge.controller
 
 import bridge.BridgeGame
+import bridge.BridgeMaker
+import bridge.BridgeRandomNumberGenerator
 import bridge.domain.Bridge
 import bridge.domain.BridgeState
 import bridge.ui.InputView
@@ -24,7 +26,9 @@ class GameController {
     fun playGame() {
         outputView.printGameStart()
         val size = inputView.readBridgeSize()
-        val bridge = Bridge(size)
+        val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
+        val blocks = BridgeMaker(bridgeRandomNumberGenerator).makeBridge(size)
+        val bridge = Bridge(blocks)
         crossBridge(bridge)
     }
 
