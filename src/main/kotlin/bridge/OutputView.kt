@@ -10,8 +10,8 @@ class OutputView {
 
     fun printMap(userChoice : MutableList<String>, check : Boolean) : MutableList<String>{
         var printMap = mutableListOf<String>()
-        printMap.add(plusMap(userChoice, check, "U"))
-        printMap.add(plusMap(userChoice, check, "D"))
+        printMap.add(plusMap(userChoice, check, "U")) // 윗줄
+        printMap.add(plusMap(userChoice, check, "D")) // 아랫줄
         for(i in 0 until printMap.size){
             println(printMap[i])
         }

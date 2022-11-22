@@ -2,10 +2,13 @@ package bridge
 
 class Game {
     fun gameStart() {
+        // 다리 만들기
         val (inputView, size, bridgeGame) = makeBridge()
 
+        // 게임 진행
         val triple = mainGame(size, inputView, bridgeGame)
 
+        // 최종 결과 확인
         val outputView = triple.first
         var lastBridge = triple.second
         var flag = triple.third
@@ -43,7 +46,7 @@ class Game {
         val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
         val bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
         val bridge = bridgeMaker.makeBridge(size)
-        //        println(bridge.toString())
+        // println(bridge.toString())
 
         val bridgeGame = BridgeGame(bridge as MutableList<String>)
         return Triple(inputView, size, bridgeGame)

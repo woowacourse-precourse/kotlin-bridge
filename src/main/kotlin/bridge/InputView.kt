@@ -4,13 +4,10 @@ import camp.nextstep.edu.missionutils.Console
 import util.Error
 import util.Messages
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
-
 private val validNum = "^[3-9]$|^[1][0-9]$|^[2][0]$".toRegex()
 class InputView {
 
+    // 다리 길이
     fun readBridgeSize(): Int {
         println(Messages.START_GAME)
         println()
