@@ -29,7 +29,7 @@ class BridgeController {
     fun startGame() {
         outputView.printStart()
         getBridgeSize()
-        makeBridge()
+        makeBridge(bridgeSize)
         processGame()
     }
 
@@ -51,10 +51,10 @@ class BridgeController {
         bridgeSize = inputView.readBridgeSize()
     }
 
-    fun makeBridge() {
+    fun makeBridge(size: Int) {
         var bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
         var bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
-        bridgeShape = bridgeMaker.makeBridge(bridgeSize)
+        bridgeShape = bridgeMaker.makeBridge(size)
     }
 
     fun getBridgeSelect(): String {
