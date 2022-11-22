@@ -48,6 +48,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `다리 길이가 20을 넘어갈 경우`() {
+        assertSimpleTest {
+            runException("21")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
     override fun runMain() {
         main()
     }
