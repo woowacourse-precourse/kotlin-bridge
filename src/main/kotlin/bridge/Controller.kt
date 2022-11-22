@@ -1,7 +1,5 @@
 package bridge
 
-import domain.BridgeGame
-import domain.BridgeMaker
 import java.lang.IllegalArgumentException
 
 private typealias StateEnum = Message.ControllerEnum
