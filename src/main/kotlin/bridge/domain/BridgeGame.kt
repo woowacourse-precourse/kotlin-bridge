@@ -21,12 +21,8 @@ class BridgeGame {
      */
     fun move(bridge: Bridge, upDown: String, map: BridgeMap): String {
         val hit = bridge.match(upDown)
-        if (upDown == UP) {
-            drawUpSide(bridge, hit, map)
-        }
-        if (upDown == DOWN) {
-            drawDownSide(bridge, hit, map)
-        }
+        if (upDown == UP) drawUpSide(bridge, hit, map)
+        if (upDown == DOWN) drawDownSide(bridge, hit, map)
         bridge.moveCurrentLocation()
         return hit
     }
