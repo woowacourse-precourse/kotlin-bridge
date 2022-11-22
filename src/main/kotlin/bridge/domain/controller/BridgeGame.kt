@@ -76,7 +76,7 @@ class BridgeGame(
     private fun drawUpSideWithState() {
         InputDataSource.bridgeMapUp.apply {
             append(OutputView.BRIDGE_HEAD)
-            append(curState())
+            append(currentState())
             append(OutputView.BRIDGE_TAIL)
         }
     }
@@ -92,7 +92,7 @@ class BridgeGame(
     private fun drawDownSideWithState() {
         InputDataSource.bridgeMapDown.apply {
             append(OutputView.BRIDGE_HEAD)
-            append(curState())
+            append(currentState())
             append(OutputView.BRIDGE_TAIL)
         }
     }
@@ -112,7 +112,7 @@ class BridgeGame(
      * @sample X
      * 현재 입력한 (U, D)의 값과, 해당 인덱스에 대한 다리를 생성할 때 만들어둔 게임 정답값을 비교하여 게임 성공 혹은 실패 여부를 반환하는 함수입니다.
      */
-    private fun curState(): String {
+    private fun currentState(): String {
         return if (movingCommands.last() == InputDataSource.bridgeState[movingCommands.size - 1]) SUCCESS else FAILURE
     }
 

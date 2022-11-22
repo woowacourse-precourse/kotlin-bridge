@@ -3,7 +3,6 @@ package bridge.ui
 import bridge.domain.controller.BridgeGame
 import bridge.data.GameResult
 import bridge.data.InputError
-import bridge.data.InputDataSource
 import bridge.data.InputDataSource.bridgeMapDown
 import bridge.data.InputDataSource.bridgeMapUp
 import bridge.data.InputDataSource.numberOfTry
@@ -21,10 +20,10 @@ class OutputView(
      */
     fun printMap() {
         bridgeGame.move()
-        printCurMap()
+        printCurrentMap()
     }
 
-    private fun printCurMap() {
+    private fun printCurrentMap() {
         println(bridgeMapUp.toString().replace(BRIDGE_PACKED, BRIDGE_SCREEN))
         println(bridgeMapDown.toString().replace(BRIDGE_PACKED, BRIDGE_SCREEN))
         println()
@@ -37,7 +36,7 @@ class OutputView(
      */
     fun printResult(gameResult: GameResult) {
         println(PRINT_GAME_RESULT)
-        printCurMap()
+        printCurrentMap()
         println(PRINT_GAME_SUCCESS_OR_NOT + printSuccessOrFailure(gameResult))
         println(PRINT_TOTAL_RETRY_COUNT + numberOfTry)
     }
