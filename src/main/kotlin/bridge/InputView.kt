@@ -17,6 +17,7 @@ class InputView {
 
     fun readGameCommand(): String {
         val gameCommand = readLine()!!
+        ErrorCheck().checkCommand(gameCommand)
         return gameCommand
     }
 }
