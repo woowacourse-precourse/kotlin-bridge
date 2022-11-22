@@ -22,30 +22,40 @@ class BridgeResult {
         outputView.printStartLog()
         val answerBridge = bridge.makeBridge()
         outputView.printNewLine()
-        while(true){
+        while (true) {
             val playerDirection = playerBridge.getDirection()
             bridgeGame.move(playerDirection, answerBridge)
             val selectedBridge = bridgeGame.saveLastResult()
             selectedBridge[UP]?.let { selectedBridge[DOWN]?.let { it1 -> outputView.printMap(it, it1) } }
             if (bridgeGame.getSuccessResult(answerBridge)) {
-                attemptedNumber += 1
-                resultOfGame = SUCCESS_RESULT
-                outputView.printResult(selectedBridge, resultOfGame, attemptedNumber)
+                manageSuccessResult(selectedBridge)
                 break
             }
             if (bridgeGame.getFailureResult()) {
-                attemptedNumber += 1
-                resultOfGame = FAIL_RESULT
-                val retryAnswer = playerBridge.getRetryAnswer()
-                if (retryAnswer == RETRY) {
-                    bridgeGame.retry()
-                    continue
-                } else if (retryAnswer == QUIT) {
-                    outputView.printResult(selectedBridge, resultOfGame, attemptedNumber)
-                    break
+                when (manageRetryDecision()) {
+                    RETRY -> {
+                        bridgeGame.retry()
+                        continue
+                    }
+                    QUIT -> {
+                        outputView.printResult(selectedBridge, resultOfGame, attemptedNumber)
+                        break
+                    }
                 }
             }
         }
+    }
+
+    private fun manageSuccessResult(selectedBridge : MutableMap<String, List<String>>){
+        attemptedNumber += 1
+        resultOfGame = SUCCESS_RESULT
+        outputView.printResult(selectedBridge, resultOfGame, attemptedNumber)
+    }
+
+    private fun manageRetryDecision(): String {
+        attemptedNumber += 1
+        resultOfGame = FAIL_RESULT
+        return playerBridge.getRetryAnswer()
     }
 
     companion object {
