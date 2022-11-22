@@ -26,6 +26,7 @@ class BridgeGame(private val bridgeLength: Int) {
     private fun createBridgeLine() {
         bridgeLine = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
     }
+
     fun initStartGame() {
         oxBridge = mutableListOf(
             mutableListOf(),
@@ -33,6 +34,28 @@ class BridgeGame(private val bridgeLength: Int) {
         )
         correctDirection = 0
         totalAttempts++
+    }
+
+    private fun checkD(move: String, index: Int) {
+        if (move == bridge[1][index]) {
+            oxBridge[0].add(" ")
+            oxBridge[1].add("O")
+            correctDirection++
+        } else if (bridge[0][index] == " ") {
+            oxBridge[0].add("X")
+            oxBridge[1].add(" ")
+        }
+    }
+
+    private fun checkU(move: String, index: Int) {
+        if (move == bridge[0][index]) {
+            oxBridge[0].add("O")
+            oxBridge[1].add(" ")
+            correctDirection++
+        } else if (bridge[1][index] == " ") {
+            oxBridge[0].add(" ")
+            oxBridge[1].add("X")
+        }
     }
 
     /**
