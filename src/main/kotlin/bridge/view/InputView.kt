@@ -13,12 +13,13 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         println(READ_BRIDGE_SIZE_PRINT)
-        val userInput = Console.readLine()
-        if (!bridgeSizeIsValid(userInput)) {
+        var ui = Console.readLine()
+        while (!bridgeSizeIsValid(ui)) {
             println(IllegalArgumentException(READ_BRIDGE_SIZE_ERROR_MESSAGE))
-            readBridgeSize()
+            println(READ_BRIDGE_SIZE_PRINT)
+            ui = Console.readLine()
         }
-        return userInput.toInt()
+        return ui.toInt()
     }
 
     /**
@@ -27,10 +28,11 @@ class InputView {
     fun readMoving(): String {
         println()
         println(READ_MOVING_PRINT)
-        val userInput = Console.readLine()
-        if (!movingInputIsValid(userInput)) {
+        var userInput = Console.readLine()
+        while (!movingInputIsValid(userInput)) {
             println(IllegalArgumentException(READ_MOVING_ERROR_MESSAGE))
-            readMoving()
+            println(READ_MOVING_PRINT)
+            userInput = Console.readLine()
         }
         return userInput
     }
@@ -41,10 +43,11 @@ class InputView {
     fun readGameCommand(): String {
         println()
         println(READ_GAME_COMMAND_PRINT)
-        val userInput = Console.readLine()
-        if (!gameCommandInputIsValid(userInput)) {
+        var userInput = Console.readLine()
+        while (!gameCommandInputIsValid(userInput)) {
             println(IllegalArgumentException(READ_GAME_COMMAND_ERROR_MESSAGE))
-            readGameCommand()
+            println(READ_GAME_COMMAND_PRINT)
+            userInput = Console.readLine()
         }
         return userInput
     }
