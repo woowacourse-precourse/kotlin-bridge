@@ -25,5 +25,12 @@ class BridgeGameTest {
         Assertions.assertThat(userCommand).isEqualTo(true)
     }
 
+    @Test
+    fun `사용자가 게임을 다시 시도하지 않을 때 테스트`() {
+        bridge = listOf("U", "U", "U", "D")
+        val bridgeGame = BridgeGame(bridge)
+        val userCommand = bridgeGame.retry("Q")
+        Assertions.assertThat(userCommand).isEqualTo(false)
+    }
 
 }
