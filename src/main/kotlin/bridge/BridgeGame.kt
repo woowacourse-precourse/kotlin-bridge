@@ -58,6 +58,6 @@ class BridgeGame(private val answerBridge: List<String>) {
     fun retry(trial: Int) {
         var trial = trial
         trial += 1
-        moveAndCheckAnswer(trial)
+        doGame(trial)
     }
 }

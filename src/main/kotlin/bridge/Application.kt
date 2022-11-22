@@ -10,10 +10,10 @@ fun main() {
     answerBridge = bridgeMaker.makeBridge(bridgeLength)
 
     var trial = 1
-    moveAndCheckAnswer(trial)
+    doGame(trial)
 }
 
-fun moveAndCheckAnswer(trial: Int) {
+fun doGame(trial: Int) {
     var inputBridge = listOf<String>()
     var success = true
     while (success && (inputBridge != answerBridge)) {
