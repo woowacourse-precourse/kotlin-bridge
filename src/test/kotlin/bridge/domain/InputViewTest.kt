@@ -1,6 +1,7 @@
 package bridge.domain
 
 import bridge.ApplicationTest
+import bridge.enums.GameMessages
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions
@@ -17,7 +18,11 @@ class InputViewTest : NsTest() {
     fun `다리 길이 입력 테스트`(bridgeSize: String) {
         assertSimpleTest {
             runException(bridgeSize)
-            Assertions.assertThat(output()).contains(PREFIX)
+            Assertions.assertThat(output()).contains(
+                GameMessages.INPUT_BRIDGE_SIZE.toString(),
+                PREFIX,
+                GameMessages.INPUT_BRIDGE_SIZE.toString()
+            )
         }
     }
 
@@ -26,7 +31,11 @@ class InputViewTest : NsTest() {
     fun `이동 입력 테스트`(moving: String) {
         assertSimpleTest {
             runException(moving)
-            Assertions.assertThat(output()).contains(PREFIX)
+            Assertions.assertThat(output()).contains(
+                GameMessages.INPUT_UP_DOWN.toString(),
+                PREFIX,
+                GameMessages.INPUT_UP_DOWN.toString()
+            )
         }
     }
 
@@ -35,13 +44,19 @@ class InputViewTest : NsTest() {
     fun `재시작 종료 입력 테스트`(gameCommand: String) {
         assertSimpleTest {
             runException(gameCommand)
-            Assertions.assertThat(output()).contains(PREFIX)
+            Assertions.assertThat(output()).contains(
+                GameMessages.INPUT_RESTART_QUIT.toString(),
+                PREFIX,
+                GameMessages.INPUT_RESTART_QUIT.toString()
+            )
         }
     }
 
     override fun runMain() {
-        // 다리 길이 입력 테스트: inputView.retryReadBridgeSize()
-        // 이동 입력 테스트: inputView.retryReadMoving()
+        // 다리 길이 입력 테스트:
+        // inputView.retryReadBridgeSize()
+        // 이동 입력 테스트:
+        // inputView.retryReadMoving()
         // 재시작 종료 입력 테스트
         inputView.retryReadGameCommand()
     }
