@@ -29,4 +29,5 @@ object Constants {
     const val QUIT_SYMBOL = "Q"
     const val SUCCESS_SYMBOL = " O "
     const val FAIL_SYMBOL = " X "
+    const val EMPTY_SYMBOL = "   "
 }

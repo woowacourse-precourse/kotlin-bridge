@@ -2,8 +2,7 @@ package bridge.model
 
 import bridge.utils.Constants.UP_SYMBOL
 import bridge.utils.Constants.DOWN_SYMBOL
-import bridge.utils.Constants.RETRIAL_SYMBOL
-import bridge.utils.Constants.QUIT_SYMBOL
+import bridge.utils.Constants.EMPTY_SYMBOL
 import bridge.utils.Constants.SUCCESS_SYMBOL
 import bridge.utils.Constants.FAIL_SYMBOL
 
@@ -45,14 +44,14 @@ class BridgeGame {
      */
     private fun addUpLaneSuccessSymbol(){
         upLane.add(SUCCESS_SYMBOL)
-        downLane.add("   ")
+        downLane.add(EMPTY_SYMBOL)
     }
 
     /**
      * 다리 아래칸에 O, 위칸에 공백 추가
      */
     private fun addDownLaneSuccessSymbol(){
-        upLane.add("   ")
+        upLane.add(EMPTY_SYMBOL)
         downLane.add(SUCCESS_SYMBOL)
     }
 
@@ -71,14 +70,14 @@ class BridgeGame {
      */
     private fun addUpLaneFailSymbol(){
         upLane.add(FAIL_SYMBOL)
-        downLane.add("   ")
+        downLane.add(EMPTY_SYMBOL)
     }
 
     /**
      * 다리 아래칸에 X, 위칸에 공백 추가
      */
     private fun addDownLaneFailSymbol(){
-        upLane.add("   ")
+        upLane.add(EMPTY_SYMBOL)
         downLane.add(FAIL_SYMBOL)
     }
 
