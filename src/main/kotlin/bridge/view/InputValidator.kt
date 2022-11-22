@@ -3,9 +3,6 @@ package bridge.view
 import bridge.common.GameCommand
 import bridge.common.UpDown
 
-private const val NUMBER_NOT_IN_RANGE = "[ERROR] 다리 길이가 범위 밖입니다."
-private const val NOT_NUMBER = "[ERROR] 숫자가 아닙니다."
-private const val INVALID_DIRECTION = "[ERROR] 잘못된 방향입니다"
 private const val RANGE_STARTING_POINT = 3
 private const val RANGE_END_POINT = 20
 
@@ -40,5 +37,11 @@ class InputValidator {
 
     fun checkGameCommandValid(input: String): GameCommand {
         return GameCommand.inGameCommand(input)
+    }
+
+    companion object {
+        const val NUMBER_NOT_IN_RANGE = "[ERROR] 다리 길이가 범위 밖입니다."
+        const val NOT_NUMBER = "[ERROR] 숫자가 아닙니다."
+        const val INVALID_DIRECTION = "[ERROR] 잘못된 방향입니다"
     }
 }
