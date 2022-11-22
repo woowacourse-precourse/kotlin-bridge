@@ -14,4 +14,4 @@
 - [X] 입력한 데이터를 저장하고 관리하는 역할을 하는 클래스인 `InputDataSource` 클래스 구현
 - [X] `main` 함수 구현
 - [X] `data`, `doamin`, `ui`별 패키지 구조화 및 클래스 이동
-- [ ] 도메인 로직에 대한 테스트 코드 추가 및 구현
+- [X] `ValidateBridgeSize`에 대한 테스트 코드 구현
