@@ -1,10 +1,11 @@
 package bridge
 
 fun main() {
-    val bridgeMaker: BridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())//다리 생성
+    println(ConstantMessage.START_BRIDGE_GAME)
+    val bridgeMaker: BridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
     try {
-        val bridgeSize: Int = InputView().readBridgeSize()//다리 길이 입력
-        val bridge: List<String> = bridgeMaker.makeBridge(bridgeSize)//
+        val bridgeSize: Int = InputView().readBridgeSize()
+        val bridge: List<String> = bridgeMaker.makeBridge(bridgeSize)
         val bridgeGame: BridgeGame = BridgeGame(bridge)
         gameStart(bridgeGame, bridgeSize)
     } catch (e: IllegalArgumentException) {
@@ -16,7 +17,7 @@ fun gameStart(bridgeGame: BridgeGame, bridgeSize: Int) {
     var count = 0
     while (bridgeGame.endGame()) {
         if(bridgeSize == count) return gameEnd(bridgeGame)
-        val readMoving: String = InputView().readMoving()// 위칸 아래칸
+        val readMoving: String = InputView().readMoving()
         bridgeGame.move(readMoving)
         bridgeGame.printMap()
         count += 1
@@ -25,7 +26,7 @@ fun gameStart(bridgeGame: BridgeGame, bridgeSize: Int) {
 }
 
 fun gameEnd(bridgeGame: BridgeGame) {
-    println("\n최종 게임 결과")
+    println(ConstantMessage.BRIDGE_GAME_RESULT)
     bridgeGame.printMap()
     bridgeGame.printResult()
 }
