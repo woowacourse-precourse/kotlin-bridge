@@ -7,8 +7,12 @@ import camp.nextstep.edu.missionutils.Console
  */
 class InputView {
     fun readBridgeSize(): Int {
-        val size = Console.readLine().toInt()
-        return size
+        while (true) {
+            val size = Console.readLine()
+            kotlin.runCatching { InputChecker().except(size) }
+                .onSuccess { return size.toInt() }
+                .onFailure { println(it.message) }
+        }
     }
 
     fun readMoving(): String {
@@ -18,4 +22,5 @@ class InputView {
     fun readGameCommand(): String {
         return ""
     }
+
 }
