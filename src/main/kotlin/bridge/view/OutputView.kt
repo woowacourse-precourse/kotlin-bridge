@@ -82,7 +82,7 @@ class OutputView {
         when (result) {
             GameState.SUCCESS -> println(SUCCESS_OR_FAILURE + SUCCESS)
             GameState.FAILURE -> println(SUCCESS_OR_FAILURE + FAILURE)
-            GameState.IN_GAME -> throw IllegalArgumentException(WRONG_GAME_STATE)
+            GameState.IN_GAME -> throw IllegalStateException(WRONG_GAME_STATE)
         }
     }
 
