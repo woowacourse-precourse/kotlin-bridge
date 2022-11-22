@@ -50,7 +50,7 @@ class InputView {
     }
 
     private fun checkCorrectGameCommendCode(input: String): Boolean =
-        input == GameState.RESTART.StringCode || input == GameState.QUIT.StringCode
+        input == GameState.RESTART.stringCode || input == GameState.QUIT.stringCode
 
     private fun isAlphabet(input: String): Boolean = Pattern.matches("^[a-z|A-Z]+$", input)
 }
