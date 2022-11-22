@@ -5,6 +5,7 @@ import bridge.model.BridgeGame
 import bridge.view.InputView
 import bridge.view.OutputView
 import bridge.view.OutputView.printError
+import java.lang.IllegalArgumentException
 
 class GameController {
     private val bridgeGame = BridgeGame()
@@ -36,7 +37,7 @@ class GameController {
                 OutputView.inputLength()
                 size = InputView.readBridgeSize()
                 break
-            } catch (e: Exception) {
+            } catch (e: IllegalArgumentException) {
                 printError(e)
             }
         }
@@ -47,7 +48,7 @@ class GameController {
             try {
                 OutputView.selectMove()
                 return InputView.readMoving()
-            } catch (e: Exception) {
+            } catch (e: IllegalArgumentException) {
                 printError(e)
             }
         }
@@ -69,7 +70,7 @@ class GameController {
             try {
                 OutputView.retryOrQuit()
                 return InputView.readGameCommand()
-            } catch (e: Exception) {
+            } catch (e: IllegalArgumentException) {
                 printError(e)
             }
         }

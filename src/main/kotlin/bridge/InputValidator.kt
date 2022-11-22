@@ -1,13 +1,14 @@
 package bridge
 
-import bridge.view.OutputView.throwException
+import bridge.view.OutputView.throwIllegalException
+import bridge.view.OutputView.throwNumberException
 
 object InputValidator {
     fun checkBridgeLength(input: String) {
         checkIsNotBlank(input)
         checkIsNumber(input)
-        checkStartsWithZero(input)
         checkIsInRange(input)
+        checkStartsWithZero(input)
     }
 
     fun checkMoveDirection(input: String) {
@@ -21,29 +22,29 @@ object InputValidator {
     }
 
     private fun checkIsNotBlank(input: String) {
-        if (input.isBlank()) throwException(NO_INPUT)
+        if (input.isBlank()) throwIllegalException(NO_INPUT)
     }
 
     private fun checkIsNumber(input: String) {
         input.map {
-            if (!(it.isDigit())) throwException(INCLUDE_CHARACTER)
+            if (!(it.isDigit())) throwNumberException(INCLUDE_CHARACTER)
         }
     }
 
     private fun checkStartsWithZero(input: String) {
-        if (input[0] == '0') throwException(START_WITH_ZERO)
+        if (input[0] == '0') throwIllegalException(START_WITH_ZERO)
     }
 
     private fun checkIsInRange(input: String) {
         if (input.toInt() !in (RANGE_LOWER_BOUND..RANGE_UPPER_BOUND))
-            throwException(NOT_IN_RANGE)
+            throwIllegalException(NOT_IN_RANGE)
     }
 
     private fun checkIsUpOrDown(direction: String) {
-        if (!(listOf(UP, DOWN).contains(direction))) throwException(ENTER_U_OR_D)
+        if (!(listOf(UP, DOWN).contains(direction))) throwIllegalException(ENTER_U_OR_D)
     }
 
     private fun checkIsRetryOrQuit(command: String) {
-        if (!(listOf(QUIT, RETRY).contains(command))) throwException(ENTER_R_OR_Q)
+        if (!(listOf(QUIT, RETRY).contains(command))) throwIllegalException(ENTER_R_OR_Q)
     }
 }

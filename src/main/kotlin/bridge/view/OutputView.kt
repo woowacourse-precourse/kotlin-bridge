@@ -2,6 +2,7 @@ package bridge.view
 
 import bridge.*
 import java.lang.IllegalArgumentException
+import java.lang.NumberFormatException
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -66,11 +67,15 @@ object OutputView {
         println("$TOTAL_TRY_COUNT $tryCnt")
     }
 
-    fun throwException(errorMessage: String) {
+    fun throwIllegalException(errorMessage: String) {
         throw IllegalArgumentException(errorMessage)
     }
 
-    fun printError(e: Exception){
+    fun throwNumberException(errorMessage: String) {
+        throw NumberFormatException(errorMessage)
+    }
+
+    fun printError(e: IllegalArgumentException) {
         println("$ERROR ${e.message}\n")
     }
 
