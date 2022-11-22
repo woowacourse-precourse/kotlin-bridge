@@ -1,4 +1,6 @@
-package bridge
+package bridge.ui
+
+import bridge.util.ConstantMessage
 
 
 class OutputView {

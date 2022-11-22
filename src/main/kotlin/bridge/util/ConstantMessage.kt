@@ -1,4 +1,4 @@
-package bridge
+package bridge.util
 
 object ConstantMessage {
     const val START_BRIDGE_GAME = "다리 건너기 게임을 시작합니다.\n"

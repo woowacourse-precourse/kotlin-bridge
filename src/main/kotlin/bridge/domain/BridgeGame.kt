@@ -1,4 +1,4 @@
-package bridge
+package bridge.domain
 
 class BridgeGame(private val bridge: List<String>) {
     var upCase: MutableList<String> = mutableListOf<String>()

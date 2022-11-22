@@ -1,5 +1,10 @@
 package bridge
 
+import bridge.domain.BridgeGame
+import bridge.ui.InputView
+import bridge.ui.OutputView
+import bridge.util.ConstantMessage
+
 fun main() {
     println(ConstantMessage.START_BRIDGE_GAME)
     val bridgeMaker: BridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
