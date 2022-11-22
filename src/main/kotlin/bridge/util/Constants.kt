@@ -38,7 +38,7 @@ const val PASS_POSSIBLE_EXPRESSION = "O"
 const val PASS_IMPOSSIBLE_EXPRESSION = "X"
 
 // sign
-const val EMPTY_EXPRESSION = ""
+const val EMPTY_EXPRESSION = " "
 const val OPEN_BRACKET ="[ "
 const val CLOSE_BRACKET =" ]\n"
 const val VERTICAL_LINE = " | "
