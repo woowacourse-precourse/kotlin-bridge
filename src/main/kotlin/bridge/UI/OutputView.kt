@@ -44,6 +44,10 @@ class OutputView {
         println(RETRY_LOG)
     }
 
+    fun printNewLine(){
+        println()
+    }
+
     companion object{
         const val BRIDGE_PREFIX = "[ "
         const val BRIDGE_POSTFIX = " ]"
