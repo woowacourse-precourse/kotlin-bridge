@@ -1,11 +1,6 @@
-package bridge.domain
+package bridge
 
-import bridge.ApplicationTest
 import bridge.ApplicationTest.*
-import bridge.BridgeNumberGenerator
-import bridge.BridgeRandomNumberGenerator
-import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest

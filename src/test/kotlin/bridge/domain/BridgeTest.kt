@@ -1,9 +1,8 @@
 package bridge.domain
 
-import bridge.ApplicationTest
 import bridge.ApplicationTest.*
+import bridge.BridgeMaker
 import bridge.BridgeNumberGenerator
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
