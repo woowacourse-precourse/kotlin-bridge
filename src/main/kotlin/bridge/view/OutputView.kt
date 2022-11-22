@@ -22,29 +22,26 @@ class OutputView {
         bridgeCurrentState: Boolean,
         bridgeType: BridgeType,
         dividedBridge: List<String>
-    ): List<String> = convertPrintingPurposeBridgeLastElement(
+    ): List<String> = convertLastElementToPrintingPurpose(
         bridgeCurrentState,
         convertElementToPrintingPurpose(bridgeType, dividedBridge)
     )
 
-    private fun convertElementToPrintingPurpose(bridgeType: BridgeType, dividedBridge: List<String>): List<String> {
-        val dividedBridge = dividedBridge.toMutableList()
-        dividedBridge.replaceAll { if (it == bridgeType.stringCode) PRINTING_PURPOSE_BRIDGE_MOVABLE else PRINTING_PURPOSE_BRIDGE_NOT_SELECTED }
-        return dividedBridge
+    private fun convertElementToPrintingPurpose(bridgeType: BridgeType, bridge: List<String>): List<String> {
+        val processedBridge = bridge.toMutableList()
+        processedBridge.replaceAll { if (it == bridgeType.stringCode) PRINTING_PURPOSE_BRIDGE_MOVABLE else PRINTING_PURPOSE_BRIDGE_NOT_SELECTED }
+        return processedBridge
     }
 
-    private fun convertPrintingPurposeBridgeLastElement(
-        bridgeCurrentState: Boolean,
-        processedDividedBridge: List<String>
-    ): List<String> {
-        val processedDividedBridge = processedDividedBridge.toMutableList()
+    private fun convertLastElementToPrintingPurpose(bridgeCurrentState: Boolean, bridge: List<String>): List<String> {
+        val processedBridge = bridge.toMutableList()
         if (!bridgeCurrentState) {
-            if (processedDividedBridge.last() == PRINTING_PURPOSE_BRIDGE_NOT_SELECTED) processedDividedBridge[processedDividedBridge.lastIndex] =
+            if (processedBridge.last() == PRINTING_PURPOSE_BRIDGE_NOT_SELECTED) processedBridge[processedBridge.lastIndex] =
                 PRINTING_PURPOSE_BRIDGE_IMMOVABLE
-            if (processedDividedBridge.last() == PRINTING_PURPOSE_BRIDGE_MOVABLE) processedDividedBridge[processedDividedBridge.lastIndex] =
+            if (processedBridge.last() == PRINTING_PURPOSE_BRIDGE_MOVABLE) processedBridge[processedBridge.lastIndex] =
                 PRINTING_PURPOSE_BRIDGE_NOT_SELECTED
         }
-        return processedDividedBridge
+        return processedBridge
     }
 
     /**
