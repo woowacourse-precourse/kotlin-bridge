@@ -306,3 +306,36 @@ val number = bridgeNumberGenerator.generate()
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+
+## 기능목록
+### View (Input / Output)
+- [Input] : 자동으로생성할다리길이입력받기
+- [Input] : 플레이어가이동할칸입력받기
+- [Input] : 게임재시작/ 종료여부입력
+- [Output] : 게임시작문구
+- [Output] : 게임종료문구
+
+- ### Business Logic
+- [Inputview]
+- [x] 다리길이를입력받는다. 해당길이가유효한길이인지판단 #readBridgeSize()
+- [x] 사용자가이동할칸을입력받는다. #readMoving()
+- [x] 사용자가게임을다시시도할지종료할지입력받는다. #readGameCommand()
+- [Outputview]
+- [x] 현재까지이동한다리의상태를정해진형식에맞춰출력 #printMap()- 
+- [x] 게임의최종결과를정해진형식에맞춰출력 #printResult()
+- [BridgeGame]
+- [x] 사용자가칸을이동할때사용하는메서드 #move(upOrDown, bridge, index)
+- [x] 사용자가게임을다시시도할때사용하는메서드 #rerty()
+- [BridgeMaker]
+- [x] 다리의길이를입력받아서다리를생성해주는메서드 #makeBridge()
+
+- ### 예외처리(Exception)
+- 입출력관련IllegalArgumentException 발생(단, [ERROR] 로시작)
+- 다리길이3~20이아닐때예외처리
+1. [x] 숫자가아닐경우예외처리
+2. [x] 3~20외숫자존재할경우예외처리
+- 사용자입력받은이동할칸예외처리
+1. [x] U, D 입력외예외처리
+- 사용자입력받은`재시작/종료여부` 예외처리
+1. [x] R, Q 입력외예외처리
