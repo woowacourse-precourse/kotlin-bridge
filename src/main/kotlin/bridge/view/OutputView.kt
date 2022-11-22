@@ -13,33 +13,39 @@ object OutputView {
     }
 
     fun printInputBridgeSize() {
-        println("\n${Message.InputBridgeSize}")
+        println(Message.InputBridgeSize)
     }
 
     fun printSelectNextFloor() {
-        println("\n${Message.SelectNextFloor}")
+        println(Message.SelectNextFloor)
     }
 
     fun printSelectRetryOrFinishGame() {
-        println("\n${Message.SelectRetryOrFinishGame}")
+        println(Message.SelectRetryOrFinishGame)
     }
 
     fun printMap(history: GameHistory) {
-        println(buildHistoryOf(history.upstairs))
-        println(buildHistoryOf(history.downstairs))
+        println(buildHistoryMap(history))
     }
 
     fun printResult(result: GameResult) {
-        val messages = Message.FinishGame
-
-        println("\n${messages[0]}")
-        printMap(result.lastHistory)
-        println("\n${messages[1]}", if (result.isSuccess) Message.Success else Message.Failure)
-        println(messages[2], result.tryCount)
+        println(
+            format = Message.FinishGame,
+            args = arrayOf(
+                buildHistoryMap(result.lastHistory),
+                if (result.isSuccess) Message.Success else Message.Failure,
+                result.tryCount,
+            )
+        )
     }
 
     fun printError(t: Throwable) {
         println("${ErrorMessage.PREFIX} ${t.message}")
+    }
+
+    private fun buildHistoryMap(history: GameHistory): String = buildString {
+        appendLine(buildHistoryOf(history.upstairs))
+        appendLine(buildHistoryOf(history.downstairs))
     }
 
     private fun buildHistoryOf(data: List<Char>): String {
