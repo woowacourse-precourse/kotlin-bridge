@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.Constants.Companion.DOWN
+import bridge.Constants.Companion.UP
 import java.lang.IllegalArgumentException
 import java.lang.NumberFormatException
 
@@ -17,11 +19,16 @@ class InputException {
         }
     }
 
+    fun checkDirectionInput(input : String){
+        require(input.contains(UP) || input.contains(DOWN)) { ERROR_HEADER + ERROR_BRIDGE_DIRECTION_INPUT }
+    }
+
     companion object{
         const val ERROR_HEADER = "[ERROR]"
 
         const val ERROR_NULL_INPUT = "입력된 값이 없습니다."
         const val ERROR_BRIDGE_LEN_INPUT = "다리 길이는 숫자만 가능합니다."
+        const val ERROR_BRIDGE_DIRECTION_INPUT = "이동할 칸은 U, D로만 입력 가능합니다."
     }
 
 }

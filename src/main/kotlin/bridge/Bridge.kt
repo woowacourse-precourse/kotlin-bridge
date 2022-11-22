@@ -8,11 +8,11 @@ class Bridge {
     private val numberGenerator = BridgeRandomNumberGenerator()
     private val bridgeMaker = BridgeMaker(numberGenerator)
 
-    fun makeBridge() : List<String>{
+    fun makeBridge(): List<String> {
         return bridgeMaker.makeBridge(getBridgeLength())
     }
 
-    private fun getBridgeLength() : Int{
+    private fun getBridgeLength(): Int {
         OutputView().printGetBridgeLengthLog()
         val inputSize = InputView().readBridgeSize()
         InputException().checkBridgeLenInputIsNumeric(inputSize)
