@@ -21,6 +21,7 @@ class GameController {
     }
 
     fun playGame() {
+        outputView.printGameStart()
         val size = inputView.readBridgeSize()
         val bridge = Bridge(size)
         crossBridge(bridge)

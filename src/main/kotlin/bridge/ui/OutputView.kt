@@ -23,10 +23,14 @@ class OutputView {
     fun printStats(count: Int, message: String) {
         try {
             count.inputNoGameException()
-            println("총 시도한 횟수: $count")
             println("게임 성공 여부: $message")
+            println("총 시도한 횟수: $count")
         } catch (e: IllegalArgumentException) {
             println(e.message)
         }
+    }
+
+    fun printGameStart(){
+        println("다리 건너기 게임을 시작합니다.\n")
     }
 }
