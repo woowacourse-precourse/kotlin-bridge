@@ -1,6 +1,6 @@
 package bridge._assist
 
-import bridge.domain.BridgeMaker
+import bridge.BridgeMaker
 import bridge.BridgeNumberGenerator
 
 internal class TestNumberGenerator2(numbers: List<Int>) : BridgeNumberGenerator {
