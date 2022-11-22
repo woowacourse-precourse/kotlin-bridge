@@ -16,7 +16,7 @@ class InputView {
                 BridgeSizeException(bridgeSize)
                 return bridgeSize.toInt()
             }catch (e: IllegalArgumentException) {
-                println("${e.message} 다시 입력해주세요.")
+                OutputView().printException(InputType.BRIDGE_SIZE, e.message!!)
             }
         }
     }
@@ -31,7 +31,7 @@ class InputView {
                 BridgeMoveException(moveCommand)
                 return moveCommand
             }catch (e: IllegalArgumentException) {
-                println("${e.message} 다시 입력해주세요.")
+                OutputView().printException(InputType.BRIDGE_MOVE, e.message!!)
             }
         }
     }
@@ -46,7 +46,7 @@ class InputView {
                 GameCommandException(gameCommand)
                 return gameCommand
             }catch (e: IllegalArgumentException) {
-                println("${e.message} 다시 입력해주세요.")
+                OutputView().printException(InputType.GAME_COMMAND, e.message!!)
             }
         }
     }

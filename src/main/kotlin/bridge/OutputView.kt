@@ -20,6 +20,15 @@ class OutputView {
         println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
     }
 
+    fun printException(inputType: InputType, message: String) {
+        println(message)
+        when(inputType) {
+            InputType.BRIDGE_SIZE -> printInputBridgeSize()
+            InputType.BRIDGE_MOVE -> printInputMoveBridge()
+            InputType.BRIDGE_SIZE -> printInputRetryOrExit()
+        }
+    }
+
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      *
