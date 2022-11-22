@@ -5,9 +5,10 @@ import camp.nextstep.edu.missionutils.Console
 
 class InputView {
     private val exceptionChecker = ExceptionChecker()
+    private val outputView = OutputView()
 
     fun readBridgeSize(): Int {
-        println("다리의 길이를 입력해주세요.")
+        outputView.printReadBridgeSizeMessage()
         val bridgeSize = Console.readLine()
         exceptionChecker.bridgeSizeIsDigitException(bridgeSize)
         exceptionChecker.bridgeSizeIsInRangeException(bridgeSize.toInt())
@@ -15,14 +16,14 @@ class InputView {
     }
 
     fun readMoving(): String {
-        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        outputView.printReadMovingMessage()
         val userMove = Console.readLine()
         exceptionChecker.movingException(userMove)
         return userMove
     }
 
     fun readGameCommand(): String {
-        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        outputView.printReadGameCommandMessage()
         val command = readLine()!!
         exceptionChecker.gameCommandException(command)
         return command
