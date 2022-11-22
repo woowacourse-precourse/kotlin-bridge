@@ -1,13 +1,14 @@
 package bridge.view
 
 import bridge.utils.ExceptionChecker
+import camp.nextstep.edu.missionutils.Console
 
 class InputView {
     private val exceptionChecker = ExceptionChecker()
 
     fun readBridgeSize(): Int {
         println("다리의 길이를 입력해주세요.")
-        val bridgeSize = readLine()!!
+        val bridgeSize = Console.readLine()
         exceptionChecker.bridgeSizeIsDigitException(bridgeSize)
         exceptionChecker.bridgeSizeIsInRangeException(bridgeSize.toInt())
         return bridgeSize.toInt()
@@ -15,7 +16,7 @@ class InputView {
 
     fun readMoving(): String {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
-        val userMove = readLine()!!
+        val userMove = Console.readLine()
         exceptionChecker.movingException(userMove)
         return userMove
     }
