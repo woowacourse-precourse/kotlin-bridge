@@ -1,4 +1,4 @@
-package bridge
+package service
 
 import java.lang.IllegalArgumentException
 

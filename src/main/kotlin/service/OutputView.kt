@@ -1,4 +1,4 @@
-package bridge
+package service
 
 class OutputView {
     fun printMap(state: Pair<String, String>) {

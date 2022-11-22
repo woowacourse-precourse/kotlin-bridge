@@ -1,4 +1,4 @@
-package bridge
+package service
 
 import camp.nextstep.edu.missionutils.Console
 

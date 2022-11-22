@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.junit.jupiter.api.Test
+import service.OutputView
 
 class OutputViewTest : NsTest() {
     @Test

@@ -1,11 +1,12 @@
-package bridge
+package service
 
+import bridge.BridgeGame
+import bridge.BridgeMaker
+import bridge.BridgeRandomNumberGenerator
 import java.lang.IllegalArgumentException
 
-private typealias StateEnum = Message.ControllerEnum
-
 class Controller {
-    private var isPlaying = StateEnum.RUNNING.state
+    private var isPlaying = Message.ControllerEnum.RUNNING.state
     private lateinit var inputView: InputView
     private lateinit var outputView: OutputView
     private lateinit var bridgeGame: BridgeGame
