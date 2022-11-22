@@ -10,7 +10,17 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return 0
+        println("다리의 길이를 입력해주세요.")
+        val userInputText = Console.readLine()
+        requireNotNull(userInputText.toIntOrNull()) {
+            print("[ERROR] 숫자를 입력해주세요")
+            return readBridgeSize()
+        }
+        require(userInputText.toInt() in 3..20) {
+            println("[ERROR] 3~20사이의 숫자만 입력해주세요")
+            return readBridgeSize()
+        }
+        return userInputText.toInt()
     }
     /**
      * 사용자가 이동할 칸을 입력받는다.
