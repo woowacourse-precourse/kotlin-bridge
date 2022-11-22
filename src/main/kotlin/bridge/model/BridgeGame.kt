@@ -45,9 +45,7 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
 
     fun succeeded(): Boolean {
         check(started()) { "게임이 시작되어야 성공했는지 판단할 수 있습니다." }
-        if (_bridge.size != _userHistory.size)
-            return false
-        return (0 until _userHistory.size).all { _bridge[it] == _userHistory[it] }
+        return _bridge.size != _userHistory.size && (0 until _userHistory.size).all { _bridge[it] == _userHistory[it] }
     }
 
     fun quit() {
