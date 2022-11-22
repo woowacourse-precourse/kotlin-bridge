@@ -19,7 +19,8 @@ class InputView {
             return BridgeException(inp).toSize()
         } catch (e: IllegalArgumentException) {
             println(SIZE_ERROR)
-            exitProcess(0)
+            println(RETRY_MESSAGE)
+            return readBridgeSize()
         }
     }
 
@@ -32,7 +33,8 @@ class InputView {
             return BridgeException(inp).toMoving()
         } catch (e: IllegalArgumentException) {
             println(MOVING_ERROR)
-            exitProcess(0)
+            println(RETRY_MESSAGE)
+            return readMoving()
         }
     }
 
@@ -45,7 +47,12 @@ class InputView {
             return BridgeException(inp).toGameCommand()
         } catch (e: IllegalArgumentException) {
             println(COMMAND_ERROR)
-            exitProcess(0)
+            println(RETRY_MESSAGE)
+            return readGameCommand()
         }
+    }
+
+    companion object {
+        const val RETRY_MESSAGE = "다시 입력해주세요: "
     }
 }
