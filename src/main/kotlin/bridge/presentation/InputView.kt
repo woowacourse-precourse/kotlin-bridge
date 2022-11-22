@@ -4,7 +4,7 @@ import bridge.exception.BridgeException
 import bridge.utils.BridgeErrorMessage.COMMAND_ERROR
 import bridge.utils.BridgeErrorMessage.MOVING_ERROR
 import bridge.utils.BridgeErrorMessage.SIZE_ERROR
-import kotlin.system.exitProcess
+import camp.nextstep.edu.missionutils.Console
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -15,7 +15,7 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         return try {
-            BridgeException(readLine()).toSize()
+            BridgeException(Console.readLine()).toSize()
         } catch (e: IllegalArgumentException) {
             println(SIZE_ERROR)
             println(RETRY_MESSAGE)
@@ -28,7 +28,7 @@ class InputView {
      */
     fun readMoving(): String {
         return try {
-            BridgeException(readLine()).toMoving()
+            BridgeException(Console.readLine()).toMoving()
         } catch (e: IllegalArgumentException) {
             println(MOVING_ERROR)
             println(RETRY_MESSAGE)
@@ -41,11 +41,11 @@ class InputView {
      */
     fun readGameCommand(): String {
         return try {
-            BridgeException(readLine()).toGameCommand()
+            BridgeException(Console.readLine()).toGameCommand()
         } catch (e: IllegalArgumentException) {
             println(COMMAND_ERROR)
             println(RETRY_MESSAGE)
-            return readGameCommand()
+            readGameCommand()
         }
     }
 
