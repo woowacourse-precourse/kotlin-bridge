@@ -7,7 +7,7 @@ class BridgeGame {
     private val bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
     private val upperBridge = mutableListOf<String>()
     private val lowerBridge = mutableListOf<String>()
-    private var coin = 1
+    private var coin = ONE
 
     fun move(bridge: List<String>, upAndDown: String, level: Int): Boolean {
         when (verify(bridge, upAndDown, level)) {
