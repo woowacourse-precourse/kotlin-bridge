@@ -13,6 +13,7 @@ class OutputView {
     private val MESSAGE_READ_MOVING = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
     private val MESSAGE_FRONT_BRACKET = "["
     private val MESSAGE_BACK_BRACKET = "]"
+    private val MESSAGE_RESULT_MAP = "최종 게임 결과"
 
     private val inputView = InputView()
 
@@ -56,5 +57,9 @@ class OutputView {
     fun printResult(successOrFailure: String, totalTry: Int) {
         println("$MESSAGE_SUCCESS_OR_FAILURE $successOrFailure")
         println("$MESSAGE_TOTAL_TRY $totalTry")
+    }
+
+    fun printResultMap(){
+        println(MESSAGE_RESULT_MAP)
     }
 }

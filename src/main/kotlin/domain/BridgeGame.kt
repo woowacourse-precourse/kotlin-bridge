@@ -9,7 +9,6 @@ import java.lang.IllegalArgumentException
 class BridgeGame {
     private val outputView = OutputView()
     private var playMap = Pair<List<String>, List<String>>(arrayListOf(), arrayListOf())
-    private val MESSAGE_RESULT_MAP = "최종 게임 결과"
     private val MESSAGE_SUCCESS = "성공"
     private val MESSAGE_FAILLED = "실패"
     private val MESSAGE_ERROR = "[ERROR]"
@@ -94,7 +93,7 @@ class BridgeGame {
     }
 
     private fun result(numberOfGames:Int){
-        println(MESSAGE_RESULT_MAP)
+        outputView.printResultMap()
         outputView.printMap(playMap)
         outputView.printResult(MESSAGE_SUCCESS, numberOfGames)
     }
