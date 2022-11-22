@@ -9,7 +9,8 @@ object BridgeGameProcessor {
     * 현재 위치 정보 맵 키, value 지정하여 비교
     * */
     private val bridgePassInfo = mutableListOf<Pair<Moving, Boolean>>()
-    private val bridgeLocationInfo = hashMapOf(0 to 1, 1 to 0)
+    private val bridgeLocationInfo =
+        hashMapOf(UP_BRIDGE to UP_INT_NUMBER_ONE, DOWN_BRIDGE to DOWN_INT_NUMBER_ZERO)
     private val currentMapPrint = mutableListOf<String>()
 
     /*
@@ -30,10 +31,10 @@ object BridgeGameProcessor {
     private fun updatePassed(moving: Moving, bridgeNumber: Int, hasPassed: Boolean): String {
         val passedResult = when (moving.bridgeNumber) {
             bridgeNumber -> {
-                if (hasPassed) return "O"
-                return "X"
+                if (hasPassed) return PASS_POSSIBLE_EXPRESSION
+                return PASS_IMPOSSIBLE_EXPRESSION
             }
-            else -> " "
+            else -> EMPTY_EXPRESSION
         }
         return passedResult
     }
@@ -43,13 +44,13 @@ object BridgeGameProcessor {
     * [,O, X,] 추가
     * */
     private fun createMapPrint(bridgeNumber: Int): String {
-        var mapPrint = ""
+        var mapPrint = EMPTY_EXPRESSION
         val round = bridgePassInfo.size - 1
 
-        mapPrint += "[ "
+        mapPrint += OPEN_BRACKET
         bridgePassInfo.forEachIndexed { index, (moving, hasPassed) ->
             mapPrint += updatePassed(moving, bridgeNumber, hasPassed)
-            mapPrint += if (index == round) " ]\n" else " | "
+            mapPrint += if (index == round) CLOSE_BRACKET else VERTICAL_LINE
         }
         return mapPrint
     }
@@ -62,7 +63,7 @@ object BridgeGameProcessor {
 
     fun updateMapList(): List<String> {
         currentMapPrint.clear()
-        repeat(2) { twoBridge -> currentMapPrint.add(createMapPrint(bridgeLocationInfo[twoBridge]!!)) }
+        repeat(TWO_BRIDGE) { twoBridge -> currentMapPrint.add(createMapPrint(bridgeLocationInfo[twoBridge]!!)) }
         return currentMapPrint
     }
 }

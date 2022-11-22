@@ -4,7 +4,7 @@ import bridge.util.*
 
 object InputValidator {
     fun validateInValidBridgeSize(input: Int) {
-        val hasInvalidBridgeSize = (input < 3 || input > 20)
+        val hasInvalidBridgeSize = (input < MIN_BRIDGE_SIZE || input > MAX_BRIDGE_SIZE)
         if (hasInvalidBridgeSize) throw IllegalArgumentException()
     }
 

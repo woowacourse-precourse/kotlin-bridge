@@ -2,9 +2,7 @@ package bridge.controller
 
 import bridge.controller.processor.BridgeGameProcessor
 import bridge.model.BridgeMaker
-import bridge.util.Moving
-import bridge.util.QUIT_COMMAND
-import bridge.util.RESTART_COMMAND
+import bridge.util.*
 import bridge.view.InputView
 import bridge.view.OutputView
 
@@ -20,24 +18,18 @@ class BridgeGame(
     private var round = 0
     private var trialCount = 1
 
-    private fun bridgeSetUp() {
-        println("다리 건너기 게임을 시작합니다.")
-        val bridgeSize = inputView.readBridgeSize()
-        bridge = bridgeMaker.makeBridge(size = bridgeSize)
-    }
-
     override fun start() {
-        bridgeSetUp()
+        callBridge()
         process()
     }
 
     // 게임 진행
     override fun process() {
-        do {
+        while (round < bridge.size) {
             move()
             moveUnable()
             finish()
-        } while (round < bridge.size)
+        }
     }
 
     // 게임 종료
@@ -53,11 +45,18 @@ class BridgeGame(
         round = 0
     }
 
+    private fun callBridge() {
+        println(START_GAME_MASSAGE)
+        val bridgeSize = inputView.readBridgeSize()
+        bridge = bridgeMaker.makeBridge(size = bridgeSize)
+    }
+
+
     // 라운드 이동 ( 커멘드가 U일 때 조건)
     private fun move() {
         val moving = inputView.readMoving()
         // 이동 조건 발동
-        val inputMove = if (moving == "U") Moving.UP else Moving.DOWN
+        val inputMove = if (moving == UP_DIRECTION) Moving.UP else Moving.DOWN
         val hasPassed = (moving == bridge[round])
         BridgeGameProcessor.updateBridgePassInfo(inputMove, hasPassed)
         // 출력
@@ -70,7 +69,9 @@ class BridgeGame(
         if (BridgeGameProcessor.updateFail()) {
             when (inputView.readGameCommand()) {
                 RESTART_COMMAND -> retry()
-                QUIT_COMMAND -> quit()
+                QUIT_COMMAND -> {
+                    quit()
+                }
             }
         }
     }
