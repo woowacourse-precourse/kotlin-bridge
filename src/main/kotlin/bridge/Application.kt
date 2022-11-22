@@ -6,18 +6,15 @@ import bridge.view.OutputView
 import java.lang.IllegalArgumentException
 
 fun main() {
-    println(INPUT_BRIDGE_GAME_START)
     try {
+        println(INPUT_BRIDGE_GAME_START)
         val bridgeLength = inputLength()
         val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
-        println(bridge)
         val game = BridgeGame(bridge, bridgeLength)
-
         gameStart(game, START_TRY, START_LOCATION)
     } catch (_: IllegalArgumentException) {
     }
 }
-
 
 fun gameStart(game: BridgeGame, tryCount: Int, location: Int) {
     val answer = game.bridge[location] == inputMove()
