@@ -1,16 +1,14 @@
 package bridge.ui
 
-import bridge.utils.DOWN
-import bridge.utils.QUIT
-import bridge.utils.RESTART
 import bridge.utils.UP
+import bridge.utils.DOWN
+import bridge.utils.RESTART
+import bridge.utils.QUIT
 
 class Validator {
     fun handleMixedCharCase(input: String) {
         for (ch in input) {
             if (!Character.isDigit(ch)){
-                // 음수인 경우 다른 함수에서 처리하도록
-                if(ch == '-' && input.toInt() < 0) continue
                 throw IllegalArgumentException(MIXED_CHAR_ERROR_MSG)
             }
         }
