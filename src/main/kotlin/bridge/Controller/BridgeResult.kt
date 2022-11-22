@@ -28,8 +28,8 @@ class BridgeResult {
                 break
             }
             when(manageGameFailureResult(selectedBridge)){
-                "BREAK" -> break
-                "CONTINUE" -> continue
+                BREAK -> break
+                CONTINUE -> continue
             }
         }
     }
@@ -38,8 +38,8 @@ class BridgeResult {
         var result = ""
         if (bridgeGame.getFailureResult()) {
             when (manageSelectedRetry(selectedBridge)) {
-                RETRY -> result = "CONTINUE"
-                QUIT -> result = "BREAK"
+                RETRY -> result = CONTINUE
+                QUIT -> result = BREAK
             }
         }
         return result
@@ -92,6 +92,9 @@ class BridgeResult {
     companion object {
         const val SUCCESS_RESULT = "성공"
         const val FAIL_RESULT = "실패"
+
+        const val CONTINUE = "CONTINUE"
+        const val BREAK = "BREAK"
     }
 
 
