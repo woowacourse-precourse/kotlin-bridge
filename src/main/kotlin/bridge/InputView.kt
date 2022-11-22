@@ -26,7 +26,15 @@ class InputView {
      */
     fun readMoving(): String {
         //    println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
-        return ""
+        try {
+            val move = Console.readLine()
+            if ((move != "U") && (move != "D")) throw IllegalArgumentException()
+            return move
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR] U와 D만 선택할 수 있습니다.")
+        }
+        return readMoving()
+
     }
 
     /**
