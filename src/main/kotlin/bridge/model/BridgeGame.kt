@@ -9,7 +9,7 @@ import bridge.QuitEventManager
 class BridgeGame(private val movingEventManager: MovingEventManager, private val quitEventManager: QuitEventManager) {
     private lateinit var _bridge: List<String>
     private var _userHistory = mutableListOf<String>()
-    private lateinit var _gameStatus: GameStatus
+    private var _gameStatus = GameStatus.NOT_STARTED
     private var _attempts: Int = 0
 
     fun start(bridge: List<String>) {
@@ -21,7 +21,7 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
         _attempts++
     }
 
-    private fun started(): Boolean = ::_bridge.isInitialized
+    private fun started(): Boolean = _gameStatus != GameStatus.NOT_STARTED
 
     private fun validateBridge(bridge: List<String>) =
         require(bridge.size in 3..20 && bridge.all { it == "U" || it == "D" }) { "다리의 길이는 3 이상 20 이하여야 하고 U 또는 D만 포함할 수 있습니다." }
@@ -45,10 +45,11 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
 
     fun succeeded(): Boolean {
         check(started()) { "게임이 시작되어야 성공했는지 판단할 수 있습니다." }
-        return _bridge.size != _userHistory.size && (0 until _userHistory.size).all { _bridge[it] == _userHistory[it] }
+        return _bridge.size == _userHistory.size && (_bridge.indices).all { _bridge[it] == _userHistory[it] }
     }
 
     fun quit() {
+        check(started()) { "게임이 시작된 상태여야 종료할 수 있습니다." }
         quitEventManager.notify(GameMapStatus(_bridge, _userHistory), GameResult(succeeded(), _attempts))
         _gameStatus = GameStatus.FINISHED
     }

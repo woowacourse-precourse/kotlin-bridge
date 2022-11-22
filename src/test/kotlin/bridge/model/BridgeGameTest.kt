@@ -11,17 +11,18 @@ import org.junit.jupiter.api.Test
 import java.lang.IllegalArgumentException
 
 internal class BridgeGameTest {
-    private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
 
     @Nested
     inner class `start 메소드는` {
 
         @Nested
         inner class `게임이 시작된 상태일 때 실행하면` {
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
+            private val bridge = listOf("U", "D", "D")
 
             @Test
             fun `예외를 던진다`() {
-                bridgeGame.start(listOf("U", "D", "D"))
+                bridgeGame.start(bridge)
 
                 assertThatThrownBy { bridgeGame.start(listOf()) }.isInstanceOf(IllegalArgumentException::class.java)
             }
@@ -29,6 +30,7 @@ internal class BridgeGameTest {
 
         @Nested
         inner class `다리의 길이가 3 이상 20 이하가 아니면` {
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
             private val bridge = listOf<String>()
 
             @Test
@@ -39,6 +41,7 @@ internal class BridgeGameTest {
 
         @Nested
         inner class `다리가 U와 D 이외의 값을 포함하면` {
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
             private val bridge = listOf("U", "D", "A")
 
             @Test
@@ -52,6 +55,7 @@ internal class BridgeGameTest {
     inner class `move 메소드는` {
         @Nested
         inner class `게임이 실행되고 있지 않을 때 실행되면` {
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
             private val moving = "U"
 
             @Test
@@ -89,6 +93,7 @@ internal class BridgeGameTest {
 
         @Nested
         inner class `이동할 수 없는 칸을 선택하면` {
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
             private val bridge = listOf("U", "D", "D")
             private val moving = "D"
 
@@ -101,21 +106,6 @@ internal class BridgeGameTest {
                 assertThat(bridgeGame.running()).isFalse
             }
         }
-
-        @Nested
-        inner class `다리의 끝까지 도달하면` {
-            private val bridge = listOf("U", "D", "D")
-            private val movings = listOf("U", "D", "D")
-
-            @Test
-            fun `게임이 종료된다`() {
-                bridgeGame.start(bridge)
-
-                movings.forEach { bridgeGame.move(it) }
-
-                assertThat(bridgeGame.running()).isFalse
-            }
-        }
     }
 
     @Nested
@@ -124,13 +114,14 @@ internal class BridgeGameTest {
         @Nested
         inner class `사용자가 다리의 끝까지 도달했다면` {
             private val bridge = listOf("U", "D", "D")
-            private val userRoute = listOf("U", "D", "D")
+            private val movings = listOf("U", "D", "D")
             private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
 
             @Test
             fun `참을 반환한다`() {
                 bridgeGame.start(bridge)
-                userRoute.forEach { bridgeGame.move(it) }
+
+                movings.forEach { bridgeGame.move(it) }
 
                 assertThat(bridgeGame.succeeded()).isTrue
             }
@@ -138,6 +129,7 @@ internal class BridgeGameTest {
 
         @Nested
         inner class `게임이 시작되지 않았다면` {
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
 
             @Test
             fun `예외를 던진다`() {
@@ -150,7 +142,17 @@ internal class BridgeGameTest {
     inner class `quit 메소드는` {
 
         @Nested
-        inner class `실행되면` {
+        inner class `게임이 시작하지 않았을 때 실행되면` {
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
+
+            @Test
+            fun `예외를 던진다`() {
+                assertThatThrownBy { bridgeGame.quit() }.isInstanceOf(IllegalStateException::class.java)
+            }
+        }
+
+        @Nested
+        inner class `게임을 시작하고 나서 실행되면` {
             private val quitEventListener = TestQuitEventListener()
             private val quitEventManager = QuitEventManager()
             private val bridgeGame = BridgeGame(MovingEventManager(), quitEventManager)
@@ -176,10 +178,38 @@ internal class BridgeGameTest {
     }
 
     @Nested
+    inner class `running 메소드는` {
+
+        @Nested
+        inner class `게임을 시작하지 않았을 때 실행하면`{
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
+
+            @Test
+            fun `거짓을 반환한다`() {
+                assertThat(bridgeGame.running()).isFalse
+            }
+        }
+
+        @Nested
+        inner class `실행 상태일 때 실행하면` {
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
+            private val bridge = listOf("U", "D", "D")
+
+            @Test
+            fun `참을 반환한다`() {
+                bridgeGame.start(bridge)
+
+                assertThat(bridgeGame.running()).isTrue
+            }
+        }
+    }
+
+    @Nested
     inner class `retry 메소드는` {
 
         @Nested
         inner class `게임이 시작하지 않은 상태에서 실행하면` {
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
 
             @Test
             fun `예외를 던진다`() {
@@ -189,6 +219,7 @@ internal class BridgeGameTest {
 
         @Nested
         inner class `중지되지 않은 상태에서 실행하면` {
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
             private val bridge = listOf("U", "D", "D")
             @Test
             fun `예외를 던진다`() {
@@ -200,17 +231,16 @@ internal class BridgeGameTest {
         
         @Nested
         inner class `게임이 중지 상태일 때 실행하면` {
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
             private val bridge = listOf("U", "D", "D")
             @Test
-            fun `사용자 경로는 초기화 되고 시도 횟수는 1 증가하고 실행 상태로 바뀐다`() {
+            fun `실행 상태로 바뀐다`() {
                 bridgeGame.start(bridge)
                 bridgeGame.move("D")
                 
                 bridgeGame.retry()
-                
-                // 사용자 경로 검증
-                // 시도 횟수 검증
-                // 게임 상태 검증
+
+                assertThat(bridgeGame.running()).isTrue
             }
         }
     }
