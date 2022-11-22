@@ -4,7 +4,7 @@ import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
-class functionTest : NsTest() {
+class FunctionTest : NsTest() {
     @Test
     fun `기능 테스트`() {
         camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest({
