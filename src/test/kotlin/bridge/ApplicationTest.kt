@@ -62,6 +62,16 @@ class ApplicationTest : NsTest() {
         }, 1, 0, 1)
     }
 
+    @Test
+    fun `재시도 입력 예외 발생 테스트`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "U", "-", "R", "U", "D", "U")
+            assertThat(output()).contains(
+                ERROR_MESSAGE
+            )
+        }, 1, 0, 1)
+    }
+
     override fun runMain() {
         main()
     }
