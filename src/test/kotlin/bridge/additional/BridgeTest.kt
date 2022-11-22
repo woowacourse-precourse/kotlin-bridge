@@ -1,4 +1,4 @@
-package bridge
+package bridge.additional
 
 import bridge.View.InputView
 import bridge.computer.BridgeMaker
