@@ -26,6 +26,7 @@
 //        System.setOut(PrintStream(out))
 //    }
 //
+//    //출력된 expected와 actual의 결과는 똑같은데 틀린 이유가 무엇인지 확인하자
 //    @ParameterizedTest
 //    @MethodSource("generateMap")
 //    fun `특정 경로에 대해 올바른 형식으로 경로를 출력할 수 있는가?`(notFormattedMap: Array<String>) {
