@@ -38,12 +38,11 @@ class BridgeMap {
         result.append(BRIDGE_END)
     }
 
-    fun update(result: BridgeResult, direction: String) {
-        require(direction == "U" || direction == "D")
+    fun update(result: BridgeStatus) {
         when (result) {
-            BridgeResult.FINISH -> if (direction == "U") addSuccess("U") else addSuccess("D")
-            BridgeResult.SUCCESS -> addSuccess(direction)
-            BridgeResult.FAIL -> addFail(direction)
+            is BridgeStatus.FINISH -> addSuccess(result.getDirection())
+            is BridgeStatus.SUCCESS -> addSuccess(result.getDirection())
+            is BridgeStatus.FAIL -> addFail(result.getDirection())
         }
     }
 
