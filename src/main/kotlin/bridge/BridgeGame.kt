@@ -40,4 +40,11 @@ class BridgeGame {
         }
         return false
     }
+    fun getComBridge(): Bridge? {
+        return comBridge
+    }
+
+    fun getUserBridge(): Bridge {
+        return userBridge
+    }
 }
