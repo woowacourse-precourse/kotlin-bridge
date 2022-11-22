@@ -1,5 +1,6 @@
 package bridge
 
+import test.AAA
 import view.InputView
 import view.OutputView
 
@@ -35,4 +36,18 @@ class BridgeState {
         }.isEmpty()
     }
 
+    fun gameRetry(): Boolean {
+        outputView.printRetryGame()
+        val command = inputView.readGameCommand()
+        if (command == RETRY_COMMAND) {
+            userState.clear()
+            return true
+        }
+        return false
+    }
+
+
+    companion object {
+        const val RETRY_COMMAND = "R"
+    }
 }
