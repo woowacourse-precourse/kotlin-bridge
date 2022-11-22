@@ -10,7 +10,10 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return toBridgeSize()
+        var bridgeSize = toBridgeSize()
+        while(bridgeSize<3 || bridgeSize>20)
+            bridgeSize = toBridgeSize()
+        return bridgeSize
     }
 
     /**
@@ -44,10 +47,12 @@ class InputView {
      */
 
     private fun toBridgeSize() : Int{
-        var bridgeSize = toInt()
-        while(bridgeSize<3 || bridgeSize>20){
-            println("3 이상 20이하의 숫자를 입력해 주세요.")
+        var bridgeSize = 0
+        try{
             bridgeSize = toInt()
+            if(bridgeSize<3 || bridgeSize>20) throw IllegalArgumentException("[ERROR] 3이상 20이하의 숫자를 입력해 주세요.")
+        }catch( e : IllegalArgumentException){
+            println(e)
         }
         return bridgeSize
     }
