@@ -2,9 +2,9 @@ package view
 
 import camp.nextstep.edu.missionutils.Console
 import util.InputException
-import util.InputException.Companion.COMMAND_ERROR
-import util.InputException.Companion.RANGE_ERROR
-import util.InputException.Companion.RETRY_ERROR
+import data.BridgeStore.COMMAND_ERROR
+import data.BridgeStore.RANGE_ERROR
+import data.BridgeStore.RETRY_ERROR
 
 
 /**
