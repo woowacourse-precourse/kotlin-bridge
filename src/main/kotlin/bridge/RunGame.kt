@@ -5,7 +5,7 @@ class RunGame {
     private var tryCount = 1
     private var loop = true
 
-    fun gameMaker(bridge: List<String>){
+    fun gameMaker(bridge: List<String>) {
         while (loop) {
             val caseList = mutableListOf<Int>()
             val answer = caseMaker(bridge, caseList)
@@ -31,7 +31,7 @@ class RunGame {
         return false
     }
 
-    fun wrongChoice(caseList: MutableList<Int>){
+    fun wrongChoice(caseList: MutableList<Int>) {
         regame = InputView().readGameCommand()
         if (!BridgeGame().retry(regame)) {
             regame = ""

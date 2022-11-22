@@ -6,4 +6,3 @@ fun main() {
     val bridgeMade = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(InputView().readBridgeSize())
     RunGame().gameMaker(bridgeMade)
 }
-
