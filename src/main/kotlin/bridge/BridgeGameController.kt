@@ -36,4 +36,13 @@ class BridgeGameController(
         return true
     }
 
+    private fun isGameOver(): Boolean {
+        outputView.printRequestRestart()
+        val command = inputView.readGameCommand()
+        if (command == "R") {
+            bridgeGame.retry()
+            return false
+        }
+        return true
+    }
 }
