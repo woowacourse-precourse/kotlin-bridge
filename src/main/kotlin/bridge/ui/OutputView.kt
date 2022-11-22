@@ -1,5 +1,6 @@
 package bridge.ui
 
+import bridge.domain.data.MovingResultData
 import bridge.domain.usecase.BridgeGame
 import camp.nextstep.edu.missionutils.Console
 
@@ -31,6 +32,11 @@ class OutputView {
 
     private fun isNotPassableInRows(upRowsResult: String, downRowsResult: String): Boolean {
         return upRowsResult.contains("X") || downRowsResult.contains("X")
+    }
+
+    private fun bridgeGameRetry(upRowsResult: String, downRowsResult: String): MovingResultData {
+        val userInputGameCommand = InputView().readGameCommand()
+        return BridgeGame().retry(upRowsResult, downRowsResult, userInputGameCommand)
     }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
