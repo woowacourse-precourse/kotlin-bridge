@@ -5,6 +5,7 @@ import bridge.view.InputView
 import bridge.view.OutputView
 
 var count: Int = 1
+
 class BridgeGameProgress {
     private val outputView = OutputView()
 

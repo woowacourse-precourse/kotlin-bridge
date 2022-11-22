@@ -22,7 +22,7 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(result: MutableList<List<String>>, outcome: String, count:Int) {
+    fun printResult(result: MutableList<List<String>>, outcome: String, count: Int) {
         println()
         println(GAME_RESULT)
         printFirstUpDown(result, UP)
@@ -49,7 +49,7 @@ class OutputView {
     }
 
 
-    private fun printUpDown(result: MutableList<List<String>>, direction: String){
+    private fun printUpDown(result: MutableList<List<String>>, direction: String) {
         for (index: Int in 1 until result.size) {
             if (result[index][0] == direction) {
                 print("| " + result[index][1] + " ")
@@ -59,19 +59,19 @@ class OutputView {
         }
     }
 
-    private fun printFirstUpDown(result: MutableList<List<String>>, direction: String){
+    private fun printFirstUpDown(result: MutableList<List<String>>, direction: String) {
         print(OPEN)
         printFirstResult(result, direction)
         println(CLOSE)
     }
 
-    private fun printFirstResult(result: MutableList<List<String>>, direction: String){
+    private fun printFirstResult(result: MutableList<List<String>>, direction: String) {
         if (result[0][0] == direction) {
             print(" " + result[0][1] + " ")
         } else {
             print("   ")
         }
-        if(result.size>1){
+        if (result.size > 1) {
             printUpDown(result, direction)
         }
     }
