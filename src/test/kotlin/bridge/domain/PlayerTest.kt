@@ -1,7 +1,7 @@
 package bridge.domain
 
 import bridge.ApplicationTest
-import bridge.util.BridgeNumberGenerator
+import bridge.BridgeNumberGenerator
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName

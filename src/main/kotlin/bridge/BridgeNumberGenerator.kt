@@ -1,4 +1,4 @@
-package bridge.util
+package bridge
 
 interface BridgeNumberGenerator {
     fun generate(): Int

@@ -2,7 +2,7 @@ package bridge.controller
 
 import bridge.domain.BridgeGame
 import bridge.domain.Player
-import bridge.util.BridgeNumberGenerator
+import bridge.BridgeNumberGenerator
 import bridge.view.InputView
 import bridge.view.OutputView
 
