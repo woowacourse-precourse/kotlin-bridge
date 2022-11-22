@@ -4,6 +4,10 @@ import bridge.constants.Constants.DOWN_BRIDGE_STRING
 import bridge.constants.Constants.QUIT_COMMAND
 import bridge.constants.Constants.RETRY_COMMAND
 import bridge.constants.Constants.UP_BRIDGE_STRING
+import bridge.constants.ErrorMessage.BRIDGE_SIZE_RANGE_ERROR
+import bridge.constants.ErrorMessage.GAME_COMMAND_ERROR
+import bridge.constants.ErrorMessage.IS_BRIDGE_SIZE_NUMBER_ERROR
+import bridge.constants.ErrorMessage.MOVING_ERROR
 
 class InputErrorCheck {
     fun checkValidBridgeSize(userInput: String) {
@@ -16,21 +20,21 @@ class InputErrorCheck {
             number in '0'..'9'
         }
         if (numbers.size != userInput.length)
-            throw IllegalArgumentException("[ERROR] 다리 크기는 숫자여야 합니다.")
+            throw IllegalArgumentException(IS_BRIDGE_SIZE_NUMBER_ERROR)
     }
 
     private fun throwBridgeSizeRangeException(userInput: String) {
         if (userInput.toInt() !in 3..20)
-            throw IllegalArgumentException("[ERROR] 다리 크기는 3부터 20 사이의 숫자여야 합니다.")
+            throw IllegalArgumentException(BRIDGE_SIZE_RANGE_ERROR)
     }
 
     fun throwMovingException(userInput: String) {
         if (userInput != UP_BRIDGE_STRING && userInput != DOWN_BRIDGE_STRING)
-            throw IllegalArgumentException("[ERROR] U 또는 D만 입력해야 합니다.")
+            throw IllegalArgumentException(MOVING_ERROR)
     }
 
     fun throwGameCommandException(userInput: String) {
         if (userInput != RETRY_COMMAND && userInput != QUIT_COMMAND)
-            throw IllegalArgumentException("[ERROR] R 또는 Q만 입력해야 합니다.")
+            throw IllegalArgumentException(GAME_COMMAND_ERROR)
     }
 }

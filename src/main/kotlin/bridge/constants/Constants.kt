@@ -10,4 +10,8 @@ object Constants {
     const val CORRECT_MARK = "O"
     const val INCORRECT_MARK = "X"
     const val BLANK_MARK = " "
+    const val BRIDGE_START = "[ "
+    const val BRIDGE_MIDDLE = " | "
+    const val BRIDGE_END = " ]"
+
 }

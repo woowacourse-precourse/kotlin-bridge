@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.constants.PrintMessage.BRIDGE_GAME_START
+
 fun main() {
     try {
         playBridgeGame()
@@ -9,7 +11,7 @@ fun main() {
 }
 
 fun playBridgeGame() {
-    println("다리 건너기 게임을 시작합니다.\n")
+    println(BRIDGE_GAME_START)
     val bridge = generateBridge()
     val bridgeGame = BridgeGame()
     val outputView = OutputView(bridge)

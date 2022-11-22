@@ -1,20 +1,28 @@
 package bridge
 
 import bridge.constants.Constants.BLANK_MARK
+import bridge.constants.Constants.BRIDGE_END
+import bridge.constants.Constants.BRIDGE_MIDDLE
+import bridge.constants.Constants.BRIDGE_START
 import bridge.constants.Constants.CORRECT_MARK
 import bridge.constants.Constants.DOWN_BRIDGE_STRING
 import bridge.constants.Constants.INCORRECT_MARK
 import bridge.constants.Constants.UP_BRIDGE_STRING
+import bridge.constants.PrintMessage.RESULT_COUNT
+import bridge.constants.PrintMessage.RESULT_FAILURE
+import bridge.constants.PrintMessage.RESULT_IS_SUCCESS
+import bridge.constants.PrintMessage.RESULT_SUCCESS
+import bridge.constants.PrintMessage.RESULT_TITLE
 
 class OutputView(private val bridge: List<String>) {
-    private val up = StringBuilder("[ ")
-    private val down = StringBuilder("[ ")
+    private val up = StringBuilder(BRIDGE_START)
+    private val down = StringBuilder(BRIDGE_START)
 
     fun printMap(moving: List<String>) {
         for (position in moving.indices) {
             markAnswer(moving, position, moving[position] == bridge[position])
             if (moving[position] != bridge[position]) break
-            if (position != moving.size - 1) addStringToMap(" | ", " | ")
+            if (position != moving.size - 1) addStringToMap(BRIDGE_MIDDLE, BRIDGE_MIDDLE)
         }
         printStringBuilder()
     }
@@ -36,21 +44,21 @@ class OutputView(private val bridge: List<String>) {
     }
 
     private fun printStringBuilder() {
-        addStringToMap(" ]", " ]")
-        print("$up\n$down\n\n")
+        addStringToMap(BRIDGE_END, BRIDGE_END)
+        println("$up\n$down\n")
         up.clear()
         down.clear()
-        addStringToMap("[ ", "[ ")
+        addStringToMap(BRIDGE_START, BRIDGE_START)
     }
 
     fun printResult(choice: List<String>, isSuccess: Boolean, count: Int) {
         val result = when (isSuccess) {
-            true -> "성공"
-            false -> "실패"
+            true -> RESULT_SUCCESS
+            false -> RESULT_FAILURE
         }
-        println("최종 게임 결과")
+        println(RESULT_TITLE)
         printMap(choice)
-        println("게임 성공 여부: $result")
-        println("총 시도한 횟수: $count")
+        println("$RESULT_IS_SUCCESS$result")
+        println("$RESULT_COUNT$count")
     }
 }
