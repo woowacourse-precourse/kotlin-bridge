@@ -2,13 +2,14 @@ package bridge.domain
 
 import bridge.domain.resource.GAME_END
 import bridge.domain.resource.GAME_RESTART
+import bridge.domain.resource.MoveType
 
 class BridgeGame(
     private val gameManager: BridgeGameManager,
     private val bridgeMaker: BridgeMaker
 ) {
-    private lateinit var bridge: List<String>
-    private lateinit var path: MutableList<String>
+    lateinit var bridge: List<String>
+    lateinit var path: MutableList<String>
 
     fun runGame() {
         gameManager.startGame()
@@ -35,8 +36,7 @@ class BridgeGame(
 
         val movement = gameManager.getMovement()
         path.add(movement)
-
-        gameManager.printMap(path, bridge)
+        gameManager.printMap(getMap())
 
         return isSuccessMoving(movement, currentIndex)
     }
@@ -57,5 +57,9 @@ class BridgeGame(
             GAME_RESTART -> crossBridge()
             //    GAME_END -> // TODO: 다리 건너기 실패
         }
+    }
+
+    fun getMap(): List<List<String>> {
+        return MoveType.getAllMap(path, bridge)
     }
 }

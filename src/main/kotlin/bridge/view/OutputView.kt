@@ -5,10 +5,12 @@ class OutputView {
         println(GAME_START)
     }
 
-    fun printMap(path: List<String>) {
-        print(MAP_START)
-        print(path.joinToString(MAP_SEPERATOR))
-        println(MAP_END)
+    fun printMap(map: List<List<String>>) {
+        map.forEach {
+            print(MAP_START)
+            print(it.joinToString(MAP_SEPARATOR))
+            println(MAP_END)
+        }
     }
 
     /**
@@ -20,7 +22,7 @@ class OutputView {
 
     companion object {
         const val MAP_START = "[ "
-        const val MAP_SEPERATOR = " | "
+        const val MAP_SEPARATOR = " | "
         const val MAP_END = " ]"
 
         const val GAME_START = "다리 건너기 게임을 시작합니다.\n"

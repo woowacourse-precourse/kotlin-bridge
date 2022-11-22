@@ -1,6 +1,5 @@
 package bridge.domain
 
-import bridge.domain.resource.MoveType
 import bridge.view.InputView
 import bridge.view.OutputView
 
@@ -45,9 +44,7 @@ class BridgeGameManager(
         }
     }
 
-    fun printMap(path: List<String>, bridge: List<String>) {
-        for (value in MoveType.values()) {
-            outputView.printMap(MoveType.getMap(value, path, bridge))
-        }
+    fun printMap(map: List<List<String>>) {
+        outputView.printMap(map)
     }
 }
