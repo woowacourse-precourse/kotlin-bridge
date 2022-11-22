@@ -1,0 +1,15 @@
+- 다리길이 입력 메소드 구현 InputView.kt readBridgeSize()
+- 다리 생성 메소드 구현BridgeMaker.ft makeBridge()
+- 위,아래 어디로 이동할지 입력 받는 메소드 구현 InputView.kt readMoving()
+- 다리를 잘못 건넜을 경우 게임을 재시작 혹은 종료 할지 입력 받는 메소드 구현 InputView.kt readGameCommand()
+- 현재 까지 다리 위치를 출력하는 메소드 구현 OutputView.kt printResult()
+- 다리를 건너는 경우의 수를 네가지 케이스(A,B,C,D)로 출력해주는 메소드 구현 BridgeGame.kt move() 
+- 다리 길이를 잘못 입력 받았을 때 예외처리 하는 메소드 구현 BridgeException.kt readBridgeSizeError()
+- 위(U),아래(D)를 잘못 입력 받았을 때 예외처리 하는 메소드 구현 BridgeException.kt readMovingError()
+- 재시작(R),종료(Q)를 잘못 입력 받았을 때 예외처리 하는 메소드 구현 BridgeException.kt readGameCommandError()
+- 재시작을 입력받았을 때 게임을 재시작하는 메소드 구현 BridgeGame.kt retry()
+- 다리게임을 플레이하는 메소드 구현 BridgePlay.kt playBridge()
+- 다리게임을 성공했는지 실패했는지 알려주는 메소드 구현 BridgePlay.kt playResult()
+- 메인 함수 작성
+- 다리게임 플레이 회수를 알려주는 메소드 구현 BridgePlay.kt playCount() 구현
+- 예외테스트 추가 구현 test/ApplicationTest
