@@ -26,6 +26,21 @@ class UnitTest: NsTest() {
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
+    @Test
+    fun `다리길이가 20을 초과한 경우`() {
+        assertSimpleTest {
+            runException("25")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `다리길이가 3미만인 경우`() {
+        assertSimpleTest {
+            runException("1")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
 
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
