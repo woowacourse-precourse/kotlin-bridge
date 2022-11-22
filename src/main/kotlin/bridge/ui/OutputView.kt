@@ -26,6 +26,7 @@ class OutputView {
         }
         return Pair(movingResult, totalNumberOfChallenges)
     }
+
     private fun getMovingResult(bridge: List<String>): MovingResultData {
         var upRowsResult = ""
         var downRowsResult = ""
@@ -44,10 +45,12 @@ class OutputView {
 
     private fun getDownRowsResult(bridgeIndex: Int, bridgeRows: String, userInputRow: String) =
         "${getLineOrBlank(bridgeIndex)}${BridgeGame().move(bridgeRows, userInputRow).second}"
+
     private fun getLineOrBlank(bridgeIndex: Int): String {
         if (bridgeIndex > 0) return " | "
         return ""
     }
+
     private fun printRowsResult(upRowsResult: String, downRowsResult: String) {
         println("[ $upRowsResult ]")
         println("[ $downRowsResult ]\n")
@@ -61,6 +64,7 @@ class OutputView {
         val userInputGameCommand = InputView().readGameCommand()
         return BridgeGame().retry(upRowsResult, downRowsResult, userInputGameCommand)
     }
+
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      *

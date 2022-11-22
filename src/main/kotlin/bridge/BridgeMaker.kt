@@ -13,7 +13,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      */
     fun makeBridge(size: Int): List<String> {
         val bridge = mutableListOf<String>()
-        for (i in BridgeNumber.ONE.number ..size) {
+        for (i in BridgeNumber.ONE.number..size) {
             bridge.add(makeOneColumn())
         }
         return bridge
@@ -21,7 +21,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 
     private fun makeOneColumn(): String {
         val bridgeNumberGenerator = bridgeNumberGenerator.generate()
-        if (bridgeNumberGenerator == BridgeNumber.ZERO.number)  {
+        if (bridgeNumberGenerator == BridgeNumber.ZERO.number) {
             return BridgeKeyword.DOWN.keyword
         }
         return BridgeKeyword.UP.keyword
