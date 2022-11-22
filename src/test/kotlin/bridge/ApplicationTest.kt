@@ -53,37 +53,6 @@ class ApplicationTest : NsTest() {
         }
     }
 
-    @Nested
-    inner class BridgeGameTest {
-        @Test
-        fun `칸 이동이 올바르게 되었는지 테스트`() {
-
-        }
-
-        @Test
-        fun `게임 다시 하기 기능이 되는지 테스트`() {
-
-        }
-    }
-
-    @Nested
-    inner class BridgeMaker {
-        @Test
-        fun `3~20 범위의 길이가 생성 되었는지 테스트`() {
-            //정상 범위
-            //비 정상 범위
-        }
-
-    }
-
-    @Nested
-    inner class BridgeRandomNumberTest {
-        @Test
-        fun `올바르게 난수가 생성되었는지 테스트`() {
-
-        }
-    }
-
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
     }
