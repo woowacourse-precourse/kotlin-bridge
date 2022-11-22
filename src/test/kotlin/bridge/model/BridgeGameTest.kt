@@ -2,6 +2,8 @@ package bridge.model
 
 import bridge.MovingEventListener
 import bridge.MovingEventManager
+import bridge.QuitEventListener
+import bridge.QuitEventManager
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Nested
@@ -9,7 +11,7 @@ import org.junit.jupiter.api.Test
 import java.lang.IllegalArgumentException
 
 internal class BridgeGameTest {
-    private val bridgeGame = BridgeGame(MovingEventManager())
+    private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
 
     @Nested
     inner class `start 메소드는` {
@@ -62,7 +64,7 @@ internal class BridgeGameTest {
         inner class `실행되면` {
             private val movingEventListener = TestMovingEventListener()
             private val movingEventManager = MovingEventManager()
-            private val bridgeGame = BridgeGame(movingEventManager)
+            private val bridgeGame = BridgeGame(movingEventManager, QuitEventManager())
             private val bridge = listOf("U", "D", "D")
             private val moving = "U"
 
@@ -91,7 +93,7 @@ internal class BridgeGameTest {
             private val moving = "D"
 
             @Test
-            fun `게임이 종료된다`() {
+            fun `게임이 중지된다`() {
                 bridgeGame.start(bridge)
 
                 bridgeGame.move(moving)
@@ -111,7 +113,64 @@ internal class BridgeGameTest {
 
                 movings.forEach { bridgeGame.move(it) }
 
-                assertThat(bridgeGame.running()).isFalse
+                assertThat(bridgeGame.running()).isTrue
+            }
+        }
+    }
+
+    @Nested
+    inner class `successed 메소드는` {
+
+        @Nested
+        inner class `사용자가 다리의 끝까지 도달했다면` {
+            private val bridge = listOf("U", "D", "D")
+            private val userRoute = listOf("U", "D", "D")
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
+
+            @Test
+            fun `참을 반환한다`() {
+                bridgeGame.start(bridge)
+                userRoute.forEach { bridgeGame.move(it) }
+
+                assertThat(bridgeGame.successed()).isTrue
+            }
+        }
+
+        @Nested
+        inner class `게임이 시작되지 않았다면` {
+
+            @Test
+            fun `예외를 던진다`() {
+                assertThatThrownBy { bridgeGame.successed() }.isInstanceOf(IllegalStateException::class.java)
+            }
+        }
+    }
+
+    @Nested
+    inner class `quit 메소드는` {
+
+        @Nested
+        inner class `실행되면` {
+            private val quitEventListener = TestQuitEventListener()
+            private val quitEventManager = QuitEventManager()
+            private val bridgeGame = BridgeGame(MovingEventManager(), quitEventManager)
+            private val bridge = listOf("U", "D", "D")
+
+            @Test
+            fun `종료 이벤트를 듣고 있는 객체에게 알린다`() {
+                quitEventManager.subscribe(quitEventListener)
+                bridgeGame.start(bridge)
+
+                bridgeGame.quit()
+
+                assertThat(quitEventListener.notified).isTrue
+            }
+
+            inner class TestQuitEventListener : QuitEventListener {
+                var notified: Boolean = false
+                override fun notify(gameState: GameState, gameResult: GameResult) {
+                    notified = true
+                }
             }
         }
     }

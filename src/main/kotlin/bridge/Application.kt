@@ -9,12 +9,14 @@ private lateinit var outputView: OutputView
 private lateinit var bridgeMaker: BridgeMaker
 private lateinit var bridgeNumberGenerator: BridgeNumberGenerator
 private lateinit var movingEventManager: MovingEventManager
+private lateinit var quitEventManager: QuitEventManager
 private lateinit var bridgeGame: BridgeGame
 
 fun main() {
     config()
     val bridgeSize = inputView.askBridgeSizeToUser()
     val bridge = bridgeMaker.makeBridge(bridgeSize)
+    println(bridge)
     bridgeGame.start(bridge)
     while(bridgeGame.running())
         bridgeGame.move(inputView.askMovingToUser())
@@ -39,5 +41,7 @@ private fun setBridgeMaker() {
 private fun setEventManager() {
     movingEventManager = MovingEventManager()
     movingEventManager.subscribe(outputView)
-    bridgeGame = BridgeGame(movingEventManager)
+    quitEventManager = QuitEventManager()
+    quitEventManager.subscribe(outputView)
+    bridgeGame = BridgeGame(movingEventManager, quitEventManager)
 }

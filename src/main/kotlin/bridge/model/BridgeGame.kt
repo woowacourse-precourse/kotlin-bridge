@@ -1,14 +1,16 @@
 package bridge.model
 
 import bridge.MovingEventManager
+import bridge.QuitEventManager
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame(private val movingEventManager: MovingEventManager) {
+class BridgeGame(private val movingEventManager: MovingEventManager, private val quitEventManager: QuitEventManager) {
     private lateinit var bridge: List<String>
     private var userRoute = mutableListOf<String>()
     private var running: Boolean = false
+    private var attempts: Int = 0
 
     fun start(bridge: List<String>) {
         require(!started()) { "[ERROR] 게임은 한 번만 시작할 수 있습니다." }
@@ -16,6 +18,7 @@ class BridgeGame(private val movingEventManager: MovingEventManager) {
         this.bridge = bridge
         userRoute.clear()
         running = true
+        attempts++
     }
 
     private fun started(): Boolean = ::bridge.isInitialized
@@ -33,11 +36,20 @@ class BridgeGame(private val movingEventManager: MovingEventManager) {
         check(running) { "게임이 실행되었을 때만 움직일 수 있습니다." }
         userRoute += moving
         movingEventManager.notify(GameState(bridge, userRoute))
-        if (userRoute.last().toString() != bridge[userRoute.size - 1]) {
+        if (moveFailed())
             running = false
-        }
-        if (userRoute.size == bridge.size) running = false
+        if (successed()) quit()
     }
+
+    private fun moveFailed() = userRoute.last() != bridge[userRoute.size - 1]
+
+    fun successed(): Boolean {
+        check(started()) { "게임이 시작되어야 성공했는지 판단할 수 있습니다." }
+        return userRoute == bridge
+    }
+
+    fun quit() =
+        quitEventManager.notify(GameState(bridge, userRoute), GameResult(successed(), attempts))
 
     fun running(): Boolean = running
     /**

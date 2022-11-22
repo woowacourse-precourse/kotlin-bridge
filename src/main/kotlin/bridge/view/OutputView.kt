@@ -1,12 +1,14 @@
 package bridge.view
 
 import bridge.MovingEventListener
+import bridge.QuitEventListener
+import bridge.model.GameResult
 import bridge.model.GameState
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
-class OutputView : MovingEventListener {
+class OutputView : MovingEventListener, QuitEventListener {
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      *
@@ -19,10 +21,20 @@ class OutputView : MovingEventListener {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(map: GameMap, result: GameResult) {
+        println("최종 게임 결과")
+        printMap(map)
+        println()
+        println("게임 성공 여부: " + if (result.success) "성공" else "실패")
+        println("총 시도한 횟수: " + result.attempts)
+    }
 
     override fun notify(gameState: GameState) {
         val map = GameMap(gameState)
         printMap(map)
+    }
+
+    override fun notify(gameState: GameState, gameResult: GameResult) {
+        printResult(GameMap(gameState), gameResult)
     }
 }
