@@ -27,4 +27,11 @@ class OutputView {
         println(Output.SUCCESS_OR_NOT.output.plus(Output.FAIL.output))
         println(Output.TRY_ATTEMPT.output.plus(numberOfTry))
     }
+
+    fun printResultSuccess(markUp: MutableList<String>, markDown: MutableList<String>, numberOfTry: Int) {
+        println(Output.RESULT_GAME.output)
+        OutputView().printMap(markUp, markDown)
+        println(Output.SUCCESS_OR_NOT.output.plus(Output.SUCCESS.output))
+        println(Output.TRY_ATTEMPT.output.plus(numberOfTry))
+    }
 }
