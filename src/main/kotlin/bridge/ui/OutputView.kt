@@ -1,6 +1,6 @@
 package bridge.ui
 
-import bridge.Exception.inputNoGameException
+import bridge.error.Exception.inputNoGameException
 
 class OutputView {
     fun printMap(playerMoves: MutableList<List<String>>) {

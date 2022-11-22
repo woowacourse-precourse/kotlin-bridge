@@ -1,9 +1,9 @@
 package bridge.ui
 
-import bridge.Exception.inputRangeException
-import bridge.Exception.inputRetryQuitException
-import bridge.Exception.inputTypeException
-import bridge.Exception.inputUpDownException
+import bridge.error.Exception.inputRangeException
+import bridge.error.Exception.inputRetryQuitException
+import bridge.error.Exception.inputTypeException
+import bridge.error.Exception.inputUpDownException
 import camp.nextstep.edu.missionutils.Console
 
 class InputView {
