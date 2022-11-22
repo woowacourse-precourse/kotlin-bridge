@@ -5,7 +5,6 @@ import bridge.view.OutputView
 
 val outputView = OutputView()
 val inputView = InputView()
-val bridgeGame = BridgeGame()
 val gamsHost = GameHost(BridgeMaker(BridgeRandomNumberGenerator()), BridgeGame())
 
 fun main() {
@@ -51,4 +50,13 @@ private fun printGameResultMap() {
     outputView.printFinalGamsResultPhrase()
     printStageMap(gamsHost.getBridgeCurrentPosition(), gamsHost.getBridge(), gamsHost.getRecentStageState())
     println()
+}
+
+private fun progressGame() {
+    while (!(gamsHost.getGameState() == GameState.QUIT || gamsHost.getGameState() == GameState.END)) {
+        when (gamsHost.getGameState()) {
+            GameState.INIT, GameState.RESTART -> progressStage()
+            GameState.Select -> getProperGameState()
+        }
+    }
 }

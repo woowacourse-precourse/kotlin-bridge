@@ -16,11 +16,15 @@ class GameHost(private val bridgeMaker: BridgeMaker, private val bridgeGame: Bri
     fun progressStage(userMovingInput: String): Boolean {
         recentUserInput = userMovingInput
         stageState = bridgeGame.move(userMovingInput, bridgeCurrentPosition, bridge)
+        if (!stageState) gameState = GameState.Select
+        if (bridgeCurrentPosition == bridge.size - 1) gameState = GameState.END
+        bridgeCurrentPosition += 1
         return stageState
     }
 
     fun getProperGameState(userGameCommandInput: String) {
         gameState = bridgeGame.retry(userGameCommandInput)
+        bridgeCurrentPosition = 0
     }
 
     fun getBridgeCurrentPosition(): Int = bridgeCurrentPosition

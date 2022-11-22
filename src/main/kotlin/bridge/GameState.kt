@@ -5,6 +5,8 @@ import bridge.constants.BridgePhrases.INCORRECT_GAME_STATE_STRING_CODE
 enum class GameState(val stringCode: String) {
     INIT("I"),
     RESTART("R"),
+    Select("S"),
+    END("E"),
     QUIT("Q");
 
     companion object {
