@@ -1,12 +1,22 @@
 package view
 
+import util.BridgeMessage.FAIL
+import util.BridgeMessage.FAIL_ENGLISH
+import util.BridgeMessage.FINAL_GAME_RESULT
+import util.BridgeMessage.GAME_START_NOTIFICATION
+import util.BridgeMessage.IS_SUCCESS
+import util.BridgeMessage.LEFT_SQUARE_BRACKETS
+import util.BridgeMessage.RIGHT_SQUARE_BRACKETS
+import util.BridgeMessage.SUCCESS
+import util.BridgeMessage.TOTAL_ATTEMPT
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 class OutputView {
 
     fun printGameStartNotification() {
-        println("다리 건너기 게임을 시작합니다.\n")
+        println(GAME_START_NOTIFICATION)
     }
 
     fun printMap(ox: List<MutableList<String>>) {
@@ -14,21 +24,21 @@ class OutputView {
     }
 
     fun printResult(ox: List<MutableList<String>>, count: Int, isSuccesss: String) {
-        var isSuccess = "성공"
-        if (isSuccesss == "FAIL") {
-            isSuccess = "실패"
+        var isSuccess = SUCCESS
+        if (isSuccesss == FAIL_ENGLISH) {
+            isSuccess = FAIL
         }
-        println("최종 게임 결과")
+        println(FINAL_GAME_RESULT)
         printGameResult(ox)
-        println("게임 성공 여부: $isSuccess")
-        println("총 시도한 횟수: $count")
+        println("$IS_SUCCESS $isSuccess")
+        println("$TOTAL_ATTEMPT $count")
     }
 
     private fun printGameResult(ox: List<MutableList<String>>) {
         for (i in 0..1) {
-            print("[ ")
-            print(ox[i].toString().replace(",", " |").removePrefix("[").removeSuffix("]"))
-            print(" ]")
+            print("$LEFT_SQUARE_BRACKETS ")
+            print(ox[i].toString().replace(",", " |").removePrefix("LEFT_SQUARE_BRACKETS").removeSuffix("RIGHT_SQUARE_BRACKETS"))
+            print(" $RIGHT_SQUARE_BRACKETS")
             println()
         }
         println()
