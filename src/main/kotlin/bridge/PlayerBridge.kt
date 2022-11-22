@@ -16,4 +16,11 @@ class PlayerBridge {
         return direction
     }
 
+    fun getRetryAnswer() : String{
+        outputView.printRetryLog()
+        val retryAnswer = inputView.readGameCommand()
+        inputException.checkRetryCommandInput(retryAnswer)
+        return retryAnswer
+    }
+
 }
