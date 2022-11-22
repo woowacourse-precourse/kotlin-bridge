@@ -14,13 +14,13 @@ sealed class BridgeStatus(private val direction: String) {
     }
 
     fun isSuccess(action: () -> Unit) {
-        if (this is BridgeStatus.SUCCESS) {
+        if (this is SUCCESS) {
             action()
         }
     }
 
     fun isFail(action: () -> Unit) {
-        if (this is BridgeStatus.FAIL) {
+        if (this is FAIL) {
             action()
         }
     }
