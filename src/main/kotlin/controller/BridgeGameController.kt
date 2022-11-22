@@ -32,8 +32,16 @@ class BridgeGameController {
             val move = inputMove()
             bridgeGame.move(move, index)
             OutputView().printMap(bridgeGame.getOXBridge())
+            if (checkBridgeContainX()) break
         }
         return bridgeGame.getCorrectDirection()
+    }
+
+    private fun checkBridgeContainX(): Boolean {
+        if (bridgeGame.getOXBridge()[0].contains("X") || bridgeGame.getOXBridge()[1].contains("X")) {
+            return true
+        }
+        return false
     }
 
     private fun inputBridgeSize(): Int {
