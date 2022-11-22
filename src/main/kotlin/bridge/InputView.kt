@@ -8,6 +8,7 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
+        println("다리 길이를 입력해주세요")
         val readBridge = Console.readLine()
         return readBridge.toInt()
     }
@@ -16,6 +17,7 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
         val readMove = Console.readLine()
         return readMove
     }
