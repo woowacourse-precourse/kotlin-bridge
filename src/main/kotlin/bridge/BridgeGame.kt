@@ -15,6 +15,10 @@ class BridgeGame(private val bridgeLength: Int) {
         createUpDownBridge()
     }
 
+    private fun createUpDownBridgeOneLine() {
+        upDownBridgeOneLine = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
+    }
+
     private fun createUpDownBridge() {
         upDownBridge = listOf(
             upDownBridgeOneLine.map { it.replace("D", " ") },
@@ -22,8 +26,13 @@ class BridgeGame(private val bridgeLength: Int) {
         )
     }
 
-    private fun createUpDownBridgeOneLine() {
-        upDownBridgeOneLine = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
+    fun initStartGame() {
+        oXBridge = mutableListOf(
+            mutableListOf(),
+            mutableListOf()
+        )
+        correctNum = 0
+        totalAttempts++
     }
 
     fun retry(restartOrQuitCommand: String): Boolean {
@@ -37,27 +46,9 @@ class BridgeGame(private val bridgeLength: Int) {
         return true
     }
 
-    fun getRestartGame() = restartGame
-
-    fun setRestartGame(restart: Boolean) {
-        restartGame = restart
-    }
-
-    fun getShowBridgeResult() = showBridgeResult
-
-    fun getOXBridge() = oXBridge
-
-    fun getTotalAttempts() = totalAttempts
-
-    fun getCorrectNum() = correctNum
-
-    fun initStartGame() {
-        oXBridge = mutableListOf(
-            mutableListOf(),
-            mutableListOf()
-        )
-        correctNum = 0
-        totalAttempts++
+    fun move(move: String, index: Int) {
+        checkUpDownBridgeContainU(move, index)
+        checkUpDownBridgeContainD(move, index)
     }
 
     private fun checkUpDownBridgeContainD(move: String, index: Int) {
@@ -82,8 +73,12 @@ class BridgeGame(private val bridgeLength: Int) {
         }
     }
 
-    fun move(move: String, index: Int) {
-        checkUpDownBridgeContainU(move, index)
-        checkUpDownBridgeContainD(move, index)
+    fun getRestartGame() = restartGame
+    fun getShowBridgeResult() = showBridgeResult
+    fun getOXBridge() = oXBridge
+    fun getTotalAttempts() = totalAttempts
+    fun getCorrectNum() = correctNum
+    fun setRestartGame(restart: Boolean) {
+        restartGame = restart
     }
 }
