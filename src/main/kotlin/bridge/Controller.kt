@@ -1,5 +1,7 @@
 package bridge
 
+import domain.BridgeGame
+import domain.BridgeMaker
 import java.lang.IllegalArgumentException
 
 private typealias StateEnum = Message.ControllerEnum
@@ -27,7 +29,7 @@ class Controller {
         setUpClass()
         inputView.startGame()
         val bridgeSize = inputView.readBridgeSize()
-        bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
+        bridge = BridgeMaker(domain.BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
     }
 
     private fun endGame() {
