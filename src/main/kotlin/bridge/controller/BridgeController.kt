@@ -8,8 +8,7 @@ import bridge.view.OutputView
 
 class BridgeController {
 
-    val resultUp = StringBuilder()
-    val resultDown = StringBuilder()
+
 
     fun run() {
         InputView().startPhrases()
@@ -26,9 +25,10 @@ class BridgeController {
 
     fun choiceBridge( bridge: List<String>) {
 
-        for (i in 0 until 3){
-            OutputView().printMap(bridge)
-        }
+
+        OutputView().printMap(bridge)
+
+
 
     }
 
