@@ -38,8 +38,7 @@ object MapMaker {
         down.append(mark)
     }
 
-    private fun getBoundary(index: Int, blockSize: Int): String {
-        if (index < blockSize - 1) return MapMark.BOUNDARY.mark()
-        return ""
-    }
+    private fun getBoundary(index: Int, blockSize: Int) =
+        if (index < blockSize - 1) MapMark.BOUNDARY.mark() else ""
+
 }

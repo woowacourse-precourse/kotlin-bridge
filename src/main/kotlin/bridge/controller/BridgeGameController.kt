@@ -26,9 +26,8 @@ class BridgeGameController(
         while (inProgress) {
             val moveResult = bridgeGame.move(inputView.readMoving())
             outputView.printMap(moveResult)
-            if (!bridgeGame.canContinue()) {
+            if (!bridgeGame.canContinue())
                 inProgress = conductByGameCommand(bridgeGame, inputView.readGameCommand())
-            }
             inProgress = !bridgeGame.isCompleted()
         }
     }
@@ -39,8 +38,7 @@ class BridgeGameController(
                 bridgeGame.retry()
                 true
             }
-            GameCommand.QUIT ->
-                false
+            GameCommand.QUIT -> false
         }
 
 

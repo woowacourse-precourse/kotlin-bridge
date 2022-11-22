@@ -7,5 +7,6 @@ enum class OutputSentence(private val sentence: String) {
     TOTAL_TRIAL("총 시도한 횟수: ");
 
     fun sentence() = sentence
+
     fun print() = println(sentence)
 }
