@@ -1,7 +1,10 @@
 package bridge.controller
 
 import bridge.BridgeGame
-import bridge.model.BridgeResult
+import bridge.model.BridgeStatus
+import bridge.model.isFail
+import bridge.model.isFinish
+import bridge.model.isSuccess
 import bridge.view.InputView
 import bridge.view.OutputView
 
@@ -19,28 +22,40 @@ class BridgeGameController(
     fun play() {
         with(bridgeGame) {
             do {
-                val userInput = inputView.readMoving()
-                move(userInput)
-                updateMap(userInput)
-                outputView.printMap(getBridgeMap())
-                if (result() != BridgeResult.SUCCESS) handleResult(result(), getTotalCount())
-            } while (result() != BridgeResult.FINISH)
+                val result = bridgeGame.move(inputView.readMoving())
+                bridgeGame.updateMap(result)
+                onFinish(result)
+                onSuccess(result)
+                onFail(result)
+            } while (!isEdned())
         }
     }
 
-    /**
-     * 게임이 실패하거나 끝났을 때 결과출력 및 재시도 여부를 체크한다.
-     * @param bridgeResult 다리를 건넜을 때 결과 enum class
-     * @param totalCount 총 시도 횟수
-     */
-    private fun handleResult(result: BridgeResult, totalCount: Int) {
-        outputView.printResult(result, totalCount)
-        if (result == BridgeResult.FAIL) {
-            if (bridgeGame.retry(inputView.readGameCommand())) {
-                return
+    private fun onFail(result: BridgeStatus) {
+        with(bridgeGame) {
+            result.isFail {
+                outputView.printMap(getBridgeMap())
+                if (retry(inputView.readGameCommand())) return@isFail
+                finish(result)
             }
-            bridgeGame.finish()
         }
     }
+
+    private fun onSuccess(result: BridgeStatus) {
+        result.isSuccess {
+            outputView.printMap(bridgeGame.getBridgeMap())
+        }
+    }
+
+    private fun onFinish(result: BridgeStatus) {
+        with(bridgeGame) {
+            result.isFinish {
+                outputView.printEndMessage()
+                outputView.printMap(getBridgeMap())
+                outputView.printResult(result, getTotalCount())
+            }
+        }
+    }
+
 }
 
