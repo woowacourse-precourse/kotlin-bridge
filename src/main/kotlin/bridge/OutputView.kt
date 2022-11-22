@@ -42,5 +42,14 @@ class OutputView(private val bridge: List<String>) {
         }
     }
 
-    fun printResult() {}
+    fun printResult(choice: List<String>, isSuccess: Boolean, count: Int) {
+        val result = when (isSuccess) {
+            true -> "성공"
+            false -> "실패"
+        }
+        println("최종 게임 결과")
+        printMap(choice)
+        println("게임 성공 여부: $result")
+        println("총 시도한 횟수: $count")
+    }
 }

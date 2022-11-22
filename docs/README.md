@@ -23,7 +23,7 @@
 ## OutputView.kt
 
 - [x] printMap을 통해 다리 출력
-- [ ] printResult를 통해 게임 결과 출력
+- [x] printResult를 통해 게임 결과 출력
 
 ## InputErrorCheck.kt
 
