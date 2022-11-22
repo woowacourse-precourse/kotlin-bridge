@@ -15,9 +15,6 @@ private const val ENTER_BRIDGE_SIZE = "다리의 길이를 입력해주세요."
 private const val SELECT_UP_DOWN = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
 private const val ENTER_RETRY_END = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
 private const val FINAL_RESULT = "최종 게임 결과"
-private const val SUCCESS_OR_FAILURE = "게임 성공 여부: "
-private const val SUCCESS = "성공"
-private const val FAILURE = "실패"
 private const val TOTAL_TRY_COUNT = "총 시도한 횟수: "
 
 private const val WRONG_GAME_STATE = "[ERROR] 잘못된 상태가 넘어왔습니다."
@@ -80,8 +77,8 @@ class OutputView {
 
     private fun printSuccessOrFailure(result: GameState) {
         when (result) {
-            GameState.SUCCESS -> println(SUCCESS_OR_FAILURE + SUCCESS)
-            GameState.FAILURE -> println(SUCCESS_OR_FAILURE + FAILURE)
+            GameState.SUCCESS -> println(GameState.SUCCESS.result)
+            GameState.FAILURE -> println(GameState.FAILURE.result)
             GameState.IN_GAME -> throw IllegalStateException(WRONG_GAME_STATE)
         }
     }
