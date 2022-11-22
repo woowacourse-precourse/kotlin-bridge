@@ -8,6 +8,11 @@ class BridgeGame(private val bridgeLength: Int) {
     private lateinit var bridge: List<List<String>>
     private lateinit var bridgeLine: List<String>
 
+    init {
+        createBridgeLine()
+        createBridge()
+    }
+
     private fun createBridge() {
         bridge = listOf(
             bridgeLine.map { it.replace("D", " ") },
