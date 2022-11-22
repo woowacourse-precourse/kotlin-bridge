@@ -56,6 +56,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `U,D 대신 다른 문자를 입력 받은 경우`() {
+        assertSimpleTest {
+            runException("10","a")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
     override fun runMain() {
         main()
     }
