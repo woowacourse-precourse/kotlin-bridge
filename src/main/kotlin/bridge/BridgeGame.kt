@@ -1,7 +1,7 @@
 package bridge
 
-import bridge.Constants.Companion.DOWN
-import bridge.Constants.Companion.UP
+import bridge.Model.Constants.Companion.DOWN
+import bridge.Model.Constants.Companion.UP
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
