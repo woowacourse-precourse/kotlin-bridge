@@ -46,6 +46,15 @@ class BridgeState {
         return false
     }
 
+    fun gameFinish(bridge: List<String>, isSuccess: Boolean) {
+        outputView.apply {
+            printResult()
+            printMap(bridge, userState)
+            printGameSuccess(isSuccess)
+            printTryCount(_inputCount)
+        }
+    }
+
 
     companion object {
         const val RETRY_COMMAND = "R"
