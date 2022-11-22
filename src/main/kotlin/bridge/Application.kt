@@ -1,10 +1,11 @@
 package bridge
 
 fun main() {
+    OutputView().printGameStart()
     val input = InputView()
     val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
+    OutputView().printInputBridgeLength()
     val bridgeSize = input.readBridgeSize()
     val bridge = bridgeMaker.makeBridge(bridgeSize)
-    println(bridge)
     BridgeGameProgress().bridgeGameProgress(bridge)
 }
