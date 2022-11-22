@@ -2,6 +2,7 @@ package view
 
 import camp.nextstep.edu.missionutils.Console
 import util.InputException
+import util.InputException.Companion.RANGE_ERROR
 
 
 /**
@@ -14,15 +15,42 @@ class InputView {
     private val inputException = InputException()
 
     fun readBridgeSize(): Int {
-        val size = Console.readLine()
-        inputException.checkBridgeLength(size)
-        return size.toInt()
+        while (true) {
+            val size = Console.readLine()
+            try {
+                inputException.checkRangeException(size)
+                return size.toInt()
+            } catch (e: IllegalArgumentException) {
+                inputException.printException(RANGE_ERROR)
+            }
+        }
     }
+
+    private fun getMoveCommand() {
+        val command = Console.readLine()
+
+    }
+
+//    private fun getBridgeSize(): String {
+//        val size = Console.readLine()
+//        val inputCheck = inputException.checkRangeException(size)
+//        if (!inputCheck)
+//            return " "
+//        return size
+//    }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
+//        while (true) {
+//            val command =
+//            try {
+//                require(inputException.checkMoveCommand(i))
+//            } catch (e: IllegalArgumentException) {
+//
+//            }
+//        }
         val command = Console.readLine()
         inputException.checkMoveCommand(command)
         return command
