@@ -1,6 +1,5 @@
 package bridge
 
-import test.AAA
 import view.InputView
 import view.OutputView
 
@@ -10,6 +9,7 @@ class BridgeState {
     private val outputView = OutputView()
 
     private var _bridgeLength = 0
+    val bridgeLength get() = _bridgeLength
 
     private var _inputCount = 0
 
