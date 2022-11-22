@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.constant.*
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
@@ -8,7 +9,17 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return 0
+        println(REQUEST_INPUT_BRIDGE_SIZE_MSG)
+        while(true){
+            try {
+                val bridgeSize = camp.nextstep.edu.missionutils.Console.readLine().toInt()
+                require(bridgeSize in 3..20)
+                return bridgeSize
+            }
+            catch (e:IllegalArgumentException){
+                println(ERROR_INPUT_BRIDGE_SIZE)
+            }
+        }
     }
 
     /**
