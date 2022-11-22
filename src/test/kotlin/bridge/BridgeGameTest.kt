@@ -4,7 +4,11 @@ import bridge.common.GameState
 import bridge.domain.BridgeGame
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
+import java.util.*
+import java.util.stream.Stream
 
 class BridgeGameTest {
     private val bridge = listOf("U", "U", "D", "U")
@@ -14,24 +18,30 @@ class BridgeGameTest {
     @BeforeEach
     fun `클래스 생성`() {
         bridgeGame = BridgeGame(bridge)
-        result.clear()
     }
 
-    @Test
-    fun `move 함수 반환값 테스트 - IN_GAME, SUCCESS`() {
-        val input = listOf("U", "U", "D", "U")
-        input.forEach {
+    @ParameterizedTest
+    @MethodSource("generateData")
+    fun `move 함수 반환값 테스트`(directions: List<String>, states: List<GameState>) {
+        directions.forEach {
             result.add(bridgeGame.move(it))
         }
-        assertThat(result).isEqualTo(listOf(GameState.IN_GAME, GameState.IN_GAME, GameState.IN_GAME, GameState.SUCCESS))
+        assertThat(result).isEqualTo(states)
     }
 
-    @Test
-    fun `move 함수 반환값 테스트 - IN_GAME, FAILURE, SUCCESS`() {
-        val input = listOf("U", "D", "U", "U")
-        input.forEach {
-            result.add(bridgeGame.move(it))
+    companion object {
+        @JvmStatic
+        fun generateData(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(
+                    listOf("U", "U", "D", "U"),
+                    listOf(GameState.IN_GAME, GameState.IN_GAME, GameState.IN_GAME, GameState.SUCCESS)
+                ),
+                Arguments.of(
+                    listOf("U", "D", "U", "U"),
+                    listOf(GameState.IN_GAME, GameState.FAILURE, GameState.FAILURE, GameState.SUCCESS)
+                )
+            )
         }
-        assertThat(result).isEqualTo(listOf(GameState.IN_GAME, GameState.FAILURE, GameState.FAILURE, GameState.SUCCESS))
     }
 }
