@@ -32,10 +32,25 @@ class ApplicationTest : NsTest() {
         }, 1, 0, 1)
     }
 
+
+
     @Test
     fun `예외 테스트`() {
         assertSimpleTest {
             runException("a")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `3 ~ 20 범위 이내의 수를 입력 받았나 확인하는 예외 테스트`(){
+        assertSimpleTest {
+            runException("2")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+
+        assertSimpleTest {
+            runException("21")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
