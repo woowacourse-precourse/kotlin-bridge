@@ -20,4 +20,15 @@ class BridgeGameTest {
         }
         assertThat(oxBridge[1]).isEqualTo(mutableListOf("O", "O", "O"))
     }
+
+    @ParameterizedTest
+    @DisplayName("종료 커맨드가 잘 작동하는지 테스트한다.")
+    @ValueSource(strings = ["Q"])
+    fun workRetryQCommand(restartCommand: String) {
+        var restartGame = true
+        if (restartCommand == "Q") {
+            restartGame = false
+        }
+        assertThat(restartGame).isEqualTo(false)
+    }
 }
