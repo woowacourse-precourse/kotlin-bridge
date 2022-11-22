@@ -7,13 +7,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class ApplicationTest : NsTest() {
-    @Test
-    fun `다리 생성 테스트`() {
-        val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
-        val bridgeMaker = BridgeMaker(numberGenerator)
-        val bridge: List<String> = bridgeMaker.makeBridge(3)
-        assertThat(bridge).containsExactly("U", "D", "D")
-    }
 
     @Test
     fun `기능 테스트`() {
