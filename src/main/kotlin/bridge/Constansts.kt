@@ -6,6 +6,12 @@ const val GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력
 const val GAME_RESULT = "최종 게임 결과"
 const val GAME_OUTCOME = "게임 성공 여부: "
 const val GAME_ATTEMPT_COUNT = "총 시도한 횟수: "
+const val GAME_START = "다리 건너기 게임을 시작합니다"
+
+const val ERROR_BRIDGE_SIZE_STRING = "[ERROR] 다리 길이는 숫자만 입력 가능합니다."
+const val ERROR_BRIDGE_SIZE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."
+const val ERROR_MOVING = "[ERROR] U, D만 입력 가능합니다."
+const val ERROR_GAME_COMMAND = "[ERROR] R, Q만 입력 가능합니다."
 
 const val UP = "U"
 const val DOWN = "D"
@@ -22,7 +28,5 @@ const val FAIL = "X"
 const val OPEN = "["
 const val CLOSE = "]"
 
-const val ERROR_BRIDGE_SIZE_STRING = "[ERROR] 다리 길이는 숫자만 입력 가능합니다."
-const val ERROR_BRIDGE_SIZE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."
-const val ERROR_MOVING = "[ERROR] U, D만 입력 가능합니다."
-const val ERROR_GAME_COMMAND = "[ERROR] R, Q만 입력 가능합니다."
+const val MIN_BRIDGE_SIZE = 3
+const val MAX_BRIDGE_SIZE = 20
