@@ -20,18 +20,19 @@ class BridgeGame(private val bridgeLength: Int) {
     fun move(bridge: List<String>, index: Int, move: String) {
         when (bridge[index] == move) {
             true -> {
-                when (move) {
-                    Bridge.UP.message -> upBridge[index] = Bridge.CAN_CROSS.message
-                    Bridge.DOWN.message -> downBridge[index] = Bridge.CAN_CROSS.message
-                }
+                markBridge(index, move, Bridge.CAN_CROSS.message)
             }
             false -> {
-                when (move) {
-                    Bridge.UP.message -> upBridge[index] = Bridge.CAN_NOT_CROSS.message
-                    Bridge.DOWN.message -> downBridge[index] = Bridge.CAN_NOT_CROSS.message
-                }
+                markBridge(index, move, Bridge.CAN_NOT_CROSS.message)
                 progressStatus = false
             }
+        }
+    }
+
+    private fun markBridge(index: Int, move: String, sign: String) {
+        when (move) {
+            Bridge.UP.message -> upBridge[index] = sign
+            Bridge.DOWN.message -> downBridge[index] = sign
         }
     }
 
