@@ -18,8 +18,12 @@ class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun move(bridgeSize: Int) {
-        val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
-        play(bridgeSize, bridgeMaker, 1)
+        try {
+            val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
+            play(bridgeSize, bridgeMaker, 1)
+        }catch (e: IllegalArgumentException){
+            throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
+        }
     }
 
     private fun play(bridgeSize: Int, bridgeMaker: List<String>, numberOfGames:Int){

@@ -8,7 +8,7 @@ import java.lang.IllegalArgumentException
 private var bridgeSize: Int? = null
 private val outputView = OutputView()
 private val inputView = InputView()
-private val MESSAGE_ERROR = "[ERROR]"
+private const val MESSAGE_ERROR = "[ERROR]"
 
 fun main() {
     try {
