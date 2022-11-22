@@ -47,4 +47,8 @@ class BridgeGame {
     fun getUserBridge(): Bridge {
         return userBridge
     }
+
+    fun getGameCount(): Int{
+        return gameCount
+    }
 }
