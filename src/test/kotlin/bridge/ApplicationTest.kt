@@ -78,6 +78,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `범우 외에 숫자 입력시`() {
+        assertSimpleTest {
+            runException("32")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
     override fun runMain() {
         main()
     }
