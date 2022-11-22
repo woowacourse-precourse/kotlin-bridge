@@ -20,9 +20,16 @@ class InputTest {
     }
 
     @Test
-    fun `이동할 칸 입력 값이 U, R이 아닐 경우 예외 테스트`() {
+    fun `이동할 칸 입력 값이 U, D이 아닐 경우 예외 테스트`() {
         assertThrows<IllegalArgumentException> {
             InputException().checkDirectionInput("E")
+        }
+    }
+
+    @Test
+    fun `재시도 여부 입력 값이 R, Q이 아닐 경우 예외 테스트`() {
+        assertThrows<IllegalArgumentException> {
+            InputException().checkRetryCommandInput("E")
         }
     }
 
