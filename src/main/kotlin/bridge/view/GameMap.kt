@@ -29,7 +29,7 @@ class GameMap(gameState: GameState) {
             elements[point] = mark
         }
 
-        override fun toString(): String = LEFT + elements.joinToString(SPLIT) + RIGHT
+        override fun toString(): String = LEFT + elements.joinToString(SPLIT) + RIGHT + "\n"
 
         companion object {
             private const val LEFT = "[ "
@@ -39,7 +39,7 @@ class GameMap(gameState: GameState) {
         }
     }
 
-    override fun toString(): String = lines[UP].toString() + "\n" + lines[DOWN].toString()
+    override fun toString(): String = lines[UP].toString() + lines[DOWN].toString()
 
     companion object {
         private const val UP = "U"

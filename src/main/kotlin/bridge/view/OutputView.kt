@@ -24,7 +24,6 @@ class OutputView : MovingEventListener, QuitEventListener {
     fun printResult(map: GameMap, result: GameResult) {
         println("최종 게임 결과")
         printMap(map)
-        println()
         println("게임 성공 여부: " + if (result.success) "성공" else "실패")
         println("총 시도한 횟수: " + result.attempts)
     }
