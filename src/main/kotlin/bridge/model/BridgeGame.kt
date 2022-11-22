@@ -13,7 +13,7 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
     private var _attempts: Int = 0
 
     fun start(bridge: List<String>) {
-        require(!started()) { "[ERROR] 게임은 한 번만 시작할 수 있습니다." }
+        require(!started()) { "게임은 한 번만 시작할 수 있습니다." }
         validateBridge(bridge)
         this._bridge = bridge
         _userHistory.clear()
