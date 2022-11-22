@@ -72,6 +72,20 @@ class ApplicationTest : NsTest() {
         }, 1, 0, 1)
     }
 
+    @Test
+    fun `실패 게임 결과 테스트`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "U", "Q")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O | X ]",
+                "[   |   ]",
+                "게임 성공 여부: 실패",
+                "총 시도한 횟수: 1"
+            )
+        }, 1, 0, 1)
+    }
+
     override fun runMain() {
         main()
     }
