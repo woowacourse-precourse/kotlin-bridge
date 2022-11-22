@@ -5,13 +5,22 @@ class BridgeGamePlay {
     var location = 0
     var count = 1
     var retryCommand :String = ""
+    var moveCommand :String = ""
+    var endOrNot = false
+    var successOrNot = false
 
     fun startGame(){
         println("다리 건너기 게임을 시작합니다.")
         val bridgeSize = getBridgeSize()
         bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
         playGame()
-        OutputView().printResult()
+        result()
+    }
+
+    private fun result() {
+        println("최종 게임 결과")
+        OutputView().printMap(bridge, location, moveCommand)
+        OutputView().printResult(successOrNot, count)
     }
 
     private fun getBridgeSize(): Int {
@@ -21,12 +30,12 @@ class BridgeGamePlay {
 
     private fun playGame(){
         do{
-            var moveCommand = InputView().readMoving()
+            moveCommand = InputView().readMoving()
             OutputView().printMap(bridge, location, moveCommand)
             if(!BridgeGame().move(bridge, location, moveCommand))
                 checkRetry()
             location ++
-        }while(location < bridge.size)
+        }while(!endOrNot)
     }
 
     private fun checkRetry() {
@@ -34,8 +43,12 @@ class BridgeGamePlay {
         if(retryCommand == "R"){
             count++
             location = -1
-        }else if(retryCommand == "Q")
-            location = bridge.size-1
+        }else if(retryCommand == "Q"){
+            endOrNot = true
+            location -= 1
+        }
+
+
 
     }
 

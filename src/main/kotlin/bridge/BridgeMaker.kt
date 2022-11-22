@@ -10,15 +10,16 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      */
     fun makeBridge(size: Int): List<String> {
         var bridge : MutableList<String> = mutableListOf()
-        for(i : Int in 1..size)
+        for(i : Int in 0..size-1)
             addBridge(bridge)
         return bridge
     }
 
     private fun addBridge(bridge: MutableList<String>) {
-        if(bridgeNumberGenerator.generate() == 0)
+        val number = bridgeNumberGenerator.generate()
+        if(number == 0)
             bridge.add("D")
-        if(bridgeNumberGenerator.generate() == 1)
+        if(number == 1)
             bridge.add("U")
     }
 }
