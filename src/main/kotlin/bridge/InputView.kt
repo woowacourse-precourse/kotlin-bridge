@@ -10,20 +10,20 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        println("다리의 길이를 입력해주세요.")
-        val temp = Console.readLine() ?: "-1"
+        try {
+            println("다리의 길이를 입력해주세요.")
+            val temp = Console.readLine() ?: "-1"
 
-        for (c in temp) {
-            if (c !in '0'..'9')
-                throw IllegalArgumentException("[ERROR] 숫자가 아닙니다")
+            val sizeBridge = temp.toInt()
+
+            if (sizeBridge < 3 || sizeBridge > 20)
+                throw IllegalArgumentException("[ERROR] 숫자가 다리의 범위 밖입니다")
+
+            return sizeBridge
+        }catch (e: NumberFormatException){
+            println("[ERROR] 숫자가 아닙니다")
         }
-
-        val sizeBridge = temp.toInt()
-
-        if (sizeBridge < 3 || sizeBridge > 20)
-            throw IllegalArgumentException("[ERROR] 숫자가 다리의 범위 밖입니다")
-
-        return sizeBridge
+        return 0
     }
 
     /**

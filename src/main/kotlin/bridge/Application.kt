@@ -4,6 +4,8 @@ var check = 0
 var count = 1
 fun playgame(){
     val bridge = buildBridge()
+    if(bridge.size == 0)
+        return
     BridgeGame().playgame(bridge)
 
 }
