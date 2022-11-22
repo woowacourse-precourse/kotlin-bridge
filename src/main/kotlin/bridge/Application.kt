@@ -16,15 +16,27 @@ fun main() {
     val bridgeSize = inputView.askBridgeSizeToUser()
     val bridge = bridgeMaker.makeBridge(bridgeSize)
     bridgeGame.start(bridge)
-    val moving = inputView.askMovingToUser()
-    bridgeGame.move(moving)
+    while(bridgeGame.running())
+        bridgeGame.move(inputView.askMovingToUser())
 }
 
 private fun config() {
+    setView()
+    setBridgeMaker()
+    setEventManager()
+}
+
+private fun setView() {
     inputView = InputView()
     outputView = OutputView()
+}
+
+private fun setBridgeMaker() {
     bridgeNumberGenerator = BridgeRandomNumberGenerator()
     bridgeMaker = BridgeMaker(bridgeNumberGenerator)
+}
+
+private fun setEventManager() {
     movingEventManager = MovingEventManager()
     movingEventManager.subscribe(outputView)
     bridgeGame = BridgeGame(movingEventManager)
