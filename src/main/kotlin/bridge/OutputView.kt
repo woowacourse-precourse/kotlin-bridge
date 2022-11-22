@@ -40,6 +40,11 @@ class OutputView {
 
     private fun printFirstUpDown(result: MutableList<List<String>>, direction: String){
         print(OPEN)
+        printFirstResult(result, direction)
+        println(CLOSE)
+    }
+
+    private fun printFirstResult(result: MutableList<List<String>>, direction: String){
         if (result[0][0] == direction) {
             print(" " + result[0][1] + " ")
         } else {
@@ -48,6 +53,5 @@ class OutputView {
         if(result.size>1){
             printUpDown(result, direction)
         }
-        println(CLOSE)
     }
 }
