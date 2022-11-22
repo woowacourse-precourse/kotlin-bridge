@@ -13,12 +13,13 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      */
     fun makeBridge(size: Int): List<String> {
         val resultBridge: MutableList<String> = mutableListOf()
-        val bridgeRandomNumber = bridgeNumberGenerator.generate()
+        var bridgeRandomNumber: Int
         for(i in 0 until size){
+            bridgeRandomNumber = bridgeNumberGenerator.generate()
             if(bridgeRandomNumber == 1){
-                resultBridge[i] = "U"
+                resultBridge.add("U")
             } else {
-                resultBridge[i] = "D"
+                resultBridge.add("D")
             }
         }
         return resultBridge.toList()
