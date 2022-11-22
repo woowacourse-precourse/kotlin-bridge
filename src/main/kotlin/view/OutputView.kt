@@ -34,7 +34,12 @@ class OutputView {
 
     fun printRetry(): String {
         println(MESSAGE_RETRY)
-        return inputView.readGameCommand()
+        try {
+            return inputView.readGameCommand()
+        }catch (e: IllegalArgumentException){
+            println("[ERROR] $e")
+        }
+        throw IllegalArgumentException("[ERROR] 잘못된 입력 값입니다.")
     }
 
 
