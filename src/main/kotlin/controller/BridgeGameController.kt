@@ -8,20 +8,20 @@ class BridgeGameController {
     private lateinit var bridgeGame: BridgeGame
     private val inputView = InputView()
     private val outputView = OutputView()
-    private var bridgeSize: Int = 0
+    private var bridgeLength: Int = 0
 
     fun startBridgeGame() {
         outputView.printGameStartNotification()
-        bridgeSize = inputBridgeSize()
-        bridgeGame = BridgeGame(bridgeSize)
+        bridgeLength = inputBridgeSize()
+        bridgeGame = BridgeGame(bridgeLength)
         startGame()
     }
 
     private fun startGame() {
         while (bridgeGame.getRestartGame()) {
             bridgeGame.initStartGame()
-            if (judgePlayerSelected(bridgeSize) == bridgeSize) {
-                OutputView().printResult(bridgeGame.getOXBridge(), bridgeGame.getTotalAttempts(), "SUCCESS")
+            if (judgePlayerSelected(bridgeLength) == bridgeLength) {
+                outputView.printResult(bridgeGame.getOXBridge(), bridgeGame.getTotalAttempts(), "SUCCESS")
                 bridgeGame.setRestartGame(false)
             }
         }
@@ -29,9 +29,9 @@ class BridgeGameController {
 
     private fun judgePlayerSelected(bridgeLength: Int): Int {
         for (index in 0 until bridgeLength) {
-            val move = inputMove()
+            val move = inputPlayerUpDownMove()
             bridgeGame.move(move, index)
-            OutputView().printMap(bridgeGame.getOXBridge())
+            outputView.printMap(bridgeGame.getOXBridge())
             if (checkBridgeContainX()) break
         }
         return bridgeGame.getCorrectNum()
@@ -39,16 +39,16 @@ class BridgeGameController {
 
     private fun checkBridgeContainX(): Boolean {
         if (bridgeGame.getOXBridge()[0].contains("X") || bridgeGame.getOXBridge()[1].contains("X")) {
-            checkRetry()
+            checkRetryQuitCommand()
             return true
         }
         return false
     }
 
-    private fun checkRetry() {
-        if (bridgeGame.retry(inputCommand())) {
+    private fun checkRetryQuitCommand() {
+        if (bridgeGame.retry(inputRetryQuitCommand())) {
             if (bridgeGame.getShowBridgeResult()) {
-                OutputView().printResult(
+                outputView.printResult(
                     bridgeGame.getOXBridge(),
                     bridgeGame.getTotalAttempts(),
                     "FAIL"
@@ -61,11 +61,11 @@ class BridgeGameController {
         return inputView.inputValidBridgeSize()
     }
 
-    private fun inputMove(): String {
+    private fun inputPlayerUpDownMove(): String {
         return inputView.inputValidMove()
     }
 
-    private fun inputCommand(): String {
+    private fun inputRetryQuitCommand(): String {
         return inputView.inputValidCommand()
     }
 }
