@@ -5,36 +5,36 @@ import view.InputView
 import view.OutputView
 import java.lang.IllegalArgumentException
 
-private var bridgeSize: Int? = null
 private val outputView = OutputView()
 private val inputView = InputView()
 private const val MESSAGE_ERROR = "[ERROR]"
 
 fun main() {
     try {
-        bridgeSize()
+        val bridgeSize = bridgeSize()
         println("$bridgeSize\n")
-        bridgeGame()
+        bridgeGame(bridgeSize)
     } catch (e: IllegalArgumentException) {
         println("$MESSAGE_ERROR $e")
         return
     }
 }
 
-private fun bridgeSize() {
+private fun bridgeSize() : Int {
     println(outputView.printStart())
     println(outputView.printBridgeSize())
     try {
-        bridgeSize = inputView.readBridgeSize()
+        return inputView.readBridgeSize()
     } catch (e: IllegalArgumentException) {
         println("$MESSAGE_ERROR $e")
     }
+    return 0
 }
 
-private fun bridgeGame() {
+private fun bridgeGame(bridgeSize : Int) {
     val bridgeGame = BridgeGame()
     try {
-        bridgeSize?.let { bridgeGame.move(it) }
+         bridgeGame.move(bridgeSize)
     } catch (e: IllegalArgumentException) {
         println("$MESSAGE_ERROR $e")
     }
