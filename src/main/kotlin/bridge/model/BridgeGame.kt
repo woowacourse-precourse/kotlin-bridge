@@ -6,7 +6,7 @@ import bridge.QuitEventManager
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame(private val movingEventManager: MovingEventManager, private val quitEventManager: QuitEventManager) {
+class BridgeGame(private val _movingEventManager: MovingEventManager, private val _quitEventManager: QuitEventManager) {
     private lateinit var _bridge: List<String>
     private var _userHistory = mutableListOf<String>()
     private var _attempts: Int = 1
@@ -29,7 +29,7 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
     fun move(moving: String) {
         check(running()) { "게임이 실행되었을 때만 움직일 수 있습니다." }
         _userHistory += moving
-        movingEventManager.notify(GameMapStatus(_bridge, _userHistory))
+        _movingEventManager.notify(GameMapStatus(_bridge, _userHistory))
     }
 
     /**
@@ -46,7 +46,7 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
 
     fun quit() {
         check(started()) { "게임이 시작된 상태여야 종료할 수 있습니다." }
-        quitEventManager.notify(GameMapStatus(_bridge, _userHistory), GameResult(succeeded(), _attempts))
+        _quitEventManager.notify(GameMapStatus(_bridge, _userHistory), GameResult(succeeded(), _attempts))
     }
 
     private fun started(): Boolean = ::_bridge.isInitialized
