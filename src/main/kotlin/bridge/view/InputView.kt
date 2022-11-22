@@ -16,14 +16,14 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        return try {
-            val bridgeSize = readLine()
-            checkBridgeSizeInputValid(bridgeSize)
-            bridgeSize.toInt()
-        } catch (e: Exception) {
+        val brideSize = readLine()
+        try {
+            checkBridgeSizeInputValid(brideSize)
+        } catch (e: IllegalArgumentException) {
             println(e.message)
-            -1
+            readBridgeSize()
         }
+        return brideSize.toInt()
     }
 
     private fun checkBridgeSizeInputValid(input: String) {
