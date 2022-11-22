@@ -20,13 +20,24 @@ class BridgeGame {
         return true
     }
 
+    fun retry() {
+        upperBridge.clear()
+        lowerBridge.clear()
+        coin++
+    }
+
+    fun getCoin(): Int {
+        return coin
+    }
 
     fun getUpperBridge(): String {
-        return upperBridge.joinToString(prefix = "[ ", separator = " | ", postfix = " ]")
+        return upperBridge
+            .joinToString(prefix = LEFT_LADDER, separator = CENTER_LADDER, postfix = RIGHT_LADDER)
     }
 
     fun getLowerBridge(): String {
-        return lowerBridge.joinToString(prefix = "[ ", separator = " | ", postfix = " ]\n")
+        return lowerBridge
+            .joinToString(prefix = LEFT_LADDER, separator = CENTER_LADDER, postfix = RIGHT_LADDER + NEXT_LINE)
     }
 
     fun makeBridge(size: Int): List<String> {
