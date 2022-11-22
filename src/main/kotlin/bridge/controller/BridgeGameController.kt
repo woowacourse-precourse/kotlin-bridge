@@ -1,6 +1,8 @@
 package bridge.controller
 
 import bridge.BridgeGame
+import bridge.BridgeMaker
+import bridge.BridgeRandomNumberGenerator
 import bridge.model.BridgeStatus
 import bridge.model.isFail
 import bridge.model.isFinish
@@ -16,7 +18,10 @@ class BridgeGameController(
 
     init {
         inputView.gameStart()
-        bridgeGame.initGame(inputView.readBridgeSize())
+        bridgeGame.initGame(
+            size = inputView.readBridgeSize(),
+            maker = BridgeMaker(BridgeRandomNumberGenerator())
+        )
     }
 
     fun play() {
@@ -27,7 +32,7 @@ class BridgeGameController(
                 onFinish(result)
                 onSuccess(result)
                 onFail(result)
-            } while (!isEdned())
+            } while (!isEnded())
         }
     }
 
