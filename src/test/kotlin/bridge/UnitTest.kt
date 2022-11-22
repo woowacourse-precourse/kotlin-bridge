@@ -6,10 +6,8 @@ import domain.BridgeMaker
 import domain.BridgeNumberGenerator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 
 class UnitTest: NsTest() {
-
     private val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 0, 0))
     private val bridgeMaker = BridgeMaker(numberGenerator)
     private val bridge: List<String> = bridgeMaker.makeBridge(3)
@@ -26,6 +24,7 @@ class UnitTest: NsTest() {
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
+
     @Test
     fun `다리길이가 20을 초과한 경우`() {
         assertSimpleTest {
@@ -46,6 +45,14 @@ class UnitTest: NsTest() {
     fun `이동할 칸에 소문자를 입력한 경우`() {
         assertSimpleTest {
             run("4","u")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `이동할 칸에 U와 D가 아닌 대문자를 입력한 경우`() {
+        assertSimpleTest {
+            run("4","R")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
