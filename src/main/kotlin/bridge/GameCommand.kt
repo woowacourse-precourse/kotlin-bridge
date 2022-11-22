@@ -8,7 +8,7 @@ enum class GameCommand(
     RETRY("R"),
     QUIT("Q");
 
-    fun getCommand(): String{
+    fun getCommand(): String {
         return gameCommand;
     }
 }

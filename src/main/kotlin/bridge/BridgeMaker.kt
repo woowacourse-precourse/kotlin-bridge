@@ -6,8 +6,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         val bridge = arrayListOf<String>()
         repeat(size) {
             when (bridgeNumberGenerator.generate()) {
-                0 -> bridge.add("D")
-                1 -> bridge.add("U")
+                0 -> bridge.add(GameCommand.DOWN.getCommand())
+                1 -> bridge.add(GameCommand.UP.getCommand())
             }
         }
         return bridge
