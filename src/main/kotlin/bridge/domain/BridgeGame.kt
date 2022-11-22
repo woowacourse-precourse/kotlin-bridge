@@ -1,18 +1,22 @@
 package bridge.domain
 
+import bridge.constants.String.Companion.STRING_CORRECT
+import bridge.constants.String.Companion.STRING_RETRY
+import bridge.constants.String.Companion.STRING_WRONG
+
 class BridgeGame {
     fun move(moving: String, answer: String): String {
         return getSymbol(moving, answer)
     }
 
-    fun getSymbol(moving: String, answer: String): String {
+    private fun getSymbol(moving: String, answer: String): String {
         if (judgeCorrect(moving, answer)) {
-            return "O"
+            return STRING_CORRECT
         }
-        return "X"
+        return STRING_WRONG
     }
 
-    fun judgeCorrect(moving: String, answer: String): Boolean {
+    private fun judgeCorrect(moving: String, answer: String): Boolean {
         if (moving == answer) {
             return true
         }
@@ -20,7 +24,7 @@ class BridgeGame {
     }
 
     fun retry(command: String): Boolean {
-        if (command == "R") {
+        if (command == STRING_RETRY) {
             return true
         }
         return false
