@@ -9,6 +9,7 @@ private const val NOT_NUMBER = "[ERROR] 숫자가 아닙니다."
 private const val INVALID_DIRECTION = "[ERROR] 잘못된 방향입니다"
 private const val RANGE_STARTING_POINT = 3
 private const val RANGE_END_POINT = 20
+
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
  */
