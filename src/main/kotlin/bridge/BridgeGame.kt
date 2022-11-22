@@ -1,7 +1,7 @@
 package bridge
 
 import bridge.model.Bridge
-import bridge.model.BridgeMap
+import bridge.model.BridgeStatus
 import bridge.model.BridgeResult
 
 /**
@@ -9,45 +9,46 @@ import bridge.model.BridgeResult
  */
 class BridgeGame {
 
-    private val bridgeMaker: BridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
-    private val bridgeMap: BridgeMap = BridgeMap()
-    private lateinit var bridgeResult: BridgeResult
+    private val bridgeResult = BridgeResult()
+    private lateinit var bridgeStatus: BridgeStatus
+    private lateinit var bridgeMaker: BridgeMaker
     private lateinit var bridge: Bridge
-    private var totalCount: Int = 0
     private var position: Int = 0
 
-    fun initGame(size: Int) {
+    fun initGame(size: Int, maker: BridgeMaker) {
+        bridgeMaker = maker
         bridge = generateRandomBridge(size)
     }
 
     private fun generateRandomBridge(size: Int) = Bridge(bridgeMaker.makeBridge(size))
 
-    fun getTotalCount(): Int {
-        return totalCount
-    }
-
+    fun getTotalCount(): Int = bridgeResult.getTotalCount()
     private fun resetPosition() {
         position = 0
-        bridgeMap.clear()
+        bridgeResult.restart()
     }
 
-    fun result() = bridgeResult
+    fun getBridgeMap() = bridgeResult.getBridgeMap()
 
-    fun getBridgeMap() = bridgeMap.toString()
-
-    fun updateMap(direction: String) {
-        bridgeMap.update(bridgeResult, direction)
+    fun updateMap(result: BridgeStatus) {
+        bridgeStatus = result
+        bridgeResult.update(bridgeStatus)
     }
+
+    fun finish(result: BridgeStatus) {
+        bridgeStatus = BridgeStatus.FINISH(result.getDirection())
+    }
+
+    fun isEnded() = bridgeStatus is BridgeStatus.FINISH
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      * @param direction 위(U), 아래(D) 건너는 위치
      * @return enum class인 BridgeResult를 반환한다.
      */
-    fun move(direction: String) {
-        require(direction == "U" || direction == "D")
-        totalCount++
-        bridgeResult = bridge.move(position++, direction)
+    fun move(direction: String): BridgeStatus {
+        return bridge.move(position++, direction)
     }
 
     /**
@@ -62,10 +63,6 @@ class BridgeGame {
             return true
         }
         return false
-    }
-
-    fun finish() {
-        bridgeResult = BridgeResult.FINISH
     }
 
 
