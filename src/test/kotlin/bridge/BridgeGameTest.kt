@@ -4,6 +4,7 @@ import bridge.common.GameState
 import bridge.domain.BridgeGame
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -27,6 +28,16 @@ class BridgeGameTest {
             result.add(bridgeGame.move(it))
         }
         assertThat(result).isEqualTo(states)
+    }
+
+    @Test
+    fun `retry 작동 테스트`() {
+        val directions = listOf("U", "U", "U")
+        directions.forEach {
+            result.add(bridgeGame.move(it))
+        }
+        bridgeGame.retry()
+        assertThat(bridgeGame.currentUpperBridge).hasSize(0)
     }
 
     companion object {
