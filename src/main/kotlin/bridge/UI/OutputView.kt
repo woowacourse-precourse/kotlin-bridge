@@ -10,8 +10,8 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap(upSelectedBridge : List<String>, downSelectedBridge : List<String>) {
-        println(upSelectedBridge.joinToString(prefix = "[ ", separator = " | ", postfix = " ]"))
-        println(downSelectedBridge.joinToString(prefix = "[ ", separator = " | ", postfix = " ]"))
+        println(upSelectedBridge.joinToString(prefix = BRIDGE_PREFIX, separator = BRIDGE_SEPARATOR, postfix = BRIDGE_POSTFIX))
+        println(downSelectedBridge.joinToString(prefix = BRIDGE_PREFIX, separator = BRIDGE_SEPARATOR, postfix = BRIDGE_POSTFIX))
         println()
     }
 
@@ -23,4 +23,11 @@ class OutputView {
     fun printResult() {
 
     }
+
+    companion object{
+        const val BRIDGE_PREFIX = "[ "
+        const val BRIDGE_POSTFIX = " ]"
+        const val BRIDGE_SEPARATOR = " | "
+    }
+
 }
