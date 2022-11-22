@@ -1,4 +1,4 @@
-package bridge.domain.constructor
+package bridge.domain.architect
 
 import camp.nextstep.edu.missionutils.Randoms
 
