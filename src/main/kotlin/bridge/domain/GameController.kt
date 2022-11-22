@@ -13,9 +13,9 @@ class GameController() {
     private var level = ZERO
 
     fun initGame() {
+        outputView.printOpening()
         size = inputView.readBridgeSize()
         bridge = bridgeGame.makeBridge(size)
-        outputView.printOpening()
         runGame()
     }
 
