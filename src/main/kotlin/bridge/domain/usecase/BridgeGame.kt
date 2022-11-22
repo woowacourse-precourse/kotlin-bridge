@@ -13,25 +13,17 @@ class BridgeGame {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     // val p = listOf<String>("U1,D0", "U0,D1", "U0,D1", "U0,D1")
-    fun move(bridgeRows: String, userInputRow: String):String{
-        bridgeRows.split(",").map { bridgeRow ->
-            if (bridgeRow.first() == userInputRow.first()) return "${
-                getRowResult(
-                    bridgeRow,
-                    ONE_COLUMN_UP
-                )
-            },${getRowResult(bridgeRow, ONE_COLUMN_DOWN)}"
-        }
-        return " "
+    fun move(bridgeRow: String, userInputRow: String): Pair<String, String> {
+        if (bridgeRow == "U") return Pair(isPassable(bridgeRow, userInputRow), " ")
+        return Pair(
+            " ", isPassable(bridgeRow, userInputRow)
+        )
     }
 
-    private fun isPassable(passableNumber: Int): String {
-        return if (passableNumber == RANDOM_UPPER_INCLUSIVE) "O" else "X"
+    private fun isPassable(bridgeRow: String, userInputRow: String): String {
+        if (userInputRow == bridgeRow) return "O"
+        return "X"
     }
-
-    private fun getRowResult(bridgeRows: String, row: Char) =
-        if (bridgeRows.first() == row) isPassable(bridgeRows.last().digitToInt())
-        else " "
 
 
     /**
@@ -40,12 +32,6 @@ class BridgeGame {
      *
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-
-    companion object {
-        const val RANDOM_UPPER_INCLUSIVE = 1
-        const val ONE_COLUMN_UP = 'U'
-        const val ONE_COLUMN_DOWN = 'D'
-    }
 
     fun retry() {}
 }
