@@ -306,3 +306,21 @@ val number = bridgeNumberGenerator.generate()
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+---
+
+## 🔥 기능 목록
+
+- 다리 생성
+  - 가로 길이를 숫자로 입력 받음.
+  - 세로는 두칸으로 이루어짐.
+  - 0과 1의 값을 이용해 0이 아래 칸, 1이 위 칸.
+  - 예외 상황: 길이가 3이상 20이하가 아닌 경우.
+- 이동
+  - 이동할 칸을 입력받아 움직임. (위: U, 아래: D)
+  - 맞으면 O, 틀리면 X로 출력.
+  - 예외 상황: U나 D가 아닌 명령어가 입력된 경우.
+- 게임 실패시 재시도 여부 선택
+  - 재시도: R, 종료: Q
+- 게임 종료 
+  - 성공 여부, 시도 횟수 출력
