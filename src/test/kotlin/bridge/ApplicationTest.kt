@@ -33,40 +33,6 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `다리 건너기 실패 후 종료하는 기능 테스트`() {
-        assertRandomNumberInRangeTest({
-            run("3", "U", "D", "D","Q")
-            assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   |   ]",
-                "[   | O | X ]",
-                "게임 성공 여부: 실패",
-                "총 시도한 횟수: 1"
-            )
-            val upSideIndex = output().indexOf("[ O |   |   ]")
-            val downSideIndex = output().indexOf("[   | O | X ]")
-            assertThat(upSideIndex).isLessThan(downSideIndex)
-        }, 1, 0, 1)
-    }
-
-    @Test
-    fun `다리 건너기 실패 후 재시작하는 기능 테스트`() {
-        assertRandomNumberInRangeTest({
-            run("3", "U", "D", "D", "R", "U", "D", "U")
-            assertThat(output()).contains(
-                "최종 게임 결과",
-                "[ O |   | O ]",
-                "[   | O |   ]",
-                "게임 성공 여부: 성공",
-                "총 시도한 횟수: 2"
-            )
-            val upSideIndex = output().indexOf("[ O |   | O ]")
-            val downSideIndex = output().indexOf("[   | O |   ]")
-            assertThat(upSideIndex).isLessThan(downSideIndex)
-        }, 1, 0, 1)
-    }
-
-    @Test
     fun `예외 테스트`() {
         assertSimpleTest {
             runException("a")
