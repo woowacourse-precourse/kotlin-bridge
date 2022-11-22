@@ -6,14 +6,15 @@ import bridge.view.OutputView
 
 var count: Int = 1
 class BridgeGameProgress {
+    private val outputView = OutputView()
 
     fun bridgeGameProgress(bridge: List<String>) {
         val result = bridgeGameStart(bridge)
         if (result[result.size - 1][1] == FAIL) {
             count += 1
-            gameCommand(result, bridge)
+            return gameCommand(result, bridge)
         }
-        return OutputView().printResult(result, SUCCESS, count)
+        return outputView.printResult(result, SUCCESS, count)
     }
 
     private fun bridgeGameStart(bridge: List<String>): MutableList<List<String>> {
@@ -26,11 +27,10 @@ class BridgeGameProgress {
         OutputView().printRetry()
         val gameCommand = InputView().readGameCommand()
         if (gameCommand == QUIT) {
-            return OutputView().printResult(result, LOSE, count)
+            return outputView.printResult(result, LOSE, count)
         }
         if (gameCommand == RETRY) {
-            BridgeGame().retry(bridge)
-            return
+            return BridgeGame().retry(bridge)
         }
     }
 
@@ -39,10 +39,10 @@ class BridgeGameProgress {
             OutputView().printSelectMove()
             val moving = InputView().readMoving()
             if (!BridgeGame().move(step, moving, result)) {
-                OutputView().printMap(result)
+                outputView.printMap(result)
                 break
             }
-            OutputView().printMap(result)
+            outputView.printMap(result)
         }
     }
 }
