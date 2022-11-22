@@ -21,7 +21,7 @@ class Player(private val bridge: Bridge) {
         }
     }
 
-    fun isClear(): Boolean {
+    fun isClearGame(): Boolean {
         return bridge.finishCrossBridge(stage)
     }
 

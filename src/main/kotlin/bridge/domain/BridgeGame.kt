@@ -33,7 +33,7 @@ class BridgeGame(private val player: Player) {
     }
 
     fun isClear(): Boolean {
-        return player.isClear()
+        return player.isClearGame()
     }
 
     fun getPlayerBridge(): List<Stage> {
