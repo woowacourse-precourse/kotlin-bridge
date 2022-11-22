@@ -1,43 +1,33 @@
 package bridge.ui
 
+import bridge.error.ErrorMessage.ERROR_NOT_NUMBERS
+import bridge.error.ErrorMessage.ERROR_NUM_NOT_IN_RANGE
 import bridge.main
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class InputViewTest : NsTest() {
-    @Test
-    fun `21 입력 예외 테스트`() {
+    @ValueSource(strings = ["-1","0","2","21","200"])
+    @ParameterizedTest
+    fun `숫자 범위 입력 예외 테스트`(input:String) {
         camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest {
-            runException(UPPER_EXCEPTION)
-            assertThat(output()).contains(ERROR_MESSAGE)
+            runException(input)
+            assertThat(output()).contains(ERROR_NUM_NOT_IN_RANGE)
         }
     }
 
-    @Test
-    fun `2 입력 예외 테스트`() {
+    @ValueSource(strings = [" ","a","b1","$"])
+    @ParameterizedTest
+    fun `문자나 공백 입력 예외 테스트`(input:String) {
         camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest {
-            runException(LOWER_EXCEPTION)
-            assertThat(output()).contains(ERROR_MESSAGE)
-        }
-    }
-
-    @Test
-    fun `공백 입력 예외 테스트`() {
-        camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest {
-            runException(SPACE_EXCEPTION)
-            assertThat(output()).contains(ERROR_MESSAGE)
+            runException(input)
+            assertThat(output()).contains(ERROR_NOT_NUMBERS)
         }
     }
 
     override fun runMain() {
         main()
-    }
-
-    companion object {
-        private const val ERROR_MESSAGE = "[ERROR]"
-        private const val UPPER_EXCEPTION = "21"
-        private const val LOWER_EXCEPTION = "2"
-        private const val SPACE_EXCEPTION = " "
     }
 }
