@@ -44,29 +44,29 @@
 - [x] `readGameCommand` : 게임 재시작 여부 입력
 
 ### `OutputView` _클래스_
-- [ ] `printMap` : 현재까지 이동한 다리 상태 출력
-- [ ] `printResult` : 게임의 최종 결과 출력
+- [x] `printMap` : 현재까지 이동한 다리 상태 출력
+- [x] `printResult` : 게임의 최종 결과 출력
 - [x] `printGameStart` : 게임 시작 출력
 - [x] `printBridgeLength` : 길이 입력 출력
 - [x] `printSelectMoveToSpace` : 이동할 칸 선택 출력
 
 ### `BridgeGame` _클래스_
-- [ ] `move` : 이동
-- [ ] `retry` : 재시작
+- [x] `move` : 이동
+- [x] `retry` : 재시작
 
 ### `BridgeMarker` _클래스_
 - [x] `makeBridge` : 입력받은 길이에 해당하는 다리모양
 
 ### `Bridge` _클래스_
 - [x] `addUserBrdige` : 움직일 칸을 입력받아 사용자 다리에 추가
-- [ ] `bridgeComparison` : 사용자 다리와 컴퓨터 다리 비교
+- [x] `bridgeComparison` : 사용자 다리와 컴퓨터 다리 비교
 ---
 ## ▶ 프로그래밍 요구 사항
-- [ ] `ApplicationTest`의 모든 테스트 성공
+- [x] `ApplicationTest`의 모든 테스트 성공
 - [ ] indent depth를 3이 넘지 않도록 구현
-- [ ] 함수가 한 가지 일
+- [x] 함수가 한 가지 일
 - [ ] 기능 테스트
-- [ ] else를 지양
+- [x] else를 지양
 #### 추가된 요구 사항
 - [ ] 함수 최대 길이 10라인
 - [ ] 메서드의 파라미터 최대 3개
