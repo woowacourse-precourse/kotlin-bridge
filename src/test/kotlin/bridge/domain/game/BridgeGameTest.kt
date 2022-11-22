@@ -32,6 +32,6 @@ class BridgeGameTest {
 
         // Then
         Assertions.assertThat(bridgeGame).extracting("numberOfTry").isEqualTo(2)
-        Assertions.assertThat(bridgeGame).extracting("round").isEqualTo(0)
+        Assertions.assertThat(bridgeGame).extracting("position").isEqualTo(0)
     }
 }

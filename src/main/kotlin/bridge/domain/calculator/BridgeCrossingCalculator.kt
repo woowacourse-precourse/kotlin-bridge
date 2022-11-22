@@ -25,12 +25,12 @@ object BridgeCrossingCalculator {
      */
     private fun createCurrentBridgeMap(bridgeNumber: Int): String {
         var currentBridgeMap = ""
-        val round = bridgeCrossingHistory.size - 1
+        val lastRound = bridgeCrossingHistory.size - 1
 
         currentBridgeMap += MAP_BOUNDARY_START
-        bridgeCrossingHistory.forEachIndexed { curRound, history ->
+        bridgeCrossingHistory.forEachIndexed { userPosition, history ->
             currentBridgeMap += calculateCrossingResult(bridgeNumber = bridgeNumber, history = history)
-            currentBridgeMap += if (curRound == round) MAP_BOUNDARY_END else MAP_SEPARATOR
+            currentBridgeMap += if (userPosition == lastRound) MAP_BOUNDARY_END else MAP_SEPARATOR
         }
         return currentBridgeMap
     }
