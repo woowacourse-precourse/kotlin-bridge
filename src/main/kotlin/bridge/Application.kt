@@ -14,6 +14,10 @@ fun main() {
 
     while (true) {
         val moveDirection = checkInput.checkMoveDirection(showInputView.readMoving())
-        bridgeGame.move(moveDirection, bridge)
+        if(!bridgeGame.move(moveDirection, bridge)){
+            var gameOver = showInputView.readGameCommand()
+
+        }
+
     }
 }
