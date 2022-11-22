@@ -28,11 +28,6 @@ class InputView {
         }
     }
 
-    private fun getMoveCommand() {
-        val command = Console.readLine()
-
-    }
-
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
