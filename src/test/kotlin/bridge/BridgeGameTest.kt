@@ -54,7 +54,7 @@ class BridgeGameTest {
         assertThat(bridgeGame.currentMoving.size).isEqualTo(0)
     }
 
-    fun repeatMove(movings : List<String>){
+    private fun repeatMove(movings : List<String>){
         for(moving in movings){
             bridgeGame.move(moving)
         }
