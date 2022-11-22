@@ -38,6 +38,12 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        val userInputText = Console.readLine()
+        require(userInputText == "R" || userInputText == "Q") {
+            println("[ERROR] R 또는 Q중 하나의 문자만 입력해주세요")
+            return readGameCommand()
+        }
+        return userInputText
     }
 }
