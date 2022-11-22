@@ -306,3 +306,31 @@ val number = bridgeNumberGenerator.generate()
 - **Git의 커밋 단위는 앞 단계에서 `docs/README.md`에 정리한 기능 목록 단위**로 추가한다.
     - [커밋 메시지 컨벤션](https://gist.github.com/stephenparish/9941e89d80e2bc58a153) 가이드를 참고해 커밋 메시지를 작성한다.
 - 과제 진행 및 제출 방법은 [프리코스 과제 제출](https://github.com/woowacourse/woowacourse-docs/tree/master/precourse) 문서를 참고한다.
+
+## 기능 목록
+
+- 무작위 다리 생성하는 기능
+  - 생성할 다리 길이를 입력받는 기능
+    - 다리 길이가 3이상 20이하 숫자 이외의 값 입력시 IllegalArgumentException 발생하는 기능
+  - 다리 위 아래칸 정할 때 0,1 무작위 숫자 이용하는 기능
+  - 위 칸을 건널 수 있으면 U, 아래 칸을 건널 수 있으면 D값으로 나타내는 기능
+
+- 플레이어가 다리에 이동할 칸을 선택하는 기능
+  - 이동할 떄 위 칸은 대문자 U, 아래 칸은 대문자 입력
+    - U, D 이외의 값 입력시 IllegalArgumentException 발생하는 기능
+  - 이동한 칸을 건널 수 있다면 O, 건널 수 없다면 X로 표시하는 기능
+
+- 다리를 끝까지 건너면 게임 종료하는 기능
+  - 결과 출력
+    - 다리 표 출력
+    - 총 시도 횟수 출력
+    - 성공 실패 여부 출력
+
+- 다리를 건너다 실패하면 게임을 재시작하거나 종료하는 기능
+  - 재시작 해도 처음에 만든 다리 재사용
+  - Q 입력시 종료 R 입력시 게임 재시작
+  - Q,R 이외의 값 입력시 IllegalArgumentException 발생하는 기능
+  - Q 입력시 결과 출력
+    - 다리 표 출력
+    - 총 시도 횟수 출력
+    - 성공 실패 여부 출력
