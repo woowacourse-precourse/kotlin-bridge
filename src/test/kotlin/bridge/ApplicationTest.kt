@@ -79,7 +79,7 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `범우 외에 숫자 입력시`() {
+    fun `범위 외에 숫자 입력시`() {
         assertSimpleTest {
             runException("32")
             assertThat(output()).contains(ERROR_MESSAGE)
