@@ -1,4 +1,4 @@
-package view
+package bridge
 
 import camp.nextstep.edu.missionutils.Console
 import java.lang.IllegalArgumentException
