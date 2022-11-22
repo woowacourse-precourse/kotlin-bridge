@@ -38,12 +38,12 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
         movingEventManager.notify(GameMapStatus(_bridge, _userHistory))
         if (moveFailed())
             _gameStatus = GameStatus.STOPPED
-        if (successed()) quit()
+        if (succeeded()) quit()
     }
 
     private fun moveFailed() = _userHistory.last() != _bridge[_userHistory.size - 1]
 
-    fun successed(): Boolean {
+    fun succeeded(): Boolean {
         check(started()) { "게임이 시작되어야 성공했는지 판단할 수 있습니다." }
         if (_bridge.size != _userHistory.size)
             return false
@@ -51,7 +51,7 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
     }
 
     fun quit() {
-        quitEventManager.notify(GameMapStatus(_bridge, _userHistory), GameResult(successed(), _attempts))
+        quitEventManager.notify(GameMapStatus(_bridge, _userHistory), GameResult(succeeded(), _attempts))
         _gameStatus = GameStatus.FINISHED
     }
 

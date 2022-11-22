@@ -132,7 +132,7 @@ internal class BridgeGameTest {
                 bridgeGame.start(bridge)
                 userRoute.forEach { bridgeGame.move(it) }
 
-                assertThat(bridgeGame.successed()).isTrue
+                assertThat(bridgeGame.succeeded()).isTrue
             }
         }
 
@@ -141,7 +141,7 @@ internal class BridgeGameTest {
 
             @Test
             fun `예외를 던진다`() {
-                assertThatThrownBy { bridgeGame.successed() }.isInstanceOf(IllegalStateException::class.java)
+                assertThatThrownBy { bridgeGame.succeeded() }.isInstanceOf(IllegalStateException::class.java)
             }
         }
     }
