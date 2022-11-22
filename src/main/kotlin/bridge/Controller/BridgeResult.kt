@@ -19,9 +19,7 @@ class BridgeResult {
     private var resultOfGame = ""
 
     fun gameStart() {
-        outputView.printStartLog()
-        val answerBridge = bridge.makeBridge()
-        outputView.printNewLine()
+        val answerBridge = manageGettingBridge()
         while (true) {
             val playerDirection = playerBridge.getDirection()
             bridgeGame.move(playerDirection, answerBridge)
@@ -44,6 +42,13 @@ class BridgeResult {
                 }
             }
         }
+    }
+
+    private fun manageGettingBridge() : List<String>{
+        outputView.printStartLog()
+        val answerBridge = bridge.makeBridge()
+        outputView.printNewLine()
+        return answerBridge
     }
 
     private fun manageSuccessResult(selectedBridge : MutableMap<String, List<String>>){
