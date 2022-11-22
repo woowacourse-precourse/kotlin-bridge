@@ -30,6 +30,9 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        val input= Console.readLine()
+        InputValidator.checkOnlyCharacter(input)
+        InputValidator.checkQorR(input)
+        return input
     }
 }

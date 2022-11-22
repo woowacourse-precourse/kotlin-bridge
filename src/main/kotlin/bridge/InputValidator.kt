@@ -28,5 +28,11 @@ class InputValidator {
                 throw IllegalArgumentException(Constants.ERROR_OUT_OF_RANGE_MOVE)
             }
         }
+
+        fun checkQorR(input: String){
+            if(input!="Q" && input!="R"){
+                throw IllegalArgumentException(Constants.ERROR_OUT_OF_RANGE_QUIT_OR_RESTART)
+            }
+        }
     }
 }
