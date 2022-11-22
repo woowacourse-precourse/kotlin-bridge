@@ -25,13 +25,13 @@ class GameSimulation {
         gameTermination()
     }
 
-    fun gameStart(){
+    private fun gameStart(){
         outputView.printGameStart()
         outputView.printBridgeLength()
         size = inputView.readBridgeSize()
     }
 
-    fun gameMoving(){
+    private fun gameMoving(){
         outputView.printSelectMoveToSpace()
         val movingKey = inputView.readMoving()
         bool = bridgeGame.move(movingKey)
@@ -40,7 +40,7 @@ class GameSimulation {
         cnt += 1
     }
 
-    fun gameCheck(){
+    private fun gameCheck(){
         if(!bool){
             outputView.printSelectRetry()
             val retryingKey = inputView.readGameCommand()
@@ -49,14 +49,14 @@ class GameSimulation {
             cnt = 0
         }
     }
-    fun gameCorrectAnswer() : Boolean{
+    private fun gameCorrectAnswer() : Boolean{
         if(cnt == size && bool){
             return true
         }
         return false
     }
 
-    fun gameTermination(){
+    private fun gameTermination(){
         outputView.printResult()
         outputView.printResult(bool, bridgeGame.getGameCount())
     }
