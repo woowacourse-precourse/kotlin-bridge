@@ -33,3 +33,8 @@ private fun progressStage(bridgeCurrentPosition: Int, bridge: List<String>) {
     )
     println()
 }
+
+private fun getProperGameState(): GameState {
+    outputView.printRestartOrQuitSelectPhrase()
+    return bridgeGame.retry(inputView.readGameCommand())
+}
