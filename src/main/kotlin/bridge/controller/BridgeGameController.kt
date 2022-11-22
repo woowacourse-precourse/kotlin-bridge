@@ -2,6 +2,11 @@ package bridge.controller
 
 import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
+import bridge.constants.Constant.Companion.START_COUNT
+import bridge.constants.Constant.Companion.START_INDEX
+import bridge.constants.String.Companion.STRING_BLANK
+import bridge.constants.String.Companion.STRING_UP
+import bridge.constants.String.Companion.STRING_WRONG
 import bridge.domain.BridgeGame
 import bridge.domain.Flag
 import bridge.views.InputView
@@ -18,8 +23,8 @@ class BridgeGameController {
     var downLine = mutableListOf<String>()
     var process = mutableListOf<MutableList<String>>()
     var flag = Flag.PLAYING
-    var index = 0
-    var tryCount = 0
+    var index = START_INDEX
+    var tryCount = START_COUNT
 
     fun play() {
         do {
@@ -53,13 +58,13 @@ class BridgeGameController {
 
     fun continueBridgeGame(bridge: List<String>) {
         val moving = inputView.readMoving()
-        if (moving == "U") {
+        if (moving == STRING_UP) {
             upLine.add(bridgeGame.move(moving, bridge[index]))
-            downLine.add(" ")
+            downLine.add(STRING_BLANK)
             return
         }
         downLine.add(bridgeGame.move(moving, bridge[index]))
-        upLine.add(" ")
+        upLine.add(STRING_BLANK)
     }
 
     fun changeGameFlag(bridge: List<String>): Flag {
@@ -77,7 +82,7 @@ class BridgeGameController {
     }
 
     fun judgeGameFailed(): Boolean {
-        if (upLine[index] == "X" || downLine[index] == "X") {
+        if (upLine[index] == STRING_WRONG || downLine[index] == STRING_WRONG) {
             return true
         }
         return false
