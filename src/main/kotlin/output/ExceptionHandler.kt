@@ -9,4 +9,10 @@ object ExceptionHandler {
         return false
     }
 
+    fun specificAlphabetUD(input: String): Boolean {
+        if (input == "U" || input == "D") {
+            return true
+        }
+        return false
+    }
 }

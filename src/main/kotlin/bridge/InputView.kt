@@ -31,7 +31,13 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        println(Output.SELECT_SPACE.output)
+        val moving = Console.readLine()!!
+        if (!ExceptionHandler.specificAlphabetUD(moving)) {
+            println(ErrorMessage.UD.errorMessage)
+            readMoving()
+        }
+        return moving
     }
 
     /**
