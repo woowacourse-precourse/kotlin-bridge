@@ -27,9 +27,14 @@ class OutputView {
 
     fun printMoving(): String {
         println(MESSAGE_READ_MOVING)
-        val move = inputView.readMoving()
-        println(move)
-        return move
+        try {
+            val move = inputView.readMoving()
+            println(move)
+            return move
+        }catch (e: IllegalArgumentException){
+            println("[ERROR] $e")
+        }
+        throw IllegalArgumentException("[ERROR] 잘못된 입력 값입니다.")
     }
 
     fun printRetry(): String {
