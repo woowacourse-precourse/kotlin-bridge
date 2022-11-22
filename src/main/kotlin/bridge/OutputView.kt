@@ -1,7 +1,7 @@
 package bridge
 
-import bridge.constants.Constants.DOWN_BRIDGE
-import bridge.constants.Constants.UP_BRIDGE
+import bridge.constants.Constants.DOWN_BRIDGE_STRING
+import bridge.constants.Constants.UP_BRIDGE_STRING
 
 class OutputView(private val bridge: List<String>) {
     private val up = StringBuilder("[ ")
@@ -30,13 +30,13 @@ class OutputView(private val bridge: List<String>) {
         val str = if (correct) "O" else "X"
         if (moving[position] == bridge[position]) {
             when (bridge[position]) {
-                UP_BRIDGE -> makeMap(str, " ")
-                DOWN_BRIDGE -> makeMap(" ", str)
+                UP_BRIDGE_STRING -> makeMap(str, " ")
+                DOWN_BRIDGE_STRING -> makeMap(" ", str)
             }
         } else {
             when (bridge[position]) {
-                UP_BRIDGE -> makeMap(" ", str)
-                DOWN_BRIDGE -> makeMap(str, " ")
+                UP_BRIDGE_STRING -> makeMap(" ", str)
+                DOWN_BRIDGE_STRING -> makeMap(str, " ")
             }
         }
     }
