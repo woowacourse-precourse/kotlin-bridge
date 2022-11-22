@@ -34,12 +34,12 @@ class Controller {
 
     private fun mainLogic() {
         do {
-            bridgeGame.move(inputView.readMoving())                         // U/D 를 입력받아 moves에 저장
-            outputView.printMap(bridgeGame.getState())                // 결과 출력
-            if (bridgeGame.isFail()) {                                // 건널 수 없는 경우
-                isPlaying = bridgeGame.retry(inputView.readGameCommand())   // 재시작 여부 확인
+            bridgeGame.move(inputView.readMoving())
+            outputView.printMap(bridgeGame.getState())
+            if (bridgeGame.isFail()) {
+                isPlaying = bridgeGame.retry(inputView.readGameCommand())
             }
-            if (bridgeGame.isSuccess()) break                          // 정상 종료
+            if (bridgeGame.isSuccess()) break
         } while (isPlaying)
     }
 
