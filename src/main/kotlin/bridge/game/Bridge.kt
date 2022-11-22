@@ -18,7 +18,7 @@ class Bridge(
 
     fun move(answerWay: List<String>): Boolean {
         output.printMap(makeTopRow(answerWay), makeBotRow(answerWay))
-        return destroy(answerWay)
+        return isSafeZone(answerWay)
 
     }
 
@@ -49,7 +49,7 @@ class Bridge(
         return "X"
     }
 
-    private fun destroy(answerWay: List<String>): Boolean {
+    private fun isSafeZone(answerWay: List<String>): Boolean {
         for (step in way.indices) {
             if (answerWay[step] != way[step]) {
                 return false
