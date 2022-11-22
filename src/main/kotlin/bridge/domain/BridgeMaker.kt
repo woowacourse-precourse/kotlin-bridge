@@ -1,7 +1,5 @@
 package bridge.domain
 
-import bridge.BridgeNumberGenerator
-
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         val answerBridge = mutableListOf<String>()
