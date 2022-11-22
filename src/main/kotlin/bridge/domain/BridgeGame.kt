@@ -46,7 +46,7 @@ class BridgeGame(private val bridge: Bridge) {
     private fun getGameResult(): GameResult {
         check(!isRunning) { "Game is still running" }
 
-        return GameResult(wrongCount == 0, histories.size, lastHistory)
+        return GameResult(isCompleted, histories.size, lastHistory)
     }
 
     class Builder {
