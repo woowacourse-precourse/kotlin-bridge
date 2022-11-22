@@ -2,6 +2,7 @@ package view
 
 import camp.nextstep.edu.missionutils.Console
 import exception.ExceptionCheck
+import util.Game
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -15,6 +16,7 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
+        println(Game.BRIDGE_LENGTH_INPUT.message)
         val bridgeSize = Console.readLine()
         return ExceptionCheck().checkValidBridgeLengthInput(bridgeSize)
     }
@@ -23,6 +25,7 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
+        println(Game.MOVE_INPUT.message)
         val moveLetter = Console.readLine()
         return ExceptionCheck().checkValidMoveLetterInput(moveLetter)
     }
@@ -31,6 +34,7 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
+        println(Game.RETRY_INPUT.message)
         val gameCommend = Console.readLine()
         return ExceptionCheck().checkValidRetryLetterInput(gameCommend)
     }
