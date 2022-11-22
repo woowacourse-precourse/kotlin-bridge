@@ -39,9 +39,22 @@ class BridgeGameController {
 
     private fun checkBridgeContainX(): Boolean {
         if (bridgeGame.getOXBridge()[0].contains("X") || bridgeGame.getOXBridge()[1].contains("X")) {
+            checkRetry()
             return true
         }
         return false
+    }
+
+    private fun checkRetry() {
+        if (bridgeGame.retry(inputCommand())) {
+            if (bridgeGame.getShowResult()) {
+                OutputView().printResult(
+                    bridgeGame.getOXBridge(),
+                    bridgeGame.getTotalAttempts(),
+                    "FAIL"
+                )
+            }
+        }
     }
 
     private fun inputBridgeSize(): Int {
