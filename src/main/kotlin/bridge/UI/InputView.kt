@@ -9,8 +9,8 @@ class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(): Int {
-        return Console.readLine().toInt()
+    fun readBridgeSize(): String {
+        return Console.readLine()
     }
 
     /**
