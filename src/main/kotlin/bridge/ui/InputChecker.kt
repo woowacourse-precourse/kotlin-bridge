@@ -1,9 +1,6 @@
 package bridge.ui
 
-import bridge.data.ERROR_DIGIT
-import bridge.data.ERROR_DIRECTION
-import bridge.data.ERROR_NULL
-import bridge.data.ERROR_RANGE
+import bridge.data.*
 
 class InputChecker {
     fun checkBridgeLength(input: String) {
@@ -15,6 +12,11 @@ class InputChecker {
     fun checkDirection(input: String) {
         if (input.isEmpty()) throw IllegalArgumentException(ERROR_NULL)
         if (!((input == "U") or (input == "D"))) throw IllegalArgumentException(ERROR_DIRECTION)
+    }
+
+    fun checkUserCommand(input: String) {
+        if (input.isEmpty()) throw IllegalArgumentException(ERROR_NULL)
+        if (!((input == "R") or (input == "Q"))) throw IllegalArgumentException(ERROR_COMMAND)
     }
 
     private fun isNumber(input: String): Boolean {
