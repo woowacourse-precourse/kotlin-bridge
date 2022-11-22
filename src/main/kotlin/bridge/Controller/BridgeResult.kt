@@ -16,7 +16,7 @@ class BridgeResult {
     private val bridge = Bridge()
     private val bridgeGame = BridgeGame()
     private val playerBridge = PlayerBridge()
-    private var resultOfGame = ""
+    private var resultOfGame = NULL
 
     fun gameStart() {
         val answerBridge = manageGettingBridge()
@@ -43,7 +43,7 @@ class BridgeResult {
     }
 
     private fun manageGameFailureResult(selectedBridge: MutableMap<String, List<String>>): String {
-        var result = ""
+        var result = NULL
         if (bridgeGame.getFailureResult()) {
             when (manageSelectedRetry(selectedBridge)) {
                 RETRY -> result = CONTINUE
@@ -103,6 +103,8 @@ class BridgeResult {
 
         const val CONTINUE = "CONTINUE"
         const val BREAK = "BREAK"
+
+        const val NULL = ""
     }
 
 
