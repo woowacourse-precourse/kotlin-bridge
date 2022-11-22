@@ -26,8 +26,10 @@ class GameHost(private val bridgeMaker: BridgeMaker, private val bridgeGame: Bri
 
     fun getProperGameState(userGameCommandInput: String) {
         gameState = bridgeGame.retry(userGameCommandInput)
-        if (gameState == GameState.RESTART) attemptNumber += 1
-        bridgeCurrentPosition = 0
+        if (gameState == GameState.RESTART) {
+            attemptNumber += 1
+            bridgeCurrentPosition = 0
+        }
     }
 
     fun convertGameStateToGameResult(): GameResult {
