@@ -1,16 +1,22 @@
 package bridge
 
 fun main() {
+//    println(ConstantMessage.START_BRIDGE_GAME)
+//    val bridgeMaker: BridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
+//    try {
+//        val bridgeSize: Int = InputView().readBridgeSize()
+//        val bridge: List<String> = bridgeMaker.makeBridge(bridgeSize)
+//        val bridgeGame: BridgeGame = BridgeGame(bridge)
+//        gameStart(bridgeGame, bridgeSize)
+//    } catch (e: IllegalArgumentException) {
+//        println("${e.message}")
+//    }
     println(ConstantMessage.START_BRIDGE_GAME)
     val bridgeMaker: BridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
-    try {
-        val bridgeSize: Int = InputView().readBridgeSize()
-        val bridge: List<String> = bridgeMaker.makeBridge(bridgeSize)
-        val bridgeGame: BridgeGame = BridgeGame(bridge)
-        gameStart(bridgeGame, bridgeSize)
-    } catch (e: IllegalArgumentException) {
-        println("${e.message}")
-    }
+    val bridgeSize: Int = InputView().readBridgeSize()
+    val bridge: List<String> = bridgeMaker.makeBridge(bridgeSize)
+    val bridgeGame: BridgeGame = BridgeGame(bridge)
+    gameStart(bridgeGame, bridgeSize)
 }
 
 fun gameStart(bridgeGame: BridgeGame, bridgeSize: Int) {

@@ -16,10 +16,15 @@ class InputView {
     }
 
     fun readBridgeSize(): Int {
-        println(ConstantMessage.INPUT_BRIDGE_SIZE)
-        val bridgeSize = Console.readLine()
-        inputBridgeException(bridgeSize)
-        return bridgeSize.toInt()
+        try {
+            println(ConstantMessage.INPUT_BRIDGE_SIZE)
+            val bridgeSize = Console.readLine()
+            inputBridgeException(bridgeSize)
+            return bridgeSize.toInt()
+        } catch (e: IllegalArgumentException) {
+            println("${e.message}")
+            return readBridgeSize()
+        }
     }
 
     fun inputBridgeException(bridgeSize: String) {
@@ -34,10 +39,15 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        println(ConstantMessage.INPUT_SELECT_MOVE)
-        val inputMoving = Console.readLine()
-        inputMovingException(inputMoving)
-        return inputMoving
+        try {
+            println(ConstantMessage.INPUT_SELECT_MOVE)
+            val inputMoving = Console.readLine()
+            inputMovingException(inputMoving)
+            return inputMoving
+        } catch (e: IllegalArgumentException) {
+            println("${e.message}")
+            return readMoving()
+        }
     }
 
     fun inputMovingException(inputMoving: String) {
@@ -47,10 +57,16 @@ class InputView {
     }
 
     fun readGameCommand(): String {
-        println(ConstantMessage.INPUT_GAME_COMMAND)
-        val inputGameCommand = Console.readLine()
-        inputGameCommandException(inputGameCommand)
-        return inputGameCommand
+        try {
+            println(ConstantMessage.INPUT_GAME_COMMAND)
+            val inputGameCommand = Console.readLine()
+            inputGameCommandException(inputGameCommand)
+            return inputGameCommand
+        } catch (e: IllegalArgumentException) {
+            println("${e.message}")
+            return readGameCommand()
+        }
+
     }
 
     fun inputGameCommandException(inputGameCommand: String) {
