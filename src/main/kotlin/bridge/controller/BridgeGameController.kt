@@ -14,9 +14,9 @@ class BridgeGameController {
     private val bridgeNumberGenerator = BridgeRandomNumberGenerator()
     private val bridgeMaker = BridgeMaker(bridgeNumberGenerator)
 
-    var process = mutableListOf<MutableList<String>>()
     var upLine = mutableListOf<String>()
     var downLine = mutableListOf<String>()
+    var process = mutableListOf<MutableList<String>>()
     var flag = Flag.PLAYING
     var index = 0
     var tryCount = 0
@@ -24,6 +24,7 @@ class BridgeGameController {
     fun play() {
         do {
             tryCount++
+            initProcess()
             playBridgeGame()
         } while (flag == Flag.FAIL && queryGameRetry())
         outputView.printResult(tryCount, process, flag)
@@ -33,8 +34,7 @@ class BridgeGameController {
         val bridge = init()
         do {
             continueBridgeGame(index, bridge)
-            process.add(upLine)
-            process.add(downLine)
+            //updateProcess()
             outputView.printMap(process)
             flag = changeGameFlag(index, bridge)
             index++
@@ -47,14 +47,19 @@ class BridgeGameController {
         return bridgeMaker.makeBridge(length)
     }
 
+    fun initProcess() {
+        process.add(upLine)
+        process.add(downLine)
+    }
+
     fun continueBridgeGame(index: Int, bridge: List<String>) {
         val moving = inputView.readMoving()
         if (moving == "U") {
-            bridgeGame.move(upLine, moving, bridge[index])
+            upLine.add(bridgeGame.move(moving, bridge[index]))
             downLine.add(" ")
             return
         }
-        bridgeGame.move(downLine, moving, bridge[index])
+        downLine.add(bridgeGame.move(moving, bridge[index]))
         upLine.add(" ")
     }
 
@@ -83,7 +88,7 @@ class BridgeGameController {
         if (index == bridge.size - 1) {
             return true
         }
-        return true
+        return false
     }
 
 }
