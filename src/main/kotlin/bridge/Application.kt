@@ -1,5 +1,9 @@
 package bridge
 
 fun main() {
-    // TODO: 프로그램 구현
+    try {
+        GameMng().gameLoop()
+    } catch (e: IllegalArgumentException) {
+        print("[ERROR] ${e.message}")
+    }
 }
