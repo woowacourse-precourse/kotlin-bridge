@@ -7,9 +7,6 @@ import bridge.view.OutputView
 private lateinit var inputView: InputView
 private lateinit var outputView: OutputView
 private lateinit var bridgeMaker: BridgeMaker
-private lateinit var bridgeNumberGenerator: BridgeNumberGenerator
-private lateinit var movingEventManager: MovingEventManager
-private lateinit var quitEventManager: QuitEventManager
 private lateinit var bridgeGame: BridgeGame
 
 fun main() {
@@ -38,14 +35,13 @@ private fun setView() {
 }
 
 private fun setBridgeMaker() {
-    bridgeNumberGenerator = BridgeRandomNumberGenerator()
-    bridgeMaker = BridgeMaker(bridgeNumberGenerator)
+    bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
 }
 
 private fun setEventManager() {
-    movingEventManager = MovingEventManager()
+    val movingEventManager = MovingEventManager()
     movingEventManager.subscribe(outputView)
-    quitEventManager = QuitEventManager()
+    val quitEventManager = QuitEventManager()
     quitEventManager.subscribe(outputView)
     bridgeGame = BridgeGame(movingEventManager, quitEventManager)
 }
