@@ -14,6 +14,13 @@ class BridgeGameController {
         outputView.printGameStartNotification()
         bridgeSize = inputBridgeSize()
         bridgeGame = BridgeGame(bridgeSize)
+        startGame()
+    }
+
+    private fun startGame() {
+        while (bridgeGame.getRestart()) {
+            bridgeGame.initStartGame()
+        }
     }
 
     private fun inputBridgeSize(): Int {
