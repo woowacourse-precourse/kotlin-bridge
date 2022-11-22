@@ -48,6 +48,10 @@ class BridgeGame(val answerBridge: List<String>) {
         return inputBridge.size == answerBridge.size
     }
 
+    fun choiceSame() : Boolean{
+        return inputBridge == answerBridge
+    }
+
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드

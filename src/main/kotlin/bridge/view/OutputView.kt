@@ -33,8 +33,15 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(upBridge : StringBuilder , downBridge : StringBuilder){
+    fun printResult(bridge : BridgeGame){
         println(Strings.GAME_RESULT.phrases)
+        printMap(bridge)
+
+        print(Strings.GAME_SUCCESS_OR_NOT.phrases)
+        if (bridge.choiceAll() && bridge.choiceSame()){ println(Strings.SUCCESS.phrases) }
+        if (!bridge.choiceAll() || !bridge.choiceSame()){ println(Strings.FAIL.phrases) }
+
+        println("\n" + Strings.GAME_TRY_COUNT.phrases + bridge.count)
 
 
     }

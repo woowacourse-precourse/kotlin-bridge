@@ -9,7 +9,6 @@ import bridge.view.OutputView
 class BridgeController {
 
 
-
     fun run() {
         InputView().startPhrases()
         val size = PrintException().printSize().toInt()
@@ -17,10 +16,10 @@ class BridgeController {
         var bridge = PrintException().printBridge(size)
         println(bridge)
         println()
-
         val bridgeGame = BridgeGame(bridge)
 
         choiceBridge(bridgeGame)
+        OutputView().printResult(bridgeGame)
     }
 
     fun choiceBridge(bridgeGame: BridgeGame){
@@ -29,18 +28,17 @@ class BridgeController {
             var direction = PrintException().printDirection()
             bridgeGame.move(direction)
             OutputView().printMap(bridgeGame)
-            if(bridgeGame.choiceFail()!!){
-                fact = restartGame(bridgeGame)!!
-            }
-            if (!bridgeGame.choiceFail() && bridgeGame.choiceAll()){
-                fact = false
-            }
+            println()
+
+            if(bridgeGame.choiceFail()!!){  fact = restartGame(bridgeGame)!!}
+            if (!bridgeGame.choiceFail() && bridgeGame.choiceAll()){  fact = false }
         }
     }
 
 
     fun restartGame(bridgeGame: BridgeGame) :Boolean?{
         val restart = PrintException().printRestart()
+        println()
         if(restart == "R"){
             bridgeGame.retry()
             return true
