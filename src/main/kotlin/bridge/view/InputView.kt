@@ -16,7 +16,6 @@ class InputView {
         var ui = Console.readLine()
         while (!bridgeSizeIsValid(ui)) {
             println(IllegalArgumentException(READ_BRIDGE_SIZE_ERROR_MESSAGE))
-            //println(READ_BRIDGE_SIZE_PRINT)
             ui = Console.readLine()
         }
         return ui.toInt()
@@ -31,7 +30,6 @@ class InputView {
         var userInput = Console.readLine()
         while (!movingInputIsValid(userInput)) {
             println(IllegalArgumentException(READ_MOVING_ERROR_MESSAGE))
-            //println(READ_MOVING_PRINT)
             userInput = Console.readLine()
         }
         return userInput
@@ -46,7 +44,6 @@ class InputView {
         var userInput = Console.readLine()
         while (!gameCommandInputIsValid(userInput)) {
             println(IllegalArgumentException(READ_GAME_COMMAND_ERROR_MESSAGE))
-            //println(READ_GAME_COMMAND_PRINT)
             userInput = Console.readLine()
         }
         return userInput
