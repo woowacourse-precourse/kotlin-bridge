@@ -28,6 +28,4 @@ class CheckException {
         return !string.isNullOrEmpty() && string.matches(Regex("\\d+"))
     }
 
-
-
 }

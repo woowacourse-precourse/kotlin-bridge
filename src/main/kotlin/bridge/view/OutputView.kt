@@ -22,9 +22,11 @@ class OutputView {
         val sbDown = StringBuilder()
         sbDown.append("[ ").append(bridge.downBridge.joinToString(" | ")).append(" ]")
 
+        println(sbUp)
+        println(sbDown)
     }
 
-    
+
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
@@ -33,13 +35,9 @@ class OutputView {
      */
     fun printResult(upBridge : StringBuilder , downBridge : StringBuilder){
         println(Strings.GAME_RESULT.phrases)
-        println("[ " + upBridge + " ] ")
-        println("[ " + downBridge + " ] ")
+
 
     }
 
-    fun failGame(){
-        println("${Strings.GAME_SUCCESS_OR_NOT}"+ "실패")
 
-    }
 }
