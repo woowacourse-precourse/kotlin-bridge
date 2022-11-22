@@ -21,8 +21,8 @@ class BridgeGame(private val bridgeLength: Int) {
 
     private fun createUpDownBridge() {
         upDownBridge = listOf(
-            upDownBridgeOneLine.map { it.replace("D", " ") },
-            upDownBridgeOneLine.map { it.replace("U", " ") }
+            upDownBridgeOneLine.map { it.replace(DOWN, BLANK) },
+            upDownBridgeOneLine.map { it.replace(UP, BLANK) }
         )
     }
 
@@ -37,10 +37,10 @@ class BridgeGame(private val bridgeLength: Int) {
 
     fun retry(restartOrQuitCommand: String): Boolean {
         showBridgeResult = false
-        if (restartOrQuitCommand == "Q") {
+        if (restartOrQuitCommand == QUIT) {
             showBridgeResult = true
             restartGame = false
-        } else if (restartOrQuitCommand == "R") {
+        } else if (restartOrQuitCommand == RESTART) {
             restartGame = true
         }
         return true
@@ -53,23 +53,23 @@ class BridgeGame(private val bridgeLength: Int) {
 
     private fun checkUpDownBridgeContainD(move: String, index: Int) {
         if (move == upDownBridge[1][index]) {
-            oXBridge[0].add(" ")
-            oXBridge[1].add("O")
+            oXBridge[0].add(BLANK)
+            oXBridge[1].add(CORRECT)
             correctNum++
-        } else if (upDownBridge[0][index] == " ") {
-            oXBridge[0].add("X")
-            oXBridge[1].add(" ")
+        } else if (upDownBridge[0][index] == BLANK) {
+            oXBridge[0].add(WRONG)
+            oXBridge[1].add(BLANK)
         }
     }
 
     private fun checkUpDownBridgeContainU(move: String, index: Int) {
         if (move == upDownBridge[0][index]) {
-            oXBridge[0].add("O")
-            oXBridge[1].add(" ")
+            oXBridge[0].add(CORRECT)
+            oXBridge[1].add(BLANK)
             correctNum++
-        } else if (upDownBridge[1][index] == " ") {
-            oXBridge[0].add(" ")
-            oXBridge[1].add("X")
+        } else if (upDownBridge[1][index] == BLANK) {
+            oXBridge[0].add(BLANK)
+            oXBridge[1].add(WRONG)
         }
     }
 
@@ -80,5 +80,15 @@ class BridgeGame(private val bridgeLength: Int) {
     fun getCorrectNum() = correctNum
     fun setRestartGame(restart: Boolean) {
         restartGame = restart
+    }
+
+    companion object {
+        const val UP = "U"
+        const val DOWN = "D"
+        const val BLANK = " "
+        const val QUIT = "Q"
+        const val RESTART = "R"
+        const val CORRECT = "O"
+        const val WRONG = "X"
     }
 }
