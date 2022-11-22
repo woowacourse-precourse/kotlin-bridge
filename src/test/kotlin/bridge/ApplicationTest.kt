@@ -55,4 +55,37 @@ class ApplicationTest : NsTest() {
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
     }
+
+
+    @Test
+    fun `예외 테스트2`() {
+        assertSimpleTest {
+            runException("-5")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `예외 테스트3`() {
+        assertSimpleTest {
+            runException("21")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `예외 테스트4`() {
+        assertSimpleTest {
+            runException("10","a")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `예외 테스트5`() {
+        assertRandomNumberInRangeTest({
+            runException("3", "U", "D", "U", "a")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }, 1, 0, 0)
+    }
 }

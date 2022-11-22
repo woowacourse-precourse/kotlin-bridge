@@ -10,17 +10,14 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        var size = 0
         println("다리 건너기 게임을 시작합니다.")
         while (true) {
-            try {
-                println("다리의 길이를 입력해주세요.")
-                val readSize = Console.readLine()
-                size = readSize.toInt()
-                return size
-            } catch (e: IllegalArgumentException) {
-                println("[ERROR]: 3이상 20미만 숫자만 입력해주세요.")
-            }
+            println("다리의 길이를 입력해주세요.")
+            val readSize = numberCheck(Console.readLine())
+            if (readSize !in 3..20)
+                println("[ERROR]: 3이상 20이하 숫자만 입력해주세요.")
+            if (readSize in 3..20)
+                return readSize
         }
     }
 
@@ -28,7 +25,6 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-
         while (true){
             println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
             val step = Console.readLine()
@@ -50,6 +46,14 @@ class InputView {
                 println("[ERROR]: 'R'(재시도) 혹은 'Q'(종료) 값만 입력 가능합니다.")
             if (regame == "R" || regame == "Q")
                 return regame
+        }
+    }
+
+    fun numberCheck(number:String): Int {
+        return try {
+            number.toInt()
+        } catch (e: IllegalArgumentException) {
+            0
         }
     }
 }
