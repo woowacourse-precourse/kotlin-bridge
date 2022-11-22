@@ -4,6 +4,7 @@ import camp.nextstep.edu.missionutils.Console.readLine
 
 class InputView {
     private val exceptions = Exceptions()
+
     fun readBridgeSize(): Int {
         val size = readLine()
         exceptions.validateBridgeSize(size)
@@ -21,5 +22,4 @@ class InputView {
         exceptions.validateCommand(command)
         return command
     }
-
 }

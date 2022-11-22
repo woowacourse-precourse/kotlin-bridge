@@ -1,7 +1,7 @@
 package bridge
 
 class BridgeGame(private val bridge: List<String>) {
-    var playerBridge = mutableListOf<String>()
+    private var playerBridge = mutableListOf<String>()
     var resultUpBridge = mutableListOf<String>()
     var resultDownBridge = mutableListOf<String>()
     var playCount = 1
