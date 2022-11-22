@@ -29,5 +29,7 @@ class Bridge(private val bridge: List<String>) {
         location++
     }
 
-
+    fun isFirst(): Boolean {
+        return location == 0
+    }
 }

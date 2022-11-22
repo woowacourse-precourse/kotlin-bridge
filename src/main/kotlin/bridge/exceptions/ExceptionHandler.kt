@@ -10,8 +10,9 @@ import bridge.consol.Message.UP
 
 object ExceptionHandler {
 
-    fun checkSize(num: Int) {
+    fun checkSize(num: Int) :Int{
         require(num in 3..20) { NOT_INCLUSIVE_RANGE }
+        return num
     }
 
     fun checkUpDown(str: String) {

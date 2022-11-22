@@ -32,21 +32,17 @@ class BridgeGame {
     }
 
     private fun drawUpSide(bridge: Bridge, hit: String, map: BridgeMap) {
-        if (bridge.location != 0) {
-            map.upSide += PARTITION
-            map.downSide += PARTITION
+        if (!bridge.isFirst()) {
+            map.partition()
         }
-        map.upSide += " $hit "
-        map.downSide += BLANK
+      map.drawUp(hit)
     }
 
     private fun drawDownSide(bridge: Bridge, hit: String, map: BridgeMap) {
-        if (bridge.location != 0) {
-            map.upSide += PARTITION
-            map.downSide += PARTITION
+        if (!bridge.isFirst()) {
+            map.partition()
         }
-        map.upSide += BLANK
-        map.downSide += " $hit "
+        map.drawDown(hit)
     }
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드

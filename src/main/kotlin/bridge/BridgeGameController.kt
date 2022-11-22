@@ -66,7 +66,7 @@ class BridgeGameController {
             return false
         }
         bridgeGame.retry(bridge, map)
-        gameResult.attempt++
+        gameResult.increase()
         return true
     }
 

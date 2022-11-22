@@ -11,4 +11,7 @@ class GameResult {
         result = "성공"
     }
 
+    fun increase() {
+        attempt++
+    }
 }
