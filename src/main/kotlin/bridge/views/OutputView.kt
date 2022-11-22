@@ -21,7 +21,7 @@ class OutputView {
         printDownLine(process[DOWN_LINE])
     }
 
-    fun printUpLine(process: MutableList<String>) {
+    private fun printUpLine(process: MutableList<String>) {
         var upLine = STRING_BRIDGE_START
         for (index in START_INDEX until process.size) {
             upLine += process[index] + addDivider(index, process.size)
@@ -30,7 +30,7 @@ class OutputView {
         println(upLine)
     }
 
-    fun printDownLine(process: MutableList<String>) {
+    private fun printDownLine(process: MutableList<String>) {
         var downLine = STRING_BRIDGE_START
         for (index in START_INDEX until process.size) {
             downLine += process[index] + addDivider(index, process.size)
@@ -39,7 +39,7 @@ class OutputView {
         println(downLine)
     }
 
-    fun addDivider(index: Int, size: Int): String {
+    private fun addDivider(index: Int, size: Int): String {
         if (index < size - 1) {
             return STRING_BRIDGE_DIVIDER
         }
