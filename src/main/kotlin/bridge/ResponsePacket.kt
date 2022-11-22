@@ -9,7 +9,7 @@ data class ResponsePacket(private val responseMessage: String, private val nextR
     }
 }
 
-class ResponsePacketFor(val requestType: RequestType, val responsePacket: ResponsePacket) {
+class ResponsePacketFor(val requestType: RequestType, private val responsePacket: ResponsePacket) {
     fun popResponseMessage(): String {
         return responsePacket.popResponseMessage()
     }
