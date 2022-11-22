@@ -19,4 +19,11 @@ class InputTest {
         }
     }
 
+    @Test
+    fun `이동할 칸 입력 값이 U, R이 아닐 경우 예외 테스트`() {
+        assertThrows<IllegalArgumentException> {
+            InputException().checkDirectionInput("E")
+        }
+    }
+
 }
