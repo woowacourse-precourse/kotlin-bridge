@@ -23,6 +23,10 @@ class OutputView {
         if (bridgeIndex > 0) return " | "
         return ""
     }
+    private fun printRowsResult(upRowsResult: String, downRowsResult: String) {
+        println("[ $upRowsResult ]")
+        println("[ $downRowsResult ]\n")
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
