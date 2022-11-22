@@ -1,9 +1,6 @@
 package bridge
 
 import bridge.data.*
-import bridge.domain.BridgeMaker
-import bridge.domain.BridgeNumberGenerator
-import bridge.domain.BridgeRandomNumberGenerator
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
