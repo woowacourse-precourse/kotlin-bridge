@@ -39,7 +39,11 @@ class BridgeGameUtils {
         if(bridge == root) {
             return false
         }
-        root.clear()
-        return inputView.readGameCommand() == "R"
+        val command = inputView.readGameCommand()
+
+        if(command == "R") {
+            root.clear()
+        }
+        return command == "R"
     }
 }
