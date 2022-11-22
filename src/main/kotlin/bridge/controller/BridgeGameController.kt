@@ -19,12 +19,12 @@ class BridgeGameController {
     private val bridgeNumberGenerator = BridgeRandomNumberGenerator()
     private val bridgeMaker = BridgeMaker(bridgeNumberGenerator)
 
-    var upLine = mutableListOf<String>()
-    var downLine = mutableListOf<String>()
-    var process = mutableListOf<MutableList<String>>()
-    var flag = Flag.PLAYING
-    var index = START_INDEX
-    var tryCount = START_COUNT
+    private var upLine = mutableListOf<String>()
+    private var downLine = mutableListOf<String>()
+    private var process = mutableListOf<MutableList<String>>()
+    private var flag = Flag.PLAYING
+    private var index = START_INDEX
+    private var tryCount = START_COUNT
 
     fun play() {
         do {
@@ -35,7 +35,7 @@ class BridgeGameController {
         outputView.printResult(tryCount, process, flag)
     }
 
-    fun playBridgeGame() {
+    private fun playBridgeGame() {
         val bridge = init()
         do {
             continueBridgeGame(bridge)
@@ -45,18 +45,18 @@ class BridgeGameController {
         } while (flag == Flag.PLAYING)
     }
 
-    fun init(): List<String> {
+    private fun init(): List<String> {
         outputView.printStart()
         val length = inputView.readBridgeLength()
         return bridgeMaker.makeBridge(length)
     }
 
-    fun initProcess() {
+    private fun initProcess() {
         process.add(upLine)
         process.add(downLine)
     }
 
-    fun continueBridgeGame(bridge: List<String>) {
+    private fun continueBridgeGame(bridge: List<String>) {
         val moving = inputView.readMoving()
         if (moving == STRING_UP) {
             upLine.add(bridgeGame.move(moving, bridge[index]))
@@ -67,7 +67,7 @@ class BridgeGameController {
         upLine.add(STRING_BLANK)
     }
 
-    fun changeGameFlag(bridge: List<String>): Flag {
+    private fun changeGameFlag(bridge: List<String>): Flag {
         if (judgeGameFailed()) {
             return Flag.FAIL
         }
@@ -77,18 +77,18 @@ class BridgeGameController {
         return Flag.PLAYING
     }
 
-    fun queryGameRetry(): Boolean {
+    private fun queryGameRetry(): Boolean {
         return bridgeGame.retry(inputView.readGameRetry())
     }
 
-    fun judgeGameFailed(): Boolean {
+    private fun judgeGameFailed(): Boolean {
         if (upLine[index] == STRING_WRONG || downLine[index] == STRING_WRONG) {
             return true
         }
         return false
     }
 
-    fun judgeGameClear(bridge: List<String>): Boolean {
+    private fun judgeGameClear(bridge: List<String>): Boolean {
         if (index == bridge.size - 1) {
             return true
         }
