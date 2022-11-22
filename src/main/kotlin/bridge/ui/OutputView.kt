@@ -13,7 +13,17 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap() {}
+    fun printMap(bridge: List<String>): Pair<MovingResultData, Int> {
+        var bridgeGameLoop = true
+        var totalNumberOfChallenges = 0
+        var movingResult = MovingResultData()
+        while (bridgeGameLoop) {
+            movingResult = getMovingResult(bridge)
+            bridgeGameLoop = movingResult.loop
+            totalNumberOfChallenges++
+        }
+        return Pair(movingResult, totalNumberOfChallenges)
+    }
     private fun getMovingResult(bridge: List<String>): MovingResultData {
         var upRowsResult = ""
         var downRowsResult = ""
