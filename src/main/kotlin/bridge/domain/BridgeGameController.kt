@@ -1,5 +1,7 @@
 package bridge.domain
 
+import bridge.BridgeMaker
+import bridge.BridgeRandomNumberGenerator
 import bridge.view.InputView
 import bridge.view.OutputView
 
@@ -10,11 +12,17 @@ private enum class Command(val message: String) {
 class BridgeGameController {
 
     private lateinit var bridgeGame: BridgeGame
+    private lateinit var bridge: List<String>
     private val inputView = InputView()
     private val outputView = OutputView()
 
-    fun play(bridge: List<String>) {
+    fun start() {
+        outputView.printStartMent()
+        bridge = generateBridge(readBridgeSize())
         bridgeGame = BridgeGame(bridge)
+    }
+
+    fun play() {
         do {
             if (playOneGame(bridge.size)) {
                 outputView.printResult(bridgeGame, true)
@@ -23,6 +31,16 @@ class BridgeGameController {
             val command = readCommand()
             manageCommand(command)
         } while (command == Command.RETRY.message)
+    }
+
+    private fun readBridgeSize(): Int {
+        outputView.printReadBridgeSizeMent()
+        return repeatInputProcess { inputView.readBridgeSize() } as Int
+    }
+
+    private fun generateBridge(size: Int): List<String> {
+        val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
+        return bridgeMaker.makeBridge(size)
     }
 
     private fun playOneGame(bridgeSize: Int): Boolean {
@@ -34,6 +52,7 @@ class BridgeGameController {
         }
         return true
     }
+
 
     private fun readMoving(): String {
         outputView.printReadMovingMent()
