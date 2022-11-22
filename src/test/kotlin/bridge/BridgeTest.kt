@@ -15,13 +15,21 @@ import bridge.util.Constant.LOSE
 import bridge.util.Constant.UP_SIDE
 import bridge.util.Constant.WIN
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class BridgeTest {
-    private var bridgeController = BridgeController()
+    private lateinit var bridgeController: BridgeController
+    private lateinit var bridgeGame: BridgeGame
+
+    @BeforeEach
+    fun setUp() {
+        bridgeController = BridgeController()
+        bridgeGame = BridgeGame()
+    }
 
     @Test
     @DisplayName("게임 시도 횟수 테스트")
@@ -47,7 +55,6 @@ class BridgeTest {
     @ParameterizedTest
     fun testUpSide(input: String) {
         bridgeShape = listOf("U", "D", "D")
-        var bridgeGame = BridgeGame()
         when (input) {
             DOWN_SIDE -> assertEquals(bridgeGame.compareState(input), BridgeResult.DOWN_LOSE)
             UP_SIDE -> assertEquals(bridgeGame.compareState(input), BridgeResult.UP_WIN)
@@ -59,7 +66,6 @@ class BridgeTest {
     @ParameterizedTest
     fun testDownSide(input: String) {
         bridgeShape = listOf("D", "U", "U")
-        var bridgeGame = BridgeGame()
         when (input) {
             DOWN_SIDE -> assertEquals(bridgeGame.compareState(input), BridgeResult.DOWN_WIN)
             UP_SIDE -> assertEquals(bridgeGame.compareState(input), BridgeResult.UP_LOSE)
