@@ -2,9 +2,6 @@ package bridge
 
 import bridge.controller.GameController
 
-import bridge.domain.BridgeMaker
-import bridge.domain.BridgeRandomNumberGenerator
-
 import bridge.view.InputView
 import bridge.view.OutputView
 
