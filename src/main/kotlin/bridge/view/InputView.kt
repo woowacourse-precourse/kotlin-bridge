@@ -1,5 +1,4 @@
-package bridge.console
-import bridge.utils.Constants
+package bridge.view
 import bridge.utils.ExceptionHandler.validateInRange
 import bridge.utils.ExceptionHandler.validateIntType
 import bridge.utils.ExceptionHandler.validateMoveLaneSymbol

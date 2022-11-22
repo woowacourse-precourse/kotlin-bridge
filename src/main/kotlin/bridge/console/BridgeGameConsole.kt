@@ -5,7 +5,7 @@ import bridge.BridgeRandomNumberGenerator
 import bridge.model.Bridge
 import bridge.model.BridgeGame
 import bridge.model.GameInfo
-import bridge.utils.Constants
+import bridge.view.InputView
 import bridge.view.OutputView
 
 class BridgeGameConsole {
