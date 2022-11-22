@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.constant.*
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
@@ -7,6 +8,41 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class ApplicationTest : NsTest() {
+
+    @Test
+    fun `게임 종료 check 하는 함수 test`(){
+        val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+        val bridgeMaker = BridgeMaker(numberGenerator)
+        val bridge= Bridge(bridgeMaker.makeBridge(3))
+
+        bridge.movePlayer(UP_SIDE)
+        bridge.movePlayer(DOWN_SIDE)
+        bridge.movePlayer(DOWN_SIDE)
+
+        assertThat(bridge.checkGameEnd()).isEqualTo(END)
+    }
+    @Test
+    fun `이동이 틀렸을 때 check 하는 함수 test`(){
+        val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+        val bridgeMaker = BridgeMaker(numberGenerator)
+        val bridge= Bridge(bridgeMaker.makeBridge(3))
+
+        bridge.movePlayer(DOWN_SIDE)
+
+        assertThat(bridge.checkGameEnd()).isEqualTo(WRONG)
+    }
+    @Test
+    fun `다리 상태 생성 test`(){
+        val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+        val bridgeMaker = BridgeMaker(numberGenerator)
+        val bridge: Bridge= Bridge(bridgeMaker.makeBridge(3))
+
+        bridge.movePlayer(UP_SIDE)
+        bridge.movePlayer(DOWN_SIDE)
+        val expect= listOf(listOf("O"," "), listOf(" ","O"))
+        assertThat(bridge.getRoadUntilNow().getRoadMap()[0]).isEqualTo(expect[0])
+        assertThat(bridge.getRoadUntilNow().getRoadMap()[1]).isEqualTo(expect[1])
+    }
     @Test
     fun `다리 생성 테스트`() {
         val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
@@ -15,6 +51,20 @@ class ApplicationTest : NsTest() {
         assertThat(bridge).containsExactly("U", "D", "D")
     }
 
+    @Test
+    fun `게임 reset 테스트`(){
+        val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+        val bridgeMaker = BridgeMaker(numberGenerator)
+        val bridge= Bridge(bridgeMaker.makeBridge(3))
+        val bridgeGame=BridgeGame()
+
+        bridge.movePlayer(UP_SIDE)
+        bridge.movePlayer(DOWN_SIDE)
+
+        bridgeGame.retry(bridge)
+
+        assertThat(bridge.getRoadUntilNow().getRoadMap()[0].size).isEqualTo(0)
+    }
     @Test
     fun `기능 테스트`() {
         assertRandomNumberInRangeTest({
