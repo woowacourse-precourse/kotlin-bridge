@@ -1,6 +1,7 @@
 package view
 
 import camp.nextstep.edu.missionutils.Console
+import java.lang.IllegalArgumentException
 
 /**
  * 사용자로부터 입력을 받는 역할을 한다.
@@ -42,5 +43,16 @@ class InputView {
         val move = readMoving()
         require(move == "U" || move == "D") { "[ERROR] \"U\" 나 \"D\"를 입력해주세요." }
         return move
+    }
+
+    fun inputValidBridgeSize(): Int {
+        var bridgeSize = 0
+        try {
+            bridgeSize = readBridgeSize().toInt()
+            require(bridgeSize in 3..20) { "[ERROR] 3이상 20이하 숫자를 입력해주세요." }
+        } catch (exception: IllegalArgumentException) {
+            print("[ERROR] 숫자만 입력해주세요.")
+        }
+        return bridgeSize
     }
 }
