@@ -1,5 +1,11 @@
 package bridge.domain
 
-class GameController() {
+import bridge.ui.OutputView
 
+class GameController() {
+    private val outputView = OutputView()
+
+    fun initGame() {
+        outputView.printOpening()
+    }
 }
