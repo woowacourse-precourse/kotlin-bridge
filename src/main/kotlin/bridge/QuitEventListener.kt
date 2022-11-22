@@ -5,5 +5,5 @@ import bridge.model.GameMapStatus
 
 interface QuitEventListener {
 
-    fun notify(gameMapStatus: GameMapStatus, gameResult: GameResult)
+    fun update(gameMapStatus: GameMapStatus, gameResult: GameResult)
 }

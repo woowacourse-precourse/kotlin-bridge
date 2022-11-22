@@ -28,12 +28,12 @@ class OutputView : MovingEventListener, QuitEventListener {
         println("총 시도한 횟수: " + result.attempts)
     }
 
-    override fun notify(gameMapStatus: GameMapStatus) {
+    override fun update(gameMapStatus: GameMapStatus) {
         val map = GameMap(gameMapStatus)
         printMap(map)
     }
 
-    override fun notify(gameMapStatus: GameMapStatus, gameResult: GameResult) {
+    override fun update(gameMapStatus: GameMapStatus, gameResult: GameResult) {
         printResult(GameMap(gameMapStatus), gameResult)
     }
 }

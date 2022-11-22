@@ -28,7 +28,7 @@ internal class OutputViewTest {
             @ParameterizedTest
             @MethodSource("gameStates")
             fun `사용자가 지나온 길을 보여준다`(gameMapStatus: GameMapStatus, result: String) {
-                outputView.notify(gameMapStatus)
+                outputView.update(gameMapStatus)
 
                 assertThat(output()).isEqualTo(result)
             }
@@ -45,7 +45,7 @@ internal class OutputViewTest {
 
             @Test
             fun `최종 게임 상태와 게임 결과를 출력한다`() {
-                outputView.notify(gameMapStatus, gameResult)
+                outputView.update(gameMapStatus, gameResult)
 
                 assertThat(output()).contains("[ O |   |   ]\n[   | O | O ]", "성공", "1")
             }
