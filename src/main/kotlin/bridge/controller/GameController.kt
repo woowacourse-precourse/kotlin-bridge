@@ -9,6 +9,7 @@ import bridge.ui.OutputView
 class GameController {
     private val inputView = InputView()
     private val outputView = OutputView()
+    private var bridgeState = BridgeState()
     private var isSuccess = FAIL
     private var command = RETRY
     private var count = 0
@@ -29,13 +30,14 @@ class GameController {
 
     private fun crossBridge(bridge: Bridge) {
         while (command && isSuccess == FAIL) {
+            bridgeState = BridgeState()
             count++
-            if (BridgeState().compare(bridge)) {
+            if (bridgeState.compare(bridge)) {
                 isSuccess = SUCCESS
                 break
             }
             if (!BridgeGame().retry(inputView.readGameCommand())) command = QUIT
         }
-        outputView.printStats(count, isSuccess)
+        bridgeState.endGame(count,isSuccess)
     }
 }

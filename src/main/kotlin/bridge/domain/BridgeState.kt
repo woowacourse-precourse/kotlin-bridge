@@ -16,12 +16,16 @@ class BridgeState {
             insertMove(upOrDown, alive)
             if (!alive) return false
         }
-        outputView.printResult(playerMoves)
         return true
     }
 
     private fun insertMove(upOrDown: String, alive: Boolean) {
         playerMoves = bridgeGame.move(playerMoves, upOrDown, alive)
         outputView.printMap(playerMoves)
+    }
+
+    fun endGame(count:Int,isSuccess:String){
+        outputView.printResult(playerMoves)
+        outputView.printStats(count, isSuccess)
     }
 }

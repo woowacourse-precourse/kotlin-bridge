@@ -9,7 +9,8 @@
 - [x] 다리 크기 - getSize()
 ### BridgeState
 - [x] 다리와 플레이어 입력을 비교 - BridgeState#compare()
-- [x] 플레이어 이동을 리스트에 추가하고 반환- BridgeState#insertMove()
+- [x] 플레이어 이동을 리스트에 추가하고 반환 - BridgeState#insertMove()
+- [x] 게임 종료 시 결과 출력 - endGame()
 ### GameController
 - [x] 게임 플레이 - playGame()
 - [X] 다리 건너기 - crossBridge()
@@ -31,7 +32,6 @@
 - [x] 게임이 한번도 실행되지 않아 count 가 0 
 ### Enum 목록 작성
 - [X] Games : 플레이어가 입력한 U, D, R, Q 를 상수로 저장
-
 # 테스트 목록 작성
 ### GameControllerTest
 - [ ] 다리 길이 5 기능 테스트

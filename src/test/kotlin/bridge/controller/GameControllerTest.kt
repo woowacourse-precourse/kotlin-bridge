@@ -53,8 +53,8 @@ class GameControllerTest :NsTest(){
                     "게임 성공 여부: 실패",
                     "총 시도한 횟수: 1"
             )
-            val upSideIndex = output().indexOf("[ O |   | O ]")
-            val downSideIndex = output().indexOf("[   | O |   ]")
+            val upSideIndex = output().indexOf("[ O |   |   ]")
+            val downSideIndex = output().indexOf("[   | O | X ]")
             Assertions.assertThat(upSideIndex).isLessThan(downSideIndex)
         }, 1, 0, 1)
     }
