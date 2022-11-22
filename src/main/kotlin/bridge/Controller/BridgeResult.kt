@@ -21,27 +21,47 @@ class BridgeResult {
     fun gameStart() {
         val answerBridge = manageGettingBridge()
         while (true) {
-            val playerDirection = playerBridge.getDirection()
-            bridgeGame.move(playerDirection, answerBridge)
             val selectedBridge = bridgeGame.saveLastResult()
-            selectedBridge[UP]?.let { selectedBridge[DOWN]?.let { it1 -> outputView.printMap(it, it1) } }
+            showMovedResult(answerBridge,selectedBridge)
             if (bridgeGame.getSuccessResult(answerBridge)) {
                 manageSuccessResult(selectedBridge)
                 break
             }
             if (bridgeGame.getFailureResult()) {
-                when (manageRetryDecision()) {
-                    RETRY -> {
-                        bridgeGame.retry()
-                        continue
-                    }
-                    QUIT -> {
-                        outputView.printResult(selectedBridge, resultOfGame, attemptedNumber)
-                        break
-                    }
+                when(manageSelectedRetry(selectedBridge)){
+                    RETRY -> continue
+                    QUIT -> break
                 }
             }
         }
+    }
+
+    private fun manageSelectedRetry(selectedBridge: MutableMap<String, List<String>>) : String{
+        when (manageRetryDecision()) {
+            RETRY -> {
+                return getRetryGame()
+            }
+            QUIT -> {
+                return quitGame(selectedBridge)
+            }
+        }
+        return playerBridge.getRetryAnswer()
+    }
+
+    private fun getRetryGame() : String{
+        bridgeGame.retry()
+        return RETRY
+    }
+
+    private fun quitGame(selectedBridge: MutableMap<String, List<String>>) : String{
+        outputView.printResult(selectedBridge, resultOfGame, attemptedNumber)
+        return QUIT
+    }
+
+    private fun showMovedResult(answerBridge : List<String>, selectedBridge: MutableMap<String, List<String>>){
+        val playerDirection = playerBridge.getDirection()
+        bridgeGame.move(playerDirection, answerBridge)
+        selectedBridge[UP]?.let { selectedBridge[DOWN]?.let { it1 -> outputView.printMap(it, it1) } }
     }
 
     private fun manageGettingBridge() : List<String>{
