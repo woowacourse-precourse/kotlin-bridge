@@ -8,7 +8,16 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
+
     fun makeBridge(size: Int): List<String> {
-        return listOf()
+        var createdBridge = emptyList<String>().toMutableList()
+        for (i in 0 until size) {
+            var num = bridgeNumberGenerator.generate()
+            if (num == 0)
+                createdBridge.add("D")
+            if (num == 1)
+                createdBridge.add("U")
+        }
+        return createdBridge.toList()
     }
 }
