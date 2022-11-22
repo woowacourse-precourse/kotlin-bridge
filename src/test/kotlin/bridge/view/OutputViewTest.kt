@@ -1,7 +1,6 @@
 package bridge.view
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.io.ByteArrayOutputStream
@@ -18,12 +17,6 @@ internal class OutputViewTest {
         standardOut = System.out
         captor = ByteArrayOutputStream()
         System.setOut(PrintStream(captor))
-    }
-
-    @AfterEach
-    fun printOutput() {
-        System.setOut(standardOut)
-        println(output())
     }
 
     private fun output(): String {
