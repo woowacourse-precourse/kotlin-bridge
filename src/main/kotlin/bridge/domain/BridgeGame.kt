@@ -8,42 +8,50 @@ class BridgeGame(
     private val gameManager: BridgeGameManager,
     private val bridgeMaker: BridgeMaker
 ) {
-    lateinit var bridge: List<String>
-    lateinit var path: MutableList<String>
-    var gameResult = true
-    var numberOfTry = 0
+    private lateinit var bridge: List<String>
+    private lateinit var path: MutableList<String>
+    private var gameResult = true
+    private var numberOfTry = 0
 
     fun runGame() {
         gameManager.startGame()
-        val bridgeSize = gameManager.getBridgeSize()
-        bridge = bridgeMaker.makeBridge(bridgeSize)
-
+        setBridge(gameManager.getBridgeSize())
         crossBridge()
         gameManager.endGame(getMap(), gameResult, numberOfTry)
     }
 
-    fun crossBridge() {
-        numberOfTry++
+    fun setBridge(bridgeSize: Int) {
+        bridge = bridgeMaker.makeBridge(bridgeSize)
+    }
 
+    fun resetValues() {
         path = mutableListOf()
-        var isMoving = true
-        var currentIndex = 0
+    }
 
-        while (isMoving && currentIndex < bridge.size) {
-            isMoving = move(currentIndex++, gameManager.getMovement())
+    private fun crossBridge() {
+        numberOfTry++
+        resetValues()
+        var isMoving = true
+
+        while (isMoving && path.size < bridge.size) {
+            isMoving = move(gameManager.getMovement())
         }
     }
 
-    fun move(currentIndex: Int, movement: String): Boolean {
-        path.add(movement)
-        gameManager.printMap(getMap())
+    private fun move(movement: String): Boolean {
+        updateMovingPath(movement)
 
-        if (!isSuccessMoving(movement, currentIndex)) {
+        val isSuccess = isSuccessMoving(movement, path.size - 1)
+        if (!isSuccess) {
             retry()
-            return false
         }
 
-        return true
+        return isSuccess
+    }
+
+    fun updateMovingPath(movement: String) {
+        path.add(movement)
+        gameManager.printMap(getMap())
     }
 
     fun isSuccessMoving(movement: String, index: Int): Boolean {
@@ -54,7 +62,7 @@ class BridgeGame(
         return true
     }
 
-    fun retry() {
+    private fun retry() {
         when (gameManager.getRestartCommand()) {
             GAME_RESTART -> crossBridge()
             GAME_END -> gameResult = false

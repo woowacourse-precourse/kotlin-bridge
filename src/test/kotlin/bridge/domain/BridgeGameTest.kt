@@ -12,22 +12,24 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class BridgeGameTest {
     private lateinit var bridgeGame: BridgeGame
-    private lateinit var bridge: List<String>
 
     @BeforeEach
     fun set() {
         val gameManager = BridgeGameManager(InputView(), OutputView())
         val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 0, 0))
         val bridgeMaker = BridgeMaker(numberGenerator)
-        bridge = bridgeMaker.makeBridge(3)
 
         bridgeGame = BridgeGame(gameManager, bridgeMaker)
-        bridgeGame.bridge = bridge
+        bridgeGame.setBridge(3)
     }
 
     @Test
     fun getMapTest() {
-        bridgeGame.path = mutableListOf("U", "D", "U")
+        bridgeGame.resetValues()
+        bridgeGame.updateMovingPath("U")
+        bridgeGame.updateMovingPath("D")
+        bridgeGame.updateMovingPath("U")
+
         val result = listOf(
             listOf("O", " ", "X"),
             listOf(" ", "O", " ")
