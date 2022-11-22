@@ -7,41 +7,36 @@ class Control {
     private val inputView = InputView()
     private val outputView = OutputView()
     var numberOfTry = 1
+    var bridge = listOf<String>()
 
     fun gameStart() {
         println(Output.GAME_START.output)
-        val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(inputView.readBridgeSize())
-        markingBridge(bridge)
+        bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(inputView.readBridgeSize())
+        markingBridge()
     }
 
-    private fun markingBridge(bridge: List<String>) {
+    private fun markingBridge() {
         val markUp = mutableListOf<String>()
         val markDown = mutableListOf<String>()
-        var tryAgain = false
-        var completeGame = false
         for (index in bridge.indices) {
             val mark = bridgeGame.markBridge(inputView.readMoving(), bridge, index)
             bridgeGame.move(mark, markUp, markDown)
             outputView.printMap(markUp, markDown)
             if (bridgeGame.containsX(markUp, markDown)) {
-                tryAgain = bridgeGame.retry(inputView.readGameCommand())
-                if (tryAgain) {
-                    numberOfTry++
-                    break
-                } else {
-                    outputView.printResult(markUp, markDown, numberOfTry)
-                    return
-                }
-            }
-            if (index == (bridge.size - 1)) {
-                completeGame = true
+                whetherToRetry(markUp, markDown)
+                return
             }
         }
+        outputView.printResultSuccess(markUp, markDown, numberOfTry)
+    }
+
+    private fun whetherToRetry(markUp: MutableList<String>, markDown: MutableList<String>) {
+        val tryAgain = bridgeGame.retry(inputView.readGameCommand())
         if (tryAgain) {
-            markingBridge(bridge)
-        }
-        if (completeGame) {
-            outputView.printResultSuccess(markUp, markDown, numberOfTry)
+            numberOfTry++
+            return markingBridge()
+        } else {
+            outputView.printResult(markUp, markDown, numberOfTry)
         }
     }
 }
