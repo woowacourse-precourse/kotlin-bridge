@@ -11,6 +11,8 @@ fun main() {
     startGame()
     makeBridge()
     progressGame()
+    printGameResultMap()
+    outputView.printResult(gamsHost.convertGameStateToGameResult(), gamsHost.getAttemptNumber())
 }
 
 private fun startGame() {

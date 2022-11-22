@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.constants.BridgePhrases.INCORRECT_GAME_STATE_ERROR
 import kotlin.properties.Delegates
 
 class GameHost(private val bridgeMaker: BridgeMaker, private val bridgeGame: BridgeGame) {
@@ -8,6 +9,7 @@ class GameHost(private val bridgeMaker: BridgeMaker, private val bridgeGame: Bri
     private lateinit var recentUserInput: String
     private var stageState by Delegates.notNull<Boolean>()
     private var gameState = GameState.INIT
+    private var attemptNumber = 1
 
     fun makeBridge(bridgeSize: Int) {
         bridge = bridgeMaker.makeBridge(bridgeSize)
@@ -24,7 +26,16 @@ class GameHost(private val bridgeMaker: BridgeMaker, private val bridgeGame: Bri
 
     fun getProperGameState(userGameCommandInput: String) {
         gameState = bridgeGame.retry(userGameCommandInput)
+        if (gameState == GameState.RESTART) attemptNumber += 1
         bridgeCurrentPosition = 0
+    }
+
+    fun convertGameStateToGameResult(): GameResult {
+        when (gameState) {
+            GameState.END -> return GameResult.SUCCESS
+            GameState.QUIT -> return GameResult.FAIL
+        }
+        throw IllegalStateException(INCORRECT_GAME_STATE_ERROR)
     }
 
     fun getBridgeCurrentPosition(): Int = bridgeCurrentPosition
@@ -34,4 +45,6 @@ class GameHost(private val bridgeMaker: BridgeMaker, private val bridgeGame: Bri
     fun getRecentStageState(): Boolean = stageState
 
     fun getGameState(): GameState = gameState
+
+    fun getAttemptNumber(): Int = attemptNumber
 }
