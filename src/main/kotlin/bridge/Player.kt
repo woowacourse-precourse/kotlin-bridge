@@ -45,7 +45,7 @@ class Player(private val bridgeGame: BridgeGame) {
     fun setRetry() {
         val getRetryGame = bridgeGame.retry()
         if (getRetryGame) {
-            userSelectedRoute.removeLast()
+            userSelectedRoute.clear()
             tryCount++
         } else {
             isSuccessEndGame = false
