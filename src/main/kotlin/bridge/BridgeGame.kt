@@ -20,14 +20,14 @@ class BridgeGame(private val answerBridge: List<String>) {
         return inputBridge
     }
 
-    private fun checkOX(inputBridge: List<String>): List<String> {
+    fun checkOX(inputBridge: List<String>): List<String> {
         var inputBridge = inputBridge
         var inputBridgeMutable = inputBridge.toMutableList()
         inputBridgeMutable = addX(inputBridge, inputBridgeMutable)
         return inputBridgeMutable.toList()
     }
 
-    private fun addX(
+    fun addX(
         inputBridge: List<String>,
         inputBridgeMutable: MutableList<String>,
     ): MutableList<String> {
