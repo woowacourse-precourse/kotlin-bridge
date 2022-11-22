@@ -1,5 +1,6 @@
 package bridge.view
 
+import bridge.model.GameResult
 import bridge.model.GameState
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
@@ -31,6 +32,23 @@ internal class OutputViewTest {
                 outputView.notify(gameState)
 
                 assertThat(output()).isEqualTo(result)
+            }
+
+            override fun runMain() {
+
+            }
+        }
+
+        @Nested
+        inner class `게임 상태와 게임 결과를 받으면`: NsTest() {
+            private val gameState = GameState(listOf("U", "D", "D"), listOf("U", "D", "D"))
+            private val gameResult = GameResult(true, 1)
+
+            @Test
+            fun `최종 게임 상태와 게임 결과를 출력한다`() {
+                outputView.notify(gameState, gameResult)
+
+                assertThat(output()).contains("[ O |   |   ]\n[   | O | O ]", "성공", "1")
             }
 
             override fun runMain() {
