@@ -37,8 +37,8 @@ class ApplicationTest : NsTest() {
 
     @Test
     fun `예외 테스트`() {
-        assertSimpleTest {
-            runException("a")
+        assertThrows<IllegalArgumentException> {
+            run("a")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }

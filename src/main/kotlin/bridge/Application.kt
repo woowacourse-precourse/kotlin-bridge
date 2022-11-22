@@ -26,6 +26,7 @@ private fun bridgeSize(){
         bridgeSize = inputView.readBridgeSize()
     }catch (e: IllegalArgumentException){
         println("$MESSAGE_ERROR $e")
+        throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
     }
 }
 
@@ -35,5 +36,6 @@ private fun bridgeGame(){
         bridgeSize?.let { bridgeGame.move(it) }
     }catch (e: IllegalArgumentException){
         println("$MESSAGE_ERROR $e")
+        throw IllegalArgumentException("$MESSAGE_ERROR 잘못된 입력 값입니다.")
     }
 }
