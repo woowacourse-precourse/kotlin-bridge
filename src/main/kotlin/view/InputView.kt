@@ -31,4 +31,10 @@ class InputView {
         println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
         return Console.readLine()
     }
+
+    fun inputValidCommand(): String {
+        val command = readGameCommand()
+        require(command == "R" || command == "Q") { "[ERROR] \"R\" 이나 \"Q\"를 입력해주세요." }
+        return command
+    }
 }
