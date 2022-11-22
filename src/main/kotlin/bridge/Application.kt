@@ -44,8 +44,7 @@ fun bridgegame(size : Int, makeBridge : List<String>) {
             i=ivalue }
         if (sucess == false) { checkfail = i
             break
-        }}
-}
+        }} }
 fun endprint(a: List<String>,b: Int) {
     var outputview = OutputView()
     if (sucess == true){
