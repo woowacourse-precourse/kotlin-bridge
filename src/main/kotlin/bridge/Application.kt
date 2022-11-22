@@ -9,7 +9,7 @@ fun selectDirection(inputView: InputView, outputView: OutputView, game: BridgeGa
     println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
     val direction = inputView.readMoving()
     val isRight = game.move(direction)
-    outputView.printMap(game.route, game.bridge)
+    outputView.printMap(game.getRoute(), game.getBridge())
     return isRight
 }
 fun isRetry(inputView: InputView, game: BridgeGame): Boolean {
@@ -28,6 +28,6 @@ fun main() {
     do {
         val isRight = selectDirection(inputView, outputView, game)
         if (!isRight && !isRetry(inputView, game)) break
-    } while(game.route.size != game.bridge.size)
-    outputView.printResult(game.route, game.bridge, game.tryNumber)
+    } while(!game.isEnd())
+    outputView.printResult(game.getRoute(), game.getBridge(), game.getTryNumber())
 }
