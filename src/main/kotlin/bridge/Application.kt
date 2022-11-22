@@ -11,13 +11,10 @@ fun main() {
 
     val bridgeSize = checkInput.checkBridgeSize(showInputView.readBridgeSize())
     val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
-
-    while (true) {
+    var gameOver = true
+    while (gameOver) {
         val moveDirection = checkInput.checkMoveDirection(showInputView.readMoving())
-        if(!bridgeGame.move(moveDirection, bridge)){
-            var gameOver = showInputView.readGameCommand()
-
-        }
-
+        if (!bridgeGame.move(moveDirection, bridge))
+            gameOver = bridgeGame.retry(checkInput.checkRetry(showInputView.readGameCommand()))
     }
 }
