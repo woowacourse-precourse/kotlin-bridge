@@ -53,10 +53,12 @@ fun playGame(bridge:List<String>,tryCount:Int): Int {
  */
 fun main() {
     println(OutputView.Message.GAMESTART.message)
+    println()
     val size = InputView().readBridgeSize()
+    println()
     val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(size)
     val finalTryCount = playGame(bridge,Constant.TRY_COUNT.params)
-    if (finalTryCount !=Constant.CORRECT.params || finalTryCount !=Constant.ERROR.params)
+    if (finalTryCount != Constant.WRONG.params)
         OutputView(bridge).printResult(bridge.size,finalTryCount)
 }
 enum class Constant(
