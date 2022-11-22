@@ -1,5 +1,12 @@
 package bridge
 
+import controller.Controller
+import utils.Messages.ERROR_PREFIX
+
 fun main() {
-    // TODO: 프로그램 구현
+    try {
+        Controller().run()
+    } catch (error: IllegalArgumentException) {
+        println(ERROR_PREFIX+error.message)
+    }
 }
