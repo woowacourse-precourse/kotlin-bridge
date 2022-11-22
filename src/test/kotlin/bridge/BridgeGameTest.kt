@@ -14,4 +14,12 @@ internal class BridgeGameTest {
         Assertions.assertThat(markUp).isEqualTo(listOf("X"))
         Assertions.assertThat(markDown).isEqualTo(listOf(" "))
     }
+
+    @Test
+    fun `X가 포함되어 있으면 true를 반환`() {
+        val markUp = mutableListOf("X")
+        val markDown = mutableListOf(" ")
+        val result = BridgeGame().containsX(markUp, markDown)
+        Assertions.assertThat(result).isEqualTo(true)
+    }
 }
