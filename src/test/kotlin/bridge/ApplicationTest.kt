@@ -48,6 +48,20 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `재시도 결과 테스트`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "U", "R", "U", "D", "U")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O |   | O ]",
+                "[   | O |   ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 2"
+            )
+        }, 1, 0, 1)
+    }
+
     override fun runMain() {
         main()
     }
