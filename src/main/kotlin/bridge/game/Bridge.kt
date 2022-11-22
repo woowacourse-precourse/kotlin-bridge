@@ -2,8 +2,10 @@ package bridge.game
 
 import bridge.io.InputView
 import bridge.io.OutputView
+import bridge.resources.CORRECT
 import bridge.resources.DOWN
 import bridge.resources.UP
+import bridge.resources.WRONG
 
 class Bridge(
     private val way: MutableList<String>,
@@ -22,7 +24,7 @@ class Bridge(
 
     }
 
-    fun makeTopRow(answerWay: List<String>): List<String> {
+    fun makeTopRow(answerWay: List<String>): List<String> {  //윗줄 출력 양식 만들기
         val line = mutableListOf<String>()
         for (step in way.indices) {
             if (way[step] == UP) line.add(compare(answerWay[step], way[step]))
@@ -32,7 +34,7 @@ class Bridge(
         return line
     }
 
-    fun makeBotRow(answerWay: List<String>): List<String> { // 윗줄 출력 양식 만들기
+    fun makeBotRow(answerWay: List<String>): List<String> { // 아랫줄 출력 양식 만들기
         val line = mutableListOf<String>()
         for (step in way.indices) {
             if (way[step] == DOWN) line.add(compare(answerWay[step], way[step]))
@@ -44,9 +46,9 @@ class Bridge(
 
     private fun compare(answerStep: String, myStep: String): String {
         if (answerStep == myStep) {
-            return "O"
+            return CORRECT
         }
-        return "X"
+        return WRONG
     }
 
     private fun isSafeZone(answerWay: List<String>): Boolean {

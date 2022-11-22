@@ -29,5 +29,9 @@ const val UP="U"
 const val DOWN="D"
 const val RETRY_COMMAND="R"
 const val QUIT_COMMAND="Q"
+const val CORRECT = "O"
+const val WRONG="X"
+const val LOWER=0
+const val UPPER=1
 
 

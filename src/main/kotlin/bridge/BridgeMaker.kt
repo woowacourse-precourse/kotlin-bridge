@@ -1,7 +1,9 @@
 package bridge
 
 import bridge.resources.DOWN
+import bridge.resources.LOWER
 import bridge.resources.UP
+import bridge.resources.UPPER
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -17,8 +19,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         var generatedNum:Int
         for(step in 0 until size){
             generatedNum=bridgeNumberGenerator.generate()
-            if(generatedNum==0) bridge.add(DOWN)
-            if(generatedNum==1) bridge.add(UP)
+            if(generatedNum== LOWER) bridge.add(DOWN)
+            if(generatedNum== UPPER) bridge.add(UP)
         }
         return bridge
     }
