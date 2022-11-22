@@ -9,12 +9,41 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap() {}
+
+    private fun judge(route: String, bridge: String, direction: String): String {
+        return if (route == direction && bridge == direction) {
+            "O "
+        } else if (route == direction && bridge != direction) {
+            "X "
+        } else {
+            "  "
+        }
+    }
+    fun printMap(route: List<String>, bridge: List<String>) {
+        print("[ ")
+        for (i in route.indices) {
+            print(judge(route[i], bridge[i], "U") + if (i != route.lastIndex) "| " else "")
+        }
+        print("]\n[ ")
+        for (i in route.indices) {
+            print(judge(route[i], bridge[i], "D") + if (i != route.lastIndex) "| " else "")
+        }
+        println("]\n")
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(route: List<String>, bridge: List<String>, tryNumber: Int) {
+        println("최종 게임 결과")
+        printMap(route, bridge)
+        if (route.size == bridge.size && route[route.lastIndex] == bridge[bridge.lastIndex]) {
+            println("게임 성공 여부: 성공")
+        } else {
+            println("게임 성공 여부: 실패")
+        }
+        println("총 시도한 횟수: $tryNumber")
+    }
 }
