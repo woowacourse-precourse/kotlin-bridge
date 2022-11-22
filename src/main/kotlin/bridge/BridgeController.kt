@@ -45,7 +45,7 @@ class BridgeController {
     }
 
     private fun checkFail() {
-        if (bridgeGame.isFail(Enum.RESULT.FAILURE.emoji)) {
+        if (bridgeGame.isFail()) {
             outputView.printRestart()
             isRestart()
         } else {

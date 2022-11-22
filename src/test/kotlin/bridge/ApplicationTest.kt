@@ -33,7 +33,7 @@ class ApplicationTest : NsTest() {
         directions.forEach {
             game.move(it)
         }
-        assertThat(game.isFail(Enum.RESULT.FAILURE.emoji)).isTrue
+        assertThat(game.isFail()).isTrue
     }
 
     @Test

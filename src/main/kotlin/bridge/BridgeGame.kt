@@ -63,7 +63,7 @@ class BridgeGame(private val bridges: List<String>) {
 
     private fun increaseTryCount() = tryCount++
 
-    fun isFail(emoji: String) = downSide.contains(emoji) || upSide.contains(emoji)
+    fun isFail() = downSide.contains(Enum.RESULT.FAILURE.emoji) || upSide.contains(Enum.RESULT.FAILURE.emoji)
 
     fun isEnd() = bridgeIndex == bridges.size
 
