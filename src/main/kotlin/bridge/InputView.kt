@@ -47,7 +47,7 @@ class InputView {
     }
 
     private fun String.toIntOrThrow(): Int {
-        return requireNotNull(toIntOrNull()) { Message.InputViewEnum.INVALID_MSG }
+        return requireNotNull(toIntOrNull()) { Message.InputViewEnum.INVALID_LENGTH }
     }
 
     enum class UI(vararg args: String) {
