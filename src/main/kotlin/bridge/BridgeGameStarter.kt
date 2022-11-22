@@ -16,6 +16,7 @@ class BridgeGameStarter {
     fun startGame(){
         do{ OutputView().printSelection()
             val nextMoving = InputView().readMoving()
+            var checkMoving = BridgeGame().move(nextMoving, bridge)
         } while(success == "True" && moving.size != bridge.size)
     }
 
