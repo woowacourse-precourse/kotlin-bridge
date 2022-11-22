@@ -11,5 +11,6 @@ const val FINAL_TRY_NUM_MSG = "총 시도한 횟수: "
 
 const val UP = "U"
 const val DOWN = "D"
+
 const val RESTART = "R"
 const val QUIT = "Q"

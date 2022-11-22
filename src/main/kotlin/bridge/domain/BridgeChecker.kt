@@ -10,47 +10,42 @@ class BridgeChecker(private val bridge: List<String>) {
     private val bridgeGame = BridgeGame()
     private val outputView = OutputView()
     private var map = listOf<String>()
-    private var resultFlag = ""
 
-    fun checkBridge() {
+    fun startChecking() {
+        if (checkBridge())
+            outputView.printResult(map, SUCCESS, bridgeGame.getTryNumber())
+        else
+            restartOrQuit()
+    }
+
+    private fun checkBridge(): Boolean {
         for ((index, actual) in bridge.withIndex()) {
-            val predict = startGuessing(index, actual)
-            if (!checkMovable(actual, predict)) break
-        }
-        if (resultFlag == FAIL) askRestartOrQuit()
-        else outputView.printResult(map, SUCCESS, bridgeGame.getTryNumber())
-    }
-
-    private fun startGuessing(index: Int, actual: String): String {
-        val predict = askDirection()
-        map = outputView.printMap(index, actual, predict)
-        println(map[0])
-        println(map[1])
-        return predict
-    }
-
-    private fun checkMovable(actual: String, predict: String): Boolean {
-        if(!bridgeGame.move(actual, predict)){
-            resultFlag = FAIL
-            return false
+            if (!isCrossable(index, actual)) return false
         }
         return true
     }
 
-    private fun askRestartOrQuit() {
-        if (askGameCommand() == RESTART) {
-            resultFlag = ""
-            outputView.initMap() // 맵 초기화
-            bridgeGame.retry() // 시도 횟수 증가
-            checkBridge() // 동일한 다리로 재시도
-        } else {
-            outputView.printResult(map, FAIL, bridgeGame.getTryNumber())
-        }
+    private fun isCrossable(index: Int, actual: String): Boolean {
+        val predict = askDirection()
+        map = outputView.printMap(index, actual, predict)
+        println(map[0])
+        println(map[1])
+        return bridgeGame.move(actual, predict)
     }
 
     private fun askDirection(): String {
         println(MOVE_INPUT_MSG)
         return InputView().readMoving()
+    }
+
+    private fun restartOrQuit() {
+        if (askGameCommand() == RESTART) {
+            outputView.initMap()
+            bridgeGame.retry()
+            startChecking()
+        } else {
+            outputView.printResult(map, FAIL, bridgeGame.getTryNumber())
+        }
     }
 
     private fun askGameCommand(): String {
