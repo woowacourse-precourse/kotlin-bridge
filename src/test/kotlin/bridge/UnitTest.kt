@@ -19,6 +19,14 @@ class UnitTest: NsTest() {
         assertThat(bridge).containsExactly("U", "D", "D")
     }
 
+    @Test
+    fun `공백을 입력한 경우`() {
+        assertSimpleTest {
+            runException(" ")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
     }
