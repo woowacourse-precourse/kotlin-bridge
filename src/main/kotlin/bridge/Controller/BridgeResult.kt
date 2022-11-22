@@ -23,18 +23,26 @@ class BridgeResult {
         while (true) {
             val selectedBridge = bridgeGame.saveLastResult()
             showMovedResult(answerBridge, selectedBridge)
-            if (bridgeGame.getSuccessResult(answerBridge)) {
-                manageSuccessResult(selectedBridge)
-                break
-            }
-            when(manageGameFailureResult(selectedBridge)){
+            if (manageGameSuccessResult(selectedBridge, answerBridge)) break
+            when (manageGameFailureResult(selectedBridge)) {
                 BREAK -> break
                 CONTINUE -> continue
             }
         }
     }
 
-    private fun manageGameFailureResult(selectedBridge: MutableMap<String, List<String>>) : String{
+    private fun manageGameSuccessResult(
+        selectedBridge: MutableMap<String, List<String>>,
+        answerBridge: List<String>
+    ): Boolean {
+        if (bridgeGame.getSuccessResult(answerBridge)) {
+            manageSuccessResult(selectedBridge)
+            return true
+        }
+        return false
+    }
+
+    private fun manageGameFailureResult(selectedBridge: MutableMap<String, List<String>>): String {
         var result = ""
         if (bridgeGame.getFailureResult()) {
             when (manageSelectedRetry(selectedBridge)) {
