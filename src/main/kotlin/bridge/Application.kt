@@ -1,18 +1,30 @@
 package bridge
 
-fun printBridgeMap(i : Int,bridge:List<String>):Int{
+fun inputWay() : String{
     val inputView = InputView()
-    val outputView = OutputView()
     var way = "E"
     while (way == "E") way = inputView.readMoving()
+    return way
+}
+
+fun failGame(bridge: List<String>, i: Int):Int{
+    val inputView = InputView()
+    val outputView = OutputView()
+    outputView.printMapFalse(bridge, i)
+    var again = inputView.readGameCommand()
+    if (again == "R") return 1
+    else return 0
+}
+
+fun printBridgeMap(i : Int,bridge:List<String>):Int{
+    val outputView = OutputView()
+    var way = inputWay()
     val bridgeGame = BridgeGame()
     if (bridgeGame.move(i, bridge, way)) {
         outputView.printMap(bridge, i)
     } else {
-        outputView.printMapFalse(bridge, i)
-        var again = inputView.readGameCommand()
-        if (again == "R") return 1
-        else return 0
+        val reternNum = failGame(bridge,i)
+        return reternNum
     }
     return 2
 }
@@ -25,17 +37,21 @@ fun BridgeGameing(size : Int,bridge : List<String>) : Int {
     return 2
 }
 
+fun bridgeMake(size:Int): List<String>{
+    val bridgeNumberGenerator = BridgeRandomNumberGenerator()
+    val bridgeMaker = BridgeMaker(bridgeNumberGenerator)
+    val bridge = bridgeMaker.makeBridge(size)
+    return bridge
+}
+
 fun BridgeGameMain() {
     val inputView = InputView()
     val outputView = OutputView()
     var size = -1
     while (size == -1) size = inputView.readBridgeSize()
-    val bridgeNumberGenerator = BridgeRandomNumberGenerator()
-    val bridgeMaker = BridgeMaker(bridgeNumberGenerator)
-    val bridge = bridgeMaker.makeBridge(size)
+    var bridge = bridgeMake(size)
     val bridgeGame = BridgeGame()
     val (finish,count) =  bridgeGame.retry(size,bridge)
-
     if (finish == 0) outputView.printResultFail(bridge,size-1,count)
     else outputView.printResult(bridge,size-1,count)
 }
