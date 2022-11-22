@@ -40,9 +40,9 @@ class BridgeGame {
 
     fun getFailureResult(): Boolean{
         if(upResultList.contains(INCORRECT_MARK) || downResultList.contains(INCORRECT_MARK)){
-            return false
+            return true
         }
-        return true
+        return false
     }
 
     fun saveUserCorrectedDirection(userDirection: String) {
