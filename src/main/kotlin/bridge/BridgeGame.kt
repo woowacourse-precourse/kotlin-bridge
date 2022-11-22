@@ -18,18 +18,19 @@ class BridgeGame(private val bridgeLength: Int) {
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun move(bridge: List<String>, index: Int, move: String) {
-        when(bridge[index] == move){
+        when (bridge[index] == move) {
             true -> {
-                when(move){
+                when (move) {
                     "U" -> upBridge[index] = "O"
                     "D" -> downBridge[index] = "O"
                 }
             }
             false -> {
-                when(move){
+                when (move) {
                     "U" -> upBridge[index] = "X"
                     "D" -> downBridge[index] = "X"
                 }
+                progressStatus = false
             }
         }
     }
