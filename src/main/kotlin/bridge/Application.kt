@@ -1,5 +1,14 @@
 package bridge
 
+import bridge.view.OutputView
+
+val outputView = OutputView()
+
 fun main() {
-    // TODO: 프로그램 구현
+    startGame()
+}
+
+private fun startGame() {
+    outputView.printGameStartPhrase()
+    println()
 }
