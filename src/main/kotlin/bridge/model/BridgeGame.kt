@@ -1,7 +1,7 @@
 package bridge.model
 
 /**
- * 게임의 상태, 플레이어 위치, 이동 기록을 수정하며 관리하는 역활을 한다.
+ * 게임의 상태, 플레이어 위치, 이동 기록을 수정하며 관리하는 역할을 한다.
  */
 class BridgeGame(private val bridge: Bridge) {
     data class MovingResult(val direction: Direction, val isSuccess: Boolean)

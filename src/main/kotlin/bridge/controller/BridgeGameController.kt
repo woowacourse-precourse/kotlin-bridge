@@ -6,7 +6,7 @@ import bridge.view.InputView
 import bridge.view.OutputView
 
 /**
- * 모델과 뷰를 연결해 게임을 진행하는 역활을 한다.
+ * 모델과 뷰를 연결해 게임을 진행하는 역할을 한다.
  *
  * 상황과 순서에 맞는 메서드 호출에 대한 책임을 가진다.
  * 잘못된 입력시 재입력 요구에 대한 책임을 가진다.

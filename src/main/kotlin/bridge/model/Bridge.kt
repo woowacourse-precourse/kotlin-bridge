@@ -6,7 +6,7 @@ import bridge.BridgeRandomNumberGenerator
 /**
  * 길이에 대한 유효성 검증,
  * 특정 방향으로 건널 수 있는지 확인,
- * 다리의 마지막 위치인지 확인 해주는 역활을 한다.
+ * 다리의 마지막 위치인지 확인 해주는 역할을 한다.
  */
 class Bridge(directionCommands: List<String>) {
     private val availableDirections: List<Direction>
