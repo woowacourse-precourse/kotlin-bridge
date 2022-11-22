@@ -1,7 +1,5 @@
 package bridge
 
-import org.opentest4j.AssertionFailedError
-
 enum class ErrorMessage(val message: String){
     NOTHING("[ERROR] 아무것도 입력하지 않았습니다."),
     FORMATION("[ERROR] 올바르지 않은 형식입니다."),
