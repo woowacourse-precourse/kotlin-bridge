@@ -15,14 +15,14 @@ class Exceptions {
     }
 
     fun validateMoving(x: String) {
-        require(x in listOf("U", "D")) {
+        require(x in UP_DOWN) {
             outputView.printMovingInputError()
             throw IllegalArgumentException()
         }
     }
 
     fun validateCommand(x: String?) {
-        require(x in listOf("R", "Q")) {
+        require(x in RESTART_QUIT) {
             outputView.printCommandInputError()
             throw IllegalArgumentException()
         }
@@ -31,5 +31,7 @@ class Exceptions {
     companion object {
         const val SIZE_RANGE_START = 3
         const val SIZE_RANGE_END = 20
+        val UP_DOWN = listOf("U", "D")
+        val RESTART_QUIT = listOf("R", "Q")
     }
 }

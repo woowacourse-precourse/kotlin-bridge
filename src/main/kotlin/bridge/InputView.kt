@@ -11,9 +11,9 @@ class InputView {
     }
 
     fun readMoving(): String {
-        val moving = readLine()
-        exceptions.validateMoving(moving)
-        return moving
+        val moveState = readLine()
+        exceptions.validateMoving(moveState)
+        return moveState
     }
 
     fun readGameCommand(): String {
