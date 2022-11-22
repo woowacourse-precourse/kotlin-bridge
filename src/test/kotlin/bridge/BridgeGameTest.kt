@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test
 
 class BridgeGameTest {
     val bridgeGame = BridgeGame()
-    @Test
+    /*@Test
     fun compareAnswerTest(){
         assertThat(bridgeGame.compareAnswer(listOf("U","D","D","D"))).isEqualTo(listOf("U","D","UX","D"))
-    }
+    }*/
 
     @Test
     fun resultToStringTest(){

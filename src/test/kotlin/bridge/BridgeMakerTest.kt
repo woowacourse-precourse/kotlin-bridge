@@ -9,7 +9,7 @@ class BridgeMakerTest {
     @Test
     fun makeBridgeTest(){
         Assertions.assertRandomNumberInRangeTest({
-            assertThat(bridgemaker.makeBridge(4)).isEqualTo(listOf("D","U","D","U"))
-        },0,1,0,1)
+            assertThat(bridgemaker.makeBridge(3)).isEqualTo(listOf("D","U","U"))
+        },0,1,1)
     }
 }

@@ -9,9 +9,7 @@ class UtilTest {
     @Test
     fun isIntTest(){
         assertThat(util.isInt("123")).isEqualTo(true)
-        assertThrows<IllegalArgumentException> {
-            util.isInt("abc")
-        }
+        assertThat(util.isInt("abc")).isEqualTo(false)
     }
     @Test
     fun isInRangeTest(){
@@ -24,14 +22,14 @@ class UtilTest {
     fun isUDTest(){
         assertThat(util.isUD("U")).isEqualTo(true)
         assertThrows<IllegalArgumentException> {
-            util.isInt("C")
+            util.isRQ("C")
         }
     }
     @Test
     fun isRQTest(){
         assertThat(util.isRQ("R")).isEqualTo(true)
         assertThrows<IllegalArgumentException> {
-            util.isInt("D")
+            util.isRQ("D")
         }
     }
 }
