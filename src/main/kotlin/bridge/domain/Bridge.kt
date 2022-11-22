@@ -13,4 +13,5 @@ class Bridge(private val bridge: MutableList<String>) {
 
     fun subBridge(lastIndex: Int): Bridge = Bridge(bridge.subList(0, lastIndex + 1))
 
+    override fun toString(): String = this.bridge.joinToString(prefix = "[ ", postfix = " ]", separator = " | ")
 }
