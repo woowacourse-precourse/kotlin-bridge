@@ -5,6 +5,8 @@ import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class ApplicationTest : NsTest() {
     @Test
@@ -32,10 +34,12 @@ class ApplicationTest : NsTest() {
         }, 1, 0, 1)
     }
 
-    @Test
-    fun `예외 테스트`() {
+
+    @ValueSource(strings = ["a", "1", "23"])
+    @ParameterizedTest
+    fun `다리 길이 입력 예외 테스트`(input: String) {
         assertSimpleTest {
-            runException("a")
+            runException(input)
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
