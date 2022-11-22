@@ -1,5 +1,6 @@
 package bridge
 
+import util.Game
 import view.InputView
 import view.OutputView
 
@@ -24,6 +25,7 @@ class BridgeGame {
             }
         }
         OutputView().printResult(resultBridge)
+        isSucceed(bridgeLetter, resultBridge)
         return false
     }
 
@@ -52,5 +54,14 @@ class BridgeGame {
     private fun retry(): Boolean {
         val userInput = InputView().readGameCommand()
         return userInput == "R"
+    }
+
+    private fun isSucceed(bridgeLetter: List<String>, resultBridge: MutableList<Pair<String, String>>){
+        if(bridgeLetter.size == resultBridge.size){
+            println("${Game.SUCCESS_OR_NOT.message}${Game.SUCCESS.message}")
+        } else {
+            println("${Game.SUCCESS_OR_NOT.message}${Game.FAIL.message}")
+        }
+
     }
 }
