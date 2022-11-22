@@ -13,12 +13,14 @@ class UserInputValidate {
 
     private fun isValidType(bridgeSize: String) {
         if (!isNumber(bridgeSize)) {
+            println(BRIDGE_SIZE_TYPE_ERROR_MESSAGE)
             throw IllegalArgumentException(BRIDGE_SIZE_TYPE_ERROR_MESSAGE)
         }
     }
 
     private fun isValidInputRange(bridgeSize: Int) {
         if (bridgeSize < MIN_BRIDGE_SIZE || MAX_BRIDGE_SIZE < bridgeSize) {
+            println(BRIDGE_SIZE_RANGE_ERROR_MESSAGE)
             throw IllegalArgumentException(BRIDGE_SIZE_RANGE_ERROR_MESSAGE)
         }
     }
@@ -30,6 +32,7 @@ class UserInputValidate {
 
     private fun isValidMovingInput(inputMoving: String) {
         if (inputMoving.length != INPUT_MOVING_LENGTH || !inputMoving.contains(MOVING_UP) && !inputMoving.contains(MOVING_DOWN)) {
+            println(INPUT_MOVING_ERROR_MESSAGE)
             throw IllegalArgumentException(INPUT_MOVING_ERROR_MESSAGE)
         }
     }
@@ -41,6 +44,7 @@ class UserInputValidate {
 
     private fun isValidGameCommand(inputMoving: String) {
         if (inputMoving.length != INPUT_GAME_COMMAND_LENGTH || !inputMoving.contains(QUIT_GAME) && !inputMoving.contains(RETRY_GAME)) {
+            println(INPUT_GAME_COMMAND_ERROR_MESSAGE)
             throw IllegalArgumentException(INPUT_GAME_COMMAND_ERROR_MESSAGE)
         }
     }

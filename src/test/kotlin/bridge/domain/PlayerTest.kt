@@ -1,7 +1,9 @@
 package bridge.domain
 
+import bridge.domain.Bridge
+import bridge.domain.Player
+import bridge.domain.Stage
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 

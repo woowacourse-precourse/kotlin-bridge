@@ -1,5 +1,8 @@
 package bridge.domain
 
+import bridge.domain.Bridge
+import bridge.domain.BridgeGame
+import bridge.domain.Player
 import org.junit.jupiter.api.Test
 import org.assertj.core.api.Assertions.assertThat
 
