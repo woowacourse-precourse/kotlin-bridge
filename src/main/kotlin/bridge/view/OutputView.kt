@@ -8,8 +8,6 @@ import bridge.util.Constant.BOUNDARY
 import bridge.util.Constant.EMPTY
 import bridge.util.Constant.GAME_FAIL
 import bridge.util.Constant.GAME_SUCCESS
-import bridge.util.Constant.LOAD_GO
-import bridge.util.Constant.LOAD_STOP
 import kotlin.text.StringBuilder
 
 class OutputView {
