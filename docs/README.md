@@ -33,17 +33,13 @@
 .
 ├── common
 ├── domain
+│   ├── calculator
 │   ├── game
-│   │   └── service
-│   ├── generator
-│   ├── maker
-│   ├── moving
-│   └── processor
+│   ├── mediator
+│   └── moving
 └── ui
-    ├── application
     ├── validator
     └── view
-
 ```
 
 ---
