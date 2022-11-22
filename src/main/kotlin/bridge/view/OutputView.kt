@@ -34,6 +34,10 @@ class OutputView {
 
     }
 
+    fun printReadBridgeSizeMessage(){
+        println("다리의 길이를 입력해주세요.")
+    }
+
     fun printErr(errMessage: String){
         println(errMessage)
     }
