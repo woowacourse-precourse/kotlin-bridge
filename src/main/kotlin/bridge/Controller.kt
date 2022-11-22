@@ -47,4 +47,13 @@ class Controller {
     private fun checkProgressStatus(): Boolean {
         return bridgeGame.getProgressStatus()
     }
+
+    private fun retryGameStep() {
+        outputView.printRetry()
+        val a = inputView.readGameCommand()
+        if (a == "R") {
+            bridgeGame.retry()
+            now = -1
+        }
+    }
 }
