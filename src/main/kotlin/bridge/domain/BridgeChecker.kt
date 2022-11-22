@@ -11,7 +11,7 @@ class BridgeChecker(private val bridge: List<String>) {
     private val outputView = OutputView()
     private var map = listOf<String>()
 
-    fun judgeGameResult() {
+    fun startCrossing() {
         if (checkBridge())
             outputView.printResult(map, SUCCESS, bridgeGame.getTryNumber())
         else
@@ -40,7 +40,7 @@ class BridgeChecker(private val bridge: List<String>) {
         if (askGameCommand() == RESTART) {
             outputView.initMap()
             bridgeGame.retry()
-            judgeGameResult()
+            startCrossing()
         } else {
             outputView.printResult(map, FAIL, bridgeGame.getTryNumber())
         }

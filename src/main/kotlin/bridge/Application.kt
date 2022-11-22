@@ -14,5 +14,5 @@ fun main() {
     val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
     val bridge = bridgeMaker.makeBridge(bridgeSize)
     val bridgeChecker = BridgeChecker(bridge)
-    bridgeChecker.judgeGameResult()
+    bridgeChecker.startCrossing()
 }
