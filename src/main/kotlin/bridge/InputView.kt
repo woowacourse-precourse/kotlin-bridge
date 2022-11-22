@@ -11,12 +11,17 @@ class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
+
     fun readBridgeSize(): Int {
         var bridgeSize = ""
         var flag = false
         while (flag == false){
-            bridgeSize = readLine()!!.toString()
-            flag = error.checkBridgeSize(bridgeSize)
+            try {
+                bridgeSize = readLine()!!.toString()
+                flag = error.checkBridgeSize(bridgeSize)
+            } catch (e: IllegalArgumentException ){
+                println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
+            }
         }
         return bridgeSize.toInt()
     }
@@ -27,7 +32,7 @@ class InputView {
     fun readMoving(): String {
         var movingDirection = ""
         var flag = false
-        while (flag == false) {
+        while ( flag == false ) {
             movingDirection = readLine()!!.toString()
             flag = error.checkDirection(movingDirection)
         }

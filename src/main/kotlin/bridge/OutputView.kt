@@ -55,7 +55,7 @@ class OutputView {
             else print("   ]")
         } else {
             if (direction == "D") print(" X ]")
-            else print("   ]")
+            else print("   ]\n")
         }
     }
 
@@ -68,6 +68,7 @@ class OutputView {
         printResultLineSuccess(bridge, bridgeSize, "U")
         println()
         printResultLineSuccess(bridge, bridgeSize, "D")
+        println()
     }
 
     fun printResultQuit(bridge: List<String>, step: Int){
