@@ -8,7 +8,6 @@ import bridge.exceptions.ErrorMessage.ONLY_INPUT_NUMBER
 
 
 object InputExceptions {
-
     fun validateBridgeSize(input: String) {
         validateStringToNumber(input)
         if (input.toInt() !in 3..20) {
