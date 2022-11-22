@@ -7,7 +7,6 @@ import bridge.util.QUIT_COMMAND
 import bridge.util.RESTART_COMMAND
 import bridge.view.InputView
 import bridge.view.OutputView
-import com.sun.tools.javac.jvm.ByteCodes.ret
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -43,7 +42,8 @@ class BridgeGame(
 
     // 게임 종료
     override fun quit() {
-        TODO("Not yet implemented")
+        val whetherResult = if (BridgeGameProcessor.updateFail()) "실패" else "성공"
+        outputView.printResult(BridgeGameProcessor.updateMapList(), trialCount, whetherResult)
     }
 
     // 게임 다시 시작
@@ -56,11 +56,11 @@ class BridgeGame(
     // 라운드 이동 ( 커멘드가 U일 때 조건)
     private fun move() {
         val moving = inputView.readMoving()
-
+        // 이동 조건 발동
         val inputMove = if (moving == "U") Moving.UP else Moving.DOWN
         val hasPassed = (moving == bridge[round])
         BridgeGameProcessor.updateBridgePassInfo(inputMove, hasPassed)
-
+        // 출력
         outputView.printMap(BridgeGameProcessor.updateMapList())
         round++
     }

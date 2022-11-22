@@ -9,7 +9,7 @@ object BridgeGameProcessor {
     * 현재 위치 정보 맵 키, value 지정하여 비교
     * */
     private val bridgePassInfo = mutableListOf<Pair<Moving, Boolean>>()
-    private val bridgeLocationInfo = hashMapOf(DOWN_INT_NUMBER_ZERO to 0, UP_INT_NUMBER_ONE to 1)
+    private val bridgeLocationInfo = hashMapOf(0 to 1, 1 to 0)
     private val currentMapPrint = mutableListOf<String>()
 
     /*
@@ -27,11 +27,11 @@ object BridgeGameProcessor {
 
 
     // 통과 했으면 O, 통과 못하면 X 출력해줌
-    fun updatePassed(moving: Moving, bridgeNumber: Int, hasPassed: Boolean): String {
+    private fun updatePassed(moving: Moving, bridgeNumber: Int, hasPassed: Boolean): String {
         val passedResult = when (moving.bridgeNumber) {
             bridgeNumber -> {
-                if (hasPassed) return UP_DIRECTION
-                return DOWN_DIRECTION
+                if (hasPassed) return "O"
+                return "X"
             }
             else -> " "
         }
@@ -42,7 +42,7 @@ object BridgeGameProcessor {
     * 현재 맵을 출력
     * [,O, X,] 추가
     * */
-    fun createMapPrint(bridgeNumber: Int): String {
+    private fun createMapPrint(bridgeNumber: Int): String {
         var mapPrint = ""
         val round = bridgePassInfo.size - 1
 
