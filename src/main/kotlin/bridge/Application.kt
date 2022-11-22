@@ -1,5 +1,18 @@
 package bridge
 
+import bridge.domain.BridgeGame
+import bridge.domain.BridgeGameManager
+import bridge.view.InputView
+import bridge.view.OutputView
+
 fun main() {
-    // TODO: 프로그램 구현
+    try {
+        val gameManager = BridgeGameManager(InputView(), OutputView())
+        val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
+        val bridgeGame = BridgeGame(gameManager, bridgeMaker)
+        bridgeGame.runGame()
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+        return
+    }
 }
