@@ -6,17 +6,17 @@ class InputChecker {
     fun checkBridgeLength(input: String) {
         if (input.isEmpty()) throw IllegalArgumentException(ERROR_NULL)
         if (!isNumber(input)) throw IllegalArgumentException(ERROR_DIGIT)
-        if (input.toInt() !in 3..20) throw java.lang.IllegalArgumentException(ERROR_RANGE)
+        if (input.toInt() !in THREE..TWENTY) throw java.lang.IllegalArgumentException(ERROR_RANGE)
     }
 
     fun checkDirection(input: String) {
         if (input.isEmpty()) throw IllegalArgumentException(ERROR_NULL)
-        if (!((input == "U") or (input == "D"))) throw IllegalArgumentException(ERROR_DIRECTION)
+        if (!((input == UP) or (input == DOWN))) throw IllegalArgumentException(ERROR_DIRECTION)
     }
 
     fun checkUserCommand(input: String) {
         if (input.isEmpty()) throw IllegalArgumentException(ERROR_NULL)
-        if (!((input == "R") or (input == "Q"))) throw IllegalArgumentException(ERROR_COMMAND)
+        if (!((input == RETRY) or (input == QUIT))) throw IllegalArgumentException(ERROR_COMMAND)
     }
 
     private fun isNumber(input: String): Boolean {
