@@ -36,6 +36,4 @@ class BridgeGameTest {
         val result = bridgeGame.getGameResult(bridge,user)
         assertThat(result).isEqualTo(BridgeGame.GameResult.CONTINUE)
     }
-
-
 }

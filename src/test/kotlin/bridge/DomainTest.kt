@@ -15,13 +15,14 @@ class DomainTest {
     private lateinit var bridge: Bridge
     private lateinit var bridgeGame: BridgeGame
     private var user = User()
-    val movings = listOf<String>("U", "U", "U")
-    val maps = listOf<String>(
+    private val movings = listOf<String>("U", "U", "U")
+    private val results =
+        listOf(BridgeGame.GameResult.CONTINUE, BridgeGame.GameResult.CONTINUE, BridgeGame.GameResult.FAILURE)
+    private val maps = listOf<String>(
         "[ O ]\n[   ]", "[ O | O ]\n" +
                 "[   |   ]", "[ O | O | X ]\n" +
                 "[   |   |   ]"
     )
-    val results = listOf(BridgeGame.GameResult.CONTINUE, BridgeGame.GameResult.CONTINUE, BridgeGame.GameResult.FAILURE)
 
     @BeforeEach
     fun setUp() {
@@ -29,9 +30,8 @@ class DomainTest {
         bridgeGame = BridgeGame()
     }
 
-    @DisplayName("유저가 이동한 후에 게임 결과를 옳게 반환하는지 확인하는 Domain 테스트")
     @Test
-    fun getGameResult() {
+    fun `유저가 이동한 후에 게임 결과를 옳게 반환하는지 확인하는 Domain 테스트`() {
         for (i in movings.indices) {
             val moving = movings[i]
             val expected = results[i]
@@ -43,8 +43,8 @@ class DomainTest {
 
     @DisplayName("유저가 이동한 후에 map을 잘 반환하는지 확인하는 테스트")
     @Test
-    fun getMap(){
-        for (i in movings.indices){
+    fun `유저가 이동한 후에 map을 잘 반환하는지 확인하는 테스트`() {
+        for (i in movings.indices) {
             val moving = movings[i]
             val expected = maps[i]
             bridgeGame.move(moving, user)
