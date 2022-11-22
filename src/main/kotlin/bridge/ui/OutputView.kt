@@ -1,6 +1,9 @@
 package bridge.ui
 
-import bridge.data.*
+import bridge.data.ENTER_BRIDGE_SIZE
+import bridge.data.ENTER_DIRECTION
+import bridge.data.ENTER_GAME_RETRY
+import bridge.data.GAME_START
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -9,6 +12,14 @@ class OutputView {
     fun printOpening() {
         println(GAME_START)
         println(ENTER_BRIDGE_SIZE)
+    }
+
+    fun printRequestDirection() {
+        println(ENTER_DIRECTION)
+    }
+
+    fun printAskRetry() {
+        println(ENTER_GAME_RETRY)
     }
 
     /**
