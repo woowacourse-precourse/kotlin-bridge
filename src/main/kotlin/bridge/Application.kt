@@ -31,7 +31,14 @@ fun movePlayer():Int{
     return bridge.checkGameEnd()
 }
 fun requestRetryOrQuit():Int{
-    return 0
+    val playerInput= inputView.readGameCommand()
+    return if(playerInput=="R"){
+        bridgeGame.retry(bridge)
+        CORRECT
+    }
+    else{
+        END
+    }
 }
 fun playGame():Int{
     val mvResult= movePlayer()

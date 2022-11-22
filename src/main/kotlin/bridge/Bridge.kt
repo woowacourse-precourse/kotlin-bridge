@@ -31,5 +31,11 @@ class Bridge(private val bridge:List<String>){
         return failFlag
     }
 
+    fun resetPlayer(){
+        roadUntilNow.resetRoadMap()
+        playerLocation=-1
+        failFlag=false
+    }
+
 
 }
