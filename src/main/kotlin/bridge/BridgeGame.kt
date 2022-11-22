@@ -15,12 +15,9 @@ class BridgeGame {
     }
 
     private fun run() {
-        var state = true
-        while(state) {
-            state = move()
-            cnt++
-        }
-        bridgeUtils.finish(cnt)
+        cnt++
+
+        move()
         retry()
     }
 
@@ -42,7 +39,7 @@ class BridgeGame {
      */
     fun retry() {
         if(!bridgeUtils.restart()) {
-            return
+            bridgeUtils.finish(cnt)
         }
         run()
     }

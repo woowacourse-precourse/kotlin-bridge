@@ -28,7 +28,7 @@ class OutputView {
     }
 
     private fun getDownBridge(bridge: List<String>, root: List<String>): String {
-        var result = "]"
+        var result = "["
         for(i in root.indices) {
             result += getState(bridge[i], root[i], "D")
             result += if(i != root.size - 1) "|" else ""

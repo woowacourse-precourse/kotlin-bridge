@@ -3,8 +3,8 @@ package bridge
 class BridgeGameUtils {
     private var inputView = InputView()
     private var outputView = OutputView()
-    private val bridge = mutableListOf<String>()
-    private val root = mutableListOf<String>()
+    val bridge = mutableListOf<String>()
+    val root = mutableListOf<String>()
     private val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
 
     fun start(): Int {
@@ -36,6 +36,9 @@ class BridgeGameUtils {
     }
 
     fun restart(): Boolean {
+        if(bridge == root) {
+            return false
+        }
         return inputView.readGameCommand() == "R"
     }
 }
