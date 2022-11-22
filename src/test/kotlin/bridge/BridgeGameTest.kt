@@ -22,4 +22,13 @@ internal class BridgeGameTest {
         val result = BridgeGame().containsX(markUp, markDown)
         Assertions.assertThat(result).isEqualTo(true)
     }
+
+    @Test
+    fun `입력값과 다리의 값 비교하여 Map에 저장`() {
+        val mark = "U"
+        val bridge = listOf("U", "D", "D")
+        val index = 0
+        val bridgeMark = BridgeGame().markBridge(mark, bridge, index)
+        Assertions.assertThat(bridgeMark).isEqualTo(mutableMapOf("O" to " "))
+    }
 }
