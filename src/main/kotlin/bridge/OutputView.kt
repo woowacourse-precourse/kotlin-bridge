@@ -1,5 +1,6 @@
 package bridge
 
+
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
@@ -29,46 +30,63 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printResult(answer: Boolean, caseList: List<Int>, tryCount: Int) {
-        println(GAME_RESULT)
+        println(OutputMessage.GAME_RESULT.message)
         printMap(caseList)
         if (answer)
-            println(GAME_SUCCESS)
+            println(OutputMessage.GAME_SUCCESS.message)
         if (!answer)
-            println(GAME_FAIL)
-        println("$GAME_COUNT$tryCount")
+            println(OutputMessage.GAME_FAIL.message)
+        print(OutputMessage.GAME_COUNT.message)
+        println("$tryCount")
     }
 
     fun correctAnswer(case: Int) {
         if (case == 1) {
-            upBridge.add(POINT_PASS)
-            downBridge.add(POINT_EMPTY)
+            upBridge.add(BridgePoint.POINT_PASS.point)
+            downBridge.add(BridgePoint.POINT_EMPTY.point)
         }
         if (case == 2) {
-            upBridge.add(POINT_EMPTY)
-            downBridge.add(POINT_PASS)
+            upBridge.add(BridgePoint.POINT_EMPTY.point)
+            downBridge.add(BridgePoint.POINT_PASS.point)
         }
     }
 
 
     fun wrongAnswer(case: Int) {
         if (case == 3) {
-            upBridge.add(POINT_WRONG)
-            downBridge.add(POINT_EMPTY)
+            upBridge.add(BridgePoint.POINT_WRONG.point)
+            downBridge.add(BridgePoint.POINT_EMPTY.point)
         }
         if (case == 4) {
-            upBridge.add(POINT_EMPTY)
-            downBridge.add(POINT_WRONG)
+            upBridge.add(BridgePoint.POINT_EMPTY.point)
+            downBridge.add(BridgePoint.POINT_WRONG.point)
         }
     }
 
     fun bridgePrint(list: List<String>): String {
-        var string = POINT_START
+        var string = BridgePoint.POINT_START.point
         for (element in list) {
             string = string.plus(element)
-            string = string.plus(POINT_MIDDLE)
+            string = string.plus(BridgePoint.POINT_MIDDLE.point)
         }
         string = string.substring(0, string.length - 1)
-        string = string.plus(POINT_END)
+        string = string.plus(BridgePoint.POINT_END.point)
         return string
+    }
+
+    enum class OutputMessage(val message: String){
+        GAME_RESULT("최종 게임 결과"),
+        GAME_SUCCESS("게임 성공 여부: 성공"),
+        GAME_FAIL("게임 성공 여부: 실패"),
+        GAME_COUNT("총 시도한 횟수: ")
+    }
+
+    enum class BridgePoint(val point: String){
+        POINT_PASS(" O "),
+        POINT_WRONG(" X "),
+        POINT_EMPTY("   "),
+        POINT_START("["),
+        POINT_MIDDLE("|"),
+        POINT_END("]")
     }
 }
