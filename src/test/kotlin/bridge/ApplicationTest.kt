@@ -40,6 +40,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `입력받은 다리길이가 음수일 경우`() {
+        assertSimpleTest {
+            runException("-5")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
     override fun runMain() {
         main()
     }
