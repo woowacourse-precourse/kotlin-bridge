@@ -4,22 +4,21 @@ import bridge.constants.Constants.DOWN_BRIDGE
 import bridge.constants.Constants.UP_BRIDGE
 
 class OutputView(private val bridge: List<String>) {
-    private val up = StringBuilder()
-    private val down = StringBuilder()
+    private val up = StringBuilder("[ ")
+    private val down = StringBuilder("[ ")
 
     fun printMap(moving: List<String>) {
-        makeMap("[ ", "[ ")
         for (position in moving.indices) {
             if (moving[position] == bridge[position]) isCorrect(moving, position, true)
             else {
                 isCorrect(moving, position, false)
-                makeMap(" ]", " ]")
                 break
             }
             if (position != moving.size - 1) makeMap(" | ", " | ")
-            else makeMap(" ]", " ]")
         }
+        makeMap(" ]", " ]")
         print("$up\n$down\n\n")
+        clearMap()
     }
 
     private fun makeMap(upString: String, downString: String) {
@@ -40,6 +39,13 @@ class OutputView(private val bridge: List<String>) {
                 DOWN_BRIDGE -> makeMap(str, " ")
             }
         }
+    }
+
+    private fun clearMap() {
+        up.clear()
+        down.clear()
+        up.append("[ ")
+        down.append("[ ")
     }
 
     fun printResult(choice: List<String>, isSuccess: Boolean, count: Int) {
