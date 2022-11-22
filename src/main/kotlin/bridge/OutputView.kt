@@ -37,9 +37,9 @@ class OutputView {
         for (count in moveResult.indices){
             if (bridgeAnswer[count] =="U" && moveResult[count]=="O") bridgeCaseUO()
             if (bridgeAnswer[count] =="D" && moveResult[count]=="O") bridgeCaseDO()
-            if (bridgeAnswer[count] =="U" && moveResult[count]=="X"){ bridgeCaseUX()
+            if (bridgeAnswer[count] =="U" && moveResult[count]=="X"){ bridgeCaseDX()
                 break }
-            if (bridgeAnswer[count] =="D" && moveResult[count]=="X") { bridgeCaseDX()
+            if (bridgeAnswer[count] =="D" && moveResult[count]=="X") { bridgeCaseUX()
                 break }
         }
         println(bridgeUpperSide.toString().replace(", ","|"))
