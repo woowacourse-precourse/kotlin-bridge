@@ -7,14 +7,14 @@ class GameMap(gameMapState: GameMapState) {
     private val lines = mutableMapOf<String, Line>()
 
     init {
-        val mapSize = gameMapState.userRoute.size
+        val mapSize = gameMapState.userHistory.size
         lines[UP] = Line(mapSize)
         lines[DOWN] = Line(mapSize)
-        (0 until gameMapState.userRoute.size).forEach {
-            if (gameMapState.bridge[it] == gameMapState.userRoute[it])
-                lines[gameMapState.userRoute[it]]!!.mark(it, MATCHED)
+        (0 until gameMapState.userHistory.size).forEach {
+            if (gameMapState.bridge[it] == gameMapState.userHistory[it])
+                lines[gameMapState.userHistory[it]]!!.mark(it, MATCHED)
             else
-                lines[gameMapState.userRoute[it]]!!.mark(it, NOT_MATCHED)
+                lines[gameMapState.userHistory[it]]!!.mark(it, NOT_MATCHED)
         }
     }
 
