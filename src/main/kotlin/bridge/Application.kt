@@ -1,5 +1,14 @@
 package bridge
 
+var retryCount = 1
 fun main() {
-    // TODO: 프로그램 구현
+    try{
+        val bridgeAnswer = gameCycleFirst()
+        val movedResult = gameCycleSecond(bridgeAnswer)
+        gameCycleThird(bridgeAnswer,movedResult)
+    } catch (e: IllegalArgumentException) {
+        println(ErrorMessage.FORMATION.message)
+    } catch (e: NumberFormatException) {
+        println(ErrorMessage.FORMATION.message)
+    }
 }
