@@ -44,8 +44,7 @@ private fun initApplication() {
     setInputView(InputView())
     setOutputView(OutputView())
     setBridgeMaker(BridgeMaker(BridgeRandomNumberGenerator()))
-    setMovingEventManager(MovingEventManager())
-    setQuitEventManager(QuitEventManager())
+    initEventManager()
     initBridgeGame()
 }
 
@@ -59,6 +58,13 @@ private fun setOutputView(view: OutputView) {
 
 private fun setBridgeMaker(maker: BridgeMaker) {
     bridgeMaker = maker
+}
+
+private fun initEventManager() {
+    setMovingEventManager(MovingEventManager())
+    movingEventManager.subscribe(outputView)
+    setQuitEventManager(QuitEventManager())
+    quitEventManager.subscribe(outputView)
 }
 
 private fun setMovingEventManager(manager: MovingEventManager) {
