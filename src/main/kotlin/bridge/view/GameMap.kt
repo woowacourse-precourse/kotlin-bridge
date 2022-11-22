@@ -37,12 +37,12 @@ class GameMap(gameMapStatus: GameMapStatus) {
             squares[index] = mark
         }
 
-        override fun toString(): String = LEFT + squares.joinToString(SPLIT) + RIGHT + "\n"
+        override fun toString(): String = LEFT_BORDER + squares.joinToString(SPLIT_LINE) + RIGHT_BORDER + "\n"
 
         companion object {
-            private const val LEFT = "[ "
-            private const val RIGHT = " ]"
-            private const val SPLIT = " | "
+            private const val LEFT_BORDER = "[ "
+            private const val RIGHT_BORDER = " ]"
+            private const val SPLIT_LINE = " | "
             private const val EMPTY = " "
         }
     }
