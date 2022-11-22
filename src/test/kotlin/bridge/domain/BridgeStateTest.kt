@@ -38,7 +38,6 @@ class BridgeStateTest:NsTest(){
             )
         }
     }
-
     override fun runMain() {
         bridgeState.compare(testBridge)
     }
