@@ -64,7 +64,7 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun retry() {
-        check(started() && !running()) { "게임이 중지 상태일 때만 재시작할 수 있습니다." }
+        check(_gameStatus == GameStatus.STOPPED) { "게임이 중지 상태일 때만 재시작할 수 있습니다." }
         _userHistory.clear()
         _gameStatus = GameStatus.RUNNING
         _attempts++
