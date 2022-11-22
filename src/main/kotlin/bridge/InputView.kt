@@ -20,7 +20,10 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        var moveCommand = getMoveCommand()
+        while(!moveCommand.equals("U") && !moveCommand.equals(("D")))
+            moveCommand = getMoveCommand()
+        return moveCommand
     }
 
     /**
@@ -55,5 +58,16 @@ class InputView {
             println(e)
         }
         return bridgeSize
+    }
+
+    private fun getMoveCommand() : String{
+        var moveCommand = ""
+        try{
+            moveCommand = Console.readLine()
+            if(!moveCommand.equals("U") && !moveCommand.equals(("D"))) throw IllegalArgumentException("[ERROR] u/d를 입력해주세요")
+        }catch (e : IllegalArgumentException){
+            println(e)
+        }
+        return moveCommand
     }
 }
