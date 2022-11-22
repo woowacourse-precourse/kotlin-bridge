@@ -18,7 +18,7 @@ fun main() {
             game.end()
         }
             .onFailure {
-                println("[ERROR]")
+                //println("[ERROR]")
                 return
             }
     }
