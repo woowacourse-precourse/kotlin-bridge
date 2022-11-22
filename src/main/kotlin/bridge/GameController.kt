@@ -24,7 +24,7 @@ class GameController {
         outputView.printGameSituation(control, times)
     }
 
-    fun gameContiol() : String{
+    fun gameControl() : String{
         var inputView = InputView()
         return inputView.readGameCommand()
     }

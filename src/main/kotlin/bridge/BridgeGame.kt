@@ -52,7 +52,7 @@ class BridgeGame(userRoute : MutableList<String>, times : Int, control : Int) {
 
     fun wrongAnswer(bridge: List<String>) : String{
         if (control == 1){
-            var gameControl = GameController().gameContiol()
+            var gameControl = GameController().gameControl()
             if (gameControl == "Q"){
                 finalStage(bridge)
                 return "break"
