@@ -1,5 +1,7 @@
-package bridge
+package bridge.view
 
+import bridge.enums.GameCommand
+import bridge.enums.Moving
 import camp.nextstep.edu.missionutils.Console
 
 /**

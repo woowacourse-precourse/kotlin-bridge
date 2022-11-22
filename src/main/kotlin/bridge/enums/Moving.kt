@@ -1,4 +1,4 @@
-package bridge
+package bridge.enums
 
 enum class Moving(private val direction: String, private val num: Int) {
     UP("U",1),

@@ -1,4 +1,4 @@
-package bridge
+package bridge.enums
 
 enum class GameCommand(private val command: String) {
     RESTART("R"),
