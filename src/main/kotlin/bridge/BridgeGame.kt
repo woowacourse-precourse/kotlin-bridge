@@ -5,7 +5,16 @@ package bridge
  */
 class BridgeGame(private val bridgeLength: Int) {
 
+    private lateinit var bridge: List<List<String>>
     private lateinit var bridgeLine: List<String>
+
+    private fun createBridge() {
+        bridge = listOf(
+            bridgeLine.map { it.replace("D", " ") },
+            bridgeLine.map { it.replace("U", " ") }
+        )
+    }
+
     private fun createBridgeLine() {
         bridgeLine = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
     }
