@@ -17,16 +17,13 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(bridgeSize: Int, moveLetter: String): List<String>{
-        val bridgeLetter = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
-        val result: MutableList<String> = mutableListOf()
-        for(i in 0 until bridgeSize){
-            if(bridgeLetter[i] != moveLetter){
-                result[i] = "X"
-                return result
-            }
-            result[i] = "O"
+    fun move(bridgeLetter: String, moveLetter: String): String {
+        var result = " "
+        if (bridgeLetter != moveLetter) {
+            result = "X"
+            return result
         }
+        result = "O"
         return result
     }
 
