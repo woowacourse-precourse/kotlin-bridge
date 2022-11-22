@@ -19,10 +19,10 @@ class GameMap(gameMapStatus: GameMapStatus) {
 
     private fun markOnLines(gameMapStatus: GameMapStatus) {
         (0 until gameMapStatus.userHistory.size).forEach {
-            if (gameMapStatus.bridge[it] == gameMapStatus.userHistory[it])
-                lines[gameMapStatus.userHistory[it]]!!.mark(it, MATCHED)
-            else
-                lines[gameMapStatus.userHistory[it]]!!.mark(it, NOT_MATCHED)
+            lines[gameMapStatus.userHistory[it]]!!.mark(
+                it,
+                if (gameMapStatus.bridge[it] == gameMapStatus.userHistory[it]) MATCHED else NOT_MATCHED
+            )
         }
     }
 
