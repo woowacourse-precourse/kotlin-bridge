@@ -28,25 +28,31 @@ class OutputView {
 //    }
 
     fun printStartLog(){
-        println("다리 건너기 게임을 시작합니다.\n")
+        println(START_LOG)
     }
 
     fun printGetBridgeLengthLog(){
-        println("다리의 길이를 입력해주세요.")
+        println(GET_BRIDGE_LENGTH_LOG)
     }
 
     fun printGetPlayerDirectionLog(){
-        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        println(GET_PLAYER_DIRECTION_LOG)
     }
 
     fun printRetryLog(){
-        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        println(RETRY_LOG)
     }
 
     companion object{
         const val BRIDGE_PREFIX = "[ "
         const val BRIDGE_POSTFIX = " ]"
         const val BRIDGE_SEPARATOR = " | "
+
+        const val START_LOG = "다리 건너기 게임을 시작합니다.\\n"
+        const val GET_BRIDGE_LENGTH_LOG = "다리의 길이를 입력해주세요."
+        const val GET_PLAYER_DIRECTION_LOG = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
+        const val RETRY_LOG = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+
     }
 
 }
