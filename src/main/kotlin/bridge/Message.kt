@@ -5,7 +5,9 @@ object Message {
     private fun String.applyPrefix(): String = "$PREFIX $this"
 
     enum class InputViewEnum(private val msg: String) {
-        INVALID_MSG("올바른 값을 입력해주세요.");
+        INVALID_LENGTH("다리 길이는 3부터 20 사이의 숫자여야 합니다."),
+        INVALID_MOVE("이동할 수 있는 방법은 U 또는 D입니다."),
+        INVALID_RESTART("재시작 또는 종료 방법은 R또는 Q입니다.");
 
         override fun toString(): String = msg.applyPrefix()
     }
