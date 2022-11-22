@@ -19,7 +19,6 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeLength(): Int {
-        outputView.printInputBridgeLength()
         val length = Console.readLine()
         checkBridgeLength(length)
         return length.toInt()
@@ -38,7 +37,6 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        outputView.printInputMoving()
         val moving = Console.readLine()
         checkMoving(moving)
         return moving.uppercase()
@@ -55,7 +53,6 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameRetry(): String {
-        outputView.printInputRetry()
         val command = Console.readLine()
         return command.uppercase()
     }
