@@ -2,28 +2,13 @@ package bridge
 
 import bridge.InputView.Companion.RETRY_COMMAND
 
-class BridgeGame {
+class BridgeGame(
+    private val inputView: InputView,
+    private val outputView: OutputView,
+    private val bridge: Bridge
+) {
 
-    private val inputView = InputView()
-    private val outputView = OutputView()
     private val result: Result = Result()
-    private var bridge: Bridge
-
-    init {
-        outputView.printStartMessage()
-        val bridgeSize = getBridgeSize()
-        bridge = Bridge(BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize))
-    }
-
-    private fun getBridgeSize(): Int {
-        while (true) {
-            try {
-                return inputView.readBridgeSize()
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-            }
-        }
-    }
 
     fun start() {
         startCycle()
