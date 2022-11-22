@@ -1,12 +1,12 @@
 package bridge.Controller
 
-import bridge.Bridge
+import bridge.Model.Bridge
 import bridge.BridgeGame
-import bridge.Constants.Companion.DOWN
-import bridge.Constants.Companion.QUIT
-import bridge.Constants.Companion.RETRY
-import bridge.Constants.Companion.UP
-import bridge.PlayerBridge
+import bridge.Model.Constants.Companion.DOWN
+import bridge.Model.Constants.Companion.QUIT
+import bridge.Model.Constants.Companion.RETRY
+import bridge.Model.Constants.Companion.UP
+import bridge.Model.PlayerBridge
 import bridge.View.OutputView
 
 class BridgeResult {
@@ -22,21 +22,31 @@ class BridgeResult {
         val answerBridge = manageGettingBridge()
         while (true) {
             val selectedBridge = bridgeGame.saveLastResult()
-            showMovedResult(answerBridge,selectedBridge)
+            showMovedResult(answerBridge, selectedBridge)
             if (bridgeGame.getSuccessResult(answerBridge)) {
                 manageSuccessResult(selectedBridge)
                 break
             }
-            if (bridgeGame.getFailureResult()) {
-                when(manageSelectedRetry(selectedBridge)){
-                    RETRY -> continue
-                    QUIT -> break
-                }
+            when(manageGameFailureResult(selectedBridge)){
+                "BREAK" -> break
+                "CONTINUE" -> continue
             }
         }
     }
 
-    private fun manageSelectedRetry(selectedBridge: MutableMap<String, List<String>>) : String{
+    private fun manageGameFailureResult(selectedBridge: MutableMap<String, List<String>>) : String{
+        var result = ""
+        if (bridgeGame.getFailureResult()) {
+            when (manageSelectedRetry(selectedBridge)) {
+                RETRY -> result = "CONTINUE"
+                QUIT -> result = "BREAK"
+            }
+        }
+        return result
+    }
+
+
+    private fun manageSelectedRetry(selectedBridge: MutableMap<String, List<String>>): String {
         when (manageRetryDecision()) {
             RETRY -> return getRetryGame()
             QUIT -> return quitGame(selectedBridge)
@@ -44,30 +54,30 @@ class BridgeResult {
         return playerBridge.getRetryAnswer()
     }
 
-    private fun getRetryGame() : String{
+    private fun getRetryGame(): String {
         bridgeGame.retry()
         return RETRY
     }
 
-    private fun quitGame(selectedBridge: MutableMap<String, List<String>>) : String{
+    private fun quitGame(selectedBridge: MutableMap<String, List<String>>): String {
         outputView.printResult(selectedBridge, resultOfGame, attemptedNumber)
         return QUIT
     }
 
-    private fun showMovedResult(answerBridge : List<String>, selectedBridge: MutableMap<String, List<String>>){
+    private fun showMovedResult(answerBridge: List<String>, selectedBridge: MutableMap<String, List<String>>) {
         val playerDirection = playerBridge.getDirection()
         bridgeGame.move(playerDirection, answerBridge)
         selectedBridge[UP]?.let { selectedBridge[DOWN]?.let { it1 -> outputView.printMap(it, it1) } }
     }
 
-    private fun manageGettingBridge() : List<String>{
+    private fun manageGettingBridge(): List<String> {
         outputView.printStartLog()
         val answerBridge = bridge.makeBridge()
         outputView.printNewLine()
         return answerBridge
     }
 
-    private fun manageSuccessResult(selectedBridge : MutableMap<String, List<String>>){
+    private fun manageSuccessResult(selectedBridge: MutableMap<String, List<String>>) {
         attemptedNumber += 1
         resultOfGame = SUCCESS_RESULT
         outputView.printResult(selectedBridge, resultOfGame, attemptedNumber)
