@@ -11,8 +11,10 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         println(UI.GET_BRIDGE_SIZE_MESSAGE)
-        val number = Console.readLine().toIntOrThrow()
-        ExceptionHandler.checkValidLength(number)
+        var number: Int
+        do {
+            number = Console.readLine().toIntOrThrow()
+        } while (!ExceptionHandler.checkValidLength(number))
         return number
     }
 
@@ -21,8 +23,10 @@ class InputView {
      */
     fun readMoving(): String {
         println(UI.GET_MOVE_MESSAGE)
-        val location = Console.readLine()
-        ExceptionHandler.checkValidMoving(location)
+        var location: String
+        do {
+            location = Console.readLine()
+        } while (!ExceptionHandler.checkValidMoving(location))
         return location
     }
 
@@ -31,8 +35,10 @@ class InputView {
      */
     fun readGameCommand(): String {
         println(UI.GET_RETRY_MESSAGE)
-        val restart = Console.readLine()
-        ExceptionHandler.checkValidRestart(restart)
+        var restart: String
+        do {
+            restart = Console.readLine()
+        } while (!ExceptionHandler.checkValidRestart(restart))
         return restart
     }
 
