@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.exception.CheckException
 import bridge.view.InputView
 
 /**
@@ -28,16 +29,5 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         return null
     }
 
-    fun printSize(): String {
-        try {
-            val size = InputView().readBridgeSize()
-            CheckException().checkInputSize(size)
-            return size
-        } catch (e: IllegalArgumentException) {
-            println(e)
-            println("\n")
-            val size = printSize()
-            return size
-        }
-    }
+
 }

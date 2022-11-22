@@ -1,4 +1,6 @@
-package bridge
+package bridge.exception
+
+import bridge.Strings
 
 class CheckException {
 
@@ -16,8 +18,20 @@ class CheckException {
         }
     }
 
+    fun checkInputRestart(restart : String){
+        if (restart != "R" && restart != "Q"){
+            throw IllegalArgumentException(Strings.ERROR_INPUT_RESTART.phrases)
+        }
+    }
+
     fun isNumber(string: String): Boolean {
         return !string.isNullOrEmpty() && string.matches(Regex("\\d+"))
+    }
+
+    fun checkRestart(answer : String?){
+        if (answer == "X"){
+            PrintException().printRestart()
+        }
     }
 
 }

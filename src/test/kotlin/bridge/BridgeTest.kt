@@ -1,7 +1,7 @@
 package bridge
 
-import org.assertj.core.api.Assertions
-import org.assertj.core.api.Assertions.assertThat
+import bridge.exception.CheckException
+import bridge.exception.PrintException
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -19,7 +19,7 @@ class BridgeTest {
 
     @Test
     fun `다리 생성 확인`() {
-        var bridgeTest = printBridge(3)
+        var bridgeTest = PrintException().printBridge(3)
         assertEquals(bridgeTest.size,3)
         println(bridgeTest)
     }
@@ -30,6 +30,14 @@ class BridgeTest {
             CheckException().checkInputDirection("a")
         }
     }
+
+    @Test
+    fun `재시작 여부가 올바른 입력인지 확인`() {
+        assertThrows<IllegalArgumentException> {
+            CheckException().checkInputRestart("a")
+        }
+    }
+
 
 
 }
