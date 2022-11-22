@@ -5,6 +5,7 @@ import bridge.BridgeRandomNumberGenerator
 import bridge.model.Bridge
 import bridge.model.BridgeGame
 import bridge.model.GameInfo
+import bridge.utils.Constants
 import bridge.view.OutputView
 
 class BridgeGameConsole {
@@ -60,7 +61,7 @@ class BridgeGameConsole {
     }
 
     /**
-     * 재시작을 위해 변수들을 초기화 하는 함수
+     * 재시작을 위한 초기화 함수
      */
     fun setForRetrial(){
         bridge.initializeLaneCount()
