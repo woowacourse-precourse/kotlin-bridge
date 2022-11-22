@@ -18,4 +18,10 @@ class BridgePlay {
             return "실패"
         return "성공"
     }
+
+    fun playCount(count: Int,bridgeLength:Int,bridge: MutableList<String>):Int{
+        if(bridgeLength == bridge.size)
+            return count
+        return count+1
+    }
 }
