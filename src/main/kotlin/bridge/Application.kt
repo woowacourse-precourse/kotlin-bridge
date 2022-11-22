@@ -1,6 +1,7 @@
 package bridge
 
 fun main() {
+    println("다리 건너기 게임을 시작합니다.")
     val bridgeLength = BridgeException().readBridgeSizeError()
     val bridgeUpdown = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
     val bridge = mutableListOf<String>()

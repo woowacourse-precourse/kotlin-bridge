@@ -8,7 +8,6 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        println("다리 건너기 게임을 시작합니다.")
         println("다리 길이를 입력해주세요")
         val readBridge = Console.readLine()
         return readBridge.toInt()
