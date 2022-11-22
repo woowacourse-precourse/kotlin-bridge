@@ -38,7 +38,7 @@ class BridgeController {
                 break
             }
             bridgeSelect = getBridgeSelect()
-            moveBridge()
+            moveBridge(bridgeSelect)
         }
         if (finalResult == LOSE) {
             getGameCommand()
@@ -61,8 +61,8 @@ class BridgeController {
         return inputView.readMoving()
     }
 
-    fun moveBridge() {
-        val result = bridgeGame.compareState(bridgeSelect)
+    fun moveBridge(select: String) {
+        val result = bridgeGame.compareState(select)
         if (result == BridgeResult.UP_WIN || result == BridgeResult.DOWN_WIN) {
             bridgeGame.move()
         } else {
