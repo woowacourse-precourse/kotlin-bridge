@@ -23,6 +23,8 @@ class BridgeGame(
     }
 
     fun crossBridge() {
+        numberOfTry++
+
         path = mutableListOf()
         var isMoving = true
         var currentIndex = 0
@@ -54,9 +56,7 @@ class BridgeGame(
     }
 
     fun retry() {
-        val command = gameManager.getRestartCommand()
-
-        when (command) {
+        when (gameManager.getRestartCommand()) {
             GAME_RESTART -> crossBridge()
             GAME_END -> gameResult = false
         }
