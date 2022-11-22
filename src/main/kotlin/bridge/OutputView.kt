@@ -41,10 +41,10 @@ class OutputView {
         if(bridgeState == position && bridgeState == rootState) {
             return " O "
         }
-        if(bridgeState != position) {
-            return "   "
+        if(rootState == position && bridgeState != rootState) {
+            return " X "
         }
-        return " X "
+        return "   "
     }
 
     /**
