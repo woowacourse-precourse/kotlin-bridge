@@ -53,6 +53,17 @@ class GameController {
         }
     }
 
+    private fun getCommand(): String {
+        while (true) {
+            try {
+                OutputView.retryOrQuit()
+                return InputView.readGameCommand()
+            } catch (e: IllegalArgumentException) {
+                printError(e)
+            }
+        }
+    }
+
     private fun completeOrFail(isSuccess: Boolean) {
         if (isSuccess) {
             if (bridgeGame.isLastPosition(size - 1)) {
