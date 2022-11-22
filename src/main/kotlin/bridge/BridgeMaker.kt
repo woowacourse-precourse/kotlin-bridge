@@ -12,11 +12,19 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         val bridge = mutableListOf<String>()
         for(i in 0 until size) {
             when(bridgeNumberGenerator.generate()) {
-                0 -> bridge.add("D")
-                1 -> bridge.add("U")
+                BLOCK_DOWN_NUMBER -> bridge.add(BLOCK_DOWN)
+                BLOCK_UP_NUMBER -> bridge.add(BLOCK_UP)
             }
         }
         return bridge
+    }
+
+    companion object {
+        const val BLOCK_DOWN = "D"
+        const val BLOCK_DOWN_NUMBER = 0
+
+        const val BLOCK_UP = "U"
+        const val BLOCK_UP_NUMBER = 1
     }
 }
 
