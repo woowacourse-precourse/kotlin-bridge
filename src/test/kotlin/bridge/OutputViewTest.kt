@@ -13,13 +13,13 @@ class OutputViewTest : NsTest() {
             val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 0, 0))
             val bridgeMaker = BridgeMaker(numberGenerator)
             val bridge: List<String> = bridgeMaker.makeBridge(3)
-            val bridgeGame = BridgeGame()
+            val bridgeGame = BridgeGame(bridge)
             bridgeGame.move("U")
             bridgeGame.move("D")
             bridgeGame.move("D")
 
             val outputView = OutputView()
-            outputView.printMap(bridgeGame.getState(bridge))
+            outputView.printMap(bridgeGame.getState())
 
             assertThat(output()).contains(
                     "[ O |   |   ]",
@@ -34,13 +34,13 @@ class OutputViewTest : NsTest() {
             val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 1, 1))
             val bridgeMaker = BridgeMaker(numberGenerator)
             val bridge: List<String> = bridgeMaker.makeBridge(3)
-            val bridgeGame = BridgeGame()
+            val bridgeGame = BridgeGame(bridge)
             bridgeGame.move("U")
             bridgeGame.move("U")
             bridgeGame.move("D")
 
             val outputView = OutputView()
-            outputView.printMap(bridgeGame.getState(bridge))
+            outputView.printMap(bridgeGame.getState())
 
             assertThat(output()).contains(
                     "[ O | O |   ]",
@@ -55,7 +55,7 @@ class OutputViewTest : NsTest() {
             val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(1, 0, 1, 1, 0))
             val bridgeMaker = BridgeMaker(numberGenerator)
             val bridge: List<String> = bridgeMaker.makeBridge(5)
-            val bridgeGame = BridgeGame()
+            val bridgeGame = BridgeGame(bridge)
             bridgeGame.move("U")
             bridgeGame.move("D")
             bridgeGame.move("U")
@@ -63,7 +63,7 @@ class OutputViewTest : NsTest() {
             bridgeGame.move("D")
 
             val outputView = OutputView()
-            outputView.printMap(bridgeGame.getState(bridge))
+            outputView.printMap(bridgeGame.getState())
 
             assertThat(output()).contains(
                     "[ O |   | O | O |   ]",
