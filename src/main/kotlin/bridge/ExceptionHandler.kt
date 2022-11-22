@@ -5,7 +5,7 @@ import java.lang.IllegalArgumentException
 object ExceptionHandler {
     fun checkValidMoving(location: String): Boolean {
         try {
-            require(location == "U" || location == "D") { Message.InputViewEnum.INVALID_MSG }
+            require(location == "U" || location == "D") { Message.InputViewEnum.INVALID_MOVE }
         } catch (e: IllegalArgumentException) {
             println(e)
             return false
@@ -15,7 +15,7 @@ object ExceptionHandler {
 
     fun checkValidRestart(restart: String): Boolean {
         try {
-            require(restart == "Q" || restart == "R") { Message.InputViewEnum.INVALID_MSG }
+            require(restart == "Q" || restart == "R") { Message.InputViewEnum.INVALID_RESTART }
         } catch (e: IllegalArgumentException) {
             println(e)
             return false
@@ -33,7 +33,7 @@ object ExceptionHandler {
 
     fun checkValidLength(size: Int): Boolean {
         try {
-            require(size in 3..20) { Message.InputViewEnum.INVALID_MSG }
+            require(size in 3..20) { Message.InputViewEnum.INVALID_LENGTH }
         } catch (e: IllegalArgumentException) {
             println(e)
             return false
