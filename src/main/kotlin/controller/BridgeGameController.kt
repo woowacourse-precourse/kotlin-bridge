@@ -46,14 +46,12 @@ class BridgeGameController {
     }
 
     private fun checkRetryQuitCommand() {
-        if (bridgeGame.retry(inputRetryQuitCommand())) {
-            if (bridgeGame.getShowBridgeResult()) {
-                outputView.printResult(
-                    bridgeGame.getOXBridge(),
-                    bridgeGame.getTotalAttempts(),
-                    FAIL
-                )
-            }
+        if (bridgeGame.retry(inputRetryQuitCommand()) && bridgeGame.getShowBridgeResult()) {
+            outputView.printResult(
+                bridgeGame.getOXBridge(),
+                bridgeGame.getTotalAttempts(),
+                FAIL
+            )
         }
     }
 
