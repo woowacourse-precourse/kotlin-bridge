@@ -1,5 +1,7 @@
 package bridge
 
+import org.opentest4j.AssertionFailedError
+
 enum class ErrorMessage(val message: String){
     NOTHING("[ERROR] 아무것도 입력하지 않았습니다."),
     FORMATION("[ERROR] 올바르지 않은 형식입니다."),
@@ -12,6 +14,7 @@ fun parseToInteger(sentence : String) : Int{
     if (sentence == "") throw IllegalArgumentException(ErrorMessage.NOTHING.message)
     try{
         val checkSentence = sentence.toInt()
+        if (checkSentence !in (3..20)) throw IllegalArgumentException(ErrorMessage.LENGTH.message)
         return checkSentence
     } catch (e : NumberFormatException){
         throw NumberFormatException(ErrorMessage.FORMATION.message)
