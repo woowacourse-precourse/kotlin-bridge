@@ -15,4 +15,11 @@ object ExceptionHandler {
         }
         return false
     }
+
+    fun specificAlphabetRQ(input: String): Boolean {
+        if (input == "R" || input == "Q") {
+            return true
+        }
+        return false
+    }
 }

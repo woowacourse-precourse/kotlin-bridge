@@ -44,6 +44,12 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        println(Output.TRY_OR_NOT.output)
+        val gameCommand = Console.readLine()!!
+        if (!ExceptionHandler.specificAlphabetRQ(gameCommand)) {
+            println(ErrorMessage.RQ.errorMessage)
+            readGameCommand()
+        }
+        return gameCommand
     }
 }
