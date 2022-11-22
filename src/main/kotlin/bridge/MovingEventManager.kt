@@ -8,7 +8,5 @@ class MovingEventManager {
 
     fun subscribe(listener: MovingEventListener) = listeners.add(listener)
 
-    fun unsubscribe(listener: MovingEventListener) = listeners.remove(listener)
-
     fun notify(gameMapStatus: GameMapStatus) = listeners.forEach { it.update(gameMapStatus) }
 }

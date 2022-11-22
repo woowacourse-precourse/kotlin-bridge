@@ -9,7 +9,5 @@ class QuitEventManager {
 
     fun subscribe(listener: QuitEventListener) = listeners.add(listener)
 
-    fun unsubscribe(listener: QuitEventListener) = listeners.remove(listener)
-
     fun notify(gameMapStatus: GameMapStatus, gameResult: GameResult) = listeners.forEach { it.update(gameMapStatus, gameResult) }
 }
