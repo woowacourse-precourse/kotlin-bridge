@@ -9,7 +9,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
 
-    var gamecnt : Int = 0
+
     var bridge : List<String> = listOf()
     fun makeBridge(size: Int): List<String> {
         var res = listOf<String>()
