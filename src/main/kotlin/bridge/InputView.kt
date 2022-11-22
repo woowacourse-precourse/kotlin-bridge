@@ -11,6 +11,7 @@ class InputView {
 
     fun readMoving(): String {
         val moving = readLine()!!
+        ErrorCheck().checkReadMoving(moving)
         return moving
     }
 

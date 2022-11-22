@@ -15,5 +15,10 @@ class ErrorCheck {
         }
     }
 
+    fun checkReadMoving(moving: String){
+        if(moving != "U" || moving != "D"){
+            println("[ERROR] 움직임은 U 또는 D만 입력할 수 있습니다.")
+        }
+    }
 
 }
