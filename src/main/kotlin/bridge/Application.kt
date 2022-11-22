@@ -3,6 +3,11 @@ package bridge
 import bridge.Controller.BridgeController
 
 fun main() {
-    var bridgeController = BridgeController()
-    bridgeController.startGame()
+    try {
+        var bridgeController = BridgeController()
+        bridgeController.startGame()
+    } catch (e: IllegalArgumentException) {
+        println(e.message)
+    }
+
 }
