@@ -1,6 +1,6 @@
-package bridge
+package bridge.ui
 
-import bridge.ui.InputChecker
+import bridge.main
 import camp.nextstep.edu.missionutils.test.Assertions
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
