@@ -42,6 +42,14 @@ class UnitTest: NsTest() {
         }
     }
 
+    @Test
+    fun `이동할 칸에 소문자를 입력한 경우`() {
+        assertSimpleTest {
+            run("4","u")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
     }
