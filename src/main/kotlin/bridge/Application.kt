@@ -20,7 +20,7 @@ fun main() {
 }
 
 private fun playGame() {
-    while (!bridgeGame.succeeded() && !bridgeGame.failed())
+    while (bridgeGame.running())
         bridgeGame.move(inputView.askMovingToUser())
     if (bridgeGame.succeeded()) {
         bridgeGame.quit()

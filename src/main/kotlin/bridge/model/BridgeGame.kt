@@ -36,7 +36,7 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
 
     private fun started(): Boolean = ::bridge.isInitialized
 
-    private fun running(): Boolean = started() && !succeeded() && !failed()
+    fun running(): Boolean = started() && !succeeded() && !failed()
 
     private fun stopped(): Boolean = started() && (succeeded() || failed())
 
