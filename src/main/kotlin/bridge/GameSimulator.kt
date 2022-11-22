@@ -14,28 +14,29 @@ class GameSimulator {
             outputView.printResult(bridgeGame.getUserInput(), bridgeGame.getBridge(), tryCount)
         }
 
-        private fun gameStart(){
+        private fun gameStart() {
             while (!gameFinishFlag) {
                 startRound()
             }
         }
-        private fun startRound(){
+
+        private fun startRound() {
             movingStep()
             gameFinishFlag = bridgeGame.checkIsGameFinish()
         }
 
-        private fun initForRestart(){
+        private fun initForRestart() {
             tryCount++
             bridgeGame.initUserInput()
         }
 
-        private fun initLoad(){
+        private fun initLoad() {
             outputView.printOpeningMessage()
             bridgeGame.loadBridge(bridgeMaker.makeBridge(inputView.readBridgeSize()))
             tryCount++
         }
 
-        private fun movingStep(){
+        private fun movingStep() {
             if (bridgeGame.move(inputView.readMoving())) {
                 outputView.printMap(bridgeGame.getUserInput(), bridgeGame.getBridge())
             } else {
@@ -43,12 +44,11 @@ class GameSimulator {
             }
         }
 
-        private fun restartStep(){
-            if(bridgeGame.retry(inputView.readGameCommand())){
+        private fun restartStep() {
+            if (bridgeGame.retry(inputView.readGameCommand())) {
                 initForRestart()
-            }
-            else{
-                gameFinishFlag= true
+            } else {
+                gameFinishFlag = true
             }
         }
 

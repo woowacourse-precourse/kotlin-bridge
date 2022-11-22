@@ -10,18 +10,17 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      */
     fun makeBridge(size: Int): List<String> {
         var res = mutableListOf<String>()
-        for(i in 0 until size){
+        for (i in 0 until size) {
             res = addUpOrDown(res)
         }
         return res
-     }
+    }
 
-    private fun addUpOrDown(res:MutableList<String>): MutableList<String> {
+    private fun addUpOrDown(res: MutableList<String>): MutableList<String> {
         val bridgeNumber = bridgeNumberGenerator.generate()
-        if(bridgeNumber==1){
+        if (bridgeNumber == 1) {
             res.add("U")
-        }
-        else{
+        } else {
             res.add("D")
         }
         return res
