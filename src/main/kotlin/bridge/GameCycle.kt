@@ -1,7 +1,4 @@
 package bridge
-
-var retryCount = 1
-
 fun gameCycleFirst(): List<String> {
     val bridgeLength = InputView().readBridgeSize()
     val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
