@@ -20,6 +20,7 @@ class InputView {
         return try {
             val number = Console.readLine()
             Exceptions.checkInputBrideSize(number)
+            println()
             return number.toInt()
         } catch (e: IllegalArgumentException) {
             println(e.message)
