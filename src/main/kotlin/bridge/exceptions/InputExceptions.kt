@@ -6,7 +6,6 @@ import bridge.exceptions.ErrorMessage.ILLEGAL_MOVE_KEY
 import bridge.exceptions.ErrorMessage.ILLEGAL_RESTART_KEY
 import bridge.exceptions.ErrorMessage.ONLY_INPUT_NUMBER
 
-
 object InputExceptions {
     fun validateBridgeSize(input: String) {
         validateStringToNumber(input)

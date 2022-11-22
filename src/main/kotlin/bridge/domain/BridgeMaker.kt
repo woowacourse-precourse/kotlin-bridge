@@ -24,7 +24,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         return bridge
     }
 
-    companion object{
+    companion object {
         private const val BRIDGE_START_INDEX = 0
         private const val DOWN_BRIDGE_NUMBER = 0
         private const val UP_BRIDGE_NUMBER = 1
