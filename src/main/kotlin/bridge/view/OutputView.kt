@@ -30,8 +30,8 @@ class OutputView {
     }
 
     fun printMap(position: Int, isCorrectDirection: Boolean) {
-        val upBridge = upBridge.subBridge(position)
-        val downBridge = downBridge.subBridge(position)
+        val upBridge = upBridge.getNowBridge(position)
+        val downBridge = downBridge.getNowBridge(position)
         if (isCorrectDirection) printMapCorrectDirection(upBridge, downBridge)
         else printMapUnCorrectDirection(position, upBridge, downBridge)
         println()
@@ -44,12 +44,12 @@ class OutputView {
 
     private fun printMapUnCorrectDirection(position: Int, upBridge: Bridge, downBridge: Bridge) {
         if (answerBridge[position] == "U") {
-            println(upBridge.setWrongAnswer(position, " ").toString())
-            println(downBridge.setWrongAnswer(position, "X").toString())
+            println(upBridge.getWrongAnswerBridge(position, " ").toString())
+            println(downBridge.getWrongAnswerBridge(position, "X").toString())
         }
         if (answerBridge[position] == "D") {
-            println(upBridge.setWrongAnswer(position, "X").toString())
-            println(downBridge.setWrongAnswer(position, " ").toString())
+            println(upBridge.getWrongAnswerBridge(position, "X").toString())
+            println(downBridge.getWrongAnswerBridge(position, " ").toString())
         }
     }
 

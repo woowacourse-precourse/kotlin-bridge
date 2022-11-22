@@ -4,14 +4,21 @@ class Bridge(private val bridge: MutableList<String>) {
 
     fun get(index: Int): String = bridge[index]
 
-    fun setWrongAnswer(position: Int, value: String): Bridge {
+    fun getWrongAnswerBridge(position: Int, value: String): Bridge {
         val tempBridge = mutableListOf<String>()
         tempBridge.addAll(bridge)
         tempBridge[position] = value
-        return Bridge(tempBridge).subBridge(position)
+        return Bridge(tempBridge).getNowBridge(position)
     }
 
-    fun subBridge(lastIndex: Int): Bridge = Bridge(bridge.subList(0, lastIndex + 1))
+    fun getNowBridge(lastIndex: Int): Bridge = Bridge(bridge.subList(BRIDGE_START_INDEX, lastIndex + 1))
 
-    override fun toString(): String = this.bridge.joinToString(prefix = "[ ", postfix = " ]", separator = " | ")
+    override fun toString(): String = this.bridge.joinToString(SEPARATOR, PREFIX, POSTFIX)
+
+    companion object {
+        private const val BRIDGE_START_INDEX = 0
+        private const val PREFIX = "[ "
+        private const val POSTFIX = " ]"
+        private const val SEPARATOR = " | "
+    }
 }

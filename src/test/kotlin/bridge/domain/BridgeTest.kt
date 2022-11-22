@@ -32,13 +32,13 @@ internal class BridgeTest {
     @ParameterizedTest
     @CsvSource("0,' ',[   ]", "1,X,[ O | X ]", "2,X,[ O |   | X ]", "2,' ',[ O |   |   ]")
     fun setWrongAnswer(position: Int, xOrEmpty: String, expected: String) {
-        assertThat(bridge.setWrongAnswer(position, xOrEmpty).toString()).isEqualTo(expected)
+        assertThat(bridge.getWrongAnswerBridge(position, xOrEmpty).toString()).isEqualTo(expected)
     }
 
     @DisplayName("subBridge 메소드가 의도한 범위대로 반환하는지 확인")
     @ParameterizedTest
     @CsvSource("0,[ O ]", "1,[ O |   ]", "2,[ O |   | O ]")
     fun subBridge(position: Int, expected: String) {
-        assertThat(bridge.subBridge(position).toString()).isEqualTo(expected)
+        assertThat(bridge.getNowBridge(position).toString()).isEqualTo(expected)
     }
 }
