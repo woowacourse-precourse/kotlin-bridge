@@ -55,6 +55,8 @@ class OutputView() {
         printGameTrialCountMessage()
     }
 
+    //
+    // 게임 진행 메시지 출력 함수들
     fun printGameStartMessage(){
         println(Constants.GAME_START_MESSAGE)
     }
