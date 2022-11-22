@@ -1,6 +1,9 @@
 package bridge
 
+import bridge.constants.Constants.BLANK_MARK
+import bridge.constants.Constants.CORRECT_MARK
 import bridge.constants.Constants.DOWN_BRIDGE_STRING
+import bridge.constants.Constants.INCORRECT_MARK
 import bridge.constants.Constants.UP_BRIDGE_STRING
 
 class OutputView(private val bridge: List<String>) {
@@ -9,43 +12,35 @@ class OutputView(private val bridge: List<String>) {
 
     fun printMap(moving: List<String>) {
         for (position in moving.indices) {
-            if (moving[position] == bridge[position]) isCorrect(moving, position, true)
-            else {
-                isCorrect(moving, position, false)
-                break
-            }
-            if (position != moving.size - 1) makeMap(" | ", " | ")
+            markAnswer(moving, position, moving[position] == bridge[position])
+            if (moving[position] == bridge[position]) break
+            if (position != moving.size - 1) addStringToMap(" | ", " | ")
         }
-        makeMap(" ]", " ]")
-        print("$up\n$down\n\n")
-        clearMap()
+        printStringBuilder()
     }
 
-    private fun makeMap(upString: String, downString: String) {
+    private fun addStringToMap(upString: String, downString: String) {
         up.append(upString)
         down.append(downString)
     }
 
-    private fun isCorrect(moving: List<String>, position: Int, correct: Boolean) {
-        val str = if (correct) "O" else "X"
+    private fun markAnswer(moving: List<String>, position: Int, isCorrect: Boolean) {
+        val mark = if (isCorrect) CORRECT_MARK else INCORRECT_MARK
         if (moving[position] == bridge[position]) {
-            when (bridge[position]) {
-                UP_BRIDGE_STRING -> makeMap(str, " ")
-                DOWN_BRIDGE_STRING -> makeMap(" ", str)
-            }
+            if (bridge[position] == UP_BRIDGE_STRING) addStringToMap(mark, BLANK_MARK)
+            if (bridge[position] == DOWN_BRIDGE_STRING) addStringToMap(BLANK_MARK, mark)
         } else {
-            when (bridge[position]) {
-                UP_BRIDGE_STRING -> makeMap(" ", str)
-                DOWN_BRIDGE_STRING -> makeMap(str, " ")
-            }
+            if (bridge[position] == UP_BRIDGE_STRING) addStringToMap(BLANK_MARK, mark)
+            if (bridge[position] == DOWN_BRIDGE_STRING) addStringToMap(mark, BLANK_MARK)
         }
     }
 
-    private fun clearMap() {
+    private fun printStringBuilder() {
+        addStringToMap(" ]", " ]")
+        print("$up\n$down\n\n")
         up.clear()
         down.clear()
-        up.append("[ ")
-        down.append("[ ")
+        addStringToMap("[ ", "[ ")
     }
 
     fun printResult(choice: List<String>, isSuccess: Boolean, count: Int) {

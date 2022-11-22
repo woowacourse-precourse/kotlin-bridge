@@ -7,4 +7,7 @@ object Constants {
     const val DOWN_BRIDGE_STRING = "D"
     const val UP_BRIDGE_NUMBER = 1
     const val DOWN_BRIDGE_NUMBER = 0
+    const val CORRECT_MARK = "O"
+    const val INCORRECT_MARK = "X"
+    const val BLANK_MARK = " "
 }
