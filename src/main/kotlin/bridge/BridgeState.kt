@@ -29,4 +29,10 @@ class BridgeState {
         outputView.printMap(bridge, userState)
     }
 
+    fun isUserLive(bridge: List<String>): Boolean {
+        return userState.filterIndexed { idx, it ->
+            bridge[idx] != it
+        }.isEmpty()
+    }
+
 }
