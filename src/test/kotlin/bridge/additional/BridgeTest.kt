@@ -1,6 +1,6 @@
 package bridge.additional
 
-import bridge.computer.BridgeMaker
+import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
 import bridge.computer.ErrorCheck
 import org.junit.jupiter.api.Test

@@ -1,6 +1,6 @@
-package bridge.computer
+package bridge
 
-import bridge.BridgeNumberGenerator
+import bridge.computer.ErrorCheck
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
