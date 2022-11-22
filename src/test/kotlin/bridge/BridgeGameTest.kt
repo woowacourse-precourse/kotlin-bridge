@@ -33,7 +33,30 @@ class BridgeGameTest : NsTest() {
         bridgeGame.move("U")
         bridgeGame.move("U")
         bridgeGame.retry()
-        assertThat(bridgeGame.tryNumber == 2 && bridgeGame.route.isEmpty()).isEqualTo(true)
+        assertThat(bridgeGame.getTryNumber() == 2 && bridgeGame.getRoute().isEmpty()).isEqualTo(true)
+    }
+
+    @Test
+    fun `isEnd true 테스트`() {
+        val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+        val bridgeMaker = BridgeMaker(numberGenerator)
+        val bridge: List<String> = bridgeMaker.makeBridge(3)
+        val bridgeGame = BridgeGame(bridge)
+        bridgeGame.move("U")
+        bridgeGame.move("D")
+        bridgeGame.move("D")
+        assertThat(bridgeGame.isEnd()).isEqualTo(true)
+    }
+
+    @Test
+    fun `isEnd false 테스트`() {
+        val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
+        val bridgeMaker = BridgeMaker(numberGenerator)
+        val bridge: List<String> = bridgeMaker.makeBridge(3)
+        val bridgeGame = BridgeGame(bridge)
+        bridgeGame.move("U")
+        bridgeGame.move("D")
+        assertThat(bridgeGame.isEnd()).isEqualTo(false)
     }
 
     override fun runMain() {
