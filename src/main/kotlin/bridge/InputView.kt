@@ -21,7 +21,7 @@ class InputView {
     fun readMoving(): String {
         println(READ_MOVING)
         val input = Console.readLine()
-        if (!(input == UP_COMMAND || input == DOWN_COMMAND)) {
+        if (!(input == GameCommand.UP.getCommand() || input == GameCommand.DOWN.getCommand())) {
             throw IllegalArgumentException(WRONG_INPUT)
         }
         return input
@@ -30,7 +30,7 @@ class InputView {
     fun readGameCommand(): String {
         println(READ_RETRY_OR_QUIT)
         val input = Console.readLine()
-        if (!(input == RETRY_COMMAND || input == QUIT_COMMAND)) {
+        if (!(input == GameCommand.RETRY.getCommand() || input == GameCommand.QUIT.getCommand())) {
             throw IllegalArgumentException(WRONG_INPUT)
         }
         return input
@@ -43,9 +43,5 @@ class InputView {
         const val NOT_NUMBER_ERROR = "[ERROR] 숫자가 아닙니다."
         const val OUT_OF_RANGE_ERROR = "[ERROR] 3이상 20이하가 아닙니다."
         const val WRONG_INPUT = "[ERROR] 잘못된 입력입니다."
-        const val UP_COMMAND = "U"
-        const val DOWN_COMMAND = "D"
-        const val RETRY_COMMAND = "R"
-        const val QUIT_COMMAND = "Q"
     }
 }

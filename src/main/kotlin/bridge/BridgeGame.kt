@@ -1,7 +1,5 @@
 package bridge
 
-import bridge.InputView.Companion.RETRY_COMMAND
-
 class BridgeGame(
     private val inputView: InputView,
     private val outputView: OutputView,
@@ -66,7 +64,7 @@ class BridgeGame(
     }
 
     private fun retry(gameCommand: String): Boolean {
-        if (gameCommand == RETRY_COMMAND) {
+        if (gameCommand == GameCommand.RETRY.getCommand()) {
             result.resetResult()
             return true
         }
