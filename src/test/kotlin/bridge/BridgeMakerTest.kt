@@ -1,8 +1,5 @@
 package bridge
 
-import bridge.domain.architect.BridgeMaker
-import bridge.domain.architect.BridgeNumberGenerator
-import bridge.domain.architect.BridgeRandomNumberGenerator
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

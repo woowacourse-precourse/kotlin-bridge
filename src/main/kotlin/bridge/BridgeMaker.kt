@@ -1,4 +1,4 @@
-package bridge.domain.architect
+package bridge
 
 import bridge.common.UpDown
 

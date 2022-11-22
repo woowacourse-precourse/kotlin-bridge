@@ -1,7 +1,5 @@
 package bridge
 
-import bridge.domain.architect.BridgeMaker
-import bridge.domain.architect.BridgeRandomNumberGenerator
 import bridge.view.InputView
 import bridge.view.OutputView
 

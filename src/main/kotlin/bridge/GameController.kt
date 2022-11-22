@@ -4,7 +4,6 @@ import bridge.common.GameCommand
 import bridge.common.GameResult
 import bridge.common.GameState
 import bridge.domain.BridgeGame
-import bridge.domain.architect.BridgeMaker
 import bridge.view.InputView
 import bridge.view.OutputView
 
