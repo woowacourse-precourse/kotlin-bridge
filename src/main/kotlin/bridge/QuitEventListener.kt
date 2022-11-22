@@ -1,9 +1,9 @@
 package bridge
 
 import bridge.model.GameResult
-import bridge.model.GameMapState
+import bridge.model.GameMapStatus
 
 interface QuitEventListener {
 
-    fun notify(gameMapState: GameMapState, gameResult: GameResult)
+    fun notify(gameMapStatus: GameMapStatus, gameResult: GameResult)
 }

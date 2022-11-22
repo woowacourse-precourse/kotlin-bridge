@@ -81,7 +81,7 @@ internal class BridgeGameTest {
             inner class TestMovingEventListener : MovingEventListener {
 
                 var notified = false
-                override fun notify(gameMapState: GameMapState) {
+                override fun notify(gameMapStatus: GameMapStatus) {
                     notified = true
                 }
             }
@@ -168,7 +168,7 @@ internal class BridgeGameTest {
 
             inner class TestQuitEventListener : QuitEventListener {
                 var notified: Boolean = false
-                override fun notify(gameMapState: GameMapState, gameResult: GameResult) {
+                override fun notify(gameMapStatus: GameMapStatus, gameResult: GameResult) {
                     notified = true
                 }
             }
