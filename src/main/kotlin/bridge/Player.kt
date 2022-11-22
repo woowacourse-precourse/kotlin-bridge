@@ -30,7 +30,7 @@ class Player(private val bridgeGame: BridgeGame) {
     }
 
     fun closeGame(isSuccessGame: Boolean) {
-        OutputView().printResult(isSuccessGame, tryCount)
+        OutputView().printResult(isSuccessGame, tryCount, userSelectedRoute)
     }
 
     fun setBridgeLength() {

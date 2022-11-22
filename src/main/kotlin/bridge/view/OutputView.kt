@@ -29,8 +29,9 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(isSuccess: Boolean, tryCount: Int) {
+    fun printResult(isSuccess: Boolean, tryCount: Int, userSelectedRoute: List<String>) {
         println(OUTPUT_RESULT_GAME_TITLE)
+        printMap(userSelectedRoute, isSuccess)
         println(OUTPUT_RESULT_GAME_IS_SUCCESS.format(if (isSuccess) OUTPUT_RESULT_GAME_SUCCESS else OUTPUT_RESULT_GAME_FAIL))
         println(OUTPUT_RESULT_GAME_RETRY_COUNT.format(tryCount))
     }
