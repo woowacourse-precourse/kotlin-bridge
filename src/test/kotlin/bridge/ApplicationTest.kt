@@ -14,7 +14,27 @@ class ApplicationTest : NsTest() {
         val bridge: List<String> = bridgeMaker.makeBridge(3)
         assertThat(bridge).containsExactly("U", "D", "D")
     }
-
+    @Test
+    fun `다리 생성 테스트01`() {
+        val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 1, 1, 0))
+        val bridgeMaker = BridgeMaker(numberGenerator)
+        val bridge: List<String> = bridgeMaker.makeBridge(4)
+        assertThat(bridge).containsExactly("U", "U", "U", "D")
+    }
+    @Test
+    fun `다리 생성 테스트02`() {
+        val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 1, 1, 0, 1))
+        val bridgeMaker = BridgeMaker(numberGenerator)
+        val bridge: List<String> = bridgeMaker.makeBridge(5)
+        assertThat(bridge).containsExactly("U", "U", "U", "D", "U")
+    }
+    @Test
+    fun `다리 생성 테스트03`() {
+        val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(0, 1, 1, 1, 0, 1))
+        val bridgeMaker = BridgeMaker(numberGenerator)
+        val bridge: List<String> = bridgeMaker.makeBridge(6)
+        assertThat(bridge).containsExactly("D", "U", "U", "U", "D", "U")
+    }
     @Test
     fun `기능 테스트`() {
         assertRandomNumberInRangeTest({
@@ -39,6 +59,7 @@ class ApplicationTest : NsTest() {
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
+
 
     override fun runMain() {
         main()
