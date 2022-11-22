@@ -35,6 +35,7 @@ class BridgeGameController {
             continueBridgeGame(index, bridge)
             process.add(upLine)
             process.add(downLine)
+            outputView.printMap(process)
             flag = changeGameFlag(index, bridge)
             index++
         } while (flag == Flag.PLAYING)
@@ -42,17 +43,16 @@ class BridgeGameController {
 
     fun init(): List<String> {
         outputView.printStart()
-        outputView.printInputBridgeLength()
         val length = inputView.readBridgeLength()
         return bridgeMaker.makeBridge(length)
     }
 
     fun continueBridgeGame(index: Int, bridge: List<String>) {
-        outputView.printInputMoving()
         val moving = inputView.readMoving()
         if (moving == "U") {
             bridgeGame.move(upLine, moving, bridge[index])
             downLine.add(" ")
+            return
         }
         bridgeGame.move(downLine, moving, bridge[index])
         upLine.add(" ")
@@ -69,7 +69,6 @@ class BridgeGameController {
     }
 
     fun queryGameRetry(): Boolean {
-        outputView.printInputRetry()
         return bridgeGame.retry(inputView.readGameRetry())
     }
 
