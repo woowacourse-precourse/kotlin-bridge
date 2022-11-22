@@ -20,6 +20,10 @@ fun main() {
     bridgeGame.start(bridge)
     while(bridgeGame.running())
         bridgeGame.move(inputView.askMovingToUser())
+    if (inputView.askRetryToUser())
+        bridgeGame.retry()
+    else
+        bridgeGame.quit()
 }
 
 private fun config() {

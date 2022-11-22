@@ -51,10 +51,25 @@ class InputView {
     private fun validateReadMoving(readValue: String) =
         require(readValue == "U" || readValue == "D") { "[ERROR] U(위) 또는 D(아래)를 입력바랍니다." }
 
+    fun askRetryToUser(): Boolean {
+        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        while (true)
+            try {
+                return readGameCommand() == "R"
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+    }
+
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        val readValue = Console.readLine()
+        validateGameCommand(readValue)
+        return readValue
     }
+
+    private fun validateGameCommand(readValue: String) =
+        require(readValue == "R" || readValue == "Q") { "[ERROR] R(재시도) 또는 Q(종료)를 입력바랍니다." }
 }
