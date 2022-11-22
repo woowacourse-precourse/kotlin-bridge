@@ -2,7 +2,6 @@ package bridge.view
 
 import bridge.BridgeGame
 import bridge.Strings
-import bridge.exception.PrintException
 import kotlin.text.StringBuilder
 
 /**
