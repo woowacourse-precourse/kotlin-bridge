@@ -4,6 +4,7 @@ class OutputView {
 
     fun printStartMessage() {
         println(START_GAME_MESSAGE)
+        println()
     }
 
     fun printMap(result: Result) {
@@ -11,6 +12,7 @@ class OutputView {
         val secondRowResult = result.getSecondRowResult()
         println(firstRowResult.joinToString(prefix = PREFIX, separator = SEPARATOR, postfix = POSTFIX))
         println(secondRowResult.joinToString(prefix = PREFIX, separator = SEPARATOR, postfix = POSTFIX))
+        println()
     }
 
     fun printResult(result: Result) {
