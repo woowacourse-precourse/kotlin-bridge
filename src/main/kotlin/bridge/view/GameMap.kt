@@ -27,17 +27,17 @@ class GameMap(gameMapStatus: GameMapStatus) {
     }
 
     class Line(size: Int) {
-        private val elements: MutableList<String>
+        private val squares: MutableList<String>
 
         init {
-            elements = (1..size).map { EMPTY }.toMutableList()
+            squares = (1..size).map { EMPTY }.toMutableList()
         }
 
         fun mark(point: Int, mark: String) {
-            elements[point] = mark
+            squares[point] = mark
         }
 
-        override fun toString(): String = LEFT + elements.joinToString(SPLIT) + RIGHT + "\n"
+        override fun toString(): String = LEFT + squares.joinToString(SPLIT) + RIGHT + "\n"
 
         companion object {
             private const val LEFT = "[ "
