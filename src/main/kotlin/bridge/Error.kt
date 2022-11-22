@@ -1,6 +1,7 @@
 package bridge
 
 class Error {
+
     fun checkBridgeSize(bridgeSize: String): Boolean {
         try{
             if ( bridgeSize.toIntOrNull() == null ) throw IllegalArgumentException("[ERROR] 정수를 입력해 주세요.")
