@@ -23,4 +23,16 @@ class BridgeException {
         }
         return readBridge
     }
+
+    fun readMovingError() : String {
+        val readMove= InputView().readMoving()
+        try {
+            if(readMove != "U" && readMove != "D")
+                throw IllegalStateException()
+        }catch (e:IllegalStateException){
+            println("[ERROR] U 혹은 D를 입력해주십시오 ")
+            return readMovingError()
+        }
+        return readMove
+    }
 }
