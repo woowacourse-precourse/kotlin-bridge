@@ -23,4 +23,17 @@ class BridgeGameController(
         outputView.printResultDetail(isWin, bridgeGame.getTryCount())
     }
 
+    private fun gameProgress(size: Int): Boolean {
+        while (bridgeGame.getPosition() < size) {
+            outputView.printRequestInputDirectionToMove()
+            val direction = inputView.readMoving()
+            val isRight = bridgeGame.move(direction)
+            outputView.printMap(bridgeGame.getPosition(), isRight)
+            bridgeGame.nextPosition()
+            if (isRight) continue
+            if (isGameOver()) return false
+        }
+        return true
+    }
+
 }
