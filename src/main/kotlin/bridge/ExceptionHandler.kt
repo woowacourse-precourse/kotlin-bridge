@@ -31,9 +31,20 @@ object ExceptionHandler {
         }
     }
 
-    fun checkValidLength(size: Int): Boolean {
+    fun checkValidRangeLength(size: Int): Boolean {
         try {
             require(size in 3..20) { Message.InputViewEnum.INVALID_LENGTH }
+        } catch (e: IllegalArgumentException) {
+            println(e)
+            return false
+        }
+        return true
+    }
+
+    fun checkValidLength(size: String): Boolean {
+        try {
+            requireNotNull(size.toIntOrNull()) { Message.InputViewEnum.INVALID_LENGTH }
+            require(size.toInt() in 3..20) { Message.InputViewEnum.INVALID_LENGTH }
         } catch (e: IllegalArgumentException) {
             println(e)
             return false
