@@ -1,5 +1,6 @@
 package bridge.domain
 
+import bridge.BridgeMaker
 import bridge.domain.resource.GAME_END
 import bridge.domain.resource.GAME_RESTART
 import bridge.domain.resource.MoveType

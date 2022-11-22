@@ -2,7 +2,6 @@ package bridge
 
 import bridge.domain.BridgeGame
 import bridge.domain.BridgeGameManager
-import bridge.domain.BridgeMaker
 import bridge.view.InputView
 import bridge.view.OutputView
 
@@ -14,5 +13,6 @@ fun main() {
         bridgeGame.runGame()
     } catch (e: IllegalArgumentException) {
         println(e.message)
+        return
     }
 }
