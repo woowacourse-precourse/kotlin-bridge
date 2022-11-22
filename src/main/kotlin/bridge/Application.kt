@@ -1,5 +1,10 @@
 package bridge
 
+import bridge.controller.BridgeGameController
+
+private val bridgeGameController = BridgeGameController()
+
 fun main() {
-    // TODO: 프로그램 구현
+    bridgeGameController.start()
+    bridgeGameController.play()
 }
