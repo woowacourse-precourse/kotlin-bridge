@@ -8,7 +8,8 @@ class InputView {
     }
 
     fun readMoving(): String {
-        return ""
+        val moving = readLine()!!
+        return moving
     }
 
     fun readGameCommand(): String {
