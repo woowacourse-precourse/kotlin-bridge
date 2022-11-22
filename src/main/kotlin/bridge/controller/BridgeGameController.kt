@@ -11,23 +11,19 @@ class BridgeGameController(
     private val outputView: OutputView
 ) {
     fun play() {
-        try {
-            InputSentence.START.print()
-            val bridgeGame = makeBridgeGame()
-            startBridgeGame(bridgeGame)
-            outputView.printResult(bridgeGame.getPlayer())
-        } catch (exception: IllegalArgumentException) {
-            println(exception.message)
-        }
+        InputSentence.START.print()
+        val bridgeGame = makeBridgeGame()
+        startBridgeGame(bridgeGame)
+        outputView.printResult(bridgeGame.getPlayer())
     }
 
     private fun startBridgeGame(bridgeGame: BridgeGame) {
         var inProgress = true
         while (inProgress) {
-            val moveResult = bridgeGame.move(inputView.readMoving())
+            val moveResult = getMoveResult(bridgeGame)
             outputView.printMap(moveResult)
             if (!bridgeGame.canContinue())
-                inProgress = conductByGameCommand(bridgeGame, inputView.readGameCommand())
+                inProgress = gameCommandResult(bridgeGame)
             inProgress = !bridgeGame.isCompleted()
         }
     }
@@ -41,12 +37,47 @@ class BridgeGameController(
             GameCommand.QUIT -> false
         }
 
-
     private fun makeBridgeGame(): BridgeGame {
         val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
-        val bridge = Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()))
+        var bridge: Bridge = makeBridge(bridgeMaker)
         return BridgeGame(bridge, Player())
     }
 
+    private fun makeBridge(bridgeMaker: BridgeMaker): Bridge {
+        var bridge: Bridge
+        while (true) {
+            try {
+                bridge = Bridge(bridgeMaker.makeBridge(inputView.readBridgeSize()))
+                break
+            } catch (exception: IllegalArgumentException) {
+                println(exception.message)
+            }
+        }
+        return bridge
+    }
 
+    private fun getMoveResult(bridgeGame: BridgeGame): List<PlayerBlock> {
+        var moveResult: List<PlayerBlock>
+        while (true) {
+            try {
+                moveResult = bridgeGame.move(inputView.readMoving())
+                break
+            } catch (exception: IllegalArgumentException) {
+                println(exception.message)
+            }
+        }
+        return moveResult
+    }
+
+    private fun gameCommandResult(bridgeGame: BridgeGame): Boolean {
+        var gameCommandResult: Boolean
+        while (true) {
+            try {
+                gameCommandResult = conductByGameCommand(bridgeGame, inputView.readGameCommand())
+            } catch (exception: IllegalArgumentException) {
+                println(exception.message)
+            }
+        }
+        return gameCommandResult
+    }
 }
