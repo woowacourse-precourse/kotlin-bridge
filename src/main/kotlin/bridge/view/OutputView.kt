@@ -24,6 +24,10 @@ private const val WRONG_GAME_STATE = "[ERROR] 잘못된 상태가 넘어왔습�
 
 class OutputView {
 
+    fun printErrorMessage(message: String) {
+        println(message)
+    }
+
     fun printBlank() {
         println()
     }
