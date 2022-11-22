@@ -14,14 +14,12 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        try {
-            val inp = readLine()
-            return BridgeException(inp).toSize()
+        return try {
+            BridgeException(readLine()).toSize()
         } catch (e: IllegalArgumentException) {
             println(SIZE_ERROR)
             println(RETRY_MESSAGE)
-            //return readBridgeSize()
-            exitProcess(0)
+            readBridgeSize()
         }
     }
 
@@ -29,14 +27,12 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        try {
-            val inp = readLine()
-            return BridgeException(inp).toMoving()
+        return try {
+            BridgeException(readLine()).toMoving()
         } catch (e: IllegalArgumentException) {
             println(MOVING_ERROR)
             println(RETRY_MESSAGE)
-            //return readMoving()
-            exitProcess(0)
+            readMoving()
         }
     }
 
@@ -44,14 +40,12 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        try {
-            val inp = readLine()
-            return BridgeException(inp).toGameCommand()
+        return try {
+            BridgeException(readLine()).toGameCommand()
         } catch (e: IllegalArgumentException) {
             println(COMMAND_ERROR)
             println(RETRY_MESSAGE)
-            //return readGameCommand()
-            exitProcess(0)
+            return readGameCommand()
         }
     }
 
