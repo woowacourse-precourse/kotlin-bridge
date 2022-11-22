@@ -26,4 +26,9 @@ class BridgeTest {
         val bridge = "U"
         Assertions.assertThat(BridgeGame().move(player, bridge)).isEqualTo("X")
     }
+
+    @Test
+    fun `R을 입력받으면 재시작을 한다`() {
+        Assertions.assertThat(BridgeGame().retry("R")).isEqualTo(true)
+    }
 }
