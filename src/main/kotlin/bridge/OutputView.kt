@@ -36,14 +36,14 @@ class OutputView {
     fun printMap(bridgeAnswer: List<String>, moveResult : List<String>): Int {
         for (count in moveResult.indices){
             if (bridgeAnswer[count] =="U" && moveResult[count]=="O") bridgeCaseUO()
-            if (bridgeAnswer[count] =="U" && moveResult[count]=="O") bridgeCaseDO()
+            if (bridgeAnswer[count] =="D" && moveResult[count]=="O") bridgeCaseDO()
             if (bridgeAnswer[count] =="U" && moveResult[count]=="X"){ bridgeCaseUX()
                 break }
             if (bridgeAnswer[count] =="D" && moveResult[count]=="X") { bridgeCaseDX()
                 break }
         }
-        println("["+(bridgeUpperSide.toString().replace(",","|"))+"]")
-        println("["+(bridgeDownSide.toString().replace(",","|"))+"]\n")
+        println(bridgeUpperSide.toString().replace(", ","|"))
+        println((bridgeDownSide.toString().replace(", ","|"))+"\n")
         return gameFailed
     }
 

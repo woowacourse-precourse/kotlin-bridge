@@ -6,14 +6,12 @@ fun gameCycleFirst(): List<String> {
 }
 
 fun gameCycleSecond(bridgeAnswer:List<String>): MutableList<String> {
-    var currentMove : String
     val movedResult = mutableListOf<String>()
     for (current in bridgeAnswer){
-        currentMove = InputView().readMoving()
-        val afterMove = BridgeGame().move(current,currentMove)
-        movedResult.add(afterMove)
+        val currentMove = InputView().readMoving()
+        movedResult.add(BridgeGame().move(current,currentMove))
         OutputView().printMap(bridgeAnswer,movedResult)
-        if (afterMove=="X") break
+        if ("X" in movedResult) break
     }
     return movedResult
 }

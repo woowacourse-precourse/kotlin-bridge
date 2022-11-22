@@ -14,6 +14,7 @@ fun parseToInteger(sentence : String) : Int{
         val checkSentence = sentence.toInt()
         return checkSentence
     } catch (e : NumberFormatException){
+        println(ErrorMessage.FORMATION.message)
         throw NumberFormatException(ErrorMessage.FORMATION.message)
     }
 }
