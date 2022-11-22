@@ -21,6 +21,7 @@ class BridgeGameStarter {
             var checkMoving = BridgeGame().move(nextMoving, bridge)
             OutputView().printMap(checkMoving)
         } while(success == "True" && moving.size != bridge.size)
+        OutputView().printResult()
     }
 
 }

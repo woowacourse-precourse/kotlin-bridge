@@ -1,6 +1,9 @@
 package bridge
 
 import bridge.BridgeGameStarter.Companion.moving
+import bridge.BridgeGameStarter.Companion.success
+import bridge.SketchBridge.Companion.movingDownside
+import bridge.SketchBridge.Companion.movingUpside
 
 class BridgeGame {
 
@@ -22,6 +25,15 @@ class BridgeGame {
         return moving
     }
 
-    fun retry() {}
+    fun retry() {
+        moving.clear()
+        movingUpside.clear()
+        movingDownside.clear()
+        cntMoving = 0
+        success = "True"
+
+        val game = BridgeGameStarter()
+        game.startGame()
+    }
 
 }

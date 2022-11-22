@@ -13,6 +13,7 @@ class InputView {
     }
 
     fun readGameCommand(): String {
-        return ""
+        val gameCommand = readLine()!!
+        return gameCommand
     }
 }
