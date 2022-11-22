@@ -3,8 +3,8 @@ package bridge
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
-class BridgeGame {
-    var userRoute = mutableListOf<String>()
+class BridgeGame(userRoute : MutableList<String>) {
+    var userRoute = userRoute
     var times = 1
     var control = 0
     /**
@@ -13,15 +13,14 @@ class BridgeGame {
      *
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun move(bridge : List<String>) {
-        var upDown = listOf("U","D")
-        while (userRoute != bridge){
-            var userMove = InputView().readMoving()
-            userRoute.add(userMove)
-            for (move in upDown) { printMap(bridge, move) }
-            if (wrongAnswer(bridge, upDown) == "break") break
-            if (userRoute == bridge) { finalStage(bridge, upDown) }
+    fun move(bridge : List<String>, userMove : String, upDown: List<String>) : MutableList<String>{
+        userRoute.add(userMove)
+        for (move in upDown) { printMap(bridge, move) }
+        if (wrongAnswer(bridge, upDown) == "break") {
+            return mutableListOf("break")
         }
+        if (userRoute == bridge) { finalStage(bridge, upDown) }
+        return userRoute
     }
 
     /**
