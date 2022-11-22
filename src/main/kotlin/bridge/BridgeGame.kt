@@ -4,9 +4,8 @@ package bridge
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame {
-
     private var count: Int = 1
-    private var msg = 0
+    private var result = 0
     private var setBase = 0
     fun guideSet(): List<String> {
         val size = Guide().guideInfo()
@@ -17,7 +16,7 @@ class BridgeGame {
         val bridgeUpList = mutableListOf<String>()
         val bridgeDownList = mutableListOf<String>()
         move(checkBridge, bridgeUpList, bridgeDownList)
-        if (msg < 1) Guide().successGuideMsg()
+        if (result < 1) Guide().successGuideMsg()
         return count
     }
 
@@ -27,27 +26,34 @@ class BridgeGame {
             bridgeUpList.add(BridgeGame().bridgUp(checkBridge[Index], bridgeChoose))
             bridgeDownList.add(BridgeGame().bridgDown(checkBridge[Index], bridgeChoose))
             Guide().success(Index,checkBridge)
-            Guide().bridgeList(bridgeUpList, bridgeDownList)
-            msg += retry(checkBridge, bridgeUpList, bridgeDownList)
-            if (msg >= 1) break
+            bridgeMove(checkBridge, bridgeUpList, bridgeDownList)
+            if (result >= 1) break
         }
     }
 
+    fun bridgeMove(checkBridge: List<String>, bridgeUpList: MutableList<String>, bridgeDownList: MutableList<String>){
+        Guide().bridgeList(bridgeUpList, bridgeDownList)
+        result += retry(checkBridge, bridgeUpList, bridgeDownList)
+    }
     fun bridgUp(bridgeCheck: String, bridgeChoose: String): String {
         var mapUp = "   "
-        if (bridgeCheck == "U")
-            if (bridgeChoose == "U") mapUp = " O "
-        if (bridgeCheck == "D")
-            if (bridgeChoose == "U") mapUp = " X "
+        if (bridgeChoose == "U") {
+            when (bridgeCheck) {
+                "U" -> mapUp = " O "
+                "D" -> mapUp = " X "
+            }
+        }
         return mapUp
     }
 
     fun bridgDown(bridgeCheck: String, bridgeChoose: String): String {
         var mapDown = "   "
-        if (bridgeCheck == "U")
-            if (bridgeChoose == "D") mapDown = " X "
-        if (bridgeCheck == "D")
-            if (bridgeChoose == "D") mapDown = " O "
+        if (bridgeChoose == "D") {
+            when (bridgeCheck) {
+                "U" -> mapDown = " X "
+                "D" -> mapDown = " O "
+            }
+        }
         return mapDown
     }
 

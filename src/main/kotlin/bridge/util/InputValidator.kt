@@ -4,11 +4,17 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 class InputValidator {
-
+    companion object{
+        const val ERRORNULLMSG="[ERROR] 입력 길이가 초과하거나 부족합니다."
+        const val SIZEMSG="[ERROR] 입력은 한자리의 양식만 가능합니다."
+        const val BRIDGESIZEMSG="[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 한다."
+        const val CHOOSEBRIDEG="[ERROR] U,D 를 입력해 주세요."
+        const val CHOOSERETRY="[ERROR] R,Q 를 입력해 주세요."
+    }
     fun checkNullBridgeSize(userInputNumber: String?) {
         userInputNumber ?: println("[Error]")
         if (userInputNumber!!.isEmpty() || userInputNumber.length > 2) {
-            println("[ERROR] 입력 길이가 초과하거나 부족합니다.")
+            println(ERRORNULLMSG)
             throw IllegalArgumentException()
         }
     }
@@ -17,7 +23,7 @@ class InputValidator {
     fun checkNullBridgeString(userInputNumber: String?) {
         userInputNumber ?: println("[Error]")
         if (userInputNumber!!.isEmpty() || userInputNumber.length > 1) {
-            println("[ERROR] 입력은 한자리의 양식만 가능합니다.")
+            println(SIZEMSG)
             throw IllegalArgumentException()
         }
     }
@@ -29,7 +35,7 @@ class InputValidator {
         for (inputNum in checkOverlap) {
             val matcher: Matcher = pattern.matcher(inputNum.toString())
             if (matcher.find().toString() == "false") {
-                println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 한다.")
+                println(BRIDGESIZEMSG)
                 throw IllegalArgumentException()
             }
         }
@@ -40,7 +46,7 @@ class InputValidator {
         val pattern: Pattern = Pattern.compile(messageform)
         val matcher: Matcher = pattern.matcher(checkOverlap)
         if (matcher.find().toString() == "false") {
-            println("[ERROR] U,D 를 입력해 주세요.")
+            println(CHOOSEBRIDEG)
             throw IllegalArgumentException()
         }
     }
@@ -50,7 +56,7 @@ class InputValidator {
         val pattern: Pattern = Pattern.compile(messageform)
         val matcher: Matcher = pattern.matcher(checkOverlap)
         if (matcher.find().toString() == "false") {
-            println("[ERROR] R,Q 를 입력해 주세요.")
+            println(CHOOSERETRY)
             throw IllegalArgumentException()
         }
     }

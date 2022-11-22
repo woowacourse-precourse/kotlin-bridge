@@ -11,7 +11,9 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         val bridge= mutableListOf <String>()
         for (i in 1 .. size) {
-            bridge.add(bridgeNumberGenerator.generate().toString().replace("1","U").replace("0","D"))
+            bridge.add(bridgeNumberGenerator.generate().toString()
+                .replace("1","U")
+                .replace("0","D"))
         }
         return bridge
     }

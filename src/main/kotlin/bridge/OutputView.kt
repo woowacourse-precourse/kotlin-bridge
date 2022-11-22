@@ -4,13 +4,21 @@ package bridge
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
  */
 class OutputView {
+    enum class Print(val value:String){
+       GUIDEMSG("다리 건너기 게임을 시작합니다.\n다리의 길이를 입력해주세요." ),
+        BRIDGECHOOSE("이동할 칸을 선택해주세요. (위: U, 아래: D)"),
+        RESTARTMSG("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"),
+        SUCCESSRESULT("게임 성공 여부: 성공"),
+        FAILRESULT("게임 성공 여부: 실패"),
+        FINALRESULT("최종 게임 결과"),
+        GAMECOUNT("총 시도한 횟수: ")
+    }
     fun printGuide(){
-        println("다리 건너기 게임을 시작합니다.")
-        println("다리의 길이를 입력해주세요.")
+        println(Print.GUIDEMSG.value)
     }
 
     fun printBridgeChoose(){
-        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        println(Print.BRIDGECHOOSE.value)
     }
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -21,22 +29,20 @@ class OutputView {
         println("[$bridge]")
     }
     fun printRestartMsg(){
-        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        println(Print.RESTARTMSG.value)
     }
     fun printSuccessResult(){
-
-        println("게임 성공 여부: 성공")
-
+        println(Print.SUCCESSRESULT.value)
     }
 
     fun printFailResult() {
-        println("게임 성공 여부: 실패")
+        println(Print.FAILRESULT.value)
     }
     fun printLastGame(){
-        println("최종 게임 결과")
+        println(Print.FINALRESULT.value)
     }
     fun printGameEnd(){
-        print( "총 시도한 횟수: "+BridgeGame().startBridge(BridgeGame().guideSet()))
+        print(Print.GAMECOUNT.value+BridgeGame().startBridge(BridgeGame().guideSet()))
     }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
