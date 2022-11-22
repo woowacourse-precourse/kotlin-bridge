@@ -56,25 +56,24 @@ class ApplicationTest : NsTest() {
         private const val ERROR_MESSAGE = "[ERROR]"
     }
 
-
     @Test
-    fun `예외 테스트2`() {
+    fun `예외 테스트(다리길이1)`() {
         assertSimpleTest {
-            runException("-5")
+            runException("-1")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
 
     @Test
-    fun `예외 테스트3`() {
+    fun `예외 테스트(다리길이2)`() {
         assertSimpleTest {
-            runException("21")
+            runException("30")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
 
     @Test
-    fun `예외 테스트4`() {
+    fun `예외 테스트(건너는 다리 U, D)`() {
         assertSimpleTest {
             runException("10","a")
             assertThat(output()).contains(ERROR_MESSAGE)
@@ -82,10 +81,10 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `예외 테스트5`() {
-        assertRandomNumberInRangeTest({
-            runException("3", "U", "D", "U", "a")
+    fun `예외 테스트(재시작 여부 R, Q)`() {
+        assertSimpleTest {
+            runException("10","D", "t")
             assertThat(output()).contains(ERROR_MESSAGE)
-        }, 1, 0, 0)
+        }
     }
 }

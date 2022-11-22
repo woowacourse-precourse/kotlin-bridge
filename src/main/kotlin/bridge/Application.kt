@@ -3,33 +3,27 @@ package bridge
 
 fun main() {
     // TODO: 프로그램 구현
-    val bridgeSize = InputView().readBridgeSize()
-    val bridgeMade = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeSize)
-    var answer: Boolean
+    val bridgeMade = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(InputView().readBridgeSize())
+    gameMaker(bridgeMade)
+}
+
+fun gameMaker(bridge: List<String>){
     var regame = ""
     var tryCount = 1
-
     while (true) {
-        var caseList = mutableListOf<Int>()
-        answer = caseMaker(bridgeMade, caseList)
-        //맞추기 틀린 경우
-        if (!answer) {
+        val caseList = mutableListOf<Int>()
+        val answer = caseMaker(bridge, caseList)
+        if (!answer)
             regame = InputView().readGameCommand()
-        }
-        //틀리고 재시작시 Q가 들어온 경우
         if (!answer && BridgeGame().retry(regame)) {
-            //실패결과 출력후 종료
             OutputView().printResult(false, caseList, tryCount)
             break
         }
-        //틀리고 재시작시 R이 들어온 경우
         if (!answer && !BridgeGame().retry(regame)) {
             regame = ""
             tryCount += 1
         }
-        //맞추기 성공한 경우
         if (answer) {
-            //성공결과 출력후 종료
             OutputView().printResult(true, caseList, tryCount)
             break
         }
