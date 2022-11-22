@@ -15,7 +15,6 @@ class OutputView {
             if (direction == "U") print("[ O ]")
             else print("[ X ]")
         } else { print("[   ]")}
-
         if ( bridge[step] == "D") {
             if (direction == "D") print("\n[ O ]")
             else print("\n[ X ]")
@@ -31,17 +30,15 @@ class OutputView {
         }
         printMapLast(bridge, direction, step)
     }
-    fun printMapLast(bridge: List<String>, direction: String, step: Int): Boolean {
+    fun printMapLast(bridge: List<String>, direction: String, step: Int){
         if ( bridge[step] == "U") {
             if (direction == "U") print(" O ]")
             else print("   ]")
-            printMapBottom(bridge, direction, step)
         } else {
             if (direction == "U") print(" X ]")
             else print("   ]")
-            printMapBottom(bridge, direction, step)
         }
-        return if ( bridge[step] == direction ) true else false
+        printMapBottom(bridge, direction, step)
     }
     fun printMapBottom(bridge: List<String>, direction: String, step: Int) {
         for ( i in 0..step-1 ){
@@ -53,7 +50,7 @@ class OutputView {
         printMapBottomLast(bridge, direction, step)
     }
 
-    fun printMapBottomLast(bridge: List<String>, direction: String, step: Int): Boolean {
+    fun printMapBottomLast(bridge: List<String>, direction: String, step: Int){
         if ( bridge[step] == "D") {
             if (direction == "D") print(" O ]")
             else print("   ]")
@@ -61,10 +58,7 @@ class OutputView {
             if (direction == "D") print(" X ]")
             else print("   ]")
         }
-        return if ( bridge[step] == direction ) true else false
     }
-
-
 
 
     /**
@@ -73,17 +67,24 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printResult(bridge: List<String>, bridgeSize: Int) {
-        print("[")
-        for ( i in 0..bridgeSize-1){
-            if ( bridge[i] == "U" ) print(" O ")
-            else print("   ")
-            if ( i < bridgeSize-1 ) print("|") else print("]")
-        }
-        print("\n[")
-        for ( i in 0..bridgeSize-1 ){
-            if ( bridge[i] == "D" ) print(" O ")
-            else print("   ")
-            if ( i < bridgeSize-1 ) print("|") else print("]")
-        }
+        printResultLine(bridge, bridgeSize, "U")
+        println()
+        printResultLine(bridge, bridgeSize, "D")
     }
+
+    fun printResultQuit(bridge: List<String>, step: Int){
+        printResultLine(bridge, step, "U")
+        println()
+        printResultLine(bridge, step, "D")
+    }
+
+    fun printResultLine(bridge: List<String>, bridgeSize: Int, correctDirection: String ){
+        print("[")
+        for ( i in 0..bridgeSize - 1){
+            if ( bridge[i] == correctDirection ) print(" O |") else print("   |")
+        }
+        if ( bridge[bridgeSize] == correctDirection ) print("   ]") else print(" X ]")
+    }
+
+
 }
