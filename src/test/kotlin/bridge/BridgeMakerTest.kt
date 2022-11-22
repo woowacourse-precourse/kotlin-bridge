@@ -1,7 +1,5 @@
 package bridge
 
-import domain.BridgeMaker
-import domain.BridgeNumberGenerator
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
