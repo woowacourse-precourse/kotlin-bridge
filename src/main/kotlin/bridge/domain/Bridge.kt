@@ -5,8 +5,12 @@ import bridge.util.BridgeMoving
 data class Bridge(val steps: List<String>) {
 
     init {
-        require(steps.size in 3..20) { BRIDGE_SIZE_ERROR_MESSAGE }
-        require(steps.all { it == BridgeMoving.UP.character || it == BridgeMoving.DOWN.character }) { BRIDGE_LOCATION_ERROR_MESSAGE }
+        require(steps.size in 3..20) { throw IllegalArgumentException(BRIDGE_SIZE_ERROR_MESSAGE) }
+        require(steps.all { it == BridgeMoving.UP.character || it == BridgeMoving.DOWN.character }) {
+            throw IllegalArgumentException(
+                BRIDGE_LOCATION_ERROR_MESSAGE
+            )
+        }
     }
 
     fun isMatchMoving(userMoving: String, userPosition: Int): Boolean {

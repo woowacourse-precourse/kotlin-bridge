@@ -8,6 +8,6 @@ fun main() {
         val controller = Controller()
         controller.run()
     } catch (e: IllegalArgumentException) {
-        print(e.message)
+        println(e.message)
     }
 }
