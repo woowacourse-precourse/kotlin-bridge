@@ -5,7 +5,7 @@ fun main() {
         val game = BridgeGameStarter()
         game.setGame()
         game.startGame()
-    } catch (e: IllegalArgumentException){
-        e.message
+    } catch(e: IllegalArgumentException){
+        println("[ERROR] 오류가 발생했습니다.")
     }
 }
