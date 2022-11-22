@@ -14,25 +14,43 @@ class InputView {
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(): String {
+    fun readBridgeSize(): Int {
         println(BRIDGE_GAME_START_MESSAGE)
-        println(INPUT_BRIDGE_LENGTH_MESSAGE)
-        return Console.readLine()
+        while (true) {
+            try {
+                println(INPUT_BRIDGE_LENGTH_MESSAGE)
+                return bridgeInputCheck.checkBridgeSize(Console.readLine())
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        println(INPUT_MOVE_DIRECTION_MESSAGE)
-        return Console.readLine()
+        while (true) {
+            try {
+                println(INPUT_MOVE_DIRECTION_MESSAGE)
+                return bridgeInputCheck.checkMoveDirection(Console.readLine())
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        println(INPUT_RETRY_MESSAGE)
-        return Console.readLine()
+        while (true) {
+            try {
+                println(INPUT_RETRY_MESSAGE)
+                return bridgeInputCheck.checkRetry(Console.readLine())
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 }
