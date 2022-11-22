@@ -18,11 +18,11 @@ class BridgeGameController {
     }
 
     private fun startGame() {
-        while (bridgeGame.getRestart()) {
+        while (bridgeGame.getRestartGame()) {
             bridgeGame.initStartGame()
             if (judgePlayerSelected(bridgeSize) == bridgeSize) {
                 OutputView().printResult(bridgeGame.getOXBridge(), bridgeGame.getTotalAttempts(), "SUCCESS")
-                bridgeGame.setRestart(false)
+                bridgeGame.setRestartGame(false)
             }
         }
     }
@@ -34,7 +34,7 @@ class BridgeGameController {
             OutputView().printMap(bridgeGame.getOXBridge())
             if (checkBridgeContainX()) break
         }
-        return bridgeGame.getCorrectDirection()
+        return bridgeGame.getCorrectNum()
     }
 
     private fun checkBridgeContainX(): Boolean {
@@ -47,7 +47,7 @@ class BridgeGameController {
 
     private fun checkRetry() {
         if (bridgeGame.retry(inputCommand())) {
-            if (bridgeGame.getShowResult()) {
+            if (bridgeGame.getShowBridgeResult()) {
                 OutputView().printResult(
                     bridgeGame.getOXBridge(),
                     bridgeGame.getTotalAttempts(),
