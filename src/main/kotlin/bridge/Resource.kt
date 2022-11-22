@@ -13,3 +13,5 @@ const val ERROR_RANGE_BRIDGE_SIZE_MESSAGE = "[ERROR] 다리 길이는 3부터 20
 
 const val ERROR_MOVE_DIRECTION_MESSAGE = "[ERROR] 이동할 칸은 U 또는 D만 가능합니다."
 const val ERROR_RETRY_MESSAGE = "[ERROR] 게임 재시작 여부는 R 또는 Q만 가능합니다."
+
+const val GAME_OVER_MESSAGE = "최종 게임 결과"

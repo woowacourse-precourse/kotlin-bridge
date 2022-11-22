@@ -17,4 +17,5 @@ fun main() {
         if (!bridgeGame.move(moveDirection, bridge))
             gameOver = bridgeGame.retry(checkInput.checkRetry(showInputView.readGameCommand()))
     }
+    OutputView().printResult(bridgeGame.userBridge, bridge)
 }

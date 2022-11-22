@@ -35,7 +35,7 @@ class BridgeGame {
         return true
     }
 
-    private fun compareBridge(bridge: List<String>): List<Pair<String, Boolean>> {
+    fun compareBridge(bridge: List<String>): List<Pair<String, Boolean>> {
         val compareBridgeResult = mutableListOf<Pair<String, Boolean>>()
         for (userIndex in 0 until userBridge.size) {
             if (bridge[userIndex] == userBridge[userIndex])
@@ -57,7 +57,6 @@ class BridgeGame {
             userBridge.clear()
             return true
         }
-
         return false
     }
 }
