@@ -49,8 +49,8 @@ object BridgeCrossingCalculator {
 
     fun isCrossingFail(): Boolean = bridgeCrossingHistory.any { (_, isCrossed) -> !isCrossed }
 
-    fun updateBridgeCrossingInfo(userMoving: Moving, isCrossed: Boolean) =
+    fun updateBridgeCrossingHistory(userMoving: Moving, isCrossed: Boolean) =
         bridgeCrossingHistory.add(userMoving to isCrossed)
 
-    fun clearBridgeCrossingInfo() = bridgeCrossingHistory.clear()
+    fun clearBridgeCrossingHistory() = bridgeCrossingHistory.clear()
 }

@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Test
 class BridgeCrossingCalculatorTest {
     @BeforeEach
     fun setUp() {
-        BridgeCrossingCalculator.clearBridgeCrossingInfo()
-        BridgeCrossingCalculator.updateBridgeCrossingInfo(Moving.UP, true)
-        BridgeCrossingCalculator.updateBridgeCrossingInfo(Moving.DOWN, true)
-        BridgeCrossingCalculator.updateBridgeCrossingInfo(Moving.UP, false)
+        BridgeCrossingCalculator.clearBridgeCrossingHistory()
+        BridgeCrossingCalculator.updateBridgeCrossingHistory(Moving.UP, true)
+        BridgeCrossingCalculator.updateBridgeCrossingHistory(Moving.DOWN, true)
+        BridgeCrossingCalculator.updateBridgeCrossingHistory(Moving.UP, false)
     }
 
     @Test
@@ -40,9 +40,9 @@ class BridgeCrossingCalculatorTest {
     }
 
     @Test
-    fun `게임 최종 결과를 잘 반환하는 지 테스트`() {
+    fun `게임 최종 결과를 잘 계산하는지 테스트`() {
         Assertions.assertThat(
-            BridgeCrossingCalculator.getFinalGameResult()
+            BridgeCrossingCalculator.calculateFinalGameResult()
         ).isEqualTo(FINAL_FAIL_RESULT)
     }
 

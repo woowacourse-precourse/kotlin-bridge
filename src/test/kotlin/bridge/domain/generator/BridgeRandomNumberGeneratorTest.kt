@@ -1,11 +1,13 @@
 package bridge.domain.generator
 
+import bridge.BridgeNumberGenerator
+import bridge.BridgeRandomNumberGenerator
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.RepeatedTest
 
 class BridgeRandomNumberGeneratorTest {
-    private lateinit var bridgeRandomNumberGenerator:  BridgeNumberGenerator
+    private lateinit var bridgeRandomNumberGenerator: BridgeNumberGenerator
 
     @BeforeEach
     fun setUp() {

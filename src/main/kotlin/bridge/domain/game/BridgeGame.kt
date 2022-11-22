@@ -1,8 +1,7 @@
 package bridge.domain.game
 
 import bridge.common.*
-import bridge.domain.game.service.GameService
-import bridge.domain.maker.BridgeMaker
+import bridge.BridgeMaker
 import bridge.domain.mediator.BridgeGameViewMediator
 import bridge.domain.moving.Moving
 import bridge.domain.calculator.BridgeCrossingCalculator
@@ -82,7 +81,7 @@ class BridgeGame(
         val userMoving = if (moving == MOVING_UP_CODE) Moving.UP else Moving.DOWN
         val isCrossed = (moving == bridge[round])
 
-        BridgeCrossingCalculator.updateBridgeCrossingInfo(userMoving = userMoving, isCrossed = isCrossed)
+        BridgeCrossingCalculator.updateBridgeCrossingHistory(userMoving = userMoving, isCrossed = isCrossed)
     }
 
     private fun checkGameCommand(command: String) {
@@ -99,7 +98,7 @@ class BridgeGame(
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      */
     override fun retry() {
-        BridgeCrossingCalculator.clearBridgeCrossingInfo()
+        BridgeCrossingCalculator.clearBridgeCrossingHistory()
 
         numberOfTry++
         round = 0

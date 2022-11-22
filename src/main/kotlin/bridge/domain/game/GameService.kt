@@ -1,4 +1,4 @@
-package bridge.domain.game.service
+package bridge.domain.game
 
 interface GameService {
     fun play()
