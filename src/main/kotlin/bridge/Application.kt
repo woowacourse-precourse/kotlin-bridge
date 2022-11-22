@@ -10,7 +10,7 @@ fun main() {
 
 fun start() {
     val bridge = generateBridge()
-    val bridgeGame =  BridgeGame(bridge)
+    val bridgeGame = BridgeGame(bridge)
     print(bridge)
     playGame(bridgeGame)
     OutputView().printResult(bridgeGame)

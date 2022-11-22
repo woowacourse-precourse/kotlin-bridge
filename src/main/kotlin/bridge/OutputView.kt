@@ -12,8 +12,7 @@ class OutputView {
         print("\n게임 성공 여부: ")
         if (bridgeGame.check() && bridgeGame.over()) {
             println("성공")
-        }
-        else {
+        } else {
             println("실패")
         }
         println("총 시도한 횟수: " + bridgeGame.playCount)

@@ -33,6 +33,7 @@ class BridgeGame(private val bridge: List<String>) {
         resultDownBridge = mutableListOf()
         playCount++
     }
+
     fun check(): Boolean {
         val index = playerBridge.size - 1
         return bridge[index] == playerBridge[index]
