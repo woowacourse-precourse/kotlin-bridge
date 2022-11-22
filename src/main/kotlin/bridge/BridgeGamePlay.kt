@@ -19,7 +19,7 @@ class BridgeGamePlay {
 
     private fun result() {
         println("최종 게임 결과")
-        OutputView().printMap(bridge, location, moveCommand)
+        OutputView().printMap(bridge, location-1, moveCommand)
         OutputView().printResult(successOrNot, count)
     }
 
@@ -35,7 +35,15 @@ class BridgeGamePlay {
             if(!BridgeGame().move(bridge, location, moveCommand))
                 checkRetry()
             location ++
+            finalCheck()
         }while(!endOrNot)
+    }
+
+    private fun finalCheck() {
+        if(location == bridge.size){
+            endOrNot = true
+            successOrNot = true
+        }
     }
 
     private fun checkRetry() {
@@ -47,9 +55,6 @@ class BridgeGamePlay {
             endOrNot = true
             location -= 1
         }
-
-
-
     }
 
 
