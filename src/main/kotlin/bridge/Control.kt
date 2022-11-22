@@ -6,6 +6,7 @@ class Control {
     private val bridgeGame = BridgeGame()
     private val inputView = InputView()
     private val outputView = OutputView()
+    var numberOfTry = 1
 
     fun gameStart() {
         println(Output.GAME_START.output)
@@ -16,10 +17,21 @@ class Control {
     private fun markingBridge(bridge: List<String>) {
         val markUp = mutableListOf<String>()
         val markDown = mutableListOf<String>()
+        var tryAgain = false
         for (index in bridge.indices) {
             val mark = bridgeGame.markBridge(inputView.readMoving(), bridge, index)
             bridgeGame.move(mark, markUp, markDown)
             outputView.printMap(markUp, markDown)
+            if (bridgeGame.containsX(markUp, markDown)) {
+                tryAgain = bridgeGame.retry(inputView.readGameCommand())
+                if (tryAgain) {
+                    numberOfTry++
+                    break
+                } else {
+                    outputView.printResult(markUp, markDown, numberOfTry)
+                    return
+                }
+            }
         }
     }
 }
