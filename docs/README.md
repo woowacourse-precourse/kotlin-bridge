@@ -10,7 +10,7 @@
 ### BridgeState
 - [x] 다리와 플레이어 입력을 비교 - BridgeState#compare()
 - [x] 플레이어 이동을 리스트에 추가하고 반환- BridgeState#insertMove()
-### Player
+### GameController
 - [x] 게임 플레이 - playGame()
 - [X] 다리 건너기 - crossBridge()
 # UI 로직 작성
@@ -27,7 +27,7 @@
 - [x] 3 ~ 20 숫자가 아닌 입력
 - [x] U(위), D(아래) 가 아닌 입력
 - [x] R(재시작), Q(종료) 가 아닌 입력
-- [ ] 게임이 한번도 실행되지 않아 count 가 0 
+- [x] 게임이 한번도 실행되지 않아 count 가 0 
 ### Enum 목록 작성
 - [X] Games : 플레이어가 입력한 U, D, R, Q 를 상수로 저장
 

@@ -1,7 +1,7 @@
 package bridge
 
-import bridge.domain.Player
+import bridge.controller.GameController
 
 fun main() {
-    Player().playGame()
+    GameController().playGame()
 }

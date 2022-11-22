@@ -1,10 +1,12 @@
-package bridge.domain
+package bridge.controller
 
 import bridge.BridgeGame
+import bridge.domain.Bridge
+import bridge.domain.BridgeState
 import bridge.ui.InputView
 import bridge.ui.OutputView
 
-class Player {
+class GameController {
     private val inputView = InputView()
     private val outputView = OutputView()
     private var isSuccess = FAIL
