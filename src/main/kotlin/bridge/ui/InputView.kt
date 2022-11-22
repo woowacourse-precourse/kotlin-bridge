@@ -26,7 +26,13 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
-        return ""
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        val userInputText = Console.readLine()
+        require(userInputText == "U" || userInputText == "D") {
+            println("[ERROR] U 또는 D중 하나의 문자만 입력해주세요")
+            return readMoving()
+        }
+        return userInputText
     }
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
