@@ -1,22 +1,57 @@
 package bridge
 
+import values.Moving
+
 /**
- * 다리 건너기 게임을 관리하는 클래스
+ * 다리 건너기 게임의 상태를 관리하는 클래스
  */
 class BridgeGame {
-    /**
-     * 사용자가 칸을 이동할 때 사용하는 메서드
-     *
-     *
-     * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun move() {}
+    private var gameProgress: List<MutableList<String>> = List(2) { mutableListOf() }
+    private var tryCount: Int = 1
+    private var moveCount: Int = 0
+    private var bridgeSize: Int = 0
+    private var bridge: List<String> = listOf()
 
-    /**
-     * 사용자가 게임을 다시 시도할 때 사용하는 메서드
-     *
-     *
-     * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
-     */
-    fun retry() {}
+    fun move(moving: String) {
+        updateGameProgress(moving)
+        moveCount++
+    }
+
+    fun retry() {
+        initGameProgress()
+        tryCount++
+        moveCount = 0
+    }
+
+    private fun updateGameProgress(moving: String) {
+        if (moving == Moving.UP.message) {
+            gameProgress[Moving.UP.index].add(if (isCorrect(moving)) "O" else "X")
+            gameProgress[Moving.DOWN.index].add(" ")
+        }
+        else if (moving == Moving.DOWN.message) {
+            gameProgress[Moving.UP.index].add(" ")
+            gameProgress[Moving.DOWN.index].add(if (isCorrect(moving)) "O" else "X")
+        }
+    }
+
+    private fun initGameProgress() {
+        gameProgress = List(2) { mutableListOf() }
+    }
+
+
+    fun getBridgeSize(): Int { return bridgeSize }
+
+    fun getTryCount(): Int { return tryCount }
+
+    fun getMoveCount(): Int { return moveCount }
+
+    fun getGameProgress(): List<List<String>> { return gameProgress }
+
+    fun setBridgeSize(inputLength: Int) { bridgeSize = inputLength }
+
+    fun setBridge(randomBridge: List<String>) { bridge = randomBridge }
+
+    fun isCorrect(moving: String): Boolean { return bridge[moveCount] == moving }
+
+    fun isSuccess(): Boolean { return !(gameProgress.any{ it.contains("X") }) }
 }
