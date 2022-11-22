@@ -1,5 +1,8 @@
 package bridge
 
+var retryCount = 1
 fun main() {
-    // TODO: 프로그램 구현
+    val bridgeAnswer = gameCycleFirst()
+    val movedResult = gameCycleSecond(bridgeAnswer)
+    gameCycleThird(bridgeAnswer,movedResult)
 }
