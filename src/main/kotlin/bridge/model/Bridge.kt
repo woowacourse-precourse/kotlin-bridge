@@ -15,12 +15,18 @@ class Bridge(private val bridgeLaneShape: List<String>) {
         return false
     }
 
+    /**
+     * 다리 끝까지 이동했는지 판단하는 함수
+     */
     fun isMoveUntilEnd(): Boolean {
         if (laneCount == bridgeLaneShape.size)
             return true
         return false
     }
 
+    /**
+     * 이동 칸 횟수를 초기화 해주는 함수
+     */
     fun initializeLaneCount(){
         laneCount = 0
     }
