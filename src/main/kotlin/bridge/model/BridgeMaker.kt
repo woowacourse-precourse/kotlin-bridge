@@ -1,7 +1,7 @@
 package bridge.model
 
 import bridge.BridgeNumberGenerator
-import bridge.model.data.Direction
+import bridge.util.numberToDirection
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -18,11 +18,5 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
             bridge.add(eachBridge)
         }
         return bridge.toList()
-    }
-
-    private fun Int.numberToDirection() = if (this == Direction.UP.directionNumber) {
-        Direction.UP.direction
-    } else {
-        Direction.DOWN.direction
     }
 }

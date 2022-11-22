@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.model.data.Direction
+
 const val NOT_INITIALIZED = "[ N ]"
 const val SUCCESSIVE_PARENTHESIS = "]["
 const val CONNECT_PARENTHESIS = "|"
@@ -9,14 +11,6 @@ const val UNAVAILABLE_PATH = "X"
 
 const val RETRY_INPUT = "R"
 const val QUIT_INPUT = "Q"
-
-/**
- * 내가 커스텀한 경로의 형태를 출력 형식에 맞추기 위해서 FORMATTING 한다.
- */
-fun String.formattingMap() =
-    this.replace(NOT_INITIALIZED, "")
-        .replace(SUCCESSIVE_PARENTHESIS, CONNECT_PARENTHESIS)
-
 
 const val ASK_BRIDGE_SIZE = "다리의 길이를 입력해주세요.\n"
 const val ASK_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)\n"
