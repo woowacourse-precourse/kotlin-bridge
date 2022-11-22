@@ -1,6 +1,6 @@
 package bridge.domain
 
-import bridge.CommandException
+import bridge.utils.CommandException
 import bridge.ERROR
 import bridge.utils.ErrorType
 import bridge.MOVEMENT

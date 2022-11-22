@@ -1,8 +1,6 @@
-package bridge
+package bridge.utils
 
-import bridge.utils.ErrorType
-import bridge.utils.ONE
-import bridge.utils.ZERO
+import bridge.ERROR
 
 class CommandException(private val message: String, private val key: String) {
 
