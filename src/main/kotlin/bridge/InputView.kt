@@ -7,29 +7,42 @@ import camp.nextstep.edu.missionutils.Console
  */
 class InputView {
 
-    var bridgeSize: String? = ""
-    var chooseUpOrDown: String = ""
-    var chooseRestartOrQuit: String = ""
+    companion object {
+        var bridgeSize: String = ""
+        var chooseUpOrDown: String = ""
+        var chooseRestartOrQuit: String = ""
+    }
 
     /**
      * 다리의 길이를 입력받는다.
      */
-    fun readBridgeSize(): String? {
+    fun readBridgeSize(): String {
         println("다리의 길이를 입력해주세요.")
         bridgeSize = Console.readLine()
 
         return bridgeSize
     }
 
-    fun checkBridgeSizeException() {
+    fun checkBridgeSizeException(size: String) {
         try {
-            // 입력받은 숫자가 범위 밖인지, toInt를 통해 문자를 입력받았는지 판별 가능
-            if (bridgeSize!!.toInt() < 3 || bridgeSize!!.toInt() > 20) {
+            if (!checkDigit(size)) {
+                throw IllegalArgumentException()
+            }
+            else if (size.toInt() < 3 || size.toInt() > 20) {
+                throw IllegalArgumentException()
             }
         } catch (e: IllegalArgumentException) {
             println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
             readBridgeSize()
         }
+    }
+
+    fun checkDigit(input: String): Boolean {
+        var digitFlag = true
+        for (s in input) {
+            if (!s.isDigit()) digitFlag = false
+        }
+        return digitFlag
     }
 
     /**
@@ -42,10 +55,10 @@ class InputView {
         return chooseUpOrDown
     }
 
-    fun checkMovingInputException() {
+    fun checkMovingInputException(chooseUpOrDown: String) {
         try {
             if (chooseUpOrDown != "U" && chooseUpOrDown != "D") {
-                chooseUpOrDown.toInt()
+                throw IllegalArgumentException()
             }
         } catch (e: IllegalArgumentException) {
             println("[ERROR] U(위 칸)나 D(아래 칸) 중 하나만 입력할 수 있습니다.")
@@ -63,13 +76,14 @@ class InputView {
         return chooseRestartOrQuit
     }
 
-    fun checkGameCommandInputException() {
+    fun checkGameCommandInputException(chooseRestartOrQuit: String) {
         try {
-            if (chooseUpOrDown != "R" && chooseUpOrDown != "Q") {
-                chooseUpOrDown.toInt()
+            if (chooseRestartOrQuit != "R" && chooseRestartOrQuit != "Q") {
+                throw IllegalArgumentException()
             }
         } catch (e: IllegalArgumentException) {
             println("[ERROR] R(재시작)과 Q(종료) 중 하나만 입력할 수 있습니다.")
+            readGameCommand()
         }
     }
 }
