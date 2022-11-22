@@ -35,9 +35,9 @@ class InputView {
     fun readGameCommand(): String {
         val cmd = Console.readLine()
         if (cmd.length != 1)
-            throw IllegalArgumentException("이동할 칸은 하나의 문자여야 합니다.")
+            throw IllegalArgumentException("명령어는 하나의 문자여야 합니다.")
         if (!(cmd == "R" || cmd == "Q"))
-            throw IllegalArgumentException("이동할 칸은 문자 R거나 Q여야 합니다.")
+            throw IllegalArgumentException("명령어는 문자 R이거나 Q여야 합니다.")
         return cmd
     }
 }
