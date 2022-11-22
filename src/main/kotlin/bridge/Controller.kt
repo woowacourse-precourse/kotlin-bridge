@@ -16,7 +16,15 @@ class Controller {
     }
 
     fun run() {
-        chooseSpaceToMoveStep()
+//        println(bridge)
+        while (bridgeLength > now && checkProgressStatus()) {
+            chooseSpaceToMoveStep()
+            if (!checkProgressStatus()) {
+                retryGameStep()
+            }
+            now++
+        }
+        outputView.printResult(bridgeGame, now)
     }
 
     private fun gameStartStep() {
@@ -31,12 +39,9 @@ class Controller {
     }
 
     private fun chooseSpaceToMoveStep() {
-        while (bridgeLength > now){
-            val move = chooseSpace()
-            bridgeGame.move(bridge, now, move)
-            outputView.printMap(bridgeGame, now)
-            now++
-        }
+        val move = chooseSpace()
+        bridgeGame.move(bridge, now, move)
+        outputView.printMap(bridgeGame, now)
     }
 
     private fun chooseSpace(): String {
