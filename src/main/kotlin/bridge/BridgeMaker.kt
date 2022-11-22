@@ -8,8 +8,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 
     private fun createBridgeElement(bridgeNumber: Int): String {
         return when (bridgeNumber) {
-            LOWER_INCLUSIVE -> "D"
-            UPPER_INCLUSIVE -> "U"
+            LOWER_INCLUSIVE -> DOWN
+            UPPER_INCLUSIVE -> UP
             else -> {
                 throw IllegalArgumentException("다리의 칸을 생성하려면 0또는 1만 가능합니다.")
             }
