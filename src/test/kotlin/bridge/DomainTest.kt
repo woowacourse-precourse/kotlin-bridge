@@ -21,6 +21,7 @@ class DomainTest {
                 "[   |   ]", "[ O | O | X ]\n" +
                 "[   |   |   ]"
     )
+    val results = listOf(BridgeGame.GameResult.CONTINUE, BridgeGame.GameResult.CONTINUE, BridgeGame.GameResult.FAILURE)
 
     @BeforeEach
     fun setUp() {
@@ -28,25 +29,14 @@ class DomainTest {
         bridgeGame = BridgeGame()
     }
 
-    @DisplayName("유저가 이동한 후에 게임 결과를 반환하는지 확인하는 Domain 테스트")
-    @ParameterizedTest
-    @CsvSource("U,U,D,continue,continue,success", "U,U,U,continue,continue,fail", "D,D,D,fail,fail,fail")
-    fun getGameResult(
-        moving1: String,
-        moving2: String,
-        moving3: String,
-        result1: String,
-        result2: String,
-        result3: String,
-    ) {
-        val movings = listOf<String>(moving1, moving2, moving3)
-        val results = listOf(result1, result2, result3)
+    @DisplayName("유저가 이동한 후에 게임 결과를 옳게 반환하는지 확인하는 Domain 테스트")
+    @Test
+    fun getGameResult() {
         for (i in movings.indices) {
             val moving = movings[i]
-            val result = results[i]
+            val expected = results[i]
             bridgeGame.move(moving, user)
             val actual = bridgeGame.getGameResult(bridge, user)
-            val expected = convertStringToGameResult(result)
             assertThat(actual).isEqualTo(expected)
         }
     }
@@ -61,16 +51,6 @@ class DomainTest {
             bridgeGame.getGameResult(bridge, user)
             val actual = bridgeGame.getMap(user.movingResults)
             assertThat(actual).isEqualTo(expected)
-        }
-    }
-
-
-    private fun convertStringToGameResult(result: String): BridgeGame.GameResult {
-        return when (result) {
-            "success" -> BridgeGame.GameResult.SUCCESS
-            "fail" -> BridgeGame.GameResult.FAILURE
-            "continue" -> BridgeGame.GameResult.CONTINUE
-            else -> BridgeGame.GameResult.CONTINUE
         }
     }
 }
