@@ -28,6 +28,24 @@ class OutputView {
         println(GAME_ATTEMPT_COUNT + count)
     }
 
+    fun printGameStart() {
+        println(GAME_START)
+        println()
+    }
+
+    fun printInputBridgeLength() {
+        println(BRIDGE_SIZE_MESSAGE)
+    }
+
+    fun printSelectMove() {
+        println(BRIDGE_MOVING_MESSAGE)
+    }
+
+    fun printRetry() {
+        println(GAME_COMMAND_MESSAGE)
+    }
+
+
     private fun printUpDown(result: MutableList<List<String>>, direction: String){
         for (index: Int in 1 until result.size) {
             if (result[index][0] == direction) {
