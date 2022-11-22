@@ -39,10 +39,10 @@ class BridgeTest {
     }
 
     @DisplayName("라운드 통과 여부 테스트")
-    @ValueSource(strings = ["D", "U"])
+    @ValueSource(strings = [DOWN_SIDE, UP_SIDE])
     @ParameterizedTest
     fun testRoundResult(input: String) {
-        bridgeShape = listOf("U", "D", "D")
+        bridgeShape = listOf(UP_SIDE, DOWN_SIDE, DOWN_SIDE)
         bridgeController.moveBridge(input)
         when (input) {
             DOWN_SIDE -> assertEquals(finalResult, LOSE)
@@ -51,10 +51,10 @@ class BridgeTest {
     }
 
     @DisplayName("위 칸을 건널 수 있는 경우, 플레이어 입력 비교 테스트")
-    @ValueSource(strings = ["D", "U"])
+    @ValueSource(strings = [DOWN_SIDE, UP_SIDE])
     @ParameterizedTest
     fun testUpSide(input: String) {
-        bridgeShape = listOf("U", "D", "D")
+        bridgeShape = listOf(UP_SIDE, DOWN_SIDE, DOWN_SIDE)
         when (input) {
             DOWN_SIDE -> assertEquals(bridgeGame.compareState(input), BridgeResult.DOWN_LOSE)
             UP_SIDE -> assertEquals(bridgeGame.compareState(input), BridgeResult.UP_WIN)
@@ -62,10 +62,10 @@ class BridgeTest {
     }
 
     @DisplayName("아래 칸을 건널 수 있는 경우, 플레이어 입력 비교 테스트")
-    @ValueSource(strings = ["D", "U"])
+    @ValueSource(strings = [DOWN_SIDE, UP_SIDE])
     @ParameterizedTest
     fun testDownSide(input: String) {
-        bridgeShape = listOf("D", "U", "U")
+        bridgeShape = listOf(DOWN_SIDE, UP_SIDE, UP_SIDE)
         when (input) {
             DOWN_SIDE -> assertEquals(bridgeGame.compareState(input), BridgeResult.DOWN_WIN)
             UP_SIDE -> assertEquals(bridgeGame.compareState(input), BridgeResult.UP_LOSE)
@@ -75,7 +75,7 @@ class BridgeTest {
     @Test
     @DisplayName("다리를 모두 건넜는지 확인 테스트")
     fun testGameSuccess() {
-        bridgeShape = listOf("U", "D", "D")
+        bridgeShape = listOf(UP_SIDE, DOWN_SIDE, DOWN_SIDE)
         var referee = Referee()
         assertEquals(referee.judgeLastBridge(3), true)
     }
@@ -83,7 +83,7 @@ class BridgeTest {
     @Test
     @DisplayName("재시작시 다리 데이터 초기화 테스트")
     fun testDataReset() {
-        bridgeShape = listOf("U", "D", "D")
+        bridgeShape = listOf(UP_SIDE, DOWN_SIDE, DOWN_SIDE)
         roundResult = mutableListOf(BridgeResult.UP_LOSE)
         bridgeLocation = 2
         isPlay = false
