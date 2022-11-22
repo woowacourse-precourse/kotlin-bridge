@@ -16,7 +16,7 @@ class BridgeGame(private val bridgeLength: Int) {
     }
 
     private fun createUpDownBridgeOneLine() {
-        upDownBridgeOneLine = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
+        upDownBridgeOneLine = BridgeMaker(BridgeRandomNumberGenerator()).makeUpDownBridge(bridgeLength)
     }
 
     private fun createUpDownBridge() {

@@ -2,18 +2,18 @@ package bridge
 
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 
-    fun makeBridge(size: Int): List<String> {
-        val bridge = mutableListOf<String>()
+    fun makeUpDownBridge(size: Int): List<String> {
+        val upDownBridge = mutableListOf<String>()
 
         repeat(size) {
-            val number = bridgeNumberGenerator.generate()
+            val bridgeNumber = bridgeNumberGenerator.generate()
 
-            if (number == 0) {
-                bridge.add("D")
-            } else if (number == 1) {
-                bridge.add("U")
+            if (bridgeNumber == 0) {
+                upDownBridge.add("D")
+            } else if (bridgeNumber == 1) {
+                upDownBridge.add("U")
             }
         }
-        return bridge
+        return upDownBridge
     }
 }
