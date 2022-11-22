@@ -1,5 +1,9 @@
 package bridge
 
+import bridge.controller.BridgeGameProgress
+import bridge.view.InputView
+import bridge.view.OutputView
+
 fun main() {
     OutputView().printGameStart()
     val input = InputView()
