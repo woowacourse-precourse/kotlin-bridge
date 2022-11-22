@@ -1,5 +1,9 @@
-package bridge
+package bridge.view
 
+import bridge.BRIDGE_GAME_START_MESSAGE
+import bridge.INPUT_BRIDGE_LENGTH_MESSAGE
+import bridge.INPUT_MOVE_DIRECTION_MESSAGE
+import bridge.INPUT_RETRY_MESSAGE
 import bridge.domain.InputCheck
 import camp.nextstep.edu.missionutils.Console
 

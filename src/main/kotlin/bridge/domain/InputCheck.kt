@@ -25,13 +25,13 @@ class InputCheck {
     }
 
     fun checkMoveDirection(moveDirection: String): String {
-        if (!(moveDirection == "U" || moveDirection == "D"))
+        if (!(moveDirection == MoveDirection.UP.direction || moveDirection == MoveDirection.DOWN.direction))
             throw IllegalArgumentException(ERROR_MOVE_DIRECTION_MESSAGE)
         return moveDirection
     }
 
     fun checkRetry(retryStatus: String): String {
-        if (!(retryStatus == "R" || retryStatus == "Q"))
+        if (!(retryStatus == RetryStatus.RETRY.retryInput || retryStatus == RetryStatus.QUIT.retryInput))
             throw IllegalArgumentException(ERROR_RETRY_MESSAGE)
         return retryStatus
     }

@@ -16,9 +16,9 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         val bridge = mutableListOf<String>()
         for (i in 0 until size) {
             if (bridgeNumberGenerator.generate() == 0)
-                bridge.add("D")
+                bridge.add(MoveDirection.DOWN.direction)
             else
-                bridge.add("U")
+                bridge.add(MoveDirection.UP.direction)
         }
         return bridge.toList()
     }

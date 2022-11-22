@@ -1,4 +1,9 @@
-package bridge
+package bridge.view
+
+import bridge.GAME_OVER_MESSAGE
+import bridge.GAME_SUCCESS_MESSAGE
+import bridge.TRY_NUMBER_MESSAGE
+import bridge.domain.MoveDirection
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -13,9 +18,9 @@ class OutputView {
      */
     fun printMap(compareBridge: List<Pair<String, Boolean>>) {
         var printMapBridge = "["
-        printMapBridge += nowBridgeResult(compareBridge, "U")
+        printMapBridge += nowBridgeResult(compareBridge, MoveDirection.UP.direction)
         printMapBridge += "]\n["
-        printMapBridge += nowBridgeResult(compareBridge, "D")
+        printMapBridge += nowBridgeResult(compareBridge, MoveDirection.DOWN.direction)
         printMapBridge += "]"
         println(printMapBridge)
     }
@@ -46,7 +51,7 @@ class OutputView {
     }
 
     fun printTryGameNumber(gameSuccess: Int) {
-        println(TRY_NUMBER_MESSAGE+gameSuccess)
+        println(TRY_NUMBER_MESSAGE +gameSuccess)
     }
 
 
