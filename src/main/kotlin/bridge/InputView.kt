@@ -30,7 +30,10 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
-        return ""
+        var gameCommand = getGameCommand()
+        while(!gameCommand.equals("R") && !gameCommand.equals(("Q")))
+            gameCommand = getGameCommand()
+        return gameCommand
     }
     /**
      * 사용자가 입력한 값을 숫자로 변환한다.
@@ -69,5 +72,16 @@ class InputView {
             println(e)
         }
         return moveCommand
+    }
+
+    private fun getGameCommand() : String{
+        var gameCommand = ""
+        try{
+            gameCommand = Console.readLine()
+            if(!gameCommand.equals("R") && !gameCommand.equals(("Q"))) throw IllegalArgumentException("[ERROR] r/q를 입력해주세요")
+        }catch (e : IllegalArgumentException){
+            println(e)
+        }
+        return gameCommand
     }
 }
