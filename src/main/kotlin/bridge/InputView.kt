@@ -63,7 +63,7 @@ class InputView {
             retryCheck(res)
         }
         catch (e: IllegalArgumentException) {
-            println("$ERROR_MESSAGE U 또는 D를 입력하세요.")
+            println("$ERROR_MESSAGE R 또는 Q를 입력하세요.")
         }
         return res!!
     }
