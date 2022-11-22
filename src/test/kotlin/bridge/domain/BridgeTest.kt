@@ -1,6 +1,5 @@
-package bridge
+package bridge.domain
 
-import bridge.domain.Bridge
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 

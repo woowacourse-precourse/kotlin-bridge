@@ -1,8 +1,9 @@
-package bridge
+package bridge.domain
 
+import bridge.BridgeGame
 import bridge.data.Games
+import bridge.main
 import camp.nextstep.edu.missionutils.test.NsTest
-import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
