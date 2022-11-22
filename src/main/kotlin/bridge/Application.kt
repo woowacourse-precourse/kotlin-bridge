@@ -24,11 +24,17 @@ private fun playGame() {
         bridgeGame.quit()
         return
     }
-    if (inputView.askRetryToUser()) {
-        bridgeGame.retry()
-        playGame()
-    } else {
-        bridgeGame.quit()
+    decideRetry()
+}
+
+private fun decideRetry() {
+    when (inputView.askRetryToUser()) {
+        true -> {
+            bridgeGame.retry()
+            playGame()
+        }
+
+        false -> bridgeGame.quit()
     }
 }
 
