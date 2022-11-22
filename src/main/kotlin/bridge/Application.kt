@@ -6,6 +6,6 @@ fun main() {
         game.setGame()
         game.startGame()
     } catch (e: IllegalArgumentException){
-        println("[ERROR]")
+        e.message
     }
 }

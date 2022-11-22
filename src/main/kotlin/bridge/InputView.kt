@@ -4,6 +4,8 @@ class InputView {
 
     fun readBridgeSize(): Int {
         val bridgeSize = readLine()!!.toInt()
+        ErrorCheck().checkBridgeSize(bridgeSize.toString())
+        ErrorCheck().checkBridgeRange(bridgeSize)
         return bridgeSize
     }
 
