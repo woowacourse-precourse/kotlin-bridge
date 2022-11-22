@@ -1,14 +1,24 @@
 package bridge
 
-/**
- * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
- */
+import bridge.constant.DOWN_SIDE
+import bridge.constant.UP_SIDE
+
+
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
-    /**
-     * @param size 다리의 길이
-     * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
-     */
+
     fun makeBridge(size: Int): List<String> {
-        return listOf()
+        val bridgeList= mutableListOf<String>()
+        repeat(size){
+            val randomNumber=bridgeNumberGenerator.generate()
+
+            if(randomNumber==0){
+                bridgeList.add(DOWN_SIDE)
+            }
+            else{
+                bridgeList.add(UP_SIDE)
+            }
+        }
+
+        return bridgeList
     }
 }
