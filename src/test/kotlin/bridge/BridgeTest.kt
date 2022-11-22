@@ -11,7 +11,7 @@ class BridgeTest {
 
         val bridge = listOf<String>("U","U","P")
         val userDirection = "U"
-        val result =  BridgeGame().move(userDirection, bridge)
+        val result =  BridgeGame().movedResult(userDirection, bridge)
         val resultMap = mutableMapOf<String, List<String>>()
         resultMap["U"] = listOf("O")
         resultMap["D"] = listOf(" ")

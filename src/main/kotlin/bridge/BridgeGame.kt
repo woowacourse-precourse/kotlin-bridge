@@ -17,7 +17,7 @@ class BridgeGame {
     private val upResultList = mutableListOf<String>()
     private val downResultList = mutableListOf<String>()
 
-    fun move(userDirection: String, createdBridge: List<String>){
+    fun move(userDirection: String, createdBridge: List<String>) {
         if (userDirection == createdBridge[idx]) {
             saveUserCorrectedDirection(userDirection)
             idx += 1
@@ -26,7 +26,12 @@ class BridgeGame {
         }
     }
 
-    fun saveUserCorrectedDirection(userDirection: String){
+    fun movedResult(userDirection: String, createdBridge: List<String>): MutableMap<String, List<String>> {
+        move(userDirection, createdBridge)
+        return saveLastResult()
+    }
+
+    fun saveUserCorrectedDirection(userDirection: String) {
         if (userDirection == UP) {
             upResultList.add(CORRECT_MARK)
             downResultList.add(BLANK)
@@ -36,7 +41,7 @@ class BridgeGame {
         }
     }
 
-    fun saveUserIncorrectedDirection(userDirection: String){
+    fun saveUserIncorrectedDirection(userDirection: String) {
         if (userDirection == UP) {
             upResultList.add(INCORRECT_MARK)
             downResultList.add(BLANK)
@@ -46,7 +51,7 @@ class BridgeGame {
         }
     }
 
-    fun saveLastResult() : MutableMap<String, List<String>>{
+    fun saveLastResult(): MutableMap<String, List<String>> {
         val selectedBridge = mutableMapOf<String, List<String>>()
         selectedBridge[UP] = upResultList
         selectedBridge[DOWN] = downResultList
