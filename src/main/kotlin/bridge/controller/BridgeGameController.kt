@@ -4,9 +4,6 @@ import bridge.BridgeGame
 import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
 import bridge.model.BridgeStatus
-import bridge.model.isFail
-import bridge.model.isFinish
-import bridge.model.isSuccess
 import bridge.view.InputView
 import bridge.view.OutputView
 

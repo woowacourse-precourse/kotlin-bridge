@@ -7,22 +7,21 @@ sealed class BridgeStatus(private val direction: String) {
 
     fun getDirection(): String = direction
 
-}
-
-fun BridgeStatus.isFinish(action: () -> Unit) {
-    if (this is BridgeStatus.FINISH) {
-        action()
+    fun isFinish(action: () -> Unit) {
+        if (this is FINISH) {
+            action()
+        }
     }
-}
 
-fun BridgeStatus.isSuccess(action: () -> Unit) {
-    if (this is BridgeStatus.SUCCESS) {
-        action()
+    fun isSuccess(action: () -> Unit) {
+        if (this is BridgeStatus.SUCCESS) {
+            action()
+        }
     }
-}
 
-fun BridgeStatus.isFail(action: () -> Unit) {
-    if (this is BridgeStatus.FAIL) {
-        action()
+    fun isFail(action: () -> Unit) {
+        if (this is BridgeStatus.FAIL) {
+            action()
+        }
     }
 }
