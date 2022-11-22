@@ -40,6 +40,52 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `범위 밖 입력에 대한 예외 테스트`() {
+        assertSimpleTest {
+            runException("30")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `재시도 결과 테스트`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "U", "R", "U", "D", "U")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O |   | O ]",
+                "[   | O |   ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 2"
+            )
+        }, 1, 0, 1)
+    }
+
+    @Test
+    fun `재시도 입력 예외 발생 테스트`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "U", "-", "R", "U", "D", "U")
+            assertThat(output()).contains(
+                ERROR_MESSAGE
+            )
+        }, 1, 0, 1)
+    }
+
+    @Test
+    fun `실패 게임 결과 테스트`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "U", "Q")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O | X ]",
+                "[   |   ]",
+                "게임 성공 여부: 실패",
+                "총 시도한 횟수: 1"
+            )
+        }, 1, 0, 1)
+    }
+
     override fun runMain() {
         main()
     }
