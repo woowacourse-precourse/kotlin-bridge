@@ -35,6 +35,10 @@ class OutputView {
         println("다리의 길이를 입력해주세요.")
     }
 
+    fun printGetPlayerDirectionLog(){
+        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+    }
+
     companion object{
         const val BRIDGE_PREFIX = "[ "
         const val BRIDGE_POSTFIX = " ]"
