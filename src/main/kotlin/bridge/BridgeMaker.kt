@@ -2,7 +2,7 @@ package bridge
 
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 
-    fun makeUpDownBridge(size: Int): List<String> {
+    fun makeBridge(size: Int): List<String> {
         val upDownBridge = mutableListOf<String>()
         repeat(size) {
             val bridgeNumber = bridgeNumberGenerator.generate()
