@@ -15,7 +15,7 @@ class OutputView {
     }
 
 
-    fun printResult(bridge:Bridge,bridgeGame: BridgeGame) {
+    fun printResult(bridge: Bridge, bridgeGame: BridgeGame) {
         println(GAME_RESULT)
         printMap(bridgeGame)
         val successOrFail = if (!bridge.checkGameEnd(bridgeGame.getPlayerLocation())) GAME_FAIL else GAME_SUCCESS

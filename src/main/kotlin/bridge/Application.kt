@@ -18,7 +18,7 @@ fun makeBridge() {
 
 fun movePlayer(): Boolean {
     val mv = inputView.readMoving()
-    val moveResult=bridgeGame.move(mv, bridge)//correct wrong move 중 하나
+    val moveResult = bridgeGame.move(mv, bridge)
     outputView.printMap(bridgeGame)
 
     return moveResult
@@ -36,11 +36,9 @@ fun requestRetryOrQuit(): Boolean {
 
 fun playGame(): Boolean {
     val mvResult = movePlayer()
-    return if(mvResult){
+    return if (mvResult) {
         !bridge.checkGameEnd(bridgeGame.getPlayerLocation())
-        //true일 때는 맞췄을 경우
-    }else{
-        //틀렸을 경우
+    } else {
         requestRetryOrQuit()
     }
 

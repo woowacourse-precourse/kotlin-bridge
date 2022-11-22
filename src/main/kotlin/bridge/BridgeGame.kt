@@ -6,11 +6,11 @@ class BridgeGame {
     private val roadUntilNow = RoadMap()
 
 
-    fun move(playerInput: String, bridge: Bridge) :Boolean{
-        val nextMv=bridge.checkNextMove(playerInput,playerLocation)
+    fun move(playerInput: String, bridge: Bridge): Boolean {
+        val nextMv = bridge.checkNextMove(playerInput, playerLocation)
 
-        if(nextMv) roadUntilNow.addSuccessRoad(playerInput)
-        else roadUntilNow.addFailRoad(playerInput) //실패
+        if (nextMv) roadUntilNow.addSuccessRoad(playerInput)
+        else roadUntilNow.addFailRoad(playerInput)
 
         playerLocation++
 
@@ -26,17 +26,18 @@ class BridgeGame {
         return playerTryCount
     }
 
-    fun getRoadUntilNow():RoadMap{
+    fun getRoadUntilNow(): RoadMap {
         return roadUntilNow
     }
-    fun getPlayerLocation():Int{
+
+    fun getPlayerLocation(): Int {
         return playerLocation
     }
+
     private fun resetPlayer() {
         roadUntilNow.resetRoadMap()
         playerLocation = -1
     }
-
 
 
 }

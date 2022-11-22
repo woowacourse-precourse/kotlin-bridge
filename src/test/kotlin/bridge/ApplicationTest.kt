@@ -14,11 +14,11 @@ class ApplicationTest : NsTest() {
         val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
         val bridgeMaker = BridgeMaker(numberGenerator)
         val bridge = Bridge(bridgeMaker.makeBridge(3))
-        val bridgeGame=BridgeGame()
+        val bridgeGame = BridgeGame()
 
-        bridgeGame.move(UP_SIDE,bridge)
-        bridgeGame.move(DOWN_SIDE,bridge)
-        bridgeGame.move(DOWN_SIDE,bridge)
+        bridgeGame.move(UP_SIDE, bridge)
+        bridgeGame.move(DOWN_SIDE, bridge)
+        bridgeGame.move(DOWN_SIDE, bridge)
 
         assertThat(bridge.checkGameEnd(bridgeGame.getPlayerLocation())).isEqualTo(true)
     }
@@ -28,9 +28,9 @@ class ApplicationTest : NsTest() {
         val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
         val bridgeMaker = BridgeMaker(numberGenerator)
         val bridge = Bridge(bridgeMaker.makeBridge(3))
-        val bridgeGame=BridgeGame()
+        val bridgeGame = BridgeGame()
 
-        assertThat(bridge.checkNextMove(DOWN_SIDE,bridgeGame.getPlayerLocation())).isEqualTo(false)
+        assertThat(bridge.checkNextMove(DOWN_SIDE, bridgeGame.getPlayerLocation())).isEqualTo(false)
     }
 
     @Test
@@ -38,10 +38,10 @@ class ApplicationTest : NsTest() {
         val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
         val bridgeMaker = BridgeMaker(numberGenerator)
         val bridge: Bridge = Bridge(bridgeMaker.makeBridge(3))
-        val bridgeGame=BridgeGame()
+        val bridgeGame = BridgeGame()
 
-        bridgeGame.move(UP_SIDE,bridge)
-        bridgeGame.move(DOWN_SIDE,bridge)
+        bridgeGame.move(UP_SIDE, bridge)
+        bridgeGame.move(DOWN_SIDE, bridge)
         val expect = listOf(listOf("O", " "), listOf(" ", "O"))
         assertThat(bridgeGame.getRoadUntilNow().getRoadMap()[0]).isEqualTo(expect[0])
         assertThat(bridgeGame.getRoadUntilNow().getRoadMap()[1]).isEqualTo(expect[1])
@@ -62,8 +62,8 @@ class ApplicationTest : NsTest() {
         val bridge = Bridge(bridgeMaker.makeBridge(3))
         val bridgeGame = BridgeGame()
 
-        bridgeGame.move(UP_SIDE,bridge)
-        bridgeGame.move(DOWN_SIDE,bridge)
+        bridgeGame.move(UP_SIDE, bridge)
+        bridgeGame.move(DOWN_SIDE, bridge)
 
         bridgeGame.retry()
 
