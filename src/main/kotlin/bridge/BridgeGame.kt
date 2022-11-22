@@ -72,4 +72,8 @@ class BridgeGame(
         }
         return false
     }
+
+    fun getResult(): Result {
+        return result
+    }
 }
