@@ -36,6 +36,15 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
 
+    fun readGameCommand(): String {
+        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        return try{
+            getGameCommand()
+        }catch (e:IllegalArgumentException){
+            println(e.message)
+            readGameCommand()
+        }
+    }
     private fun getBridgeSize(): Int{
         val size: Int
         try{
@@ -53,8 +62,10 @@ class InputView {
         return moving
     }
 
-
-
-
+    private fun getGameCommand(): String{
+        val command = Console.readLine().trim()
+        if(command!="R" && command!="Q") throw IllegalArgumentException("[ERROR] 재시작은 R, 종료는 Q를 입력하세요.")
+        return command
+    }
 
 }
