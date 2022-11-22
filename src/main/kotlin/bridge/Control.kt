@@ -26,15 +26,19 @@ class Control {
 
     private fun makeBridge(markUp: MutableList<String>, markDown: MutableList<String>): Boolean {
         for (index in bridge.indices) {
-            val mark = bridgeGame.markBridge(inputView.readMoving(), bridge, index)
-            bridgeGame.move(mark, markUp, markDown)
-            outputView.printMap(markUp, markDown)
+            execution(index, markUp, markDown)
             if (bridgeGame.containsX(markUp, markDown)) {
                 whetherToRetry(markUp, markDown)
                 return true
             }
         }
         return false
+    }
+
+    private fun execution(index: Int, markUp: MutableList<String>, markDown: MutableList<String>) {
+        val mark = bridgeGame.markBridge(inputView.readMoving(), bridge, index)
+        bridgeGame.move(mark, markUp, markDown)
+        outputView.printMap(markUp, markDown)
     }
 
     private fun whetherToRetry(markUp: MutableList<String>, markDown: MutableList<String>) {
