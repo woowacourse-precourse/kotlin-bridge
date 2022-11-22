@@ -6,6 +6,7 @@ class BridgeGameStarter {
         lateinit var bridge : List<String>
         var moving = mutableListOf<String>()
         var success = "True"
+        var cnt = 0
     }
 
     fun setGame(){
@@ -14,6 +15,7 @@ class BridgeGameStarter {
     }
 
     fun startGame(){
+        cnt++
         do{ OutputView().printSelection()
             val nextMoving = InputView().readMoving()
             var checkMoving = BridgeGame().move(nextMoving, bridge)

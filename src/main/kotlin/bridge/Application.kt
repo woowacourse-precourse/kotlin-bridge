@@ -8,5 +8,4 @@ fun main() {
     } catch (e: IllegalArgumentException){
         println("[ERROR]")
     }
-
 }
