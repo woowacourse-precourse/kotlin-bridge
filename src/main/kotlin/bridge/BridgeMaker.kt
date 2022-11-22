@@ -20,8 +20,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 
     private fun Int.toDirection(): String {
         return when(this) {
-            BridgeRandomNumberGenerator.RANDOM_LOWER_INCLUSIVE -> "U"
-            else -> "D"
+            BridgeRandomNumberGenerator.RANDOM_LOWER_INCLUSIVE -> "D"
+            else -> "U"
         }
     }
 }
