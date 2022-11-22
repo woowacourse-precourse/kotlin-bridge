@@ -11,7 +11,7 @@ class BridgeChecker(private val bridge: List<String>) {
     private val outputView = OutputView()
     private var map = listOf<String>()
 
-    fun startChecking() {
+    fun startCrossing() {
         if (checkBridge())
             outputView.printResult(map, SUCCESS, bridgeGame.getTryNumber())
         else
@@ -20,17 +20,15 @@ class BridgeChecker(private val bridge: List<String>) {
 
     private fun checkBridge(): Boolean {
         for ((index, actual) in bridge.withIndex()) {
-            if (!isCrossable(index, actual)) return false
+            val predict = askDirection()
+            map = outputView.printMap(index, actual, predict)
+            println(map[0])
+            println(map[1])
+            if (!bridgeGame.move(actual, predict)) {
+                return false
+            }
         }
         return true
-    }
-
-    private fun isCrossable(index: Int, actual: String): Boolean {
-        val predict = askDirection()
-        map = outputView.printMap(index, actual, predict)
-        println(map[0])
-        println(map[1])
-        return bridgeGame.move(actual, predict)
     }
 
     private fun askDirection(): String {
@@ -42,7 +40,7 @@ class BridgeChecker(private val bridge: List<String>) {
         if (askGameCommand() == RESTART) {
             outputView.initMap()
             bridgeGame.retry()
-            startChecking()
+            startCrossing()
         } else {
             outputView.printResult(map, FAIL, bridgeGame.getTryNumber())
         }
