@@ -12,7 +12,7 @@ class BridgeGame {
     fun getGameResult(bridge: Bridge, user: User): GameResult {
         if (bridge.isMatchMoving(user.moving, user.presentPosition)) {
             user.movingResults.add(Pair(user.moving, true))
-            if (user.presentPosition == bridge.length() - 1) return GameResult.SUCCESS
+            if (user.presentPosition == bridge.length()-1) return GameResult.SUCCESS
             return GameResult.CONTINUE
         }
         user.movingResults.add(Pair(user.moving, false))
@@ -56,7 +56,7 @@ class BridgeGame {
     }
 
     fun retry(user: User) {
-        user.presentPosition = INITIALIZE_TO_ZERO
+        user.presentPosition = INITIALIZE_TO_START
         user.movingResults.clear()
         user.tryCount++
     }
@@ -75,7 +75,7 @@ class BridgeGame {
         const val NON_CROSSABLE_BRIDGE = " X "
         const val UN_CHOSEN_BRIDGE = "   "
         const val DIVIDING_LINE = "|"
-        const val INITIALIZE_TO_ZERO = 0
+        const val INITIALIZE_TO_START = -1
         const val GAME_SUCCESS_MESSAGE = "성공"
         const val GAME_FAILURE_MESSAGE = "실패"
     }
