@@ -12,9 +12,21 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap(upSelectedBridge : List<String>, downSelectedBridge : List<String>) {
-        println(upSelectedBridge.joinToString(prefix = BRIDGE_PREFIX, separator = BRIDGE_SEPARATOR, postfix = BRIDGE_POSTFIX))
-        println(downSelectedBridge.joinToString(prefix = BRIDGE_PREFIX, separator = BRIDGE_SEPARATOR, postfix = BRIDGE_POSTFIX))
+    fun printMap(upSelectedBridge: List<String>, downSelectedBridge: List<String>) {
+        println(
+            upSelectedBridge.joinToString(
+                prefix = BRIDGE_PREFIX,
+                separator = BRIDGE_SEPARATOR,
+                postfix = BRIDGE_POSTFIX
+            )
+        )
+        println(
+            downSelectedBridge.joinToString(
+                prefix = BRIDGE_PREFIX,
+                separator = BRIDGE_SEPARATOR,
+                postfix = BRIDGE_POSTFIX
+            )
+        )
         println()
     }
 
@@ -23,35 +35,37 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult(selectedBridge : Map<String, List<String>>, resultOfGame : String, attemptedNumber : Int) {
-        println("최종 게임 결과")
+    fun printResult(selectedBridge: Map<String, List<String>>, resultOfGame: String, attemptedNumber: Int) {
+        println(GAME_RESULT_LOG)
         selectedBridge[UP]?.let { selectedBridge[DOWN]?.let { it1 -> printMap(it, it1) } }
-        println("게임 성공 여부: $resultOfGame")
-        println("총 시도한 횟수: $attemptedNumber")
+        println(
+            GAME_SUCCESS_RESULT_LOG + resultOfGame
+        )
+        println(GAME_ATTEMPTED_NUMBER_LOG + attemptedNumber)
     }
 
-    fun printStartLog(){
+    fun printStartLog() {
         println(START_LOG)
         println()
     }
 
-    fun printGetBridgeLengthLog(){
+    fun printGetBridgeLengthLog() {
         println(GET_BRIDGE_LENGTH_LOG)
     }
 
-    fun printGetPlayerDirectionLog(){
+    fun printGetPlayerDirectionLog() {
         println(GET_PLAYER_DIRECTION_LOG)
     }
 
-    fun printRetryLog(){
+    fun printRetryLog() {
         println(RETRY_LOG)
     }
 
-    fun printNewLine(){
+    fun printNewLine() {
         println()
     }
 
-    companion object{
+    companion object {
         const val BRIDGE_PREFIX = "[ "
         const val BRIDGE_POSTFIX = " ]"
         const val BRIDGE_SEPARATOR = " | "
@@ -60,6 +74,10 @@ class OutputView {
         const val GET_BRIDGE_LENGTH_LOG = "다리의 길이를 입력해주세요."
         const val GET_PLAYER_DIRECTION_LOG = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
         const val RETRY_LOG = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+
+        const val GAME_RESULT_LOG = "최종 게임 결과"
+        const val GAME_SUCCESS_RESULT_LOG = "게임 성공 여부: "
+        const val GAME_ATTEMPTED_NUMBER_LOG = "총 시도한 횟수: "
 
     }
 
