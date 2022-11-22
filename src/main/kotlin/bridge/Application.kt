@@ -1,9 +1,10 @@
-package bridge.view
+package bridge
 
-import bridge.BridgeRandomNumberGenerator
 import bridge.controller.BridgeGame
 import bridge.model.BridgeMaker
 import bridge.util.ERROR_INVALID_INPUT_MESSAGE
+import bridge.view.InputView
+import bridge.view.OutputView
 
 fun main() {
     val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
