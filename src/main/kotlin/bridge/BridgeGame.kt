@@ -17,9 +17,7 @@ class BridgeGame {
     private val upResultList = mutableListOf<String>()
     private val downResultList = mutableListOf<String>()
 
-    fun move(userDirection: String, createdBridge: List<String>) : MutableMap<String, List<String>>{
-
-        val selectedBridge = mutableMapOf<String, List<String>>()
+    fun move(userDirection: String, createdBridge: List<String>){
 
         if (userDirection == createdBridge[idx]) {
             if (userDirection == UP) {
@@ -39,6 +37,10 @@ class BridgeGame {
                 downResultList.add(INCORRECT_MARK)
             }
         }
+    }
+
+    fun saveLastResult() : MutableMap<String, List<String>>{
+        val selectedBridge = mutableMapOf<String, List<String>>()
         selectedBridge[UP] = upResultList
         selectedBridge[DOWN] = downResultList
         return selectedBridge
@@ -51,17 +53,14 @@ class BridgeGame {
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun retry() {
-
         upResultList.clear()
         downResultList.clear()
-
     }
 
-    companion object{
+    companion object {
         const val CORRECT_MARK = "O"
         const val INCORRECT_MARK = "X"
         const val BLANK = " "
-
     }
 
 }
