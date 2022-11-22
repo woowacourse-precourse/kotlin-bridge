@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class ApplicationTest : NsTest() {
     @Test
@@ -55,4 +56,35 @@ class ApplicationTest : NsTest() {
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
     }
+
+    //이하 제작 테스트
+
+    @Test
+
+    fun `맵 출력 테스트`(){
+        assertSimpleTest{
+            val test = BridgeCalculate.upLine(listOf("U","D","D"),listOf(true,false))
+            assertThat(test).isEqualTo("[ O | X ]")
+        }
+    }
+
+    @Test
+    fun `사이즈는 숫자만`(){
+        assertSimpleTest{
+            assertThrows<IllegalArgumentException> {
+                BridgeException.checkNumber("A")
+            }
+        }
+    }
+
+    @Test
+    fun `사이즈는 3~20 사이`(){
+        assertSimpleTest{
+            assertThrows<IllegalArgumentException> {
+                BridgeException.sizeCheck(21)
+            }
+        }
+    }
+
+
 }
