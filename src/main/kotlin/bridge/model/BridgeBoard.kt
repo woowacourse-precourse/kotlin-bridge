@@ -5,23 +5,46 @@ class BridgeBoard {
 
     fun updateBoard(correct: Boolean, moving: String){
         if(correct){
-            if(moving == "U") {
-                board[0].add("O")
-                board[1].add(" ")
-            }else{
-                board[0].add(" ")
-                board[1].add("O")
-            }
+            updateCorrect(moving)
         }else{
-            if(moving == "U"){
-                board[0].add("X")
-                board[1].add(" ")
-            }else{
-                board[0].add(" ")
-                board[1].add("X")
-            }
+            updateWrong(moving)
         }
     }
+
+    private fun updateCorrect(moving: String){
+        if(moving == "U")
+            updateUpperCorrect()
+        else
+            updateLowerCorrect()
+    }
+
+    private fun updateUpperCorrect(){
+        board[0].add("O")
+        board[1].add(" ")
+    }
+
+    private fun updateUpperWrong(){
+        board[0].add("X")
+        board[1].add(" ")
+    }
+
+    private fun updateWrong(moving: String){
+        if(moving == "U")
+            updateUpperWrong()
+        else
+            updateLowerWrong()
+    }
+
+    private fun updateLowerCorrect(){
+        board[0].add(" ")
+        board[1].add("O")
+    }
+
+    private fun updateLowerWrong(){
+        board[0].add(" ")
+        board[1].add("X")
+    }
+
 
     fun clearBoard(){
         this.board[0].clear()
