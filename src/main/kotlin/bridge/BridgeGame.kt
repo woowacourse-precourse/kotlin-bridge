@@ -31,11 +31,11 @@ class BridgeGame {
         return saveLastResult()
     }
 
-    fun getSuccessResult(createdBridge: List<String>): String{
+    fun getSuccessResult(createdBridge: List<String>): Boolean{
         if(idx == createdBridge.size){
-            return "성공"
+            return true
         }
-        return "실패"
+        return false
     }
 
     fun getFailureResult(): Boolean{
