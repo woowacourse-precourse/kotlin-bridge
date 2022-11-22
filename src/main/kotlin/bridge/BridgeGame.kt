@@ -20,6 +20,8 @@ class BridgeGame {
             state = move()
             cnt++
         }
+        bridgeUtils.finish(cnt)
+        retry()
     }
 
     /**
