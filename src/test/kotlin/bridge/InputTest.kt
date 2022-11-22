@@ -17,7 +17,7 @@ class InputTest {
         }
     }
 
-    @DisplayName("건널 다리에 대한 입력이 U 또는 D가 아니면 예외가 발생")
+    @DisplayName("건널 다리에 대한 입력이 U 또는 D가 아니면 예외 발생")
     @ValueSource(strings = [" ", "A", "  U", "1"])
     @ParameterizedTest
     fun testBridgeSelect(input: String) {
@@ -26,7 +26,7 @@ class InputTest {
         }
     }
 
-    @DisplayName("게임 재시도와 종료에 대한 입력이 R 또는 Q가 아니면 예외가 발생한다")
+    @DisplayName("게임 재시도와 종료에 대한 입력이 R 또는 Q가 아니면 예외 발생")
     @ValueSource(strings = [" ", "A", "  R", "1"])
     @ParameterizedTest
     fun testRetryOrQuit(input: String) {

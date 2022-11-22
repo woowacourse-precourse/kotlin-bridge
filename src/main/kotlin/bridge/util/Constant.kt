@@ -21,6 +21,7 @@ object Constant {
 
     val ERROR_NUMBER = "[ERROR] 숫자 형태로 입력해주세요."
     val ERROR_RANGE = "[ERROR] 3이상 20이하의 숫자를 입력해주세요."
+    val ERROR_SELECT_LENGTH = "[ERROR] 한 글자만 입력해주세요."
     val ERROR_SELECT_BRIDGE = "[ERROR] U 또는 D를 입력해주세요."
     val ERROR_COMMAND = "[ERROR] R 또는 Q를 입력해주세요."
 

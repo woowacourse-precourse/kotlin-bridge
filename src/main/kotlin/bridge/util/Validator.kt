@@ -7,6 +7,7 @@ import bridge.util.Constant.ERROR_COMMAND
 import bridge.util.Constant.ERROR_NUMBER
 import bridge.util.Constant.ERROR_RANGE
 import bridge.util.Constant.ERROR_SELECT_BRIDGE
+import bridge.util.Constant.ERROR_SELECT_LENGTH
 import bridge.util.Constant.GAME_COMMAND
 
 object Validator {
@@ -24,12 +25,18 @@ object Validator {
     }
 
     fun checkBridgeSelect(move: String) {
+        if (move.length != 1) {
+            throw IllegalArgumentException(ERROR_SELECT_LENGTH)
+        }
         if (move !in CAN_MOVE_BRIDGE) {
             throw IllegalArgumentException(ERROR_SELECT_BRIDGE)
         }
     }
 
     fun checkCommand(command: String) {
+        if (command.length != 1) {
+            throw IllegalArgumentException(ERROR_SELECT_LENGTH)
+        }
         if (command !in GAME_COMMAND) {
             throw IllegalArgumentException(ERROR_COMMAND)
         }

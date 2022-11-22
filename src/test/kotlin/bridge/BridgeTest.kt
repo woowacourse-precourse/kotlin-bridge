@@ -26,7 +26,7 @@ class BridgeTest : NsTest() {
             assertThat(output()).contains(
                 "[   |   ]",
                 "[ O | X ]",
-                "$GAME_OVER"
+                GAME_OVER
             )
         }, 0, 1, 1)
     }
@@ -58,7 +58,7 @@ class BridgeTest : NsTest() {
         bridgeLocation = 2
         isPlay = false
 
-        bridgeController.retryGame()
+        bridgeController.retryGame();
 
         assertEquals(roundResult.size, 0)
         assertEquals(bridgeLocation,0)
