@@ -19,16 +19,20 @@ class BridgeGame {
 
     fun move(userDirection: String, createdBridge: List<String>){
         if (userDirection == createdBridge[idx]) {
-            if (userDirection == UP) {
-                upResultList.add(CORRECT_MARK)
-                downResultList.add(BLANK)
-            } else {
-                upResultList.add(BLANK)
-                downResultList.add(CORRECT_MARK)
-            }
+            saveUserCorrectedDirection(userDirection)
             idx += 1
         } else {
             saveUserIncorrectedDirection(userDirection)
+        }
+    }
+
+    fun saveUserCorrectedDirection(userDirection: String){
+        if (userDirection == UP) {
+            upResultList.add(CORRECT_MARK)
+            downResultList.add(BLANK)
+        } else {
+            upResultList.add(BLANK)
+            downResultList.add(CORRECT_MARK)
         }
     }
 
