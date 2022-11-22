@@ -1,4 +1,4 @@
-package bridge.UI
+package bridge.View
 
 import bridge.Constants.Companion.DOWN
 import bridge.Constants.Companion.UP
