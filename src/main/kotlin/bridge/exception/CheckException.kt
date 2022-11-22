@@ -28,10 +28,6 @@ class CheckException {
         return !string.isNullOrEmpty() && string.matches(Regex("\\d+"))
     }
 
-    fun checkRestart(answer : String?){
-        if (answer == "X"){
-            PrintException().printRestart()
-        }
-    }
+
 
 }

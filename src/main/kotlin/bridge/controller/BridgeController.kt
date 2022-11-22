@@ -7,7 +7,7 @@ import bridge.view.InputView
 import bridge.view.OutputView
 
 class BridgeController {
-    private val bridgeNumberGenerator = BridgeRandomNumberGenerator()
+
     val resultUp = StringBuilder()
     val resultDown = StringBuilder()
 
@@ -32,11 +32,13 @@ class BridgeController {
                 val answer = BridgeGame().move(direction, bridge[part])
                 OutputView().printMap(answer.toString(), part, resultUp)
                 OutputView().printMap(" ", part, resultDown)
+                BridgeGame().retry(answer.toString())
             }
             if (direction == "D") {
                 val answer = BridgeGame().move(direction, bridge[part])
                 OutputView().printMap(" ", part, resultUp)
                 OutputView().printMap(answer.toString(), part, resultDown)
+                BridgeGame().retry(answer.toString())
             }
             println()
         }
