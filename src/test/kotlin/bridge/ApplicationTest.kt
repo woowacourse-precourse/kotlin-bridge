@@ -33,9 +33,76 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
+    fun `기능 테스트(실패)`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "D", "D", "Q")
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   |   ]",
+                    "[   | O | X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 1"
+            )
+            val upSideIndex = output().indexOf("[ O |   |  ]")
+            val downSideIndex = output().indexOf("[   | O | X ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 1, 0, 1)
+    }
+
+    @Test
+    fun `기능 재시작 테스트`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "U", "R", "U", "D", "D", "R", "U", "D", "U")
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   | O ]",
+                    "[   | O |   ]",
+                    "게임 성공 여부: 성공",
+                    "총 시도한 횟수: 3"
+            )
+            val upSideIndex = output().indexOf("[ O |   | O ]")
+            val downSideIndex = output().indexOf("[   | O |   ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 1, 0, 1)
+    }
+
+    @Test
+    fun `기능 재시작 테스트(실패)`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "U", "R", "U", "D", "D", "Q")
+            assertThat(output()).contains(
+                    "최종 게임 결과",
+                    "[ O |   |   ]",
+                    "[   | O | X ]",
+                    "게임 성공 여부: 실패",
+                    "총 시도한 횟수: 2"
+            )
+            val upSideIndex = output().indexOf("[ O |   |   ]")
+            val downSideIndex = output().indexOf("[   | O | X ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 1, 0, 1)
+    }
+
+    @Test
     fun `예외 테스트`() {
         assertSimpleTest {
             runException("a")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `예외 테스트(boundary_Value1)`() {
+        assertSimpleTest {
+            runException("21")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `예외 테스트(boundary_Value2)`() {
+        assertSimpleTest {
+            runException("2")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
