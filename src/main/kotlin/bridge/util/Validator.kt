@@ -1,5 +1,6 @@
-package bridge.domain
+package bridge.util
 
+import bridge.domain.Command
 import bridge.util.ErrorMessage.ERROR_NOT_VALID_COMMAND
 import bridge.util.ErrorMessage.ERROR_NOT_VALID_NUMBER
 import java.lang.IllegalArgumentException

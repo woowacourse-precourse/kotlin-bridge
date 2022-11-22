@@ -1,6 +1,6 @@
 package bridge.view
 
-import bridge.domain.Validator
+import bridge.util.Validator
 import camp.nextstep.edu.missionutils.Console
 import java.lang.IllegalArgumentException
 
