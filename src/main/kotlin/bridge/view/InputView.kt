@@ -1,6 +1,6 @@
 package bridge.view
 
-import bridge.common.toIntOrThrow
+import bridge.util.toIntOrThrow
 import bridge.constants.ErrorMessage
 import bridge.data.Bridge
 import camp.nextstep.edu.missionutils.Console.readLine
