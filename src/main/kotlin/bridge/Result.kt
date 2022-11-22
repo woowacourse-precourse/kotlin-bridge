@@ -28,10 +28,10 @@ class Result {
 
     fun addResult(playerMove: String, isCrossable: Boolean) {
         when (playerMove to isCrossable) {
-            "U" to true -> addResultEachRow(first = "O", second = " ")
-            "U" to false -> addResultEachRow(first = "X", second = " ")
-            "D" to true -> addResultEachRow(first = " ", second = "O")
-            "D" to false -> addResultEachRow(first = " ", second = "X")
+            GameCommand.UP.getCommand() to true -> addResultEachRow(first = CORRECT, second = EMPTY)
+            GameCommand.UP.getCommand() to false -> addResultEachRow(first = WRONG, second = EMPTY)
+            GameCommand.DOWN.getCommand() to true -> addResultEachRow(first = EMPTY, second = CORRECT)
+            GameCommand.DOWN.getCommand() to false -> addResultEachRow(first = EMPTY, second = WRONG)
         }
     }
 
@@ -54,5 +54,11 @@ class Result {
 
     fun increaseTryCount() {
         tryCount++
+    }
+
+    companion object {
+        const val CORRECT = "O"
+        const val WRONG = "X"
+        const val EMPTY = " "
     }
 }
