@@ -1,6 +1,5 @@
 package bridge
 
-import bridge.utils.Print
 import bridge.view.InputView
 import bridge.view.OutputView
 
@@ -14,7 +13,7 @@ class MoveBridge(private val bridge: List<String>) {
                 return
             }
         }
-        finalResult("성공")
+        BridgeResult().finalResult("성공")
     }
 
     private fun isFailure(bridgeMap: Array<MutableList<String>>): Boolean {
@@ -33,14 +32,7 @@ class MoveBridge(private val bridge: List<String>) {
         if (BridgeGame().retry(restartCommand)) {
             moveStair()
         } else {
-            finalResult("실패")
+            BridgeResult().finalResult("실패")
         }
-    }
-
-    private fun finalResult(result: String) {
-        Print.showGameResult()
-        OutputView().printResult(BridgeGame().getBridgeMap())
-        Print.showIsSuccess(result)
-        Print.showAttempt(BridgeGame().getGameCount())
     }
 }
