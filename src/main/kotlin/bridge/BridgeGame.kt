@@ -18,7 +18,6 @@ class BridgeGame {
     private val downResultList = mutableListOf<String>()
 
     fun move(userDirection: String, createdBridge: List<String>){
-
         if (userDirection == createdBridge[idx]) {
             if (userDirection == UP) {
                 upResultList.add(CORRECT_MARK)
@@ -29,13 +28,17 @@ class BridgeGame {
             }
             idx += 1
         } else {
-            if (userDirection == UP) {
-                upResultList.add(INCORRECT_MARK)
-                downResultList.add(BLANK)
-            } else {
-                upResultList.add(BLANK)
-                downResultList.add(INCORRECT_MARK)
-            }
+            saveUserIncorrectedDirection(userDirection)
+        }
+    }
+
+    fun saveUserIncorrectedDirection(userDirection: String){
+        if (userDirection == UP) {
+            upResultList.add(INCORRECT_MARK)
+            downResultList.add(BLANK)
+        } else {
+            upResultList.add(BLANK)
+            downResultList.add(INCORRECT_MARK)
         }
     }
 
