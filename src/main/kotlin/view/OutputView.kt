@@ -12,9 +12,6 @@ import util.BridgeMessage.SEPARATOR
 import util.BridgeMessage.SUCCESS
 import util.BridgeMessage.TOTAL_ATTEMPT
 
-/**
- * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
- */
 class OutputView {
 
     fun printGameStartNotification() {
