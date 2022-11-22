@@ -18,39 +18,39 @@ class OutputView {
     }
 
     private fun printDownDecide(bridge: List<String>, input: List<String>) {
-        print("[")
+        print(BRIDGE_START)
         input.forEachIndexed { idx, value ->
             val decide = checkDownDecide(idx, value, bridge)
             print(" $decide ")
-            if (idx != input.size - 1) print("|")
+            if (idx != input.size - 1) print(BRIDGE_MID)
         }
-        print("]")
+        print(BRIDGE_END)
     }
 
     private fun printUpDecide(bridge: List<String>, input: List<String>) {
-        print("[")
+        print(BRIDGE_START)
         input.forEachIndexed { idx, value ->
             val decide = checkUpDecide(idx, value, bridge)
             print(" $decide ")
-            if (idx != input.size - 1) print("|")
+            if (idx != input.size - 1) print(BRIDGE_MID)
         }
-        print("]")
+        print(BRIDGE_END)
     }
 
     private fun checkDownDecide(idx: Int, value: String, bridge: List<String>): String {
         when {
-            value == "D" && value == bridge[idx] -> return "O"
-            value == "D" && value != bridge[idx] -> return "X"
+            value == BRIDGE_DOWN && value == bridge[idx] -> return USER_ALIVE
+            value == BRIDGE_DOWN && value != bridge[idx] -> return USER_DIE
         }
-        return " "
+        return SPACE
     }
 
     private fun checkUpDecide(idx: Int, value: String, bridge: List<String>): String {
         when {
-            value == "U" && value == bridge[idx] -> return "O"
-            value == "U" && value != bridge[idx] -> return "X"
+            value == BRIDGE_UP && value == bridge[idx] -> return USER_ALIVE
+            value == BRIDGE_UP && value != bridge[idx] -> return USER_DIE
         }
-        return " "
+        return SPACE
     }
 
     /**
@@ -69,8 +69,8 @@ class OutputView {
     fun printRetryGame() = println(RETRY_GAME)
 
     fun printGameSuccess(isSuccess: Boolean) {
-        var result = "실패"
-        if (isSuccess) result = "성공"
+        var result = FAIL
+        if (isSuccess) result = SUCCESS
         println("$SUCCESS_GAME_CHECK $result")
     }
 
@@ -84,5 +84,15 @@ class OutputView {
         const val FINAL_RESULT = "최종 게임 결과"
         const val SUCCESS_GAME_CHECK = "게임 성공 여부:"
         const val TRY_COUNT = "총 시도한 횟수:"
+        const val SUCCESS = "성공"
+        const val FAIL = "실패"
+        const val USER_ALIVE = "O"
+        const val USER_DIE = "X"
+        const val SPACE = " "
+        const val BRIDGE_START = "["
+        const val BRIDGE_END = "]"
+        const val BRIDGE_MID = "|"
+        const val BRIDGE_UP = "U"
+        const val BRIDGE_DOWN = "D"
     }
 }
