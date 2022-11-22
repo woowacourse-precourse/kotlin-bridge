@@ -55,4 +55,36 @@ class ApplicationTest : NsTest() {
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
     }
+
+    @Test
+    fun `예외 테스트(다리길이1)`() {
+        assertSimpleTest {
+            runException("-1")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `예외 테스트(다리길이2)`() {
+        assertSimpleTest {
+            runException("30")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `예외 테스트(건너는 다리 U, D가 아닌 다른값 입력)`() {
+        assertSimpleTest {
+            runException("10","a")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `예외 테스트(재시작 여부 R, Q가 아닌 다른값 입력)`() {
+        assertSimpleTest {
+            runException("10","D", "t")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
 }
