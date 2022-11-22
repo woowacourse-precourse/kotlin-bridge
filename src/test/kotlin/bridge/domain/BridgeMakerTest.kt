@@ -1,6 +1,7 @@
 package bridge.domain
 
 import bridge.ApplicationTest
+import bridge.BridgeMaker
 import bridge.BridgeNumberGenerator
 import bridge.BridgeRandomNumberGenerator
 import bridge.resources.BRIDGE_BOTTOM_LINE_CHAR

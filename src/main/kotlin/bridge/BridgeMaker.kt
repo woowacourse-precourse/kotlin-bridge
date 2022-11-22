@@ -1,6 +1,5 @@
-package bridge.domain
+package bridge
 
-import bridge.BridgeNumberGenerator
 import bridge.BridgeRandomNumberGenerator.Companion.RANDOM_LOWER_INCLUSIVE
 import bridge.BridgeRandomNumberGenerator.Companion.RANDOM_UPPER_INCLUSIVE
 import bridge.resources.*
