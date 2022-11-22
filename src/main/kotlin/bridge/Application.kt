@@ -6,10 +6,11 @@ import bridge.view.OutputView
 val outputView = OutputView()
 val inputView = InputView()
 val bridgeGame = BridgeGame()
+val gamsHost = GameHost(BridgeMaker(BridgeRandomNumberGenerator()), BridgeGame())
 
 fun main() {
     startGame()
-    val bridge = makeBridge()
+    makeBridge()
 }
 
 private fun startGame() {
@@ -17,11 +18,10 @@ private fun startGame() {
     println()
 }
 
-private fun makeBridge(): List<String> {
+private fun makeBridge() {
     outputView.printBridgeSizePhrase()
-    val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(inputView.readBridgeSize())
+    gamsHost.makeBridge(inputView.readBridgeSize())
     println()
-    return bridge
 }
 
 private fun progressStage(bridgeCurrentPosition: Int, bridge: List<String>): String {
