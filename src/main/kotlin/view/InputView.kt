@@ -37,4 +37,10 @@ class InputView {
         require(command == "R" || command == "Q") { "[ERROR] \"R\" 이나 \"Q\"를 입력해주세요." }
         return command
     }
+
+    fun inputValidMove(): String {
+        val move = readMoving()
+        require(move == "U" || move == "D") { "[ERROR] \"U\" 나 \"D\"를 입력해주세요." }
+        return move
+    }
 }
