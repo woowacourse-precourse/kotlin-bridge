@@ -40,6 +40,14 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `범위 밖 입력에 대한 예외 테스트`() {
+        assertSimpleTest {
+            runException("30")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
     override fun runMain() {
         main()
     }
