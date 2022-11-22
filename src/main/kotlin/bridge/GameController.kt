@@ -8,6 +8,8 @@ import bridge.domain.constructor.BridgeMaker
 import bridge.view.InputView
 import bridge.view.OutputView
 
+private const val INVALID_ERROR = "[ERROR] 예상된 에러 메시지가 넘어오지 않았습니다."
+
 class GameController(
     private val inputView: InputView,
     private val outputView: OutputView
@@ -17,11 +19,20 @@ class GameController(
     private var tryCount: Int = 1
 
     fun standByPhase(bridgeMaker: BridgeMaker) {
-        outputView.printGameStart()
-        val bridgeSize = inputView.readBridgeSize()
+        val bridgeSize = enterBridgeSize()
         outputView.printBlank()
         bridgeGame = BridgeGame(bridgeMaker.makeBridge(bridgeSize))
         gameState = GameState.IN_GAME
+    }
+
+    private fun enterBridgeSize(): Int {
+        return try {
+            outputView.printGameStart()
+            inputView.readBridgeSize()
+        } catch (e: IllegalArgumentException) {
+            outputView.printErrorMessage(e.message ?: INVALID_ERROR)
+            enterBridgeSize()
+        }
     }
 
     fun mainPhase() {
@@ -42,16 +53,34 @@ class GameController(
     }
 
     private fun play() {
-        outputView.printUpDownRequest()
-        gameState = bridgeGame.move(inputView.readMoving())
+        gameState = bridgeGame.move(enterUserDirection())
         outputView.printMap(bridgeGame.currentUpperBridge, bridgeGame.currentDownerBridge)
+    }
+
+    private fun enterUserDirection(): String {
+        return try {
+            outputView.printUpDownRequest()
+            inputView.readMoving()
+        } catch (e: IllegalArgumentException) {
+            outputView.printErrorMessage(e.message ?: INVALID_ERROR)
+            enterUserDirection()
+        }
     }
 
     private fun checkRetry() {
         if (gameState != GameState.FAILURE) return
-        outputView.printRetryRequest()
-        if (inputView.readGameCommand() == GameCommand.R) {
+        if (enterRetryOrEnd() == GameCommand.R) {
             retryGame()
+        }
+    }
+
+    private fun enterRetryOrEnd(): GameCommand {
+        return try {
+            outputView.printRetryRequest()
+            inputView.readGameCommand()
+        } catch (e: IllegalArgumentException) {
+            outputView.printErrorMessage(e.message ?: INVALID_ERROR)
+            enterRetryOrEnd()
         }
     }
 
