@@ -34,19 +34,4 @@ class OutputView {
         println(THE_NUMBER_OF_TRY.format(numberOfTry))
     }
 
-
-    /**
-     * 내가 커스텀한 경로의 형태를 출력 형식에 맞추기 위해서 FORMATTING 한다.
-     */
-    private fun String.formattingMap() =
-        this.replace(NOT_INITIALIZED, "")
-            .replace(SUCCESSIVE_PARENTHESIS, CONNECT_PARENTHESIS)
-
-
-    companion object {
-        const val GAME_START = "다리 건너기 게임을 시작합니다."
-        const val GAME_RESULT = "최종 게임 결과"
-        const val GAME_RESULT_FLAG = "게임 성공 여부: %s"
-        const val THE_NUMBER_OF_TRY = "총 시도한 횟수: %d"
-    }
 }

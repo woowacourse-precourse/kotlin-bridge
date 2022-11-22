@@ -1,5 +1,8 @@
 package bridge.view
 
+import bridge.ASK_BRIDGE_SIZE
+import bridge.ASK_MOVE
+import bridge.ASK_RETRY
 import bridge.util.InputValidator
 import camp.nextstep.edu.missionutils.Console
 
@@ -56,11 +59,5 @@ class InputView(private val inputValidator: InputValidator) {
                 println(e.message)
             }
         }
-    }
-
-    companion object {
-        const val ASK_BRIDGE_SIZE = "다리의 길이를 입력해주세요.\n"
-        const val ASK_MOVE = "이동할 칸을 선택해주세요. (위: U, 아래: D)\n"
-        const val ASK_RETRY = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)\n"
     }
 }
