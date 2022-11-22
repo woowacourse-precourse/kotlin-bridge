@@ -35,4 +35,16 @@ class BridgeException {
         }
         return readMove
     }
+
+    fun readGameCommandError(): String {
+        val readGame = InputView().readGameCommand()
+        try {
+            if(readGame != "R" && readGame != "Q" )
+                throw IllegalStateException()
+        } catch(e : IllegalStateException){
+            println("[ERROR] R 혹은 Q를 입력해주십시오")
+            return readGameCommandError()
+        }
+        return readGame
+    }
 }
