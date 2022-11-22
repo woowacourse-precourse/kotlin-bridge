@@ -20,7 +20,20 @@ class BridgeGameController {
     private fun startGame() {
         while (bridgeGame.getRestart()) {
             bridgeGame.initStartGame()
+            if (judgePlayerSelected(bridgeSize) == bridgeSize) {
+                OutputView().printResult(bridgeGame.getOXBridge(), bridgeGame.getTotalAttempts(), "SUCCESS")
+                bridgeGame.setRestart(false)
+            }
         }
+    }
+
+    private fun judgePlayerSelected(bridgeLength: Int): Int {
+        for (index in 0 until bridgeLength) {
+            val move = inputMove()
+            bridgeGame.move(move, index)
+            OutputView().printMap(bridgeGame.getOXBridge())
+        }
+        return bridgeGame.getCorrectDirection()
     }
 
     private fun inputBridgeSize(): Int {
