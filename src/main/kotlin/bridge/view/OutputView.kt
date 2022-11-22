@@ -1,6 +1,15 @@
 package bridge.view
 
-import bridge.*
+import bridge.Constans.ERROR
+import bridge.Constans.FINAL_GAME_RESULT
+import bridge.Constans.INPUT_BRIDGE_LENGTH
+import bridge.Constans.INPUT_RETRY_OR_QUIT
+import bridge.Constans.NULL
+import bridge.Constans.SELECT_MOVE_DIRECTION
+import bridge.Constans.START_BRIDGE_GAME
+import bridge.Constans.TOTAL_TRY_COUNT
+import bridge.Constans.WHETHER_SUCCESS_OR_NOT
+import bridge.Constans.ZERO
 import java.lang.IllegalArgumentException
 import java.lang.NumberFormatException
 

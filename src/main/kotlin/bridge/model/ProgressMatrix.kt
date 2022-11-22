@@ -1,6 +1,11 @@
 package bridge.model
 
-import bridge.*
+import bridge.Constans.BLANK
+import bridge.Constans.COLUMN_COUNT
+import bridge.Constans.DOWNSIDE
+import bridge.Constans.NULL
+import bridge.Constans.UP
+import bridge.Constans.UPSIDE
 
 class ProgressMatrix {
     lateinit var progress: Array<Array<String>>

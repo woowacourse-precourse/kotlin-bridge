@@ -1,5 +1,17 @@
 package bridge
 
+import bridge.Constans.DOWN
+import bridge.Constans.ENTER_R_OR_Q
+import bridge.Constans.ENTER_U_OR_D
+import bridge.Constans.INCLUDE_CHARACTER
+import bridge.Constans.NOT_IN_RANGE
+import bridge.Constans.NO_INPUT
+import bridge.Constans.QUIT
+import bridge.Constans.RANGE_LOWER_BOUND
+import bridge.Constans.RANGE_UPPER_BOUND
+import bridge.Constans.RETRY
+import bridge.Constans.START_WITH_ZERO
+import bridge.Constans.UP
 import bridge.view.OutputView.throwIllegalException
 import bridge.view.OutputView.throwNumberException
 

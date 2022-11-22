@@ -1,6 +1,9 @@
 package bridge.controller
 
-import bridge.*
+import bridge.Constans.FAIL
+import bridge.Constans.QUIT
+import bridge.Constans.SUCCESS
+import bridge.Constans.ZERO
 import bridge.model.BridgeGame
 import bridge.view.InputView
 import bridge.view.OutputView

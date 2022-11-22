@@ -1,9 +1,9 @@
 package bridge.model
 
-import bridge.INIT_POSITION
-import bridge.O
-import bridge.X
-import bridge.ZERO
+import bridge.Constans.INIT_POSITION
+import bridge.Constans.O
+import bridge.Constans.X
+import bridge.Constans.ZERO
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
