@@ -72,9 +72,6 @@ class ApplicationTest : NsTest() {
         assertRandomNumberInRangeTest({
             run("25", "3", "e", "U", "D", "c", "R", "U", "U", "U")
             assertThat(output()).contains(
-                "$ERROR_MESSAGE 다리 길이는 ${Bridge.MIN_SIZE} 부터 ${Bridge.MAX_SIZE} 사이의 숫자여야 합니다.",
-                "$ERROR_MESSAGE e와 일치하는 방향이 없습니다.",
-                "$ERROR_MESSAGE c와 일치하는 명령어가 없습니다.",
                 "최종 게임 결과",
                 "[ O | O | O ]",
                 "[   |   |   ]",
