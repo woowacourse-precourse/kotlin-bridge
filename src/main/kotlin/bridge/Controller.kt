@@ -44,4 +44,7 @@ class Controller {
         return inputView.readMoving()
     }
 
+    private fun checkProgressStatus(): Boolean {
+        return bridgeGame.getProgressStatus()
+    }
 }
