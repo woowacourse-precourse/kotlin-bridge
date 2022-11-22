@@ -26,9 +26,11 @@ class InputView {
 
     fun checkBridgeLength(length: String) {
         if (!length.all { Character.isDigit(it) }) {
+            outputView.printException(EXCEPTION_IS_NOT_NUMBER)
             throw IllegalArgumentException(EXCEPTION_IS_NOT_NUMBER)
         }
         if (length.toInt() < MIN_BRIDGE_LENGTH || length.toInt() > MAX_BRIDGE_LENGTH) {
+            outputView.printException(EXCEPTION_INVALID_RANGE_NUMBER)
             throw IllegalArgumentException(EXCEPTION_INVALID_RANGE_NUMBER)
         }
     }
@@ -45,6 +47,7 @@ class InputView {
     fun checkMoving(moving: String) {
         val valid = listOf<String>("U", "u", "D", "d")
         if (!valid.contains(moving)) {
+            outputView.printException(EXCEPTION_INVALID_MOVING)
             throw IllegalArgumentException(EXCEPTION_INVALID_MOVING)
         }
     }
@@ -60,6 +63,7 @@ class InputView {
     fun checkGameRetry(command: String) {
         val valid = listOf<String>("R", "r", "Q", "q")
         if (!valid.contains(command)) {
+            outputView.printException(EXCEPTION_INVALID_RETRY)
             throw IllegalArgumentException(EXCEPTION_INVALID_RETRY)
         }
     }
