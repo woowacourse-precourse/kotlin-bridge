@@ -20,29 +20,20 @@ class BridgeController {
         println(bridge)
         println()
 
-        choiceBridge(size, bridge)
+        choiceBridge(bridge)
     }
 
 
-    fun choiceBridge(size: Int, bridge: List<String>) {
+    fun choiceBridge( bridge: List<String>) {
 
-        for (part in 0 until size) {
-            var direction = PrintException().printDirection()
-            if (direction == "U") {
-                val answer = BridgeGame().move(direction, bridge[part])
-                OutputView().printMap(answer.toString(), part, resultUp)
-                OutputView().printMap(" ", part, resultDown)
-                BridgeGame().retry(answer.toString())
-            }
-            if (direction == "D") {
-                val answer = BridgeGame().move(direction, bridge[part])
-                OutputView().printMap(" ", part, resultUp)
-                OutputView().printMap(answer.toString(), part, resultDown)
-                BridgeGame().retry(answer.toString())
-            }
-            println()
+        for (i in 0 until 3){
+            OutputView().printMap(bridge)
         }
+
     }
+
+
+
 
 
 }

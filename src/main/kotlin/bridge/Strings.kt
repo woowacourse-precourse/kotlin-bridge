@@ -11,5 +11,11 @@ enum class Strings(val phrases: String) {
     ERROR_INPUT_DIRECTION("[ERROR] 이동할 칸은 U 와 R 중에서 입력해야 합니다."),
     ERROR_INPUT_RESTART("[ERROR] 재시작 여부는 재시도 - R / 종료 - Q를 입력해야 합니다."),
 
+    GAME_RESULT("최종 게임 결과"),
+    GAME_SUCCESS_OR_NOT("게임 성공 여부: "),
+    FAIL("실패"),
+    SUCCESS("성공"),
+    GAME_TRY_COUNT("총 시도한 횟수: ")
+
 
 }
