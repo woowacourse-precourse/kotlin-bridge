@@ -24,17 +24,18 @@ private fun makeBridge() {
     println()
 }
 
-private fun progressStage(bridgeCurrentPosition: Int, bridge: List<String>): String {
+private fun progressStage(): String {
     outputView.printMovingBridgeSelectPhrase()
     val userInput = inputView.readMoving()
-    printStageMap(bridgeCurrentPosition, bridge, userInput)
+    val stageState = gamsHost.progressStage(userInput)
+    printStageMap(gamsHost.getBridgeCurrentPosition(), gamsHost.getBridge(), stageState)
     println()
     return userInput
 }
 
-private fun printStageMap(bridgeCurrentPosition: Int, bridge: List<String>, userInput: String) {
+private fun printStageMap(bridgeCurrentPosition: Int, bridge: List<String>, stageState: Boolean) {
     outputView.printMap(
-        bridgeGame.move(userInput, bridgeCurrentPosition, bridge),
+        stageState,
         bridgeCurrentPosition,
         bridge
     )
