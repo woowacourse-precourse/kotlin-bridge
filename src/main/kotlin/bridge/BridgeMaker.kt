@@ -1,4 +1,4 @@
-package bridge.domain.generator
+package bridge
 
 import bridge.data.InputDataSource.bridgeState
 

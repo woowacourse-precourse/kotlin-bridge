@@ -5,10 +5,10 @@ import bridge.data.InputDataSource.bridgeSize
 import bridge.data.InputDataSource.initDataSource
 import bridge.data.InputDataSource.movingCommands
 import bridge.data.InputDataSource.numberOfTry
-import bridge.domain.generator.BridgeMaker
-import bridge.domain.generator.BridgeMaker.Companion.DOWNSIDE
-import bridge.domain.generator.BridgeMaker.Companion.UPSIDE
-import bridge.domain.generator.BridgeRandomNumberGenerator
+import bridge.BridgeMaker
+import bridge.BridgeMaker.Companion.DOWNSIDE
+import bridge.BridgeMaker.Companion.UPSIDE
+import bridge.BridgeRandomNumberGenerator
 import bridge.ui.OutputView
 
 /**
