@@ -10,6 +10,7 @@ val gamsHost = GameHost(BridgeMaker(BridgeRandomNumberGenerator()), BridgeGame()
 fun main() {
     startGame()
     makeBridge()
+    progressGame()
 }
 
 private fun startGame() {

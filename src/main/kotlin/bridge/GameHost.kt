@@ -17,7 +17,7 @@ class GameHost(private val bridgeMaker: BridgeMaker, private val bridgeGame: Bri
         recentUserInput = userMovingInput
         stageState = bridgeGame.move(userMovingInput, bridgeCurrentPosition, bridge)
         if (!stageState) gameState = GameState.Select
-        if (bridgeCurrentPosition == bridge.size - 1) gameState = GameState.END
+        if (bridgeCurrentPosition == bridge.size - 1 && stageState) gameState = GameState.END
         bridgeCurrentPosition += 1
         return stageState
     }
