@@ -1,5 +1,6 @@
 package bridge
 
+import data.BridgeStore.RETRY
 import view.InputView
 import view.OutputView
 
@@ -11,7 +12,7 @@ class BridgeState {
     private var _bridgeLength = 0
     val bridgeLength get() = _bridgeLength
 
-    private var _inputCount = 0
+    private var _retryCount = 0
 
     private val userState = mutableListOf<String>()
 
@@ -27,7 +28,6 @@ class BridgeState {
         outputView.printMoveBridge()
         val command = inputView.readMoving()
         userState.add(command)
-        _inputCount += 1
         outputView.printMap(bridge, userState)
     }
 
@@ -40,8 +40,9 @@ class BridgeState {
     fun gameRetry(): Boolean {
         outputView.printRetryGame()
         val command = inputView.readGameCommand()
-        if (command == RETRY_COMMAND) {
+        if (command == RETRY) {
             userState.clear()
+            _retryCount++
             return true
         }
         return false
@@ -52,12 +53,8 @@ class BridgeState {
             printResult()
             printMap(bridge, userState)
             printGameSuccess(isSuccess)
-            printTryCount(_inputCount)
+            printTryCount(_retryCount)
         }
     }
 
-
-    companion object {
-        const val RETRY_COMMAND = "R"
-    }
 }
