@@ -1,6 +1,7 @@
 package bridge
 
 import bridge.util.Validator
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
@@ -12,6 +13,16 @@ class InputTest {
     @ValueSource(strings = [" ", "a", "  1"])
     @ParameterizedTest
     fun testBridgeSize(input: String) {
+        assertThrows<IllegalArgumentException> {
+            Validator.checkBridgeSize(input)
+        }
+    }
+
+    @DisplayName("다리의 길이가 3이상 20이하가 아니면 예외 발생")
+    @ValueSource(strings = ["2","21"])
+    @ParameterizedTest
+    fun testSizeRange(input: String) {
+        assertTrue(input.toIntOrNull() != null)
         assertThrows<IllegalArgumentException> {
             Validator.checkBridgeSize(input)
         }
