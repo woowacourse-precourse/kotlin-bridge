@@ -9,7 +9,44 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap() {}
+    fun printMap(case:List<String>) {
+        print("[")
+        for (i: Int in 0 until case.size)
+            printFirstMap(case[i],i,case.size)
+        println("]")
+        print("[")
+        for (i: Int in 0 until case.size)
+            printSecondMap(case[i],i,case.size)
+        println("]")
+    }
+
+    // 위쪽 줄 출력
+    private fun printFirstMap(case:String, count : Int, size:Int){
+        if(count != size && count != 0)
+            print("|")
+        if(case == "A")
+            print(" O ")
+        else if(case == "B")
+            print("   ")
+        else if(case == "C")
+            print(" X ")
+        else if(case == "D")
+            print("   ")
+    }
+
+    // 아래쪽 줄 출력
+    private fun printSecondMap(case:String, count : Int, size:Int){
+        if(count != size && count != 0)
+            print("|")
+        if(case == "A")
+            print("   ")
+        else if(case == "B")
+            print(" O ")
+        else if(case == "C")
+            print("   ")
+        else if(case == "D")
+            print(" X ")
+    }
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
