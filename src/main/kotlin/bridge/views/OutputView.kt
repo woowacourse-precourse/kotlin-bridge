@@ -81,4 +81,8 @@ class OutputView {
     fun printInputRetry() {
         println(STRING_INPUT_RETRY)
     }
+
+    fun printException(message: String) {
+        println(message)
+    }
 }
