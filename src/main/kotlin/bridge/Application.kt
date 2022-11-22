@@ -10,13 +10,13 @@ fun startBridgeGame() {
     val bridge = generateBridge(input)
     val output = OutputView(bridge)
     val game = BridgeGame()
+    var command = ""
 
-    while (true) {
+    while (game.getMovingRecord().size != bridge.size || output.getWrongStatus() != 0) {
         moveForward(game, input, output)
         if (output.getWrongStatus() == 1) getCommand(game, input, output)
-        if (game.getMovingRecord().size == output.getBridge().size) break
     }
-    output.printResult()
+    quitGame(game, output)
 }
 
 fun generateBridge(inputView: InputView): List<String> {
@@ -32,23 +32,29 @@ fun moveForward(game: BridgeGame, input: InputView, output: OutputView) {
             && game.getMovingRecord().size != output.getBridge().size
     ) {
         game.move(input.readMoving())
-        output.printMap(game.getMovingRecord())
+        output.printMap(game)
     }
 }
 
 fun retryGame(game: BridgeGame, input: InputView, output: OutputView) {
     game.retry()
-    output.printMap(game.getMovingRecord())   // map 초기화
+    output.printMap(game)   // map 초기화
     moveForward(game, input, output)
 }
 
 fun getCommand(game: BridgeGame, input: InputView, output: OutputView) {
     when (input.readGameCommand()) {
         ValidationInput.RETRY_GAME_VALUE -> retryGame(game, input, output)
-        ValidationInput.QUIT_GAME_VALUE -> output.printResult()
+        ValidationInput.QUIT_GAME_VALUE -> {
+            quitGame(game, output)
+            return
+        }
     }
 }
 
+fun quitGame(game: BridgeGame, output: OutputView) {
+    output.printResult(game)
+}
 
 
 

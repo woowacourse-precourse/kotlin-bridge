@@ -6,23 +6,40 @@ package bridge
 class OutputView(private val bridge: List<String>) {
     private val validationInput = ValidationInput()
     private var wrongStatus = 0
+    private var successStatus = 0
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printMap(movingRecord: List<String>) {
-        val map = getMap(movingRecord)
+    fun printMap(game: BridgeGame) {
+        val map = getMap(game.getMovingRecord())
 
         printOneSideBridge(map[0])   // upsideBridge
         printOneSideBridge(map[1])   // downsideBridge
+        println("")
     }
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(game: BridgeGame) {
+        println(RESULT_TITLE)
+        printMap(game)
+        printCount(game)
+        printSuccess(game)
+    }
+
+    private fun printSuccess(game: BridgeGame) {
+        if (game.getMovingRecord().size == bridge.size && wrongStatus == 0)
+            println(SUCCESS_MESSAGE + "성공")
+        else println(SUCCESS_MESSAGE + "실패")
+    }
+
+    private fun printCount(game: BridgeGame) {
+        println(COUNT_MESSAGE + game.getCount())
+    }
 
     private fun printOneSideBridge(list: List<String>) {
         for (i in list.indices) print(list[i])
@@ -144,5 +161,8 @@ class OutputView(private val bridge: List<String>) {
         const val NO_INPUT = "   "
         const val RIGHT_ANSWER = " O "
         const val WRONG_ANSWER = " X "
+        const val RESULT_TITLE = "최종 게임 결과"
+        const val SUCCESS_MESSAGE = "게임 성공 여부: "
+        const val COUNT_MESSAGE = "총 시도한 횟수: "
     }
 }
