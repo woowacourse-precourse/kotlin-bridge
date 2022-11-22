@@ -24,7 +24,7 @@ class BridgeGameController(
             outputView.printMap(moveResult)
             if (!bridgeGame.canContinue())
                 inProgress = gameCommandResult(bridgeGame)
-            inProgress = !bridgeGame.isCompleted()
+            inProgress = inProgress and !bridgeGame.isCompleted()
         }
     }
 
