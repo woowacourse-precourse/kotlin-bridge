@@ -1,5 +1,6 @@
 package bridge.model
 
+import bridge.BridgeMaker
 import bridge.model.data.Direction
 import bridge.model.data.GameStatus
 import bridge.model.data.PlayerStatus

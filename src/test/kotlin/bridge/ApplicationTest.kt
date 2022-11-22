@@ -1,6 +1,5 @@
 package bridge
 
-import bridge.model.BridgeMaker
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
