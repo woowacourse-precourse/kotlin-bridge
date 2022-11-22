@@ -1,6 +1,6 @@
 package bridge.domain
 
-enum class Stage(val upOrDown: String, val isClearStage: String) {
+enum class Stage(private val upOrDown: String, private val isClearStage: String) {
     UP("U", "O"),
     DOWN("D", "O"),
     UP_FAIL("U", "X"),
