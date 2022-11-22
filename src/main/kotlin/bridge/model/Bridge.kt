@@ -1,5 +1,7 @@
 package bridge.model
 
+import bridge.BridgeMaker
+
 class Bridge {
     lateinit var bridge: List<String>
 
