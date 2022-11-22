@@ -17,8 +17,6 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
         this._bridge = bridge
     }
 
-    private fun started(): Boolean = ::_bridge.isInitialized
-
     private fun validateBridge(bridge: List<String>) =
         require(bridge.size in 3..20 && bridge.all { it == "U" || it == "D" }) { "다리의 길이는 3 이상 20 이하여야 하고 U 또는 D만 포함할 수 있습니다." }
 
@@ -34,23 +32,6 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
         movingEventManager.notify(GameMapStatus(_bridge, _userHistory))
     }
 
-    fun failed(): Boolean {
-        check(started()) { "게임이 시작되어야 실패했는지 판단할 수 있습니다." }
-        return _userHistory.isNotEmpty() && _userHistory.last() != _bridge[_userHistory.size - 1]
-    }
-
-    fun succeeded(): Boolean {
-        check(started()) { "게임이 시작되어야 성공했는지 판단할 수 있습니다." }
-        return _bridge.size == _userHistory.size && (_bridge.indices).all { _bridge[it] == _userHistory[it] }
-    }
-
-    fun quit() {
-        check(started()) { "게임이 시작된 상태여야 종료할 수 있습니다." }
-        quitEventManager.notify(GameMapStatus(_bridge, _userHistory), GameResult(succeeded(), _attempts))
-    }
-
-    private fun running(): Boolean = started() && !succeeded() && !failed()
-
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      *
@@ -63,5 +44,24 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
         _attempts++
     }
 
+    fun quit() {
+        check(started()) { "게임이 시작된 상태여야 종료할 수 있습니다." }
+        quitEventManager.notify(GameMapStatus(_bridge, _userHistory), GameResult(succeeded(), _attempts))
+    }
+
+    private fun started(): Boolean = ::_bridge.isInitialized
+
+    private fun running(): Boolean = started() && !succeeded() && !failed()
+
     private fun stopped(): Boolean = started() && (succeeded() || failed())
+
+    fun failed(): Boolean {
+        check(started()) { "게임이 시작되어야 실패했는지 판단할 수 있습니다." }
+        return _userHistory.isNotEmpty() && _userHistory.last() != _bridge[_userHistory.size - 1]
+    }
+
+    fun succeeded(): Boolean {
+        check(started()) { "게임이 시작되어야 성공했는지 판단할 수 있습니다." }
+        return _bridge.size == _userHistory.size && (_bridge.indices).all { _bridge[it] == _userHistory[it] }
+    }
 }
