@@ -1,7 +1,9 @@
-package bridge
+package bridge.Model
 
-import bridge.UI.InputView
-import bridge.UI.OutputView
+import bridge.BridgeRandomNumberGenerator
+import bridge.InputException
+import bridge.View.InputView
+import bridge.View.OutputView
 
 class Bridge {
 
@@ -15,8 +17,13 @@ class Bridge {
     private fun getBridgeLength(): Int {
         OutputView().printGetBridgeLengthLog()
         val inputSize = InputView().readBridgeSize()
-        InputException().checkBridgeLenInputIsNumeric(inputSize)
-        return inputSize.toInt()
+        try{
+            InputException().checkBridgeLenInputIsNumeric(inputSize)
+            return inputSize.toInt()
+        } catch(e : IllegalArgumentException){
+            println(e.message)
+        }
+        return getBridgeLength()
     }
 
 }

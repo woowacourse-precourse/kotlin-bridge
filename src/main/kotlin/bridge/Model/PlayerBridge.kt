@@ -1,7 +1,8 @@
-package bridge
+package bridge.Model
 
-import bridge.UI.InputView
-import bridge.UI.OutputView
+import bridge.InputException
+import bridge.View.InputView
+import bridge.View.OutputView
 
 class PlayerBridge {
 
