@@ -18,4 +18,10 @@ object BridgeStore {
     const val BRIDGE_MID = "|"
     const val BRIDGE_UP = "U"
     const val BRIDGE_DOWN = "D"
+    const val RANGE_ERROR = "3~20의 범위가 아닙니다."
+    const val COMMAND_ERROR = "U, D 만 입력 가능합니다."
+    const val RETRY_ERROR = "R, Q 만 입력 가능합니다."
+    const val ERROR_TAG = "[ERROR] :"
+    const val RETRY = "R"
+    const val QUIT = "Q"
 }
