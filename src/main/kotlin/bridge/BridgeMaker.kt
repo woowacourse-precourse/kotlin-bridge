@@ -11,7 +11,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         val comBridge = mutableListOf<String>()
         for (i in 0 until size){
-            when (BridgeRandomNumberGenerator().generate()){
+            when (bridgeNumberGenerator.generate()){
                 0 -> comBridge.add("D")
                 1 -> comBridge.add("U")
             }
