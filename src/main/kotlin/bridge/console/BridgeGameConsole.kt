@@ -7,6 +7,8 @@ import bridge.model.BridgeGame
 import bridge.model.GameInfo
 import bridge.view.InputView
 import bridge.view.OutputView
+import bridge.utils.Constants.RETRIAL_SYMBOL
+import bridge.utils.Constants.QUIT_SYMBOL
 
 class BridgeGameConsole {
     private val inputView = InputView()
@@ -52,11 +54,11 @@ class BridgeGameConsole {
     fun processGameCommandPart(){
         outputView.printGameInputGameCommandMessage()
         when (inputView.readGameCommand()){
-            "R" -> {
+            RETRIAL_SYMBOL -> {
                 setForRetrial()
                 processMovingPart()
             }
-            "Q" -> outputView.printResult(bridgeGame.upLane, bridgeGame.downLane, false)
+            QUIT_SYMBOL -> outputView.printResult(bridgeGame.upLane, bridgeGame.downLane, false)
         }
     }
 

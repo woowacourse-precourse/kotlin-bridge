@@ -1,6 +1,9 @@
 package bridge.model
 
-import bridge.model.Bridge
+import bridge.utils.Constants.UP_SYMBOL
+import bridge.utils.Constants.DOWN_SYMBOL
+import bridge.utils.Constants.RETRIAL_SYMBOL
+import bridge.utils.Constants.QUIT_SYMBOL
 import bridge.utils.Constants.SUCCESS_SYMBOL
 import bridge.utils.Constants.FAIL_SYMBOL
 
@@ -32,8 +35,8 @@ class BridgeGame {
      */
     private fun addWhenLaneAvailable(inputMoveLaneSymbol: String){
         when (inputMoveLaneSymbol){
-            "U" -> addUpLaneSuccessSymbol()
-            "D" -> addDownLaneSuccessSymbol()
+            UP_SYMBOL -> addUpLaneSuccessSymbol()
+            DOWN_SYMBOL -> addDownLaneSuccessSymbol()
         }
     }
 
@@ -58,8 +61,8 @@ class BridgeGame {
      */
     private fun addWhenLaneNotAvailable(inputMoveLaneSymbol: String){
         when (inputMoveLaneSymbol){
-            "U" -> addUpLaneFailSymbol()
-            "D" -> addDownLaneFailSymbol()
+            UP_SYMBOL -> addUpLaneFailSymbol()
+            DOWN_SYMBOL -> addDownLaneFailSymbol()
         }
     }
 

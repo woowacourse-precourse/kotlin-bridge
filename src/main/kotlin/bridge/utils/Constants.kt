@@ -23,10 +23,10 @@ object Constants {
     /**
      * 게임 심볼
      */
-    const val UP_SYMBOL = 'U'
-    const val DOWN_SYMBOL = 'D'
-    const val RETRIAL_SYMBOL = 'R'
-    const val QUIT_SYMBOL = 'Q'
+    const val UP_SYMBOL = "U"
+    const val DOWN_SYMBOL = "D"
+    const val RETRIAL_SYMBOL = "R"
+    const val QUIT_SYMBOL = "Q"
     const val SUCCESS_SYMBOL = " O "
     const val FAIL_SYMBOL = " X "
 }
