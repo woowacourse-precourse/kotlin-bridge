@@ -4,7 +4,6 @@ import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
 import bridge.Model.BridgeData.bridgeLocation
 import bridge.Model.BridgeData.bridgeShape
-import bridge.Model.BridgeData.bridgeSize
 import bridge.Model.BridgeData.isPlay
 import bridge.Model.BridgeData.resetData
 import bridge.Model.BridgeGame
@@ -28,8 +27,8 @@ class BridgeController {
 
     fun startGame() {
         outputView.printStart()
-        getBridgeSize()
-        makeBridge(bridgeSize)
+        var size = getBridgeSize()
+        makeBridge(size)
         processGame()
     }
 
@@ -46,9 +45,9 @@ class BridgeController {
         }
     }
 
-    fun getBridgeSize() {
+    fun getBridgeSize(): Int {
         outputView.printBridgeSize()
-        bridgeSize = inputView.readBridgeSize()
+        return inputView.readBridgeSize()
     }
 
     fun makeBridge(size: Int) {
@@ -117,5 +116,4 @@ class BridgeController {
         outputView.printMap(upResult, downResult)
         outputView.printResult(finalResult, tryCount)
     }
-
 }
