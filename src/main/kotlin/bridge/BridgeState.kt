@@ -20,6 +20,7 @@ class BridgeState {
         println()
         outputView.printInputBridgeLength()
         _bridgeLength = inputView.readBridgeSize()
+        println()
     }
 
     fun bridgeMovePart(bridge: List<String>) {
