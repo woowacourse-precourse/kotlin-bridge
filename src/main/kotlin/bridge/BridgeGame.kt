@@ -4,16 +4,16 @@ import bridge.constants.Constants.RETRY_COMMAND
 
 
 class BridgeGame {
-    val movings: MutableList<String> = mutableListOf()
+    val moves: MutableList<String> = mutableListOf()
 
     fun move(moving: String, position: Int, bridge: List<String>): Boolean {
-        movings.add(moving)
-        return bridge[position] == movings[position]
+        moves.add(moving)
+        return bridge[position] == moves[position]
     }
 
     fun retry(gameCommand: String): Boolean = gameCommand == RETRY_COMMAND
 
     fun clearMovings() {
-        movings.clear()
+        moves.clear()
     }
 }

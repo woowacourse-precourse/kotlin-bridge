@@ -2,13 +2,13 @@ package bridge
 
 fun main() {
     try {
-        play()
+        playBridgeGame()
     } catch (e: Exception) {
         println(e.message)
     }
 }
 
-fun play() {
+fun playBridgeGame() {
     println("다리 건너기 게임을 시작합니다.\n")
     val bridge = generateBridge()
     val bridgeGame = BridgeGame()
@@ -27,18 +27,20 @@ fun progressBridgeGame(bridgeGame: BridgeGame, outputView: OutputView, bridge: L
     var isSuccess = false
     while (!isSuccess) {
         bridgeGame.clearMovings()
-        isSuccess = true
         count++
-        for (position in bridge.indices) {
-            if (!bridgeGame.move(InputView().readMoving(), position, bridge)) {
-                outputView.printMap(bridgeGame.movings)
-                isSuccess = false
-                break
-            }
-            outputView.printMap(bridgeGame.movings)
-        }
-        if (!isSuccess)
-            if (!bridgeGame.retry(InputView().readGameCommand())) break
+        isSuccess = isBridgeGameSuccess(bridgeGame, outputView, bridge)
+        if (!isSuccess && !bridgeGame.retry(InputView().readGameCommand())) break
     }
-    outputView.printResult(bridgeGame.movings, isSuccess, count)
+    outputView.printResult(bridgeGame.moves, isSuccess, count)
+}
+
+fun isBridgeGameSuccess(bridgeGame: BridgeGame, outputView: OutputView, bridge: List<String>): Boolean {
+    for (position in bridge.indices) {
+        if (!bridgeGame.move(InputView().readMoving(), position, bridge)) {
+            outputView.printMap(bridgeGame.moves)
+            return false
+        }
+        outputView.printMap(bridgeGame.moves)
+    }
+    return true
 }
