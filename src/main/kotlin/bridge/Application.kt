@@ -18,13 +18,17 @@ fun main() {
 }
 
 private fun playGame() {
-    while (bridgeGame.running())
+    while (!bridgeGame.succeeded() && !bridgeGame.failed())
         bridgeGame.move(inputView.askMovingToUser())
-    if (bridgeGame.succeeded())
+    if (bridgeGame.succeeded()) {
+        bridgeGame.quit()
         return
+    }
     if (inputView.askRetryToUser()) {
         bridgeGame.retry()
         playGame()
+    } else {
+        bridgeGame.quit()
     }
 }
 

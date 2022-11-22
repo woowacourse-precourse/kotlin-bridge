@@ -4,8 +4,7 @@ import bridge.MovingEventListener
 import bridge.MovingEventManager
 import bridge.QuitEventListener
 import bridge.QuitEventManager
-import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import java.lang.IllegalArgumentException
@@ -54,13 +53,42 @@ internal class BridgeGameTest {
     @Nested
     inner class `move 메소드는` {
         @Nested
-        inner class `게임이 실행되고 있지 않을 때 실행되면` {
+        inner class `게임이 시작되지 않았을 때 실행되면` {
             private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
             private val moving = "U"
 
             @Test
             fun `예외를 던진다`() {
                 assertThatThrownBy { bridgeGame.move(moving) }.isInstanceOf(IllegalStateException::class.java)
+            }
+        }
+
+        @Nested
+        inner class `게임이 성공한 상태에서 실행되면` {
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
+            private val bridge = listOf("U", "D", "D")
+            private val movings = listOf("U", "D", "D")
+
+            @Test
+            fun `예외를 던진다`() {
+                bridgeGame.start(bridge)
+                movings.forEach { bridgeGame.move(it) }
+
+                assertThatThrownBy { bridgeGame.move("U") }.isInstanceOf(IllegalStateException::class.java)
+            }
+        }
+
+        @Nested
+        inner class `게임이 실패한 상테에서 실행되면` {
+            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
+            private val bridge = listOf("U", "D", "D")
+            private val moving = "D"
+            @Test
+            fun `예외를 던진다`() {
+                bridgeGame.start(bridge)
+                bridgeGame.move(moving)
+
+                assertThatThrownBy { bridgeGame.move("U") }.isInstanceOf(IllegalStateException::class.java)
             }
         }
 
@@ -88,22 +116,6 @@ internal class BridgeGameTest {
                 override fun notify(gameMapStatus: GameMapStatus) {
                     notified = true
                 }
-            }
-        }
-
-        @Nested
-        inner class `이동할 수 없는 칸을 선택하면` {
-            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
-            private val bridge = listOf("U", "D", "D")
-            private val moving = "D"
-
-            @Test
-            fun `게임이 중지된다`() {
-                bridgeGame.start(bridge)
-
-                bridgeGame.move(moving)
-
-                assertThat(bridgeGame.running()).isFalse
             }
         }
     }
@@ -178,33 +190,6 @@ internal class BridgeGameTest {
     }
 
     @Nested
-    inner class `running 메소드는` {
-
-        @Nested
-        inner class `게임을 시작하지 않았을 때 실행하면`{
-            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
-
-            @Test
-            fun `거짓을 반환한다`() {
-                assertThat(bridgeGame.running()).isFalse
-            }
-        }
-
-        @Nested
-        inner class `실행 상태일 때 실행하면` {
-            private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
-            private val bridge = listOf("U", "D", "D")
-
-            @Test
-            fun `참을 반환한다`() {
-                bridgeGame.start(bridge)
-
-                assertThat(bridgeGame.running()).isTrue
-            }
-        }
-    }
-
-    @Nested
     inner class `retry 메소드는` {
 
         @Nested
@@ -234,13 +219,11 @@ internal class BridgeGameTest {
             private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
             private val bridge = listOf("U", "D", "D")
             @Test
-            fun `실행 상태로 바뀐다`() {
+            fun `게임을 재시작한다`() {
                 bridgeGame.start(bridge)
                 bridgeGame.move("D")
                 
-                bridgeGame.retry()
-
-                assertThat(bridgeGame.running()).isTrue
+                assertThatCode { bridgeGame.retry() }.doesNotThrowAnyException()
             }
         }
     }

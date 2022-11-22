@@ -9,19 +9,15 @@ import bridge.QuitEventManager
 class BridgeGame(private val movingEventManager: MovingEventManager, private val quitEventManager: QuitEventManager) {
     private lateinit var _bridge: List<String>
     private var _userHistory = mutableListOf<String>()
-    private var _gameStatus = GameStatus.NOT_STARTED
-    private var _attempts: Int = 0
+    private var _attempts: Int = 1
 
     fun start(bridge: List<String>) {
         require(!started()) { "게임은 한 번만 시작할 수 있습니다." }
         validateBridge(bridge)
         this._bridge = bridge
-        _userHistory.clear()
-        _gameStatus = GameStatus.RUNNING
-        _attempts++
     }
 
-    private fun started(): Boolean = _gameStatus != GameStatus.NOT_STARTED
+    private fun started(): Boolean = ::_bridge.isInitialized
 
     private fun validateBridge(bridge: List<String>) =
         require(bridge.size in 3..20 && bridge.all { it == "U" || it == "D" }) { "다리의 길이는 3 이상 20 이하여야 하고 U 또는 D만 포함할 수 있습니다." }
@@ -36,12 +32,12 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
         check(running()) { "게임이 실행되었을 때만 움직일 수 있습니다." }
         _userHistory += moving
         movingEventManager.notify(GameMapStatus(_bridge, _userHistory))
-        if (moveFailed())
-            _gameStatus = GameStatus.STOPPED
-        if (succeeded()) quit()
     }
 
-    private fun moveFailed() = _userHistory.last() != _bridge[_userHistory.size - 1]
+    fun failed(): Boolean {
+        check(started()) { "게임이 시작되어야 실패했는지 판단할 수 있습니다." }
+        return _userHistory.isNotEmpty() && _userHistory.last() != _bridge[_userHistory.size - 1]
+    }
 
     fun succeeded(): Boolean {
         check(started()) { "게임이 시작되어야 성공했는지 판단할 수 있습니다." }
@@ -51,10 +47,9 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
     fun quit() {
         check(started()) { "게임이 시작된 상태여야 종료할 수 있습니다." }
         quitEventManager.notify(GameMapStatus(_bridge, _userHistory), GameResult(succeeded(), _attempts))
-        _gameStatus = GameStatus.FINISHED
     }
 
-    fun running(): Boolean = _gameStatus == GameStatus.RUNNING
+    private fun running(): Boolean = started() && !succeeded() && !failed()
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -65,9 +60,8 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
     fun retry() {
         check(stopped()) { "게임이 중지 상태일 때만 재시작할 수 있습니다." }
         _userHistory.clear()
-        _gameStatus = GameStatus.RUNNING
         _attempts++
     }
 
-    private fun stopped(): Boolean = _gameStatus == GameStatus.STOPPED
+    private fun stopped(): Boolean = started() && (succeeded() || failed())
 }
