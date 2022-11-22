@@ -1,5 +1,15 @@
 package bridge
 
+import bridge.controller.BridgeGameProgress
+import bridge.view.InputView
+import bridge.view.OutputView
+
 fun main() {
-    // TODO: 프로그램 구현
+    OutputView().printGameStart()
+    val input = InputView()
+    val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
+    OutputView().printInputBridgeLength()
+    val bridgeSize = input.readBridgeSize()
+    val bridge = bridgeMaker.makeBridge(bridgeSize)
+    BridgeGameProgress().bridgeGameProgress(bridge)
 }
