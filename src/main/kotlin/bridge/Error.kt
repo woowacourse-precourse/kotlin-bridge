@@ -1,17 +1,5 @@
 package bridge
 
-/*
-* - bridgeSize:
-  1. 사용자가 3 ~ 20 범위 밖의 값을 입력했을 때
-  2. int가 아닌 값을 입력했을 때
-
-- direction:
-  1. U, D 외의 값을 입력했을 때
-
-- retry/quit
-  1. R, Q 이 아닌 값을 입력했을 때
-*
-* */
 class Error {
     fun checkBridgeSize(bridgeSize: String): Boolean {
         try{
@@ -32,9 +20,13 @@ class Error {
 
     fun checkDirection(movingDirection: String): Boolean {
         try{
-            if ( movingDirection != "U" || movingDirection != "D" ) throw IllegalArgumentException("[ERROR] U(위) 또는 D(아래)를 입력하셔야 합니다.")
+            if ( movingDirection == "U" || movingDirection == "D") {}
+            else throw IllegalArgumentException("[ERROR] U(위) 또는 D(아래)를 입력하셔야 합니다.")
         } catch (e: IllegalArgumentException) {
-            throw IllegalArgumentException("[ERROR] U(위) 또는 D(아래)를 입력하셔야 합니다.")
+            println("[ERROR] U(위) 또는 D(아래)를 입력하셔야 합니다.")
+            return false
+        } catch (e: NullPointerException) {
+            println("[ERROR] U(위) 또는 D(아래)를 입력하셔야 합니다.")
             return false
         }
         return true
@@ -42,9 +34,13 @@ class Error {
 
     fun checkGameCommand(gameCommand: String): Boolean {
         try{
-            if ( gameCommand != "R" || gameCommand != "Q" ) throw IllegalArgumentException("[ERROR] R(재시도) 또는 Q(종료)를 입력하셔야 합니다.")
+            if ( gameCommand == "R" || gameCommand == "Q" ) {}
+            else throw IllegalArgumentException("[ERROR] R(재시도) 또는 Q(종료)를 입력하셔야 합니다.")
         } catch (e: IllegalArgumentException) {
-            throw IllegalArgumentException("[ERROR] R(재시도) 또는 Q(종료)를 입력하셔야 합니다.")
+            println("[ERROR] R(재시도) 또는 Q(종료)를 입력하셔야 합니다.")
+            return false
+        }catch (e: NullPointerException) {
+            println("[ERROR] R(재시도) 또는 Q(종료)를 입력하셔야 합니다.")
             return false
         }
         return true
