@@ -27,3 +27,15 @@
    2. BridgeNumberGenerator에서 generate() 호출하여 다리칸 생성
 3. OutputView 생성
 4. InputView에서 readMoving() 실행하여 BridgeGame실행
+
+
+## ⚠️ ️예외처리
+- bridgeSize:
+  1. 사용자가 3 ~ 20 범위 밖의 값을 입력했을 때
+  2. int가 아닌 값을 입력했을 때
+
+- direction:
+  1. U, D 외의 값을 입력했을 때
+
+- retry/quit
+  1. R, Q 이 아닌 값을 입력했을 때
