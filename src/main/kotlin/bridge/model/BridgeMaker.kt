@@ -10,12 +10,12 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 
     fun makeBridge(size: Int): List<String> {
         val bridgeNumberList: MutableList<String> = mutableListOf()
-        for (number in 0 until size) {
-            val bridgeNumber = bridgeNumberGenerator.generate()
-            if (bridgeNumber == UP_INT_NUMBER_ONE) bridgeNumberList.add(UP_DIRECTION)
-            if (bridgeNumber == DOWN_INT_NUMBER_ZERO) bridgeNumberList.add(DOWN_DIRECTION)
+        repeat(size) {
+            when (bridgeNumberGenerator.generate()) {
+                UP_INT_NUMBER_ONE -> bridgeNumberList.add(UP_DIRECTION)
+                DOWN_INT_NUMBER_ZERO -> bridgeNumberList.add(DOWN_DIRECTION)
+            }
         }
-
         return bridgeNumberList
     }
 }
