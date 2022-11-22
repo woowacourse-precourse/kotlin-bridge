@@ -11,7 +11,7 @@ class ExceptionTest {
         assertThatIllegalArgumentException().isThrownBy {
             InputView().inputBridgeException(bridgeSize)
         }
-            .withMessageContaining("[ERROR]")
+            .withMessageContaining(ERROR_MESSAGE)
     }
 
     @ParameterizedTest
@@ -20,7 +20,7 @@ class ExceptionTest {
         assertThatIllegalArgumentException().isThrownBy {
             InputView().inputMovingException(inputMoving)
         }
-            .withMessageContaining("[ERROR]")
+            .withMessageContaining(ERROR_MESSAGE)
     }
 
     @ParameterizedTest
@@ -29,7 +29,10 @@ class ExceptionTest {
         assertThatIllegalArgumentException().isThrownBy {
             InputView().inputMovingException(inputGameCommand)
         }
-            .withMessageContaining("[ERROR]")
+            .withMessageContaining(ERROR_MESSAGE)
     }
 
+    companion object {
+        private const val ERROR_MESSAGE = "[ERROR]"
+    }
 }
