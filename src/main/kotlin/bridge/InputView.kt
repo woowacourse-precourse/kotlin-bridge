@@ -11,11 +11,11 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         println(UI.GET_BRIDGE_SIZE_MESSAGE)
-        var number: Int
+        var number: String
         do {
-            number = Console.readLine().toIntOrThrow()
+            number = Console.readLine()
         } while (!ExceptionHandler.checkValidLength(number))
-        return number
+        return number.toInt()
     }
 
     /**
