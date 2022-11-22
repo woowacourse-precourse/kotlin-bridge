@@ -16,7 +16,18 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun printMap(bridgeCurrentState: Boolean, bridgeCurrentPosition: Int, Bridge: List<String>) {
+        val dividedBridge = Bridge.subList(0, bridgeCurrentPosition)
+        BridgeType.values().forEach {
+            println(convertBridgeToString(convertToPrintingPurposeBridge(bridgeCurrentState, it, dividedBridge)))
+        }
     }
+
+    private fun convertBridgeToString(bridge: List<String>): String =
+        bridge.joinToString(
+            prefix = PRINTING_PURPOSE_BRIDGE_PREFIX,
+            separator = PRINTING_PURPOSE_BRIDGE_SEPARATOR,
+            postfix = PRINTING_PURPOSE_BRIDGE_POSTFIX
+        )
 
     private fun convertToPrintingPurposeBridge(
         bridgeCurrentState: Boolean,
