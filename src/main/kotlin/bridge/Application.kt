@@ -41,9 +41,10 @@ private fun printStageMap(bridgeCurrentPosition: Int, bridge: List<String>, stag
     )
 }
 
-private fun getProperGameState(): GameState {
+private fun getProperGameState() {
     outputView.printRestartOrQuitSelectPhrase()
-    return bridgeGame.retry(inputView.readGameCommand())
+    val userGameCommandInput = inputView.readGameCommand()
+    gamsHost.getProperGameState(userGameCommandInput)
 }
 
 private fun printGameResultMap(bridgeCurrentPosition: Int, bridge: List<String>, lastUserInput: String) {

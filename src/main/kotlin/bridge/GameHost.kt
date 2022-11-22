@@ -7,6 +7,7 @@ class GameHost(private val bridgeMaker: BridgeMaker, private val bridgeGame: Bri
     private var bridgeCurrentPosition = 0
     private lateinit var recentUserInput: String
     private var stageState by Delegates.notNull<Boolean>()
+    private var gameState = GameState.INIT
 
     fun makeBridge(bridgeSize: Int) {
         bridge = bridgeMaker.makeBridge(bridgeSize)
@@ -16,6 +17,10 @@ class GameHost(private val bridgeMaker: BridgeMaker, private val bridgeGame: Bri
         recentUserInput = userMovingInput
         stageState = bridgeGame.move(userMovingInput, bridgeCurrentPosition, bridge)
         return stageState
+    }
+
+    fun getProperGameState(userGameCommandInput: String) {
+        gameState = bridgeGame.retry(userGameCommandInput)
     }
 
     fun getBridgeCurrentPosition(): Int = bridgeCurrentPosition
