@@ -1,6 +1,9 @@
 package bridge.presentation
 
 import bridge.exception.BridgeException
+import bridge.utils.BridgeErrorMessage.COMMAND_ERROR
+import bridge.utils.BridgeErrorMessage.MOVING_ERROR
+import bridge.utils.BridgeErrorMessage.SIZE_ERROR
 import kotlin.system.exitProcess
 
 /**
@@ -15,7 +18,7 @@ class InputView {
             val inp = readLine()
             return BridgeException(inp).toSize()
         } catch (e: IllegalArgumentException) {
-            println("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다.")
+            println(SIZE_ERROR)
             exitProcess(0)
         }
     }
@@ -28,7 +31,7 @@ class InputView {
             val inp = readLine()
             return BridgeException(inp).toMoving()
         } catch (e: IllegalArgumentException) {
-            println("[ERROR] 다리 길이는 'U' 또는 'R'을 통해서만 움직일 수 있습니다.")
+            println(MOVING_ERROR)
             exitProcess(0)
         }
     }
@@ -41,7 +44,7 @@ class InputView {
             val inp = readLine()
             return BridgeException(inp).toGameCommand()
         } catch (e: IllegalArgumentException) {
-            println("[ERROR] 재시작을 위해선 'R' 또는 'Q'를 입력받아야합니다.")
+            println(COMMAND_ERROR)
             exitProcess(0)
         }
     }

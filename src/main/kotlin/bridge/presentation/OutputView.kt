@@ -1,6 +1,10 @@
 package bridge.presentation
 
 import bridge.BridgeGame
+import bridge.utils.BridgeMessage.GAME_COMMAND_MESSAGE
+import bridge.utils.BridgeMessage.GAME_RESULT_MESSAGE
+import bridge.utils.BridgeMessage.GET_MOVING_MESSAGE
+import bridge.utils.BridgeMessage.START_GAME_MESSAGE
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -12,15 +16,13 @@ class OutputView {
      * 게임 시작 문구 및 다리 길이 입력 요구 문구 출력하기
      */
     fun printStartGame() {
-        println("다리 건너기 게임을 시작합니다.\n")
-        println("다리 길이를 입력해주세요.")
+        println(START_GAME_MESSAGE)
     }
     /**
      * 이동할 칸 입력 요구 문구 출력하기
      */
     fun printGetMoving() {
-        println()
-        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        println(GET_MOVING_MESSAGE)
     }
     /**
      * 현재까지 이동한 다리의 상태를 정해진 형식에 맞춰 출력한다.
@@ -30,8 +32,7 @@ class OutputView {
         println(bridgeGame.toDownBridgeMap())
     }
     fun printGameCommand() {
-        println()
-        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        println(GAME_COMMAND_MESSAGE)
         totalCount += 1
     }
     /**
@@ -42,7 +43,7 @@ class OutputView {
         successCode: String
     ) {
         if (successCode == "성공") totalCount += 1
-        println("\n최종 게임 결과")
+        println(GAME_RESULT_MESSAGE)
         printMap(bridgeGame)
         println("\n게임 성공 여부: $successCode")
         println("총 시도한 횟수: $totalCount")

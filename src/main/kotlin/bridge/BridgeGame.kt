@@ -1,6 +1,9 @@
 package bridge
 
-import bridge.enum.BridgeEnum
+import bridge.utils.BridgeObject.MOVABLE
+import bridge.utils.BridgeObject.UNMOVABLE
+import bridge.utils.BridgeObject.UNSELECTED
+import bridge.utils.BridgeObject.UP
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -11,21 +14,17 @@ class BridgeGame(private val bridge: List<String>) {
     private val down = mutableListOf<String>()
     private var index = 0
 
-    private val movable = BridgeEnum.MOVABLE.value
-    private val unselected = BridgeEnum.UNSELECTED.value
-    private val unmovable = BridgeEnum.UNMOVABLE.value
-
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
      */
     fun move(moving: String) {
         val isMovable = (moving == bridge[index])
-        if (bridge[index++] == BridgeEnum.UP.value) {
-            up.add(if (isMovable) movable else unselected)
-            down.add(if (isMovable) unselected else unmovable)
+        if (bridge[index++] == UP) {
+            up.add(if (isMovable) MOVABLE else UNSELECTED)
+            down.add(if (isMovable) UNSELECTED else UNMOVABLE)
         } else {
-            up.add(if (isMovable) unselected else unmovable)
-            down.add(if (isMovable) movable else unselected)
+            up.add(if (isMovable) UNSELECTED else UNMOVABLE)
+            down.add(if (isMovable) MOVABLE else UNSELECTED)
         }
     }
 
@@ -42,7 +41,8 @@ class BridgeGame(private val bridge: List<String>) {
      * 게임의 진행상황을 결정하는 메서드 (실패/성공/진행)
      */
     fun isGameContinue(): String {
-        if (up.last() == unmovable || down.last() == unmovable) return "FAIL"
+        if (up.last() == UNMOVABLE
+            || down.last() == UNMOVABLE) return "FAIL"
         if (index == bridge.size) return "SUCCESS"
         return "CONTINUE"
     }

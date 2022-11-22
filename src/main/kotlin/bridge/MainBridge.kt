@@ -1,8 +1,8 @@
 package bridge
 
-import bridge.enum.BridgeEnum
 import bridge.presentation.InputView
 import bridge.presentation.OutputView
+import bridge.utils.BridgeObject.RESET
 
 class MainBridge {
 
@@ -35,7 +35,7 @@ class MainBridge {
         if (status == "FAIL") {
             output.printGameCommand()
             val restart = input.readGameCommand()
-            if (restart == BridgeEnum.RESET.value) bridgeGame.retry()
+            if (restart == RESET) bridgeGame.retry()
             else return 0
         }
         return -1
