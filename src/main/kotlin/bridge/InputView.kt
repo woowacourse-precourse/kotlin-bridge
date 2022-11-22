@@ -6,6 +6,7 @@ import camp.nextstep.edu.missionutils.Console as cs
  * 사용자로부터 입력을 받는 역할을 한다.
  */
 class InputView {
+    private val bridgeGame = BridgeGame()
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -31,7 +32,7 @@ class InputView {
         while (validFlag) {
             println("\n이동할 칸을 선택해주세요. (위: U, 아래: D)")
             moveChoice = cs.readLine()
-            validFlag = needToAskMoveAgain(moveChoice)
+            validFlag = bridgeGame.move(moveChoice)
         }
         return moveChoice
     }
@@ -72,13 +73,13 @@ class InputView {
 
         return 0
     }
-    private fun needToAskMoveAgain(moveChoice: String): Boolean {
+/*    private fun needToAskMoveAgain(moveChoice: String): Boolean {
         if (moveChoice == "U" || moveChoice == "D") {
             return false
         }
         println(MOVE_NOT_VALID)
         return true
-    }
+    }*/
 
     private fun needToAskCommandAgain(moveChoice: String): Boolean {
         if (moveChoice == "R" || moveChoice == "Q") {
