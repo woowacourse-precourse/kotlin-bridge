@@ -174,4 +174,44 @@ internal class BridgeGameTest {
             }
         }
     }
+
+    @Nested
+    inner class `retry 메소드는` {
+
+        @Nested
+        inner class `게임이 시작하지 않은 상태에서 실행하면` {
+
+            @Test
+            fun `예외를 던진다`() {
+                assertThatThrownBy { bridgeGame.retry() }.isInstanceOf(IllegalStateException::class.java)
+            }
+        }
+
+        @Nested
+        inner class `중지되지 않은 상태에서 실행하면` {
+            private val bridge = listOf("U", "D", "D")
+            @Test
+            fun `예외를 던진다`() {
+                bridgeGame.start(bridge)
+
+                assertThatThrownBy { bridgeGame.retry() }.isInstanceOf(IllegalStateException::class.java)
+            }
+        }
+        
+        @Nested
+        inner class `게임이 중지 상태일 때 실행하면` {
+            private val bridge = listOf("U", "D", "D")
+            @Test
+            fun `사용자 경로는 초기화 되고 시도 횟수는 1 증가하고 실행 상태로 바뀐다`() {
+                bridgeGame.start(bridge)
+                bridgeGame.move("D")
+                
+                bridgeGame.retry()
+                
+                // 사용자 경로 검증
+                // 시도 횟수 검증
+                // 게임 상태 검증
+            }
+        }
+    }
 }

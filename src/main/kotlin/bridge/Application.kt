@@ -13,14 +13,20 @@ fun main() {
     config()
     val bridgeSize = inputView.askBridgeSizeToUser()
     val bridge = bridgeMaker.makeBridge(bridgeSize)
-    println(bridge)
     bridgeGame.start(bridge)
-    while(bridgeGame.running())
+    while(true) {
         bridgeGame.move(inputView.askMovingToUser())
-    if (inputView.askRetryToUser())
-        bridgeGame.retry()
-    else
-        bridgeGame.quit()
+        if (bridgeGame.successed())
+            break
+        if (!bridgeGame.running()) {
+            if (inputView.askRetryToUser())
+                bridgeGame.retry()
+            else {
+                bridgeGame.quit()
+                break
+            }
+        }
+    }
 }
 
 private fun config() {
