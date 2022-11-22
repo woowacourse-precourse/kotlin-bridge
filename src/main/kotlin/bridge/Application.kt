@@ -1,8 +1,5 @@
 package bridge
 
-import bridge.domain.BridgeGame
-import bridge.domain.BridgeMaker
-import bridge.domain.BridgeRandomNumberGenerator
 import bridge.enums.GameSuccess
 import bridge.view.InputView
 import bridge.view.OutputView

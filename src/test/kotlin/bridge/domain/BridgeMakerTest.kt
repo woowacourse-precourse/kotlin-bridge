@@ -1,6 +1,7 @@
 package bridge.domain
 
 import bridge.ApplicationTest
+import bridge.BridgeMaker
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
