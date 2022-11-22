@@ -44,6 +44,9 @@ class Bridge(
         return line
     }
 
+    /**
+     * 비교 후 O X 반환
+     */
     private fun compare(answerStep: String, myStep: String): String {
         if (answerStep == myStep) {
             return CORRECT
@@ -51,6 +54,9 @@ class Bridge(
         return WRONG
     }
 
+    /**
+     * 올바른 길인지 판단
+     */
     private fun isSafeZone(answerWay: List<String>): Boolean {
         for (step in way.indices) {
             if (answerWay[step] != way[step]) {

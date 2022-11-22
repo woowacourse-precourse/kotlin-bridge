@@ -17,7 +17,10 @@ class OutputView {
         println()
     }
 
-    private fun printLine(line: List<String>) { // 한줄 출력
+    /**
+     * 한줄 출력 메서드
+     */
+    private fun printLine(line: List<String>) {
         println("[ " + line.joinToString(" | ") + " ]")
     }
 
