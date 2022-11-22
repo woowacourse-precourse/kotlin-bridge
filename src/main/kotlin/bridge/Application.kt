@@ -1,5 +1,10 @@
 package bridge
 
+import bridge.utils.Print
+import bridge.view.InputView
+
 fun main() {
-    // TODO: 프로그램 구현
+    Print.showStartMessage()
+    val bridge = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(InputView().readBridgeSize())
+    MoveBridge(bridge).moveStair()
 }
