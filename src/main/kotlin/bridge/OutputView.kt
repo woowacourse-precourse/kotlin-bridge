@@ -52,5 +52,13 @@ class OutputView {
      *
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
-    fun printResult() {}
+    fun printResult(bridgeGame: BridgeGame, now: Int) {
+        println(Output.GAME_RESULT.message)
+        printMap(bridgeGame, now - 1)
+        when (bridgeGame.getProgressStatus()) {
+            true -> println("${Output.SUCCESS_OR_NOT.message}${Output.GAME_CLEAR.message}")
+            false -> println("${Output.SUCCESS_OR_NOT.message}${Output.GAME_FAIL.message}")
+        }
+        println("${Output.TOTAL_ATTEMPTS.message}${bridgeGame.getCountRetry()}")
+    }
 }
