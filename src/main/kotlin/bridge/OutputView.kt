@@ -12,7 +12,7 @@ class OutputView {
     fun printResult(isSuccess: Boolean, totalCount: Int) {
         when(isSuccess) {
             true -> println(ConstantMessage.BRIDGE_GAME_SUCCESS)
-            false -> println(ConstantMessage.BRIDGE_GAME_UNSUCCESS)
+            false -> println(ConstantMessage.BRIDGE_GAME_FAIL)
         }
         print(ConstantMessage.TOTAL_TRY_COUNT)
         println("$totalCount")

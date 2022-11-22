@@ -7,7 +7,7 @@ object ConstantMessage {
     const val INPUT_GAME_COMMAND = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
     const val BRIDGE_GAME_RESULT = "\n최종 게임 결과"
     const val BRIDGE_GAME_SUCCESS = "\n게임 성공 여부: 성공"
-    const val BRIDGE_GAME_UNSUCCESS = "\n게임 성공 여부: 실패"
+    const val BRIDGE_GAME_FAIL = "\n게임 성공 여부: 실패"
     const val TOTAL_TRY_COUNT = "총 시도한 횟수: "
     //EXCEPTION
     const val INPUT_MORE_RANGE_EXCEPTION = "[ERROR] 다리의 길이는 3보다 커야합니다."
