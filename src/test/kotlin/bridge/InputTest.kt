@@ -33,4 +33,11 @@ class InputTest {
         }
     }
 
+    @Test
+    fun `다리 길이 입력 값이 3에서 20 사이가 아닐 경우 예외 테스트`() {
+        assertThrows<IllegalArgumentException> {
+            InputException().checkBridgeRange("40")
+        }
+    }
+
 }
