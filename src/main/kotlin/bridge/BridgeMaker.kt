@@ -1,5 +1,8 @@
 package bridge
 
+import data.BridgeStore.BRIDGE_DOWN
+import data.BridgeStore.BRIDGE_UP
+
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
  */
@@ -12,14 +15,9 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         val bridge = mutableListOf<String>()
         for (cnt in 1..size) {
             val number = bridgeNumberGenerator.generate()
-            if (number == 0) bridge.add(UP)
-            else if (number == 1) bridge.add(DOWN)
+            if (number == 0) bridge.add(BRIDGE_DOWN)
+            else if (number == 1) bridge.add(BRIDGE_UP)
         }
         return bridge
-    }
-
-    companion object {
-        const val UP = "U"
-        const val DOWN = "D"
     }
 }
