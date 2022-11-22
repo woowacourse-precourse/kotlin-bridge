@@ -19,10 +19,16 @@ internal class OutputViewTest {
 
         @TestInstance(TestInstance.Lifecycle.PER_CLASS)
         @Nested
-        inner class `게임 맵 상태를 받으면`: NsTest() {
+        inner class `게임 맵 상태를 받으면` : NsTest() {
             private fun gameMapStatus() = listOf(
-                Arguments.of(GameMapStatus(listOf("U", "D", "D"), listOf("U", "D", "D")), "[ O |   |   ]\n[   | O | O ]"),
-                Arguments.of(GameMapStatus(listOf("U", "D", "D"), listOf("U", "D", "U")), "[ O |   | X ]\n[   | O |   ]")
+                Arguments.of(
+                    GameMapStatus(listOf("U", "D", "D"), listOf("U", "D", "D")),
+                    "[ O |   |   ]\n[   | O | O ]"
+                ),
+                Arguments.of(
+                    GameMapStatus(listOf("U", "D", "D"), listOf("U", "D", "U")),
+                    "[ O |   | X ]\n[   | O |   ]"
+                )
             )
 
             @ParameterizedTest
@@ -39,7 +45,7 @@ internal class OutputViewTest {
         }
 
         @Nested
-        inner class `게임 맵 상태와 게임 결과를 받으면`: NsTest() {
+        inner class `게임 맵 상태와 게임 결과를 받으면` : NsTest() {
             private val gameMapStatus = GameMapStatus(listOf("U", "D", "D"), listOf("U", "D", "D"))
             private val gameResult = GameResult(true, 1)
 

@@ -83,6 +83,7 @@ internal class BridgeGameTest {
             private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
             private val bridge = listOf("U", "D", "D")
             private val moving = "D"
+
             @Test
             fun `예외를 던진다`() {
                 bridgeGame.start(bridge)
@@ -206,6 +207,7 @@ internal class BridgeGameTest {
         inner class `중지되지 않은 상태에서 실행하면` {
             private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
             private val bridge = listOf("U", "D", "D")
+
             @Test
             fun `예외를 던진다`() {
                 bridgeGame.start(bridge)
@@ -213,16 +215,17 @@ internal class BridgeGameTest {
                 assertThatThrownBy { bridgeGame.retry() }.isInstanceOf(IllegalStateException::class.java)
             }
         }
-        
+
         @Nested
         inner class `게임이 중지 상태일 때 실행하면` {
             private val bridgeGame = BridgeGame(MovingEventManager(), QuitEventManager())
             private val bridge = listOf("U", "D", "D")
+
             @Test
             fun `게임을 재시작한다`() {
                 bridgeGame.start(bridge)
                 bridgeGame.move("D")
-                
+
                 assertThatCode { bridgeGame.retry() }.doesNotThrowAnyException()
             }
         }

@@ -55,7 +55,7 @@ internal class InputViewTest {
     }
 
     @Nested
-    inner class `askBridgeSizeToUser 메소드는`: NsTest() {
+    inner class `askBridgeSizeToUser 메소드는` : NsTest() {
         @Nested
         inner class `실행하면` {
             private val readValues = listOf("-1", "2", "21", "3")
@@ -77,7 +77,7 @@ internal class InputViewTest {
     }
 
     @Nested
-    inner class `readMoving 메소드는`: NsTest() {
+    inner class `readMoving 메소드는` : NsTest() {
 
         @TestInstance(TestInstance.Lifecycle.PER_CLASS)
         @Nested
@@ -113,7 +113,7 @@ internal class InputViewTest {
     }
 
     @Nested
-    inner class `askMovingToUser 메소드는`: NsTest() {
+    inner class `askMovingToUser 메소드는` : NsTest() {
 
         @Nested
         inner class `실행하면` {
@@ -136,7 +136,7 @@ internal class InputViewTest {
     }
 
     @Nested
-    inner class `readGameCommand 메소드는`: NsTest() {
+    inner class `readGameCommand 메소드는` : NsTest() {
 
         @TestInstance(TestInstance.Lifecycle.PER_CLASS)
         @Nested
@@ -172,7 +172,7 @@ internal class InputViewTest {
     }
 
     @Nested
-    inner class `askRetryToUser 메소드는`: NsTest() {
+    inner class `askRetryToUser 메소드는` : NsTest() {
 
         @Nested
         inner class `실행하면` {
@@ -192,6 +192,7 @@ internal class InputViewTest {
         @Nested
         inner class `사용자가 R을 입력하면` {
             private val readValue = "R"
+
             @Test
             fun `참을 반환한다`() {
                 System.setIn(ByteArrayInputStream(readValue.toByteArray()))
@@ -205,6 +206,7 @@ internal class InputViewTest {
         @Nested
         inner class `사용자가 Q를 입력하면` {
             private val readValue = "Q"
+
             @Test
             fun `거짓을 반환한다`() {
                 System.setIn(ByteArrayInputStream(readValue.toByteArray()))
