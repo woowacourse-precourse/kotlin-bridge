@@ -14,5 +14,8 @@ class BridgeGame {
         bridge.resetPlayer()
         playerTryCount++
     }
+    fun getPlayerTryCount():Int{
+        return playerTryCount
+    }
 
 }

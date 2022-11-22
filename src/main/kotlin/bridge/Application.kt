@@ -56,5 +56,6 @@ fun main() {
     println(GAME_START_MSG)
     makeBridge()
     while(playGame()== CORRECT){}
+    outputView.printResult(bridge, bridgeGame)
 
 }
