@@ -92,6 +92,37 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `예외 테스트01`() {
+        assertSimpleTest {
+            runException("3a")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `예외 테스트02`() {
+        assertSimpleTest {
+            runException("21")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `예외 테스트03`() {
+        assertSimpleTest {
+            runException("d")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `예외 테스트04`() {
+        assertSimpleTest {
+            runException("QR")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
 
     override fun runMain() {
         main()
