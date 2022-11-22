@@ -31,6 +31,13 @@ class BridgeGame {
         return saveLastResult()
     }
 
+    fun getSuccessResult(createdBridge: List<String>): String{
+        if(idx == createdBridge.size){
+            return "성공"
+        }
+        return "실패"
+    }
+
     fun saveUserCorrectedDirection(userDirection: String) {
         if (userDirection == UP) {
             upResultList.add(CORRECT_MARK)
