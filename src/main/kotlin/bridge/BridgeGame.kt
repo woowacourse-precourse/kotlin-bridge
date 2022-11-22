@@ -18,7 +18,7 @@ class BridgeGame(userRoute : MutableList<String>, times : Int, control : Int) {
         while (userRoute != bridge){
             userRoute.add(GameController().userMove())
             for (move in upDown) { bridgeMap(bridge, move) }
-            if (wrongAnswer(bridge, upDown) == "break") break
+            if (wrongAnswer(bridge) == "break") break
             if (userRoute == bridge) { finalStage(bridge) }
         }
     }
@@ -50,7 +50,7 @@ class BridgeGame(userRoute : MutableList<String>, times : Int, control : Int) {
         gameController.printFinalExplain(control, times)
     }
 
-    fun wrongAnswer(bridge: List<String>, upDown : List<String>) : String{
+    fun wrongAnswer(bridge: List<String>) : String{
         if (control == 1){
             var gameControl = GameController().gameContiol()
             if (gameControl == "Q"){
