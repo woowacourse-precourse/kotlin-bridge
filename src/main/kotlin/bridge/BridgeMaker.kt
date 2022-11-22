@@ -11,17 +11,11 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         // 다리의 정보를 담을 리스트
         val bridge: MutableList<String> = mutableListOf()
-        println("hi")
         // 윗 칸을 건널 수 있는 경우 1 (U), 아랫칸을 건널 수 있는 경우 0 (D)
-        // 여기서 다리 만들어야 돼
-
-        // 다리 크기만큼 리스트에 뭐 들어갈건지
-        for ( i in 0..size ) {
-            // 먼저 랜덤 값을 뽑아야겠지
+        for ( i in 0..size-1) {
             if ( bridgeNumberGenerator.generate() == 0 ) bridge.add("D")
             else bridge.add("U")
         }
-
         return bridge
     }
 }
