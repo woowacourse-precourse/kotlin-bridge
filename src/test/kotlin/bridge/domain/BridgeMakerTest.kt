@@ -1,6 +1,6 @@
 package bridge.domain
 
-import bridge._assist.TestNumberGenerator.Companion.generateBridge
+import bridge._assist.TestNumberGenerator2.Companion.generateBridge
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 
