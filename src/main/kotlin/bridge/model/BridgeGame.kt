@@ -50,8 +50,10 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
         return (0 until userRoute.size).all { bridge[it] == userRoute[it] }
     }
 
-    fun quit() =
+    fun quit() {
         quitEventManager.notify(GameState(bridge, userRoute), GameResult(successed(), attempts))
+        running = false
+    }
 
     fun running(): Boolean = running
 
