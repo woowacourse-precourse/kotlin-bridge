@@ -18,7 +18,7 @@ class InputTest {
     }
 
     @DisplayName("다리의 길이가 3이상 20이하가 아니면 예외 발생")
-    @ValueSource(strings = ["2","21"])
+    @ValueSource(strings = ["2", "21"])
     @ParameterizedTest
     fun testSizeRange(input: String) {
         assertThrows<IllegalArgumentException> {

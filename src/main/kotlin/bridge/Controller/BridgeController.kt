@@ -113,7 +113,7 @@ class BridgeController {
 
     fun printFinalResult() {
         outputView.printFinalResult()
-        outputView.printMap(upResult, downResult)
+        outputView.printMap(upResult.toList(), downResult.toList())
         outputView.printResult(finalResult, tryCount)
     }
 }
