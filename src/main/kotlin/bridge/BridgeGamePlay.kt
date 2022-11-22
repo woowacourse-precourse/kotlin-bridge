@@ -22,6 +22,7 @@ class BridgeGamePlay {
     private fun playGame(){
         do{
             var moveCommand = InputView().readMoving()
+            OutputView().printMap(bridge, location, moveCommand)
             if(!BridgeGame().move(bridge, location, moveCommand))
                 checkRetry()
             location ++

@@ -20,6 +20,7 @@ class InputView {
      * 사용자가 이동할 칸을 입력받는다.
      */
     fun readMoving(): String {
+        println("\n이동할 칸을 선택해 주세요. (위: U, 아래: D)")
         var moveCommand = getMoveCommand()
         while(!moveCommand.equals("U") && !moveCommand.equals(("D")))
             moveCommand = getMoveCommand()
@@ -30,6 +31,7 @@ class InputView {
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
      */
     fun readGameCommand(): String {
+        println("\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
         var gameCommand = getGameCommand()
         while(!gameCommand.equals("R") && !gameCommand.equals(("Q")))
             gameCommand = getGameCommand()
@@ -67,7 +69,7 @@ class InputView {
         var moveCommand = ""
         try{
             moveCommand = Console.readLine()
-            if(!moveCommand.equals("U") && !moveCommand.equals(("D"))) throw IllegalArgumentException("[ERROR] u/d를 입력해주세요")
+            if(!moveCommand.equals("U") && !moveCommand.equals(("D"))) throw IllegalArgumentException("[ERROR] U/D를 입력해주세요")
         }catch (e : IllegalArgumentException){
             println(e)
         }
@@ -78,7 +80,7 @@ class InputView {
         var gameCommand = ""
         try{
             gameCommand = Console.readLine()
-            if(!gameCommand.equals("R") && !gameCommand.equals(("Q"))) throw IllegalArgumentException("[ERROR] r/q를 입력해주세요")
+            if(!gameCommand.equals("R") && !gameCommand.equals(("Q"))) throw IllegalArgumentException("[ERROR] R/Q를 입력해주세요")
         }catch (e : IllegalArgumentException){
             println(e)
         }
