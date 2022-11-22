@@ -28,4 +28,6 @@ class GameHost(private val bridgeMaker: BridgeMaker, private val bridgeGame: Bri
     fun getBridge(): List<String> = bridge
 
     fun getRecentStageState(): Boolean = stageState
+
+    fun getGameState(): GameState = gameState
 }
