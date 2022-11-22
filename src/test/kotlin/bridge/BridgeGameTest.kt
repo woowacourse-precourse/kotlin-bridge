@@ -31,4 +31,15 @@ class BridgeGameTest {
         }
         assertThat(restartGame).isEqualTo(false)
     }
+
+    @ParameterizedTest
+    @DisplayName("재시작 커맨드가 잘 작동하는지 테스트한다.")
+    @ValueSource(strings = ["R"])
+    fun workRetryRCommand(restartCommand: String) {
+        var restartGame = false
+        if (restartCommand == "R") {
+            restartGame = true
+        }
+        assertThat(restartGame).isEqualTo(true)
+    }
 }
