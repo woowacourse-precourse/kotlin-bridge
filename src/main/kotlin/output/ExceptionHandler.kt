@@ -1,5 +1,8 @@
 package output
 
+import bridge.InputView
+import camp.nextstep.edu.missionutils.Console
+
 object ExceptionHandler {
 
     fun rangeException(input: Any): Boolean {
@@ -21,5 +24,15 @@ object ExceptionHandler {
             return true
         }
         return false
+    }
+
+    fun isInt(): Int {
+        val bridgeSize = try {
+            Console.readLine()!!.toInt()
+        } catch (e: NumberFormatException) {
+            println(ErrorMessage.ONLY_NUMBER.errorMessage)
+            InputView().readBridgeSize()
+        }
+        return bridgeSize
     }
 }

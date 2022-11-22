@@ -14,12 +14,7 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         println(Output.INPUT_LENGTH.output)
-        val bridgeSize = try {
-            Console.readLine()!!.toInt()
-        } catch (e: NumberFormatException) {
-            println(ErrorMessage.ONLY_NUMBER.errorMessage)
-            readBridgeSize()
-        }
+        val bridgeSize = ExceptionHandler.isInt()
         if (!ExceptionHandler.rangeException(bridgeSize)) {
             println(ErrorMessage.RANGE.errorMessage)
             readBridgeSize()
