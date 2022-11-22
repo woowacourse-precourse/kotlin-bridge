@@ -10,3 +10,26 @@ fun showResult(moves: List<String>, answers: List<String>, attempt:Int) : Boolea
     }
     return false
 }
+
+fun crossBridge(answers: List<String>, size: Int): MoveResult{
+    val userMoves = mutableListOf<String>()
+    for(attempt in 0 until size){
+        val nextMove = InputView().readMoving()
+        userMoves.add(nextMove)
+        val interrupted = showResult(userMoves, answers, attempt)
+        if(interrupted){
+            return MoveResult(userMoves,true)
+        }
+    }
+    return MoveResult(userMoves,false)
+}
+
+class MoveResult(private val moves: List<String>, private val interrupted:Boolean){
+    fun isInterrupted() : Boolean{
+        return interrupted
+    }
+
+    fun getUserMoveHistory(): List<String>{
+        return moves
+    }
+}
