@@ -86,6 +86,7 @@ class BridgeGame {
      */
     private fun retry(bridgeSize: Int, bridgeMaker: List<String>, numberOfGames:Int) {
         val retry = outputView.printRetry()
+        println(retry)
         if (retry == "R") return play(bridgeSize,bridgeMaker, numberOfGames+1)
         if(retry == "Q"){
             outputView.printResult(MESSAGE_FAILLED, numberOfGames)
