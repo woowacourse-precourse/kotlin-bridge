@@ -1,12 +1,16 @@
 package view
 
 import camp.nextstep.edu.missionutils.Console
+import util.BridgeMessage.DOWN
+import util.BridgeMessage.QUIT
 import util.BridgeMessage.READ_BRIDGE_SIZE
 import util.BridgeMessage.READ_BRIDGE_SIZE_ERROR_MESSAGE
 import util.BridgeMessage.READ_COMMAND
 import util.BridgeMessage.READ_COMMAND_ERROR_MESSAGE
 import util.BridgeMessage.READ_MOVE
 import util.BridgeMessage.READ_MOVE_ERROR_MESSAGE
+import util.BridgeMessage.RESTART
+import util.BridgeMessage.UP
 import java.lang.IllegalArgumentException
 
 class InputView {
@@ -41,13 +45,13 @@ class InputView {
 
     fun inputValidMove(): String {
         val move = readMoving()
-        require(move == "U" || move == "D") { READ_MOVE_ERROR_MESSAGE }
+        require(move == UP || move == DOWN) { READ_MOVE_ERROR_MESSAGE }
         return move
     }
 
     fun inputValidCommand(): String {
         val command = readGameCommand()
-        require(command == "R" || command == "Q") { READ_COMMAND_ERROR_MESSAGE }
+        require(command == RESTART || command == QUIT) { READ_COMMAND_ERROR_MESSAGE }
         return command
     }
 }

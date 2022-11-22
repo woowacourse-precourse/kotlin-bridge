@@ -6,7 +6,9 @@ import util.BridgeMessage.FINAL_GAME_RESULT
 import util.BridgeMessage.GAME_START_NOTIFICATION
 import util.BridgeMessage.IS_SUCCESS
 import util.BridgeMessage.LEFT_SQUARE_BRACKETS
+import util.BridgeMessage.REST
 import util.BridgeMessage.RIGHT_SQUARE_BRACKETS
+import util.BridgeMessage.SEPARATOR
 import util.BridgeMessage.SUCCESS
 import util.BridgeMessage.TOTAL_ATTEMPT
 
@@ -37,7 +39,7 @@ class OutputView {
     private fun printGameResult(ox: List<MutableList<String>>) {
         for (i in 0..1) {
             print("$LEFT_SQUARE_BRACKETS ")
-            print(ox[i].toString().replace(",", " |").removePrefix(LEFT_SQUARE_BRACKETS).removeSuffix(RIGHT_SQUARE_BRACKETS))
+            print(ox[i].toString().replace(REST, SEPARATOR).removePrefix(LEFT_SQUARE_BRACKETS).removeSuffix(RIGHT_SQUARE_BRACKETS))
             print(" $RIGHT_SQUARE_BRACKETS")
             println()
         }
