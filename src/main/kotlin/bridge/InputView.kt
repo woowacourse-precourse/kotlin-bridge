@@ -19,6 +19,7 @@ class InputView {
             readBridgeSize()
         }
     }
+
     /**
      * 다리의 길이 입력값 예외 처리: 입력값이 정수형이 아닐 경우
      * @param: User 입력값
@@ -32,6 +33,7 @@ class InputView {
             throw e
         }
     }
+
     /**
      * 다리의 길이 입력값 예외 처리: 입력값이 3 - 20 사이 값이 아닐 경우
      * @param: Int 형을 보장 받은 입력값
@@ -49,6 +51,7 @@ class InputView {
 
     /**
      * 사용자가 이동할 칸을 입력받는다.
+     * @return: 사용자가 이동할 칸 반환. 예외 시 입력 받는 과정으로 돌아감.
      */
     fun readMoving(): String {
         println(Message.INPUT_BRIDGE_MOVE.message)
@@ -60,6 +63,12 @@ class InputView {
             readMoving()
         }
     }
+
+    /**
+     * 사용자가 이동할 칸을 입력 예외 처리: 입력값이 "U", "D" 가 아닐 경우
+     * @param: User 입력값
+     * 예외시, ERROR 메시지 반환
+     */
     private fun checkMove(move:String){
         try {
             require(move == Move.Up.params || move == Move.Down.params)
@@ -71,6 +80,7 @@ class InputView {
 
     /**
      * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     * @return: 사용자가 게임을 다시 시도할지 종료할지 여부 반환. 예외시 다시 입력 받는 과정으로 돌아감.
      */
     fun readGameCommand(): String {
         println(Message.INPUT_GAME_COMMAND.message)
@@ -83,6 +93,11 @@ class InputView {
         }
     }
 
+    /**
+     * 사용자가 게임을 다시 시도할지 종료할지 여부 입력 예외 처리: 입력값이 "R", "E" 가 아닐 경우
+     * @param: User 입력값
+     * 예외시, ERROR 메시지 반환
+     */
     private fun checkGameCommand(gameCommand:String){
         try {
             require(gameCommand == GameCommand.Retry.params || gameCommand == GameCommand.Exit.params)
