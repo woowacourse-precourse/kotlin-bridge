@@ -59,6 +59,29 @@ class InputViewTest : NsTest() {
         }
     }
 
+    @Nested
+    inner class CommandTest {
+        @Test
+        fun `커맨드 입력문 - 널값 입력테스트`() {
+            Assertions.assertSimpleTest {
+                assertThrows<IllegalArgumentException> { InputChecker().checkUserCommand("") }
+            }
+        }
+        @Test
+        fun `커맨드 입력문 - "R", "Q"가 아닐 경우`() {
+            Assertions.assertSimpleTest {
+                assertThrows<IllegalArgumentException> { InputChecker().checkUserCommand("3") }
+            }
+        }
+
+        @Test
+        fun `커맨드 입력문 - "R", "Q"가 아닐 경우2`() {
+            Assertions.assertSimpleTest {
+                assertThrows<IllegalArgumentException> { InputChecker().checkUserCommand("a") }
+            }
+        }
+    }
+
 
     override fun runMain() {
         main()
