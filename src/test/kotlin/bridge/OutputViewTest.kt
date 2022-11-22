@@ -9,10 +9,11 @@ import java.io.PrintStream
 
 class OutputViewTest {
 
+    private val upSelectedBridge = listOf("O")
+    private val downSelectedBridge = listOf(" ")
+
     @Test
     fun `다리 이동 상태 출력 테스트`() {
-        val upSelectedBridge = listOf("O")
-        val downSelectedBridge = listOf(" ")
         val outContent = ByteArrayOutputStream()
         System.setOut(PrintStream(outContent))
         OutputView().printMap(upSelectedBridge, downSelectedBridge)
