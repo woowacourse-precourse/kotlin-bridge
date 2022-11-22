@@ -29,26 +29,25 @@ class BridgeGame(
         var isMoving = true
         var currentIndex = 0
 
-        while (isMoving) {
-            isMoving = move(currentIndex++)
+        while (isMoving && currentIndex < bridge.size) {
+            isMoving = move(currentIndex++, gameManager.getMovement())
         }
     }
 
-    fun move(currentIndex: Int): Boolean {
-        if (currentIndex == bridge.size) {
-            return false
-        }
-
-        val movement = gameManager.getMovement()
+    fun move(currentIndex: Int, movement: String): Boolean {
         path.add(movement)
         gameManager.printMap(getMap())
 
-        return isSuccessMoving(movement, currentIndex)
+        if (!isSuccessMoving(movement, currentIndex)) {
+            retry()
+            return false
+        }
+
+        return true
     }
 
     fun isSuccessMoving(movement: String, index: Int): Boolean {
         if (movement != bridge[index]) {
-            retry()
             return false
         }
 
