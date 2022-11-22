@@ -1,5 +1,12 @@
 package bridge
 
 fun main() {
-    // TODO: 프로그램 구현
+    val bridgeLength = BridgeException().readBridgeSizeError()
+    val bridgeUpdown = BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(bridgeLength)
+    val bridge = mutableListOf<String>()
+    println(bridgeUpdown)
+    var playcount = 1
+    while (BridgePlay().playBridge(bridgeLength,bridgeUpdown,bridge))
+        playcount = BridgePlay().playCount(playcount,bridgeLength,bridge)
+    OutputView().printResult(bridge,BridgePlay().playResult(bridge),playcount)
 }
