@@ -11,9 +11,12 @@ fun failGame(bridge: List<String>, i: Int):Int{
     val inputView = InputView()
     val outputView = OutputView()
     outputView.printMapFalse(bridge, i)
-    var again = inputView.readGameCommand()
+    var again = "E"
+    while(again == "E"){
+        again = inputView.readGameCommand()
+    }
     if (again == "R") return 1
-    else return 0
+    return 0
 }
 
 fun printBridgeMap(i : Int,bridge:List<String>):Int{
