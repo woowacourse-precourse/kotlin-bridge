@@ -5,6 +5,7 @@ import bridge.view.OutputView
 
 val outputView = OutputView()
 val inputView = InputView()
+val bridgeGame = BridgeGame()
 
 fun main() {
     startGame()
@@ -23,3 +24,12 @@ private fun makeBridge(): List<String> {
     return bridge
 }
 
+private fun progressStage(bridgeCurrentPosition: Int, bridge: List<String>) {
+    outputView.printMovingBridgeSelectPhrase()
+    outputView.printMap(
+        bridgeGame.move(inputView.readMoving(), bridgeCurrentPosition, bridge),
+        bridgeCurrentPosition,
+        bridge
+    )
+    println()
+}

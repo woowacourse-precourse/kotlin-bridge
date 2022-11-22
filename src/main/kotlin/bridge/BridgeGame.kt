@@ -5,8 +5,8 @@ package bridge
  */
 class BridgeGame {
 
-    fun move(userInput: String, bridgeCurrentPosition: Int, Bridge: List<String>): Boolean =
-        Bridge[bridgeCurrentPosition] == userInput
+    fun move(userInput: String, bridgeCurrentPosition: Int, bridge: List<String>): Boolean =
+        bridge[bridgeCurrentPosition] == userInput
 
     fun retry(userInput: String): GameState = GameState.convertStringCodeToValue(userInput)
 }

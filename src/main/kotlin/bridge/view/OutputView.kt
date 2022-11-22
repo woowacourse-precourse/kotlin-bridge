@@ -12,8 +12,8 @@ import bridge.constants.BridgePhrases.RESTART_OR_QUIT_SELECT_PHRASE
 
 class OutputView {
 
-    fun printMap(bridgeCurrentState: Boolean, bridgeCurrentPosition: Int, Bridge: List<String>) {
-        val dividedBridge = Bridge.subList(0, bridgeCurrentPosition)
+    fun printMap(bridgeCurrentState: Boolean, bridgeCurrentPosition: Int, bridge: List<String>) {
+        val dividedBridge = bridge.subList(0, bridgeCurrentPosition)
         BridgeType.values().forEach {
             println(convertBridgeToString(convertToPrintingPurposeBridge(bridgeCurrentState, it, dividedBridge)))
         }
