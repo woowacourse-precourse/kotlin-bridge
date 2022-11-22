@@ -8,6 +8,7 @@ const val BLANK = " "
 
 const val GAME_START = "다리 건너기 게임을 시작합니다.\n"
 const val ENTER_BRIDGE_SIZE = "다리의 길이를 입력해주세요."
+const val ENTER_DIRECTION = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
 
 const val GAME_RESULT = "최종 게임 결과"
 const val GAME_BOOLEAN = "게임 성공 여부"
