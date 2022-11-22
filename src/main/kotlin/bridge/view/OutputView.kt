@@ -28,14 +28,10 @@ class OutputView : MovingEventListener, QuitEventListener {
         println(ATTEMPTS_FIELD + result.attempts)
     }
 
-    override fun update(gameMapStatus: GameMapStatus) {
-        val map = GameMap(gameMapStatus)
-        printMap(map)
-    }
+    override fun update(gameMapStatus: GameMapStatus) = printMap(GameMap(gameMapStatus))
 
-    override fun update(gameMapStatus: GameMapStatus, gameResult: GameResult) {
+    override fun update(gameMapStatus: GameMapStatus, gameResult: GameResult) =
         printResult(GameMap(gameMapStatus), gameResult)
-    }
 
     companion object {
         private const val FINAL_GAME_RESULT_SUBJECT = "최종 게임 결과"
