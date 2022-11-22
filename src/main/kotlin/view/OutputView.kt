@@ -37,7 +37,7 @@ class OutputView {
     private fun printGameResult(ox: List<MutableList<String>>) {
         for (i in 0..1) {
             print("$LEFT_SQUARE_BRACKETS ")
-            print(ox[i].toString().replace(",", " |").removePrefix("LEFT_SQUARE_BRACKETS").removeSuffix("RIGHT_SQUARE_BRACKETS"))
+            print(ox[i].toString().replace(",", " |").removePrefix(LEFT_SQUARE_BRACKETS).removeSuffix(RIGHT_SQUARE_BRACKETS))
             print(" $RIGHT_SQUARE_BRACKETS")
             println()
         }
