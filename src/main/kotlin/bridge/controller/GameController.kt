@@ -82,7 +82,7 @@ class GameController {
         } else bridgeGame.retry(size)
     }
 
-    fun quit(resultText: String) {
+    private fun quit(resultText: String) {
         OutputView.finalResult()
         OutputView.printResult(bridgeGame.progressMatrix.progress, bridgeGame.position)
         OutputView.isSuccess(resultText)
