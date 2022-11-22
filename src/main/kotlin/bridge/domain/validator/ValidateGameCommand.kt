@@ -1,24 +1,13 @@
 package bridge.domain.validator
 
-import bridge.data.InputError
 import bridge.data.InputDataSource.gameCommand
-import bridge.ui.Views
-import java.lang.IllegalArgumentException
 
-class ValidateGameCommand(
-    private val views: Views = Views(),
-) {
-    operator fun invoke() {
-        do {
-            try {
-                views.inputView.readGameCommand().apply {
-                    require(isRetryOrQuit())
-                    gameCommand = this
-                }
-            } catch (exception: IllegalArgumentException) {
-                views.outputView.printError(InputError.GameCommandInputError(RETRY_OR_QUIT_EXCEPTION))
-            }
-        } while (gameCommand.isEmpty())
+class ValidateGameCommand {
+    operator fun invoke(inputValue: String) {
+        inputValue.apply {
+            require(isRetryOrQuit())
+            gameCommand = this
+        }
     }
 
     private fun String.isRetryOrQuit(): Boolean {

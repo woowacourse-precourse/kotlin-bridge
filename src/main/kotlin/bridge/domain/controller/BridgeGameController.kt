@@ -7,6 +7,7 @@ import bridge.data.InputDataSource.initAllDataSource
 import bridge.data.InputDataSource.movingCommands
 import bridge.data.InputError
 import bridge.domain.validator.*
+import bridge.domain.validator.ValidateGameCommand.Companion.RETRY_OR_QUIT_EXCEPTION
 import bridge.domain.validator.ValidateMoving.Companion.UP_OR_DOWN_EXCEPTION
 import bridge.ui.InputView.Companion.INPUT_BRIDGE_LENGTH
 import bridge.ui.InputView.Companion.INPUT_RETRY_OR_QUIT
@@ -28,7 +29,6 @@ class BridgeGameController(
     fun startGame() {
         processBridgeSize()
         bridgeGame.generateBridge()
-        println(INPUT_UP_OR_DOWN)
         processMoving()
         if (!isSuccess()) {
             processGameCommand()
@@ -37,7 +37,6 @@ class BridgeGameController(
 
     private fun retryGame() {
         bridgeGame.retry()
-        println(INPUT_UP_OR_DOWN)
         processMoving()
         if (!isSuccess()) {
             processGameCommand()
@@ -51,6 +50,7 @@ class BridgeGameController(
 
     private fun processMoving() {
         do {
+            println(INPUT_UP_OR_DOWN)
             try {
                 validateUseCase.validateMoving(views.inputView.readMoving())
             } catch (exception: IllegalArgumentException) {
@@ -65,8 +65,14 @@ class BridgeGameController(
     }
 
     private fun processGameCommand() {
-        println(INPUT_RETRY_OR_QUIT)
-        validateUseCase.validateGameCommand()
+        do {
+            println(INPUT_RETRY_OR_QUIT)
+            try {
+                validateUseCase.validateGameCommand(views.inputView.readGameCommand())
+            } catch (exception: IllegalArgumentException) {
+                views.outputView.printError(InputError.GameCommandInputError(RETRY_OR_QUIT_EXCEPTION))
+            }
+        } while (gameCommand.isEmpty())
         when (gameCommand) {
             RETRY -> retryGame()
             QUIT -> views.outputView.printResult(judgeGameResult())
