@@ -2,7 +2,6 @@ package bridge
 
 import util.Game
 import view.InputView
-import view.OutputView
 
 fun main() {
     var isDone = true
