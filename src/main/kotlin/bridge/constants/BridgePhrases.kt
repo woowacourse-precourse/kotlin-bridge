@@ -13,4 +13,7 @@ object BridgePhrases {
     const val BRIDGE_SIZE_PHRASE = "다리의 길이를 입력해주세요."
     const val MOVING_BRIDGE_SELECT_PHRASE = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
     const val RESTART_OR_QUIT_SELECT_PHRASE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+    const val FINAL_GAME_RESULT_PHRASE = "최종 게임 결과"
+    const val FINAL_GAME_RESULT_SUCCESS_STATE_PHRASE = "게임 성공 여부: "
+    const val FINAL_GAME_RESULT_ATTEMPT_NUMBER_PHRASE = "총 시도한 횟수: "
 }
