@@ -11,11 +11,10 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         val Bridge = mutableListOf<String>()
         for (i : Int in 0 until size) {
-            val number = bridgeNumberGenerator.generate()
-            if (number == 1)
-                Bridge.add("U")
-            if (number == 0)
-                Bridge.add("D")
+            when(bridgeNumberGenerator.generate()){
+                1 ->    Bridge.add("U")
+                0 ->    Bridge.add("D")
+            }
         }
         return Bridge
     }
