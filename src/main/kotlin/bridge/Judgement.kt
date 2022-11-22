@@ -14,15 +14,14 @@ class Judgement {
     }
 
     fun checkGameOver(currentMoving: List<String>): Boolean {
-        var result: Boolean = false
         try {
             if (!judgeMovingSuccess(currentMoving) || currentMoving.lastIndex == correctBridgeMap.correctBridge.size - 1) {
-                result = true
+                return true
             }
         } catch (exception: NoSuchElementException) {
-            result = false
+            return false
         }
-        return result
+        return false
     }
 
     fun checkGameWin(currentMoving: List<String>): Boolean {
