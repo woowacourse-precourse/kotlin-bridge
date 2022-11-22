@@ -1,11 +1,11 @@
 package bridge
 
-var count:Int = 1
+var count: Int = 1
 class BridgeGameProgress {
 
-    fun bridgeGameProgress(bridge: List<String>){
+    fun bridgeGameProgress(bridge: List<String>) {
         val result = bridgeGameStart(bridge)
-        if(result[result.size-1][1]==FAIL){
+        if (result[result.size - 1][1] == FAIL) {
             count += 1
             gameCommand(result, bridge)
         }
@@ -18,12 +18,13 @@ class BridgeGameProgress {
         return result
     }
 
-    private fun gameCommand(result: MutableList<List<String>>, bridge: List<String>){
+    private fun gameCommand(result: MutableList<List<String>>, bridge: List<String>) {
+        OutputView().printRetry()
         val gameCommand = InputView().readGameCommand()
-        if(gameCommand== QUIT){
+        if (gameCommand == QUIT) {
             return OutputView().printResult(result, LOSE, count)
         }
-        if(gameCommand == RETRY){
+        if (gameCommand == RETRY) {
             BridgeGame().retry(bridge)
             return
         }
