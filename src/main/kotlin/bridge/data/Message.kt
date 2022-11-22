@@ -22,3 +22,4 @@ const val ERROR_RANGE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여
 const val ERROR_DIGIT = "[ERROR] 숫자만 입력 가능합니다"
 const val ERROR_NULL = "[ERROR] 값이 존재하지 않습니다"
 const val ERROR_DIRECTION = "[ERROR] 'U' 또는 'D' 만 입력 가능합니다"
+const val ERROR_COMMAND = "[ERROR] 'R' 또는 'Q' 만 입력 가능합니다"
