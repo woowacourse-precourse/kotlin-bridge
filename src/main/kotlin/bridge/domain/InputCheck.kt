@@ -1,9 +1,6 @@
 package bridge.domain
 
-import bridge.ERROR_BIG_NUMBER_MESSAGE
-import bridge.ERROR_MOVE_DIRECTION_MESSAGE
-import bridge.ERROR_NOT_NUMBER_MESSAGE
-import bridge.ERROR_RANGE_BRIDGE_SIZE_MESSAGE
+import bridge.*
 
 class InputCheck {
     fun checkBridgeSize(bridgeSize: String): Int {
@@ -28,8 +25,14 @@ class InputCheck {
     }
 
     fun checkMoveDirection(moveDirection: String): String {
-        if(!(moveDirection=="U"||moveDirection=="D"))
+        if (!(moveDirection == "U" || moveDirection == "D"))
             throw IllegalArgumentException(ERROR_MOVE_DIRECTION_MESSAGE)
         return moveDirection
+    }
+
+    fun checkRetry(retryStatus: String): String {
+        if (!(retryStatus == "R" || retryStatus == "Q"))
+            throw IllegalArgumentException(ERROR_RETRY_MESSAGE)
+        return retryStatus
     }
 }
