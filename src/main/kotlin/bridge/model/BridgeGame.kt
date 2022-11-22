@@ -9,7 +9,7 @@ import bridge.QuitEventManager
 class BridgeGame(private val movingEventManager: MovingEventManager, private val quitEventManager: QuitEventManager) {
     private lateinit var bridge: List<String>
     private var userHistory = mutableListOf<String>()
-    private var running: Boolean = false
+    private lateinit var gameStatus: GameStatus
     private var attempts: Int = 0
 
     fun start(bridge: List<String>) {
@@ -17,7 +17,7 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
         validateBridge(bridge)
         this.bridge = bridge
         userHistory.clear()
-        running = true
+        gameStatus = GameStatus.RUNNING
         attempts++
     }
 
@@ -33,11 +33,11 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
      * 이동을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun move(moving: String) {
-        check(running) { "게임이 실행되었을 때만 움직일 수 있습니다." }
+        check(running()) { "게임이 실행되었을 때만 움직일 수 있습니다." }
         userHistory += moving
         movingEventManager.notify(GameMapStatus(bridge, userHistory))
         if (moveFailed())
-            running = false
+            gameStatus = GameStatus.STOPPED
         if (successed()) quit()
     }
 
@@ -52,10 +52,10 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
 
     fun quit() {
         quitEventManager.notify(GameMapStatus(bridge, userHistory), GameResult(successed(), attempts))
-        running = false
+        gameStatus = GameStatus.FINISHED
     }
 
-    fun running(): Boolean = running
+    fun running(): Boolean = gameStatus == GameStatus.RUNNING
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
@@ -64,9 +64,9 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     fun retry() {
-        check(started() && !running) { "게임이 중지 상태일 때만 재시작할 수 있습니다." }
+        check(started() && !running()) { "게임이 중지 상태일 때만 재시작할 수 있습니다." }
         userHistory.clear()
-        running = true
+        gameStatus = GameStatus.RUNNING
         attempts++
     }
 }
