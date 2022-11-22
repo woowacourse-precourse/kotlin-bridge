@@ -17,12 +17,7 @@ class InputView {
      */
     fun readBridgeSize(): Int {
         val brideSize = readLine()
-        try {
-            checkBridgeSizeInputValid(brideSize)
-        } catch (e: IllegalArgumentException) {
-            println(e.message)
-            readBridgeSize()
-        }
+        checkBridgeSizeInputValid(brideSize)
         return brideSize.toInt()
     }
 
