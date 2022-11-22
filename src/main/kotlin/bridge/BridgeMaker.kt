@@ -1,6 +1,4 @@
-package bridge.utils
-
-import bridge.utils.BridgeNumberGenerator
+package bridge
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
