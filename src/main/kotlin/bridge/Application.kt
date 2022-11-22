@@ -1,5 +1,12 @@
 package bridge
 
+import bridge.view.InputValidator
+import bridge.view.InputView
+import bridge.view.OutputView
+
 fun main() {
-    // TODO: 프로그램 구현
+    val gameController = GameController(InputView(InputValidator()), OutputView())
+    gameController.standByPhase(BridgeMaker(BridgeRandomNumberGenerator()))
+    gameController.mainPhase()
+    gameController.endPhase()
 }
