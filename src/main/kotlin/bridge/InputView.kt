@@ -28,6 +28,7 @@ class InputView {
                 validation.validateSizeValue(size)
                 break
             } catch (e: IllegalArgumentException) {
+                println(ValidationInput.SIZE_VALUE_ERROR)
                 size = readInput(1)
             }
         }
@@ -46,7 +47,7 @@ class InputView {
                 validation.validateDirectionValue(direction)
                 break
             } catch (e: IllegalArgumentException) {
-                println(INPUT_DIRECTION_MESSAGE)
+                println(ValidationInput.DIRECTION_VALUE_ERROR)
                 direction = readInput(2)
             }
         }
@@ -65,6 +66,7 @@ class InputView {
                 validation.validateCommandValue(command)
                 break
             } catch (e: IllegalArgumentException) {
+                println(ValidationInput.COMMAND_VALUE_ERROR)
                 command = readInput(3)
             }
         }
