@@ -15,7 +15,7 @@ class BridgeGame(
         outputView.printResult(result)
     }
 
-    fun startCycle() {
+    private fun startCycle() {
         result.increaseTryCount()
         if (repeatMoving(bridge.getBridgeSize())) {
             return
@@ -28,7 +28,7 @@ class BridgeGame(
         }
     }
 
-    fun repeatMoving(bridgeSize: Int): Boolean {
+    private fun repeatMoving(bridgeSize: Int): Boolean {
         for (pos in 0 until bridgeSize) {
             val playerMove = getPlayerMove()
             val isCrossable = move(pos, playerMove)
@@ -65,7 +65,7 @@ class BridgeGame(
         }
     }
 
-    fun retry(gameCommand: String): Boolean {
+    private fun retry(gameCommand: String): Boolean {
         if (gameCommand == RETRY_COMMAND) {
             result.resetResult()
             return true
