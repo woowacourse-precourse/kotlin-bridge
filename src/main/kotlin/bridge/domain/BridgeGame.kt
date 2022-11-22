@@ -1,5 +1,7 @@
 package bridge.domain
 
+import bridge.BridgeMaker
+import bridge.BridgeRandomNumberGenerator
 import bridge.data.*
 
 class BridgeGame {
