@@ -7,10 +7,12 @@ import bridge.view.OutputView
 private lateinit var inputView: InputView
 private lateinit var outputView: OutputView
 private lateinit var bridgeMaker: BridgeMaker
+private lateinit var movingEventManager: MovingEventManager
+private lateinit var quitEventManager: QuitEventManager
 private lateinit var bridgeGame: BridgeGame
 
 fun main() {
-    config()
+    initApplication()
     val bridgeSize = inputView.askBridgeSizeToUser()
     val bridge = bridgeMaker.makeBridge(bridgeSize)
     bridgeGame.start(bridge)
@@ -38,25 +40,35 @@ private fun decideRetry() {
     }
 }
 
-private fun config() {
-    setView()
-    setBridgeMaker()
-    setEventManager()
+private fun initApplication() {
+    setInputView(InputView())
+    setOutputView(OutputView())
+    setBridgeMaker(BridgeMaker(BridgeRandomNumberGenerator()))
+    setMovingEventManager(MovingEventManager())
+    setQuitEventManager(QuitEventManager())
+    initBridgeGame()
 }
 
-private fun setView() {
-    inputView = InputView()
-    outputView = OutputView()
+private fun setInputView(view: InputView) {
+    inputView = view
 }
 
-private fun setBridgeMaker() {
-    bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
+private fun setOutputView(view: OutputView) {
+    outputView = view
 }
 
-private fun setEventManager() {
-    val movingEventManager = MovingEventManager()
-    movingEventManager.subscribe(outputView)
-    val quitEventManager = QuitEventManager()
-    quitEventManager.subscribe(outputView)
+private fun setBridgeMaker(maker: BridgeMaker) {
+    bridgeMaker = maker
+}
+
+private fun setMovingEventManager(manager: MovingEventManager) {
+    movingEventManager = manager
+}
+
+private fun setQuitEventManager(manager: QuitEventManager) {
+    quitEventManager = manager
+}
+
+private fun initBridgeGame() {
     bridgeGame = BridgeGame(movingEventManager, quitEventManager)
 }
