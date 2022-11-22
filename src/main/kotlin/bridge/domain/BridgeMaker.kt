@@ -13,7 +13,8 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         val bridge: MutableList<String> = mutableListOf()
         for (i in 0 until size) {
-            when (bridgeNumberGenerator.generate()) {
+            val temp = bridgeNumberGenerator.generate()
+            when (temp) {
                 1 -> bridge.add("U")
                 0 -> bridge.add("D")
             }
