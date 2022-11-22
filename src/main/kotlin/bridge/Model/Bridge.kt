@@ -19,12 +19,17 @@ class Bridge {
         OutputView().printGetBridgeLengthLog()
         val inputSize = InputView().readBridgeSize()
         try{
-            InputException().checkBridgeLenInputIsNumeric(inputSize)
+            getBridgeLengthException(inputSize)
             return inputSize.toInt()
         } catch(e : IllegalArgumentException){
             println(e.message)
         }
         return getBridgeLength()
+    }
+
+    private fun getBridgeLengthException(inputSize : String){
+        InputException().checkBridgeLenInputIsNumeric(inputSize)
+        InputException().checkBridgeRange(inputSize)
     }
 
 }
