@@ -1,5 +1,8 @@
 package bridge
 
+import bridge.domain.BridgeGame
+
 fun main() {
-    // TODO: 프로그램 구현
+    val userPlayer = Player(BridgeGame())
+    userPlayer.startGame()
 }
