@@ -7,9 +7,17 @@ class GameMap(gameMapStatus: GameMapStatus) {
     private val lines = mutableMapOf<String, Line>()
 
     init {
+        initLines(gameMapStatus)
+        markOnLines(gameMapStatus)
+    }
+
+    private fun initLines(gameMapStatus: GameMapStatus) {
         val mapSize = gameMapStatus.userHistory.size
         lines[UP] = Line(mapSize)
         lines[DOWN] = Line(mapSize)
+    }
+
+    private fun markOnLines(gameMapStatus: GameMapStatus) {
         (0 until gameMapStatus.userHistory.size).forEach {
             if (gameMapStatus.bridge[it] == gameMapStatus.userHistory[it])
                 lines[gameMapStatus.userHistory[it]]!!.mark(it, MATCHED)
