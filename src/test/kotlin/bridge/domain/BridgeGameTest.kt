@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class BridgeGameTest {
-    private var bridge = emptyList<BridgeGameType>()
+    private var bridge = emptyList<String>()
     private var bridgeGameInfo = BridgeGameInfo(bridge, emptyList(), 1)
 
     @BeforeEach

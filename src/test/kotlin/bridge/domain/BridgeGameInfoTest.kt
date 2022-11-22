@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class BridgeGameInfoTest {
-    private var bridge = emptyList<BridgeGameType>()
+    private var bridge = emptyList<String>()
 
     @BeforeEach
     fun beforeEach() {

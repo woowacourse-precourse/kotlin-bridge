@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class BridgeGameProgressTest {
-    private var bridge = emptyList<BridgeGameType>()
+    private var bridge = emptyList<String>()
 
     @BeforeEach
     fun beforeEach() {

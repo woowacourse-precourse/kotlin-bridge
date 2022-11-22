@@ -13,10 +13,10 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
-    fun makeBridge(size: Int): List<BridgeGameType> {
+    fun makeBridge(size: Int): List<String> {
         require(size in BRIDGE_MIN_LENGTH..BRIDGE_MAX_LENGTH) { ERROR_INPUT_NUMBER_IN_RANGE }
         return 0.until(size).map { generateKey() }
     }
 
-    private fun generateKey() = BridgeGameType.of(bridgeNumberGenerator.generate())
+    private fun generateKey() = BridgeGameType.of(bridgeNumberGenerator.generate()).type
 }

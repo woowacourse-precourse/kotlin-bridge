@@ -21,7 +21,8 @@ class BridgeGameController {
     private var progress = RUNNING
     private var command = NONE
     private val info = BridgeGameInfo(
-        BridgeMaker(BridgeRandomNumberGenerator()).makeBridge(input.readBridgeSize()),
+        BridgeMaker(BridgeRandomNumberGenerator())
+            .makeBridge(input.readBridgeSize()),
         emptyList(),
         1
     )

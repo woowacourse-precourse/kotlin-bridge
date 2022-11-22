@@ -15,7 +15,7 @@ class BridgeGame {
     fun move(bridgeGameInfo: BridgeGameInfo, userSelect: String) {
         bridgeGameInfo.run {
             require(stage.size < bridge.size) { ERROR_ALREADY_ARRIVED }
-            stage = stage.plus(userSelect == bridge[stage.size].type)
+            stage = stage.plus(userSelect == bridge[stage.size])
         }
     }
 

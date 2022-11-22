@@ -1,6 +1,5 @@
 package bridge
 
-import bridge.domain.BridgeGameType
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
@@ -12,8 +11,8 @@ class ApplicationTest : NsTest() {
     fun `다리 생성 테스트`() {
         val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
         val bridgeMaker = BridgeMaker(numberGenerator)
-        val bridge: List<BridgeGameType> = bridgeMaker.makeBridge(3)
-        assertThat(bridge.map { it.type }).containsExactly("U", "D", "D")
+        val bridge: List<String> = bridgeMaker.makeBridge(3)
+        assertThat(bridge).containsExactly("U", "D", "D")
     }
 
     @Test
