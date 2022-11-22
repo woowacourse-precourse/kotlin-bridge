@@ -1,6 +1,4 @@
-package bridge.domain
-
-import bridge.BridgeNumberGenerator
+package bridge
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -13,8 +11,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     fun makeBridge(size: Int): List<String> {
         val bridge: MutableList<String> = mutableListOf()
         for (i in 0 until size) {
-            val temp = bridgeNumberGenerator.generate()
-            when (temp) {
+            when (bridgeNumberGenerator.generate()) {
                 1 -> bridge.add("U")
                 0 -> bridge.add("D")
             }

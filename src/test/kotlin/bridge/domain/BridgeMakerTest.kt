@@ -1,5 +1,6 @@
 package bridge.domain
 
+import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

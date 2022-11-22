@@ -2,7 +2,7 @@ package bridge.controller
 
 
 import bridge.domain.BridgeGame
-import bridge.domain.BridgeMaker
+import bridge.BridgeMaker
 import bridge.domain.InputView
 import bridge.enums.Status
 import bridge.ui.OutputView
