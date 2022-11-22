@@ -8,7 +8,7 @@ class Game {
     private var success = true
     private var trycount = 1
 
-    fun outputStartMessage() {
+    fun printStartMessage() {
         if (trycount == 1) {
             outputView.printStartMessage()
         }

@@ -3,7 +3,7 @@ package bridge
 
 fun main() {
     val game = Game()
-    game.outputStartMessage()
+    game.printStartMessage()
     game.startGame()
     game.crossTheBridge()
     game.printFinalResult()
