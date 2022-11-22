@@ -8,39 +8,54 @@ class BridgeGame(
     private val bridgeMaker: BridgeMaker
 ) {
     private lateinit var bridge: List<String>
+    private lateinit var path: MutableList<String>
 
     fun runGame() {
         gameManager.startGame()
         val bridgeSize = gameManager.getBridgeSize()
         bridge = bridgeMaker.makeBridge(bridgeSize)
 
-        move()
+        crossBridge()
     }
 
-    fun move() {
-        val path = mutableListOf<String>()
+    fun crossBridge() {
+        path = mutableListOf()
+        var isMoving = true
+        var currentIndex = 0
 
-        for (i in bridge.indices) {
-            val movement = gameManager.getMovement()
-            path.add(movement)
+        while (isMoving) {
+            isMoving = move(currentIndex++)
+        }
+    }
 
-            gameManager.printMap(path, bridge)
-
-            if(movement != bridge[i]) {
-                retry()
-                break
-            }
+    fun move(currentIndex: Int): Boolean {
+        if (currentIndex == bridge.size) {
+            return false // TODO: 다리 건너기 성공
         }
 
-        // TODO: 다리 건너기 성공
+        val movement = gameManager.getMovement()
+        path.add(movement)
+
+        gameManager.printMap(path, bridge)
+
+        return isSuccessMoving(movement, currentIndex)
+    }
+
+    fun isSuccessMoving(movement: String, index: Int): Boolean {
+        if (movement != bridge[index]) {
+            retry()
+            return false
+        }
+
+        return true
     }
 
     fun retry() {
         val command = gameManager.getRestartCommand()
 
         when (command) {
-            GAME_RESTART -> move()
-        //    GAME_END -> // TODO: 다리 건너기 실패
+            GAME_RESTART -> crossBridge()
+            //    GAME_END -> // TODO: 다리 건너기 실패
         }
     }
 }
