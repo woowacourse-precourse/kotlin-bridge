@@ -13,7 +13,7 @@ class OutputView(private val bridge: List<String>) {
     fun printMap(moving: List<String>) {
         for (position in moving.indices) {
             markAnswer(moving, position, moving[position] == bridge[position])
-            if (moving[position] == bridge[position]) break
+            if (moving[position] != bridge[position]) break
             if (position != moving.size - 1) addStringToMap(" | ", " | ")
         }
         printStringBuilder()
