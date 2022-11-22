@@ -7,15 +7,15 @@ class OutputView {
     }
 
     fun printResult(bridgeGame: BridgeGame) {
-        println("\n최종 게임 결과")
+        println(FINAL_RESULT_MESSAGE)
         printMap(bridgeGame)
-        print("\n게임 성공 여부: ")
+        print(IS_SUCCESS_MESSAGE)
         if (bridgeGame.check() && bridgeGame.over()) {
-            println("성공")
+            println(SUCCESS_MESSAGE)
         } else {
-            println("실패")
+            println(FAILURE_MESSAGE)
         }
-        println("총 시도한 횟수: " + bridgeGame.playCount)
+        println(TOTAL_TRY_MESSAGE + bridgeGame.playCount)
     }
 
     fun printStart() = println(GAME_START_MESSAGE + "\n\n" + REQUEST_INPUT_MESSAGE)
@@ -31,6 +31,11 @@ class OutputView {
         private const val REQUEST_INPUT_MESSAGE = "다리의 길이를 입력해주세요."
         private const val UP_OR_DOWN_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
         private const val REQUEST_RESTART_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+        private const val FINAL_RESULT_MESSAGE = "\n최종 게임 결과"
+        private const val IS_SUCCESS_MESSAGE = "\n게임 성공 여부: "
+        private const val SUCCESS_MESSAGE = "성공"
+        private const val FAILURE_MESSAGE = "실패"
+        private const val TOTAL_TRY_MESSAGE = "총 시도한 횟수: "
         private const val ERROR = "[ERROR] "
         private const val WRONG_SIZE_INPUT_MESSAGE = "다리의 길이는 숫자만 입력 가능합니다."
         private const val WRONG_SIZE_RANGE_MESSAGE = "다리의 길이는 3과 20 사이의 숫자만 가능합니다."
