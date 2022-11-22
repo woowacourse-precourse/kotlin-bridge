@@ -14,11 +14,11 @@ class OutputView {
     fun printMap(bridge: List<String>, answer: Boolean) {
         // 윗 줄 출력
         printSign(bridge, UP)                       // 다리 틀 출력
-        printUpAnswer(answer, bridge.last())        // 마지막 부분의 정답 유무 출력
+        printAnswer(answer, bridge.last(), UP)      // 마지막 부분의 정답 유무 출력
         println(END_BRACKET)                        // "]"
         // 아랫 줄 출력
         printSign(bridge, DOWN)
-        printDownAnswer(answer, bridge.last())
+        printAnswer(answer, bridge.last(), DOWN)
         println(END_BRACKET)
     }
 
@@ -32,24 +32,14 @@ class OutputView {
         }
     }
 
-    // 윗줄 정답 체크
-    private fun printUpAnswer(answer: Boolean, locationAnswer: String) {
-        if (answer && locationAnswer == UP) print(ANSWER)           // 윗줄이 정답이면 O
-        if (!answer && locationAnswer != UP) print(NOT_ANSWER)      // 정답이 아니면 X
+    // 정답 체크
+    private fun printAnswer(answer: Boolean, locationAnswer: String, line: String) {
+        if (answer && locationAnswer == line) print(ANSWER)           // 마지막이 정답이면 O
+        if (!answer && locationAnswer != line) print(NOT_ANSWER)      // 정답이 아니면 X
 
-        if (answer && locationAnswer != UP) print(SPACING)          // 공백 출력
-        if (!answer && locationAnswer == UP) print(SPACING)         // 공백 출력
+        if (answer && locationAnswer != line) print(SPACING)          // 공백 출력
+        if (!answer && locationAnswer == line) print(SPACING)         // 공백 출력
     }
-
-    // 아랫줄 정답 체크
-    private fun printDownAnswer(answer: Boolean, locationAnswer: String) {
-        if (answer && locationAnswer == DOWN) print(ANSWER)
-        if (!answer && locationAnswer != DOWN) print(NOT_ANSWER)
-
-        if (answer && locationAnswer != DOWN) print(SPACING)
-        if (!answer && locationAnswer == DOWN) print(SPACING)
-    }
-
 
     /**
      * 게임의 최종 결과를 정해진 형식에 맞춰 출력한다.

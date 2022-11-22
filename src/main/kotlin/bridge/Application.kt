@@ -13,22 +13,23 @@ fun main() {
         println(bridge)
         val game = BridgeGame(bridge, bridgeLength)
 
-        gameStart(game, START_TRY)
+        gameStart(game, START_TRY, START_LOCATION)
     } catch (_: IllegalArgumentException) {
     }
 }
 
 
-fun gameStart(game: BridgeGame, tryCount: Int) {
-    for (location in START_LOCATION until game.length) {
-        val answer = game.bridge[location] == inputMove()
-        val nowBridge = game.move(location)
-        output().printMap(nowBridge, answer)
-        if (!answer && game.retry(inputRetry())) {
-            gameStart(game, tryCount + NEXT_TRY)
-            break
-        }
-        if (location == game.length - BRIDGE_PADDING) output().printResult(nowBridge, answer, tryCount)
+fun gameStart(game: BridgeGame, tryCount: Int, location: Int) {
+    val answer = game.bridge[location] == inputMove()
+    val nowBridge = game.move(location)
+    output().printMap(nowBridge, answer)
+    if (!answer) {
+        val inputRetry = inputRetry()
+        if (game.retry(inputRetry)) gameStart(game, tryCount + NEXT_TRY, START_LOCATION)
+        if (!game.retry(inputRetry)) output().printResult(nowBridge, false, tryCount)
+    } else {
+        if (location < game.length - BRIDGE_PADDING) gameStart(game, tryCount, location + NEXT_LOCATION)
+        if (location == game.length - BRIDGE_PADDING) output().printResult(nowBridge, true, tryCount)
     }
 }
 
