@@ -6,7 +6,7 @@ import bridge.domain.BridgeMaker
 import bridge.domain.InputView
 import bridge.enums.Status
 import bridge.ui.OutputView
-import bridge.util.BridgeRandomNumberGenerator
+import bridge.BridgeRandomNumberGenerator
 
 class BridgeGameController {
     private val outputView = OutputView()

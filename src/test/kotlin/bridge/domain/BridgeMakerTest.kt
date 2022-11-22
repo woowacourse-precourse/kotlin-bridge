@@ -1,11 +1,8 @@
 package bridge.domain
 
-import bridge.util.BridgeNumberGenerator
-import bridge.util.BridgeRandomNumberGenerator
+import bridge.BridgeRandomNumberGenerator
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class BridgeMakerTest {
     private val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
