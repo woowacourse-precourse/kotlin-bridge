@@ -1,6 +1,6 @@
 package bridge
 
-import bridge.domain.BridgeGameController
+import bridge.controller.BridgeGameController
 
 private val bridgeGameController = BridgeGameController()
 
