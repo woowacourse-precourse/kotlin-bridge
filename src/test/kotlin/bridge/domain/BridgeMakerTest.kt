@@ -19,6 +19,20 @@ class BridgeMakerTest {
         assertThat(bridge).containsExactly("U", "D", "D")
     }
 
+    @Test
+    fun `정답다리에 맞추어 위의 다리가 반환되는지 확인`() {
+        val answerBridge = bridgeMaker.makeBridge(3)
+        val upBridge = bridgeMaker.makeCompletedBridge(answerBridge, isUpBridge = true)
+        assertThat(upBridge).containsExactly("O", " ", " ")
+    }
+
+    @Test
+    fun `정답다리에 맞추어 아래의 다리가 반환되는지 확인`() {
+        val answerBridge = bridgeMaker.makeBridge(3)
+        val downBridge = bridgeMaker.makeCompletedBridge(answerBridge, isUpBridge = false)
+        assertThat(downBridge).containsExactly(" ", "O", "O")
+    }
+
     class TestNumberGenerator(numbers: List<Int>) : BridgeNumberGenerator {
         private val numbers: MutableList<Int> = numbers.toMutableList()
 
