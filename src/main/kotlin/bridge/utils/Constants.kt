@@ -30,4 +30,7 @@ object Constants {
     const val SUCCESS_SYMBOL = " O "
     const val FAIL_SYMBOL = " X "
     const val EMPTY_SYMBOL = "   "
+    const val SUCCESS = "성공"
+    const val FAIL = "실패"
+    const val LANESHAPE = "|"
 }

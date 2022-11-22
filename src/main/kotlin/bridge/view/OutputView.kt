@@ -1,6 +1,10 @@
 package bridge.view
+
 import bridge.model.GameInfo
 import bridge.utils.Constants
+import bridge.utils.Constants.LANESHAPE
+import bridge.utils.Constants.FAIL
+import bridge.utils.Constants.SUCCESS
 
 /**
  * 사용자에게 게임 진행 상황과 결과를 출력하는 역할을 한다.
@@ -37,7 +41,7 @@ class OutputView() {
         for (index in downLane.indices){
             downLaneShape += downLane[index]
             if (index != downLane.size - 1)
-                downLaneShape += "|"
+                downLaneShape += LANESHAPE
         }
         println(listOf(downLaneShape))
     }
@@ -83,9 +87,9 @@ class OutputView() {
     }
 
     fun printGameSuccessOrFailMessage(isSuccess: Boolean){
-        var message = "실패"
+        var message = FAIL
         if (isSuccess)
-            message = "성공"
+            message = SUCCESS
         println(Constants.GAME_SUCCESS_OR_FAIL_MESSAGE + message)
     }
 
