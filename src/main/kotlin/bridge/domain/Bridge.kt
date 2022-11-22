@@ -5,6 +5,5 @@ class Bridge(private val blocks: List<String>) {
         index < blocks.size &&
                 blocks[index] == direction.hotKey()
 
-
     fun size() = blocks.size
 }
