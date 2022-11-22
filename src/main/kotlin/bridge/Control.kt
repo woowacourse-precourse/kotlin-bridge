@@ -18,6 +18,7 @@ class Control {
         val markUp = mutableListOf<String>()
         val markDown = mutableListOf<String>()
         var tryAgain = false
+        var completeGame = false
         for (index in bridge.indices) {
             val mark = bridgeGame.markBridge(inputView.readMoving(), bridge, index)
             bridgeGame.move(mark, markUp, markDown)
@@ -32,6 +33,15 @@ class Control {
                     return
                 }
             }
+            if (index == (bridge.size - 1)) {
+                completeGame = true
+            }
+        }
+        if (tryAgain) {
+            markingBridge(bridge)
+        }
+        if (completeGame) {
+            outputView.printResultSuccess(markUp, markDown, numberOfTry)
         }
     }
 }
