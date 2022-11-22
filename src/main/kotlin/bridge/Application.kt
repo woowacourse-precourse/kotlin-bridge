@@ -5,14 +5,15 @@ import bridge.game.BridgeGame
 import bridge.game.Status
 import bridge.io.InputView
 import bridge.io.OutputView
+import bridge.resources.GAME_INTRO
 
 fun main() {
-    println("다리 건너기 게임을 시작합니다.\n")
+    println(GAME_INTRO)
     val input = InputView()
     val maker = BridgeMaker(BridgeRandomNumberGenerator())
     val bridge = maker.makeBridge(input.readBridgeSize())
+    val gameManager = BridgeGame(bridge, Bridge(mutableListOf<String>(), InputView(), OutputView()), Status())
     println(bridge)
     println()
-    val gameManager = BridgeGame(bridge, Bridge(mutableListOf<String>(), InputView(), OutputView()), Status())
     gameManager.play()
 }

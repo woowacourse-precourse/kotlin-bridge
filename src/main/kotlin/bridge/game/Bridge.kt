@@ -2,6 +2,8 @@ package bridge.game
 
 import bridge.io.InputView
 import bridge.io.OutputView
+import bridge.resources.DOWN
+import bridge.resources.UP
 
 class Bridge(
     private val way: MutableList<String>,
@@ -23,9 +25,9 @@ class Bridge(
     fun makeTopRow(answerWay: List<String>): List<String> {
         val line = mutableListOf<String>()
         for (step in way.indices) {
-            if (way[step] == "U") line.add(compare(answerWay[step], way[step]))
+            if (way[step] == UP) line.add(compare(answerWay[step], way[step]))
 
-            if (way[step] == "D") line.add(" ")
+            if (way[step] == DOWN) line.add(" ")
         }
         return line
     }
@@ -33,9 +35,9 @@ class Bridge(
     fun makeBotRow(answerWay: List<String>): List<String> { // 윗줄 출력 양식 만들기
         val line = mutableListOf<String>()
         for (step in way.indices) {
-            if (way[step] == "D") line.add(compare(answerWay[step], way[step]))
+            if (way[step] == DOWN) line.add(compare(answerWay[step], way[step]))
 
-            if (way[step] == "U") line.add(" ")
+            if (way[step] == UP) line.add(" ")
         }
         return line
     }

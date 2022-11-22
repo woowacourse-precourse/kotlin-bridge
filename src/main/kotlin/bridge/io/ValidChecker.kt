@@ -1,7 +1,9 @@
 package bridge.io
 
-private const val OK =false
-private const val WRONG= true
+import bridge.resources.DOWN
+import bridge.resources.QUIT_COMMAND
+import bridge.resources.RETRY_COMMAND
+import bridge.resources.UP
 
 class ValidChecker {
 
@@ -12,14 +14,14 @@ class ValidChecker {
         throw IllegalArgumentException()
     }
     fun checkUorD(choice:String){
-        if(choice!="U" && choice!="D"){
+        if(choice!=UP && choice!= DOWN){
             throw IllegalArgumentException()
         }
     }
 
     fun checkRorQ(coin:String):Boolean{
-        if(coin=="R") return true
-        if(coin=="Q") return false
+        if(coin== RETRY_COMMAND) return true
+        if(coin== QUIT_COMMAND) return false
 
         throw IllegalArgumentException()
     }

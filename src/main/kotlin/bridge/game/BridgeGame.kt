@@ -1,5 +1,8 @@
 package bridge.game
 
+import bridge.resources.ClEAR
+import bridge.resources.FAIL
+
 /**
  * 다리 건너기 게임을 관리하는 클래스
  */
@@ -28,13 +31,13 @@ class BridgeGame(
     fun play() {
         while (move()) {
             if (myBridge.getMyWaySize() >= answerWay.size) { //성공
-                status.success = "성공"
+                status.success = ClEAR
                 showResult()
                 return
             }
         }
         if (myBridge.sendGameCommand()) return retry() // 재시도 묻기
-        status.success = "실패"
+        status.success = FAIL
         showResult()
     }
 
