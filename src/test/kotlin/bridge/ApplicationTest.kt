@@ -27,7 +27,7 @@ class ApplicationTest : NsTest() {
     @Test
     fun `예외 테스트`() {
         assertSimpleTest {
-            runException("a")
+            runException("a", "3", "U", "D", "D", "Q")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }

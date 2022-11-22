@@ -15,9 +15,9 @@ class InputViewTest: NsTest() {
     }
     @Test
     fun `다리 개수 예외 테스트`() {
+        runException("12345", "3")
         InputView().readBridgeSize()
         assertSimpleTest {
-            run{ "12sdf3" }
             Assertions.assertThat(output()).contains("[ERROR]")
         }
     }
@@ -28,9 +28,9 @@ class InputViewTest: NsTest() {
     }
     @Test
     fun `다리 이동 입력칸 예외 테스트`() {
+        runException("Uri", "U")
         InputView().readMoving()
         assertSimpleTest {
-            run{ "21" }
             Assertions.assertThat(output()).contains("[ERROR]")
         }
     }
@@ -41,9 +41,9 @@ class InputViewTest: NsTest() {
     }
     @Test
     fun `재시작 입력 예외 테스트`() {
+        runException(null, "Q")
         InputView().readGameCommand()
         assertSimpleTest {
-            run{ "URJK" }
             Assertions.assertThat(output()).contains("[ERROR]")
         }
     }
