@@ -12,7 +12,6 @@ object Constants {
     // ERROR
     const val ERROR_OUT_OF_RANGE_MESSAGE = "[ERROR] 다리 길이는 3-20 사이의 숫자여야 합니다."
     const val ERROR_NOT_NUMBER_MESSAGE = "[ERROR] 숫자를 입력해주세요."
-
     const val ERROR_NOT_INPUT_U_OR_D = "[ERROR] U 또는 D를 입력해주세요."
     const val ERROR_NOT_INPUT_R_OR_Q = "[ERROR] R 또는 Q를 입력해주세요."
 }

@@ -6,7 +6,7 @@ import Utils.Constants.RETRY
  * 다리 건너기 게임을 관리하는 클래스
  */
 class BridgeGame {
-    private val gameManager = BridgeGameManager()
+    private val gameManager = BridgeGameManager(0)
     private lateinit var bridgeMap: List<String>
     private var bridgeSize = 0
 

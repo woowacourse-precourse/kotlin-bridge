@@ -1,9 +1,8 @@
 package bridge
 
-class BridgeGameManager {
+class BridgeGameManager(private var position: Int) {
     private val output = OutputView()
     var tryingCount = 1
-    private var position = 0 // user의 현재 위치
 
     fun calculateIsMovable(bridgeMap: List<String>, moving: String): Boolean {
         val isMovable = bridgeMap[position] == moving
