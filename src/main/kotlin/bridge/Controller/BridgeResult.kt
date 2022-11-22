@@ -1,10 +1,13 @@
-package bridge
+package bridge.Controller
 
+import bridge.Bridge
+import bridge.BridgeGame
 import bridge.Constants.Companion.DOWN
 import bridge.Constants.Companion.QUIT
 import bridge.Constants.Companion.RETRY
 import bridge.Constants.Companion.UP
-import bridge.UI.OutputView
+import bridge.PlayerBridge
+import bridge.View.OutputView
 
 class BridgeResult {
 
@@ -19,7 +22,7 @@ class BridgeResult {
         outputView.printStartLog()
         val answerBridge = bridge.makeBridge()
         outputView.printNewLine()
-        for (i in answerBridge.indices) {
+        while(true){
             val playerDirection = playerBridge.getDirection()
             bridgeGame.move(playerDirection, answerBridge)
             val selectedBridge = bridgeGame.saveLastResult()
