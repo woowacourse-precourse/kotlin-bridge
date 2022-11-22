@@ -1,5 +1,7 @@
 package bridge
 
+import bridge.console.BridgeGameConsole
+
 fun main() {
-    // TODO: 프로그램 구현
+    BridgeGameConsole().startGame()
 }
