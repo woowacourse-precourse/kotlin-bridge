@@ -38,6 +38,13 @@ class BridgeGame {
         return "실패"
     }
 
+    fun getFailureResult(): Boolean{
+        if(upResultList.contains(INCORRECT_MARK) || downResultList.contains(INCORRECT_MARK)){
+            return false
+        }
+        return true
+    }
+
     fun saveUserCorrectedDirection(userDirection: String) {
         if (userDirection == UP) {
             upResultList.add(CORRECT_MARK)
