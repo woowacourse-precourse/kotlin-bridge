@@ -2,6 +2,8 @@ package bridge
 
 import bridge.domain.BridgeGame
 import bridge.domain.BridgeMaker
+import bridge.view.InputView
+import bridge.view.OutputView
 
 fun main() {
     val showInputView = InputView()
@@ -23,5 +25,4 @@ fun main() {
     OutputView().printResult(bridgeGame.userBridge, bridge)
     OutputView().printSuccess(bridgeGame.gameSuccess)
     OutputView().printTryGameNumber(bridgeGame.tryNumber)
-
 }

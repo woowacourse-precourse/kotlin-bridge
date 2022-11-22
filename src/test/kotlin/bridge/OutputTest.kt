@@ -1,5 +1,6 @@
 package bridge
 
+import bridge.view.OutputView
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
