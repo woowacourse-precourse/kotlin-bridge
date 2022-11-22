@@ -2,56 +2,37 @@ package bridge
 
 import bridge.domain.BlockComparator
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 
 class ComparatorTest {
     private val blockComparator = BlockComparator()
 
-    @Test
-    fun `Correct DOWN 일치 비교 테스트`() {
-        val result = blockComparator.compareIsDownerCorrect("D")
-        assertThat(result).isEqualTo("O")
+    @ParameterizedTest
+    @CsvSource("D, O", "U, ' '")
+    fun `Correct DOWN 비교 테스트`(direction: String, marking: String) {
+        val result = blockComparator.compareIsDownerCorrect(direction)
+        assertThat(result).isEqualTo(marking)
     }
 
-    @Test
-    fun `Correct UP 일치 비교 테스트`() {
-        val result = blockComparator.compareIsUpperCorrect("U")
-        assertThat(result).isEqualTo("O")
+    @ParameterizedTest
+    @CsvSource("U, O", "D, ' '")
+    fun `Correct UP 비교 테스트`(direction: String, marking: String) {
+        val result = blockComparator.compareIsUpperCorrect(direction)
+        assertThat(result).isEqualTo(marking)
     }
 
-    @Test
-    fun `Correct DOWN 불일치 비교 테스트`() {
-        val result = blockComparator.compareIsDownerCorrect("U")
-        assertThat(result).isEqualTo(" ")
+    @ParameterizedTest
+    @CsvSource("D, X", "U, ' '")
+    fun `InCorrect DOWN 비교 테스트`(direction: String, marking: String) {
+        val result = blockComparator.compareIsDownerIncorrect(direction)
+        assertThat(result).isEqualTo(marking)
     }
 
-    @Test
-    fun `Correct UP 불일치 비교 테스트`() {
-        val result = blockComparator.compareIsUpperCorrect("D")
-        assertThat(result).isEqualTo(" ")
-    }
-
-    @Test
-    fun `Incorrect DOWN 일치 비교테스트`() {
-        val result = blockComparator.compareIsDownerIncorrect("D")
-        assertThat(result).isEqualTo("X")
-    }
-
-    @Test
-    fun `Incorrect UP 일치 비교테스트`() {
-        val result = blockComparator.compareIsUpperIncorrect("U")
-        assertThat(result).isEqualTo("X")
-    }
-
-    @Test
-    fun `Incorrect DOWN 불일치 비교테스트`() {
-        val result = blockComparator.compareIsDownerIncorrect("U")
-        assertThat(result).isEqualTo(" ")
-    }
-
-    @Test
-    fun `Incorrect UP 불일치 비교테스트`() {
-        val result = blockComparator.compareIsUpperIncorrect("D")
-        assertThat(result).isEqualTo(" ")
+    @ParameterizedTest
+    @CsvSource("U, X", "D, ' '")
+    fun `InCorrect UP 비교 테스트`(direction: String, marking: String) {
+        val result = blockComparator.compareIsUpperIncorrect(direction)
+        assertThat(result).isEqualTo(marking)
     }
 }
