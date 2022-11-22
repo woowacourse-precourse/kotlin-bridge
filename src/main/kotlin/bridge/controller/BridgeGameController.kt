@@ -74,6 +74,7 @@ class BridgeGameController(
         while (true) {
             try {
                 gameCommandResult = conductByGameCommand(bridgeGame, inputView.readGameCommand())
+                break
             } catch (exception: IllegalArgumentException) {
                 println(exception.message)
             }
