@@ -15,7 +15,7 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
     }
 
     private fun validateBridge(bridge: List<String>) =
-        require(bridge.size in 3..20 && bridge.all { it == "U" || it == "D" }) { "다리의 길이는 3 이상 20 이하여야 하고 U 또는 D만 포함할 수 있습니다." }
+        require(bridge.size in 3..20 && bridge.all { it == UP || it == DOWN }) { "다리의 길이는 3 이상 20 이하여야 하고 U 또는 D만 포함할 수 있습니다." }
 
     fun move(moving: String) {
         check(running()) { "게임이 실행되었을 때만 움직일 수 있습니다." }
@@ -48,5 +48,10 @@ class BridgeGame(private val movingEventManager: MovingEventManager, private val
     fun succeeded(): Boolean {
         check(started()) { "게임이 시작되어야 성공했는지 판단할 수 있습니다." }
         return bridge.size == userHistory.size && (bridge.indices).all { bridge[it] == userHistory[it] }
+    }
+
+    companion object {
+        private const val UP = "U"
+        private const val DOWN = "D"
     }
 }

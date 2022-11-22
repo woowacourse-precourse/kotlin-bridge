@@ -19,5 +19,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     companion object {
         private const val RANDOM_LOWER_INCLUSIVE = 0
         private const val RANDOM_UPPER_INCLUSIVE = 1
+        private const val UP = "U"
+        private const val DOWN = "D"
     }
 }
