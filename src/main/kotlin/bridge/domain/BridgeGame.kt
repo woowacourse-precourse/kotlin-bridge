@@ -24,14 +24,16 @@ class BridgeGame {
         val compareBridgeResult = compareBridge(bridge)
 
         OutputView().printMap(compareBridgeResult)
-        return checkBridgeResult(compareBridgeResult)
+        return checkBridgeResult(compareBridgeResult, bridge)
     }
 
-    private fun checkBridgeResult(compareBridgeResult: List<Pair<String, Boolean>>): Boolean {
+    private fun checkBridgeResult(compareBridgeResult: List<Pair<String, Boolean>>, bridge: List<String>): Boolean {
         for (i in compareBridgeResult) {
             if (!i.second)
                 return false
         }
+        if (userBridge.size == bridge.size)
+            return false
         return true
     }
 
