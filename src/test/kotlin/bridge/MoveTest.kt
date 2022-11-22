@@ -10,10 +10,12 @@ import bridge.utils.Constants.EMPTY_SYMBOL
 import bridge.utils.Constants.UP_SYMBOL
 import bridge.utils.Constants.DOWN_SYMBOL
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 
 class MoveTest {
     val bridge = Bridge(listOf(UP_SYMBOL, DOWN_SYMBOL, UP_SYMBOL))
 
+    @BeforeEach
     @AfterEach
     fun `bridge 이동 칸 횟수 초기화`(){
         bridge.initializeLaneCount()

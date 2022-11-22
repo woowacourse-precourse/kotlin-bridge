@@ -8,11 +8,11 @@ import camp.nextstep.edu.missionutils.test.Assertions
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class TrialCountTest: NsTest() {
-    val bridge = Bridge(listOf(Constants.UP_SYMBOL, Constants.DOWN_SYMBOL, Constants.UP_SYMBOL))
-
+    @BeforeEach
     @AfterEach
     fun `enum class 게임 횟수 인자 초기화`(){
         GameInfo.GAME_TRIAL_COUNT.gameTrialCount = 0
