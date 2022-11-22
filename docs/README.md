@@ -6,8 +6,8 @@
 
 ## BridgeGame.kt
 
-- [ ] move : 다리 이동 기능 메서드
-- [ ] retry : 게임 다시 시작 기능 메서드
+- [x] move : 다리 이동 기능 메서드
+- [x] retry : 게임 다시 시작 기능 메서드
 
 ## BridgeMaker.kt
 
