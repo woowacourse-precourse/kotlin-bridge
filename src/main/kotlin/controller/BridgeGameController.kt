@@ -1,6 +1,9 @@
 package controller
 
 import bridge.BridgeGame
+import util.BridgeMessage.FAIL_ENGLISH
+import util.BridgeMessage.SUCCESS_ENGLISH
+import util.BridgeMessage.X
 import view.InputView
 import view.OutputView
 
@@ -21,7 +24,7 @@ class BridgeGameController {
         while (bridgeGame.getRestartGame()) {
             bridgeGame.initStartGame()
             if (judgePlayerSelected(bridgeLength) == bridgeLength) {
-                outputView.printResult(bridgeGame.getOXBridge(), bridgeGame.getTotalAttempts(), "SUCCESS")
+                outputView.printResult(bridgeGame.getOXBridge(), bridgeGame.getTotalAttempts(), SUCCESS_ENGLISH)
                 bridgeGame.setRestartGame(false)
             }
         }
@@ -38,7 +41,7 @@ class BridgeGameController {
     }
 
     private fun checkBridgeContainX(): Boolean {
-        if (bridgeGame.getOXBridge()[0].contains("X") || bridgeGame.getOXBridge()[1].contains("X")) {
+        if (bridgeGame.getOXBridge()[0].contains(X) || bridgeGame.getOXBridge()[1].contains(X)) {
             checkRetryQuitCommand()
             return true
         }
@@ -51,7 +54,7 @@ class BridgeGameController {
                 outputView.printResult(
                     bridgeGame.getOXBridge(),
                     bridgeGame.getTotalAttempts(),
-                    "FAIL"
+                    FAIL_ENGLISH
                 )
             }
         }

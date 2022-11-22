@@ -12,6 +12,7 @@ object BridgeMessage {
     // OutputView
     const val GAME_START_NOTIFICATION = "다리 건너기 게임을 시작합니다.\n"
     const val SUCCESS = "성공"
+    const val SUCCESS_ENGLISH = "SUCCESS"
     const val FAIL = "실패"
     const val FAIL_ENGLISH = "FAIL"
     const val FINAL_GAME_RESULT = "최종 게임 결과"
@@ -19,4 +20,7 @@ object BridgeMessage {
     const val TOTAL_ATTEMPT = "총 시도한 횟수:"
     const val LEFT_SQUARE_BRACKETS = "["
     const val RIGHT_SQUARE_BRACKETS = "]"
+
+    // BridgeGameController
+    const val X = "X"
 }
