@@ -1,5 +1,9 @@
 package bridge
 
+import bridge.BridgeGameStarter.Companion.success
+import bridge.SketchBridge.Companion.movingDownside
+import bridge.SketchBridge.Companion.movingUpside
+
 class OutputView {
 
     fun printStart(){
@@ -12,7 +16,16 @@ class OutputView {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
     }
 
-    fun printMap() {}
+    fun printMap(moving: List<String>) {
+        SketchBridge().upBridge(moving)
+        SketchBridge().downBridge(moving)
+
+        println(movingUpside.joinToString(" | ", "[ ", " ]"))
+        println(movingDownside.joinToString(" | ", "[ ", " ]"))
+        println()
+
+        if(moving.last() == "UF" || moving.last() == "DF") success = "False"
+    }
 
     fun printResult() {}
 }
