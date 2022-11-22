@@ -113,7 +113,7 @@ internal class BridgeGameTest {
 
                 movings.forEach { bridgeGame.move(it) }
 
-                assertThat(bridgeGame.running()).isTrue
+                assertThat(bridgeGame.running()).isFalse
             }
         }
     }

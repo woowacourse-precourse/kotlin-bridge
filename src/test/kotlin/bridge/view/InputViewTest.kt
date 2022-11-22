@@ -79,29 +79,6 @@ internal class InputViewTest {
     }
 
     @Nested
-    inner class `askMovingToUser 메소드는`: NsTest() {
-
-        @Nested
-        inner class `실행하면` {
-            private val readValues = listOf("A", "B", "C", "U")
-
-            @Test
-            fun `U나 D를 입력 받을 때까지 예외 메세지를 출력하며 반복한다`() {
-                System.setIn(ByteArrayInputStream(readValues.joinToString("\n").toByteArray()))
-
-                val moving = inputView.askMovingToUser()
-
-                assertThat(output()).contains(ERROR_MESSAGE)
-                assertThat(moving).isEqualTo("U")
-            }
-        }
-
-        override fun runMain() {
-            inputView.askMovingToUser()
-        }
-    }
-
-    @Nested
     inner class `readMoving 메소드는`: NsTest() {
 
         @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -134,6 +111,65 @@ internal class InputViewTest {
 
         override fun runMain() {
             inputView.readMoving()
+        }
+    }
+
+    @Nested
+    inner class `askMovingToUser 메소드는`: NsTest() {
+
+        @Nested
+        inner class `실행하면` {
+            private val readValues = listOf("A", "B", "C", "U")
+
+            @Test
+            fun `U나 D를 입력 받을 때까지 예외 메세지를 출력하며 반복한다`() {
+                System.setIn(ByteArrayInputStream(readValues.joinToString("\n").toByteArray()))
+
+                val moving = inputView.askMovingToUser()
+
+                assertThat(output()).contains(ERROR_MESSAGE)
+                assertThat(moving).isEqualTo("U")
+            }
+        }
+
+        override fun runMain() {
+            inputView.askMovingToUser()
+        }
+    }
+
+    @Nested
+    inner class `readGameCommand 메소드는`: NsTest() {
+
+        @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+        @Nested
+        inner class `R과 Q 이외의 값을 입력받으면` {
+            private fun readValues() = listOf("A", "RQ")
+
+            @ParameterizedTest
+            @MethodSource("readValues")
+            fun `예외 메세지와 함께 예외를 던진다`(readValue: String) {
+                assertThatThrownBy { runException(readValue) }
+                    .isInstanceOf(IllegalArgumentException::class.java)
+                    .hasMessageContaining(ERROR_MESSAGE)
+            }
+        }
+
+        @Nested
+        inner class `R과 Q 중 하나의 값을 입력받으면`() {
+            private val readValue = "Q"
+
+            @Test
+            fun `입력받은 값을 반환한다`() {
+                System.setIn(ByteArrayInputStream(readValue.toByteArray()))
+
+                val moving = inputView.readGameCommand()
+
+                assertThat(moving).isEqualTo("Q")
+            }
+        }
+
+        override fun runMain() {
+            inputView.readGameCommand()
         }
     }
 
@@ -172,7 +208,7 @@ internal class InputViewTest {
         inner class `사용자가 Q를 입력하면` {
             private val readValue = "Q"
             @Test
-            fun `참을 반환한다`() {
+            fun `거짓을 반환한다`() {
                 System.setIn(ByteArrayInputStream(readValue.toByteArray()))
 
                 val retry = inputView.askRetryToUser()
@@ -183,42 +219,6 @@ internal class InputViewTest {
 
         override fun runMain() {
             inputView.askRetryToUser()
-        }
-    }
-
-    @Nested
-    inner class `readGameCommand 메소드는`: NsTest() {
-
-        @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-        @Nested
-        inner class `R과 Q 이외의 값을 입력받으면` {
-            private fun readValues() = listOf("A", "RQ")
-
-            @ParameterizedTest
-            @MethodSource("readValues")
-            fun `예외 메세지와 함께 예외를 던진다`(readValue: String) {
-                assertThatThrownBy { runException(readValue) }
-                    .isInstanceOf(IllegalArgumentException::class.java)
-                    .hasMessageContaining(ERROR_MESSAGE)
-            }
-        }
-
-        @Nested
-        inner class `R과 Q 중 하나의 값을 입력받으면`() {
-            private val readValue = "Q"
-
-            @Test
-            fun `입력받은 값을 반환한다`() {
-                System.setIn(ByteArrayInputStream(readValue.toByteArray()))
-
-                val moving = inputView.readGameCommand()
-
-                assertThat(moving).isEqualTo("Q")
-            }
-        }
-
-        override fun runMain() {
-            inputView.readGameCommand()
         }
     }
 

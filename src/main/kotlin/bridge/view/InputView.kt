@@ -8,7 +8,7 @@ import camp.nextstep.edu.missionutils.Console
 class InputView {
 
     fun askBridgeSizeToUser(): Int {
-        println("다리의 길이를 입력해주세요.")
+        println(REQUEST_BRIDGE_SIZE_MESSAGE)
         while (true)
             try {
                 return readBridgeSize()
@@ -21,16 +21,16 @@ class InputView {
      * 다리의 길이를 입력받는다.
      */
     fun readBridgeSize(): Int {
-        var readValue = Console.readLine()
+        val readValue = Console.readLine()
         validateBridgeSize(readValue)
         return readValue.toInt()
     }
 
     private fun validateBridgeSize(readValue: String) =
-        require(readValue.matches(Regex("[1-9][0-9]?")) && readValue.toInt() in 3..20) { "[ERROR] 3 이상 20 이하의 숫자로 입력바랍니다." }
+        require(readValue.matches(Regex("[1-9][0-9]?")) && readValue.toInt() in 3..20) { BRIDGE_SIZE_ERROR_MESSAGE }
 
     fun askMovingToUser(): String {
-        println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
+        println(REQUEST_MOVE_DIRECTION_MESSAGE)
         while (true)
             try {
                 return readMoving()
@@ -49,10 +49,10 @@ class InputView {
     }
 
     private fun validateReadMoving(readValue: String) =
-        require(readValue == "U" || readValue == "D") { "[ERROR] U(위) 또는 D(아래)를 입력바랍니다." }
+        require(readValue == "U" || readValue == "D") { MOVE_DIRECTION_ERROR_MESSAGE }
 
     fun askRetryToUser(): Boolean {
-        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+        println(REQUEST_GAME_COMMAND_MESSAGE)
         while (true)
             try {
                 return readGameCommand() == "R"
@@ -71,5 +71,16 @@ class InputView {
     }
 
     private fun validateGameCommand(readValue: String) =
-        require(readValue == "R" || readValue == "Q") { "[ERROR] R(재시도) 또는 Q(종료)를 입력바랍니다." }
+        require(readValue == "R" || readValue == "Q") { GAME_COMMAND_ERROR_MESSAGE }
+
+    companion object {
+        private const val REQUEST_BRIDGE_SIZE_MESSAGE = "다리의 길이를 입력해주세요."
+        private const val REQUEST_MOVE_DIRECTION_MESSAGE = "이동할 칸을 선택해주세요. (위: U, 아래: D)"
+        private const val REQUEST_GAME_COMMAND_MESSAGE = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
+
+        private const val ERROR_MESSAGE_HEADER = "[ERROR] "
+        private const val BRIDGE_SIZE_ERROR_MESSAGE = ERROR_MESSAGE_HEADER + "3 이상 20 이하의 숫자로 입력바랍니다."
+        private const val MOVE_DIRECTION_ERROR_MESSAGE = ERROR_MESSAGE_HEADER + "U(위) 또는 D(아래)를 입력바랍니다."
+        private const val GAME_COMMAND_ERROR_MESSAGE = ERROR_MESSAGE_HEADER + "R(재시도) 또는 Q(종료)를 입력바랍니다."
+    }
 }
