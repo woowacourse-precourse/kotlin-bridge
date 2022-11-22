@@ -1,7 +1,8 @@
-package bridge.domain
+package bridge.controller
 
 import bridge.BridgeMaker
 import bridge.BridgeRandomNumberGenerator
+import bridge.domain.BridgeGame
 import bridge.view.InputView
 import bridge.view.OutputView
 
