@@ -1,6 +1,7 @@
 package bridge.model
 
 class BridgeResult {
+    
     private val bridgeMap: BridgeMap = BridgeMap()
     private var totalCount: Int = GAME_START_NUMBER
 

@@ -1,6 +1,7 @@
 package bridge.model
 
 sealed class BridgeStatus(private val direction: String) {
+    
     class FINISH(direction: String) : BridgeStatus(direction)
     class SUCCESS(direction: String) : BridgeStatus(direction)
     class FAIL(direction: String) : BridgeStatus(direction)

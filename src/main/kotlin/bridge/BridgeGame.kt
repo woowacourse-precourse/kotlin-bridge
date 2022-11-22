@@ -24,6 +24,10 @@ class BridgeGame {
     private fun generateRandomBridge(size: Int) = Bridge(bridgeMaker.makeBridge(size))
 
     fun getTotalCount(): Int = bridgeResult.getTotalCount()
+
+    /**
+     * 현재 건너고 있는 다리 포지션 및 다리 지도를 초기화한다.
+     */
     private fun resetPosition() {
         position = 0
         bridgeResult.restart()
@@ -31,6 +35,9 @@ class BridgeGame {
 
     fun getBridgeMap() = bridgeResult.getBridgeMap()
 
+    /**
+     * 다리 지도를 업데이트한다.
+     */
     fun updateMap(result: BridgeStatus) {
         bridgeStatus = result
         bridgeResult.update(bridgeStatus)
