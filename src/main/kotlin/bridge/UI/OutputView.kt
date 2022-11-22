@@ -39,6 +39,10 @@ class OutputView {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
     }
 
+    fun printRetryLog(){
+        println("게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)")
+    }
+
     companion object{
         const val BRIDGE_PREFIX = "[ "
         const val BRIDGE_POSTFIX = " ]"
