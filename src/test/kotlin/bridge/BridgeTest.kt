@@ -13,7 +13,7 @@ class BridgeTest {
         val numberGenerator: BridgeNumberGenerator = ApplicationTest.TestNumberGenerator(listOf(ZERO, ZERO, ZERO, ONE))
         val bridgeMaker = BridgeMaker(numberGenerator)
         val bridge: List<String> = bridgeMaker.makeBridge(FOUR)
-        Assertions.assertThat(bridge).containsExactly(UP, DOWN, DOWN, UP)
+        Assertions.assertThat(bridge).containsExactly(DOWN, DOWN, DOWN, UP)
     }
 
     @Test
