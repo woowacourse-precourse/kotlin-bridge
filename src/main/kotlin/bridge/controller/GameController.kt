@@ -14,7 +14,7 @@ class GameController {
 
     init {
         OutputView.startGame()
-        getBridgeLength()
+        size = getBridgeLength()
         println()
         bridgeGame.makeBridge(size)
         bridgeGame.initMatrix(size)
@@ -31,12 +31,11 @@ class GameController {
         }
     }
 
-    private fun getBridgeLength() {
+    private fun getBridgeLength(): Int {
         while (true) {
             try {
                 OutputView.inputLength()
-                size = InputView.readBridgeSize()
-                break
+                return InputView.readBridgeSize()
             } catch (e: IllegalArgumentException) {
                 printError(e)
             }
@@ -62,17 +61,6 @@ class GameController {
         } else {
             val command = getCommand()
             retryOrQuit(command)
-        }
-    }
-
-    private fun getCommand(): String {
-        while (true) {
-            try {
-                OutputView.retryOrQuit()
-                return InputView.readGameCommand()
-            } catch (e: IllegalArgumentException) {
-                printError(e)
-            }
         }
     }
 
