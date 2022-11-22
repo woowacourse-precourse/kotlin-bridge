@@ -10,45 +10,90 @@ class OutputView {
      * 출력을 위해 필요한 메서드의 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
 
+    fun addRightU(bridgePrintU: MutableList<String>, bridgePrintD: MutableList<String>):Pair<MutableList<String>,MutableList<String>>{
+        bridgePrintU.add(" O ")
+        bridgePrintD.add("   ")
+        return Pair(bridgePrintU,bridgePrintD)
+    }
+
+    fun addRightD(bridgePrintU: MutableList<String>, bridgePrintD: MutableList<String>):Pair<MutableList<String>,MutableList<String>>{
+        bridgePrintU.add("   ")
+        bridgePrintD.add(" O ")
+        return Pair(bridgePrintU,bridgePrintD)
+    }
+    fun addStick(bridgePrintU: MutableList<String>, bridgePrintD: MutableList<String>):Pair<MutableList<String>,MutableList<String>>{
+        bridgePrintU.add("|")
+        bridgePrintD.add("|")
+        return Pair(bridgePrintU,bridgePrintD)
+    }
+
+    fun chooseUD(bridgeI:String, bridgePrintU: MutableList<String>, bridgePrintD: MutableList<String>){
+        if(bridgeI == "U"){
+            var(bridgePrintU,bridgePrintD) = addRightU (bridgePrintU,bridgePrintD)
+        } else{
+            var(bridgePrintU,bridgePrintD) = addRightD (bridgePrintU,bridgePrintD)
+        }
+    }
 
     fun printMap(bridge : List<String>,number : Int) {
         var bridgePrintU = mutableListOf<String>("[")
         var bridgePrintD = mutableListOf<String>("[")
         for(i in 0 .. number){
-            if(bridge[i] == "U"){
-                bridgePrintU.add(" O ")
-                bridgePrintD.add("   ")
-            } else{
-                bridgePrintU.add("   ")
-                bridgePrintD.add(" O ")
-            }
+            chooseUD(bridge[i],bridgePrintU,bridgePrintD)
             if(i == number) break
-            bridgePrintD.add("|")
-            bridgePrintU.add("|")
+            var(bridgePrintU,bridgePrintD) = addStick (bridgePrintU,bridgePrintD)
         }
         stringPrint(bridgePrintU,bridgePrintD)
     }
+
+    fun addRightUF(bridgePrintU: MutableList<String>, bridgePrintD: MutableList<String>):Pair<MutableList<String>,MutableList<String>>{
+        bridgePrintU.add(" O |")
+        bridgePrintD.add("   |")
+        return Pair(bridgePrintU,bridgePrintD)
+    }
+
+    fun addRightDF(bridgePrintU: MutableList<String>, bridgePrintD: MutableList<String>):Pair<MutableList<String>,MutableList<String>>{
+        bridgePrintU.add("   |")
+        bridgePrintD.add(" O |")
+        return Pair(bridgePrintU,bridgePrintD)
+    }
+
+    fun falseD(bridgePrintU: MutableList<String>, bridgePrintD: MutableList<String>):Pair<MutableList<String>,MutableList<String>>{
+        bridgePrintU.add("   ")
+        bridgePrintD.add(" X ")
+        return Pair(bridgePrintU,bridgePrintD)
+    }
+
+    fun falseU(bridgePrintU: MutableList<String>, bridgePrintD: MutableList<String>):Pair<MutableList<String>,MutableList<String>>{
+        bridgePrintU.add(" X ")
+        bridgePrintD.add("   ")
+        return Pair(bridgePrintU,bridgePrintD)
+    }
+
+    fun chooseUDF(bridgeI:String, bridgePrintU: MutableList<String>, bridgePrintD: MutableList<String>){
+        if(bridgeI == "U"){
+            var(bridgePrintU,bridgePrintD) = addRightUF(bridgePrintU,bridgePrintD)
+        } else{
+            var(bridgePrintU,bridgePrintD) = addRightDF(bridgePrintU,bridgePrintD)
+        }
+    }
+
+    fun chooseUDFLast(bridgeI:String, bridgePrintU: MutableList<String>, bridgePrintD: MutableList<String>){
+        if(bridgeI == "U"){
+            var(bridgePrintU,bridgePrintD) = falseD(bridgePrintU,bridgePrintD)
+        } else{
+            var(bridgePrintU,bridgePrintD) = falseU(bridgePrintU,bridgePrintD)
+        }
+    }
+
 
     fun printMapFalse(bridge : List<String>,number : Int) {
         var bridgePrintU = mutableListOf<String>("[")
         var bridgePrintD = mutableListOf<String>("[")
             for(i in 0 .. (number-1)){
-                if(bridge[i] == "U"){
-                    bridgePrintU.add(" O |")
-                    bridgePrintD.add("   |")
-                } else{
-                    bridgePrintU.add("   |")
-                    bridgePrintD.add(" O |")
-                }
+               chooseUDF(bridge[i],bridgePrintU,bridgePrintD)
             }
-            if(bridge[number-1] == "U"){
-                bridgePrintU.add("   ")
-                bridgePrintD.add(" X ")
-            } else{
-                bridgePrintU.add(" X ")
-                bridgePrintD.add("   ")
-            }
-
+            chooseUDFLast(bridge[number-1],bridgePrintU,bridgePrintD)
         stringPrint(bridgePrintU,bridgePrintD)
         }
 
