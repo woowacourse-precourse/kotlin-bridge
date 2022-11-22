@@ -20,7 +20,7 @@ class InputException {
     fun checkRetryCommand(input: String?) {
         when {
             checkNullException(input) -> printException(NULL_ERROR)
-            checkRetryException(input!!) -> printException(COMMAND_ERROR)
+            checkRetryException(input!!) -> printException(RETRY_ERROR)
         }
     }
 
@@ -51,6 +51,6 @@ class InputException {
         const val RANGE_ERROR = "3~20의 범위가 아닙니다."
         const val TYPE_ERROR = "올바른 형식이 아닙니다."
         const val COMMAND_ERROR = "U, D 만 입력 가능합니다."
-        const val REQ_ERROR = "R, Q 만 입력 가능합니다."
+        const val RETRY_ERROR = "R, Q 만 입력 가능합니다."
     }
 }
