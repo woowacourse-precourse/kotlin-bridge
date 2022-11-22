@@ -1,10 +1,11 @@
 package bridge.model
 
 import bridge.main
+import camp.nextstep.edu.missionutils.test.NsTest
 import org.junit.jupiter.api.Test
 import org.assertj.core.api.Assertions.assertThat
 
-class BridgeGameTest {
+class BridgeBoardTest : NsTest() {
     @Test
     fun `update Test`(){
         val board = BridgeBoard()
@@ -32,7 +33,7 @@ class BridgeGameTest {
         assertThat(board.board).isEqualTo(correctBoard)
     }
 
-    fun runMain() {
+    override fun runMain() {
         main()
     }
 }
