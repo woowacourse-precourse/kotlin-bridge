@@ -18,7 +18,7 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
     }
 
     private fun getMovementFromRandom(value: Int): String {
-        return when(value) {
+        return when (value) {
             RANDOM_LOWER_INCLUSIVE -> MOVE_DOWN
             RANDOM_UPPER_INCLUSIVE -> MOVE_UP
             else -> value.toString()
