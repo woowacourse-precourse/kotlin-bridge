@@ -20,7 +20,6 @@ class BridgeGame: BridgeNumberGenerator {
         // 다리 만들기
         val bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
         val bridge = bridgeMaker.makeBridge(bridgeSize)
-        println(bridge)
 
         playFirst(bridge, bridgeSize, 1)
     }
@@ -88,7 +87,7 @@ class BridgeGame: BridgeNumberGenerator {
         if ( gameCommand == "W" ) outputView.printResult(bridge, bridgeSize)
         else if (gameCommand == "Q" ) outputView.printResultQuit(bridge, step)
 
-        print("\n\n게임 성공 여부: ")
+        print("\n게임 성공 여부: ")
         if ( gameCommand == "W" ) print("성공\n") else print("실패\n")
         println("총 시도한 횟수: $attempt")
     }
