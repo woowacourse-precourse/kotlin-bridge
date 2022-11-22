@@ -12,6 +12,12 @@ class BridgeGameTest {
         val move = BridgeGame().move(bridgeRow,userInputRow).first
         Assertions.assertThat(move).isEqualTo(" ")
     }
-
-
+    @Test
+    fun `retry 테스트`() {
+        val upRowsResult =""
+        val downRowsResult =""
+        val userInputGameCommand ="Q"
+        val retry = BridgeGame().retry(upRowsResult,downRowsResult,userInputGameCommand)
+        Assertions.assertThat(retry.loop).isEqualTo(false)
+    }
 }
