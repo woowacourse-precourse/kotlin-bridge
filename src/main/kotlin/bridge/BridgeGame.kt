@@ -1,23 +1,42 @@
 package bridge
 
-/**
- * 다리 건너기 게임을 관리하는 클래스
- */
 class BridgeGame {
+    private var playerLocation = -1
     private var playerTryCount = 1
+    private val roadUntilNow = RoadMap()
 
-    fun move(playerInput: String, bridge: Bridge) {
-        bridge.movePlayer(playerInput)
 
+    fun move(playerInput: String, bridge: Bridge) :Boolean{
+        val nextMv=bridge.checkNextMove(playerInput,playerLocation)
+
+        if(nextMv) roadUntilNow.addSuccessRoad(playerInput)
+        else roadUntilNow.addFailRoad(playerInput) //실패
+
+        playerLocation++
+
+        return nextMv
     }
 
-    fun retry(bridge: Bridge) {
-        bridge.resetPlayer()
+    fun retry() {
+        resetPlayer()
         playerTryCount++
     }
 
     fun getPlayerTryCount(): Int {
         return playerTryCount
     }
+
+    fun getRoadUntilNow():RoadMap{
+        return roadUntilNow
+    }
+    fun getPlayerLocation():Int{
+        return playerLocation
+    }
+    private fun resetPlayer() {
+        roadUntilNow.resetRoadMap()
+        playerLocation = -1
+    }
+
+
 
 }

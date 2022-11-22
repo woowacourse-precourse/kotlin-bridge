@@ -16,41 +16,39 @@ fun makeBridge() {
 
 }
 
-fun movePlayer(): Int {
+fun movePlayer(): Boolean {
     val mv = inputView.readMoving()
-    bridgeGame.move(mv, bridge)
-    outputView.printMap(bridge)
+    val moveResult=bridgeGame.move(mv, bridge)//correct wrong move 중 하나
+    outputView.printMap(bridgeGame)
 
-    return bridge.checkGameEnd()
+    return moveResult
 }
 
-fun requestRetryOrQuit(): Int {
+fun requestRetryOrQuit(): Boolean {
     val playerInput = inputView.readGameCommand()
-    return if (playerInput == "R") {
-        bridgeGame.retry(bridge)
-        CORRECT
+    return if (playerInput == RETRY_GAME) {
+        bridgeGame.retry()
+        true
     } else {
-        END
+        false
     }
 }
 
-fun playGame(): Int {
+fun playGame(): Boolean {
     val mvResult = movePlayer()
-    when (mvResult) {
-        WRONG -> {
-            return requestRetryOrQuit()
-        }
-
-        END -> {
-            return END
-        }
+    return if(mvResult){
+        !bridge.checkGameEnd(bridgeGame.getPlayerLocation())
+        //true일 때는 맞췄을 경우
+    }else{
+        //틀렸을 경우
+        requestRetryOrQuit()
     }
-    return CORRECT
+
 }
 
 fun main() {
     println(GAME_START_MSG)
     makeBridge()
-    while (playGame() == CORRECT);
+    while (playGame());
     outputView.printResult(bridge, bridgeGame)
 }

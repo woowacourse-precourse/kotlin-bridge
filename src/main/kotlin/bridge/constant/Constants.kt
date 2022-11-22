@@ -14,9 +14,6 @@ const val DOWN_SIDE = "D"
 const val RETRY_GAME = "R"
 const val QUIT_GAME = "Q"
 
-const val WRONG = 2
-const val CORRECT = 1
-const val END = 3
 
 const val ERROR_INPUT_BRIDGE_SIZE = "[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다. 다시 입력해주세요."
 const val ERROR_INPUT_PLAYER_MOVE = "[ERROR] Player의 움직임은 U/D 중 하나만 가능합니다. 둘 중 하나의 값을 입력해주세요."

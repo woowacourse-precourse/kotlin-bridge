@@ -14,23 +14,23 @@ class ApplicationTest : NsTest() {
         val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
         val bridgeMaker = BridgeMaker(numberGenerator)
         val bridge = Bridge(bridgeMaker.makeBridge(3))
+        val bridgeGame=BridgeGame()
 
-        bridge.movePlayer(UP_SIDE)
-        bridge.movePlayer(DOWN_SIDE)
-        bridge.movePlayer(DOWN_SIDE)
+        bridgeGame.move(UP_SIDE,bridge)
+        bridgeGame.move(DOWN_SIDE,bridge)
+        bridgeGame.move(DOWN_SIDE,bridge)
 
-        assertThat(bridge.checkGameEnd()).isEqualTo(END)
+        assertThat(bridge.checkGameEnd(bridgeGame.getPlayerLocation())).isEqualTo(true)
     }
 
     @Test
-    fun `이동이 틀렸을 때 check 하는 함수 test`() {
+    fun `다음 이동에 대해서 갈 수 있는지 없는지 check 하는 함수 test`() {
         val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
         val bridgeMaker = BridgeMaker(numberGenerator)
         val bridge = Bridge(bridgeMaker.makeBridge(3))
+        val bridgeGame=BridgeGame()
 
-        bridge.movePlayer(DOWN_SIDE)
-
-        assertThat(bridge.checkGameEnd()).isEqualTo(WRONG)
+        assertThat(bridge.checkNextMove(DOWN_SIDE,bridgeGame.getPlayerLocation())).isEqualTo(false)
     }
 
     @Test
@@ -38,12 +38,13 @@ class ApplicationTest : NsTest() {
         val numberGenerator: BridgeNumberGenerator = TestNumberGenerator(listOf(1, 0, 0))
         val bridgeMaker = BridgeMaker(numberGenerator)
         val bridge: Bridge = Bridge(bridgeMaker.makeBridge(3))
+        val bridgeGame=BridgeGame()
 
-        bridge.movePlayer(UP_SIDE)
-        bridge.movePlayer(DOWN_SIDE)
+        bridgeGame.move(UP_SIDE,bridge)
+        bridgeGame.move(DOWN_SIDE,bridge)
         val expect = listOf(listOf("O", " "), listOf(" ", "O"))
-        assertThat(bridge.getRoadUntilNow().getRoadMap()[0]).isEqualTo(expect[0])
-        assertThat(bridge.getRoadUntilNow().getRoadMap()[1]).isEqualTo(expect[1])
+        assertThat(bridgeGame.getRoadUntilNow().getRoadMap()[0]).isEqualTo(expect[0])
+        assertThat(bridgeGame.getRoadUntilNow().getRoadMap()[1]).isEqualTo(expect[1])
     }
 
     @Test
@@ -61,12 +62,12 @@ class ApplicationTest : NsTest() {
         val bridge = Bridge(bridgeMaker.makeBridge(3))
         val bridgeGame = BridgeGame()
 
-        bridge.movePlayer(UP_SIDE)
-        bridge.movePlayer(DOWN_SIDE)
+        bridgeGame.move(UP_SIDE,bridge)
+        bridgeGame.move(DOWN_SIDE,bridge)
 
-        bridgeGame.retry(bridge)
+        bridgeGame.retry()
 
-        assertThat(bridge.getRoadUntilNow().getRoadMap()[0].size).isEqualTo(0)
+        assertThat(bridgeGame.getRoadUntilNow().getRoadMap()[0].size).isEqualTo(0)
     }
 
     @Test
