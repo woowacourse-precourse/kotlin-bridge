@@ -14,8 +14,6 @@ const val DOWN_SIDE="D"
 const val RETRY_GAME="R"
 const val QUIT_GAME="Q"
 
-const val INPUT_TYPE_MOVE=100
-const val INPUT_TYPE_COMMAND=101
 const val WRONG=2
 const val CORRECT=1
 const val END=3

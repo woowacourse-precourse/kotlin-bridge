@@ -6,21 +6,13 @@ private val inputView=InputView()
 private val outputView=OutputView()
 private val bridgeMaker=BridgeMaker(BridgeRandomNumberGenerator())
 private val bridgeGame=BridgeGame()
-private var _bridge:Bridge?=null
-    set(value){
-        if(field==null){
-            field=value
-        }
-        else{
-            throw RuntimeException("bridge is already set")
-        }
-    }
+private var bridge_:Bridge?=null
 private val bridge
-    get()= checkNotNull(_bridge)
+    get()= checkNotNull(bridge_)
 
 fun makeBridge(){
     val bridgeSize=inputView.readBridgeSize()
-    _bridge=Bridge(bridgeMaker.makeBridge(bridgeSize))
+    bridge_=Bridge(bridgeMaker.makeBridge(bridgeSize))
 
 }
 fun movePlayer():Int{
@@ -55,7 +47,6 @@ fun playGame():Int{
 fun main() {
     println(GAME_START_MSG)
     makeBridge()
-    while(playGame()== CORRECT){}
+    while(playGame()== CORRECT);
     outputView.printResult(bridge, bridgeGame)
-
 }
