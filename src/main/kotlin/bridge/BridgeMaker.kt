@@ -9,16 +9,11 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
             val bridgeNumber = bridgeNumberGenerator.generate()
 
             if (bridgeNumber == 0) {
-                upDownBridge.add(DOWN)
+                upDownBridge.add("D")
             } else if (bridgeNumber == 1) {
-                upDownBridge.add(UP)
+                upDownBridge.add("U")
             }
         }
         return upDownBridge
-    }
-
-    companion object {
-        const val UP = "U"
-        const val DOWN = "D"
     }
 }
