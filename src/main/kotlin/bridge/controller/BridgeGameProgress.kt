@@ -1,4 +1,8 @@
-package bridge
+package bridge.controller
+
+import bridge.*
+import bridge.view.InputView
+import bridge.view.OutputView
 
 var count: Int = 1
 class BridgeGameProgress {
