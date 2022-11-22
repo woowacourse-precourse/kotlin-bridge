@@ -47,8 +47,8 @@ private fun getProperGameState() {
     gamsHost.getProperGameState(userGameCommandInput)
 }
 
-private fun printGameResultMap(bridgeCurrentPosition: Int, bridge: List<String>, lastUserInput: String) {
+private fun printGameResultMap() {
     outputView.printFinalGamsResultPhrase()
-    printStageMap(bridgeCurrentPosition, bridge, lastUserInput)
+    printStageMap(gamsHost.getBridgeCurrentPosition(), gamsHost.getBridge(), gamsHost.getRecentStageState())
     println()
 }

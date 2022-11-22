@@ -26,4 +26,6 @@ class GameHost(private val bridgeMaker: BridgeMaker, private val bridgeGame: Bri
     fun getBridgeCurrentPosition(): Int = bridgeCurrentPosition
 
     fun getBridge(): List<String> = bridge
+
+    fun getRecentStageState(): Boolean = stageState
 }
