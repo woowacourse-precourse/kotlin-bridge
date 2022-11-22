@@ -18,7 +18,7 @@ class Controller {
 
     private var gameStatus = true
 
-    fun run(){
+    fun startGame(){
         output.printStartMessage()
         goalBridge = BridgeMaker(generator).makeBridge(getBridgeSize())
         bridgeGame = BridgeGame(goalBridge, bridgeBoard)

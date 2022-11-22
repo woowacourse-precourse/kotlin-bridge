@@ -4,6 +4,5 @@ import bridge.controller.Controller
 
 fun main() {
     val controller = Controller()
-    controller.run()
-
+    controller.startGame()
 }
