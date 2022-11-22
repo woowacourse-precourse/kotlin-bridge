@@ -78,22 +78,29 @@ class BridgeGame() {
 
     fun isFail(bridge: List<String>): Boolean = (compareBridgeWithMoves(bridge)).contains(0)
 
-    fun isSuccess(bridge: List<String>):Boolean = !(compareBridgeWithMoves(bridge)).contains(0)
+    fun isSuccess(bridge: List<String>): Boolean =
+            !(compareBridgeWithMoves(bridge)).contains(0)
+                    && bridge.size == moves.size
 
     /**
      * 사용자가 게임을 다시 시도할 때 사용하는 메서드
      */
     fun retry(restartCommand: String): Boolean {
-        when (restartCommand) {
-            "R" -> {
-                tryCount += 1
-                moves = mutableListOf()
-                return true
-            }
-            "Q" -> {
-                return false
-            }
+        if (restartCommand == "R") {
+            tryCount += 1
+            moves = mutableListOf()
+            return true
         }
         return false
+    }
+
+    fun getResult(bridge: List<String>): String {
+        val state = getState(bridge)
+        return "최종 게임 결과\n${state.first}\n${state.second}"
+    }
+
+    fun getAnalysis(isSuccess: Boolean): String {
+        return if (isSuccess) Message.BridgeGameEnum.SUCCESS.toString().format(tryCount)
+        else Message.BridgeGameEnum.FAIL.toString().format(tryCount)
     }
 }
