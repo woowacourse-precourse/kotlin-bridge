@@ -26,7 +26,7 @@ class BridgeTest : NsTest() {
             assertThat(output()).contains(
                 "[   |   ]",
                 "[ O | X ]",
-                "${GAME_OVER}"
+                "$GAME_OVER"
             )
         }, 0, 1, 1)
     }
