@@ -3,12 +3,24 @@ package bridge
 import java.lang.IllegalArgumentException
 
 object ExceptionHandler {
-    fun checkValidMoving(location: String) {
-        require(location == "U" || location == "D") { Message.InputViewEnum.INVALID_MSG }
+    fun checkValidMoving(location: String): Boolean {
+        try {
+            require(location == "U" || location == "D") { Message.InputViewEnum.INVALID_MSG }
+        } catch (e: IllegalArgumentException) {
+            println(e)
+            return false
+        }
+        return true
     }
 
-    fun checkValidRestart(restart: String) {
-        require(restart == "Q" || restart == "R") { Message.InputViewEnum.INVALID_MSG }
+    fun checkValidRestart(restart: String): Boolean {
+        try {
+            require(restart == "Q" || restart == "R") { Message.InputViewEnum.INVALID_MSG }
+        } catch (e: IllegalArgumentException) {
+            println(e)
+            return false
+        }
+        return true
     }
 
     fun checkValidState(state: Int) {
@@ -19,11 +31,13 @@ object ExceptionHandler {
         }
     }
 
-    fun checkValidLength(size: Int) {
+    fun checkValidLength(size: Int): Boolean {
         try {
             require(size in 3..20) { Message.InputViewEnum.INVALID_MSG }
         } catch (e: IllegalArgumentException) {
-            print(e)
+            println(e)
+            return false
         }
+        return true
     }
 }
