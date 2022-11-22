@@ -57,7 +57,7 @@ class BridgeGame {
     }
 
     private fun getMovingResult(size: Int, result: String): String {
-        if (size == 0) {
+        if (size == ZERO) {
             return " $result "
         }
         return "| $result "
