@@ -5,6 +5,7 @@ import camp.nextstep.edu.missionutils.test.Assertions.assertSimpleTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.junit.jupiter.api.Test
 import service.OutputView
+import service.main
 
 class OutputViewTest : NsTest() {
     @Test
