@@ -45,7 +45,9 @@ class OutputView {
             println(GAME_SUCCESS_MESSAGE + "실패")
     }
 
-
+    fun printTryGameNumber(gameSuccess: Int) {
+        println(TRY_NUMBER_MESSAGE+gameSuccess)
+    }
 
 
     /**

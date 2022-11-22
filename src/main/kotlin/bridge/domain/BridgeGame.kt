@@ -13,6 +13,7 @@ class BridgeGame {
 
     val userBridge = mutableListOf<String>()
     var gameSuccess = false
+    var tryNumber = 1
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -25,17 +26,13 @@ class BridgeGame {
         val compareBridgeResult = compareBridge(bridge)
 
         OutputView().printMap(compareBridgeResult)
-        return checkBridgeResult(compareBridgeResult, bridge)
+        return checkBridgeResult(compareBridgeResult)
     }
 
-    private fun checkBridgeResult(compareBridgeResult: List<Pair<String, Boolean>>, bridge: List<String>): Boolean {
+    private fun checkBridgeResult(compareBridgeResult: List<Pair<String, Boolean>>): Boolean {
         for (i in compareBridgeResult) {
             if (!i.second)
                 return false
-        }
-        if (userBridge.size == bridge.size) {
-            gameSuccess = true
-            return false
         }
         return true
     }
@@ -59,6 +56,7 @@ class BridgeGame {
      */
     fun retry(checkRetry: String): Boolean {
         if (checkRetry == "R") {
+            tryNumber++
             userBridge.clear()
             return true
         }

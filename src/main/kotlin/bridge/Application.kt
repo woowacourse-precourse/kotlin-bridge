@@ -16,9 +16,10 @@ fun main() {
         val moveDirection = checkInput.checkMoveDirection(showInputView.readMoving())
         if (!bridgeGame.move(moveDirection, bridge))
             gameOver = bridgeGame.retry(checkInput.checkRetry(showInputView.readGameCommand()))
+
     }
     OutputView().printResult(bridgeGame.userBridge, bridge)
     OutputView().printSuccess(bridgeGame.gameSuccess)
-
+    OutputView().printTryGameNumber(bridgeGame.tryNumber)
 
 }

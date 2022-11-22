@@ -16,3 +16,4 @@ const val ERROR_RETRY_MESSAGE = "[ERROR] 게임 재시작 여부는 R 또는 Q�
 
 const val GAME_OVER_MESSAGE = "최종 게임 결과"
 const val GAME_SUCCESS_MESSAGE = "게임 성공 여부: "
+const val TRY_NUMBER_MESSAGE = "총 시도한 횟수: "
