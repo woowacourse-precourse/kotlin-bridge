@@ -7,6 +7,9 @@ class BridgeGame(private val bridgeLength: Int) {
 
     private lateinit var bridge: List<List<String>>
     private lateinit var bridgeLine: List<String>
+    private lateinit var oxBridge: List<MutableList<String>>
+    private var totalAttempts = 0
+    private var correctDirection = 0
 
     init {
         createBridgeLine()
