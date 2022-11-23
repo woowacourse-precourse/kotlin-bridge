@@ -1,6 +1,7 @@
-package bridge.domain
+package bridge.domain.engine
 
 import bridge.BridgeRandomNumberGenerator
+import bridge.domain.game.BridgeGame
 import bridge.view.View
 
 class BridgeGameEngine {
@@ -8,13 +9,13 @@ class BridgeGameEngine {
     fun run() {
         View.printStartGame()
 
-        val game = createGame()
+        val game = makeGame()
         startGame(game)
 
         View.printResult(game.result)
     }
 
-    private fun createGame(): BridgeGame {
+    private fun makeGame(): BridgeGame {
         val bridgeSize = View.requestBridgeSize()
 
         return BridgeGame.Builder()

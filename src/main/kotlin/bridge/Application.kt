@@ -1,6 +1,6 @@
 package bridge
 
-import bridge.domain.BridgeGameEngine
+import bridge.domain.engine.BridgeGameEngine
 
 fun main() {
     val gameEngine = BridgeGameEngine()

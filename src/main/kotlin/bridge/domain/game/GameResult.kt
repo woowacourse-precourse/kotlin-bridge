@@ -1,4 +1,4 @@
-package bridge.data
+package bridge.domain.game
 
 data class GameResult(
     val isSuccess: Boolean,

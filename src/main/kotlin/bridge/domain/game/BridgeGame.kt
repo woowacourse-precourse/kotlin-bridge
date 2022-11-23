@@ -1,13 +1,9 @@
-package bridge.domain
+package bridge.domain.game
 
 import bridge.BridgeMaker
 import bridge.BridgeNumberGenerator
 import bridge.BridgeRandomNumberGenerator
-import bridge.data.Bridge
-import bridge.data.GameHistory
-import bridge.data.GameResult
 import java.util.*
-import java.util.ArrayDeque
 
 class BridgeGame(private val bridge: Bridge) {
 
@@ -18,14 +14,14 @@ class BridgeGame(private val bridge: Bridge) {
         get() = (round == bridge.size) && (wrongCount == 0)
 
     val lastHistory: GameHistory
-        get() = histories.peek()
+        get() = histories.peekLast()
 
     val result: GameResult
         get() = getGameResult()
 
     private var round = 0
     private var wrongCount = 0
-    private val histories: Deque<GameHistory> = ArrayDeque(listOf(GameHistory()))
+    private val histories: Deque<GameHistory> = LinkedList(listOf(GameHistory()))
 
     fun move(floor: Bridge.Floor) {
         check(isRunning) { "Game is not running" }
@@ -43,7 +39,7 @@ class BridgeGame(private val bridge: Bridge) {
 
         round = 0
         wrongCount = 0
-        histories.push(GameHistory())
+        histories.offer(GameHistory())
     }
 
     private fun getGameResult(): GameResult {

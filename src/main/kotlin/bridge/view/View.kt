@@ -1,8 +1,8 @@
 package bridge.view
 
-import bridge.data.Bridge
-import bridge.data.GameHistory
-import bridge.data.GameResult
+import bridge.domain.game.Bridge
+import bridge.domain.game.GameHistory
+import bridge.domain.game.GameResult
 
 object View {
 

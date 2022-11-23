@@ -1,6 +1,7 @@
 package bridge.domain
 
 import bridge._util.countOf
+import bridge.domain.engine.BridgeGameEngine
 import camp.nextstep.edu.missionutils.test.Assertions.assertRandomNumberInRangeTest
 import camp.nextstep.edu.missionutils.test.NsTest
 import org.assertj.core.api.Assertions.assertThat

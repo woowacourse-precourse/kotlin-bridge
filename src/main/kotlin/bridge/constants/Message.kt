@@ -1,6 +1,6 @@
 package bridge.constants
 
-import bridge.data.Bridge
+import bridge.domain.game.Bridge
 import bridge.view.InputView
 
 enum class Message(private val message: String) {

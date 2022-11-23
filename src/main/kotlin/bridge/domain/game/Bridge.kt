@@ -1,4 +1,4 @@
-package bridge.data
+package bridge.domain.game
 
 class Bridge(private val elements: List<Floor>) {
 

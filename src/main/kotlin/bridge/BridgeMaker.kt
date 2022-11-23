@@ -1,7 +1,6 @@
 package bridge
 
-import bridge.BridgeNumberGenerator
-import bridge.data.Bridge
+import bridge.domain.game.Bridge
 
 class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
 

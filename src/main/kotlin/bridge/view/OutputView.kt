@@ -1,8 +1,8 @@
 package bridge.view
 
 import bridge.constants.Message
-import bridge.data.GameHistory
-import bridge.data.GameResult
+import bridge.domain.game.GameHistory
+import bridge.domain.game.GameResult
 import bridge.util.println
 import bridge.constants.ErrorMessage
 

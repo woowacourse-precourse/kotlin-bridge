@@ -3,7 +3,8 @@ package bridge.domain
 import org.junit.jupiter.api.Test
 import org.assertj.core.api.Assertions.*
 
-import bridge.data.Bridge
+import bridge.domain.game.Bridge
+import bridge.domain.game.BridgeGame
 import org.junit.jupiter.api.assertThrows
 
 internal class BridgeGameTest {

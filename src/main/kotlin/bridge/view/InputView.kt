@@ -2,7 +2,7 @@ package bridge.view
 
 import bridge.util.toIntOrThrow
 import bridge.constants.ErrorMessage
-import bridge.data.Bridge
+import bridge.domain.game.Bridge
 import camp.nextstep.edu.missionutils.Console.readLine
 
 object InputView {
