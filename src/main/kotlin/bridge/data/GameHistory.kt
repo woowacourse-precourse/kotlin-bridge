@@ -4,11 +4,11 @@ class GameHistory {
 
     private val _upstairs = mutableListOf<Char>()
     val upstairs: List<Char>
-        get() = _upstairs.toList()
+        get() = _upstairs
 
     private val _downstairs = mutableListOf<Char>()
     val downstairs: List<Char>
-        get() = _downstairs.toList()
+        get() = _downstairs
 
     fun add(floor: Bridge.Floor, isCorrect: Boolean) {
         val value = if (isCorrect) CORRECT else WRONG
