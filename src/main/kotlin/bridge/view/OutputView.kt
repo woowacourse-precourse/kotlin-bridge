@@ -29,18 +29,15 @@ object OutputView {
     }
 
     fun printResult(result: GameResult) {
-        println(
-            format = Message.FinishGame,
-            args = arrayOf(
-                buildHistoryMap(result.lastHistory),
-                if (result.isSuccess) Message.Success else Message.Failure,
-                result.tryCount,
-            )
-        )
+        println(Message.FinishGame.toString().format(
+            buildHistoryMap(result.lastHistory),
+            if (result.isSuccess) Message.Success else Message.Failure,
+            result.tryCount,
+        ))
     }
 
-    fun printError(t: Throwable) {
-        println("${ErrorMessage.PREFIX} ${t.message}")
+    fun printError(e: IllegalArgumentException) {
+        println("${ErrorMessage.PREFIX} ${e.message}")
     }
 
     private fun buildHistoryMap(history: GameHistory): String = buildString {
