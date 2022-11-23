@@ -40,6 +40,40 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `재시도 후 실패 종료하는 케이스`() {
+        assertRandomNumberInRangeTest({
+            run("5", "U", "D", "R", "D", "Q")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[   ]",
+                "[ X ]",
+                "게임 성공 여부: 실패",
+                "총 시도한 횟수: 2"
+            )
+            val upSideIndex = output().indexOf("[   ]")
+            val downSideIndex = output().indexOf("[ X ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 1, 1, 1, 0, 1)
+    }
+
+    @Test
+    fun `재시도 후 성공 종료하는 케이스`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "R", "D", "U", "D")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[   | O |   ]",
+                "[ O |   | O ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 2"
+            )
+            val upSideIndex = output().indexOf("[   | O |   ]")
+            val downSideIndex = output().indexOf("[ O |   | O ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 0, 1, 0)
+    }
+
     override fun runMain() {
         main()
     }
