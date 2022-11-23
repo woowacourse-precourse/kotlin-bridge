@@ -33,12 +33,53 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
-    fun `예외 테스트`() {
+    fun `다리길이 문자 입력 테스트`() {
         assertSimpleTest {
             runException("a")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
+
+    @Test
+    fun `다리길이 3 미만 테스트`() {
+        assertSimpleTest {
+            runException("1")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `다리길이 공백 입력 테스트`() {
+        assertSimpleTest {
+            runException(" ")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `다리길이 20 초과 테스트`() {
+        assertSimpleTest {
+            runException("22")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `다리길이 음수 입력 테스트`() {
+        assertSimpleTest {
+            runException("-2")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `다리길이 정수가 아닌 실수 입력 테스트`() {
+        assertSimpleTest {
+            runException("0.32")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
 
     override fun runMain() {
         main()

@@ -1,27 +1,37 @@
 package bridge
 
-/**
- * 사용자로부터 입력을 받는 역할을 한다.
- */
+import camp.nextstep.edu.missionutils.Console
+
 class InputView {
-    /**
-     * 다리의 길이를 입력받는다.
-     */
+    // 1.다리 길이 입력 멘트 2.입력 3.검사
     fun readBridgeSize(): Int {
-        return 0
+        println(Comment.InputComment.RANGE.message)
+        val size = Console.readLine()
+        if (!(Exception(size).checkInteger()) || !(Exception(size).checkRange())) {
+            return readBridgeSize()
+        }
+        return size.toInt()
     }
-
-    /**
-     * 사용자가 이동할 칸을 입력받는다.
-     */
+    // 1.U/D 입력 멘트 2.입력 3.검사
     fun readMoving(): String {
-        return ""
+        println(Comment.InputComment.CHOICE.message)
+        val input = Console.readLine()
+        if (!(Exception(input).checkOverLength())) return readMoving()
+        if (!(Exception(input).checkLessLength())) return readMoving()
+        if (!(Exception(input).isString())) return readMoving()
+        if (!(Exception(input).checkUpperCase())) return readMoving()
+        if (!(Exception(input).checkDirection())) return readMoving()
+        return input
     }
-
-    /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
-     */
+    // 1.R/Q 입력 멘트 2.입력 3.검사
     fun readGameCommand(): String {
-        return ""
+        println(Comment.InputComment.OVER.message)
+        val input = Console.readLine()
+        if (!(Exception(input).checkOverLength())) return readGameCommand()
+        if (!(Exception(input).checkLessLength())) return readGameCommand()
+        if (!(Exception(input).isString())) return readGameCommand()
+        if (!(Exception(input).checkUpperCase())) return readGameCommand()
+        if (!(Exception(input).checkDecision())) return readGameCommand()
+        return input
     }
 }
