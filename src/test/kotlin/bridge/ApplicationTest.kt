@@ -40,6 +40,38 @@ class ApplicationTest : NsTest() {
         }
     }
 
+    @Test
+    fun `입력받은 다리길이가 음수일 경우`() {
+        assertSimpleTest {
+            runException("-5")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `다리 길이가 20을 넘어갈 경우`() {
+        assertSimpleTest {
+            runException("21")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `U,D 대신 다른 문자를 입력 받은 경우`() {
+        assertSimpleTest {
+            runException("10","a")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `R,Q 대신 다른 문자를 입력 받은 경우`() {
+        assertRandomNumberInRangeTest({
+            runException("3", "U", "D", "U","a")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }, 1, 0, 0)
+    }
+
     override fun runMain() {
         main()
     }
