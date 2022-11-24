@@ -105,6 +105,7 @@ internal class BridgeGameEngineTest : NsTest() {
     }
 
     override fun runMain() {
+        gameEngine.init()
         gameEngine.run()
     }
 

@@ -1,16 +1,16 @@
 package bridge.view
 
 import bridge.domain.game.Bridge
-import bridge.domain.game.GameHistory
-import bridge.domain.game.GameResult
+import bridge.domain.game.BridgeCrossingMap
+import bridge.domain.game.BridgeGameResult
 
 object View {
 
     fun printStartGame() = OutputView.printStartGame()
 
-    fun printMap(history: GameHistory) = OutputView.printMap(history)
+    fun printMap(map: BridgeCrossingMap) = OutputView.printMap(map)
 
-    fun printResult(result: GameResult) = OutputView.printResult(result)
+    fun printResult(result: BridgeGameResult) = OutputView.printResult(result)
 
     fun requestBridgeSize(): Int {
         return repeatIfThrows(
@@ -26,7 +26,7 @@ object View {
         return repeatIfThrows(
             tryBlock = {
                 OutputView.printSelectNextFloor()
-                InputView.readMoving()
+                InputView.readNextFloor()
             },
             catchBlock = OutputView::printError,
         )

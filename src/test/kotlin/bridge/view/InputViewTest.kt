@@ -44,7 +44,7 @@ internal class InputViewTest : NsTest() {
     fun `이동할칸입력_UorD_정상`(input: String) {
         assertSimpleTest {
             run(input)
-            InputView.readMoving()
+            InputView.readNextFloor()
         }
     }
 
@@ -54,7 +54,7 @@ internal class InputViewTest : NsTest() {
         assertSimpleTest {
             assertThrows<IllegalArgumentException> {
                 runException(input)
-                InputView.readMoving()
+                InputView.readNextFloor()
             }
         }
     }

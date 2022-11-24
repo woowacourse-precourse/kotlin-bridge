@@ -54,7 +54,7 @@ internal class BridgeGameTest {
         val bridgeGame = BridgeGame(Bridge(data))
 
         test.forEach { bridgeGame.move(it) }
-        assertThat(bridgeGame.isCompleted).isEqualTo(false)
+        assertThat(bridgeGame.isSuccess).isEqualTo(false)
     }
 
     @Test
@@ -64,7 +64,7 @@ internal class BridgeGameTest {
         val bridgeGame = BridgeGame(Bridge(data))
 
         test.forEach { bridgeGame.move(it) }
-        assertThat(bridgeGame.isCompleted).isEqualTo(true)
+        assertThat(bridgeGame.isSuccess).isEqualTo(true)
     }
 
     @Test
@@ -130,7 +130,7 @@ internal class BridgeGameTest {
     }
 
     companion object {
-        private val UP = Bridge.Floor.UP
-        private val DOWN = Bridge.Floor.DOWN
+        private val UP = Bridge.Floor.Up
+        private val DOWN = Bridge.Floor.Down
     }
 }

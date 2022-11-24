@@ -1,4 +1,4 @@
-package bridge.constants
+package bridge.common
 
 import bridge.domain.game.Bridge
 

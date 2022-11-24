@@ -1,10 +1,10 @@
 package bridge.view
 
-import bridge.constants.Message
-import bridge.domain.game.GameHistory
-import bridge.domain.game.GameResult
+import bridge.view.strings.Message
+import bridge.domain.game.BridgeGameResult
 import bridge.util.println
-import bridge.constants.ErrorMessage
+import bridge.common.ErrorMessage
+import bridge.domain.game.BridgeCrossingMap
 
 object OutputView {
 
@@ -24,13 +24,13 @@ object OutputView {
         println(Message.SelectRetryOrFinishGame)
     }
 
-    fun printMap(history: GameHistory) {
-        println(buildHistoryMap(history))
+    fun printMap(map: BridgeCrossingMap) {
+        println(buildCrossingMap(map))
     }
 
-    fun printResult(result: GameResult) {
+    fun printResult(result: BridgeGameResult) {
         println(Message.FinishGame.toString().format(
-            buildHistoryMap(result.lastHistory),
+            println(buildCrossingMap(result.crossingMap)),
             if (result.isSuccess) Message.Success else Message.Failure,
             result.tryCount,
         ))
@@ -40,12 +40,12 @@ object OutputView {
         println("${ErrorMessage.PREFIX} ${e.message}")
     }
 
-    private fun buildHistoryMap(history: GameHistory): String = buildString {
-        appendLine(buildHistoryOf(history.upstairs))
-        appendLine(buildHistoryOf(history.downstairs))
+    private fun buildCrossingMap(map: BridgeCrossingMap): String = buildString {
+        appendLine(buildCrossingMapOf(map.upstairs))
+        appendLine(buildCrossingMapOf(map.downstairs))
     }
 
-    private fun buildHistoryOf(data: List<Char>): String {
-        return data.joinToString(prefix = "[", postfix = "]", separator = "|") { " $it " }
+    private fun buildCrossingMapOf(mapElement: List<Char>): String {
+        return mapElement.joinToString(prefix = "[ ", postfix = " ]", separator = " | ")
     }
 }

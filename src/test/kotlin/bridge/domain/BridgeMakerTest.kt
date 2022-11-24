@@ -19,7 +19,7 @@ internal class BridgeMakerTest {
     @ParameterizedTest
     @ValueSource(ints = [-2, -1, 2, 3, 4, 5])
     fun `다리생성_not1or0_예외`(exceptionNumber: Int) {
-        assertThrows<ArrayIndexOutOfBoundsException> {
+        assertThrows<IllegalArgumentException> {
             generateBridge(1, 0, 0, exceptionNumber)
         }
     }

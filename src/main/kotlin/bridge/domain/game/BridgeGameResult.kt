@@ -1,7 +1,7 @@
 package bridge.domain.game
 
-data class GameResult(
+data class BridgeGameResult(
     val isSuccess: Boolean,
     val tryCount: Int,
-    val lastHistory: GameHistory,
+    val crossingMap: BridgeCrossingMap,
 )

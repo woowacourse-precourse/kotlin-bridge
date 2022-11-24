@@ -1,14 +1,12 @@
 package bridge.view
 
 import bridge.util.toIntOrThrow
-import bridge.constants.ErrorMessage
+import bridge.common.ErrorMessage
 import bridge.domain.game.Bridge
+import bridge.view.strings.Command
 import camp.nextstep.edu.missionutils.Console.readLine
 
 object InputView {
-
-    const val RETRY = "R"
-    const val QUIT = "Q"
 
     fun readBridgeSize(): Int {
         val bridgeSize = readLine().toIntOrThrow()
@@ -20,21 +18,19 @@ object InputView {
         return bridgeSize
     }
 
-    fun readMoving(): Bridge.Floor {
-        val command = readLine()
-
-        return requireNotNull(Bridge.Floor.getOrNull(command)) {
+    fun readNextFloor(): Bridge.Floor {
+        val nextFloor = requireNotNull(Bridge.Floor.parse(readLine())) {
             ErrorMessage.InvalidBridgeMoving
         }
+
+        return nextFloor
     }
 
     fun askRetryGame(): Boolean {
-        val command = readLine()
-
-        require(command == RETRY || command == QUIT) {
+        val command = requireNotNull(Command.Power.parse(readLine())) {
             ErrorMessage.InvalidGameRetryCommand
         }
 
-        return command == RETRY
+        return command == Command.Power.Retry
     }
 }

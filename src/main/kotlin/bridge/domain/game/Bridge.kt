@@ -1,36 +1,26 @@
 package bridge.domain.game
 
-class Bridge(private val elements: List<Floor>) {
+class Bridge(private val floors: List<Floor>) {
 
-    val size: Int get() = elements.size
+    val size: Int get() = floors.size
 
     init {
-        require(elements.size in SizeRange) { "Bridge's size is required in $SizeRange" }
+        require(floors.size in SizeRange) { "Bridge's size is required in $SizeRange" }
     }
 
-    operator fun get(index: Int): Floor = elements[index]
+    operator fun get(index: Int): Floor = floors[index]
 
-    enum class Floor(val command: String) {
-        DOWN("D"), UP("U");
+    enum class Floor(val value: String, val number: Int) {
+        Down("D", 0), Up("U", 1);
 
         companion object {
             private val values = values()
 
-            operator fun contains(value: String): Boolean {
-                return values.any { it.command == value || it.name == value }
-            }
+            operator fun contains(value: String): Boolean = values.any { it.value == value }
 
-            operator fun get(value: String): Floor {
-                return values.find { it.command == value || it.name == value }!!
-            }
+            fun parse(number: Int): Floor? = values.find { it.number == number }
 
-            fun getOrNull(value: String): Floor? {
-                return values.find { it.command == value || it.name == value }
-            }
-
-            fun indexOf(ordinal: Int): Floor {
-                return values[ordinal]
-            }
+            fun parse(value: String): Floor? = values.find { it.value == value }
         }
     }
 
@@ -39,11 +29,5 @@ class Bridge(private val elements: List<Floor>) {
         const val SIZE_MAX = 20
 
         val SizeRange = SIZE_MIN..SIZE_MAX
-
-        fun newInstance(floors: List<String>): Bridge {
-            require(floors.all { it in Floor })
-
-            return Bridge(floors.map { Floor[it] })
-        }
     }
 }
