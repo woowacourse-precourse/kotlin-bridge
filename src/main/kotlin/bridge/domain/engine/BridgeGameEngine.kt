@@ -13,27 +13,9 @@ class BridgeGameEngine {
 
         game = makeBridgeGame(View.requestBridgeSize())
 
-        startGame()
+        startGameRecursively()
 
         View.printResult(game.getResult())
-    }
-
-    private tailrec fun startGame() {
-        progressByRound()
-
-        if (game.isFailure && View.requestRetryGame()) {
-            game.retry()
-            startGame()
-        }
-    }
-
-    private fun progressByRound() {
-        do {
-            game.move(View.requestNextFloor())
-
-            View.printMap(game.crossingMap)
-
-        } while (game.isRunning)
     }
 
     private fun makeBridgeGame(bridgeSize: Int): BridgeGame {
@@ -41,5 +23,23 @@ class BridgeGameEngine {
             .size(bridgeSize)
             .generator(BridgeRandomNumberGenerator())
             .build()
+    }
+
+    private tailrec fun startGameRecursively() {
+        crossBridgeOneCycle()
+
+        if (game.isFailure && View.requestRetryGame()) {
+            game.retry()
+            startGameRecursively()
+        }
+    }
+
+    private fun crossBridgeOneCycle() {
+        do {
+            game.move(View.requestNextFloor())
+
+            View.printMap(game.crossingMap)
+
+        } while (game.isRunning)
     }
 }
