@@ -13,31 +13,28 @@ object View {
     fun printResult(result: BridgeGameResult) = OutputView.printResult(result)
 
     fun requestBridgeSize(): Int {
+        OutputView.printInputBridgeSize()
+
         return repeatIfThrows(
-            tryBlock = {
-                OutputView.printInputBridgeSize()
-                InputView.readBridgeSize()
-            },
+            tryBlock = InputView::readBridgeSize,
             catchBlock = OutputView::printError,
         )
     }
 
     fun requestNextFloor(): Bridge.Floor {
+        OutputView.printSelectNextFloor()
+
         return repeatIfThrows(
-            tryBlock = {
-                OutputView.printSelectNextFloor()
-                InputView.readNextFloor()
-            },
+            tryBlock = InputView::readNextFloor,
             catchBlock = OutputView::printError,
         )
     }
 
     fun requestRetryGame(): Boolean {
+        OutputView.printSelectRetryOrFinishGame()
+
         return repeatIfThrows(
-            tryBlock = {
-                OutputView.printSelectRetryOrFinishGame()
-                InputView.askRetryGame()
-            },
+            tryBlock = InputView::askRetryGame,
             catchBlock = OutputView::printError,
         )
     }
