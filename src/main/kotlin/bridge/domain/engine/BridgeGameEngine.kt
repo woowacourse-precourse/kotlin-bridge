@@ -8,17 +8,10 @@ class BridgeGameEngine {
 
     private lateinit var game: BridgeGame
 
-    fun init() {
-        val bridgeSize = View.requestBridgeSize()
-
-        game = BridgeGame.Builder()
-            .size(bridgeSize)
-            .generator(BridgeRandomNumberGenerator())
-            .build()
-    }
-
     fun run() {
         View.printStartGame()
+
+        game = makeBridgeGame(View.requestBridgeSize())
 
         startGame()
 
@@ -41,5 +34,12 @@ class BridgeGameEngine {
             View.printMap(game.crossingMap)
 
         } while (game.isRunning)
+    }
+
+    private fun makeBridgeGame(bridgeSize: Int): BridgeGame {
+        return BridgeGame.Builder()
+            .size(bridgeSize)
+            .generator(BridgeRandomNumberGenerator())
+            .build()
     }
 }
