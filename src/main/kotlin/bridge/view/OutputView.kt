@@ -30,7 +30,7 @@ object OutputView {
 
     fun printResult(result: BridgeGameResult) {
         println(Message.FinishGame.toString().format(
-            println(buildCrossingMap(result.crossingMap)),
+            buildCrossingMap(result.crossingMap),
             if (result.isSuccess) Message.Success else Message.Failure,
             result.tryCount,
         ))
@@ -45,7 +45,7 @@ object OutputView {
         appendLine(buildCrossingMapOf(map.downstairs))
     }
 
-    private fun buildCrossingMapOf(mapElement: List<Char>): String {
-        return mapElement.joinToString(prefix = "[ ", postfix = " ]", separator = " | ")
+    private fun buildCrossingMapOf(element: List<Char>): String {
+        return element.joinToString(prefix = "[ ", postfix = " ]", separator = " | ")
     }
 }
