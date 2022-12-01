@@ -1,6 +1,6 @@
 package bridge
 
-import util.Enum
+import util.Result
 import view.InputView
 import view.OutputView
 
@@ -25,7 +25,7 @@ class BridgeController {
     private fun startGame() {
         moveNext()
         if (bridgeGame.isEnd()) {
-            endGame(Enum.RESULT.SUCCESS.korean)
+            endGame(Result.SUCCESS.korean)
             return
         }
 
@@ -60,7 +60,7 @@ class BridgeController {
                 startGame()
             }
 
-            RESTART -> endGame(Enum.RESULT.FAILURE.korean)
+            RESTART -> endGame(Result.FAILURE.korean)
         }
     }
 

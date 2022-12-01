@@ -1,6 +1,6 @@
 package bridge
 
-import util.Enum
+import util.Side
 
 /**
  * 다리의 길이를 입력 받아서 다리를 생성해주는 역할을 한다.
@@ -14,6 +14,6 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
         return List(size) { getRandomSide() }
     }
 
-    private fun getRandomSide() = Enum.SIDE.values()[bridgeNumberGenerator.generate()].command
+    private fun getRandomSide() = Side.values()[bridgeNumberGenerator.generate()].command
 
 }

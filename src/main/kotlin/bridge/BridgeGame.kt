@@ -1,6 +1,7 @@
 package bridge
 
-import util.Enum
+import util.Result
+import util.Side
 
 /**
  * 다리 건너기 게임을 관리하는 클래스
@@ -20,11 +21,11 @@ class BridgeGame(private val bridges: List<String>) {
     fun move(direction: String) {
         when (direction) {
             bridges[bridgeIndex] -> {
-                checkSide(direction, Enum.RESULT.SUCCESS.emoji)
+                checkSide(direction, Result.SUCCESS.emoji)
                 nextBridge()
             }
 
-            else -> checkSide(direction, Enum.RESULT.FAILURE.emoji)
+            else -> checkSide(direction, Result.FAILURE.emoji)
         }
     }
 
@@ -43,9 +44,9 @@ class BridgeGame(private val bridges: List<String>) {
 
     private fun checkSide(side: String, result: String) {
         when (side) {
-            Enum.SIDE.DOWN.command -> addDownSide(result)
+            Side.DOWN.command -> addDownSide(result)
 
-            Enum.SIDE.UP.command -> addUpSide(result)
+            Side.UP.command -> addUpSide(result)
         }
     }
 
@@ -63,7 +64,7 @@ class BridgeGame(private val bridges: List<String>) {
 
     private fun increaseTryCount() = tryCount++
 
-    fun isFail() = downSide.contains(Enum.RESULT.FAILURE.emoji) || upSide.contains(Enum.RESULT.FAILURE.emoji)
+    fun isFail() = downSide.contains(Result.FAILURE.emoji) || upSide.contains(Result.FAILURE.emoji)
 
     fun isEnd() = bridgeIndex == bridges.size
 
