@@ -16,7 +16,7 @@ class BridgeController {
     }
 
     private fun makeBridge() {
-        outputView.printStartGame()
+        outputView.printStart()
         val bridgeRandomNumberGenerator = BridgeRandomNumberGenerator()
         val bridgeMaker = BridgeMaker(bridgeRandomNumberGenerator)
         val bridges = bridgeMaker.makeBridge(inputView.readBridgeSize())
@@ -24,44 +24,33 @@ class BridgeController {
     }
 
     private fun startGame() {
-        moveNext()
-        if (bridgeGame.isEnd()) {
-            endGame(Result.SUCCESS.korean)
-            return
-        }
-
-        checkFail()
+        moving()
+        if (bridgeGame.isEnd()) endGame(Result.SUCCESS.korean)
+        else if (bridgeGame.isFail()) checkGameFail()
+        else startGame()
     }
 
-    private fun moveNext() {
-        outputView.printInputMove()
+    private fun moving() {
+        outputView.printMove()
         bridgeGame.move(inputView.readMoving())
         outputView.printMap(bridgeGame.getMap())
     }
 
     private fun endGame(result: String) {
-        outputView.printEndGame()
-        outputView.printMap(bridgeGame.getMap())
-        outputView.printResult(bridgeGame.getRetryCount(), result)
+        outputView.printResult(bridgeGame.getMap(), result, bridgeGame.getRetryCount())
     }
 
-    private fun checkFail() {
-        if (bridgeGame.isFail()) {
-            outputView.printRestart()
-            isRestart()
-        } else {
-            startGame()
-        }
-    }
-
-    private fun isRestart() {
+    private fun checkGameFail() {
+        outputView.printRestart()
         when (inputView.readGameCommand()) {
-            Constant.QUIT -> {
-                bridgeGame.retry()
-                startGame()
-            }
+            Constant.QUIT -> endGame(Result.FAILURE.korean)
 
-            Constant.RESTART -> endGame(Result.FAILURE.korean)
+            Constant.RESTART -> restartGame()
         }
+    }
+
+    private fun restartGame() {
+        bridgeGame.retry()
+        startGame()
     }
 }
