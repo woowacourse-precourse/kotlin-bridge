@@ -55,10 +55,11 @@ class BridgeGame(private val bridges: List<String>) {
 
     fun isEnd() = bridgePosition == bridges.size
 
+    fun getMap() = listOf(changeUpSideFormat(), changeDownSideFormat())
 
-    fun changeUpSideFormat() = upSide.joinToString(" | ", "[ ", " ]")
+    private fun changeUpSideFormat() = upSide.joinToString(" | ", "[ ", " ]")
 
-    fun changeDownSideFormat() = downSide.joinToString(" | ", "[ ", " ]\n")
+    private fun changeDownSideFormat() = downSide.joinToString(" | ", "[ ", " ]\n")
 
     fun getRetryCount() = retryCount
 }

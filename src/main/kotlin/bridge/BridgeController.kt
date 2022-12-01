@@ -36,12 +36,12 @@ class BridgeController {
     private fun moveNext() {
         outputView.printInputMove()
         bridgeGame.move(inputView.readMoving())
-        outputView.printMap(bridgeGame.changeUpSideFormat(), bridgeGame.changeDownSideFormat())
+        outputView.printMap(bridgeGame.getMap())
     }
 
     private fun endGame(result: String) {
         outputView.printEndGame()
-        outputView.printMap(bridgeGame.changeUpSideFormat(), bridgeGame.changeDownSideFormat())
+        outputView.printMap(bridgeGame.getMap())
         outputView.printResult(bridgeGame.getRetryCount(), result)
     }
 
