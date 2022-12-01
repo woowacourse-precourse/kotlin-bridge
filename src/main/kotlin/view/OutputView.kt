@@ -5,26 +5,22 @@ class OutputView {
         println(sides[0])
         println(sides[1])
     }
-    
-    fun printResult(count: Int, state: String) {
-        println(
-            "게임 성공 여부: $state\n" +
-                    "총 시도한 횟수: $count"
-        )
-    }
 
-    fun printStartGame() {
-        println(
-            "다리 건너기 게임을 시작합니다.\n" +
-                    "\n다리의 길이를 입력해주세요."
-        )
-    }
-
-    fun printEndGame() {
+    fun printResult(sides: List<String>, result: String, retryCount: Int) {
         println("최종 게임 결과")
+        printMap(sides)
+        println(
+            "게임 성공 여부: $result\n" +
+                    "총 시도한 횟수: $retryCount"
+        )
     }
 
-    fun printInputMove() {
+    fun printStart() {
+        println("다리 건너기 게임을 시작합니다.")
+        println("\n다리의 길이를 입력해주세요.")
+    }
+
+    fun printMove() {
         println("이동할 칸을 선택해주세요. (위: U, 아래: D)")
     }
 
