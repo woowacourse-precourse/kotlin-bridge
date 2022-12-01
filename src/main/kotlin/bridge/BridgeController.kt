@@ -1,5 +1,6 @@
 package bridge
 
+import util.Constant
 import util.Result
 import view.InputView
 import view.OutputView
@@ -35,13 +36,13 @@ class BridgeController {
     private fun moveNext() {
         outputView.printInputMove()
         bridgeGame.move(inputView.readMoving())
-        outputView.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
+        outputView.printMap(bridgeGame.changeUpSideFormat(), bridgeGame.changeDownSideFormat())
     }
 
     private fun endGame(result: String) {
         outputView.printEndGame()
-        outputView.printMap(bridgeGame.getUpSide(), bridgeGame.getDownSide())
-        outputView.printResult(bridgeGame.getTryCount(), result)
+        outputView.printMap(bridgeGame.changeUpSideFormat(), bridgeGame.changeDownSideFormat())
+        outputView.printResult(bridgeGame.getRetryCount(), result)
     }
 
     private fun checkFail() {
@@ -55,17 +56,12 @@ class BridgeController {
 
     private fun isRestart() {
         when (inputView.readGameCommand()) {
-            QUIT -> {
+            Constant.QUIT -> {
                 bridgeGame.retry()
                 startGame()
             }
 
-            RESTART -> endGame(Result.FAILURE.korean)
+            Constant.RESTART -> endGame(Result.FAILURE.korean)
         }
-    }
-
-    companion object {
-        const val RESTART = "R"
-        const val QUIT = "Q"
     }
 }
