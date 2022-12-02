@@ -16,6 +16,26 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
+    fun `다리 건너기 성공 테스트`() {
+        val game = BridgeGame(listOf("U", "D", "D", "U", "D"))
+        val directions = listOf("U", "D", "D", "U", "D")
+        directions.forEach {
+            game.move(it)
+        }
+        assertThat(game.isEnd()).isTrue
+    }
+
+    @Test
+    fun `다리 건너기 실패 테스트`() {
+        val game = BridgeGame(listOf("U", "D", "D", "U", "D"))
+        val directions = listOf("U", "D", "D", "D", "D")
+        directions.forEach {
+            game.move(it)
+        }
+        assertThat(game.isFail()).isTrue
+    }
+
+    @Test
     fun `기능 테스트`() {
         assertRandomNumberInRangeTest({
             run("3", "U", "D", "U")
