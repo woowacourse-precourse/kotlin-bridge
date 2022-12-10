@@ -33,9 +33,55 @@ class ApplicationTest : NsTest() {
     }
 
     @Test
+    fun `중간에 실패 하고 그만둘때 테스트`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "D", "D","Q")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O |   |   ]",
+                "[   | O | X ]",
+                "게임 성공 여부: 실패",
+                "총 시도한 횟수: 1"
+            )
+            val upSideIndex = output().indexOf("[ O |   |   ]")
+            val downSideIndex = output().indexOf("[   | O | X ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 1, 0, 1)
+    }
+
+    @Test
+    fun `중간에 실패 하고 다시 할때 테스트`() {
+        assertRandomNumberInRangeTest({
+            run("3", "U", "D", "D","R","U","D","U")
+            assertThat(output()).contains(
+                "최종 게임 결과",
+                "[ O |   |   ]",
+                "[   | O | X ]",
+                "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)",
+                "[ O |   | O ]",
+                "[   | O |   ]",
+                "게임 성공 여부: 성공",
+                "총 시도한 횟수: 2"
+            )
+            val upSideIndex = output().indexOf("[ O |   |   ]")
+            val downSideIndex = output().indexOf("[   | O | X ]")
+            assertThat(upSideIndex).isLessThan(downSideIndex)
+        }, 1, 0, 1)
+    }
+
+
+    @Test
     fun `예외 테스트`() {
         assertSimpleTest {
             runException("a")
+            assertThat(output()).contains(ERROR_MESSAGE)
+        }
+    }
+
+    @Test
+    fun `범위 외에 숫자 입력시`() {
+        assertSimpleTest {
+            runException("32")
             assertThat(output()).contains(ERROR_MESSAGE)
         }
     }
