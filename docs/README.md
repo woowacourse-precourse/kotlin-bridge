@@ -28,3 +28,9 @@
   - [x] `U` 와 `D` 가 아닐경우 예외처리
 - 입력 받은 게임 다시시도(retry) 입력 값 유효성 검사
   - [x] `R` 와 `Q` 가 아닐경우 예외처리
+
+## 리팩토링
+- [ ] OutputView -> BridgeGamePrinter
+- [ ] Bridge 도메인 추출
+- [ ] Position 도메인 추출
+- [ ] Round 도메인 추출
