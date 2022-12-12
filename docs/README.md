@@ -30,7 +30,7 @@
   - [x] `R` 와 `Q` 가 아닐경우 예외처리
 
 ## 리팩토링
-- [ ] OutputView -> BridgeGamePrinter
+- [x] OutputView -> BridgeGamePrinter
 - [ ] Bridge 도메인 추출
 - [ ] Position 도메인 추출
 - [ ] Round 도메인 추출

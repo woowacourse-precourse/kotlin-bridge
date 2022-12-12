@@ -1,87 +1,31 @@
 package bridge.view
 
 import bridge.domain.BridgeGame
-import bridge.domain.Command
-import bridge.util.Constant.OPEN_PARENTHESIS
-import bridge.util.Constant.CLOSE_PARENTHESIS
-import bridge.util.Constant.BOUNDARY
-import bridge.util.Constant.EMPTY
+import bridge.domain.BridgeGamePrinter
 import bridge.util.Constant.GAME_FAIL
 import bridge.util.Constant.GAME_SUCCESS
-import kotlin.text.StringBuilder
 
 class OutputView {
 
     fun printMap(bridgeGame: BridgeGame) {
-        printClear()
-        makeMap(bridgeGame)
-        println(upBuilder)
-        println(downBuilder)
+        val printer = BridgeGamePrinter
+        printer.clear()
+        val result = printer.makeMap(bridgeGame)
+        println(result.first)
+        println(result.second)
     }
 
-    private fun printClear() {
-        upBuilder.setLength(0)
-        downBuilder.setLength(0)
-    }
-
-    private fun makeMap(bridgeGame: BridgeGame) {
-        surroundMap(OPEN_PARENTHESIS)
-        val record = bridgeGame.playerRecord()
-        record.forEachIndexed() { index, move ->
-            val type = bridgeGame.compareWith(index, move)
-            printPlayerPosition(move, type)
-            printBridgeInMap(index, record.size)
-        }
-        surroundMap(CLOSE_PARENTHESIS)
-    }
-
-    private fun printBridgeInMap(index: Int, size: Int) {
-        if (size - 1 > index) {
-            upBuilder.append(BOUNDARY)
-            downBuilder.append(BOUNDARY)
-        }
-    }
-
-    private fun printPlayerPosition(move: String, type: String) {
-        when (move) {
-            Command.UP.value() -> {
-                upBuilder.append(" $type ")
-                downBuilder.append(EMPTY)
-            }
-            Command.DOWN.value() -> {
-                upBuilder.append(EMPTY)
-                downBuilder.append(" $type ")
-            }
-        }
-    }
-
-    private fun surroundMap(type: String) {
-        when (type) {
-            OPEN_PARENTHESIS -> {
-                upBuilder.append(OPEN_PARENTHESIS)
-                downBuilder.append(OPEN_PARENTHESIS)
-            }
-            CLOSE_PARENTHESIS -> {
-                upBuilder.append(CLOSE_PARENTHESIS)
-                downBuilder.append(CLOSE_PARENTHESIS)
-            }
-        }
-    }
 
     fun printResult(bridgeGame: BridgeGame) {
+        val result = BridgeGamePrinter.getResult()
         println(
             String.format(
                 "\n최종 게임 결과\n%s\n%s\n\n게임 성공 여부: %s\n총 시도한 횟수: %d",
-                upBuilder,
-                downBuilder,
+                result.first,
+                result.second,
                 if (bridgeGame.isDone()) GAME_SUCCESS else GAME_FAIL,
                 bridgeGame.getTryCount()
             )
         )
-    }
-
-    companion object {
-        private val upBuilder = StringBuilder()
-        private val downBuilder = StringBuilder()
     }
 }
