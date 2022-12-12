@@ -1,24 +1,12 @@
 package bridge.domain
 
-import bridge.BridgeMaker
-import bridge.BridgeNumberGenerator
 import bridge.util.Constant.LOAD_GO
 import bridge.util.Constant.LOAD_STOP
 import bridge.util.ErrorMessage.ERROR_NOT_VALID_COMMAND
 import java.lang.IllegalArgumentException
 
-class BridgeGame(
-    private val bridgeNumberGenerator: BridgeNumberGenerator,
-    private val size: Int,
-    private val player: Player
-) {
+class BridgeGame(private val player: Player, private val bridge: Bridge) {
     private var playerTryCount = 1
-    private var bridge: List<String>
-
-    init {
-        val bridgeMaker = BridgeMaker(bridgeNumberGenerator)
-        bridge = bridgeMaker.makeBridge(size)
-    }
 
     fun move(move: String) {
         player.go(move)
@@ -29,7 +17,7 @@ class BridgeGame(
     }
 
     fun isDone(): Boolean {
-        return player.getRecord() == bridge
+        return player.isFinish(bridge)
     }
 
     fun retry(type: String): Boolean {
@@ -50,18 +38,11 @@ class BridgeGame(
     }
 
     fun compareWith(index: Int, move: String): String {
-        return when (bridge[index]) {
-            move -> LOAD_GO
-            else -> LOAD_STOP
-        }
+        return bridge.cross(index, move)
     }
 
     fun getTryCount(): Int {
         return playerTryCount
-    }
-
-    fun getBridge(): List<String> {
-        return bridge
     }
 
     fun playerRecord(): List<String> {

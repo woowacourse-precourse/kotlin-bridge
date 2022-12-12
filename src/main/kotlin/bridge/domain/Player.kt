@@ -10,13 +10,17 @@ class Player {
         position++
     }
 
-    fun doNotGo(bridge: List<String>): Boolean {
-        return bridge[position] != record.last()
-    }
-
     fun initialize() {
         position = -1
         record.clear()
+    }
+
+    fun isFinish(bridge: Bridge): Boolean {
+        return bridge.crossedAll(record)
+    }
+
+    fun doNotGo(bridge: Bridge): Boolean {
+        return bridge.doNotCross(record.last(), position)
     }
 
     fun getRecord(): MutableList<String> {

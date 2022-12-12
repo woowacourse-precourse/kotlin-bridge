@@ -26,7 +26,8 @@ internal class BridgeGameTest {
     @MethodSource("playerStateCheck")
     @DisplayName("move() 함수 테스트")
     fun `이동할칸_입력받아_플레이어_전진하는지_확인`(input: String, result: List<String>) {
-        val bridgeGame = BridgeGame(numberGenerator, 3, player)
+        val bridge = Bridge(numberGenerator, 3)
+        val bridgeGame = BridgeGame(player, bridge)
         bridgeGame.move(input)
 
         Assertions.assertThat(player.getRecord()).isEqualTo(result)
@@ -35,7 +36,8 @@ internal class BridgeGameTest {
     @Test
     @DisplayName("isDone() 함수 테스트")
     fun `플레이어가_다리를_다_건넜는지_확인`() {
-        val bridgeGame = BridgeGame(numberGenerator, 3, player)
+        val bridge = Bridge(numberGenerator, 3)
+        val bridgeGame = BridgeGame(player, bridge)
 
         Assertions.assertThat(bridgeGame.isDone()).isTrue
     }
@@ -44,7 +46,9 @@ internal class BridgeGameTest {
     @DisplayName("retry() 함수 테스트1")
     fun `게임_재시작시_플레이어_게임진행_횟수_증가`() {
         val player = Player()
-        val bridgeGame = BridgeGame(numberGenerator, 3, player)
+        val bridge = Bridge(numberGenerator, 3)
+        val bridgeGame = BridgeGame(player, bridge)
+
         bridgeGame.move("D")
         bridgeGame.retry("R")
 
@@ -61,7 +65,9 @@ internal class BridgeGameTest {
     @DisplayName("isFail() 함수 테스트")
     fun `다리를_못건널_경우_게임_중단_확인`(input: String, result: Boolean) {
         val player = Player()
-        val bridgeGame = BridgeGame(numberGenerator, 3, player)
+        val bridge = Bridge(numberGenerator, 3)
+        val bridgeGame = BridgeGame(player, bridge)
+
         bridgeGame.move(input)
         Assertions.assertThat(bridgeGame.isFail()).isEqualTo(result)
     }
