@@ -12,11 +12,16 @@ import bridge.Constant.UP
  */
 class BridgeGame(private val bridge : List<String>) : BridgeGameGenerator{
 
-    private var upBridge: MutableList<String> = mutableListOf<String>()
-    private var downBridge: MutableList<String> = mutableListOf<String>()
-    private var isSuccess : Boolean = true
-    private var totalCount: Int = 1
+    private var _upBridge: MutableList<String> = mutableListOf<String>()
+    val upBridge get() = _upBridge
+    private var _downBridge: MutableList<String> = mutableListOf<String>()
+    val downBridge get() = _downBridge
+    private var _isSuccess : Boolean = true
+    val isSuccess get() = _isSuccess
+    private var _totalCount: Int = 1
+    val totalCount get()  = _totalCount
     private var count: Int = 0
+
 
     /**
      * 사용자가 칸을 이동할 때 사용하는 메서드
@@ -26,33 +31,32 @@ class BridgeGame(private val bridge : List<String>) : BridgeGameGenerator{
      */
     override fun move(moveOrder: String) {
         when (bridge[count]) {
-            UP -> if (moveOrder == UP) upMove(true) else upMove(false)
-            DOWN -> if (moveOrder == DOWN) downMove(true) else downMove(false)
-            else -> throw IllegalArgumentException(ERROR_MESSAGE)
+            UP -> upMove(moveOrder == UP)
+            DOWN -> downMove(moveOrder == DOWN)
         }
         count++
     }
 
     override fun upMove(isCorrect: Boolean) {
-        isSuccess = if (isCorrect) {
-            upBridge.add(ANSWER)
-            downBridge.add(EMPTY)
+        _isSuccess = if (isCorrect) {
+            _upBridge.add(ANSWER)
+            _downBridge.add(EMPTY)
             true
         } else {
-            upBridge.add(EMPTY)
-            downBridge.add(FALL)
+            _upBridge.add(EMPTY)
+            _downBridge.add(FALL)
             false
         }
     }
 
     override fun downMove(isCorrect: Boolean) {
-        isSuccess = if (isCorrect) {
-            upBridge.add(EMPTY)
-            downBridge.add(ANSWER)
+        _isSuccess = if (isCorrect) {
+            _upBridge.add(EMPTY)
+            _downBridge.add(ANSWER)
             true
         } else {
-            upBridge.add(FALL)
-            downBridge.add(EMPTY)
+            _upBridge.add(FALL)
+            _downBridge.add(EMPTY)
             false
         }
     }
@@ -64,25 +68,16 @@ class BridgeGame(private val bridge : List<String>) : BridgeGameGenerator{
      * 재시작을 위해 필요한 메서드의 반환 타입(return type), 인자(parameter)는 자유롭게 추가하거나 변경할 수 있다.
      */
     override fun retry() {
-        this.upBridge = mutableListOf<String>()
-        this.downBridge = mutableListOf<String>()
+        _upBridge = mutableListOf<String>()
+        _downBridge = mutableListOf<String>()
         this.count = 0
-        this.totalCount++
-        this.isSuccess = true
+        _totalCount++
+        _isSuccess = true
     }
 
     override fun isGameEnd(): Boolean {
-        if (!isSuccess) return true
+        if (!_isSuccess) return true
         if (count == bridge.size) return true
         return false
     }
-
-    override fun getTotalCount(): Int = this.totalCount
-
-    override fun getSuccessResult(): Boolean = this.isSuccess
-
-    override fun getDownBridge(): MutableList<String> = this.downBridge
-
-    override fun getUpBridge(): MutableList<String> = this.upBridge
-
 }

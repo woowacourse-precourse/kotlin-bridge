@@ -9,8 +9,8 @@ import bridge.Constant.UP
 
 fun String.bridgeSizeInputTypeException(): Int {
     return try {
-        if (this.toInt() < 3 || this.toInt() > 20) throw IllegalArgumentException(INPUT_RANGE_ERROR_MESSAGE)
-        else this.toInt()
+        if (this.toInt() in 3.. 20) this.toInt()
+        else throw IllegalArgumentException(INPUT_RANGE_ERROR_MESSAGE)
     } catch (e: NumberFormatException) {
         throw IllegalArgumentException(INPUT_TYPE_ERROR_MESSAGE)
     }

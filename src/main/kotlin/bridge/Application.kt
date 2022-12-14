@@ -16,15 +16,15 @@ private fun start() {
 fun play(game: BridgeGame) {
     while (!game.isGameEnd()) {
         game.move(InputView().readMoving())
-        OutputView().printMap(game.getUpBridge(), game.getDownBridge())
+        OutputView().printMap(game.upBridge, game.downBridge)
     }
-    if (game.getSuccessResult()) end(game) else reStart(game)
+    if (game.isSuccess) end(game) else reStart(game)
 }
 
 fun end(game: BridgeGame) {
     OutputView().printResult()
-    OutputView().printMap(game.getUpBridge(), game.getDownBridge())
-    OutputView().printResultIsSuccess(game.getSuccessResult(), game.getTotalCount())
+    OutputView().printMap(game.upBridge, game.downBridge)
+    OutputView().printResultIsSuccess(game.isSuccess, game.totalCount)
 }
 
 fun reStart(game: BridgeGame) {
