@@ -11,22 +11,23 @@ class OutputView {
      */
     fun printMap(realBridges: List<String>, gameBridges: List<String>, curStep: Int) {
         println(upperMap(realBridges, gameBridges, curStep))
-        println(downMap(realBridges, gameBridges, curStep))
+        println(downMap(realBridges, gameBridges, curStep) + "\n")
     }
 
     private fun upperMap(realBridges: List<String>, gameBridges: List<String>, curStep: Int): String {
         val upperBridge = StringBuilder("[ ")
-        for (i in 0..curStep) {
+        for (i in 0 until curStep) {
             when (judgementUpperStepMatch(realBridges[i], gameBridges[i])) {
                 Match.MATCH -> upperBridge.append("O ")
                 Match.FAILED -> upperBridge.append("X ")
                 else -> upperBridge.append("  ")
             }
-            if (i != curStep) upperBridge.append("| ")
+            if (i != curStep - 1) upperBridge.append("| ")
         }
         return upperBridge.append("]").toString()
     }
 
+    // 위쪽 Upper에 대한 결과만 출력. 기준은 사용자다리 기준임. x를 표시해도 거기 사용자가 선택한 곳에 표시한다.
     private fun judgementUpperStepMatch(realBridgesStep: String, gameBridgesStep: String): Match {
         return if (gameBridgesStep == "U" && gameBridgesStep == realBridgesStep) {
             Match.MATCH
@@ -39,13 +40,13 @@ class OutputView {
 
     private fun downMap(realBridges: List<String>, gameBridges: List<String>, curStep: Int): String {
         val downBridge = StringBuilder("[ ")
-        for (i in 0..curStep) {
+        for (i in 0 until curStep) {
             when (judgementDownStepMatch(realBridges[i], gameBridges[i])) {
                 Match.MATCH -> downBridge.append("O ")
                 Match.FAILED -> downBridge.append("X ")
                 else -> downBridge.append("  ")
             }
-            if (i != curStep) downBridge.append("| ")
+            if (i != curStep - 1) downBridge.append("| ")
         }
         return downBridge.append("]").toString()
     }
@@ -84,22 +85,10 @@ class OutputView {
         private const val BRIDGE_LENGTH_INPUT_PLEASE = "\n다리의 길이를 입력해주세요."
         private const val MOVE_INPUT_PLEASE = "\n이동할 칸을 선택해주세요. (위: U, 아래: D)"
         private const val RETRY_INPUT_PLEASE = "\n게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)"
-        private const val FINAL_GAME_RESULT = "\n최종 게임 결과"
-        private const val GAME_RESULT_SUCCESS = "\n게임 성공 여부: 성공"
-        private const val GAME_RESULT_FAILED = "\n게임 성공 여부: 실패"
+        private const val FINAL_GAME_RESULT = "최종 게임 결과"
+        private const val GAME_RESULT_SUCCESS = "게임 성공 여부: 성공"
+        private const val GAME_RESULT_FAILED = "게임 성공 여부: 실패"
         private const val TRY_COUNT = "총 시도한 횟수: "
-
-        lateinit var errorType: Error
-        fun errorMessage() {
-            println(errorType.error)
-        }
-    }
-
-    enum class Error(val error: String) {
-        BRIDGE_INPUT_ERROR("[ERROR] 다리 길이는 3부터 20 사이의 숫자여야 합니다."),
-        MOVE_INPUT_ERROR("[ERROR] 이동에 대한 입력은 U(위) 혹은 D(아래)만 가능합니다."),
-        RETRY_INPUT_ERROR("[ERROR] 게임 재시도에 대한 입력은 R(재시도) 혹은 Q(종료)만 가능합니다."),
-        NON_ERROR("에러 없음"),
     }
 
     enum class Match {

@@ -13,12 +13,8 @@ class InputView {
 
     fun readBridgeSize(inputInvalidCheck: InputInvalidCheck, inputConverter: InputConverter): Int {
         val inputTrim = input().trim()
-        OutputView.errorType = OutputView.Error.BRIDGE_INPUT_ERROR
-        if (!inputInvalidCheck.checkBridgeSize(inputTrim)) throwError()
-        val bridgeSize = inputConverter.convertBridgeSize(inputTrim)
-        if (bridgeSize < BRIDGE_LOWER_INCLUSIVE || bridgeSize > BRIDGE_UPPER_INCLUSIVE) throwError()
-        OutputView.errorType = OutputView.Error.NON_ERROR
-        return bridgeSize
+        inputInvalidCheck.checkBridgeSize(inputTrim, inputConverter)
+        return inputConverter.convertBridgeSize(inputTrim)
     }
 
     /**
@@ -26,9 +22,7 @@ class InputView {
      */
     fun readMoving(inputInvalidCheck: InputInvalidCheck): String {
         val inputTrim = input().trim()
-        OutputView.errorType = OutputView.Error.MOVE_INPUT_ERROR
-        if (!inputInvalidCheck.checkMoving(inputTrim)) throwError()
-        OutputView.errorType = OutputView.Error.NON_ERROR
+        inputInvalidCheck.checkMoving(inputTrim)
         return inputTrim
     }
 
@@ -37,14 +31,8 @@ class InputView {
      */
     fun readGameCommand(inputInvalidCheck: InputInvalidCheck): String {
         val inputTrim = input().trim()
-        OutputView.errorType = OutputView.Error.RETRY_INPUT_ERROR
-        if (!inputInvalidCheck.checkGameCommand(inputTrim)) throwError()
-        OutputView.errorType = OutputView.Error.NON_ERROR
+        inputInvalidCheck.checkGameCommand(inputTrim)
         return inputTrim
-    }
-
-    private fun throwError() {
-        throw IllegalArgumentException()
     }
 
     companion object {

@@ -1,8 +1,6 @@
 package bridge
 
-import java.lang.IllegalArgumentException
-
-class Controller() {
+class Controller {
     private lateinit var bridgeGame: BridgeGame
     private val bridgeMaker = BridgeMaker(BridgeRandomNumberGenerator())
     private val inputView = InputView()
@@ -13,8 +11,7 @@ class Controller() {
     fun run() {
         outputView.gameStartMessage()
         inputGameBridgeSizeStep()
-        while (inputMoveStep()) {
-        }
+        gameProgressStep()
         endGame()
     }
 
@@ -25,22 +22,27 @@ class Controller() {
                 val bridgeSize = inputView.readBridgeSize(inputInvalidCheck, inputConverter)
                 bridgeGame = BridgeGame(bridgeMaker.makeBridge(bridgeSize))
                 break
-            } catch (e: IllegalArgumentException) {
-                OutputView.errorMessage() // 다리 개수 입력 시 에러 처리
+            } catch (e: Exception) {
+                println(e.message)
+            }
+        }
+    }
+
+    private fun gameProgressStep() {
+        while (true) {
+            try {
+                val isStopGame = inputMoveStep()
+                if (!isStopGame) break  // 게임을 재시작을 안하거나 게임 완료한 경우.
+            } catch (e: Exception) {
+                println(e.message)
             }
         }
     }
 
     private fun inputMoveStep(): Boolean { // 이동 입력 그만 받고 종료하고 싶으면 false를 반환해야 함.
-        var curMoveResult: BridgeGame.BridgeMoveResult
-        try {
-            outputView.moveInputPleaseMessage()
-            curMoveResult = bridgeGame.move(inputView.readMoving(inputInvalidCheck))
-            outputView.printMap(bridgeGame.realBridges(), bridgeGame.gameBridges(), bridgeGame.curStep())
-        } catch (e: IllegalArgumentException) {
-            OutputView.errorMessage() // 이동 입력 시 에러 처리
-            return true
-        }
+        outputView.moveInputPleaseMessage()
+        val curMoveResult = bridgeGame.move(inputView.readMoving(inputInvalidCheck))
+        outputView.printMap(bridgeGame.realBridges(), bridgeGame.gameBridges(), bridgeGame.curStep)
         return moveResultStep(curMoveResult)
     }
 
@@ -56,8 +58,8 @@ class Controller() {
         while (true) {
             try {
                 return inputRetryStep()
-            } catch (e: IllegalArgumentException) {
-                OutputView.errorMessage()
+            } catch (e: Exception) {
+                println(e.message)
             }
         }
     }
@@ -73,10 +75,8 @@ class Controller() {
 
     private fun endGame() {
         outputView.finalGameResult()
-        outputView.printMap(bridgeGame.realBridges(),
-            bridgeGame.gameBridges(),
-            bridgeGame.curStep())
-        outputView.printResult(bridgeGame.isGameSuccess(), bridgeGame.tryCount())
+        outputView.printMap(bridgeGame.realBridges(), bridgeGame.gameBridges(), bridgeGame.curStep)
+        outputView.printResult(bridgeGame.isSuccess, bridgeGame.tryCount)
     }
 
 }
