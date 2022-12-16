@@ -8,7 +8,14 @@ class BridgeMaker(private val bridgeNumberGenerator: BridgeNumberGenerator) {
      * @param size 다리의 길이
      * @return 입력받은 길이에 해당하는 다리 모양. 위 칸이면 "U", 아래 칸이면 "D"로 표현해야 한다.
      */
-    fun makeBridge(size: Int): List<String> {
-        return listOf()
+    fun makeBridge(size: Int): List<String> { // 이건 정답지임. 이걸보고 브릿지게임이 판단해야함.
+        val bridges = mutableListOf<String>()
+        for (i in 0 until size) {
+            when (bridgeNumberGenerator.generate()) {
+                1 -> bridges.add("U")
+                else -> bridges.add("D")
+            }
+        }
+        return bridges.toList()
     }
 }
