@@ -78,7 +78,7 @@ class OutputView {
     fun moveInputPleaseMessage() = println(MOVE_INPUT_PLEASE)
     fun retryInputPleaseMessage() = println(RETRY_INPUT_PLEASE)
     fun finalGameResult() = println(FINAL_GAME_RESULT)
-    private fun gameTryCount(tryCount: Int) = println("$TRY_COUNT$tryCount")
+    private fun gameTryCount(tryCount: Int) = println(TRY_COUNT.format(tryCount))
 
     companion object {
         private const val BRIDGE_GAME_START = "다리 건너기 게임을 시작합니다."
@@ -88,7 +88,7 @@ class OutputView {
         private const val FINAL_GAME_RESULT = "최종 게임 결과"
         private const val GAME_RESULT_SUCCESS = "게임 성공 여부: 성공"
         private const val GAME_RESULT_FAILED = "게임 성공 여부: 실패"
-        private const val TRY_COUNT = "총 시도한 횟수: "
+        private const val TRY_COUNT = "총 시도한 횟수: %d"
     }
 
     enum class Match {
