@@ -16,57 +16,35 @@ class Controller {
     }
 
     private fun inputGameBridgeSizeStep() {
-        while (true) {
-            try {
-                outputView.bridgeLengthInputPleaseMessage()
-                val bridgeSize = inputView.readBridgeSize(inputInvalidCheck, inputConverter)
-                bridgeGame = BridgeGame(bridgeMaker.makeBridge(bridgeSize))
-                break
-            } catch (e: Exception) {
-                println(e.message)
-            }
-        }
+        val bridgeSize = inputView.readBridgeSize(outputView, inputInvalidCheck, inputConverter)
+        bridgeGame = BridgeGame(bridgeMaker.makeBridge(bridgeSize))
     }
 
     private fun gameProgressStep() {
         while (true) {
-            try {
-                val isStopGame = inputMoveStep()
-                if (!isStopGame) break  // 게임을 재시작을 안하거나 게임 완료한 경우.
-            } catch (e: Exception) {
-                println(e.message)
+            if(inputMoveStep()){
+                continue
             }
+            break
         }
     }
 
     private fun inputMoveStep(): Boolean { // 이동 입력 그만 받고 종료하고 싶으면 false를 반환해야 함.
-        outputView.moveInputPleaseMessage()
-        val curMoveResult = bridgeGame.move(inputView.readMoving(inputInvalidCheck))
+        val curMoveResult = bridgeGame.move(inputView.readMoving(outputView,inputInvalidCheck))
         outputView.printMap(bridgeGame.realBridges(), bridgeGame.gameBridges(), bridgeGame.curStep)
         return moveResultStep(curMoveResult)
     }
 
     private fun moveResultStep(curMoveResult: BridgeGame.BridgeMoveResult): Boolean { // 이동 입력 그만 받고 싶으면 false 리턴.
         return when (curMoveResult) {
-            BridgeGame.BridgeMoveResult.MOVE_FAILED -> moveFailedStep()
+            BridgeGame.BridgeMoveResult.MOVE_FAILED -> retryStep()
             BridgeGame.BridgeMoveResult.MOVE_SUCCESS -> true
-            else -> false
+            BridgeGame.BridgeMoveResult.MOVE_END -> false
         }
     }
 
-    private fun moveFailedStep(): Boolean {
-        while (true) {
-            try {
-                return inputRetryStep()
-            } catch (e: Exception) {
-                println(e.message)
-            }
-        }
-    }
-
-    private fun inputRetryStep(): Boolean {
-        outputView.retryInputPleaseMessage()
-        if (inputView.readGameCommand(inputInvalidCheck) == "R") {
+    private fun retryStep(): Boolean {
+        if (inputView.readGameCommand(outputView,inputInvalidCheck) == "R") {
             bridgeGame.retry()
             return true
         }

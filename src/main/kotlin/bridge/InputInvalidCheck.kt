@@ -9,10 +9,10 @@ class InputInvalidCheck() {
     }
 
     private fun checkInputOneInteger(input: String) {
-        input.forEach { if (!isNumber(it)) throwError(Error.BRIDGE_INPUT_TYPE_ERROR) }
+        if (!input.isNumber()) throwError(Error.BRIDGE_INPUT_TYPE_ERROR)
     }
 
-    private fun isNumber(char: Char): Boolean = char.code in 48..57
+    private fun String.isNumber(): Boolean = this.all { it.isDigit() }
 
     fun checkMoving(input: String) {
         if (!(input == "U" || input == "D")) throwError(Error.MOVE_INPUT_ERROR)
